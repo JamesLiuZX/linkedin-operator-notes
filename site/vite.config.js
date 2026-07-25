@@ -6,6 +6,8 @@ export default defineConfig({
   server: {
     port: 5173,
     open: true,
+    // Cloudflare quick tunnels rotate subdomains; allow them in dev.
+    allowedHosts: [".trycloudflare.com", "localhost"],
   },
   resolve: {
     alias: {
