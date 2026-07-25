@@ -1,12 +1,17 @@
 # How to continue with Cursor (or alone)
 
+## Writing rules (always)
+
+Follow `WRITING.md` end to end: no em dashes, hard hook, natural voice, Takeaway, shareable forward test, plus the presenter craft (one transformation, audience as hero, what is / what could be, SUCCESs, stealable line).
+
 ## When you open this project again, say things like:
 
 - "Draft next week's 2 posts from the idea bank"
-- "Rewrite post 01 to sound more like me — here's a sample of my writing: …"
+- "Rewrite post 01 to sound more like me. Here's a sample of my writing: …"
+- "Rewrite article 02 with the WRITING.md principles"
 - "Turn posts 01+03+08 into newsletter issue #1"
 - "Make the Prediction Market Product Checklist"
-- "I stalled for 2 weeks — give me the smallest restart plan"
+- "I stalled for 2 weeks. Give me the smallest restart plan"
 - "Roast this draft for LinkedIn cringe: …"
 - "Generate 10 comments I could leave on posts about X"
 

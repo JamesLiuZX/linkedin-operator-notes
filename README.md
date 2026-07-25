@@ -12,6 +12,7 @@ Positioning: *Operator who ships prediction markets and AI products at scale —
 
 | File | Purpose |
 |------|---------|
+| [WRITING.md](./WRITING.md) | Core principles + presenter craft (Duarte/Heath/Jobs moves, in your voice) |
 | [00-positioning.md](./00-positioning.md) | Voice, rules, what never to post |
 | [01-profile.md](./01-profile.md) | LinkedIn headline, about, featured — copy/paste |
 | [02-90-day-plan.md](./02-90-day-plan.md) | Week-by-week sprint through day 90 |
@@ -23,6 +24,14 @@ Positioning: *Operator who ships prediction markets and AI products at scale —
 | [posts/](./posts/) | Ready-to-edit post drafts |
 | [articles/](./articles/) | Full researched multimodal essays (start here for depth) |
 | [ideas/idea-bank.md](./ideas/idea-bank.md) | 60+ prompts so you never blank |
+
+## Preview articles as a site
+
+```bash
+npm run site:install
+npm run unsplash   # pull best free Unsplash URLs into articles
+npm run site       # http://localhost:5173
+```
 
 ## Start today (30 minutes)
 

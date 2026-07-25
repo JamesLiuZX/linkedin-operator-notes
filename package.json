@@ -1,0 +1,10 @@
+{
+  "name": "linkedin-operator-notes",
+  "private": true,
+  "scripts": {
+    "unsplash": "node scripts/fetch-unsplash.mjs",
+    "site": "npm --prefix site run dev",
+    "site:install": "npm --prefix site install",
+    "site:build": "npm --prefix site run build"
+  }
+}

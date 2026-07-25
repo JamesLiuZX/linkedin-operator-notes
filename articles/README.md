@@ -1,21 +1,30 @@
 # Articles
 
-## Honest status
+## Preview site
 
-The first multimodal “sample set” was bad — template structure, citation theater, carousel packs. Parked.
+```bash
+npm run site:install
+npm run unsplash    # refresh Unsplash URLs → unsplash-manifest.json
+npm run site        # http://localhost:5173
+```
 
-**Rewritten for voice (read this one):**
-- [01 — People don’t quit because they lost…](./01-three-trust-surfaces.md)
+## Writing standard
 
-**Still slop (do not publish; rewrite if #01 lands):**
+Follow [`../WRITING.md`](../WRITING.md). Mechanics plus presenter craft:
+
+- No em dashes; hook; natural voice; Takeaway; shareable
+- One transformation (start belief → end belief)
+- Audience as hero; what is / what could be contrast
+- Concrete scenes, curiosity gaps, a Monday decision test
+- End on new bliss + a stealable line
+
+`npm run unsplash` updates the image manifest only. It does **not** overwrite article prose.
+
+## Status
+
+**Ready (presenter craft + images + takeaway):**
+- [01: People don’t quit because they lost…](./01-three-trust-surfaces.md)
+
+**Still need rewrite to WRITING.md:**
 - `02-after-the-final.md`
 - `03-prototype-aggressively-productionize-suspiciously.md`
-
-## Standard going forward
-
-- Essay, not playbook
-- No TL;DR / checklist / “multimodal pack” sections in the piece itself
-- Opinion a smart peer could disagree with
-- Specific failure modes over Pew stats
-- At most one simple diagram if the prose needs it — never mermaid for decoration
-- Research lives in footnotes or a separate appendix only when a claim actually needs it
