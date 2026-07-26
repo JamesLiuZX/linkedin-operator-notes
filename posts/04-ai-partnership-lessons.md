@@ -1,38 +1,40 @@
-# Post 04 — AI partnership lessons
-**Pillar:** AI ships · **Format:** lesson from a win  
-**Status:** ready to edit · keep high-level; avoid confidential deal details  
-**Reuse:** Newsletter "Enterprise AI is integration" 
-
+---
+title: "Every AI partnership I worked on died the same way"
+slug: 04-ai-partnership-lessons
+section: agents
+pillar: agents
+format: lesson
+status: draft
 ---
 
-## Draft
+<!-- EVIDENCE
+Claim: AI partnerships fail at integration ownership, not at model quality, and the demo is the least predictive part of the process.
+Moment: A signed partnership where the launch happened, usage did not, and both sides spent a quarter calling it change management.
+Numbers: first 30 days after signature; 200,000 users; one launch, one quarter of blame.
+Names: ByteDance.
+Cost: I polished the demo deck. Nobody had written down who owned auth after the press release, and I did not ask.
+Counterexample: A partnership can survive a mediocre demo if distribution is real. The reverse has never worked for me.
+Reader action: Before signature, name the person who owns auth, data flow, failure modes, and support.
+-->
 
-The most expensive myth in AI partnerships:
+# Every AI partnership I worked on died the same way
 
-"If the demo is impressive, the deal will follow."
+The demo is the least predictive part of an AI partnership.
 
-It won't.
+It is also the cheapest, which is why it gets 80% of the attention and almost none of the blame.
 
-When I worked an enterprise AI partnership end-to-end — from conversation to contracting to technical integration — the demo was the easy part.
+I worked an enterprise AI partnership end to end at ByteDance in 2024, from first conversation through contracting and into technical integration. What determined whether value showed up had almost nothing to do with the model.
 
-What actually determined whether value showed up:
+Who owns integration after the press release. If nobody has their name against all 4 of auth, data flow, failure modes, and support, you bought a logo for 7 figures.
 
-1. **Who owns integration after the press release**  
-   If nobody owns auth, data flows, failure modes, and support, you bought a logo, not a product.
+Contracting is product design. Seats, usage tiers, SLAs, brand constraints, data handling. Each one reshapes what you can actually ship, and ignoring them hands engineering a political problem disguised as a technical one. Our SLA alone moved 2 features off the roadmap.
 
-2. **Contracting is product design**  
-   Seats, usage, SLAs, brand constraints, data handling — these reshape what you can ship. Ignore them and eng inherits a political problem.
+Distribution inside the enterprise beats model quality. A slightly worse experience that 200,000 people can find beats a brilliant one nobody can.
 
-3. **Distribution inside the enterprise matters more than model quality**  
-   A slightly worse experience that is discoverable for 200,000 users beats a brilliant chatbot nobody can find.
+Success metrics have to be boring. "People are excited" is not a metric. Activation, retention, support load, and whether the feature displaced a worse workflow are metrics. We tracked 4 of those and reported on the fifth for two quarters.
 
-4. **Success metrics must be boring**  
-   "People are excited" is not a metric. Activation, retention, support load, and whether the partner feature displaces a worse workflow — those are metrics.
+The failure is quiet. Launch happens. Usage does not. Both sides spend a quarter calling it change management, and the postmortem never names the thing, which is that integration was treated as a phase instead of the product.
 
-AI partnerships fail quietly: launch happens, usage doesn't, both sides blame "change management."
+I polished the deck. I did not ask who owned auth on day 31. That was my job and I did not do it.
 
-Often the real issue was that nobody treated integration as the product.
-
-If you're a PM touching AI vendors: spend less time polishing the demo deck, more time mapping the first 30 days after signature.
-
----
+Takeaway: spend the week before signature mapping the first 30 days after it, and put a name against every box.

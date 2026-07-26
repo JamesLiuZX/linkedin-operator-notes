@@ -1,36 +1,46 @@
-# Post 02 — PM who opens PRs
-**Pillar:** AI ships · **Format:** build log / lesson  
-**Status:** ready to edit  
-**Reuse:** Newsletter "AI-native PM workflows" · Course module later
-
+---
+title: "The PM who opens PRs"
+slug: 02-pm-opens-prs
+section: agents
+pillar: agents
+format: build log
+status: draft
 ---
 
-## Draft
+<!-- EVIDENCE
+Claim: The useful AI upgrade to PM work is shortening the loop between taste and implementation, not writing better PRDs.
+Moment: Prototyping an edge case in an afternoon after three weeks of failing to describe it in a doc.
+Numbers: 14 pull requests last quarter, none of them features; 3 weeks of spec revisions replaced by one afternoon; 2 PRs created review debt; 1 reverted.
+Names: Cursor, Claude Code.
+Cost: Two of those PRs created review debt for someone else. One was reverted, correctly.
+Counterexample: Anything touching the order path. A PM prototype near matching logic is a liability, not a contribution.
+Reader action: Prototype the edge case instead of writing the third revision of the paragraph describing it.
+-->
 
-The most useful AI upgrade to my PM workflow wasn't better PRD templates.
+# The PM who opens PRs
 
-It was opening PRs again.
+I opened 14 pull requests last quarter. None of them were features.
 
-For a long time, "technical PM" meant: write crisp specs, know enough SQL, sit in architecture reviews. Useful. Incomplete.
+Internal tooling, a seed-data script, and 3 fixes to copy that was wrong in a way only someone reading 200 support tickets a week would ever notice.
 
-What's changed with tools like Cursor and Claude Code:
+For years "technical PM" meant writing crisp specs, knowing enough SQL, and sitting quietly in architecture reviews. Useful. Incomplete.
 
-• I can prototype the awkward edge case instead of describing it  
-• I can feel latency and state bugs before eng has to translate my doc  
-• I can contribute small fixes without pretending I'm replacing the engineering team
+What changed with Cursor and Claude Code is the loop between having taste about something and finding out whether it survives contact with the code.
 
-This doesn't mean PMs should become full-stack heroes.
+I spent 3 weeks on revisions of one paragraph describing an edge case in a settlement flow. Nobody could agree on what I meant. I built it in an afternoon instead, and the disagreement resolved in about four minutes, because everyone was finally looking at the same broken screen.
 
-It means the feedback loop between taste and implementation can be hours, not sprint cycles — especially for internal tools, agent prototypes, and UX experiments.
+That is the whole benefit. Not velocity. Shared reference.
 
-The risk is obvious: shipping junk that creates eng cleanup.
+The failure mode is obvious and I walked straight into it. Two of those 14 PRs created review debt for an engineer who had better things to do that week. One got reverted, correctly, because I had not thought about the migration path. That is a 14% waste rate, and I was wrong to treat it as a rounding error at the time.
 
-So the rule I use:
-- Prototype to learn
-- PR only when the change is scoped and reviewable
-- Never confuse a demo with a production system (especially in trading)
+So the rules I run now.
 
-AI didn't make me a better writer of strategy docs.  
-It made my strategy docs honest faster — because I had to confront what actually works in code.
+Prototype to learn, and throw most of it away.
 
----
+Open a PR only when the change is scoped, reviewable, and boring.
+
+Never touch the order path. A PM prototype near matching logic is a liability wearing a helpful face.
+
+The point was never that PMs should become engineers. It is that my strategy docs got honest faster, because I had to confront what actually worked instead of describing what should.
+
+Takeaway: build the edge case instead of writing the third revision of the paragraph describing it.

@@ -1,8 +1,13 @@
 import "./style.css";
+import "./viz/palette.css";
+import "./viz/viz.css";
 import { marked } from "marked";
 import manifest from "../../articles/unsplash-manifest.json";
 import { ARTICLES, bySlug, bySection, SECTIONS } from "./content.js";
 import { currentPath, navigate, onRoute } from "./router.js";
+import { DEMOS, demoBySlug } from "./demos/index.js";
+import { renderDashboard } from "./dashboard/index.js";
+import { hydrateCharts } from "./viz/charts.js";
 
 marked.setOptions({ gfm: true, breaks: false });
 
@@ -66,8 +71,15 @@ function route(path = currentPath()) {
 
   const clean = path.replace(/\/$/, "") || "/";
   if (clean === "/" || clean === "/home") return renderHome();
+  if (clean === "/dashboard") return renderDash();
+  if (clean === "/demos") return renderDemoIndex();
 
   const parts = clean.split("/").filter(Boolean);
+  if (parts[0] === "demos" && parts[1]) {
+    const demo = demoBySlug(parts[1]);
+    if (demo) return renderDemo(demo);
+    return renderDemoIndex();
+  }
   if (parts.length === 1) {
     const item = bySlug(parts[0]);
     if (item) return renderArticle(item);
@@ -114,7 +126,19 @@ function renderHome() {
     url: window.location.origin + import.meta.env.BASE_URL.replace(/\/$/, "") + "/",
   });
 
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  const demoStrip = DEMOS.slice(0, 4)
+    .map(
+      (d) =>
+        `<a class="strip-card" href="${base}/demos/${d.slug}">
+           <strong>${escapeHtml(d.title)}</strong>
+           <span>${escapeHtml(d.tagline)}</span>
+         </a>`
+    )
+    .join("");
+
   document.getElementById("app").innerHTML = `
+    ${siteNav("/")}
     <main class="home">
       <header class="brand-lockup">
         <div class="eyebrow">Market Ops Notes</div>
@@ -122,10 +146,24 @@ function renderHome() {
         <p>Resolution, liquidity, incentives, and AI pointed at systems that have consequences.</p>
         <div class="section-nav">${sectionNav}</div>
       </header>
-      <section class="article-grid">${cards || '<p class="note">No published pieces yet.</p>'}</section>
+      <section class="strip">
+        <div class="strip-head">
+          <h2>Poke something</h2>
+          <a href="${base}/demos" class="mono">All demos →</a>
+        </div>
+        <div class="strip-grid">${demoStrip}</div>
+      </section>
+      <section class="article-grid">${
+        cards ||
+        `<div class="empty-lib">
+           <h3>No essays are published yet.</h3>
+           <p>Nine are written and pass the quality gate. They stay invisible until their <code>status:</code> frontmatter is advanced past <code>draft</code>, which is deliberate: the gate is editorial, not mechanical.</p>
+           <p>To read them all on a preview deploy, set <code>VITE_SHOW_DRAFTS=1</code>. To publish one, set its status to <code>compliance-checked</code>.</p>
+           <p>The demos above need no such approval and are live now.</p>
+         </div>`
+      }</section>
       <p class="note">
-        Images from Unsplash via <code>npm run unsplash</code>.
-        Canonical paths: <code>/{section}/{slug}</code>.
+        Canonical paths: <code>/{section}/{slug}</code>. Demos run entirely in the browser, with no backend and no model calls.
       </p>
     </main>
   `;
@@ -214,6 +252,113 @@ function renderArticle(article) {
       <article class="content">${html}</article>
     </div>
   `;
+  window.scrollTo(0, 0);
+}
+
+/* ------------------------------------------------------------------ demos */
+
+function siteNav(active = "") {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  const links = [
+    ["/", "Notes"],
+    ["/demos", "Demos"],
+    ["/dashboard", "Dashboard"],
+  ];
+  return `<nav class="site-nav">
+    <a class="brand" href="${base}/">Market Ops Notes</a>
+    <div class="nav-links">${links
+      .map(
+        ([href, label]) =>
+          `<a href="${base}${href}"${active === href ? ' class="on"' : ""}>${label}</a>`
+      )
+      .join("")}</div>
+  </nav>`;
+}
+
+function renderDemoIndex() {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  setMeta({
+    title: "Demos · Market Ops Notes",
+    description:
+      "Interactive prototypes for prediction-market product decisions. Resolution linting, reward farming, liquidity budgets, and forecast calibration.",
+    url: window.location.origin + base + "/demos",
+  });
+
+  document.getElementById("app").innerHTML = `
+    ${siteNav("/demos")}
+    <main class="home">
+      <header class="brand-lockup">
+        <div class="eyebrow">Demos</div>
+        <h1>Things you can poke</h1>
+        <p>Four prototypes, each one attached to an argument. Everything runs in the browser. No keys, no backend, no model calls, so the numbers are the same every time you load them.</p>
+      </header>
+      <section class="demo-cards">
+        ${DEMOS.map(
+          (d, i) => `
+          <a class="demo-card" href="${base}/demos/${d.slug}" style="animation-delay:${i * 70}ms">
+            <div class="series">${escapeHtml(d.pillar)}</div>
+            <h2>${escapeHtml(d.title)}</h2>
+            <p class="tagline">${escapeHtml(d.tagline)}</p>
+            <p class="meta">${escapeHtml(d.blurb)}</p>
+            <span class="go mono">Open →</span>
+          </a>`
+        ).join("")}
+      </section>
+    </main>`;
+  window.scrollTo(0, 0);
+}
+
+function renderDemo(demo) {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  const essay = demo.essay ? bySlug(demo.essay) : null;
+
+  setMeta({
+    title: `${demo.title} · Market Ops Notes`,
+    description: demo.blurb,
+    url: window.location.origin + base + `/demos/${demo.slug}`,
+  });
+
+  document.getElementById("app").innerHTML = `
+    ${siteNav("/demos")}
+    <main class="demo-shell viz">
+      <header class="demo-head">
+        <div class="eyebrow">${escapeHtml(demo.pillar)}</div>
+        <h1>${escapeHtml(demo.title)}</h1>
+        <p class="tagline">${escapeHtml(demo.tagline)}</p>
+        <p class="demo-blurb">${escapeHtml(demo.blurb)}</p>
+        <div class="demo-links">
+          ${essay ? `<a href="${base}/${essay.section}/${essay.slug}">Read the essay this came from</a>` : ""}
+          <a href="${base}/demos">All demos</a>
+        </div>
+      </header>
+      <div id="demo-root"></div>
+      <footer class="demo-foot">
+        <h4>How it is built</h4>
+        <p>${escapeHtml(demo.buildNote)}</p>
+      </footer>
+    </main>`;
+
+  const root = document.getElementById("demo-root");
+  demo.mount(root);
+  hydrateCharts(root);
+
+  // Charts are re-rendered on every slider move, so re-wire hover as they appear.
+  const obs = new MutationObserver(() => hydrateCharts(root));
+  obs.observe(root, { childList: true, subtree: true });
+
+  window.scrollTo(0, 0);
+}
+
+function renderDash() {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  setMeta({
+    title: "Posting dashboard · Market Ops Notes",
+    description: "Twelve weeks of scheduled essays, demos, and atoms, scored against the quality gate.",
+    url: window.location.origin + base + "/dashboard",
+  });
+  const app = document.getElementById("app");
+  app.innerHTML = siteNav("/dashboard") + '<div id="dash-root"></div>';
+  renderDashboard(document.getElementById("dash-root"), { basePath: base });
   window.scrollTo(0, 0);
 }
 

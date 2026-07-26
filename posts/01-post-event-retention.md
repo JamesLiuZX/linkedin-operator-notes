@@ -1,39 +1,46 @@
-# Post 01 — Post-event retention
-**Pillar:** Markets · **Format:** teardown  
-**Status:** ready to edit · verify any numbers before posting  
-**Reuse:** Newsletter issue "Lifecycle design for event markets"
-
+---
+title: "Marquee events create the illusion of product-market fit"
+slug: 01-post-event-retention
+section: shipping
+pillar: markets
+format: teardown
+status: draft
+derivedFrom: articles/02-after-the-final.md
+linkInComment: /shipping/02-after-the-final
 ---
 
-## Draft (copy to LinkedIn)
+<!-- EVIDENCE
+Claim: Peak-day volume proves attention, not habit. Week two is the only honest read.
+Moment: Watching a dashboard glow for four days after a final and knowing the number meant nothing.
+Numbers: June 2026 combined Kalshi and Polymarket volume $44.8B; Polymarket record $10.8B; April 2026 sector volume $8.6B; open interest $1.11B on 1 May 2026.
+Names: Kalshi, Polymarket, FIFA World Cup.
+Cost: I have presented a peak-day chart as evidence of product-market fit. It was evidence of a tournament.
+Counterexample: A venue built entirely around one annual event can work, if it stops pretending to be a year-round product.
+Reader action: Split the event-acquired cohort out of blended retention before the next readout.
+-->
 
-Marquee events create the illusion of product-market fit.
+# Marquee events create the illusion of product-market fit
 
-A World Cup final or a huge sports series can light up a prediction market product. Activity spikes. Screenshots look great. Leadership asks why we can't "keep this energy."
+Combined Kalshi and Polymarket volume hit $44.8B in June 2026. Polymarket set a record at $10.8B.
 
-The hard problem starts when the calendar goes quiet.
+The World Cup did that. The World Cup also ends.
 
-Retention after a marquee event is mostly not a growth campaign problem. It's a habit design problem:
+During a mega event almost everything gets easier. Distribution is free because everyone is already discussing the same question. Comprehension is cheap because the question is culturally obvious. Urgency does your onboarding for you.
 
-1. **What is the next natural bet?**  
-   If the product only feels alive during finals, you don't have a market product — you have an event microsite.
+Then the trophy gets awarded and you find out what you actually built.
 
-2. **What loop exists in week two?**  
-   Watch → decide → position → resolve → learn → return.  
-   Break any step and the spike was rented attention.
+Here is the number that survives the parade. Sector open interest was $1.11B on 1 May 2026, against $8.6B of April volume. About 13% of the headline is positions people are holding. The rest is turnover.
 
-3. **Did rewards teach the wrong behavior?**  
-   If incentives only paid for showing up during the big game, you bought a crowd, not a cohort.
+Volume measures attention. Open interest measures conviction. Most decks report the first one.
 
-4. **Is resolution trust intact?**  
-   People forgive a quiet week. They don't forgive feeling unclear on how a market settled.
+What the spike proved: people will trade when the world is watching, and your funnel converts attention.
 
-When I think about event-driven markets, I care less about peak day volume and more about whether users still have a reason to open the app when nothing "historic" is happening.
+What it did not prove: that anyone forms a habit, or that your venue has a reason to exist in a quiet week.
 
-The product question isn't "how do we make the final bigger?"  
-It's "what does Tuesday look like after the final?"
+The design work is the bridge, and it is the part that gets underfunded because the dashboard is still glowing from peak. A resolved position either leads to a next natural bet or the account goes cold, and cold accounts become a re-acquisition cost you pay again next season.
 
----
+I have presented a peak-day chart as evidence of product-market fit. It was evidence of a tournament.
 
-## Optional soft CTA
-If useful, I can write up the full post-event checklist I use when planning around big calendars.
+The question is not how to make the final bigger.
+
+Takeaway: fourteen days after the final, what share of event-acquired users traded a non-event market? If you cannot answer that, you are managing a parade.

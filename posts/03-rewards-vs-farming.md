@@ -1,40 +1,47 @@
-# Post 03 — Rewards vs farming
-**Pillar:** Markets · **Format:** tradeoff  
-**Status:** ready to edit · no confidential metrics  
-**Reuse:** Checklist § Incentives · Newsletter incentives essay
-
+---
+title: "Four questions before you spend the next rewards dollar"
+slug: 03-rewards-vs-farming
+section: markets
+pillar: markets
+format: tradeoff
+status: draft
+derivedFrom: articles/04-rewards-vs-farming.md
 ---
 
-## Draft
+<!-- EVIDENCE
+Claim: Reward programs pay for the behaviour they price, and most price the behaviour that is easiest to fake.
+Moment: Realising the published maker-reward formula has no execution term in it.
+Numbers: Polymarket scoring S(v) = ((max_spread - spread)/max_spread)^2 x size; 3c cutoff; one-sided liquidity penalised 3x; day 31.
+Names: Polymarket, Kalshi.
+Cost: I have run a program that paid for "trade once during the event". It bought a crowd and I called it growth for a quarter.
+Counterexample: Wash-trading rules do work. Disqualification is enforceable. The failure is in what gets priced, not in whether rules exist.
+Reader action: Draw the day-31 retention curve with rewards at zero before approving the budget.
+-->
 
-Most reward systems in trading products fail in the same way:
+# Four questions before you spend the next rewards dollar
 
-They optimize for screenshots of volume, then act surprised when farmers arrive.
+Polymarket pays makers for tightness. It does not pay them for fills.
 
-In prediction markets (and trading products generally), incentives have two jobs that conflict:
+The published rule scores a maker order as ((max_spread - order_spread) / max_spread)² × order_size, with a 3 cent cutoff and a 3x penalty for quoting one side only.
 
-1. **Help real users learn the loop** (deposit → decide → trade → resolve → return)  
-2. **Avoid paying professionals to extract the program**
+The square matters. An order 0.5 cents from the midpoint earns about 69% of a mid-touching order. At 2.5 cents it earns 2.8%.
 
-A few design tests I use before launching rewards:
+It is a well-built rule. Tightness is what a book needs.
 
-**Who is the marginal user?**  
-If the next dollar of rewards mostly attracts people who never stick after incentives end, you're renting volume.
+It contains no variable for whether the order fills. That gap is why resting tight on both sides and pulling before execution works. In my simulator at a $5,000 daily pool, farmers took 49% of the budget and filled 15% of the volume.
 
-**What behavior is priced?**  
-Paying for "trade once during event X" is easy to farm.  
-Paying for sequences that look like real usage (return after resolution, multi-market activity over time, non-wash patterns) is harder — and usually healthier.
+Incentives in a trading product have 2 jobs that fight each other. Teach real users the loop. Avoid paying professionals to extract the program. Most teams optimise for a volume screenshot and act surprised when the professionals show up on day 2.
 
-**Can a spreadsheet beat your product?**  
-If someone can win the program without developing taste for markets, farmers will find it.
+Four tests I run before launch, in this order.
 
-**What happens on day 31?**  
-Draw the retention curve assuming rewards go to zero. If the product story collapses, the rewards weren't growth — they were life support.
+Who is the marginal user of the next dollar? If they leave on day 31 when the program ends, you are renting volume at a price you never computed.
 
-Gamification isn't the enemy.  
-Unexamined incentive design is.
+What behaviour is priced? "Trade once during event X" is trivially farmable. A sequence that looks like real usage is harder to fake and usually healthier.
 
-The goal isn't "more activity this week."  
-It's a cohort that still has a reason to play when the points stop shouting.
+Can a spreadsheet beat the product? If someone can win without ever developing a view on a market, they will.
 
----
+What does day 31 look like at zero rewards? Draw that curve. If the product story collapses, the rewards were life support.
+
+I ran a program that paid for showing up during one event. It bought a crowd. I called it growth for a quarter and was wrong by about 90% of the cohort.
+
+Takeaway: gamification is not the problem. Pricing the wrong behaviour is, and you can catch it with a spreadsheet before you catch it in a cohort.

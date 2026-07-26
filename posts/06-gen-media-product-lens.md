@@ -1,36 +1,42 @@
-# Post 06 — Gen media with a product lens
-**Pillar:** Gen media · **Format:** teardown  
-**Status:** ready to edit · no internal ByteDance confidentials  
-**Reuse:** Newsletter "When gen content works for growth"
-
+---
+title: "Generated media is a cost curve decision before it is a taste decision"
+slug: 06-gen-media-product-lens
+section: shipping
+pillar: shipping
+format: teardown
+status: draft
 ---
 
-## Draft
+<!-- EVIDENCE
+Claim: Generated media is worth shipping when it changes the unit economics of content without spending trust, and the failure mode is operational rather than aesthetic.
+Moment: Watching a generation pipeline produce assets faster than the human review step could clear them, and the queue becoming the product.
+Numbers: one human pass; 4 failure modes; the ranking bar; day one versus month three.
+Names: ByteDance.
+Cost: I shipped a pipeline where review was the bottleneck and let volume targets push past it for two weeks. The cleanup took longer than the build.
+Counterexample: For internal assets with no distribution surface, full automation is fine. Nobody is ranking your seed data.
+Reader action: Size the human review step before the generation step, then set volume to whatever review can clear.
+-->
 
-Most AI image/video posts online are demos.
+# Generated media is a cost curve decision before it is a taste decision
 
-"Look what I generated."
+Most generative media posts are demos. "Look what I made." Fine for art, weak for product.
 
-That's fine for art. It's weak for product.
+Inside a growth system the question is never model quality on its own. It is whether the output survives contact with distribution, and there are 4 tests for that.
 
-When generative media is useful inside a growth or content system, the question isn't model quality in isolation. It's whether the output survives contact with distribution:
+Does it clear the channel's ranking bar? Google, TikTok and the App Store all have a developed taste for spam. Models cut the cost of producing 1,000 assets by maybe 90%, which is worth nothing if the channel is tuned to punish exactly that.
 
-1. **Does it win the channel's ranking/quality bar?**  
-   SEO, social, app stores — each has a taste for spam. Models make spam cheaper. That's not an advantage if the channel punishes you.
+What is the human edit loop? Fully automated content reads as automated within 2 paragraphs. Every system I have seen work had 1 tight human pass covering taste, factual risk, and brand.
 
-2. **What's the human edit loop?**  
-   Fully automated content usually looks automated. The winning systems I've seen have a tight human pass for taste, factual risk, and brand.
+Is the marginal asset compounding? One good image is a toy. A system producing assets that still attract qualified traffic in month 3 is a product.
 
-3. **Is the marginal page/asset compounding?**  
-   One pretty image is a toy. A system that produces useful pages/assets that attract qualified traffic is a product.
+What breaks at scale? Duplication, thin pages, wrong claims in the support queue. Generated media fails operationally long before it fails aesthetically, and only the operational failure has a dollar figure attached.
 
-4. **What's the failure mode at scale?**  
-   Duplication, thin content, brand damage, support tickets from wrong claims — gen media fails operationally before it fails aesthetically.
+I shipped a pipeline at ByteDance in 2024 where the human review step was the bottleneck, and then let a volume target push output past what review could clear for 2 weeks. The queue became the product. Cleanup took roughly 3x longer than the build, and that was my mistake, not the model's.
 
-I care about generative tools when they change unit economics of content production **without** destroying trust.
+The lesson was ordering. Size the review capacity first, then set generation volume to whatever review can actually clear. It feels backwards and it is the only version that holds.
 
-If your AI content strategy is "publish more," you probably just automated mediocrity.
+One case escapes all of this. Internal assets with no distribution surface can be fully automated, because nobody at Google is ranking your seed data.
 
-If it's "shorten the path from insight → high-quality asset → distribution," you might have a real lever.
+If the strategy is "publish more", you automated mediocrity and bought a support queue.
 
----
+Takeaway: generated media earns its place when it shortens the path from insight to distributed asset without spending trust to do it.

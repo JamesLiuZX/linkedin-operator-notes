@@ -1,35 +1,44 @@
-# Post 05 — Compliance as product
-**Pillar:** Markets · **Format:** tradeoff  
-**Status:** ready to edit · stay principle-level, no jurisdiction specifics that are sensitive  
-**Reuse:** Checklist § Compliance · Course module
-
+---
+title: "Compliance is a field in the data model, not a gate at the end"
+slug: 05-compliance-as-product
+section: shipping
+pillar: shipping
+format: tradeoff
+status: draft
+derivedFrom: articles/05-compliance-as-product.md
+linkInComment: /shipping/05-compliance-as-product
 ---
 
-## Draft
+<!-- EVIDENCE
+Claim: Jurisdiction has to be a first-class field in the market model, because the legal position genuinely differs by circuit and changes mid-quarter.
+Moment: Reading that two federal appeals courts reached different answers on the same contract type.
+Numbers: Third Circuit ruled for Kalshi 7 April 2026; CFTC sued Arizona, Connecticut and Illinois 2 April 2026; Tennessee injunction 19 February 2026; Maryland denial 1 August 2025; Ninth Circuit heard Nevada 16 April 2026; CFTC proposed rule 10 June 2026.
+Names: CFTC, Kalshi, Third Circuit, Ninth Circuit, Rule 40.11.
+Cost: I designed a market model where jurisdiction was a launch-day config flag. Retrofitting it was three months of work that should have been three days.
+Counterexample: Over-modelling this early is real waste. If you operate in one venue under one regulator, a flag is correct.
+Reader action: Make jurisdiction a field on the market object before the second jurisdiction exists.
+-->
 
-In prediction markets, compliance is not a gate at the end.
+# Compliance is a field in the data model, not a gate at the end
 
-It is a product input at the beginning.
+Two federal appeals courts disagree about the same contract.
 
-If you design the "fun" market first and ask legal later, you don't get a delay — you get a redesign.
+The Third Circuit ruled for Kalshi on 7 April 2026, holding that sports event contracts are swaps. The Ninth Circuit heard Nevada's appeal on 16 April 2026 and the panel did not appear to be leaning the same way.
 
-A few product truths that show up when you expand markets across jurisdictions:
+Meanwhile the CFTC sued Arizona, Connecticut and Illinois on 2 April 2026 to block state enforcement, a Tennessee court granted an injunction on 19 February 2026, a Maryland court denied one on 1 August 2025, and the CFTC issued a new proposed rule on 10 June 2026 revising Rule 40.11.
 
-**Market structure is a feature.**  
-What can be listed, how it resolves, who can participate, what can be marketed — these aren't footnotes. They change the UX and the business model.
+That is not a legal footnote to read once. It is a product requirement.
 
-**Ambiguity is a trust bug.**  
-Users don't experience "pending regulatory review." They experience a product that feels inconsistent: available here, restricted there, unexplained elsewhere.
+The same contract is settled law in one circuit and contested in another, and the answer can change between your spec review and your launch.
 
-**Speed vs clarity is a false choice for long-term brands.**  
-Shipping a confusing restriction without explanation trains users to assume the product is arbitrary. Clear constraints beat silent ones.
+Which means jurisdiction cannot be a flag you add on launch day. It has to be a field on the market object, alongside resolution source and settlement time, from the first version.
 
-**The best PMs in this space translate.**  
-Legal speaks in risk. Users speak in outcomes. Eng speaks in state machines. Your job is the shared language.
+I did not do this. I designed a model where jurisdiction was configuration, and retrofitting it took three months of work that should have taken three days.
 
-I'm not interested in "move fast and break licensed markets."  
-I'm interested in building market products that can still exist next year.
+The failure users experience is different from the one lawyers worry about. Users do not experience "pending regulatory review". They experience a product that is available here, restricted there, and silent about why. Silence trains people to assume the venue is arbitrary.
 
-If you work in fintech or crypto products: treat compliance partners like design partners. Early. Often. With prototypes, not just decks.
+I will say the other side of this, because over-modelling early is genuine waste. If you operate one venue under one regulator, a flag is the right call and I would defend it.
 
----
+The moment there is a second jurisdiction, the flag is already technical debt.
+
+Takeaway: treat compliance partners like design partners, and bring them a prototype rather than a deck.
