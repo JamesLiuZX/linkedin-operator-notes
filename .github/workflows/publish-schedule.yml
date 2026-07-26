@@ -1,0 +1,69 @@
+name: Publish scheduled posts
+
+on:
+  schedule:
+    # Every day at 01:00 UTC = 09:00 Singapore/HKT (UTC+8)
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Optional slug to publish immediately (leave empty for all due)"
+        required: false
+        type: string
+      dry_run:
+        description: "Dry run only (no actual posting)"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Publish to platforms
+        env:
+          SITE_URL: ${{ secrets.SITE_URL }}
+          MEDIUM_INTEGRATION_TOKEN: ${{ secrets.MEDIUM_INTEGRATION_TOKEN }}
+          MEDIUM_USER_ID: ${{ secrets.MEDIUM_USER_ID }}
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          SUBSTACK_POST_EMAIL: ${{ secrets.SUBSTACK_POST_EMAIL }}
+          SUBSTACK_PUBLICATION_URL: ${{ secrets.SUBSTACK_PUBLICATION_URL }}
+          SUBSTACK_FROM_EMAIL: ${{ secrets.SUBSTACK_FROM_EMAIL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM: ${{ secrets.RESEND_FROM }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            DRY="--dry-run"
+          else
+            DRY=""
+          fi
+          if [ -n "${{ inputs.slug }}" ]; then
+            node scripts/publish/index.mjs --now "${{ inputs.slug }}" $DRY
+          else
+            node scripts/publish/index.mjs --scheduled $DRY
+          fi
+
+      - name: Commit publish state
+        if: inputs.dry_run != true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .publish/ articles/ posts/
+          if git diff --staged --quiet; then
+            echo "No state changes"
+          else
+            git commit -m "publish: sync state $(date -u +%F) [skip ci]"
+            git push
+          fi

@@ -1,0 +1,19 @@
+{
+  "name": "linkedin-operator-notes",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "content:check": "node scripts/content-check.mjs",
+    "content:check:json": "node scripts/content-check.mjs --json",
+    "unsplash": "node scripts/fetch-unsplash.mjs",
+    "site": "npm --prefix site run dev",
+    "site:install": "npm --prefix site install",
+    "site:build": "npm --prefix site run build",
+    "publish": "node scripts/publish/index.mjs",
+    "publish:dry": "node scripts/publish/index.mjs --dry-run --scheduled",
+    "publish:list": "node scripts/publish/index.mjs --list",
+    "publish:status": "node scripts/publish/index.mjs --status",
+    "desk": "npm --prefix tools/content-desk run dev",
+    "desk:install": "npm --prefix tools/content-desk install"
+  }
+}
