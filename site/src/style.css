@@ -71,6 +71,38 @@ a:hover {
   color: var(--field);
 }
 
+.section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.section-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  padding: 0.35rem 0.65rem;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.section-chip span {
+  color: var(--field);
+  font-weight: 500;
+}
+
+.section-chip:hover {
+  color: var(--ink);
+  border-color: var(--field);
+}
+
 .brand-lockup h1 {
   font-family: Syne, sans-serif;
   font-weight: 800;

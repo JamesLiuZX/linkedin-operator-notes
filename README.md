@@ -12,44 +12,55 @@ Positioning: *Operator who ships prediction markets and AI products at scale —
 
 | File | Purpose |
 |------|---------|
-| [WRITING.md](./WRITING.md) | Core principles + presenter craft (Duarte/Heath/Jobs moves, in your voice) |
-| [00-positioning.md](./00-positioning.md) | Voice, rules, what never to post |
-| [01-profile.md](./01-profile.md) | LinkedIn headline, about, featured — copy/paste |
-| [02-90-day-plan.md](./02-90-day-plan.md) | Week-by-week sprint through day 90 |
-| [03-weekly-os.md](./03-weekly-os.md) | Recurring calendar + batching ritual |
-| [04-content-os.md](./04-content-os.md) | Idea → draft → publish → reuse pipeline |
-| [05-engagement-playbook.md](./05-engagement-playbook.md) | Comments, DMs, who to follow |
-| [06-newsletter-and-products.md](./06-newsletter-and-products.md) | LinkedIn → newsletter → course ladder |
-| [07-psychology.md](./07-psychology.md) | Getting past cringe / friend judgment |
-| [posts/](./posts/) | Ready-to-edit post drafts |
-| [articles/](./articles/) | Full researched multimodal essays (start here for depth) |
-| [ideas/idea-bank.md](./ideas/idea-bank.md) | 60+ prompts so you never blank |
+| [WRITING.md](./WRITING.md) | Voice contract + quality gate (`npm run content:check`) |
+| [00-positioning.md](./00-positioning.md) | Positioning, pillars, library shape |
+| [PLAN-30-DAYS.md](./PLAN-30-DAYS.md) | First 14-day shipping milestone |
+| [PUBLISHING.md](./PUBLISHING.md) | Cross-post to X / Medium / Substack |
+| [PATCHES.md](./PATCHES.md) | Architecture notes from the optimization pass |
+| [01-profile.md](./01-profile.md) | LinkedIn headline, about, featured |
+| [posts/](./posts/) | Short LinkedIn atoms (derived from essays) |
+| [articles/](./articles/) | Canonical essays (source of truth) |
+| [ideas/idea-bank.md](./ideas/idea-bank.md) | Idea backlog |
+| [tools/content-desk/](./tools/content-desk/) | Local evidence + gate UI |
 
-## Preview articles as a site
+## Daily commands
 
 ```bash
-npm run site:install
-npm run unsplash   # pull best free Unsplash URLs into articles
-npm run site       # http://localhost:5173
+npm run content:check          # quality gate (CI enforces on non-drafts)
+npm run site:install && npm run site
+npm run unsplash               # resolve figures: from article frontmatter
+npm run publish:list
+npm run publish:dry
+npm run desk:install && npm run desk   # content desk UI
 ```
 
-## Start today (30 minutes)
+Canonical site URLs are path-based: `/{section}/{slug}` (not hash routes).
 
-1. Update LinkedIn profile using `01-profile.md`
-2. Read `07-psychology.md` once — then stop debating whether to post
-3. Edit and publish `posts/01-post-event-retention.md` (or whichever feels least cringe)
-4. Spend 10 minutes commenting using `05-engagement-playbook.md`
-5. Schedule next 2 posts in calendar from `02-90-day-plan.md`
+## Adding an essay
 
-## Success metrics (track monthly)
+1. Create `articles/your-slug.md` with YAML frontmatter (`title`, `slug`, `section`, `status`, `figures`, …)
+2. Fill the evidence block (see WRITING.md)
+3. Run `npm run content:check articles/your-slug.md`
+4. Run `npm run unsplash` if you added `figures:`
+5. Preview with `npm run site` (drafts show in dev; only `published` on the live site)
+
+No edits to `site/src/main.js` required.
+
+## Start today
+
+1. Read `PLAN-30-DAYS.md` — ship the library URL first
+2. Update LinkedIn profile using `01-profile.md`
+3. Draft essay 1 through the evidence gate
+4. Derive one LinkedIn atom and one X excerpt from it
+
+## Success metrics
 
 - Profile views from PMs / founders / recruiters / trading firms
 - Inbound DMs that aren't spam
-- Newsletter signups (from month 2–3)
 - Real opportunities: intros, talks, advisory, roles
 
-Ignore: friend group-chat reactions, vanity like counts, going viral with vague takes.
+Ignore: friend group-chat reactions, vanity like counts.
 
-## Compliance (non-negotiable)
+## Compliance
 
-Never post non-public metrics, unreleased roadmaps, customer data, or confidential Crypto.com / ByteDance details. Prefer principles, anonymized patterns, and publicly shareable outcomes. When unsure → remove the number or don't post.
+Never post non-public metrics, unreleased roadmaps, customer data, or confidential Crypto.com / ByteDance details.

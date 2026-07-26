@@ -8,13 +8,13 @@ Mark published with date when you ship.
 
 ## Markets as products
 
-- [ ] Post-event retention framework (drafted: posts/01)
-- [ ] Rewards vs farming tests (drafted: posts/03)
-- [ ] Compliance as product input (drafted: posts/05)
-- [ ] Three trust surfaces (drafted: posts/08)
+- [~] Post-event retention framework (drafted: posts/01; article: articles/02)
+- [~] Rewards vs farming tests (drafted: posts/03; article: articles/04)
+- [~] Compliance as product input (drafted: posts/05; article: articles/05)
+- [~] Three trust surfaces (drafted: posts/08; article: articles/01)
 - [ ] What "good market listing" means operationally
 - [ ] Resolution rules that prevent disputes
-- [ ] Why dead markets poison the whole venue
+- [~] Why dead markets poison the whole venue (article: articles/06)
 - [ ] Sports vs politics vs crypto event markets — different product problems
 - [ ] Options / derivatives intuition for event-market PMs
 - [ ] Onboarding: KYC friction vs first-trade conversion (principles only)
@@ -43,7 +43,7 @@ Mark published with date when you ship.
 
 - [ ] PM who opens PRs (drafted: posts/02)
 - [ ] AI partnership lessons (drafted: posts/04)
-- [ ] AI trading agent prototype boundaries (drafted: posts/07)
+- [~] AI trading agent prototype boundaries (drafted: posts/07; article: articles/03)
 - [ ] PRDs that include a prototype link by default
 - [ ] How I use Cursor day-to-day as a PM (concrete workflow)
 - [ ] Claude Code: when it helps vs creates review debt

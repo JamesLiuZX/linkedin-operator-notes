@@ -1,238 +1,217 @@
-# After the final: designing prediction markets for the Tuesday nobody watches
-
-**Series:** Market Ops Notes · Article 02  
-**Pillar:** Markets as products  
-**Length:** ~2,000 words · **Read time:** ~9 min  
-**Best channels:** Newsletter cornerstone · LinkedIn teardown series  
-**Status:** Draft v1 for your review
-
-![Hero: event lifecycle from peak to steady state](./assets/hero-event-lifecycle.png)
-
+---
+title: "After the final: designing for the Tuesday nobody watches"
+slug: 02-after-the-final
+author: James Liu
+series: Market Ops Notes
+section: shipping
+summary: "Marquee spikes aren't product-market fit. Week-two is."
+status: draft
+publishAt: 2026-08-12T01:00:00Z
+platforms: twitter, medium, substack
+tags: markets, retention, lifecycle
+hero: "https://images.unsplash.com/photo-1764703666646-acc2f7d48857?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTY5MDUxfA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80"
+heroAlt: "Empty football stadium with bright lights on pitch"
+twitterExcerpt: "Marquee spikes are not product-market fit. Week-two retention is."
+figures:
+  - slot: hero
+    prefer: pLqfIJcN2Xk, WEBC3t9RjC4, a6hh1DdC5DM
+    queries: empty football stadium lights
+    requireAny: stadium, empty, seat
+    excludeAny: crowd, fans, player, celebrat
+  - slot: peak
+    prefer: 2rjjnfdlwGY, 65yjpk2HSlA
+    queries: packed stadium night lights
+    requireAny: stadium, crowd, fans, packed
+  - slot: bridge
+    prefer: flRm0z3MEoA, 3nROCRjZiFQ
+    queries: notebook planning desk
+    requireAny: notebook, notepad, desk, calendar, office
 ---
 
-## TL;DR
+# After the final: designing for the Tuesday nobody watches
+
+<figure>
+<img src="https://images.unsplash.com/photo-1764703666646-acc2f7d48857?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTY5MDUxfA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80" alt="Empty football stadium with bright lights on pitch" />
+<figcaption>The lights are still on. The crowd is gone. This is the product you actually built.</figcaption>
+</figure>
 
 Marquee events create the illusion of product-market fit.
 
-The 2026 World Cup cycle made this impossible to ignore: prediction-market volume and attention spiked around the tournament, then cooled as the calendar went quiet. Public reporting described sharp post-final declines in weekly volume on major venues (order-of-magnitude: large percentage drops within ~2 weeks — treat secondary outlets as directional, not gospel).
+A World Cup final, a huge sports series, a once-in-a-cycle election night. Volume spikes. Screenshots look like destiny. Leadership asks why we can't "keep this energy." Then the calendar goes quiet, and the dashboard tells a colder story.
 
-The product question is not “how do we make the final bigger?”  
-It is **what Tuesday looks like after the final.**
+Public reporting around the 2026 World Cup window described sharp post-final cool-downs in weekly volume on major venues. Treat secondary outlets as directional, not gospel. The shape is what matters: attention arrives in a parade, then leaves when the parade ends.
 
-This article gives you a lifecycle system: **Pre → Peak → Resolve → Week-two → Steady**, with retention mechanisms that don’t depend on the next historic night.
+The product question is not "how do we make the final bigger?"
+
+It is what Tuesday looks like after the final.
 
 ---
 
-## The spike is not the product
+### The spike is not the product
 
-During a mega-event, almost everything gets easier:
+<figure>
+<img src="https://images.unsplash.com/photo-1569863959165-56dae551d4fc?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTY5MDUyfA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80" alt="a large stadium filled with lots of people" />
+<figcaption>What is: a full stadium and a chart that looks like PMF. What could be: a reason to open the app when nothing historic is happening.</figcaption>
+</figure>
 
-- Distribution (everyone is already talking about the same thing)
-- Market comprehension (the question is culturally obvious)
-- Emotional urgency (people want a position *now*)
-- Social proof (friends, feeds, group chats)
+During a mega-event, almost everything gets easier.
 
-When the event ends, you lose the free marketing engine. What’s left is your actual product:
+Distribution is free. Everyone is already talking about the same thing. The question is culturally obvious, so comprehension is cheap. Emotional urgency does the onboarding for you. Friends, feeds, and group chats supply social proof you did not earn in the product.
 
-| What the spike proved | What it did **not** prove |
-|----------------------|---------------------------|
+When the event ends, you lose the free marketing engine. What's left is your actual product.
+
+| What the spike proved | What it did not prove |
+|----------------------|------------------------|
 | People will trade when the world is watching | People will form a habit |
 | Your funnel can convert attention | Your loop survives boredom |
 | Liquidity can congregate on one narrative | Your venue has a year-round reason to exist |
 
-Pew’s broader volume chart (Kalshi + Polymarket rising into 2026) shows category momentum. Event tears show something sharper: **attention is rented; habit is owned.**
+Pew's broader volume chart for Kalshi and Polymarket into 2026 shows category momentum. Event tears show something sharper: attention is rented; habit is owned.
 
-Secondary analyses of the World Cup window also argue a structural point worth sitting with: sports markets are often **pure speculation ecosystems** — few natural hedgers — so volume can look institutional while remaining emotionally retail. That’s not a moral judgment. It’s a product constraint: your retention design cannot assume “utility hedging” will keep people around.
+Secondary analyses of the World Cup window also argue a structural point worth sitting with. Sports markets are often pure speculation ecosystems. Few natural hedgers. Volume can look institutional while remaining emotionally retail. That is not a moral judgment. It is a product constraint. Your retention design cannot assume "utility hedging" will keep people around when the trophy is awarded.
+
+**What leadership celebrates:** peak day volume, app-store ranks, the screenshot of the final.
+
+**What Tuesday reveals:** whether you built a venue or a pop-up.
 
 ---
 
-## The five-stage event lifecycle
+### Five stages, one job each
 
-```mermaid
-timeline
-  title Event-market product lifecycle
-  section Attention
-    Pre-event : Educate + list quality markets + set expectations
-    Peak : Performance + clarity + anti-farming
-  section Truth
-    Resolution : Fast fair settle + explain
-  section Habit
-    Week-two : Bridge markets + ritual + learn loop
-    Steady state : Calendar density + trust surfaces
-```
+Most teams treat an event as a launch. Treat it as a lifecycle instead.
 
-### Stage 1 — Pre-event (T‑14 to T‑1)
+**Pre → Peak → Resolve → Week-two → Steady.**
 
-**Job:** Convert curiosity into competent first trades *without* training farmers.
+Miss any stage and the spike becomes a tax you pay again next season.
 
-Ship:
-- “How this market works” for first-timers (2 minutes max)
-- Resolution explainers before money is in
-- A curated set of liquid markets (not 80 thin ones)
-- Expectation setting: fees, exits, what happens if delayed
+#### 1. Pre-event: competence without farmers
 
-Kill:
-- Rewards that only pay for “trade once during the event”
-- Ambiguous viral questions
+**Job:** Convert curiosity into competent first trades without training mercenaries.
 
-### Stage 2 — Peak (live window)
+Ship a two-minute "how this market works" for first-timers. Ship resolution explainers before money is in. Ship a curated set of liquid markets, not eighty thin ones that exist to fill a slide. Set expectations on fees, exits, and what happens if settlement is delayed.
 
-**Job:** Don’t break trust while the stadium is full.
+Kill rewards that only pay for "trade once during the event." Kill ambiguous viral questions that screenshot well and settle badly.
 
-Ship:
-- Performance budgets (order path, app stability)
-- Real-time status honesty (“delayed,” “halted,” “thin”)
-- Support macros ready for the three trust surfaces
-- Risk/compliance monitoring that doesn’t surprise-ban without a story
+**Operator test:** Would a smart first-timer know how they win, how they exit, and how the market resolves before they tap? If not, you are acquiring confusion at scale.
 
-Kill:
-- Silent failures
-- Changing rules mid-event without communication
+#### 2. Peak: don't break trust while the stadium is full
 
-### Stage 3 — Resolution (T+0 to T+2)
+**Job:** Survive contact with the crowd.
 
-**Job:** Make fairness legible.
+Performance budgets matter. Order path, app stability, real-time status honesty. "Delayed," "halted," and "thin" are product copy, not eng jargon. Support macros for the three trust surfaces (price, resolution, surprise) should already exist. Risk and compliance monitoring should not surprise-ban without a story the user can understand.
 
-Ship:
-- Fast settlement when source of truth is clear
-- Push + in-app: “Resolved — here’s why”
-- Clear balance/position truth after settle
-- One-tap path to a **next** market (designed, not random)
+Kill silent failures. Kill mid-event rule changes without communication. The peak is when your brand is most visible and most fragile at once.
 
-Kill:
-- Resolve with no explanation
-- Dumping users on a dead home feed
+**Operator test:** If the app flakes for five minutes during the only window anyone cared about, would a fair loser say "glitch" or "hustle"? Design so the first answer is the only answer.
 
-### Stage 4 — Week-two (the real product)
+#### 3. Resolution: make fairness legible
+
+**Job:** Close the emotional loop.
+
+Fast settlement when the source of truth is clear. Push plus in-app: "Resolved. Here's why." Clear balance and position truth after settle. A one-tap path to a next market that was designed, not random.
+
+Kill resolve-with-no-explanation. Kill dumping users on a dead home feed the morning after.
+
+People forgive a quiet week. They do not forgive feeling unclear on how a market settled. Resolution is not ops theater. It is the last mile of the trade.
+
+**Operator test:** After settle, can the user answer three questions without opening support: what happened, why, and what should I do next?
+
+#### 4. Week-two: the real product
+
+<figure>
+<img src="https://images.unsplash.com/photo-1513128034602-7814ccaddd4e?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTY5MDUzfA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80" alt="person holding notepad and pen flat lay photography" />
+<figcaption>Week-two is planning, not parade. Bridge markets, rituals, and a loop that does not need a historic night.</figcaption>
+</figure>
 
 **Job:** Replace the marquee with a ritual.
 
-This is where most teams under-invest because dashboards still glow from Peak.
+This is where most teams under-invest, because dashboards still glow from Peak. That glow is a lie with a lag.
 
-```mermaid
-flowchart LR
-  A[User resolved a position] --> B{Do they have a next natural bet?}
-  B -->|Yes| C[Bridge market within 48h]
-  B -->|No| D[Account goes cold]
-  C --> E[Small learn loop]
-  E --> F[Return without a historic event]
-  D --> G[Re-acquisition tax later]
-```
+After a position resolves, the user either has a next natural bet or the account goes cold. Cold accounts become a re-acquisition tax later. Warm accounts become the cohort you actually own.
 
-**Bridge design principles**
-1. **Same identity, smaller stakes** — “You followed Team X / Theme Y — here are ongoing markets”
-2. **Higher frequency, lower majesty** — leagues, weekly politics, macro prints, culture markets (category mix matters; Kalshi-style diversification is often cited as a stabilizer vs pure mega-event dependence)
-3. **Teach a loop, not a lottery** — watch → decide → position → resolve → review → return
-4. **Rewards price sequences**, not screenshots — return after resolve, multi-day activity, non-wash patterns
+Bridge design principles that hold up:
 
-### Stage 5 — Steady state
+1. **Same identity, smaller stakes.** "You followed Team X / Theme Y. Here are ongoing markets." Continuity of identity beats a random carousel.
+2. **Higher frequency, lower majesty.** Leagues, weekly politics, macro prints, culture markets. Category mix stabilizes a venue that would otherwise live and die by one tournament.
+3. **Teach a loop, not a lottery.** Watch → decide → position → resolve → review → return. Break any step and the spike was rented attention.
+4. **Rewards price sequences, not screenshots.** Return after resolve. Multi-day activity. Non-wash patterns. If incentives only paid for showing up during the big game, you bought a crowd.
 
-**Job:** Be a venue, not a pop-up.
+**Operator test:** Fourteen days after the final, what percentage of event-acquired users traded a non-event market? If you do not know, you are managing a parade, not a product.
+
+#### 5. Steady state: be a venue
+
+**Job:** Exist when nothing is "historic."
 
 Metrics that matter more than Peak Day Volume:
-- D7 / D30 retention of **event-acquired** cohorts (separate from organic)
-- % of event users who trade a **non-event** market within 14 days
-- Median markets traded in first 30 days
+
+- D7 / D30 retention of event-acquired cohorts, separated from organic
+- Percent of event users who trade a non-event market within 14 days
+- Median markets traded in the first 30 days
 - Support tickets per 1k event users (trust leak detector)
-- Liquidity quality on bridge markets (don’t bridge into ghost towns)
+- Liquidity quality on bridge markets (do not bridge into ghost towns)
+
+If your bridge markets are decorative inventory, you did not build a bridge. You built a cliff with nicer copy.
 
 ---
 
-## A practical “After the Final” playbook
+### A practical playbook after the whistle
 
-### T+0 to T+48 hours
+**T+0 to T+48 hours**
 
-1. Resolution communications live  
-2. “Your tournament” recap: what you traded, what you learned (not gamified shame)  
-3. Bridge module: 3–5 markets max, personally relevant, liquid  
-4. Turn off or reshape event-only incentives  
+Resolution communications live. A "your tournament" recap: what you traded, what you learned, without gamified shame. A bridge module with three to five markets max, personally relevant, liquid. Turn off or reshape event-only incentives before they teach the wrong lesson twice.
 
-### T+3 to T+14 days
+**T+3 to T+14 days**
 
-1. Lifecycle messaging: education > FOMO  
-2. Habit nudge tied to a recurring calendar (matchday / data release / weekly brief)  
-3. Creator/community layer only if it drives understanding, not spam  
-4. Review farming: did rewards create a cohort or a mercenary wave?
+Lifecycle messaging that educates more than it FOMO-screams. Habit nudges tied to a recurring calendar (matchday, data release, weekly brief). Creator or community layer only if it drives understanding, not spam. Review farming: did rewards create a cohort or a mercenary wave?
 
-### T+15 to T+45 days
+**T+15 to T+45 days**
 
-1. Cohort autopsy: who stayed, what they traded, what they ignored  
-2. Listing strategy: cut decorative markets  
-3. Write the memo leadership needs: “Peak ≠ PMF”
+Cohort autopsy: who stayed, what they traded, what they ignored. Listing strategy: cut decorative markets. Write the memo leadership needs: Peak is not PMF.
+
+That memo is a career asset. The alternative is another quarter of buying the same spike and calling the hangover a retention problem.
 
 ---
 
-## Incentives: the silent retention killer
+### Incentives: the silent retention killer
 
 If your acquisition paid people to show up for the final, you bought a crowd.
 
-```mermaid
-flowchart TD
-  R[Reward design] --> Q1{Prices a sequence?}
-  Q1 -->|No| F[Farmers + screenshot volume]
-  Q1 -->|Yes| H[Teaches the loop]
-  F --> C[Churn when points end]
-  H --> S[Chance at steady users]
-```
+Rewards have two jobs that conflict. Help real users learn the loop. Avoid paying professionals to extract the program. Most teams optimize for screenshots of volume, then act surprised when farmers arrive.
 
-**Tests before you spend**
-- Who is the marginal user of the next dollar?
-- Can a spreadsheet beat the product?
-- What does day 31 look like if rewards → 0?
+Before you spend the next dollar, run four tests:
+
+1. **Who is the marginal user of the next dollar?** If they never stick after incentives end, you are renting volume.
+2. **What behavior is priced?** "Trade once during event X" is easy to farm. Sequences that look like real usage are harder and usually healthier.
+3. **Can a spreadsheet beat your product?** If someone can win the program without developing taste for markets, farmers will find it.
+4. **What does day 31 look like if rewards go to zero?** If the product story collapses, the rewards were life support.
+
+Gamification is not the enemy. Unexamined incentive design is.
 
 ---
 
-## Multimodal pack
+### The Monday decision
 
-### A) LinkedIn carousel (9 slides)
+When the next marquee lands on the roadmap, do not start with the campaign brief.
 
-1. “The final isn’t the product. Tuesday is.”  
-2. Spike vs habit table  
-3. Lifecycle diagram (5 stages)  
-4. Peak: don’t break trust  
-5. Resolution: fairness must be legible  
-6. Week-two bridge flowchart  
-7. Metrics that matter (4 bullets)  
-8. Incentive warning  
-9. CTA: Market Ops Notes
+Start with week-two.
 
-### B) One diagram to redraw in Figma
+Name the bridge markets before you buy the spike. Name the resolve story before you list the clever question. Name the incentive that prices a sequence, not a screenshot. Separate the event-acquired cohort in your metrics so nobody can hide hangover inside blended retention.
 
-Export the five-stage lifecycle as a horizontal strip matching the hero image style (you already have `assets/hero-event-lifecycle.png`).
+Picture the other world. The final still happens. The charts still spike. But Tuesday is not empty. The fair loser has a next natural bet. The home feed is not a graveyard. Leadership still gets the screenshot. You get the cohort.
 
-### C) 60-sec video outline
-
-B-roll idea: stadium lights off / empty seats → phone home screen on a quiet Tuesday.  
-VO: walk Pre → Peak → Resolve → Week-two → Steady in 5 beats.  
-End card: “Design the bridge before you buy the spike.”
-
-### D) Newsletter subject lines
-
-- `After the final`  
-- `Your spike is lying to you`  
-- `Week-two is the product`
+That is the difference between a venue and a pop-up.
 
 ---
 
-## Sources & notes
+### Takeaway
 
-1. Pew Research — category volume expansion into 2026: https://www.pewresearch.org/short-reads/2026/05/27/trading-volume-on-prediction-markets-has-soared-in-recent-months/  
-2. Post-World-Cup activity decline reporting (directional; cross-check primary data before citing hard % in public):  
-   - https://tremplin.io/after-the-world-cup-kalshi-and-polymarket-show-a-clear-decline-in-activity/  
-   - https://www.odaily.news/en/post/5212058  
-3. Structural critiques of sports-market participant ecology (opinionated; use carefully):  
-   - https://www.ainvest.com/news/prediction-markets-world-cup-tailwind-participant-problem-remains-2607/
+The final is distribution. Tuesday is the product.
 
-**Citation hygiene:** For LinkedIn atoms, prefer qualitative framing (“volume cooled sharply after the final”) unless you personally verify the underlying series. For newsletter, you can include ranges with “according to secondary reports.”
+Before the next marquee, lock these four:
 
----
+1. **Bridge:** three to five liquid, identity-continuous markets ready within 48 hours of resolve
+2. **Resolve:** a settle story users can explain without support
+3. **Incentives:** price sequences, not "show up for the final"
+4. **Metrics:** event-acquired D14 into non-event markets, not peak day volume alone
 
-## Compliance note for James
-
-You can speak to FIFA/NBA-style marquee dynamics at the **principle** level from your resume narrative. Do not publish internal QoQ MAU/revenue figures unless explicitly approved for public use. The public industry story is already rich enough.
-
----
-
-## LinkedIn atom
-
-Pairs with: `posts/01-post-event-retention.md`
+If you only remember one line, make it this: design the bridge before you buy the spike.

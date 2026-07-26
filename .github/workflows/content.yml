@@ -1,0 +1,26 @@
+name: content
+
+on:
+  pull_request:
+    paths:
+      - "posts/**"
+      - "articles/**"
+      - "scripts/**"
+      - "site/**"
+  push:
+    branches: [master]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node scripts/content-check.mjs
+      - run: node scripts/publish/index.mjs --dry-run --scheduled
+      - run: npm --prefix site ci
+      - run: BASE_PATH=/linkedin-operator-notes/ npm --prefix site run build
+      - name: SPA fallback
+        run: cp site/dist/index.html site/dist/404.html

@@ -3,8 +3,38 @@ title: "People don’t quit because they lost. They quit because they felt hustl
 slug: 01-three-trust-surfaces
 author: James Liu
 series: Market Ops Notes
+section: markets
+summary: "Price quality, resolution clarity, and surprise: the three places market products actually leak trust."
+status: draft
+publishAt: 2026-08-05T01:00:00Z
+platforms: twitter, medium, substack
+tags: markets, trust, product
 hero: "https://images.unsplash.com/photo-1761396677022-3678bcb336f0?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTY5MDQ4fA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80"
 heroAlt: "Empty soccer stadium with red seats and lights"
+twitterExcerpt: "Users forgive a bad beat. They will not forgive feeling hustled."
+figures:
+  - slot: hero
+    prefer: pLqfIJcN2Xk, L1dNukudxBk, a6hh1DdC5DM, 6RNpPq8pWBQ
+    queries: empty soccer stadium red seats | empty stadium seats blue hour
+    requireAny: stadium, seat, arena, grandstand
+    excludeAny: crowd, people, player, fans, match, celebrat
+  - slot: price
+    prefer: fiXLQXAhCfk, Wb63zqJ5gnE, IrRbSND5EUc
+    queries: stock market candlestick chart dark
+    requireAny: chart, stock, graph, trading, monitor
+  - slot: resolution
+    prefer: 6sl88x150Xs, veNb0DDegzE, nSpj-Z12lX0
+    queries: wooden gavel marble
+    requireAny: gavel, mallet, judge
+  - slot: surprise
+    prefer: sgNc8aY6Z7E, cDGWgZdqHWY, 0VGG7cqTwCo
+    queries: person holding phone dark bokeh
+    requireAny: phone, smartphone, iphone
+  - slot: tuesday
+    prefer: 3nROCRjZiFQ, e-jR0DlAN6k, M97M2_9IFlE
+    queries: empty office room morning
+    requireAny: office, empty, room, desk, hallway
+    excludeAny: crowd, party
 ---
 
 # People don’t quit because they lost. They quit because they felt hustled.
@@ -17,6 +47,8 @@ heroAlt: "Empty soccer stadium with red seats and lights"
 Here’s the part nobody puts in the launch deck: users will forgive a bad beat. They will not forgive feeling played.
 
 I’ve watched people lose money and open the app the next morning. I’ve also watched people win once, feel something off about the venue, and never come back. Same balance change. Opposite story in their head.
+
+The winner who felt hustled will tell a sharper story than the loser who felt respected. Screenshots do not capture that story. Retention cohorts do.
 
 That gap is the whole product.
 
@@ -109,7 +141,21 @@ Users don’t split “eng latency” from “compliance hold” from “bad cop
 
 I treat “surprised by numbers” and “surprised by availability” like P0s, same family as a bad settle. If your support tags can’t point tickets at price quality, resolution, or integrity, you’ll keep pouring growth on a leak you refuse to name.
 
+Surprise is also where well-meant AI features go to die. A fluent explainer that invents a fee, misstates eligibility, or sounds certain about a fuzzy settle does not feel like innovation. It feels like the venue talking out of both sides of its mouth. If you ship assistance near money, hold it to the same surprise bar as the rest of the app.
+
 **Operator test:** List every place the app can change the user’s expected money, access, or outcome after they’ve already committed. For each one, ask: did we explain it before the tap, or only after the flinch? After is too late.
+
+---
+
+### How the three surfaces talk to each other
+
+Teams love to fix one surface and ignore the coupling.
+
+A clean settle on a dead market still teaches that prices are cosplay. A liquid book with a surprise fee still feels extractive. A transparent fee table on a fuzzy resolution market still ends in a support queue that spends your trust balance. The surfaces are a system. Roadmaps that assign each to a different squad without a shared vocabulary will keep shipping local wins and global churn.
+
+That is why I want support tags and roadmap reviews to speak the same three words: price, resolution, surprise. If a ticket or a feature cannot point at one of them, ask whether it belongs in the core loop or in the decoration pile.
+
+Campaigns amplify the system you already have. They do not invent a better one.
 
 ---
 
@@ -130,6 +176,8 @@ Does this make prices feel more real, settles feel cleaner, or the app feel less
 
 If not, it’s probably decoration for a spike. Decks are fine. Just don’t confuse them with the work that keeps the person who lost fairly and still opened the app next week.
 
+A useful follow-up in the same meeting: name which surface gets worse if we ship this half-finished. Growth features often improve a dashboard while quietly taxing surprise or resolution. Make that tradeoff speakable. Unspoken tradeoffs become user stories with one-star endings.
+
 Picture the other world for a second. Fewer markets, each one exit-able. Settles so plain they bore Twitter. An app that never flinches after the tap. Growth still matters. It just stops being a coat of paint on a hole.
 
 That person who lost fairly and came back? They’re not a metric. They’re the proof you built something that deserves a second session.
@@ -148,4 +196,4 @@ Before you ship the next growth idea, pressure-test the three surfaces:
 2. **Resolution:** Could a non-lawyer explain how it settles in 30 seconds?
 3. **Surprise:** Where might the app feel extractive after someone has already committed?
 
-If you only remember one line, make it this: build for the user who lost money fairly and still came back. That’s the cohort worth growing.
+If you only remember one line, make it this: build for the user who lost money fairly and still came back. That cohort is the only one worth growing.

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-25T08:46:43.875Z",
+  "generatedAt": "2026-07-25T10:12:25.273Z",
   "source": "unsplash-napi",
   "articles": {
     "01-three-trust-surfaces": {
@@ -154,6 +154,135 @@
           "thumb": "https://images.unsplash.com/photo-1592791770401-7a0cb5ee279b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8Mnx8bWV0YWwlMjBsb2NrJTIwbWFjcm98ZW58MHx8fHwxNzg0OTY5MDU2fDA&ixlib=rb-4.1.0&q=80&w=400",
           "color": "#c0c0c0",
           "likes": 19
+        }
+      }
+    },
+    "04-rewards-vs-farming": {
+      "hero": {
+        "id": "m_HRfLhgABo",
+        "role": "hero",
+        "query": "id:m_HRfLhgABo",
+        "alt": "A MacBook with lines of code on its screen on a busy desk",
+        "photographer": "Christopher Gower",
+        "photographerUrl": "https://unsplash.com/@cgower",
+        "unsplashUrl": "https://unsplash.com/photos/a-macbook-with-lines-of-code-on-its-screen-on-a-busy-desk-m_HRfLhgABo",
+        "url": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTc0MzUxfA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80",
+        "thumb": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTc0MzUxfA&ixlib=rb-4.1.0&q=80&w=400",
+        "color": "#d9d9d9",
+        "likes": 3449
+      },
+      "inline": {
+        "spreadsheet": {
+          "id": "hpjSkU2UYSU",
+          "role": "spreadsheet",
+          "query": "id:hpjSkU2UYSU",
+          "alt": "laptop computer on glass-top table",
+          "photographer": "Carlos Muza",
+          "photographerUrl": "https://unsplash.com/@kmuza",
+          "unsplashUrl": "https://unsplash.com/photos/laptop-computer-on-glass-top-table-hpjSkU2UYSU",
+          "url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTc0MzUyfA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80",
+          "thumb": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTc0MzUyfA&ixlib=rb-4.1.0&q=80&w=400",
+          "color": "#404040",
+          "likes": 7521
+        },
+        "cohort": {
+          "id": "QckxruozjRg",
+          "role": "cohort",
+          "query": "id:QckxruozjRg",
+          "alt": "group of people using laptop computer",
+          "photographer": "Annie Spratt",
+          "photographerUrl": "https://unsplash.com/@anniespratt",
+          "unsplashUrl": "https://unsplash.com/photos/group-of-people-using-laptop-computer-QckxruozjRg",
+          "url": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTc0MzUzfA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80",
+          "thumb": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTc0MzUzfA&ixlib=rb-4.1.0&q=80&w=400",
+          "color": "#262626",
+          "likes": 3877
+        }
+      }
+    },
+    "05-compliance-as-product": {
+      "hero": {
+        "id": "HtBlQdxfG9k",
+        "role": "hero",
+        "query": "blueprint architecture plans desk",
+        "alt": "An architect working on a draft with a pencil and ruler",
+        "photographer": "Daniel McCullough",
+        "photographerUrl": "https://unsplash.com/@d_mccullough",
+        "unsplashUrl": "https://unsplash.com/photos/an-architect-working-on-a-draft-with-a-pencil-and-ruler-HtBlQdxfG9k",
+        "url": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTl8fGJsdWVwcmludCUyMGFyY2hpdGVjdHVyZSUyMHBsYW5zJTIwZGVza3xlbnwwfHx8fDE3ODQ5NzQzNTZ8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80",
+        "thumb": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTl8fGJsdWVwcmludCUyMGFyY2hpdGVjdHVyZSUyMHBsYW5zJTIwZGVza3xlbnwwfHx8fDE3ODQ5NzQzNTZ8MA&ixlib=rb-4.1.0&q=80&w=400",
+        "color": "#262626",
+        "likes": 1327
+      },
+      "inline": {
+        "translate": {
+          "id": "ElF7K4IWcGQ",
+          "role": "translate",
+          "query": "meeting notes whiteboard markers",
+          "alt": "yellow sticky notes",
+          "photographer": "Kelly Sikkema",
+          "photographerUrl": "https://unsplash.com/@kellysikkema",
+          "unsplashUrl": "https://unsplash.com/photos/yellow-sticky-notes-ElF7K4IWcGQ",
+          "url": "https://images.unsplash.com/photo-1553044707-b710ee53ffbd?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTV8fG1lZXRpbmclMjBub3RlcyUyMHdoaXRlYm9hcmQlMjBtYXJrZXJzfGVufDB8fHx8MTc4NDk3NDM1OXww&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80",
+          "thumb": "https://images.unsplash.com/photo-1553044707-b710ee53ffbd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTV8fG1lZXRpbmclMjBub3RlcyUyMHdoaXRlYm9hcmQlMjBtYXJrZXJzfGVufDB8fHx8MTc4NDk3NDM1OXww&ixlib=rb-4.1.0&q=80&w=400",
+          "color": "#c0c0c0",
+          "likes": 323
+        },
+        "clarity": {
+          "id": "veNb0DDegzE",
+          "role": "clarity",
+          "query": "id:veNb0DDegzE",
+          "alt": "brown wooden tool on white surface",
+          "photographer": "Tingey Injury Law Firm",
+          "photographerUrl": "https://unsplash.com/@tingeyinjurylawfirm",
+          "unsplashUrl": "https://unsplash.com/photos/brown-wooden-tool-on-white-surface-veNb0DDegzE",
+          "url": "https://images.unsplash.com/photo-1593115057322-e94b77572f20?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTc0MzYwfA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80",
+          "thumb": "https://images.unsplash.com/photo-1593115057322-e94b77572f20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTc0MzYwfA&ixlib=rb-4.1.0&q=80&w=400",
+          "color": "#f3f3f3",
+          "likes": 902
+        }
+      }
+    },
+    "06-dead-markets-poison": {
+      "hero": {
+        "id": "IEeqknvHRKQ",
+        "role": "hero",
+        "query": "empty store aisle fluorescent",
+        "alt": "white and red train in train station",
+        "photographer": "John Cameron",
+        "photographerUrl": "https://unsplash.com/@john_cameron",
+        "unsplashUrl": "https://unsplash.com/photos/white-and-red-train-in-train-station-IEeqknvHRKQ",
+        "url": "https://images.unsplash.com/photo-1584472376859-889e77a8ccac?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8ZW1wdHklMjBzdG9yZSUyMGFpc2xlJTIwZmx1b3Jlc2NlbnR8ZW58MHx8fHwxNzg0OTc0MzYzfDA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80",
+        "thumb": "https://images.unsplash.com/photo-1584472376859-889e77a8ccac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8ZW1wdHklMjBzdG9yZSUyMGFpc2xlJTIwZmx1b3Jlc2NlbnR8ZW58MHx8fHwxNzg0OTc0MzYzfDA&ixlib=rb-4.1.0&q=80&w=400",
+        "color": "#404040",
+        "likes": 311
+      },
+      "inline": {
+        "listing": {
+          "id": "5fNmWej4tAA",
+          "role": "listing",
+          "query": "id:5fNmWej4tAA",
+          "alt": "person holding pencil near laptop computer",
+          "photographer": "Scott Graham",
+          "photographerUrl": "https://unsplash.com/@amstram",
+          "unsplashUrl": "https://unsplash.com/photos/person-holding-pencil-near-laptop-computer-5fNmWej4tAA",
+          "url": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTc0MzY1fA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80",
+          "thumb": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTc0MzY1fA&ixlib=rb-4.1.0&q=80&w=400",
+          "color": "#c0d9d9",
+          "likes": 13211
+        },
+        "exit": {
+          "id": "Wb63zqJ5gnE",
+          "role": "exit",
+          "query": "id:Wb63zqJ5gnE",
+          "alt": "close-up photo of monitor displaying graph",
+          "photographer": "Nicholas Cappello",
+          "photographerUrl": "https://unsplash.com/@bash__profile",
+          "unsplashUrl": "https://unsplash.com/photos/close-up-photo-of-monitor-displaying-graph-Wb63zqJ5gnE",
+          "url": "https://images.unsplash.com/photo-1560221328-12fe60f83ab8?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTc0MzY1fA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80",
+          "thumb": "https://images.unsplash.com/photo-1560221328-12fe60f83ab8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTc0MzY1fA&ixlib=rb-4.1.0&q=80&w=400",
+          "color": "#0c2659",
+          "likes": 955
         }
       }
     }

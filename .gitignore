@@ -1,7 +1,15 @@
 node_modules/
 site/node_modules/
+tools/**/node_modules/
 site/dist/
+tools/**/dist/
+site/.vite/
 .DS_Store
 *.log
 .env
 .env.*
+!.env.example
+
+# publish state + queue are committed on purpose
+!.publish/state.json
+!.publish/medium-import-queue.jsonl

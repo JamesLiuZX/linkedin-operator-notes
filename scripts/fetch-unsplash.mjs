@@ -2,98 +2,59 @@
 /**
  * Resolve Unsplash image URLs for articles.
  *
- * Strategy:
- * 1) Prefer curated free photo IDs (hand-picked for metaphor fit)
- * 2) Fall back to napi search with require/exclude keyword filters
- * 3) Write articles/unsplash-manifest.json (does not overwrite prose)
+ * Reads figure slots from article frontmatter (`figures:`), not a hardcoded SLOTS map.
+ * Writes articles/unsplash-manifest.json (does not overwrite prose).
  */
-import { writeFileSync } from "node:fs";
+import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { parseFrontmatter } from "./lib/frontmatter.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
 
-const SLOTS = {
-  "01-three-trust-surfaces": {
-    hero: {
-      prefer: ["pLqfIJcN2Xk", "L1dNukudxBk", "a6hh1DdC5DM", "6RNpPq8pWBQ"],
-      queries: ["empty soccer stadium red seats", "empty stadium seats blue hour"],
-      requireAny: ["stadium", "seat", "arena", "grandstand"],
-      excludeAny: ["crowd", "people", "player", "fans", "match", "celebrat"],
-    },
-    inline: {
-      price: {
-        prefer: ["fiXLQXAhCfk", "Wb63zqJ5gnE", "IrRbSND5EUc"],
-        queries: ["stock market candlestick chart dark"],
-        requireAny: ["chart", "stock", "graph", "trading", "monitor"],
-        excludeAny: ["person smiling", "handshake"],
-      },
-      resolution: {
-        prefer: ["6sl88x150Xs", "veNb0DDegzE", "nSpj-Z12lX0"],
-        queries: ["wooden gavel marble"],
-        requireAny: ["gavel", "mallet", "judge"],
-        excludeAny: [],
-      },
-      surprise: {
-        prefer: ["sgNc8aY6Z7E", "cDGWgZdqHWY", "0VGG7cqTwCo"],
-        queries: ["person holding phone dark bokeh"],
-        requireAny: ["phone", "smartphone", "iphone"],
-        excludeAny: ["selfie smile"],
-      },
-      tuesday: {
-        prefer: ["3nROCRjZiFQ", "e-jR0DlAN6k", "M97M2_9IFlE"],
-        queries: ["empty office room morning"],
-        requireAny: ["office", "empty", "room", "desk", "hallway"],
-        excludeAny: ["crowd", "party"],
-      },
-    },
-  },
-  "02-after-the-final": {
-    hero: {
-      prefer: ["pLqfIJcN2Xk", "WEBC3t9RjC4", "a6hh1DdC5DM"],
-      queries: ["empty football stadium lights"],
-      requireAny: ["stadium", "empty", "seat"],
-      excludeAny: ["crowd", "fans", "player", "celebrat"],
-    },
-    inline: {
-      peak: {
-        prefer: ["2rjjnfdlwGY", "65yjpk2HSlA"],
-        queries: ["packed stadium night lights"],
-        requireAny: ["stadium", "crowd", "fans", "packed"],
-        excludeAny: [],
-      },
-      bridge: {
-        prefer: ["flRm0z3MEoA", "3nROCRjZiFQ"],
-        queries: ["notebook planning desk"],
-        requireAny: ["notebook", "notepad", "desk", "calendar", "office"],
-        excludeAny: [],
-      },
-    },
-  },
-  "03-prototype-aggressively-productionize-suspiciously": {
-    hero: {
-      prefer: ["JV_R_DNzIWU", "mp11_hrQXf8"],
-      queries: ["laptop code editor dark mode"],
-      requireAny: ["laptop", "computer", "code", "screen", "monitor"],
-      excludeAny: [],
-    },
-    inline: {
-      demo: {
-        prefer: ["26MJGnSoOqmRc", "26MJGnCM0Wc"],
-        queries: ["whiteboard product sketch"],
-        requireAny: ["whiteboard", "sketch", "presentation", "meeting"],
-        excludeAny: [],
-      },
-      gates: {
-        prefer: [],
-        queries: ["metal lock macro", "security gate"],
-        requireAny: ["lock", "key", "gate", "security"],
-        excludeAny: [],
-      },
-    },
-  },
-};
+function loadFigureSlots() {
+  const dir = join(root, "articles");
+  const files = readdirSync(dir).filter((f) => f.endsWith(".md") && !f.startsWith("README"));
+  const bySlug = {};
+
+  for (const f of files) {
+    const raw = readFileSync(join(dir, f), "utf8");
+    const { data } = parseFrontmatter(raw);
+    const slug = data.slug || f.replace(/\.md$/, "");
+    const figures = Array.isArray(data.figures) ? data.figures : [];
+    if (!figures.length) continue;
+
+    const heroFig = figures.find((fig) => fig.slot === "hero") || figures[0];
+    const inline = {};
+    for (const fig of figures) {
+      if (!fig.slot || fig.slot === "hero") continue;
+      inline[fig.slot] = normalizeFigCfg(fig);
+    }
+    bySlug[slug] = {
+      hero: normalizeFigCfg(heroFig),
+      inline,
+    };
+  }
+  return bySlug;
+}
+
+function normalizeFigCfg(fig) {
+  const asArr = (v) => {
+    if (!v) return [];
+    if (Array.isArray(v)) return v.map(String);
+    return String(v)
+      .split(/\s*\|\s*|,\s*/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+  };
+  return {
+    prefer: asArr(fig.prefer),
+    queries: asArr(fig.queries),
+    requireAny: asArr(fig.requireAny),
+    excludeAny: asArr(fig.excludeAny),
+  };
+}
 
 async function getPhoto(id) {
   const res = await fetch(`https://unsplash.com/napi/photos/${id}`, {
@@ -162,7 +123,6 @@ async function resolveSlot(cfg, excludeIds) {
     const photo = await getPhoto(id);
     await sleep(150);
     if (photo && isFree(photo)) {
-      // preferred IDs skip keyword filters — curated
       excludeIds.add(photo.id);
       return normalize(photo, "slot", `id:${id}`);
     }
@@ -189,11 +149,17 @@ function sleep(ms) {
 }
 
 async function main() {
+  const slots = loadFigureSlots();
+  if (!Object.keys(slots).length) {
+    console.error("No articles with figures: frontmatter found. Add figures: to article YAML.");
+    process.exit(1);
+  }
+
   const manifest = { generatedAt: new Date().toISOString(), source: "unsplash-napi", articles: {} };
   const excludeIds = new Set();
 
-  for (const [slug, article] of Object.entries(SLOTS)) {
-    console.log(`\n→ ${slug}`);
+  for (const [slug, article] of Object.entries(slots)) {
+    console.log(`\n-> ${slug}`);
     const hero = await resolveSlot(article.hero, excludeIds);
     if (!hero) throw new Error(`No hero for ${slug}`);
     hero.role = "hero";
