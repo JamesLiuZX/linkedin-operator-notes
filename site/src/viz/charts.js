@@ -138,7 +138,7 @@ export function barsH(data, { width = 560, rowH = 34, format = fmt.int, colorBy,
     })
     .join("");
 
-  return `<svg class="viz-svg" viewBox="0 0 ${width} ${h}" role="list" aria-label="bar chart">${rows}</svg>`;
+  return `<div class="chart-scroll"><svg class="viz-svg" viewBox="0 0 ${width} ${h}" role="list" aria-label="bar chart">${rows}</svg></div>`;
 }
 
 /* ------------------------------------------------------- stacked bar (h) - */
@@ -247,7 +247,7 @@ export function lineChart(series, opts = {}) {
   );
 
   return `
-    <div class="viz-plot" id="${id}" data-line="${payload}">
+    <div class="chart-scroll"><div class="viz-plot" id="${id}" data-line="${payload}">
       <svg class="viz-svg" viewBox="0 0 ${width} ${height}" role="img"
            aria-label="${esc(yLabel)} against ${esc(xLabel)}">
         ${grid}${guideEl}
@@ -258,7 +258,7 @@ export function lineChart(series, opts = {}) {
       </svg>
       ${xLabel ? `<div class="axis-title">${esc(xLabel)}</div>` : ""}
       <div class="viz-tip" hidden></div>
-    </div>`;
+    </div></div>`;
 }
 
 /**
@@ -358,14 +358,14 @@ export function reliabilityPlot(series, { width = 420, height = 420 } = {}) {
     .join("");
 
   return `
-    <svg class="viz-svg" viewBox="0 0 ${width} ${height}" role="list"
+    <div class="chart-scroll"><svg class="viz-svg" viewBox="0 0 ${width} ${height}" role="list"
          aria-label="reliability diagram, forecast probability against observed frequency">
       ${grid}${diag}
       <line x1="${m.l}" x2="${m.l + iw}" y1="${m.t + ih}" y2="${m.t + ih}" class="axis" />
       <line x1="${m.l}" x2="${m.l}" y1="${m.t}" y2="${m.t + ih}" class="axis" />
       ${marks}
       <text x="${m.l + iw / 2}" y="${height - 6}" class="axis-label" text-anchor="middle">forecast probability</text>
-    </svg>`;
+    </svg></div>`;
 }
 
 /* ------------------------------------------------------------- order book */
@@ -390,5 +390,5 @@ export function depthLadder(levels, { width = 520, rowH = 20, maxSize } = {}) {
         </g>`;
     })
     .join("");
-  return `<svg class="viz-svg" viewBox="0 0 ${width} ${h}" role="list" aria-label="order book depth">${rows}</svg>`;
+  return `<div class="chart-scroll"><svg class="viz-svg" viewBox="0 0 ${width} ${h}" role="list" aria-label="order book depth">${rows}</svg></div>`;
 }

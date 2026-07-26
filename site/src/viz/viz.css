@@ -590,6 +590,42 @@ textarea {
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
+/* An SVG with a fixed viewBox scales its text down with the box. At a 390px
+ * viewport a 620-wide chart renders 10px ticks at about 5px, which is not
+ * readable. So below 640px the plot keeps a legible minimum width and scrolls
+ * inside its own container. The page itself never scrolls sideways.
+ */
+@media (max-width: 640px) {
+  /* A min-width on the chart would otherwise propagate up through every grid
+   * and flex ancestor (they default to min-width:auto) and make the PAGE scroll
+   * sideways, which is the bug this rule exists to prevent. Every link in the
+   * chain has to opt out before the scroll box can contain anything.
+   */
+  .demo-output,
+  .chart-block,
+  .chart-block.two-up > *,
+  .chart-scroll {
+    min-width: 0;
+  }
+
+  .chart-scroll {
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+    /* room for the scrollbar so it does not sit on the axis labels */
+    padding-bottom: 0.35rem;
+  }
+
+  .chart-scroll > .viz-plot,
+  .chart-scroll > .viz-svg {
+    min-width: 500px;
+  }
+
+  .chart-block {
+    padding: 0.9rem;
+  }
+}
+
 .viz-svg {
   width: 100%;
   height: auto;
@@ -1163,3 +1199,40 @@ textarea {
 }
 
 .dash-foot p { font-size: 0.87rem; color: var(--ink-soft); margin: 0 0 0.5rem; }
+
+/* ------------------------------------------------------- reduced motion -- */
+
+/* Cards rise on entry and lift on hover, and the article hero has a slow
+ * transform. All of it is decoration, so honour the OS setting rather than
+ * animating over someone who asked us not to.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------- focus visibility */
+
+/* Every control here is keyboard reachable. Make that visible, since the
+ * default outline is easy to lose against the paper background.
+ */
+.btn-ghost:focus-visible,
+.filter-chip:focus-visible,
+.viz-table summary:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+input[type="range"]:focus-visible,
+input[type="checkbox"]:focus-visible,
+.site-nav a:focus-visible,
+.demo-card:focus-visible,
+.strip-card:focus-visible,
+.slot-actions a:focus-visible {
+  outline: 2px solid var(--field);
+  outline-offset: 2px;
+}
