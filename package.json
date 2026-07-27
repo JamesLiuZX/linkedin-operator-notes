@@ -15,6 +15,7 @@
     "publish:status": "node scripts/publish/index.mjs --status",
     "desk": "npm --prefix tools/content-desk run dev",
     "desk:install": "npm --prefix tools/content-desk install",
+    "apps": "node scripts/build-apps.mjs",
     "ledger": "node scripts/ledger/index.mjs",
     "ledger:test": "node scripts/ledger/selftest.mjs"
   },

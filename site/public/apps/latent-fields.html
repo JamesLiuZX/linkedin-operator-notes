@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="This needs WebGL2 to evaluate the network in a fragment shader. &quot; + &quot;Chrome, Edge, Firefox and Safari 15+ all support it.">
+<title>Latent Fields: a neural network you can watch think</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { min-height: 100vh; }
+  img, svg, video, canvas { display: block; max-width: 100%; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+</style>
+</head>
+<body>
+<title>Latent Fields: a neural network you can watch think</title>
+
+<style>
+  :root {
+    --paper: #ededea;
+    --panel: rgba(255, 255, 255, 0.82);
+    --panel-solid: #ffffff;
+    --ink: #16181c;
+    --line: #d5d5cf;
+    --muted: #6a6e76;
+    --accent: #2748c8;
+    --accent-soft: rgba(39, 72, 200, 0.09);
+    --shadow: 0 1px 2px rgba(20, 22, 28, 0.06), 0 12px 32px rgba(20, 22, 28, 0.1);
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Helvetica, sans-serif;
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #111214;
+      --panel: rgba(25, 27, 31, 0.84);
+      --panel-solid: #191b1f;
+      --ink: #e8e9ec;
+      --line: #2c2f36;
+      --muted: #9095a0;
+      --accent: #8fa2ff;
+      --accent-soft: rgba(143, 162, 255, 0.13);
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.45);
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-theme="light"] {
+    --paper: #ededea; --panel: rgba(255,255,255,0.82); --panel-solid: #ffffff;
+    --ink: #16181c; --line: #d5d5cf; --muted: #6a6e76; --accent: #2748c8;
+    --accent-soft: rgba(39,72,200,0.09);
+    --shadow: 0 1px 2px rgba(20,22,28,0.06), 0 12px 32px rgba(20,22,28,0.1);
+    color-scheme: light;
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #111214; --panel: rgba(25,27,31,0.84); --panel-solid: #191b1f;
+    --ink: #e8e9ec; --line: #2c2f36; --muted: #9095a0; --accent: #8fa2ff;
+    --accent-soft: rgba(143,162,255,0.13);
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 12px 32px rgba(0,0,0,0.45);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+
+  .field { position: fixed; inset: 0; }
+  canvas { display: block; width: 100%; height: 100%; }
+
+  /* ------------------------------------------------------- figure caption */
+
+  .caption {
+    position: fixed;
+    left: 24px;
+    bottom: 22px;
+    max-width: min(46ch, calc(100vw - 400px));
+    padding: 13px 16px;
+    background: var(--panel);
+    backdrop-filter: blur(14px) saturate(1.3);
+    -webkit-backdrop-filter: blur(14px) saturate(1.3);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    box-shadow: var(--shadow);
+  }
+
+  .caption h1 {
+    margin: 0 0 3px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+
+  .caption .spec {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    word-spacing: 0.1em;
+  }
+
+  .caption .about {
+    margin: 7px 0 0;
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  /* ------------------------------------------------------- panel */
+
+  .panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    bottom: 20px;
+    width: 306px;
+    display: flex;
+    flex-direction: column;
+    background: var(--panel);
+    backdrop-filter: blur(16px) saturate(1.3);
+    -webkit-backdrop-filter: blur(16px) saturate(1.3);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .panel header {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .panel header b { font-size: 13px; font-weight: 600; }
+
+  .panel header span {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .scroll { overflow-y: auto; padding: 4px 0 8px; flex: 1; }
+
+  .sec { padding: 12px 16px; border-bottom: 1px solid var(--line); }
+  .sec:last-child { border-bottom: none; }
+
+  .sec > h2 {
+    margin: 0 0 10px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .ctl { display: grid; gap: 4px; margin-bottom: 11px; }
+  .ctl:last-child { margin-bottom: 0; }
+
+  .ctl .lbl {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 8px;
+    font-size: 12.5px;
+  }
+
+  .ctl .val {
+    font-family: var(--mono); font-size: 11px; color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 16px; background: transparent; margin: 0; cursor: ew-resize;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    height: 1px; background: var(--line);
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 11px; height: 11px; margin-top: -5px;
+    border-radius: 50%; background: var(--accent); border: none;
+  }
+  input[type="range"]::-moz-range-track { height: 1px; background: var(--line); }
+  input[type="range"]::-moz-range-thumb {
+    width: 11px; height: 11px; border: none; border-radius: 50%; background: var(--accent);
+  }
+
+  input:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+
+  .row { display: flex; flex-wrap: wrap; gap: 4px; }
+
+  .tag {
+    font-size: 11.5px;
+    padding: 5px 9px;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 0.12s, border-color 0.12s, background 0.12s;
+  }
+  .tag:hover { color: var(--ink); }
+  .tag[aria-pressed="true"] {
+    color: var(--accent); border-color: var(--accent); background: var(--accent-soft);
+  }
+
+  .act {
+    width: 100%;
+    padding: 9px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    transition: border-color 0.12s, color 0.12s, background 0.12s;
+  }
+  .act:hover { border-color: var(--accent); color: var(--accent); }
+  .act.key { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+  .act.live { border-color: #cf4436; color: #cf4436; background: rgba(207, 68, 54, 0.1); }
+
+  .stack { display: grid; gap: 6px; }
+
+  .msg {
+    margin: 9px 0 0;
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  .msg strong { color: var(--ink); font-weight: 600; }
+
+  .fatal {
+    position: fixed; inset: 0; display: grid; place-content: center;
+    padding: 32px; max-width: 60ch; margin: 0 auto; text-align: left;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+
+  @media (max-width: 860px) {
+    body { overflow: auto; }
+    .field { position: relative; height: 62vh; inset: auto; }
+    .panel {
+      position: relative; inset: auto; width: auto; margin: 12px;
+      max-height: none; backdrop-filter: none; -webkit-backdrop-filter: none;
+      background: var(--panel-solid);
+    }
+    .caption {
+      position: relative; left: auto; bottom: auto; margin: 12px; max-width: none;
+      backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--panel-solid);
+    }
+    .scroll { overflow: visible; }
+  }
+</style>
+
+<div class="field"><canvas id="c"></canvas></div>
+
+<figure class="caption">
+  <h1>Latent Fields</h1>
+  <p class="spec" id="spec">&nbsp;</p>
+  <p class="about">Every pixel is one forward pass through a sinusoidal network (Sitzmann et al., 2020) with random weights. Nothing is drawn or sampled: the image <em>is</em> the function. Moving the latent vector moves the whole surface at once.</p>
+</figure>
+
+<aside class="panel">
+  <header><b>Network</b><span id="fps">&nbsp;</span></header>
+  <div class="scroll">
+
+    <div class="sec">
+      <h2>Weights</h2>
+      <div class="stack">
+        <button class="act key" id="reroll">New random network</button>
+      </div>
+      <p class="msg">Seed <strong id="seedLabel"></strong>. The same seed always rebuilds the same network, so a field you like is reproducible.</p>
+    </div>
+
+    <div class="sec">
+      <h2>Activation</h2>
+      <div class="row" id="acts"></div>
+      <div class="ctl" style="margin-top:11px">
+        <label class="lbl" for="omega">Frequency &omega;<sub>0</sub> <span class="val" id="omegaV"></span></label>
+        <input type="range" id="omega" min="1" max="40" step="0.5">
+      </div>
+      <div class="ctl">
+        <label class="lbl" for="gain">Weight gain <span class="val" id="gainV"></span></label>
+        <input type="range" id="gain" min="50" max="800" step="10">
+      </div>
+      <p class="msg">&omega;<sub>0</sub> scales the <em>first</em> layer only, which is what sets how fast the field varies across space. Weight gain scales the hidden layers. Near <strong>1.00×</strong> you get broad organic forms; push it up and each layer beats against the one below until the field breaks into interference and then into noise. Sharing one large frequency across every layer is what makes deep sine networks unstable, and you can watch that happen here.</p>
+    </div>
+
+    <div class="sec">
+      <h2>Depth</h2>
+      <div class="row" id="depths"></div>
+    </div>
+
+    <div class="sec">
+      <h2>Latent walk</h2>
+      <div class="ctl">
+        <label class="lbl" for="speed">Speed <span class="val" id="speedV"></span></label>
+        <input type="range" id="speed" min="0" max="100" step="1">
+      </div>
+      <div class="ctl">
+        <label class="lbl" for="zscale">Latent radius <span class="val" id="zscaleV"></span></label>
+        <input type="range" id="zscale" min="0" max="200" step="1">
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>Framing</h2>
+      <div class="ctl">
+        <label class="lbl" for="zoom">Scale <span class="val" id="zoomV"></span></label>
+        <input type="range" id="zoom" min="20" max="400" step="1">
+      </div>
+      <div class="ctl">
+        <label class="lbl" for="warp">Radial term <span class="val" id="warpV"></span></label>
+        <input type="range" id="warp" min="0" max="200" step="1">
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>Colour</h2>
+      <div class="row" id="tones"></div>
+      <div class="ctl" style="margin-top:11px">
+        <label class="lbl" for="contrast">Contrast <span class="val" id="contrastV"></span></label>
+        <input type="range" id="contrast" min="20" max="300" step="1">
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>Render</h2>
+      <div class="row" id="quals"></div>
+    </div>
+
+    <div class="sec">
+      <h2>Export</h2>
+      <div class="stack">
+        <button class="act key" id="rec">Record latent walk</button>
+        <button class="act" id="png">Save still frame</button>
+      </div>
+      <p class="msg" id="exportMsg">WebM at 30fps. Saves are capped at 16&nbsp;MB, so recording stops automatically at 20 seconds.</p>
+    </div>
+
+  </div>
+</aside>
+
+<script>
+(() => {
+  "use strict";
+
+  const canvas = document.getElementById("c");
+  const gl = canvas.getContext("webgl2", { antialias: false, preserveDrawingBuffer: true });
+
+  if (!gl) {
+    document.body.innerHTML =
+      '<div class="fatal"><h1>Cannot run here</h1>' +
+      "<p>This needs WebGL2 to evaluate the network in a fragment shader. " +
+      "Chrome, Edge, Firefox and Safari 15+ all support it.</p></div>";
+    return;
+  }
+
+  // ---------------------------------------------------------------- network
+
+  // Architecture is fixed so the whole thing fits in uniform registers, which
+  // is far faster than sampling weights from a texture. 3 hidden layers of 16
+  // is enough for genuinely complex fields.
+  const HID = 16;
+  const IN = 8;            // x, y, r, z0..z3, bias-ish constant
+  const IN_V4 = IN / 4;    // 2
+  const HID_V4 = HID / 4;  // 4
+  const OUT = 3;
+
+  // Weight layout, in vec4 slots:
+  //   layer 0 : 16 neurons x 2 vec4 =  32   (offset 0)
+  //   layer 1 : 16 neurons x 4 vec4 =  64   (offset 32)
+  //   layer 2 : 16 neurons x 4 vec4 =  64   (offset 96)
+  //   output  :  3 neurons x 4 vec4 =  12   (offset 160)
+  const W_SLOTS = 172;
+  const B_SLOTS = 13;      // 51 biases packed into vec4s
+
+  function mulberry32(seed) {
+    let a = seed >>> 0;
+    return function () {
+      a = (a + 0x6d2b79f5) >>> 0;
+      let t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  const weights = new Float32Array(W_SLOTS * 4);
+  const biases = new Float32Array(B_SLOTS * 4);
+
+  /**
+   * SIREN initialisation (Sitzmann et al. 2020, section 3.2). The first layer
+   * draws from U(-1/n, 1/n); every later layer from U(-sqrt(6/n)/w0, +same).
+   * That second rescaling is the whole trick: without it, stacking sines
+   * blows the activation distribution apart and the output turns to noise.
+   */
+  function buildNetwork(seed, omega, gain) {
+    const rand = mulberry32(seed);
+    const uniform = (lim) => (rand() * 2 - 1) * lim;
+
+    let w = 0;
+    // SIREN's first-layer bound is 1/fan_in, and fan_in means the *real* inputs.
+    // The vector is padded to 8 lanes to fit vec4 registers, but only three
+    // carry coordinates. Using 1/8 here shrinks the spatial frequency by ~3x
+    // and the whole field flattens into a gradient.
+    const first = 1 / 3;
+    for (let n = 0; n < HID; n++) {
+      for (let v = 0; v < IN_V4; v++) {
+        for (let k = 0; k < 4; k++) weights[(w + v) * 4 + k] = uniform(first);
+      }
+      w += IN_V4;
+    }
+
+    const hidden = Math.sqrt(6 / HID) * gain;
+    for (let layer = 0; layer < 2; layer++) {
+      for (let n = 0; n < HID; n++) {
+        for (let v = 0; v < HID_V4; v++) {
+          for (let k = 0; k < 4; k++) weights[(w + v) * 4 + k] = uniform(hidden);
+        }
+        w += HID_V4;
+      }
+    }
+
+    const head = Math.sqrt(6 / HID);
+    for (let n = 0; n < OUT; n++) {
+      for (let v = 0; v < HID_V4; v++) {
+        for (let k = 0; k < 4; k++) weights[(w + v) * 4 + k] = uniform(head);
+      }
+      w += HID_V4;
+    }
+
+    for (let i = 0; i < HID * 3 + OUT; i++) biases[i] = uniform(0.5);
+  }
+
+  // ---------------------------------------------------------------- shader
+
+  const VS = `#version 300 es
+  void main() {
+    vec2 p = vec2((gl_VertexID << 1) & 2, gl_VertexID & 2);
+    gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0);
+  }`;
+
+  const FS = `#version 300 es
+  precision highp float;
+
+  uniform vec4 uW[${W_SLOTS}];
+  uniform vec4 uB[${B_SLOTS}];
+  uniform vec2 uRes;
+  uniform vec4 uZ;
+  uniform float uOmega, uHid, uZoom, uWarp, uContrast;
+  uniform int uAct, uTone, uDepth;
+  out vec4 outColor;
+
+  float bias(int i) {
+    vec4 b = uB[i / 4];
+    int k = i - (i / 4) * 4;
+    return k == 0 ? b.x : k == 1 ? b.y : k == 2 ? b.z : b.w;
+  }
+
+  // The scale is passed in rather than always being uOmega. Using the same
+  // large frequency in every layer makes spatial frequency compound with
+  // depth: by the third layer it passes Nyquist and the field aliases into
+  // per-pixel speckle. The first layer sets spatial detail; the hidden layers
+  // run near unity so depth adds structure instead of noise.
+  float activate(float x, float k) {
+    if (uAct == 0) return sin(k * x);
+    if (uAct == 1) return tanh(k * 0.6 * x);
+    if (uAct == 2) return exp(-x * x * k * 0.35) * 2.0 - 1.0;
+    return sin(k * x);
+  }
+
+  // In "mixed" mode each neuron gets a different nonlinearity, which is what
+  // gives CPPN art its patchwork of hard edges and soft gradients.
+  float activateMixed(float x, int n, float k) {
+    int kind = n - (n / 4) * 4;
+    if (kind == 0) return sin(k * x);
+    if (kind == 1) return tanh(k * 0.6 * x);
+    if (kind == 2) return exp(-x * x * k * 0.35) * 2.0 - 1.0;
+    return abs(fract(x * k * 0.16) * 2.0 - 1.0) * 2.0 - 1.0;
+  }
+
+  float nonlin(float x, int n, float k) {
+    return uAct == 3 ? activateMixed(x, n, k) : activate(x, k);
+  }
+
+  void main() {
+    vec2 uv = (gl_FragCoord.xy - 0.5 * uRes) / min(uRes.x, uRes.y);
+    vec2 p = uv * uZoom;
+    float r = length(p) * uWarp;
+
+    // Input vector, padded to 8 so it fits two vec4 lanes.
+    vec4 in0 = vec4(p.x, p.y, r, uZ.x);
+    vec4 in1 = vec4(uZ.y, uZ.z, uZ.w, 1.0);
+
+    float h[${HID}];
+    int w = 0;
+
+    // ---- layer 0
+    for (int n = 0; n < ${HID}; n++) {
+      float s = dot(uW[w], in0) + dot(uW[w + 1], in1) + bias(n);
+      h[n] = nonlin(s, n, uOmega);
+      w += ${IN_V4};
+    }
+
+    // ---- hidden layers
+    for (int layer = 0; layer < 2; layer++) {
+      if (layer >= uDepth - 1) { w += ${HID} * ${HID_V4}; continue; }
+      float next[${HID}];
+      for (int n = 0; n < ${HID}; n++) {
+        vec4 a = vec4(h[0], h[1], h[2], h[3]);
+        vec4 b = vec4(h[4], h[5], h[6], h[7]);
+        vec4 c = vec4(h[8], h[9], h[10], h[11]);
+        vec4 d = vec4(h[12], h[13], h[14], h[15]);
+        int o = w + n * ${HID_V4};
+        float s = dot(uW[o], a) + dot(uW[o + 1], b) + dot(uW[o + 2], c) + dot(uW[o + 3], d)
+                + bias(${HID} + layer * ${HID} + n);
+        next[n] = nonlin(s, n, uHid);
+      }
+      for (int n = 0; n < ${HID}; n++) h[n] = next[n];
+      w += ${HID} * ${HID_V4};
+    }
+
+    // ---- output head
+    vec4 a = vec4(h[0], h[1], h[2], h[3]);
+    vec4 b = vec4(h[4], h[5], h[6], h[7]);
+    vec4 c = vec4(h[8], h[9], h[10], h[11]);
+    vec4 d = vec4(h[12], h[13], h[14], h[15]);
+    vec3 o;
+    for (int n = 0; n < 3; n++) {
+      int q = 160 + n * ${HID_V4};
+      o[n] = dot(uW[q], a) + dot(uW[q + 1], b) + dot(uW[q + 2], c) + dot(uW[q + 3], d)
+           + bias(${HID} * 3 + n);
+    }
+
+    vec3 col = tanh(o * uContrast) * 0.5 + 0.5;
+
+    if (uTone == 1) {
+      // Read the three outputs as hue / saturation / value instead of RGB.
+      float hh = fract(col.r);
+      float ss = 0.35 + 0.6 * col.g;
+      float vv = 0.15 + 0.85 * col.b;
+      vec3 k = clamp(abs(mod(hh * 6.0 + vec3(0.0, 4.0, 2.0), 6.0) - 3.0) - 1.0, 0.0, 1.0);
+      col = vv * mix(vec3(1.0), k, ss);
+    } else if (uTone == 2) {
+      float lum = dot(col, vec3(0.299, 0.587, 0.114));
+      col = vec3(lum);
+    } else if (uTone == 3) {
+      float lum = dot(col, vec3(0.299, 0.587, 0.114));
+      vec3 lo = vec3(0.04, 0.05, 0.11);
+      vec3 mid = vec3(0.55, 0.28, 0.42);
+      vec3 hi = vec3(0.99, 0.86, 0.66);
+      col = lum < 0.5 ? mix(lo, mid, lum * 2.0) : mix(mid, hi, (lum - 0.5) * 2.0);
+    }
+
+    outColor = vec4(clamp(col, 0.0, 1.0), 1.0);
+  }`;
+
+  function shader(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+    return s;
+  }
+
+  let prog, U = {};
+  try {
+    prog = gl.createProgram();
+    gl.attachShader(prog, shader(gl.VERTEX_SHADER, VS));
+    gl.attachShader(prog, shader(gl.FRAGMENT_SHADER, FS));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+  } catch (err) {
+    document.body.innerHTML =
+      '<div class="fatal"><h1>Shader would not build</h1><pre style="white-space:pre-wrap">' +
+      String(err.message).slice(0, 600) + "</pre></div>";
+    return;
+  }
+
+  gl.useProgram(prog);
+  for (const name of ["uW", "uB", "uRes", "uZ", "uOmega", "uHid", "uZoom", "uWarp", "uContrast", "uAct", "uTone", "uDepth"]) {
+    U[name] = gl.getUniformLocation(prog, name);
+  }
+  gl.bindVertexArray(gl.createVertexArray());
+
+  // ---------------------------------------------------------------- state
+
+  const ACTS = ["Sine", "Tanh", "Gaussian", "Mixed"];
+  const TONES = ["Direct", "Hue", "Mono", "Duotone"];
+  const DEPTHS = [
+    { label: "2 layers", v: 2 },
+    { label: "3 layers", v: 3 },
+  ];
+  const QUALS = [
+    { label: "Fast", v: 0.6 },
+    { label: "Sharp", v: 1 },
+    { label: "Fine", v: 1.5 },
+  ];
+
+  const state = {
+    seed: (Math.random() * 1e9) | 0,
+    omega: 28,
+    gain: 150,
+    act: 0,
+    tone: 3,
+    depth: 3,
+    speed: 22,
+    zscale: 70,
+    zoom: 110,
+    warp: 60,
+    contrast: 175,
+    quality: 1,
+  };
+
+  const SLIDERS = {
+    omega: (v) => v.toFixed(1),
+    gain: (v) => (v / 100).toFixed(2) + "×",
+    speed: (v) => (v / 100).toFixed(2),
+    zscale: (v) => (v / 100).toFixed(2),
+    zoom: (v) => (v / 100).toFixed(2) + "×",
+    warp: (v) => (v / 100).toFixed(2),
+    contrast: (v) => (v / 100).toFixed(2),
+  };
+
+  function rebuild() {
+    // state.gain is the raw slider value, where 100 means 1.00x.
+    buildNetwork(state.seed, state.omega, state.gain / 100);
+    gl.useProgram(prog);
+    gl.uniform4fv(U.uW, weights);
+    gl.uniform4fv(U.uB, biases);
+    document.getElementById("seedLabel").textContent = state.seed.toString(36).toUpperCase();
+    updateSpec();
+  }
+
+  function updateSpec() {
+    document.getElementById("spec").textContent =
+      (state.act === 0 ? "SIREN" : state.act === 3 ? "CPPN" : "MLP") +
+      " · " + state.depth + "×" + HID +
+      " · ω₀ " + state.omega.toFixed(1) +
+      " · seed " + state.seed.toString(36).toUpperCase() +
+      " · " + (HID * IN + HID * HID * (state.depth - 1) + HID * OUT).toLocaleString() + " weights";
+  }
+
+  // ---------------------------------------------------------------- ui
+
+  for (const id of Object.keys(SLIDERS)) {
+    const el = document.getElementById(id);
+    el.value = state[id];
+    document.getElementById(id + "V").textContent = SLIDERS[id](state[id]);
+    el.addEventListener("input", (e) => {
+      state[id] = parseFloat(e.target.value);
+      document.getElementById(id + "V").textContent = SLIDERS[id](state[id]);
+      // omega changes the initialisation scale, so the network must be rebuilt,
+      // not merely re-uniformed.
+      if (id === "omega" || id === "gain") rebuild();
+    });
+  }
+
+  function tagRow(host, items, isOn, onPick) {
+    host.innerHTML = "";
+    items.forEach((item, i) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "tag";
+      b.textContent = typeof item === "string" ? item : item.label;
+      b.setAttribute("aria-pressed", String(isOn(item, i)));
+      b.addEventListener("click", () => onPick(item, i));
+      host.appendChild(b);
+    });
+  }
+
+  function renderTags() {
+    tagRow(document.getElementById("acts"), ACTS, (x, i) => i === state.act,
+      (x, i) => { state.act = i; renderTags(); updateSpec(); });
+    tagRow(document.getElementById("tones"), TONES, (x, i) => i === state.tone,
+      (x, i) => { state.tone = i; renderTags(); });
+    tagRow(document.getElementById("depths"), DEPTHS, (x) => x.v === state.depth,
+      (x) => { state.depth = x.v; renderTags(); updateSpec(); });
+    tagRow(document.getElementById("quals"), QUALS, (x) => x.v === state.quality,
+      (x) => { state.quality = x.v; renderTags(); resize(true); });
+  }
+
+  document.getElementById("reroll").addEventListener("click", () => {
+    state.seed = (Math.random() * 1e9) | 0;
+    rebuild();
+  });
+
+  // ---------------------------------------------------------------- render
+
+  let W = 0, H = 0;
+
+  function resize(force) {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2) * state.quality;
+    const w = Math.max(320, Math.round(canvas.clientWidth * dpr));
+    const h = Math.max(240, Math.round(canvas.clientHeight * dpr));
+    if (!force && w === W && h === H) return;
+    W = w; H = h;
+    canvas.width = w; canvas.height = h;
+  }
+
+  let t = 0, last = performance.now(), frames = 0, acc = 0;
+  const fpsEl = document.getElementById("fps");
+
+  function frame(now) {
+    const dt = Math.min(now - last, 100);
+    last = now;
+    resize(false);
+
+    t += dt * 0.001 * (state.speed / 100);
+
+    // A Lissajous path through latent space: incommensurable frequencies mean
+    // the walk never exactly repeats.
+    const zr = state.zscale / 100;
+    const z = [
+      Math.sin(t * 0.71) * zr,
+      Math.cos(t * 0.53) * zr,
+      Math.sin(t * 0.37 + 1.7) * zr,
+      Math.cos(t * 0.29 + 0.4) * zr,
+    ];
+
+    gl.viewport(0, 0, W, H);
+    gl.useProgram(prog);
+    gl.uniform2f(U.uRes, W, H);
+    gl.uniform4f(U.uZ, z[0], z[1], z[2], z[3]);
+    gl.uniform1f(U.uOmega, state.omega);
+    gl.uniform1f(U.uHid, 1.0);
+    gl.uniform1f(U.uZoom, state.zoom / 100 * 2.2);
+    gl.uniform1f(U.uWarp, state.warp / 100);
+    gl.uniform1f(U.uContrast, state.contrast / 100);
+    gl.uniform1i(U.uAct, state.act);
+    gl.uniform1i(U.uTone, state.tone);
+    gl.uniform1i(U.uDepth, state.depth);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+    frames++; acc += dt;
+    if (acc > 600) {
+      fpsEl.textContent = (1000 / (acc / frames)).toFixed(0) + " fps · " + W + "×" + H;
+      acc = 0; frames = 0;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // ---------------------------------------------------------------- export
+
+  const msg = document.getElementById("exportMsg");
+  const recBtn = document.getElementById("rec");
+  let recorder = null, chunks = [], timer = 0;
+
+  const canSave = () => !!(window.claude && window.claude.downloads);
+
+  async function offer(filename, blob) {
+    const mb = blob.size / (1024 * 1024);
+    if (!canSave()) {
+      msg.innerHTML = "Saving is not available in this view. <strong>" + mb.toFixed(1) +
+        " MB</strong> was rendered but cannot be handed over.";
+      return;
+    }
+    if (blob.size > 16 * 1024 * 1024) {
+      msg.innerHTML = "That file is <strong>" + mb.toFixed(1) +
+        " MB</strong>, over the 16 MB limit. Record a shorter walk or drop the render quality.";
+      return;
+    }
+    try {
+      await window.claude.downloads.save({ filename, data: blob });
+      msg.innerHTML = "Saved <strong>" + filename + "</strong> (" + mb.toFixed(1) + " MB).";
+    } catch (err) {
+      const code = err && err.code;
+      if (code === "declined") msg.textContent = "Save cancelled.";
+      else if (code === "rate_limited") msg.textContent = "A save prompt is already open. Finish that one first.";
+      else if (code === "too_large") msg.textContent = "Over the 16 MB save limit. Try a shorter walk.";
+      else msg.textContent = "Could not save: " + ((err && err.message) || "unknown error") + ".";
+    }
+  }
+
+  recBtn.addEventListener("click", () => {
+    if (recorder && recorder.state === "recording") { recorder.stop(); return; }
+    const mime = ["video/webm;codecs=vp9", "video/webm;codecs=vp8", "video/webm"]
+      .find((m) => window.MediaRecorder && MediaRecorder.isTypeSupported(m));
+    if (!mime || !canvas.captureStream) {
+      msg.textContent = "This browser cannot record canvas video. Still frames will work.";
+      return;
+    }
+    chunks = [];
+    const stream = canvas.captureStream(30);
+    recorder = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 6_000_000 });
+    recorder.ondataavailable = (e) => { if (e.data.size) chunks.push(e.data); };
+    recorder.onstop = () => {
+      clearInterval(timer);
+      recBtn.textContent = "Record latent walk";
+      recBtn.classList.remove("live");
+      recBtn.classList.add("key");
+      stream.getTracks().forEach((tr) => tr.stop());
+      const blob = new Blob(chunks, { type: "video/webm" });
+      chunks = [];
+      offer("latent-fields-" + state.seed.toString(36) + ".webm", blob);
+    };
+    recorder.start(250);
+    const started = performance.now();
+    recBtn.classList.remove("key");
+    recBtn.classList.add("live");
+    msg.textContent = "Recording. Change any control and it lands in the clip.";
+    timer = setInterval(() => {
+      const s = (performance.now() - started) / 1000;
+      recBtn.textContent = "Stop and save · " + s.toFixed(1) + "s";
+      if (s >= 20) recorder.stop();
+    }, 100);
+  });
+
+  document.getElementById("png").addEventListener("click", () => {
+    canvas.toBlob((blob) => {
+      if (blob) offer("latent-fields-" + state.seed.toString(36) + ".png", blob);
+    }, "image/png");
+  });
+
+  if (!canSave()) {
+    msg.innerHTML = "Saving files is not enabled in this view. The field still renders live.";
+  }
+
+  // ---------------------------------------------------------------- go
+
+  renderTags();
+  resize(true);
+  rebuild();
+  requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>

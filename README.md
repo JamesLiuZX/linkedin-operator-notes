@@ -24,6 +24,7 @@ Positioning: *Operator who ships prediction markets and AI products at scale —
 | [ideas/demo-bank.md](./ideas/demo-bank.md) | Buildable demo backlog, ranked by ROI |
 | [tools/content-desk/](./tools/content-desk/) | Local evidence + gate UI |
 | [scripts/ledger/](./scripts/ledger/) | Calibration Ledger: the Pillar 1 demo, scored in public |
+| [apps/](./apps/) | Shipped browser demos (`npm run apps` builds them for Pages) |
 
 ## Daily commands
 
@@ -34,6 +35,8 @@ npm run unsplash               # resolve figures: from article frontmatter
 npm run publish:list
 npm run publish:dry
 npm run desk:install && npm run desk   # content desk UI
+npm run apps                   # build apps/ into site/public/apps/
+npm run ledger -- --help       # calibration ledger CLI
 ```
 
 Canonical site URLs are path-based: `/{section}/{slug}` (not hash routes).

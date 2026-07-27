@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A million agents, three sensors each, no central plan. Physarum polycephalum solves mazes with this rule set. Record what it builds.">
+<title>Emergence: a slime mould video studio</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { min-height: 100vh; }
+  img, svg, video, canvas { display: block; max-width: 100%; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+</style>
+</head>
+<body>
+<title>Emergence: a slime mould video studio</title>
+
+<style>
+  :root {
+    --ink: #0a0d13;
+    --panel: #10151e;
+    --panel-2: #161d29;
+    --line: #1f2836;
+    --text: #dce3ee;
+    --muted: #78859a;
+    --accent: #e8a33d;
+    --accent-soft: rgba(232, 163, 61, 0.14);
+    --rec: #e2574c;
+    --radius: 3px;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+    color-scheme: dark;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --ink: #f1f2ef;
+      --panel: #ffffff;
+      --panel-2: #f7f7f4;
+      --line: #dcded8;
+      --text: #12151a;
+      --muted: #5c6675;
+      --accent: #a96a1c;
+      --accent-soft: rgba(169, 106, 28, 0.1);
+      --rec: #c33b30;
+      color-scheme: light;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ink: #0a0d13; --panel: #10151e; --panel-2: #161d29; --line: #1f2836;
+    --text: #dce3ee; --muted: #78859a; --accent: #e8a33d;
+    --accent-soft: rgba(232, 163, 61, 0.14); --rec: #e2574c;
+    color-scheme: dark;
+  }
+
+  :root[data-theme="light"] {
+    --ink: #f1f2ef; --panel: #ffffff; --panel-2: #f7f7f4; --line: #dcded8;
+    --text: #12151a; --muted: #5c6675; --accent: #a96a1c;
+    --accent-soft: rgba(169, 106, 28, 0.1); --rec: #c33b30;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .shell {
+    display: grid;
+    grid-template-columns: 296px 1fr;
+    min-height: 100vh;
+  }
+
+  /* ---------------------------------------------------------- rail */
+
+  .rail {
+    background: var(--panel);
+    border-right: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+
+  .brand { padding: 20px 18px 16px; border-bottom: 1px solid var(--line); }
+
+  .brand h1 {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .brand p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.45;
+    max-width: 34ch;
+  }
+
+  .group { padding: 14px 18px; border-bottom: 1px solid var(--line); }
+
+  .group > h2 {
+    margin: 0 0 12px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .ctl { display: grid; gap: 5px; margin-bottom: 12px; }
+  .ctl:last-child { margin-bottom: 0; }
+
+  .ctl > .lbl {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .ctl .val {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 18px;
+    background: transparent;
+    margin: 0;
+    cursor: ew-resize;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    height: 2px;
+    background: var(--line);
+    border-radius: 2px;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px; height: 12px;
+    margin-top: -5px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: none;
+  }
+
+  input[type="range"]::-moz-range-track { height: 2px; background: var(--line); }
+  input[type="range"]::-moz-range-thumb {
+    width: 12px; height: 12px; border: none; border-radius: 50%; background: var(--accent);
+  }
+
+  input[type="range"]:focus-visible,
+  button:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  .chip {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 8px;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 0.12s, border-color 0.12s, background 0.12s;
+  }
+
+  .chip:hover { color: var(--text); border-color: var(--muted); }
+  .chip[aria-pressed="true"] {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .btn {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 9px 12px;
+    width: 100%;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color 0.12s, background 0.12s;
+  }
+
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+  .btn.recording { border-color: var(--rec); color: var(--rec); background: rgba(226, 87, 76, 0.12); }
+  .btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+
+  .btn-row { display: grid; gap: 6px; }
+
+  .note {
+    margin: 10px 0 0;
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .note strong { color: var(--text); font-weight: 600; }
+
+  /* ---------------------------------------------------------- stage */
+
+  .stage { position: relative; display: flex; flex-direction: column; min-width: 0; }
+
+  .canvas-wrap { position: relative; flex: 1; min-height: 0; background: #000; overflow: hidden; }
+  canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+
+  .rec-dot {
+    position: absolute; top: 14px; right: 16px;
+    display: none; align-items: center; gap: 7px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+    color: #fff; background: rgba(0,0,0,0.55);
+    padding: 6px 10px; border-radius: 100px;
+    backdrop-filter: blur(6px);
+  }
+
+  .rec-dot.on { display: flex; }
+  .rec-dot i {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--rec);
+    animation: pulse 1.1s ease-in-out infinite;
+  }
+
+  @keyframes pulse { 50% { opacity: 0.25; } }
+
+  .telemetry {
+    display: flex; flex-wrap: wrap; gap: 0;
+    border-top: 1px solid var(--line);
+    background: var(--panel);
+  }
+
+  .tele {
+    padding: 9px 16px;
+    border-right: 1px solid var(--line);
+    display: grid; gap: 1px;
+    min-width: 104px;
+  }
+
+  .tele span {
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted);
+  }
+
+  .tele b {
+    font-family: var(--mono); font-size: 13px; font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tele.hint { flex: 1; border-right: none; align-content: center; }
+  .tele.hint p { margin: 0; font-size: 11.5px; color: var(--muted); font-family: var(--sans); }
+
+  .fatal {
+    padding: 32px; max-width: 60ch; margin: auto;
+    font-size: 14px; line-height: 1.6;
+  }
+  .fatal h2 { font-family: var(--mono); font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+
+  @media (max-width: 900px) {
+    .shell { grid-template-columns: 1fr; }
+    .rail { max-height: none; border-right: none; border-bottom: 1px solid var(--line); order: 2; }
+    .stage { order: 1; }
+    .canvas-wrap { height: 58vh; flex: none; }
+  }
+</style>
+
+<div class="shell">
+  <aside class="rail">
+    <div class="brand">
+      <h1>Emergence</h1>
+      <p>A million agents, three sensors each, no central plan. Physarum polycephalum solves mazes with this rule set. Record what it builds.</p>
+    </div>
+
+    <div class="group">
+      <h2>Culture</h2>
+      <div class="chips" id="presets"></div>
+    </div>
+
+    <div class="group">
+      <h2>Behaviour</h2>
+      <div class="ctl">
+        <label class="lbl" for="sensorAngle">Sensor spread <span class="val" id="sensorAngleV"></span></label>
+        <input type="range" id="sensorAngle" min="5" max="90" step="1">
+      </div>
+      <div class="ctl">
+        <label class="lbl" for="sensorDist">Sensor reach <span class="val" id="sensorDistV"></span></label>
+        <input type="range" id="sensorDist" min="1" max="40" step="0.5">
+      </div>
+      <div class="ctl">
+        <label class="lbl" for="turn">Turn rate <span class="val" id="turnV"></span></label>
+        <input type="range" id="turn" min="1" max="90" step="1">
+      </div>
+      <div class="ctl">
+        <label class="lbl" for="speed">Speed <span class="val" id="speedV"></span></label>
+        <input type="range" id="speed" min="0.1" max="4" step="0.05">
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>Medium</h2>
+      <div class="ctl">
+        <label class="lbl" for="decay">Evaporation <span class="val" id="decayV"></span></label>
+        <input type="range" id="decay" min="0.5" max="15" step="0.1">
+      </div>
+      <div class="ctl">
+        <label class="lbl" for="diffuse">Diffusion <span class="val" id="diffuseV"></span></label>
+        <input type="range" id="diffuse" min="0" max="100" step="1">
+      </div>
+      <div class="ctl">
+        <label class="lbl" for="deposit">Deposit <span class="val" id="depositV"></span></label>
+        <input type="range" id="deposit" min="1" max="60" step="1">
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>Colony size</h2>
+      <div class="chips" id="counts"></div>
+    </div>
+
+    <div class="group">
+      <h2>Palette</h2>
+      <div class="chips" id="palettes"></div>
+      <div class="ctl" style="margin-top:12px">
+        <label class="lbl" for="gain">Exposure <span class="val" id="gainV"></span></label>
+        <input type="range" id="gain" min="0.2" max="4" step="0.05">
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>Capture</h2>
+      <div class="btn-row">
+        <button class="btn primary" id="rec">Record video</button>
+        <button class="btn" id="shot">Save still frame</button>
+        <button class="btn" id="reset">Reseed colony</button>
+      </div>
+      <p class="note" id="capNote">Records the canvas to <strong>WebM</strong> at 30fps. Downloads cap at 16&nbsp;MB, so keep clips under about 20 seconds at this size.</p>
+    </div>
+  </aside>
+
+  <main class="stage">
+    <div class="canvas-wrap">
+      <canvas id="gl"></canvas>
+      <div class="rec-dot" id="recDot"><i></i><span id="recTime">0.0s</span></div>
+    </div>
+    <div class="telemetry">
+      <div class="tele"><span>Agents</span><b id="tAgents">n/a</b></div>
+      <div class="tele"><span>Frame</span><b id="tFps">n/a</b></div>
+      <div class="tele"><span>Resolution</span><b id="tRes">n/a</b></div>
+      <div class="tele"><span>Biomass</span><b id="tMass">n/a</b></div>
+      <div class="tele hint"><p id="hint">Drag on the canvas to draw a nutrient trail. The colony will find it.</p></div>
+    </div>
+  </main>
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  const canvas = document.getElementById("gl");
+  const gl = canvas.getContext("webgl2", { antialias: false, preserveDrawingBuffer: true });
+
+  function fatal(msg) {
+    document.querySelector(".shell").innerHTML =
+      '<div class="fatal"><h2>Cannot run here</h2><p>' + msg + "</p></div>";
+  }
+
+  if (!gl) {
+    fatal("This simulation needs WebGL2, which this browser did not provide. Chrome, Edge, Firefox and Safari 15+ all support it.");
+    return;
+  }
+
+  const floatRender = gl.getExtension("EXT_color_buffer_float");
+  if (!floatRender) {
+    fatal("This simulation needs the EXT_color_buffer_float extension to keep agent positions in a floating point texture.");
+    return;
+  }
+  gl.getExtension("OES_texture_float_linear");
+
+  // ------------------------------------------------------------ gl helpers
+
+  function compile(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+      throw new Error(gl.getShaderInfoLog(s) + "\n" + src);
+    }
+    return s;
+  }
+
+  function program(vs, fs) {
+    const p = gl.createProgram();
+    gl.attachShader(p, compile(gl.VERTEX_SHADER, vs));
+    gl.attachShader(p, compile(gl.FRAGMENT_SHADER, fs));
+    gl.linkProgram(p);
+    if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+    const uniforms = {};
+    const n = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS);
+    for (let i = 0; i < n; i++) {
+      const name = gl.getActiveUniform(p, i).name.replace(/\[0\]$/, "");
+      uniforms[name] = gl.getUniformLocation(p, name);
+    }
+    return { p, u: uniforms };
+  }
+
+  function texture(w, h, internal, format, type, data, filter) {
+    const t = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, t);
+    gl.texImage2D(gl.TEXTURE_2D, 0, internal, w, h, 0, format, type, data || null);
+    const f = filter || gl.NEAREST;
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, f);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, f);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
+    return t;
+  }
+
+  function fbo(tex) {
+    const f = gl.createFramebuffer();
+    gl.bindFramebuffer(gl.FRAMEBUFFER, f);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    return f;
+  }
+
+  const QUAD_VS = `#version 300 es
+  void main() {
+    vec2 p = vec2((gl_VertexID << 1) & 2, gl_VertexID & 2);
+    gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0);
+  }`;
+
+  // ------------------------------------------------------------ shaders
+
+  // Agent update. Each agent samples the trail at three points ahead of it and
+  // steers toward the strongest. That single rule, run a million times, is the
+  // entire "intelligence" on display.
+  const UPDATE_FS = `#version 300 es
+  precision highp float;
+  precision highp sampler2D;
+  uniform sampler2D uAgents;
+  uniform sampler2D uTrail;
+  uniform vec2 uRes;
+  uniform float uSensorAngle, uSensorDist, uTurn, uSpeed, uTime;
+  uniform vec3 uPointer;   // xy in pixels, z = active
+  out vec4 outColor;
+
+  float hash(vec2 p) {
+    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+  }
+
+  float sense(vec2 pos, float angle) {
+    vec2 p = pos + vec2(cos(angle), sin(angle)) * uSensorDist;
+    return texture(uTrail, p / uRes).r;
+  }
+
+  void main() {
+    ivec2 cell = ivec2(gl_FragCoord.xy);
+    vec4 a = texelFetch(uAgents, cell, 0);
+    vec2 pos = a.xy;
+    float heading = a.z;
+    float seed = a.w;
+
+    float f = sense(pos, heading);
+    float l = sense(pos, heading + uSensorAngle);
+    float r = sense(pos, heading - uSensorAngle);
+
+    float rnd = hash(vec2(seed, uTime));
+
+    if (f > l && f > r) {
+      // straight on
+    } else if (f < l && f < r) {
+      heading += (rnd - 0.5) * 2.0 * uTurn;   // ambiguous, so pick a side at random
+    } else if (r > l) {
+      heading -= uTurn;
+    } else if (l > r) {
+      heading += uTurn;
+    }
+
+    if (uPointer.z > 0.5) {
+      vec2 d = uPointer.xy - pos;
+      float dist = length(d);
+      if (dist < 190.0 && dist > 0.001) {
+        float pull = (1.0 - dist / 190.0) * 0.28;
+        float want = atan(d.y, d.x);
+        float diff = atan(sin(want - heading), cos(want - heading));
+        heading += diff * pull;
+      }
+    }
+
+    vec2 next = pos + vec2(cos(heading), sin(heading)) * uSpeed;
+
+    // Toroidal world: agents that leave one edge re-enter on the other, so the
+    // network never terminates at a boundary.
+    if (next.x < 0.0 || next.x >= uRes.x || next.y < 0.0 || next.y >= uRes.y) {
+      heading = rnd * 6.2831853;
+      next = clamp(next, vec2(0.5), uRes - 0.5);
+    }
+    next = mod(next, uRes);
+
+    outColor = vec4(next, heading, seed);
+  }`;
+
+  const DEPOSIT_VS = `#version 300 es
+  precision highp float;
+  uniform sampler2D uAgents;
+  uniform vec2 uRes;
+  uniform int uAgentW;
+  void main() {
+    ivec2 cell = ivec2(gl_VertexID % uAgentW, gl_VertexID / uAgentW);
+    vec4 a = texelFetch(uAgents, cell, 0);
+    gl_Position = vec4((a.xy / uRes) * 2.0 - 1.0, 0.0, 1.0);
+    gl_PointSize = 1.0;
+  }`;
+
+  const DEPOSIT_FS = `#version 300 es
+  precision highp float;
+  uniform float uDeposit;
+  out vec4 outColor;
+  void main() { outColor = vec4(uDeposit, 0.0, 0.0, 1.0); }`;
+
+  // Diffuse and evaporate. The medium forgetting is what stops the map filling
+  // in solid, and it is the parameter that most changes the final look.
+  const BLUR_FS = `#version 300 es
+  precision highp float;
+  uniform sampler2D uTrail;
+  uniform vec2 uRes;
+  uniform float uDecay, uDiffuse;
+  out vec4 outColor;
+  void main() {
+    vec2 uv = gl_FragCoord.xy / uRes;
+    vec2 px = 1.0 / uRes;
+    float sum = 0.0;
+    for (int y = -1; y <= 1; y++) {
+      for (int x = -1; x <= 1; x++) {
+        sum += texture(uTrail, uv + vec2(float(x), float(y)) * px).r;
+      }
+    }
+    float blurred = sum / 9.0;
+    float centre = texture(uTrail, uv).r;
+    float v = mix(centre, blurred, uDiffuse);
+    // Exponential, not subtractive. A fixed subtraction loses to deposition and
+    // the medium saturates into a solid blob; a multiplier finds an equilibrium.
+    outColor = vec4(max(v * uDecay, 0.0), 0.0, 0.0, 1.0);
+  }`;
+
+  const PAINT_FS = `#version 300 es
+  precision highp float;
+  uniform vec2 uRes;
+  uniform vec2 uFrom, uTo;
+  out vec4 outColor;
+  float segDist(vec2 p, vec2 a, vec2 b) {
+    vec2 pa = p - a, ba = b - a;
+    float h = clamp(dot(pa, ba) / max(dot(ba, ba), 0.0001), 0.0, 1.0);
+    return length(pa - ba * h);
+  }
+  void main() {
+    float d = segDist(gl_FragCoord.xy, uFrom, uTo);
+    float v = smoothstep(22.0, 0.0, d) * 0.9;
+    outColor = vec4(v, 0.0, 0.0, 1.0);
+  }`;
+
+  const DISPLAY_FS = `#version 300 es
+  precision highp float;
+  uniform sampler2D uTrail;
+  uniform vec2 uRes;
+  uniform float uGain;
+  uniform int uPalette;
+  out vec4 outColor;
+
+  // Explicit gradient stops. Cosine palettes are compact but hard to steer:
+  // the bright end drifts toward whatever hue the phase lands on. Stops say
+  // exactly what the empty medium and the densest filament look like.
+  vec3 grad(float t, vec3 c0, vec3 c1, vec3 c2, vec3 c3) {
+    float s = clamp(t, 0.0, 1.0) * 3.0;
+    if (s < 1.0) return mix(c0, c1, s);
+    if (s < 2.0) return mix(c1, c2, s - 1.0);
+    return mix(c2, c3, s - 2.0);
+  }
+
+  void main() {
+    float v = texture(uTrail, gl_FragCoord.xy / uRes).r;
+    float t = 1.0 - exp(-v * uGain * 2.2);   // filmic-ish rolloff, no hard clipping
+
+    vec3 col;
+    if (uPalette == 0) {
+      col = grad(t, vec3(0.020,0.016,0.039), vec3(0.227,0.114,0.024),
+                    vec3(0.820,0.529,0.227), vec3(1.000,0.914,0.761));
+    } else if (uPalette == 1) {
+      col = grad(t, vec3(0.016,0.024,0.047), vec3(0.086,0.188,0.247),
+                    vec3(0.373,0.576,0.659), vec3(0.875,0.941,0.961));
+    } else if (uPalette == 2) {
+      col = grad(t, vec3(0.027,0.012,0.039), vec3(0.290,0.059,0.157),
+                    vec3(0.820,0.255,0.247), vec3(1.000,0.851,0.659));
+    } else if (uPalette == 3) {
+      col = grad(t, vec3(0.020,0.020,0.020), vec3(0.227,0.227,0.227),
+                    vec3(0.659,0.659,0.659), vec3(1.000,1.000,1.000));
+    } else {
+      col = grad(t, vec3(0.012,0.031,0.024), vec3(0.071,0.200,0.133),
+                    vec3(0.310,0.616,0.361), vec3(0.875,0.941,0.753));
+    }
+    outColor = vec4(clamp(col, 0.0, 1.0), 1.0);
+  }`;
+
+  const progUpdate = program(QUAD_VS, UPDATE_FS);
+  const progDeposit = program(DEPOSIT_VS, DEPOSIT_FS);
+  const progBlur = program(QUAD_VS, BLUR_FS);
+  const progPaint = program(QUAD_VS, PAINT_FS);
+  const progDisplay = program(QUAD_VS, DISPLAY_FS);
+
+  const vao = gl.createVertexArray();
+  gl.bindVertexArray(vao);
+
+  // ------------------------------------------------------------ state
+
+  const PRESETS = {
+    Filaments: { sensorAngle: 22, sensorDist: 9, turn: 25, speed: 1, decay: 2.4, diffuse: 62, deposit: 22, palette: 0, gain: 0.9 },
+    Lattice:   { sensorAngle: 45, sensorDist: 16, turn: 38, speed: 1.35, decay: 4.5, diffuse: 40, deposit: 30, palette: 1, gain: 1.35 },
+    Veins:     { sensorAngle: 14, sensorDist: 24, turn: 12, speed: 0.75, decay: 1.4, diffuse: 78, deposit: 14, palette: 2, gain: 0.9 },
+    Coral:     { sensorAngle: 62, sensorDist: 5, turn: 62, speed: 0.55, decay: 1.1, diffuse: 88, deposit: 40, palette: 4, gain: 1.5 },
+    Static:    { sensorAngle: 80, sensorDist: 2.5, turn: 85, speed: 2.6, decay: 9, diffuse: 12, deposit: 45, palette: 3, gain: 1.7 },
+  };
+
+  const COUNTS = [
+    { label: "65k", w: 256 },
+    { label: "262k", w: 512 },
+    { label: "1M", w: 1024 },
+  ];
+
+  const PALETTES = ["Ochre", "Slate", "Ember", "Bone", "Moss"];
+
+  const state = Object.assign({}, PRESETS.Filaments, { agentW: 512, preset: "Filaments" });
+
+  let simW = 0, simH = 0;
+  let agents = null, agentsAlt = null, agentsFbo = null, agentsAltFbo = null;
+  let trail = null, trailAlt = null, trailFbo = null, trailAltFbo = null;
+
+  function allocAgents() {
+    const w = state.agentW, n = w * w;
+    const data = new Float32Array(n * 4);
+    for (let i = 0; i < n; i++) {
+      data[i * 4] = Math.random() * simW;
+      data[i * 4 + 1] = Math.random() * simH;
+      data[i * 4 + 2] = Math.random() * Math.PI * 2;
+      data[i * 4 + 3] = Math.random() * 1000.0;
+    }
+    if (agents) { gl.deleteTexture(agents); gl.deleteTexture(agentsAlt); }
+    if (agentsFbo) { gl.deleteFramebuffer(agentsFbo); gl.deleteFramebuffer(agentsAltFbo); }
+    agents = texture(w, w, gl.RGBA32F, gl.RGBA, gl.FLOAT, data);
+    agentsAlt = texture(w, w, gl.RGBA32F, gl.RGBA, gl.FLOAT, data);
+    agentsFbo = fbo(agents);
+    agentsAltFbo = fbo(agentsAlt);
+  }
+
+  function allocTrail() {
+    if (trail) { gl.deleteTexture(trail); gl.deleteTexture(trailAlt); }
+    if (trailFbo) { gl.deleteFramebuffer(trailFbo); gl.deleteFramebuffer(trailAltFbo); }
+    trail = texture(simW, simH, gl.RGBA16F, gl.RGBA, gl.HALF_FLOAT, null, gl.LINEAR);
+    trailAlt = texture(simW, simH, gl.RGBA16F, gl.RGBA, gl.HALF_FLOAT, null, gl.LINEAR);
+    trailFbo = fbo(trail);
+    trailAltFbo = fbo(trailAlt);
+    for (const f of [trailFbo, trailAltFbo]) {
+      gl.bindFramebuffer(gl.FRAMEBUFFER, f);
+      gl.clearColor(0, 0, 0, 1);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+    }
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  }
+
+  function resize() {
+    const wrap = canvas.parentElement;
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const w = Math.max(320, Math.round(wrap.clientWidth * dpr));
+    const h = Math.max(240, Math.round(wrap.clientHeight * dpr));
+    if (w === simW && h === simH) return;
+    simW = w; simH = h;
+    canvas.width = w; canvas.height = h;
+    allocTrail();
+    allocAgents();
+    document.getElementById("tRes").textContent = w + "×" + h;
+  }
+
+  // ------------------------------------------------------------ passes
+
+  function fullscreen() { gl.drawArrays(gl.TRIANGLES, 0, 3); }
+
+  function step(time) {
+    gl.disable(gl.BLEND);
+
+    // 1. steer and move every agent
+    gl.bindFramebuffer(gl.FRAMEBUFFER, agentsAltFbo);
+    gl.viewport(0, 0, state.agentW, state.agentW);
+    gl.useProgram(progUpdate.p);
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, agents);
+    gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, trail);
+    gl.uniform1i(progUpdate.u.uAgents, 0);
+    gl.uniform1i(progUpdate.u.uTrail, 1);
+    gl.uniform2f(progUpdate.u.uRes, simW, simH);
+    gl.uniform1f(progUpdate.u.uSensorAngle, state.sensorAngle * Math.PI / 180);
+    gl.uniform1f(progUpdate.u.uSensorDist, state.sensorDist);
+    gl.uniform1f(progUpdate.u.uTurn, state.turn * Math.PI / 180);
+    gl.uniform1f(progUpdate.u.uSpeed, state.speed);
+    gl.uniform1f(progUpdate.u.uTime, time);
+    gl.uniform3f(progUpdate.u.uPointer, pointer.x, pointer.y, pointer.active ? 1 : 0);
+    fullscreen();
+    [agents, agentsAlt] = [agentsAlt, agents];
+    [agentsFbo, agentsAltFbo] = [agentsAltFbo, agentsFbo];
+
+    // 2. lay down trail, additively
+    gl.bindFramebuffer(gl.FRAMEBUFFER, trailFbo);
+    gl.viewport(0, 0, simW, simH);
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.ONE, gl.ONE);
+    gl.useProgram(progDeposit.p);
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, agents);
+    gl.uniform1i(progDeposit.u.uAgents, 0);
+    gl.uniform2f(progDeposit.u.uRes, simW, simH);
+    gl.uniform1i(progDeposit.u.uAgentW, state.agentW);
+    gl.uniform1f(progDeposit.u.uDeposit, state.deposit / 1000);
+    gl.drawArrays(gl.POINTS, 0, state.agentW * state.agentW);
+    gl.disable(gl.BLEND);
+
+    // 3. painted nutrient, if the pointer is down
+    if (paint.pending) {
+      gl.useProgram(progPaint.p);
+      gl.enable(gl.BLEND);
+      gl.blendFunc(gl.ONE, gl.ONE);
+      gl.uniform2f(progPaint.u.uRes, simW, simH);
+      gl.uniform2f(progPaint.u.uFrom, paint.fx, paint.fy);
+      gl.uniform2f(progPaint.u.uTo, paint.tx, paint.ty);
+      fullscreen();
+      gl.disable(gl.BLEND);
+      paint.pending = false;
+    }
+
+    // 4. diffuse and evaporate
+    gl.bindFramebuffer(gl.FRAMEBUFFER, trailAltFbo);
+    gl.useProgram(progBlur.p);
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, trail);
+    gl.uniform1i(progBlur.u.uTrail, 0);
+    gl.uniform2f(progBlur.u.uRes, simW, simH);
+    gl.uniform1f(progBlur.u.uDecay, 1.0 - state.decay / 100);
+    gl.uniform1f(progBlur.u.uDiffuse, state.diffuse / 100);
+    fullscreen();
+    [trail, trailAlt] = [trailAlt, trail];
+    [trailFbo, trailAltFbo] = [trailAltFbo, trailFbo];
+
+    // 5. to screen
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    gl.viewport(0, 0, simW, simH);
+    gl.useProgram(progDisplay.p);
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, trail);
+    gl.uniform1i(progDisplay.u.uTrail, 0);
+    gl.uniform2f(progDisplay.u.uRes, simW, simH);
+    gl.uniform1f(progDisplay.u.uGain, state.gain);
+    gl.uniform1i(progDisplay.u.uPalette, state.palette);
+    fullscreen();
+  }
+
+  // ------------------------------------------------------------ pointer
+
+  const pointer = { x: 0, y: 0, active: false };
+  const paint = { pending: false, fx: 0, fy: 0, tx: 0, ty: 0 };
+
+  function toSim(e) {
+    const r = canvas.getBoundingClientRect();
+    return {
+      x: (e.clientX - r.left) / r.width * simW,
+      y: (1 - (e.clientY - r.top) / r.height) * simH,
+    };
+  }
+
+  canvas.addEventListener("pointerdown", (e) => {
+    canvas.setPointerCapture(e.pointerId);
+    const p = toSim(e);
+    pointer.x = p.x; pointer.y = p.y; pointer.active = true;
+    paint.fx = paint.tx = p.x; paint.fy = paint.ty = p.y;
+  });
+
+  canvas.addEventListener("pointermove", (e) => {
+    if (!pointer.active) return;
+    const p = toSim(e);
+    paint.fx = pointer.x; paint.fy = pointer.y;
+    paint.tx = p.x; paint.ty = p.y;
+    paint.pending = true;
+    pointer.x = p.x; pointer.y = p.y;
+  });
+
+  const release = () => { pointer.active = false; };
+  canvas.addEventListener("pointerup", release);
+  canvas.addEventListener("pointercancel", release);
+  canvas.addEventListener("pointerleave", release);
+
+  // ------------------------------------------------------------ ui
+
+  const SLIDERS = ["sensorAngle", "sensorDist", "turn", "speed", "decay", "diffuse", "deposit", "gain"];
+  const FORMAT = {
+    sensorAngle: (v) => v.toFixed(0) + "°",
+    sensorDist: (v) => v.toFixed(1) + "px",
+    turn: (v) => v.toFixed(0) + "°",
+    speed: (v) => v.toFixed(2),
+    decay: (v) => v.toFixed(1) + "%/f",
+    diffuse: (v) => v.toFixed(0) + "%",
+    deposit: (v) => v.toFixed(0),
+    gain: (v) => v.toFixed(2),
+  };
+
+  function syncSliders() {
+    for (const id of SLIDERS) {
+      document.getElementById(id).value = state[id];
+      document.getElementById(id + "V").textContent = FORMAT[id](state[id]);
+    }
+  }
+
+  for (const id of SLIDERS) {
+    document.getElementById(id).addEventListener("input", (e) => {
+      state[id] = parseFloat(e.target.value);
+      document.getElementById(id + "V").textContent = FORMAT[id](state[id]);
+      markCustom();
+    });
+  }
+
+  function chipRow(host, labels, isOn, onPick) {
+    host.innerHTML = "";
+    labels.forEach((label, i) => {
+      const b = document.createElement("button");
+      b.className = "chip";
+      b.type = "button";
+      b.textContent = label;
+      b.setAttribute("aria-pressed", String(isOn(label, i)));
+      b.addEventListener("click", () => { onPick(label, i); });
+      host.appendChild(b);
+    });
+  }
+
+  function renderPresets() {
+    chipRow(document.getElementById("presets"), Object.keys(PRESETS),
+      (l) => l === state.preset,
+      (l) => { Object.assign(state, PRESETS[l]); state.preset = l; syncSliders(); renderAll(); });
+  }
+
+  function renderCounts() {
+    chipRow(document.getElementById("counts"), COUNTS.map((c) => c.label),
+      (l, i) => COUNTS[i].w === state.agentW,
+      (l, i) => { state.agentW = COUNTS[i].w; allocAgents(); renderAll(); updateAgentReadout(); });
+  }
+
+  function renderPalettes() {
+    chipRow(document.getElementById("palettes"), PALETTES,
+      (l, i) => i === state.palette,
+      (l, i) => { state.palette = i; markCustom(); renderAll(); });
+  }
+
+  function renderAll() { renderPresets(); renderCounts(); renderPalettes(); }
+
+  function markCustom() {
+    if (state.preset !== "Custom") { state.preset = "Custom"; renderPresets(); }
+  }
+
+  function updateAgentReadout() {
+    const n = state.agentW * state.agentW;
+    document.getElementById("tAgents").textContent =
+      n >= 1e6 ? (n / 1e6).toFixed(2) + "M" : Math.round(n / 1000) + "k";
+  }
+
+  document.getElementById("reset").addEventListener("click", () => {
+    allocAgents();
+    allocTrail();
+  });
+
+  // ------------------------------------------------------------ capture
+
+  const recBtn = document.getElementById("rec");
+  const recDot = document.getElementById("recDot");
+  const recTime = document.getElementById("recTime");
+  const capNote = document.getElementById("capNote");
+
+  let recorder = null, chunks = [], recStart = 0, recTimer = 0;
+
+  function pickMime() {
+    const options = [
+      "video/webm;codecs=vp9",
+      "video/webm;codecs=vp8",
+      "video/webm",
+    ];
+    return options.find((m) => window.MediaRecorder && MediaRecorder.isTypeSupported(m)) || "";
+  }
+
+  function canSave() {
+    return !!(window.claude && window.claude.downloads);
+  }
+
+  async function offer(filename, blob) {
+    const mb = blob.size / (1024 * 1024);
+    if (!canSave()) {
+      capNote.innerHTML = "Saving is not available in this view, so the clip could not be handed over. " +
+        "<strong>" + mb.toFixed(1) + " MB</strong> was captured.";
+      return;
+    }
+    if (blob.size > 16 * 1024 * 1024) {
+      capNote.innerHTML = "That clip is <strong>" + mb.toFixed(1) + " MB</strong>, over the 16 MB save limit. " +
+        "Record a shorter take or shrink the window, then try again.";
+      return;
+    }
+    try {
+      await window.claude.downloads.save({ filename, data: blob });
+      capNote.innerHTML = "Saved <strong>" + filename + "</strong> (" + mb.toFixed(1) + " MB).";
+    } catch (err) {
+      const code = err && err.code;
+      if (code === "declined") capNote.textContent = "Save cancelled. The clip is gone; record another when you are ready.";
+      else if (code === "too_large") capNote.innerHTML = "That clip is over the 16 MB save limit. Record a shorter take.";
+      else if (code === "rate_limited") capNote.textContent = "A save prompt is already open. Finish that one first.";
+      else capNote.textContent = "Could not save the clip: " + ((err && err.message) || "unknown error") + ".";
+    }
+  }
+
+  function stopRecording() {
+    if (recorder && recorder.state !== "inactive") recorder.stop();
+  }
+
+  recBtn.addEventListener("click", () => {
+    if (recorder && recorder.state === "recording") { stopRecording(); return; }
+    if (!window.MediaRecorder || !canvas.captureStream) {
+      capNote.textContent = "This browser cannot record canvas video. Still frames will work.";
+      return;
+    }
+    const mime = pickMime();
+    if (!mime) {
+      capNote.textContent = "This browser has no WebM encoder available. Still frames will work.";
+      return;
+    }
+    chunks = [];
+    const stream = canvas.captureStream(30);
+    recorder = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 6_000_000 });
+    recorder.ondataavailable = (e) => { if (e.data.size) chunks.push(e.data); };
+    recorder.onstop = () => {
+      clearInterval(recTimer);
+      recDot.classList.remove("on");
+      recBtn.textContent = "Record video";
+      recBtn.classList.remove("recording");
+      recBtn.classList.add("primary");
+      stream.getTracks().forEach((t) => t.stop());
+      const blob = new Blob(chunks, { type: "video/webm" });
+      chunks = [];
+      offer("emergence-" + Date.now() + ".webm", blob);
+    };
+    recorder.start(250);
+    recStart = performance.now();
+    recDot.classList.add("on");
+    recBtn.textContent = "Stop and save";
+    recBtn.classList.add("recording");
+    recBtn.classList.remove("primary");
+    capNote.textContent = "Recording. Adjust the controls while it runs; the changes land in the clip.";
+    recTimer = setInterval(() => {
+      const s = (performance.now() - recStart) / 1000;
+      recTime.textContent = s.toFixed(1) + "s";
+      if (s > 30) stopRecording();   // keeps the file under the save ceiling
+    }, 100);
+  });
+
+  document.getElementById("shot").addEventListener("click", () => {
+    canvas.toBlob((blob) => {
+      if (blob) offer("emergence-" + Date.now() + ".png", blob);
+    }, "image/png");
+  });
+
+  if (!canSave()) {
+    capNote.innerHTML = "Saving files is not enabled in this view. The simulation still runs; " +
+      "use a screen recorder if you want to keep a clip.";
+  }
+
+  // ------------------------------------------------------------ loop
+
+  let last = performance.now(), frames = 0, fpsAcc = 0;
+  const massEl = document.getElementById("tMass");
+  const fpsEl = document.getElementById("tFps");
+  let massProbe = new Float32Array(4);
+
+  function frame(now) {
+    const dt = now - last;
+    last = now;
+    resize();
+    step(now * 0.001);
+
+    frames++;
+    fpsAcc += dt;
+    if (fpsAcc > 500) {
+      fpsEl.textContent = (1000 / (fpsAcc / frames)).toFixed(0) + " fps";
+      fpsAcc = 0; frames = 0;
+      // Cheap biomass proxy: read one texel from the middle of the trail map.
+      gl.bindFramebuffer(gl.FRAMEBUFFER, trailFbo);
+      try {
+        gl.readPixels(simW >> 1, simH >> 1, 1, 1, gl.RGBA, gl.FLOAT, massProbe);
+        massEl.textContent = massProbe[0].toFixed(3);
+      } catch (e) {
+        massEl.textContent = "n/a";
+      }
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  resize();
+  syncSliders();
+  renderAll();
+  updateAgentReadout();
+  requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>

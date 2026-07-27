@@ -235,159 +235,159 @@ and the ledger is on autopilot.
 
 ---
 
-## AI workflow demos (Pillar 3, monthly)
+## The fun lane (Pillar 3)
 
-Pillar 3 is top of funnel: it brings in the AI-curious crowd who stay for the
-market material. The trap is that AI-workflow content is the most commoditized
-category on the internet, so the only versions worth building are the ones a
-generic AI creator physically cannot make, because they require a real product
-job with real constraints attached.
+Everything above points at markets. This section deliberately does not.
 
-The test for every idea in this section: **would this still be interesting if the
-AI part were removed?** If the answer is no, it is a tools video and it recruits
-the wrong audience.
+The reasoning is not that fun is off-brand. It is that Pillar 3 exists to bring
+in the AI-curious crowd, and the way to do that badly is to make market content
+with an AI wrapper. The way to do it well is to build something genuinely hard
+and genuinely beautiful, ship it, and let the craft speak. Nobody who lands on a
+real-time GPU simulation asks what it has to do with prediction markets. They ask
+how it was built, and then they look at what else you have made.
 
-### 8. [ ] The acceptance-criteria compiler
+The bar for this lane is different from the bar above. Tier 1 demos have to be
+defensible and compliance-safe. These have to be **impressive on sight and
+shipped at a real URL.** No slides, no screen recording of someone else's tool.
+A link that runs.
 
-**Turn a PRD into failing tests. Ambiguity in the spec becomes a compile error.**
+Two of them are done.
 
-An agent reads a PRD, extracts each acceptance criterion, and emits a failing
-test per criterion. Criteria too vague to test come back as errors with the
-specific missing decision named ("undefined: what counts as 'active'?").
+### 8. [x] Emergence
 
-The best AI-workflow demo you can make, because it is the Resolution Linter
-argument moved from markets into product specs: **most disputes are writing
-failures, whether the reader is a trader or an engineer.** That coherence is
-worth more than the tool. Two demos making the same argument from different
-directions is a thesis; one is a gadget.
+**A million agents running the physarum slime-mould rule on the GPU, with real
+video export.**
 
-Ship it against a public spec, never an employer PRD. Show the run where your
-own writing fails the check.
+Live: <https://claude.ai/code/artifact/d0058451-76ca-4f9d-84d1-c48782728cb7>
+Source: [`apps/emergence.html`](../apps/emergence.html)
 
-**Effort.** One weekend. **Risk.** Low, on public or personal specs only.
+Each agent has three sensors, steers toward the strongest trail, and deposits as
+it moves. That is the entire rule. Run it a million times per frame and it builds
+transport networks that look designed. Real slime mould solves mazes and
+reproduces the Tokyo rail network with the same logic, which is the hook: this is
+not a screensaver, it is biological computation you can watch.
 
-### 9. [ ] This content system, on camera
+Everything runs in WebGL2 with agent state in a floating point texture, so it
+holds 60fps on ordinary hardware. Drag on the canvas to lay down a nutrient trail
+and the colony finds it. Record button writes a real WebM.
 
-**Run `npm run content:check` against your own draft and let it fail.**
+**Why it is worth having built.** It is the rare piece that reads as art to one
+audience and as GPU engineering to another, and the recording button means every
+run is publishable content rather than a thing you had to be there for.
 
-The cheapest demo in this entire document. The system already exists, the gate
-already rejects things, and the rejection is the content: a machine telling you
-your writing is generic, with the specific line quoted back.
+### 9. [x] Latent Fields
 
-It also quietly proves the thing hiring managers actually want to know, which is
-that you build tools for yourself and then live inside them. Most people
-describing an "AI content workflow" are describing a prompt.
+**A neural network with random weights, evaluated once per pixel, animated
+through latent space.**
 
-**Effort.** One recording session, zero build. **Risk.** None.
-**Derives.** Backlog item 8 ("I rebuilt my content pipeline as a compiler")
-already wants the essay; this is its demo.
+Live: <https://claude.ai/code/artifact/9940cbcc-a76b-4564-905f-2edf2e846cae>
+Source: [`apps/latent-fields.html`](../apps/latent-fields.html)
 
-### 10. [ ] What an agent actually costs per run
+A SIREN (Sitzmann et al., 2020) implemented directly in a fragment shader:
+coordinates go in, colour comes out, and the image *is* the function rather than
+a thing sampled onto a grid. Same family of architecture as NeRF and every other
+implicit neural representation. Nothing is trained, which is the point. All of
+this structure is sitting in the initialisation.
 
-**Instrument a real agent. Publish tokens, cost, and latency per completed task.**
+The control worth looking at is **weight gain**. At 1.00x you get the published
+initialisation, which is deliberately smooth. Push it up and each layer starts
+beating against the one below until the field breaks into interference and then
+into noise. That is the exact failure mode SIREN's ω₀-scaled initialisation
+exists to prevent, made into a slider you can drag.
 
-Everyone demos capability. Almost nobody publishes unit economics, and it is the
-first question any operator asks when the demo ends. Take the Calibration Ledger
-(already logs per-forecast token usage), run it for a month, and publish cost per
-forecast, cost per resolved market, and where the spend actually goes.
-
-The finding people will not expect: on most agent workloads the expensive part is
-not the model, it is the retries, the re-reads, and the context you resend on
-every turn. That is a product problem, not a model problem, which is exactly the
-frame you want to be known for.
-
-**Effort.** Half a weekend on top of the Ledger, which already carries the data.
-**Risk.** None. Public venues, your own API bill.
-
-### 11. [ ] The analytics agent that argues back
-
-**An agent that reads a public dataset, proposes hypotheses, and is not allowed
-to claim causality.**
-
-Backlog item: "AI for Amplitude/Mixpanel analysis, useful prompts + failure
-modes." The demo version uses a public dataset and makes the gate the point: the
-agent proposes, a human owns causality, and the interesting footage is the agent
-confidently proposing a causal story you then refuse.
-
-Lower ceiling than 8 to 10 because the category is crowded. Build it only if the
-refusal gate is genuinely the centerpiece.
-
-**Effort.** One weekend. **Risk.** Low, public data only.
+**Why it is worth having built.** Most "AI art" demos call someone else's model.
+This is the network, in your browser, at 60fps, with every weight visible in the
+seed. It is also a genuinely good explanation of a paper.
 
 ---
 
-## Video generation demos (Pillar 3 tertiary)
+The rest of this lane, unbuilt, roughly in order of how much I want to see them.
 
-This is the pillar with the highest slop risk and the highest personal edge. The
-edge is specific: multi-modal gen content for growth at ByteDance means you have
-actually shipped this at scale and can judge it commercially, which almost nobody
-posting gen-video content can. The risk is that gen video is the single fastest
-way to look like an AI influencer, which is the one thing 00-positioning
-explicitly rules out.
+### 10. [ ] Neural cellular automata that heals when you cut it
 
-So the rule for this section is: **evaluate gen media, do not perform it.** Every
-demo below produces a judgment, a cost curve, or a failure. None of them are
-"look at this cool clip."
+Train a tiny convolutional rule (Mordvintsev et al., Distill 2020) so a pattern
+grows from a single cell and, crucially, regrows when you delete half of it. The
+demo moment is the mouse: drag across the organism, tear a hole in it, and watch
+it reconstruct.
 
-### 12. [ ] Cost per usable second
+The regeneration is not scripted anywhere. It falls out of a rule trained only to
+grow, which is the whole reason the paper landed. Ship the training in-browser on
+WebGPU compute shaders if it fits the frame budget; otherwise train offline and
+ship the weights, and say which you did.
 
-**Same brief through several video models, scored on a published rubric.**
+**Effort.** Two weekends, most of it getting backprop through time to run on the
+GPU. **Risk.** None.
 
-The metric is the whole demo. Not cost per second, which every comparison
-already reports, but **cost per second you would actually ship**: generate N
-seconds, apply a fixed acceptance rubric (prompt adherence, temporal
-consistency, legible on-screen text, hands and faces, motion artifacts), count
-what survives, divide.
+### 11. [ ] A Gaussian splatting renderer
 
-That single reframe moves the conversation from demo reel to unit economics,
-which is your lane and nobody else's in this category. A model that is cheapest
-per second and fails the rubric four times out of five is the most expensive
-option on the board, and the table showing that is the shareable artifact.
+Real-time radiance fields, the technique that displaced NeRF for actual
+production use. Millions of oriented 3D gaussians, depth sorted every frame,
+alpha blended front to back.
 
-Publish the rubric before the results, same discipline as the Ledger.
+The hard parts are honest engineering: the sort is the bottleneck, and a naive
+one drops you to single digit frames. Ship with a procedurally generated scene so
+there is no asset to download, and let people fly through it.
 
-**Effort.** One weekend plus generation credits. **Risk.** Low. Keep it to
-capability comparison; do not editorialize about vendors.
+**Effort.** Two to three weekends. **Risk.** None, and it is the most
+current-feeling graphics technique on this list.
 
-### 13. [ ] Essay to 60-second explainer, as a pipeline
+### 12. [ ] Optical flow slow motion, entirely client side
 
-**A repeatable pipeline that turns one of your own essays into a narrated
-explainer. Ship the pipeline and the video together.**
+Take a short clip, compute dense optical flow on the GPU, and synthesise
+in-between frames to turn 30fps into 240fps. Then export the result.
 
-The marginal cost is close to negative: you need distribution for the essays
-anyway, so the artifact is something you would have made regardless, and the
-pipeline is reusable every fortnight. Market mechanics are genuinely better
-explained in motion than in prose, so this is one of the rare cases where gen
-media is a real lever rather than decoration.
+This is real video generation in the sense that matters: frames that did not
+exist now do, and they were computed rather than sampled. It is also the honest
+version of "AI video" for a browser with no model weights, and the artefacts are
+half the fun. Show where the flow field fails, on occlusion edges and fast
+rotation, because that is where you learn what these methods actually do.
 
-Point it at your own published essay. Show the script step, the storyboard step,
-and the part where you throw out the model's first structure because it buried
-the mechanism.
+**Effort.** Two weekends. **Risk.** None.
 
-**Effort.** One weekend to build, then roughly an hour per essay.
-**Risk.** Low. Your own content, your own voice, no likeness of anyone else.
+### 13. [ ] Live visuals driven by the microphone
 
-### 14. [ ] The gen media failure gallery
+FFT the mic input, feed the bands into a ray-marched scene, record the result.
+The oldest idea in demoscene graphics and still the most immediately fun thing
+you can put in front of someone, because the feedback loop is their own voice.
 
-**Deliberately produce the artifacts that make gen video unusable in a regulated
-financial product, then publish the checklist.**
+Cheap to build on top of the shader work already done for Emergence and Latent
+Fields, and it is the one demo on this list that works at a party.
 
-Generate the disasters on purpose: wrong tickers rendered on screen, invented
-numbers in a chart, a "spokesperson" who resembles a real person, a confident
-claim no compliance team would ever clear. Then ship the pre-flight checklist
-that catches each one.
+**Effort.** One weekend, less if it reuses the existing render pipeline.
+**Risk.** Ask before recording anyone.
 
-The most defensible thing in this section and the one nobody else can write,
-because it sits exactly on top of your compliance-as-product essay. It is also
-the "receipts or admissions" content the writing contract keeps asking for: the
-failures are real, generated by you, and shown rather than described.
+### 14. [ ] A WebGPU path tracer
 
-**Effort.** Half a weekend. **Risk.** Low, and it lowers risk elsewhere by
-making your position on gen media explicit and conservative. Never use a real
-person's likeness, including your own colleagues, even to demonstrate the
-failure. Synthesize an obviously fictional subject.
+Progressive path tracing with temporal accumulation, converging to a clean image
+over a couple of seconds while you orbit the camera. Add a denoiser and it
+converges in one.
+
+The least novel idea here and the most technically satisfying to get right, which
+is a reasonable trade. WebGPU compute is the current frontier for browser
+graphics and very few people have shipped anything real on it.
+
+**Effort.** Three weekends, honestly. **Risk.** WebGPU is not everywhere yet, so
+it needs a graceful message on unsupported browsers.
 
 ---
+
+## How these get deployed
+
+Both shipped apps are authored once and deployed twice, which is worth copying
+for the rest of the lane.
+
+`apps/*.html` holds the source as an Artifact body: no `<html>`, `<head>` or
+`<body>`, because the Artifact runtime supplies that wrapper. `npm run apps`
+wraps the same source into standalone pages under `site/public/apps/`, which
+GitHub Pages serves on merge to master. One source, two live URLs, and a build
+that fails loudly if a document tag sneaks into the source.
+
+The deployment constraint worth knowing before designing anything for this lane:
+**a published page has no network access and cannot call a model at runtime.**
+Available capabilities are file downloads and the viewer's own connectors,
+nothing else. That rules out "type a prompt, get a generated result" as a live
+artifact, and it is why both shipped apps compute everything on the GPU in the
+page. Design around it from the start rather than discovering it at publish time.
 
 ## Do not build these
 
@@ -407,13 +407,13 @@ trading account, attracts audience 3 at the expense of 1 and 2, and takes on
 compliance risk for the privilege.
 
 **An AI avatar of yourself delivering market recaps.** The single fastest way to
-become the thing 00-positioning rules out. It also spends the credibility that
-demos 12 to 14 are trying to build: you cannot be the person with taste about
-gen media and the person with a synthetic talking head.
+become the thing 00-positioning rules out, and it spends the credibility the fun
+lane is meant to build: you cannot be the person with taste about generated media
+and the person with a synthetic talking head.
 
 **A "best AI video tool" roundup.** Pure prompt-collector bait, obsolete within
-a month, and it says nothing only you could say. Demo 12 is the version of this
-idea that is worth your name on it.
+a month, and it says nothing only you could say. Building the thing yourself is
+the version of that idea worth your name on it.
 
 ---
 
@@ -426,12 +426,12 @@ idea that is worth your name on it.
 | Week 3 | Cut the recording from weekend 2. | Demo 3, unedited spec to PR. |
 | Week 4 | Demo 4, half a weekend. | Demo 4. Ledger is 30 days deep by now. |
 | Week 5-6 | Nothing new. Write. | Demo 1, first results, with real calibration numbers. |
-| Week 7+ | Demo 8 or 12. | Weekly ledger atoms carry the cadence. |
+| Week 7+ | Demo 10 or 12. | Weekly ledger atoms carry the cadence. |
 
-Two of these are effectively free and can slot into any week where a build slips:
-**demo 9** (the content gate rejecting your own draft) needs a recording session
-and no build at all, and **demo 3** is a recording of work already scheduled.
-Keep them in reserve rather than spending a week on them.
+**Demo 3** is effectively free and can slot into any week where a build slips: it
+is a recording of work already scheduled. Keep it in reserve rather than spending
+a week on it. Demos 8 and 9 are already live, so the fun lane has a standing
+answer whenever the markets lane needs more time.
 
 The shape to notice: one build in weekend 1 that publishes in week 5, because
 its value is elapsed time rather than effort. Start the slow compounding thing
