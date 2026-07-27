@@ -23,6 +23,7 @@ Positioning: *Operator who ships prediction markets and AI products at scale —
 | [ideas/idea-bank.md](./ideas/idea-bank.md) | Writing idea backlog |
 | [ideas/demo-bank.md](./ideas/demo-bank.md) | Buildable demo backlog, ranked by ROI |
 | [tools/content-desk/](./tools/content-desk/) | Local evidence + gate UI |
+| [scripts/ledger/](./scripts/ledger/) | Calibration Ledger: the Pillar 1 demo, scored in public |
 
 ## Daily commands
 

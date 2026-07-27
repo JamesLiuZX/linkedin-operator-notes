@@ -14,6 +14,11 @@
     "publish:list": "node scripts/publish/index.mjs --list",
     "publish:status": "node scripts/publish/index.mjs --status",
     "desk": "npm --prefix tools/content-desk run dev",
-    "desk:install": "npm --prefix tools/content-desk install"
+    "desk:install": "npm --prefix tools/content-desk install",
+    "ledger": "node scripts/ledger/index.mjs",
+    "ledger:test": "node scripts/ledger/selftest.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.115.0"
   }
 }

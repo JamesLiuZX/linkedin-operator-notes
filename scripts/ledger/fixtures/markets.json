@@ -1,0 +1,90 @@
+[
+  {
+    "venue": "fixture",
+    "id": "fx-eligible-1",
+    "question": "Will the named index close above its 200-day moving average on the settlement date?",
+    "url": "https://example.invalid/fx-eligible-1",
+    "marketProb": 0.62,
+    "closeTime": "2026-09-15T00:00:00.000Z",
+    "volume": 5000,
+    "resolved": false,
+    "outcome": null
+  },
+  {
+    "venue": "fixture",
+    "id": "fx-eligible-2",
+    "question": "Will the scheduled hardware launch ship before the end of the quarter?",
+    "url": "https://example.invalid/fx-eligible-2",
+    "marketProb": 0.31,
+    "closeTime": "2026-08-20T00:00:00.000Z",
+    "volume": 12000,
+    "resolved": false,
+    "outcome": null
+  },
+  {
+    "venue": "fixture",
+    "id": "fx-eligible-3",
+    "question": "Will the reported figure exceed the consensus estimate?",
+    "url": "https://example.invalid/fx-eligible-3",
+    "marketProb": 0.78,
+    "closeTime": "2026-10-01T00:00:00.000Z",
+    "volume": 40000,
+    "resolved": false,
+    "outcome": null
+  },
+  {
+    "venue": "fixture",
+    "id": "fx-eligible-4",
+    "question": "Will the two parties announce a signed agreement before the deadline?",
+    "url": "https://example.invalid/fx-eligible-4",
+    "marketProb": 0.47,
+    "closeTime": "2026-08-05T00:00:00.000Z",
+    "volume": 250000,
+    "resolved": false,
+    "outcome": null
+  },
+  {
+    "venue": "fixture",
+    "id": "fx-reject-price",
+    "question": "Already-decided market, priced outside the eligibility band.",
+    "url": "https://example.invalid/fx-reject-price",
+    "marketProb": 0.98,
+    "closeTime": "2026-09-01T00:00:00.000Z",
+    "volume": 8000,
+    "resolved": false,
+    "outcome": null
+  },
+  {
+    "venue": "fixture",
+    "id": "fx-reject-horizon",
+    "question": "Resolves too far out to score inside a quarter.",
+    "url": "https://example.invalid/fx-reject-horizon",
+    "marketProb": 0.55,
+    "closeTime": "2027-06-01T00:00:00.000Z",
+    "volume": 9000,
+    "resolved": false,
+    "outcome": null
+  },
+  {
+    "venue": "fixture",
+    "id": "fx-reject-volume",
+    "question": "Too thin to carry information.",
+    "url": "https://example.invalid/fx-reject-volume",
+    "marketProb": 0.4,
+    "closeTime": "2026-08-10T00:00:00.000Z",
+    "volume": 100,
+    "resolved": false,
+    "outcome": null
+  },
+  {
+    "venue": "fixture",
+    "id": "fx-reject-imminent",
+    "question": "Closes inside the minimum horizon.",
+    "url": "https://example.invalid/fx-reject-imminent",
+    "marketProb": 0.5,
+    "closeTime": "2026-07-27T06:00:00.000Z",
+    "volume": 5000,
+    "resolved": false,
+    "outcome": null
+  }
+]

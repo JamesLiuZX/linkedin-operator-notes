@@ -60,7 +60,12 @@ eight. Not eight times.
 
 ## Tier 1 — build these
 
-### 1. [ ] The Calibration Ledger
+### 1. [~] The Calibration Ledger
+
+> **Built.** Code in [`scripts/ledger/`](../scripts/ledger/), rules in
+> [`data/ledger/PREREGISTRATION.md`](../data/ledger/PREREGISTRATION.md),
+> `npm run ledger -- --help`. What remains is running it daily against a live
+> venue and committing the log.
 
 **A public, pre-registered, permanently-scored record of an LLM forecasting
 against live markets. Updated daily. Never editable after the fact.**
@@ -230,6 +235,160 @@ and the ledger is on autopilot.
 
 ---
 
+## AI workflow demos (Pillar 3, monthly)
+
+Pillar 3 is top of funnel: it brings in the AI-curious crowd who stay for the
+market material. The trap is that AI-workflow content is the most commoditized
+category on the internet, so the only versions worth building are the ones a
+generic AI creator physically cannot make, because they require a real product
+job with real constraints attached.
+
+The test for every idea in this section: **would this still be interesting if the
+AI part were removed?** If the answer is no, it is a tools video and it recruits
+the wrong audience.
+
+### 8. [ ] The acceptance-criteria compiler
+
+**Turn a PRD into failing tests. Ambiguity in the spec becomes a compile error.**
+
+An agent reads a PRD, extracts each acceptance criterion, and emits a failing
+test per criterion. Criteria too vague to test come back as errors with the
+specific missing decision named ("undefined: what counts as 'active'?").
+
+The best AI-workflow demo you can make, because it is the Resolution Linter
+argument moved from markets into product specs: **most disputes are writing
+failures, whether the reader is a trader or an engineer.** That coherence is
+worth more than the tool. Two demos making the same argument from different
+directions is a thesis; one is a gadget.
+
+Ship it against a public spec, never an employer PRD. Show the run where your
+own writing fails the check.
+
+**Effort.** One weekend. **Risk.** Low, on public or personal specs only.
+
+### 9. [ ] This content system, on camera
+
+**Run `npm run content:check` against your own draft and let it fail.**
+
+The cheapest demo in this entire document. The system already exists, the gate
+already rejects things, and the rejection is the content: a machine telling you
+your writing is generic, with the specific line quoted back.
+
+It also quietly proves the thing hiring managers actually want to know, which is
+that you build tools for yourself and then live inside them. Most people
+describing an "AI content workflow" are describing a prompt.
+
+**Effort.** One recording session, zero build. **Risk.** None.
+**Derives.** Backlog item 8 ("I rebuilt my content pipeline as a compiler")
+already wants the essay; this is its demo.
+
+### 10. [ ] What an agent actually costs per run
+
+**Instrument a real agent. Publish tokens, cost, and latency per completed task.**
+
+Everyone demos capability. Almost nobody publishes unit economics, and it is the
+first question any operator asks when the demo ends. Take the Calibration Ledger
+(already logs per-forecast token usage), run it for a month, and publish cost per
+forecast, cost per resolved market, and where the spend actually goes.
+
+The finding people will not expect: on most agent workloads the expensive part is
+not the model, it is the retries, the re-reads, and the context you resend on
+every turn. That is a product problem, not a model problem, which is exactly the
+frame you want to be known for.
+
+**Effort.** Half a weekend on top of the Ledger, which already carries the data.
+**Risk.** None. Public venues, your own API bill.
+
+### 11. [ ] The analytics agent that argues back
+
+**An agent that reads a public dataset, proposes hypotheses, and is not allowed
+to claim causality.**
+
+Backlog item: "AI for Amplitude/Mixpanel analysis, useful prompts + failure
+modes." The demo version uses a public dataset and makes the gate the point: the
+agent proposes, a human owns causality, and the interesting footage is the agent
+confidently proposing a causal story you then refuse.
+
+Lower ceiling than 8 to 10 because the category is crowded. Build it only if the
+refusal gate is genuinely the centerpiece.
+
+**Effort.** One weekend. **Risk.** Low, public data only.
+
+---
+
+## Video generation demos (Pillar 3 tertiary)
+
+This is the pillar with the highest slop risk and the highest personal edge. The
+edge is specific: multi-modal gen content for growth at ByteDance means you have
+actually shipped this at scale and can judge it commercially, which almost nobody
+posting gen-video content can. The risk is that gen video is the single fastest
+way to look like an AI influencer, which is the one thing 00-positioning
+explicitly rules out.
+
+So the rule for this section is: **evaluate gen media, do not perform it.** Every
+demo below produces a judgment, a cost curve, or a failure. None of them are
+"look at this cool clip."
+
+### 12. [ ] Cost per usable second
+
+**Same brief through several video models, scored on a published rubric.**
+
+The metric is the whole demo. Not cost per second, which every comparison
+already reports, but **cost per second you would actually ship**: generate N
+seconds, apply a fixed acceptance rubric (prompt adherence, temporal
+consistency, legible on-screen text, hands and faces, motion artifacts), count
+what survives, divide.
+
+That single reframe moves the conversation from demo reel to unit economics,
+which is your lane and nobody else's in this category. A model that is cheapest
+per second and fails the rubric four times out of five is the most expensive
+option on the board, and the table showing that is the shareable artifact.
+
+Publish the rubric before the results, same discipline as the Ledger.
+
+**Effort.** One weekend plus generation credits. **Risk.** Low. Keep it to
+capability comparison; do not editorialize about vendors.
+
+### 13. [ ] Essay to 60-second explainer, as a pipeline
+
+**A repeatable pipeline that turns one of your own essays into a narrated
+explainer. Ship the pipeline and the video together.**
+
+The marginal cost is close to negative: you need distribution for the essays
+anyway, so the artifact is something you would have made regardless, and the
+pipeline is reusable every fortnight. Market mechanics are genuinely better
+explained in motion than in prose, so this is one of the rare cases where gen
+media is a real lever rather than decoration.
+
+Point it at your own published essay. Show the script step, the storyboard step,
+and the part where you throw out the model's first structure because it buried
+the mechanism.
+
+**Effort.** One weekend to build, then roughly an hour per essay.
+**Risk.** Low. Your own content, your own voice, no likeness of anyone else.
+
+### 14. [ ] The gen media failure gallery
+
+**Deliberately produce the artifacts that make gen video unusable in a regulated
+financial product, then publish the checklist.**
+
+Generate the disasters on purpose: wrong tickers rendered on screen, invented
+numbers in a chart, a "spokesperson" who resembles a real person, a confident
+claim no compliance team would ever clear. Then ship the pre-flight checklist
+that catches each one.
+
+The most defensible thing in this section and the one nobody else can write,
+because it sits exactly on top of your compliance-as-product essay. It is also
+the "receipts or admissions" content the writing contract keeps asking for: the
+failures are real, generated by you, and shown rather than described.
+
+**Effort.** Half a weekend. **Risk.** Low, and it lowers risk elsewhere by
+making your position on gen media explicit and conservative. Never use a real
+person's likeness, including your own colleagues, even to demonstrate the
+failure. Synthesize an obviously fictional subject.
+
+---
+
 ## Do not build these
 
 **A chatbot that explains prediction markets.** Generic, already exists, and
@@ -247,6 +406,15 @@ already owns.
 trading account, attracts audience 3 at the expense of 1 and 2, and takes on
 compliance risk for the privilege.
 
+**An AI avatar of yourself delivering market recaps.** The single fastest way to
+become the thing 00-positioning rules out. It also spends the credibility that
+demos 12 to 14 are trying to build: you cannot be the person with taste about
+gen media and the person with a synthetic talking head.
+
+**A "best AI video tool" roundup.** Pure prompt-collector bait, obsolete within
+a month, and it says nothing only you could say. Demo 12 is the version of this
+idea that is worth your name on it.
+
 ---
 
 ## Sequencing
@@ -258,7 +426,12 @@ compliance risk for the privilege.
 | Week 3 | Cut the recording from weekend 2. | Demo 3, unedited spec to PR. |
 | Week 4 | Demo 4, half a weekend. | Demo 4. Ledger is 30 days deep by now. |
 | Week 5-6 | Nothing new. Write. | Demo 1, first results, with real calibration numbers. |
-| Week 7+ | Demo 5 or 6. | Weekly ledger atoms carry the cadence. |
+| Week 7+ | Demo 8 or 12. | Weekly ledger atoms carry the cadence. |
+
+Two of these are effectively free and can slot into any week where a build slips:
+**demo 9** (the content gate rejecting your own draft) needs a recording session
+and no build at all, and **demo 3** is a recording of work already scheduled.
+Keep them in reserve rather than spending a week on them.
 
 The shape to notice: one build in weekend 1 that publishes in week 5, because
 its value is elapsed time rather than effort. Start the slow compounding thing

@@ -1,0 +1,6 @@
+{
+  "fx-eligible-1": { "resolved": true, "outcome": 1, "marketProb": 0.91 },
+  "fx-eligible-2": { "resolved": true, "outcome": 0, "marketProb": 0.06 },
+  "fx-eligible-3": { "resolved": true, "outcome": 1, "marketProb": 0.97 },
+  "fx-eligible-4": { "resolved": true, "outcome": null, "marketProb": 0.5 }
+}
