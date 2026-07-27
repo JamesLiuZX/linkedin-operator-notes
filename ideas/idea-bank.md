@@ -1,5 +1,7 @@
 # Idea bank (60+)
 
+Writing ideas. Buildable demos live in [demo-bank.md](./demo-bank.md).
+
 Status key: `[ ]` idea · `[~]` outlined · `[x]` published
 
 Mark published with date when you ship.

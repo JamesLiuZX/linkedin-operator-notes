@@ -20,7 +20,8 @@ Positioning: *Operator who ships prediction markets and AI products at scale —
 | [01-profile.md](./01-profile.md) | LinkedIn headline, about, featured |
 | [posts/](./posts/) | Short LinkedIn atoms (derived from essays) |
 | [articles/](./articles/) | Canonical essays (source of truth) |
-| [ideas/idea-bank.md](./ideas/idea-bank.md) | Idea backlog |
+| [ideas/idea-bank.md](./ideas/idea-bank.md) | Writing idea backlog |
+| [ideas/demo-bank.md](./ideas/demo-bank.md) | Buildable demo backlog, ranked by ROI |
 | [tools/content-desk/](./tools/content-desk/) | Local evidence + gate UI |
 
 ## Daily commands
