@@ -20,8 +20,9 @@ Positioning: *Operator who ships prediction markets and AI products at scale —
 | [01-profile.md](./01-profile.md) | LinkedIn headline, about, featured |
 | [posts/](./posts/) | Short LinkedIn atoms (derived from essays) |
 | [articles/](./articles/) | Canonical essays (source of truth) |
-| [ideas/idea-bank.md](./ideas/idea-bank.md) | Idea backlog |
+| [ideas/idea-bank.md](./ideas/idea-bank.md) | Idea backlog + spec'd build projects |
 | [tools/content-desk/](./tools/content-desk/) | Local evidence + gate UI |
+| [tools/resolution-risk/](./tools/resolution-risk/) | Scores market criteria by dispute risk (evidence for Essay 1) |
 
 ## Daily commands
 
@@ -32,6 +33,8 @@ npm run unsplash               # resolve figures: from article frontmatter
 npm run publish:list
 npm run publish:dry
 npm run desk:install && npm run desk   # content desk UI
+npm run risk                   # score market criteria by dispute risk
+npm run risk:test              # pin the rule table
 ```
 
 Canonical site URLs are path-based: `/{section}/{slug}` (not hash routes).

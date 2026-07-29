@@ -85,6 +85,79 @@ Mark published with date when you ship.
 
 ---
 
+## Build projects (demo pillar, spec'd)
+
+Ranked by expected value. Each one is a Pillar 1 demo, a Pillar 2 essay, or both.
+The filter used: can only James build it, and does it produce a number nobody
+else has.
+
+### 1. Resolution risk scanner `[~]` scaffolded: `tools/resolution-risk/`
+
+Score open markets by dispute likelihood, by reading the criteria text rather
+than modelling the outcome. Fifteen rules, each a historically dispute-causing
+hole (undefined thresholds, no tie clause, revisable data, no null case).
+
+- **Why this one first**: it is the evidence generator for Essay 1, which is
+  already committed in PLAN-30-DAYS. The essay needs a frequency table and a
+  before/after rewrite; `--evidence` emits both scaffolds.
+- **Ships as**: essay (markets) + demo (agents).
+- **Next**: point it at live Polymarket / Kalshi, then backtest against onchain
+  UMA dispute history for real ground truth. The backtest is the version with
+  teeth. A null result is still publishable.
+
+### 2. Cross-venue contract matcher `[ ]`
+
+Same event trades on Polymarket, Kalshi, Betfair, sportsbooks. Prices diverge.
+The unsolved part is not the arb, it is deciding whether two listings are the
+same contract once you diff the resolution rulebooks. That is an LLM job.
+
+- **Ship the matcher alone first**: paste two markets, get a structured diff and
+  a fungibility verdict. Trading layer optional and probably skippable.
+- **Compliance**: paper-trade only. Live capital on a competitor venue likely
+  trips the personal-trading policy, and the disagreement log is the better
+  content anyway.
+- **Ships as**: demo (agents) + essay on why venues disagree.
+
+### 3. News-to-price latency instrument `[ ]`
+
+News firehose to LLM tagging affected markets to timestamped price moves.
+Output is a finding, not a bot: how many minutes does an event market take to
+price a headline, and what share of the move happens before it.
+
+- Zero capital, zero compliance surface, and it answers a question the industry
+  currently answers with vibes.
+- **Ships as**: essay (markets) with a real chart.
+
+### 4. Agent market simulator `[ ]`
+
+Toy LMSR or CLOB venue, LLM agents trading on asymmetric information sets. Run
+reward schemes against it and watch agents find the farming exploits offline.
+
+- Turns the existing "rewards vs farming tests" idea from an opinion into a lab.
+- **Ships as**: teardown + essay (markets).
+
+### 5. Farming detector on public onchain data `[ ]`
+
+Wash trading and reward-cycling patterns in public Polymarket data. Graph
+analysis plus anomaly detection. Anonymised patterns only.
+
+- **Ships as**: essay (markets). Pairs with #4.
+
+### Also worth a weekend
+
+- **Agentic video pipeline** `[ ]`: script to shotlist to per-shot generation to
+  VLM continuity check to ffmpeg assembly. The unsolved part is continuity and
+  eval, not the model. Feeds the gen-media pillar. Building a Runway competitor
+  is not a weekend project; building the orchestration and eval layer is.
+- **Auto-generated market recap videos** `[ ]`: every resolved market gets a
+  20-second explainer. Ties gen media to markets, plausible real feature.
+- **Computer-use agent as QA for a trading UI** `[ ]`: point it at a testnet
+  flow, hunt broken states. Unsexy, immediately useful, strong "PM who opens
+  PRs" story.
+- **A narrow eval harness** `[ ]`: least glamorous, most transferable.
+
+---
+
 ## Capture inbox (dump raw here)
 
 <!-- paste messy thoughts below during the week -->
