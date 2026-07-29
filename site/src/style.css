@@ -446,3 +446,186 @@ a:hover {
     min-height: 360px;
   }
 }
+
+/* —— Demos —— */
+.demo-card {
+  min-height: 140px;
+  background: rgba(26, 58, 47, 0.9);
+}
+
+.demo-card .series,
+.demo-card h2,
+.demo-card .meta {
+  color: #f3f5f1;
+}
+
+.demo-header p {
+  max-width: 52ch;
+}
+
+.demo-mount {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 0 1.25rem 5rem;
+}
+
+.restyle-lab {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.restyle-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1rem;
+  align-items: end;
+}
+
+.restyle-field {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+}
+
+.restyle-field > span {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.restyle-field select,
+.restyle-field textarea {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.85rem;
+  padding: 0.55rem 0.65rem;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  resize: vertical;
+}
+
+.restyle-field-wide {
+  grid-column: 1 / -1;
+}
+
+.restyle-checkbox {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.restyle-checkbox input {
+  width: 1rem;
+  height: 1rem;
+}
+
+.restyle-checkbox span {
+  order: 2;
+}
+
+.restyle-style-blurb,
+.restyle-model-blurb {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+}
+
+.restyle-storyboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.75rem;
+}
+
+.restyle-frame {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  background: #111;
+}
+
+.restyle-frame .frame-label {
+  fill: #f3f5f1;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.restyle-frame .frame-camera {
+  fill: #c7cec7;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+}
+
+.restyle-frame .frame-index {
+  fill: #c7cec7;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+}
+
+.restyle-prompt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.restyle-prompt-box,
+.restyle-cli {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.4);
+  padding: 0.85rem;
+}
+
+.restyle-prompt-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.restyle-prompt-head button {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--field);
+  background: transparent;
+  color: var(--field);
+  padding: 0.25rem 0.55rem;
+  cursor: pointer;
+}
+
+.restyle-prompt-head button:hover {
+  background: var(--field);
+  color: #f3f5f1;
+}
+
+.restyle-prompt-box textarea {
+  width: 100%;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  resize: vertical;
+}
+
+.restyle-cli pre {
+  margin: 0 0 0.5rem;
+  font-size: 0.82rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--ink);
+}
+
+.restyle-cli .note {
+  margin: 0;
+}

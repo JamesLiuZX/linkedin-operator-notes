@@ -22,6 +22,7 @@ Positioning: *Operator who ships prediction markets and AI products at scale —
 | [articles/](./articles/) | Canonical essays (source of truth) |
 | [ideas/idea-bank.md](./ideas/idea-bank.md) | Idea backlog |
 | [tools/content-desk/](./tools/content-desk/) | Local evidence + gate UI |
+| [site/src/demos/](./site/src/demos/) | Interactive demos (`/demos`) — start with `npm run restyle -- --list` |
 
 ## Daily commands
 
