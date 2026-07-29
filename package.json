@@ -17,7 +17,9 @@
     "desk:install": "npm --prefix tools/content-desk install",
     "apps": "node scripts/build-apps.mjs",
     "ledger": "node scripts/ledger/index.mjs",
-    "ledger:test": "node scripts/ledger/selftest.mjs"
+    "ledger:test": "node scripts/ledger/selftest.mjs",
+    "risk": "node tools/resolution-risk/scan.mjs",
+    "risk:test": "node tools/resolution-risk/test.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0"

@@ -1,0 +1,84 @@
+{
+  "_note": "SYNTHETIC CORPUS. Every market below was written by hand to exercise the rule table. None of these are real listings on any venue, and none of them are drawn from Crypto.com. Do not publish findings from this file as observations about a real market. Use --source polymarket or --source kalshi on a machine with open network for real data.",
+  "_version": 1,
+  "markets": [
+    {
+      "id": "fx-001-clean-price",
+      "question": "Will BTC close above $150,000 on 31 Dec 2026?",
+      "venue": "synthetic",
+      "criteria": "This market resolves YES if the BTC/USD 1-minute candle close on Coinbase Exchange at 23:59 UTC on 31 December 2026 is greater than or equal to $150,000.00, and NO otherwise. The price is taken from the Coinbase Exchange public candles endpoint for the BTC-USD product. If Coinbase Exchange data is unavailable at that timestamp, the fallback source is the Kraken BTC/USD 1-minute close for the same minute. If both sources are unavailable, resolution is delayed until one publishes. A value exactly equal to $150,000.00 resolves YES, since the threshold is inclusive."
+    },
+    {
+      "id": "fx-002-vague-price",
+      "question": "Will ETH reach $10,000 this cycle?",
+      "venue": "synthetic",
+      "criteria": "Resolves YES if ETH reaches $10,000 before the end of the year."
+    },
+    {
+      "id": "fx-003-macro-revision",
+      "question": "Will US unemployment be below 4.0% in the September report?",
+      "venue": "synthetic",
+      "criteria": "This market resolves YES if the unemployment rate reported in the September jobs report is less than 4.0 percent. The market will use the headline unemployment rate as published. Trading closes on the morning of the release."
+    },
+    {
+      "id": "fx-004-ambiguous-actor",
+      "question": "Will the company announce a stock split in Q4?",
+      "venue": "synthetic",
+      "criteria": "Resolves YES if the company announces a stock split before the end of Q4. Any credible news reporting of the announcement will be sufficient for resolution."
+    },
+    {
+      "id": "fx-005-no-tie",
+      "question": "Will Team A score more points than Team B across the season?",
+      "venue": "synthetic",
+      "criteria": "This market resolves YES if Team A scores more total points than Team B over all regular season games. Points are taken from the official league statistics page at the conclusion of the regular season."
+    },
+    {
+      "id": "fx-006-thin",
+      "question": "Will the merger close?",
+      "venue": "synthetic",
+      "criteria": "Resolves YES if the merger closes."
+    },
+    {
+      "id": "fx-007-compound",
+      "question": "Will the central bank cut rates and signal further easing?",
+      "venue": "synthetic",
+      "criteria": "Resolves YES if the central bank cuts the policy rate by at least 25 basis points at its next scheduled meeting and the accompanying statement signals further easing or the chair indicates in the press conference that additional cuts are likely and no dissenting votes are recorded against the decision."
+    },
+    {
+      "id": "fx-008-discretion",
+      "question": "Will a major AI lab release a frontier model before July?",
+      "venue": "synthetic",
+      "criteria": "Resolves YES if a major AI lab releases a frontier model before July. What constitutes a frontier model will be determined by the admin team in good faith, taking into account benchmark performance and widely reported industry consensus at the sole discretion of the resolver."
+    },
+    {
+      "id": "fx-009-counting",
+      "question": "Will there be at least 50 new listings this quarter?",
+      "venue": "synthetic",
+      "criteria": "This market resolves YES if the number of new listings added during the quarter is at least 50. The count will be taken from the platform's public listings page."
+    },
+    {
+      "id": "fx-010-relative-date",
+      "question": "Will the protocol ship the upgrade within 30 days?",
+      "venue": "synthetic",
+      "criteria": "Resolves YES if the protocol ships the mainnet upgrade within 30 days. Confirmation will be taken from the official account @exampleprotocol."
+    },
+    {
+      "id": "fx-011-negation",
+      "question": "Will the executive not resign before year end?",
+      "venue": "synthetic",
+      "criteria": "This market resolves YES if the executive does not resign, step down, or otherwise vacate the role before the end of the year. Resolution is based on news reports."
+    },
+    {
+      "id": "fx-012-null-case",
+      "question": "Will the summit produce a signed agreement?",
+      "venue": "synthetic",
+      "criteria": "Resolves YES if, when the summit takes place, the parties sign a formal agreement. The signed agreement must be confirmed by officials and reported publicly."
+    },
+    {
+      "id": "fx-013-good-event",
+      "question": "Will Candidate X win the 2026 governor's race?",
+      "venue": "synthetic",
+      "criteria": "This market resolves YES if Candidate X is certified as the winner of the 2026 governor's race by the state's Secretary of State, per the official certified results published on the Secretary of State elections portal, on or before 23:59:59 ET on 15 December 2026 (inclusive). If certification has not occurred by that timestamp, the market resolves NO. If the certified result is later overturned by a court, revisions are disregarded and the market stands as first certified. In the event of an exact tie triggering a statutory runoff, this market resolves NO, since Candidate X will not have been certified as winner by the deadline."
+    }
+  ]
+}
