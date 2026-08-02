@@ -6,11 +6,22 @@
 //   node scripts/content-check.mjs                  # check everything
 //   node scripts/content-check.mjs articles/foo.md  # check specific files
 //   node scripts/content-check.mjs --json           # machine readable
+//   node scripts/content-check.mjs --strict         # drafts block too
 //   node scripts/content-check.mjs --warn-only      # never exit non-zero
+//
+// Blocking model:
+//   status: draft            advisory, so work in progress can live in the repo
+//   no frontmatter at all    BLOCKING. An unregistered file is not a draft, it
+//                            is a file the system cannot see. That hole is what
+//                            let 7 of 8 posts violate three hard rules each
+//                            while CI stayed green.
+//   anything else            blocking.
 
-import { readFile, readdir } from 'node:fs/promises';
-import { join, extname, basename } from 'node:path';
+import { readFile, readdir, access } from 'node:fs/promises';
+import { join, extname, basename, dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { parseFrontmatter } from './lib/frontmatter.mjs';
+import { analyzeLinkedIn, FOLD, MAX } from './lib/linkedin.mjs';
 
 // ---------------------------------------------------------------- rule tables
 
@@ -41,6 +52,21 @@ export const BAD_OPENERS = [
   /^in the world of/i, /^as a (pm|product manager|founder)/i, /^have you ever/i,
   /^let'?s talk about/i, /^i'?ve been thinking about/i, /^in recent years/i,
   /^picture this/i, /^imagine/i, /^we all know/i,
+];
+
+// Appeals to authority with no authority named. Worse than no citation: an
+// employer who cannot check "public reporting described sharp cool-downs"
+// discounts every number in the piece, including the ones you can defend.
+export const VAGUE_SOURCING = [
+  'public reporting', 'reports suggest', 'studies show', 'research shows',
+  'it is widely', 'many teams report', 'secondary outlets', 'industry data',
+  'sources indicate', 'some estimates', 'commonly cited',
+];
+
+// Every field is load-bearing. Cost is the one that separates a post from a
+// press release, so it is checked hardest (see WRITING.md section 4).
+export const EVIDENCE_FIELDS = [
+  'Claim', 'Moment', 'Numbers', 'Names', 'Cost', 'Counterexample', 'Reader action',
 ];
 
 const SPECS = {
@@ -119,18 +145,84 @@ function countSpecifics(text) {
   return spans;
 }
 
-const RECEIPT_PATTERNS = [
-  /\b\d+(\.\d+)?\s?%/,
-  /\$\s?[\d,.]+/,
-  /\bq[1-4]\b/i,
-  /\b(20\d\d)\b/,
-  /\b(i was wrong|got it wrong|it broke|we broke|didn'?t work|failed|lost|missed|regret|my mistake|shipped it anyway|had to roll back)\b/i,
+// A receipt is something a reader could check, or something that cost the
+// author to admit. "three surfaces" and "30 seconds" are neither, and the old
+// gate counted them, which is how articles/02 scored 100/100 with nothing in it
+// a stranger could verify.
+const STRONG_RECEIPTS = [
+  [/\$\s?[\d,.]+/, 'money'],
+  [/\b\d+(\.\d+)?\s?%/, 'percentage'],
+  [/\b\d{4}-\d{2}-\d{2}\b/, 'ISO date'],
+  [/\bq[1-4]\s?(20\d\d|'\d\d)\b/i, 'quarter'],
+  [/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+\d{1,2},?\s+20\d\d/i, 'calendar date'],
+  [/\b(in|since|during|by)\s+20\d\d\b/i, 'year anchor'],
+  [/\b(i was wrong|got it wrong|it broke|we broke|didn'?t work|failed|lost|missed|regret|my mistake|shipped it anyway|had to roll back|i shipped a bug|i mispriced|i misread)\b/i, 'admission'],
+  // First-person admissions of a gap. Narrow on purpose: "I have not" only
+  // counts in first person, so "teams have not" cannot buy a receipt.
+  [/\bi (have not|had not|haven'?t|hadn'?t) \w+/i, 'admission'],
+  [/\bwould have (shipped|published|posted|sent|listed)\b/i, 'near miss'],
+  // A path or URL into something the reader can actually open and run.
+  [/\b(scripts|tools|apps|articles|posts|data)\/[\w./-]+/, 'artifact path'],
+  [/https?:\/\/[^\s)]+/, 'link'],
 ];
 
-export function analyze(raw, kind = 'post') {
+function strongReceipts(text) {
+  return STRONG_RECEIPTS.filter(([re]) => re.test(text)).map(([, label]) => label);
+}
+
+/** Parse the mandatory evidence block. Returns null when absent. */
+export function parseEvidence(raw) {
+  const m = raw.match(/<!--\s*EVIDENCE\b([\s\S]*?)-->/i);
+  if (!m) return null;
+  const fields = {};
+  let current = null;
+  for (const line of m[1].split(/\r?\n/)) {
+    const kv = /^\s*([A-Za-z][A-Za-z ]*?)\s*:\s*(.*)$/.exec(line);
+    if (kv && EVIDENCE_FIELDS.some(f => f.toLowerCase() === kv[1].trim().toLowerCase())) {
+      current = EVIDENCE_FIELDS.find(f => f.toLowerCase() === kv[1].trim().toLowerCase());
+      fields[current] = kv[2].trim();
+    } else if (current && line.trim()) {
+      fields[current] += ' ' + line.trim();
+    }
+  }
+  return fields;
+}
+
+// Multi-line and long on purpose: a slot carries the instruction for filling it.
+const PLACEHOLDER = /\{\{([\s\S]*?)\}\}/g;
+
+/** Word shingles, for detecting an atom that just reprints its source essay. */
+function shingles(text, n = 8) {
+  const toks = text.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(Boolean);
+  const out = new Set();
+  for (let i = 0; i + n <= toks.length; i++) out.add(toks.slice(i, i + n).join(' '));
+  return out;
+}
+
+export function overlapRatio(a, b) {
+  const A = shingles(a), B = shingles(b);
+  if (!A.size) return 0;
+  let hit = 0;
+  for (const s of A) if (B.has(s)) hit++;
+  return hit / A.size;
+}
+
+/**
+ * @param {string} raw    full file contents
+ * @param {'post'|'article'} kind
+ * @param {{ sourceText?: string, sourceExists?: boolean|null }} ctx
+ *        cross-file context the caller resolves (derivedFrom target)
+ */
+export function analyze(raw, kind = 'post', ctx = {}) {
   const spec = SPECS[kind] || SPECS.post;
-  const { body } = parseFrontmatter(raw);
-  const text = body
+  const { data, body, hasFrontmatter } = parseFrontmatter(raw);
+
+  // For posts, only the Draft section is the published artifact. Editorial
+  // headers above it are notes to self and must not dilute the stats.
+  const li = kind === 'post' ? analyzeLinkedIn(body) : null;
+  const source = li ? li.draft : body;
+
+  const text = source
     .replace(/<!--[\s\S]*?-->/g, '')     // evidence block never counts
     .replace(/^#{1,6}\s.*$/gm, '')       // headings excluded from prose stats
     .trim();
@@ -149,14 +241,19 @@ export function analyze(raw, kind = 'post') {
   const checks = [];
   const add = (id, label, status, detail) => checks.push({ id, label, status, detail });
 
-  // hard fails
+  // ------------------------------------------------------------ registration
+  add('registered', 'Has frontmatter', hasFrontmatter ? 'pass' : 'fail',
+    hasFrontmatter ? `status: ${data.status || 'draft'}`
+      : 'no frontmatter. The gate and the publisher both treat this file as invisible.');
+
+  // ------------------------------------------------------------ hard fails
   const dashes = (text.match(/—/g) || []).length + (text.match(/\s–\s/g) || []).length;
   add('dashes', 'No em dashes', dashes ? 'fail' : 'pass',
     dashes ? `${dashes} found. Replace with a period or a comma.` : 'clean');
 
   const hasTakeaway =
-    /^\s*\*{0,2}takeaway\*{0,2}\s*:/im.test(body) ||
-    /^#{1,6}\s+\*{0,2}takeaway\*{0,2}\s*$/im.test(body);
+    /^\s*\*{0,2}takeaway\*{0,2}\s*:/im.test(source) ||
+    /^#{1,6}\s+\*{0,2}takeaway\*{0,2}\s*$/im.test(source);
   add('takeaway', 'Ends with a Takeaway', hasTakeaway ? 'pass' : 'fail',
     hasTakeaway ? 'present' : 'add a Takeaway section or Takeaway: line at the end');
 
@@ -184,11 +281,90 @@ export function analyze(raw, kind = 'post') {
   add('density', 'Specificity density', density >= spec.minDensity ? 'pass' : 'fail',
     `${density.toFixed(1)} per 100 words (need ${spec.minDensity}). ${specifics.length} specifics in ${wc} words.`);
 
-  const receipts = RECEIPT_PATTERNS.filter(re => re.test(text)).length;
-  add('receipts', 'Has receipts', receipts ? 'pass' : 'fail',
-    receipts ? `${receipts} receipt patterns` : 'no number, date, or admission. This is the Cost field being empty.');
+  const receipts = strongReceipts(text);
+  add('receipts', 'Has receipts', receipts.length ? 'pass' : 'fail',
+    receipts.length ? receipts.join(', ')
+      : 'nothing checkable and nothing admitted. A bare count is not a receipt.');
 
-  // warns
+  // A named source with a link is evidence. "Public reporting described" is a
+  // shrug wearing evidence's clothes, and it discounts the claims either side.
+  const vague = VAGUE_SOURCING.filter(v => lower.includes(v));
+  add('sourcing', 'Named sources', vague.length ? 'fail' : 'pass',
+    vague.length ? `${vague.join(', ')}. Name the source and link it, or cut the claim.` : 'clean');
+
+  // ------------------------------------------------------------ evidence block
+  const evidence = parseEvidence(raw);
+  if (!evidence) {
+    add('evidence', 'Evidence block', 'fail',
+      'missing. WRITING.md section 4: no drafting starts before this exists.');
+  } else {
+    const missing = EVIDENCE_FIELDS.filter(f => !evidence[f] || /^\(.*\)$/.test(evidence[f]));
+    add('evidence', 'Evidence block', missing.length ? 'fail' : 'pass',
+      missing.length ? `empty field(s): ${missing.join(', ')}` : `${EVIDENCE_FIELDS.length} fields filled`);
+  }
+
+  // Refuse to publish a hole. The generator is not allowed to invent a number
+  // the author has not confirmed, so it leaves {{ }} and this stops the file.
+  const holes = [...raw.matchAll(PLACEHOLDER)]
+    .map(m => m[1].replace(/\s+/g, ' ').trim())
+    .filter(Boolean)                       // "{{ }}" in instructions is not a slot
+    .map(h => (h.split(':')[0] || h).slice(0, 32));
+  add('placeholders', 'No unfilled slots', holes.length ? 'fail' : 'pass',
+    holes.length ? `${holes.length} unfilled: ${[...new Set(holes)].slice(0, 4).join(', ')}` : 'clean');
+
+  // ------------------------------------------------------------ provenance
+  if (kind === 'post') {
+    const from = data.derivedFrom;
+    if (!from) {
+      add('provenance', 'Traces to a source', 'fail',
+        'set derivedFrom: to the essay or the artifact this atom came from. Atoms are derived, never composed independently.');
+    } else if (ctx.sourceExists === false) {
+      add('provenance', 'Traces to a source', 'fail', `derivedFrom: ${from} does not exist`);
+    } else {
+      add('provenance', 'Traces to a source', 'pass', String(from));
+    }
+
+    if (ctx.sourceText) {
+      const ratio = overlapRatio(text, ctx.sourceText);
+      const pct = (ratio * 100).toFixed(1);
+      add('cannibalization', 'Not a reprint of its source',
+        ratio > 0.12 ? 'fail' : ratio > 0.06 ? 'warn' : 'pass',
+        `${pct}% of this atom's phrasing also appears in ${data.derivedFrom}`);
+    }
+  }
+
+  // ------------------------------------------------------------ LinkedIn native
+  if (li) {
+    const cut = li.fold;
+    const foldSpecifics = countSpecifics(cut.visible);
+    add('fold', 'Fold earns the click',
+      foldSpecifics.length ? 'pass' : 'fail',
+      cut.truncated
+        ? `${FOLD} visible chars carry ${foldSpecifics.length} specific(s). "see more" cuts after: ...${cut.visible.slice(-40)}`
+        : `whole post fits above the fold (${li.chars} chars)`);
+
+    add('chars', 'LinkedIn length',
+      li.chars > MAX ? 'fail' : li.chars < 400 ? 'warn' : 'pass',
+      `${li.chars} chars (max ${MAX})`);
+
+    add('renderable', 'Pastes clean into LinkedIn',
+      li.unrenderable.length ? 'fail' : 'pass',
+      li.unrenderable.length
+        ? li.unrenderable.map(u => `${u.label} x${u.count}`).join(', ') + '. LinkedIn renders no markdown; run npm run linkedin.'
+        : 'plain text');
+
+    add('hashtags', 'Hashtags',
+      li.hashtags.length > 3 ? 'fail' : 'pass',
+      li.hashtags.length ? li.hashtags.join(' ') : 'none');
+
+    // Outbound links in the body suppress distribution. They belong in the
+    // first comment, which is also where the proof link belongs.
+    add('links', 'No links in the body',
+      li.urls.length ? 'fail' : 'pass',
+      li.urls.length ? `${li.urls.length} URL(s) in body. Move to "## First comment".` : 'clean');
+  }
+
+  // ------------------------------------------------------------ warns
   const sd = stdev(lens);
   add('rhythm', 'Sentence variance', sd >= 5.5 ? 'pass' : 'warn',
     `stdev ${sd.toFixed(1)} (want 5.5+). Add a short sentence. Then a long specific one.`);
@@ -201,11 +377,26 @@ export function analyze(raw, kind = 'post') {
   add('length', 'Word count', lenOk ? 'pass' : 'warn',
     `${wc} words (target ${spec.minWords} to ${spec.maxWords})`);
 
+  if (kind === 'article') {
+    // WRITING.md: a diagram you drew beats an Unsplash photo. Currently the
+    // fallback is the default, 20 stock images to 0 diagrams.
+    const figures = Array.isArray(data.figures) ? data.figures.length : 0;
+    const localAssets = (body.match(/\((?:\.\/)?(?:assets|\.\.\/assets)\/[^)]+\)/g) || []).length
+      + (body.match(/src="(?:\.\/)?(?:assets|\.\.\/assets)\//g) || []).length;
+    add('figures', 'Owned artwork', figures === 0 ? 'warn' : localAssets ? 'pass' : 'warn',
+      localAssets ? `${localAssets} local figure(s)`
+        : figures ? `${figures} stock slot(s), 0 drawn. Unsplash is the fallback, not the default.`
+          : 'no figures declared');
+  }
+
   const fails = checks.filter(c => c.status === 'fail').length;
   const warns = checks.filter(c => c.status === 'warn').length;
-  const score = Math.max(0, Math.round(100 - fails * 14 - warns * 5));
+  const score = Math.max(0, Math.round(100 - fails * 10 - warns * 4));
 
-  return { checks, score, fails, warns, stats: { wc, density, sd, specifics: specifics.length, hedgeRate } };
+  return {
+    checks, score, fails, warns,
+    stats: { wc, density, sd, specifics: specifics.length, hedgeRate, chars: li?.chars ?? null },
+  };
 }
 
 // ---------------------------------------------------------------- cli
@@ -224,11 +415,40 @@ async function collect() {
   return out;
 }
 
+/** Resolve derivedFrom, which may be repo-relative or relative to the post. */
+async function resolveSource(path, from) {
+  if (!from) return { sourceExists: null };
+  const candidates = [resolve(process.cwd(), String(from)), resolve(dirname(path), String(from))];
+  for (const c of candidates) {
+    try {
+      await access(c);
+      const raw = await readFile(c, 'utf8');
+      const { body } = parseFrontmatter(raw);
+      // Only prose sources can be cannibalized; a script cannot be.
+      // Strip the source's evidence block: it never renders, so reusing a phrase
+      // from it is not recycling published text.
+      const isProse = /\.(md|markdown|txt)$/i.test(c);
+      return { sourceExists: true, sourceText: isProse ? body.replace(/<!--[\s\S]*?-->/g, ' ') : '' };
+    } catch { /* try next */ }
+  }
+  return { sourceExists: false };
+}
+
+// Importing this module for `analyze` or `overlapRatio` must not run the CLI.
+// It previously did, so any consumer got a full report printed at import time.
+const isCli =
+  process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+
+if (isCli) {
 const argv = process.argv.slice(2);
 const asJson = argv.includes('--json');
 const warnOnly = argv.includes('--warn-only');
+const strict = argv.includes('--strict');
 const files = argv.filter(a => !a.startsWith('--'));
-const targets = files.length ? files : await collect();
+// READMEs are operator documentation, never publishable content. Filter them
+// even when the shell expanded a glob onto them.
+const targets = (files.length ? files : await collect())
+  .filter(f => basename(f).toLowerCase() !== 'readme.md');
 
 const C = { red: '\x1b[31m', yellow: '\x1b[33m', green: '\x1b[32m', dim: '\x1b[2m', off: '\x1b[0m' };
 const results = [];
@@ -236,27 +456,34 @@ let totalFails = 0;
 
 for (const path of targets) {
   const raw = await readFile(path, 'utf8');
-  const { data } = parseFrontmatter(raw);
+  const { data, hasFrontmatter } = parseFrontmatter(raw);
   const kind = path.startsWith('articles') ? 'article' : 'post';
-  // drafts are advisory only
-  const isDraft = (data.status || 'draft') === 'draft';
-  const r = analyze(raw, kind);
-  results.push({ path, kind, status: data.status || 'draft', ...r });
-  if (!isDraft) totalFails += r.fails;
+  const ctx = kind === 'post' ? await resolveSource(path, data.derivedFrom) : {};
+  const r = analyze(raw, kind, ctx);
+
+  // An unregistered file is not a draft. It is a file nothing in the pipeline
+  // can see, which is strictly worse, so it always blocks.
+  const isDraft = hasFrontmatter && (data.status || 'draft') === 'draft';
+  const blocking = strict || !isDraft;
+
+  results.push({ path, kind, status: hasFrontmatter ? (data.status || 'draft') : 'unregistered', blocking, ...r });
+  if (blocking) totalFails += r.fails;
 
   if (!asJson) {
     const head = r.fails ? C.red : r.warns ? C.yellow : C.green;
-    console.log(`\n${head}${r.score}/100${C.off}  ${path} ${C.dim}[${kind}, ${data.status || 'draft'}]${C.off}`);
+    const label = hasFrontmatter ? (data.status || 'draft') : 'UNREGISTERED';
+    console.log(`\n${head}${r.score}/100${C.off}  ${path} ${C.dim}[${kind}, ${label}]${C.off}`);
     for (const c of r.checks) {
       if (c.status === 'pass') continue;
       const mark = c.status === 'fail' ? `${C.red}FAIL${C.off}` : `${C.yellow}warn${C.off}`;
       console.log(`  ${mark}  ${c.label}: ${c.detail}`);
     }
-    if (isDraft && r.fails) console.log(`  ${C.dim}(draft, not blocking)${C.off}`);
+    if (!blocking && r.fails) console.log(`  ${C.dim}(draft, not blocking. --strict to enforce)${C.off}`);
   }
 }
 
 if (asJson) console.log(JSON.stringify(results, null, 2));
-else console.log(`\n${targets.length} file(s). ${totalFails} blocking failure(s) on non-draft content.\n`);
+else console.log(`\n${targets.length} file(s). ${totalFails} blocking failure(s)${strict ? ' (strict)' : ' on non-draft content'}.\n`);
 
 process.exit(warnOnly || !totalFails ? 0 : 1);
+}

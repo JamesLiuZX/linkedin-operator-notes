@@ -10,13 +10,13 @@ Mark published with date when you ship.
 
 ## Markets as products
 
-- [~] Post-event retention framework (drafted: posts/01; article: articles/02)
-- [~] Rewards vs farming tests (drafted: posts/03; article: articles/04)
-- [~] Compliance as product input (drafted: posts/05; article: articles/05)
-- [~] Three trust surfaces (drafted: posts/08; article: articles/01)
+- [~] Post-event retention framework (article: articles/02; atom: posts/08, HELD on a peak-to-Tuesday ratio)
+- [~] Rewards vs farming tests (article: articles/04; atom: posts/09, HELD on a day-31 figure)
+- [~] Compliance as product input (article: articles/05; atom: posts/10, HELD on a rebuild multiple)
+- [~] Three trust surfaces (article: articles/01; atom: posts/05, shipped angle: the 30-second settle test)
 - [ ] What "good market listing" means operationally
 - [ ] Resolution rules that prevent disputes
-- [~] Why dead markets poison the whole venue (article: articles/06)
+- [~] Why dead markets poison the whole venue (article: articles/06; atom: posts/07)
 - [ ] Sports vs politics vs crypto event markets — different product problems
 - [ ] Options / derivatives intuition for event-market PMs
 - [ ] Onboarding: KYC friction vs first-trade conversion (principles only)
@@ -43,9 +43,14 @@ Mark published with date when you ship.
 
 ## AI that ships
 
-- [ ] PM who opens PRs (drafted: posts/02)
-- [ ] AI partnership lessons (drafted: posts/04)
-- [~] AI trading agent prototype boundaries (drafted: posts/07; article: articles/03)
+- [~] PM who opens PRs (atoms: posts/03, posts/04. The repo itself is the receipt)
+- [ ] AI partnership lessons. BLOCKED: needs one public outcome, one named constraint,
+      and one thing that went wrong. Without those it is a McKinsey slide, which is
+      why it was cut from the queue rather than rewritten
+- [ ] Gen media with a product lens. BLOCKED: same reason. Needs a channel, a
+      measured quality bar, and a number for what the human edit loop costs
+- [~] AI trading agent prototype boundaries (article: articles/03; atom: posts/06)
+- [~] The calibration ledger and the anchoring problem (atom: posts/02)
 - [ ] PRDs that include a prototype link by default
 - [ ] How I use Cursor day-to-day as a PM (concrete workflow)
 - [ ] Claude Code: when it helps vs creates review debt

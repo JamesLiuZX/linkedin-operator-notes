@@ -5,6 +5,9 @@
   "scripts": {
     "content:check": "node scripts/content-check.mjs",
     "content:check:json": "node scripts/content-check.mjs --json",
+    "content:strict": "node scripts/content-check.mjs --strict",
+    "linkedin": "node scripts/linkedin.mjs",
+    "linkedin:list": "node scripts/linkedin.mjs --list",
     "unsplash": "node scripts/fetch-unsplash.mjs",
     "site": "npm --prefix site run dev",
     "site:install": "npm --prefix site install",

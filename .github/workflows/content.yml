@@ -18,8 +18,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - run: node scripts/content-check.mjs
+      # Blocks on anything not marked draft, and on any file with no frontmatter.
+      - name: Quality gate
+        run: node scripts/content-check.mjs
+
+      # Drafts included, advisory. Surfaces what is still owed on held pieces
+      # without failing the build for work in progress.
+      - name: Quality gate (drafts, advisory)
+        run: node scripts/content-check.mjs --strict --warn-only
+
       - run: node scripts/publish/index.mjs --dry-run --scheduled
+
+      # Catches a diagram added to articles/assets/ without the served copy.
+      - name: Figures mirrored into the site
+        run: |
+          node scripts/build-apps.mjs
+          git diff --exit-code --stat -- site/public \
+            || (echo "::error::site/public is stale. Run npm run apps and commit." && exit 1)
       - run: npm --prefix site ci
       - run: BASE_PATH=/linkedin-operator-notes/ npm --prefix site run build
       - name: SPA fallback

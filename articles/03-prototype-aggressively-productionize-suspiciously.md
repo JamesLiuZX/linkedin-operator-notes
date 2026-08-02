@@ -26,6 +26,16 @@ figures:
     requireAny: lock, key, gate, security
 ---
 
+<!-- EVIDENCE
+Claim: The useful unit of AI autonomy near money is a tier with written non-autonomy, not a demo that looked convincing in a room.
+Moment: Building a two-arm forecasting agent in scripts/ledger, watching the first run produce clean confident probabilities, and realising nothing in it had been verified yet.
+Numbers: 19 offline self-tests covering scoring and log integrity, 0 of them checking that the model is right, 2 arms required before a single forecast means anything, 1,482 lines across 8 files.
+Names: scripts/ledger, the blind arm, bounded autonomy, prompt injection, Brier score, Murphy decomposition.
+Cost: My own agent was most convincing at the moment it was least verified, and I had not built the control arm that makes its output mean anything until after the demo already looked finished.
+Counterexample: Over-caution has a cost. Mapping the risk surface before anyone has felt the interaction produces controls written by people who have never seen where it actually breaks.
+Reader action: Before showing an agent demo to anyone senior, write the list of what it did not test and read that list first.
+-->
+
 # Prototype aggressively. Productionize suspiciously.
 
 <figure>

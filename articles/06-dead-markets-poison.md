@@ -28,6 +28,16 @@ figures:
     requireAny: chart, stock, graph, trading
 ---
 
+<!-- EVIDENCE
+Claim: Thin inventory is not a neutral row in a catalogue. It teaches users that every price in the venue is decorative, and the damage lands on the liquid markets beside it.
+Moment: Running a 15-rule scanner over 13 sample questions and watching 3 come back too thin to analyse at all, each under 25 words, each the shape a listing pipeline produces when the calendar looks empty.
+Numbers: 3 of 13 fixtures under 25 words and scored at the floor, 15 rules in tools/resolution-risk, top dispute score 67 of 100, whole scan runs in about a second.
+Names: tools/resolution-risk, npm run risk, exit liquidity, listing bar, death plan, contamination metrics.
+Cost: I wrote 1,539 words on market quality before writing a single rule that catches a bad listing, and my own gate scored that draft at 3.2 specifics per 100 words against a bar of 6.
+Counterexample: New categories have to start illiquid. Killing everything below a volume line means never launching anything, and the real distinction is whether the thinness is disclosed or disguised.
+Reader action: Count how many listed markets a user could exit within an hour at a price they would accept, and publish the count internally before growth asks for more listings.
+-->
+
 # Dead markets poison the whole venue
 
 <figure>

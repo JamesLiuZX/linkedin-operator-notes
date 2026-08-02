@@ -8,11 +8,44 @@
 // One source, two deployments. Editing the artifact and forgetting the hosted
 // copy is the failure this script exists to prevent.
 
-import { readdir, readFile, writeFile, mkdir, rm } from 'node:fs/promises';
+import { readdir, readFile, writeFile, mkdir, rm, copyFile } from 'node:fs/promises';
 import { join, basename, extname } from 'node:path';
 
 const SRC = 'apps';
 const OUT = 'site/public/apps';
+
+// Figures drawn for an essay live beside it in articles/assets/ and are mirrored
+// into the site's public dir. Same one-source-two-deployments rule as the apps:
+// editing the diagram and forgetting the served copy is the failure to prevent.
+const ASSET_SRC = 'articles/assets';
+const ASSET_OUT = 'site/public/assets';
+
+async function copyAssets() {
+  let files = [];
+  try { files = await readdir(ASSET_SRC); } catch { return; }
+  const drawn = files.filter((f) => /\.(svg|png|jpg|jpeg|webp)$/i.test(f));
+  if (!drawn.length) return;
+
+  // Only mirror figures an essay actually references. Unreferenced artwork stays
+  // in articles/assets/ as source and does not become dead weight in the deploy.
+  let referenced = new Set();
+  try {
+    for (const md of (await readdir('articles')).filter((f) => f.endsWith('.md'))) {
+      const body = await readFile(join('articles', md), 'utf8');
+      for (const f of drawn) if (body.includes(f)) referenced.add(f);
+    }
+  } catch { referenced = new Set(drawn); }
+
+  const used = drawn.filter((f) => referenced.has(f));
+  if (!used.length) return;
+  await mkdir(ASSET_OUT, { recursive: true });
+  for (const f of used) await copyFile(join(ASSET_SRC, f), join(ASSET_OUT, f));
+  const idle = drawn.length - used.length;
+  console.log(
+    `  mirrored ${used.length} figure(s) to ${ASSET_OUT}/` +
+      (idle ? ` (${idle} unreferenced, left in ${ASSET_SRC}/)` : '')
+  );
+}
 
 function titleOf(html, fallback) {
   const m = html.match(/<title>([\s\S]*?)<\/title>/i);
@@ -104,3 +137,5 @@ await writeFile(join(OUT, 'index.html'), index, 'utf8');
 
 for (const b of built) console.log(`  ${b.file.padEnd(24)} ${(b.bytes / 1024).toFixed(1)} KB  ${b.title}`);
 console.log(`\n  wrote ${built.length + 1} file(s) to ${OUT}/`);
+
+await copyAssets();

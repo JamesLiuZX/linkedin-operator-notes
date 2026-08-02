@@ -13,3 +13,7 @@ site/.vite/
 # publish state + queue are committed on purpose
 !.publish/state.json
 !.publish/medium-import-queue.jsonl
+
+# LinkedIn paste queue is generated at publish time, not source
+.publish/linkedin/
+.publish/linkedin-queue.jsonl

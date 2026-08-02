@@ -13,6 +13,7 @@ Positioning: *Operator who ships prediction markets and AI products at scale —
 | File | Purpose |
 |------|---------|
 | [WRITING.md](./WRITING.md) | Voice contract + quality gate (`npm run content:check`) |
+| [REVIEW.md](./REVIEW.md) | Critique of this pipeline across 12 dimensions, and what changed because of it |
 | [00-positioning.md](./00-positioning.md) | Positioning, pillars, library shape |
 | [PLAN-30-DAYS.md](./PLAN-30-DAYS.md) | First 14-day shipping milestone |
 | [PUBLISHING.md](./PUBLISHING.md) | Cross-post to X / Medium / Substack |
@@ -31,6 +32,9 @@ Positioning: *Operator who ships prediction markets and AI products at scale —
 
 ```bash
 npm run content:check          # quality gate (CI enforces on non-drafts)
+npm run content:strict         # enforce on drafts too
+npm run linkedin:list          # the atom queue, with each post's visible fold
+npm run linkedin -- posts/01-resolution-risk-scanner.md   # exact paste + fold + char budget
 npm run site:install && npm run site
 npm run unsplash               # resolve figures: from article frontmatter
 npm run publish:list
@@ -56,10 +60,18 @@ No edits to `site/src/main.js` required.
 
 ## Start today
 
-1. Read `PLAN-30-DAYS.md` — ship the library URL first
+1. Read `PLAN-30-DAYS.md`, ship the library URL first
 2. Update LinkedIn profile using `01-profile.md`
-3. Draft essay 1 through the evidence gate
-4. Derive one LinkedIn atom and one X excerpt from it
+3. Post `posts/01-resolution-risk-scanner.md`. It is gate-clean and it points at
+   a tool anyone can run, which is the only kind of first post worth making
+4. Fill the `{{ }}` slots in posts 8 to 10. They are the pieces only you can finish
+
+## The one rule that makes the rest work
+
+Nothing in this repo invents a number about your work. Where a draft needs a
+figure only you have, it carries a `{{ }}` slot and the gate refuses to publish
+it. A held draft is the correct state. A fabricated number is not, and on a
+public profile it is unrecoverable.
 
 ## Success metrics
 

@@ -27,6 +27,16 @@ figures:
     requireAny: sign, road, path, direction
 ---
 
+<!-- EVIDENCE
+Claim: In a regulated venue, eligibility, settlement, and marketing claims are product features, so compliance arriving late produces a redesign rather than a delay.
+Moment: {{MOMENT: the design that went to legal after the UX was built and came back needing structural changes. Category only, no sensitive jurisdiction detail.}}
+Numbers: {{NUMBERS: rebuild time over original build time as a multiple, and the number of surfaces that had to change. Multiples travel and leak nothing.}}
+Names: market structure, listing criteria, the translation problem, unhappy paths, the four shared sentences.
+Cost: {{COST: what you personally got wrong about sequencing and what it cost the team.}}
+Counterexample: Early involvement can ossify a product. Taking every exploratory sketch to legal trains a team to pre-censor ideas, and the interesting questions stop being asked out loud.
+Reader action: Take the next category to your compliance partner as a prototype rather than a deck, early enough that the answer can still change the design.
+-->
+
 # Compliance is not the gate at the end. It is a product input.
 
 <figure>

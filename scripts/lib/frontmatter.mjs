@@ -137,6 +137,7 @@ export function patchFrontmatter(raw, patch) {
 
 export const VALID_STATUSES = [
   "draft",
+  "ready", // passes npm run content:check, awaiting human compliance sign-off
   "compliance-checked",
   "scheduled",
   "published",

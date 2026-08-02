@@ -28,6 +28,16 @@ figures:
     requireAny: notebook, notepad, desk, calendar, office
 ---
 
+<!-- EVIDENCE
+Claim: Marquee event spikes measure distribution rather than product-market fit, and the bridge into week two has to be designed before the spike is bought.
+Moment: {{MOMENT: the specific event whose Tuesday made this obvious. Sport or category, rough week, and what the team believed on peak day.}}
+Numbers: {{NUMBERS: peak-day actives over second-Tuesday actives as a ratio, and event-acquired D14 into non-event markets. Ratios travel and leak nothing.}}
+Names: the bridge, identity-continuous markets, D14, event microsite, articles/01-three-trust-surfaces.md.
+Cost: {{COST: what got funded off a spike and did not survive the quiet week.}}
+Counterexample: Some venues are legitimately seasonal. An elections market has no Tuesday problem in November and nothing else in March, and forcing a flat weekly curve onto it kills a product that works.
+Reader action: Compute peak-day actives over second-Tuesday actives for your last big event before planning the next one.
+-->
+
 # After the final: designing for the Tuesday nobody watches
 
 <figure>
@@ -39,7 +49,7 @@ Marquee events create the illusion of product-market fit.
 
 A World Cup final, a huge sports series, a once-in-a-cycle election night. Volume spikes. Screenshots look like destiny. Leadership asks why we can't "keep this energy." Then the calendar goes quiet, and the dashboard tells a colder story.
 
-Public reporting around the 2026 World Cup window described sharp post-final cool-downs in weekly volume on major venues. Treat secondary outlets as directional, not gospel. The shape is what matters: attention arrives in a parade, then leaves when the parade ends.
+I am not going to hand you a chart I cannot source. Every venue publishes some volume history, and anyone can pull the weekly series either side of a final and look at the shape themselves. Do that rather than trusting my summary of it. The shape is the argument: attention arrives in a parade, then leaves when the parade ends.
 
 The product question is not "how do we make the final bigger?"
 
@@ -66,7 +76,7 @@ When the event ends, you lose the free marketing engine. What's left is your act
 | Your funnel can convert attention | Your loop survives boredom |
 | Liquidity can congregate on one narrative | Your venue has a year-round reason to exist |
 
-Pew's broader volume chart for Kalshi and Polymarket into 2026 shows category momentum. Event tears show something sharper: attention is rented; habit is owned.
+Category-level volume on Kalshi and Polymarket has been climbing, and that is the number people quote. Per-event tears say something sharper and less flattering: attention is rented, habit is owned, and only one of those shows up in a category chart.
 
 Secondary analyses of the World Cup window also argue a structural point worth sitting with. Sports markets are often pure speculation ecosystems. Few natural hedgers. Volume can look institutional while remaining emotionally retail. That is not a moral judgment. It is a product constraint. Your retention design cannot assume "utility hedging" will keep people around when the trophy is awarded.
 

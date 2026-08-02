@@ -29,6 +29,16 @@ figures:
     excludeAny: party, crowd festival
 ---
 
+<!-- EVIDENCE
+Claim: An incentive program is only growth if the retention curve survives the program ending, and most programs are never drawn against that question before launch.
+Moment: {{MOMENT: the incentive design review where someone asked what day 31 looks like and the room had no answer. Rough timeframe, no program names.}}
+Numbers: {{NUMBERS: share of reward-acquired users still active a month after incentives stopped, as a ratio or band, plus the cohort window.}}
+Names: day 31, the marginal user, the spreadsheet test, wash patterns, priced behaviour.
+Cost: {{COST: an incentive you priced wrong and what it attracted instead. Principle level.}}
+Counterexample: Some programs are honestly bootstrapping liquidity rather than buying retention. Paying for the first fills in a new book is a market-making cost, and judging it on day-31 retention misreads what it was for.
+Reader action: Draw the retention curve with rewards set to zero and get the room to sign the drawing before the budget is approved.
+-->
+
 # Your rewards bought a crowd. Farmers noticed first.
 
 <figure>

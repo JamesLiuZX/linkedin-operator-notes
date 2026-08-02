@@ -14,14 +14,33 @@ Check boxes as you go. Start here every Sunday.
 
 ## Phase 1 posts
 
-- [ ] Post 01 — post-event retention
-- [ ] Post 02 — PM opens PRs
-- [ ] Post 03 — rewards vs farming
-- [ ] Post 04 — AI partnership lessons
-- [ ] Post 05 — compliance as product
-- [ ] Post 06 — gen media product lens
-- [ ] Post 07 — AI trading agent
-- [ ] Post 08 — three trust surfaces
+Gate-clean, ship in order:
+
+- [ ] Post 01: resolution risk scanner (demo)
+- [ ] Post 02: calibration ledger (demo)
+- [ ] Post 03: the gate rejected my own drafts
+- [ ] Post 04: the fold tax
+- [ ] Post 05: the 30-second settle test
+- [ ] Post 06: prototype aggressively, productionize suspiciously
+- [ ] Post 07: thin markets
+
+Held on your numbers. Fill the `{{ }}` slots first:
+
+- [ ] Post 08: Tuesday after the final (needs a peak-to-second-Tuesday ratio)
+- [ ] Post 09: rewards at day 31 (needs a post-incentive retention figure)
+- [ ] Post 10: compliance as an input (needs a rebuild multiple)
+
+## Per-post results
+
+The success metrics in README.md are never going to instrument themselves.
+Fill this in the week after each post, or the next batch gets written from
+taste again.
+
+| Post | Date | Profile views | Inbound DMs worth reading | Intro / call / offer |
+|---|---|---|---|---|
+| 01 | | | | |
+| 02 | | | | |
+| 03 | | | | |
 
 ## Habits
 

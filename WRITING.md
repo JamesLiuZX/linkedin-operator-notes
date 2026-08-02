@@ -42,30 +42,103 @@ The drafts are not too short. They are too thin. A 180 word post with four speci
 
 ## 2. Hard rules (mechanical, checked by CI)
 
-| Rule | Enforcement |
-|---|---|
-| No em dashes (`—`) or en dashes used as em dashes | fail |
-| Ends with a `Takeaway:` line | fail |
-| No banned LLM tells (see list in `scripts/content-check.mjs`) | fail |
-| No "not just X, but Y" construction | fail |
-| Specificity density at or above threshold for the format | fail |
-| Sentence length standard deviation at or above 5.5 | warn |
-| Hedge word density under 2.5% | warn |
-| First sentence is under 15 words, or contains a number or proper noun | fail |
-| No engagement bait ("Save this", "Comment X below", "Agree?") | fail |
-| At least one receipt: a number with a unit, a date, a named product, or an admission | fail |
+| Rule | Applies to | Enforcement |
+|---|---|---|
+| File has frontmatter. A file the pipeline cannot see is not a draft | all | fail |
+| Evidence block present, with every field filled | all | fail |
+| No unfilled `{{ }}` slots | all | fail |
+| No em dashes (`—`) or en dashes used as em dashes | all | fail |
+| Ends with a `Takeaway:` line | all | fail |
+| No banned LLM tells (see list in `scripts/content-check.mjs`) | all | fail |
+| No "not just X, but Y" construction | all | fail |
+| No vague sourcing ("public reporting", "studies show") without a named source | all | fail |
+| Specificity density at or above threshold for the format | all | fail |
+| First sentence is under the format's hook length, or contains a number or proper noun | all | fail |
+| No engagement bait ("Save this", "Comment X below", "Agree?") | all | fail |
+| At least one strong receipt (see section 2b) | all | fail |
+| `derivedFrom:` points at a source file that exists | posts | fail |
+| Under 12% phrasing overlap with that source | posts | fail at 12%, warn at 6% |
+| Fold (first 210 chars) contains at least one specific | posts | fail |
+| Body pastes clean: no markdown LinkedIn cannot render | posts | fail |
+| Under 3,000 characters | posts | fail |
+| At most 3 hashtags, no URLs in the body | posts | fail |
+| Sentence length standard deviation at or above 5.5 | all | warn |
+| Hedge word density under 2.5% | all | warn |
+| At least one drawn figure, not only Unsplash slots | articles | warn |
+
+Blocking model: `status: draft` is advisory so work in progress can live in the
+repo. Everything else blocks. A file with no frontmatter always blocks, because
+that is the hole that let 7 of 8 posts break three hard rules each while CI
+stayed green. `npm run content:strict` blocks on drafts too.
+
+### 2b. What counts as a receipt
+
+Not every number is a receipt. "Three surfaces" and "30 seconds" are structure,
+not evidence, and counting them is how a piece scores well while containing
+nothing a stranger could check.
+
+A receipt is one of:
+
+- money, a percentage, an ISO date, a quarter with a year, or a year anchor
+- a path or link into something the reader can open and run
+- a first-person admission: what broke, what you got wrong, what you have not done
+
+The third kind is the one that travels. It is also the one a model cannot
+generate for you, which is the point of the evidence block.
+
+### 2c. The `{{ }}` rule
+
+When a piece needs a number only you have, the draft carries `{{SLOT: what to
+fill and what not to leak}}` and the gate refuses to publish it. Nothing in this
+system is allowed to invent a figure about your work to make a draft pass. A
+held draft is a correct state. A fabricated number is not.
 
 ---
 
 ## 3. Format specs
 
 ### LinkedIn atom (`posts/`)
-- 150 to 350 words.
+- 150 to 350 words, under 3,000 characters.
 - Hook is a single line under 12 words. It states a position or a number, never a question.
+- **The fold is the unit.** LinkedIn cuts at roughly 210 characters and appends
+  "see more". Those 210 characters are the entire advertisement for the rest.
+  Blank lines count against the budget. Write them last and read them alone.
 - One idea. If there are two, that is two posts.
 - Line breaks every 1 to 2 sentences. LinkedIn eats dense blocks.
+- **Plain text only.** LinkedIn renders no markdown. No `**bold**`, no `#`
+  headings, no `- ` bullets, no `[text](url)`. Use `·` for bullets. A draft that
+  pastes with visible asterisks is the most avoidable way to look careless.
+- **Links go in the first comment**, in a `## First comment` section. Outbound
+  links in the body suppress distribution and the proof link is worth more than
+  the click it would have bought.
+- At most 3 hashtags, at the end.
 - Minimum specificity density: 5.0 per 100 words.
+- `derivedFrom:` names the essay or the artifact this atom came from. Atoms are
+  derived. An atom that reprints more than 12% of its source is not a derivation.
 - Ends with `Takeaway:` one line.
+
+File shape:
+
+```markdown
+---
+title: ...
+slug: ...
+status: draft | ready | scheduled
+derivedFrom: articles/xx.md   # or tools/..., scripts/...
+platforms: linkedin
+---
+
+<!-- EVIDENCE ... -->
+
+## Draft
+(the publishable body, plain text)
+
+## First comment
+(links, in one place, out of the body)
+```
+
+Everything outside `## Draft` is notes to yourself. `npm run linkedin -- <file>`
+prints the exact paste, the visible fold, and the character budget.
 
 ### X thread
 - First tweet is the whole argument compressed. If someone reads only tweet 1, they got value.
@@ -135,6 +208,30 @@ The first sentence has a failure in it. The second has an opinion nobody can dis
 > Here is a draft. You are a skeptical operator who has shipped in this domain. Find every sentence that could appear in any article on this topic by any author. Delete it or force it to earn its place with a specific. Find every claim without a receipt. Flag it. Do not rewrite the voice, only cut and challenge.
 
 Pass 2 is where the quality comes from. Skipping it is why the current drafts feel thin.
+
+**Pass 3, the gate.** `npm run content:check <file>`. Fix what it names. It is
+deliberately unpleasant about receipts, because that is the failure mode this
+whole system exists to prevent.
+
+---
+
+## 8. Where the receipts come from
+
+The hardest part of this standard is that it demands evidence, and evidence is
+not something a drafting session produces. Three honest sources, in order of how
+much they are worth:
+
+1. **What you operated.** The incident, the number, the thing you got wrong.
+   Highest value, only you have it, and it is the field most often left empty.
+2. **What you built.** The tools in this repo are receipts: the scanner's rule
+   count and its worst score, the ledger's self-test suite and its unverified
+   adapters, the gate's own findings about this corpus. Anyone can clone and
+   check them, which is exactly what makes them evidence.
+3. **What is public and named.** A source you link. Never "public reporting
+   suggests", which is an appeal to authority with no authority in it.
+
+If a piece has none of the three, it is an opinion. Opinions are fine. They are
+not what this account is for.
 
 ---
 

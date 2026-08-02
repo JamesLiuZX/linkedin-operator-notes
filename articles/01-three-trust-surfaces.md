@@ -37,11 +37,21 @@ figures:
     excludeAny: crowd, party
 ---
 
+<!-- EVIDENCE
+Claim: Market products leak retention on exactly three surfaces, price quality, resolution clarity, and post-commit surprise, and a roadmap item that improves none of them is decoration.
+Moment: {{MOMENT: the specific incident that made the three-surface split obvious. Which surface leaked, what the user saw, and roughly when. Category level, no confidential detail.}}
+Numbers: {{NUMBERS: at least two, with units and windows. Candidates that leak nothing: ratio of support tickets tagged resolution versus price, share of markets a user could exit within an hour, time from settle to explanation published.}}
+Names: price quality, resolution clarity, surprise, the settle explainer, tools/resolution-risk, the fair loser cohort.
+Cost: {{COST: the roadmap item you shipped that improved a dashboard and taxed one of the three surfaces, and what it cost. This field is what separates the essay from a framework post.}}
+Counterexample: A venue can win on all three surfaces and still fail commercially. Trust is necessary and not sufficient, and a perfectly trustworthy market with no distribution is a well-built empty room.
+Reader action: Retag the last 50 support tickets against price, resolution, and surprise, and see which surface the roadmap has been ignoring.
+-->
+
 # People don’t quit because they lost. They quit because they felt hustled.
 
 <figure>
-<img src="https://images.unsplash.com/photo-1761396677022-3678bcb336f0?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTY5MDQ4fA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80" alt="Empty soccer stadium with red seats and lights" />
-<figcaption>The stadium after the final. This is what your retention cohort looks like when trust leaked and the crowd was only rented.</figcaption>
+<img src="assets/three-trust-surfaces.svg" alt="Three columns titled Price, Resolution and Surprise. Each lists the question the user is actually asking, what teams ship instead, and the operator test that settles it." />
+<figcaption>The three surfaces, the question each one answers, and the test I run on each. Take this diagram, not the essay.</figcaption>
 </figure>
 
 Here’s the part nobody puts in the launch deck: users will forgive a bad beat. They will not forgive feeling played.

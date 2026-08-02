@@ -1,7 +1,36 @@
 const BLOCKED_PATTERNS = [
   { pattern: /—/g, message: "Contains em dash (use periods, commas, or hyphens instead)" },
-  { pattern: /\b(leverage|delve|unlock|robust)\b/gi, message: "Corporate filler word detected" },
+  // "leverage" was previously banned outright as filler. In a derivatives and
+  // prediction markets corpus it is domain vocabulary (leveraged positions,
+  // liquidation), so only the verb-phrase form is filler. Same for the others.
+  { pattern: /\bleverage (the|our|your|this|these|their)\b/gi, message: "Corporate filler: 'leverage the ...'" },
+  { pattern: /\bunlock (the|our|your|new|hidden)\b/gi, message: "Corporate filler: 'unlock the ...'" },
+  { pattern: /\b(delve into|robust solution|holistic approach)\b/gi, message: "Corporate filler phrase" },
   { pattern: /\b(in today's landscape|in today's world)\b/gi, message: "Generic opener detected" },
+];
+
+/**
+ * The things README.md actually warns about. The style checks above are style;
+ * these are the ones that cost a job. Flagged for human review rather than
+ * auto-blocked, because only the author knows what is already public.
+ */
+const DISCLOSURE_PATTERNS = [
+  {
+    pattern: /\b(our|internal|company)\s+(dau|mau|arr|gmv|revenue|volume|retention|conversion)\b/gi,
+    message: "Possible non-public metric. Confirm this figure is publicly disclosed.",
+  },
+  {
+    pattern: /\b(unreleased|unannounced|upcoming|next quarter'?s?)\s+(feature|launch|product|roadmap|integration)\b/gi,
+    message: "Possible unreleased roadmap detail. Confirm this is public.",
+  },
+  {
+    pattern: /\b(crypto\.com|bytedance|tiktok)\b[^.]{0,80}\b(\d[\d,.]*\s?(%|k|m|bn|users|traders))/gi,
+    message: "Named employer next to a figure. Confirm the figure is from a public source.",
+  },
+  {
+    pattern: /\b(a customer|a client|one user|a partner) (told|asked|complained|reported)\b/gi,
+    message: "Possible customer anecdote. Confirm it is anonymized and shareable.",
+  },
 ];
 
 const REQUIRED_FOR_PUBLISH = ["scheduled", "compliance-checked"];
@@ -31,6 +60,22 @@ export function runComplianceChecks(item) {
       issues.push({ level: "error", message });
       pattern.lastIndex = 0;
     }
+  }
+
+  for (const { pattern, message } of DISCLOSURE_PATTERNS) {
+    const hits = text.match(pattern);
+    pattern.lastIndex = 0;
+    if (hits) issues.push({ level: "warn", message: `${message} (${hits[0].trim().slice(0, 60)})` });
+  }
+
+  // An unfilled slot must never reach a platform. The generator leaves these
+  // deliberately rather than inventing a number the author has not confirmed.
+  const holes = text.match(/\{\{[\s\S]*?\}\}/g);
+  if (holes) {
+    issues.push({
+      level: "error",
+      message: `${holes.length} unfilled {{ }} slot(s). Fill them or unschedule this piece.`,
+    });
   }
 
   if (item.type === "article") {

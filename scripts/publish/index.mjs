@@ -26,11 +26,13 @@ import { patchFrontmatter } from "../lib/frontmatter.mjs";
 import { publishToTwitter } from "./platforms/twitter.mjs";
 import { publishToMedium } from "./platforms/medium.mjs";
 import { publishToSubstack } from "./platforms/substack.mjs";
+import { publishToLinkedIn } from "./platforms/linkedin.mjs";
 
 const PLATFORMS = {
   twitter: publishToTwitter,
   medium: publishToMedium,
   substack: publishToSubstack,
+  linkedin: publishToLinkedIn,
 };
 
 const args = process.argv.slice(2);
@@ -197,12 +199,12 @@ async function main() {
     for (const item of items) {
       const due = item.publishAt ? new Date(item.publishAt).toISOString() : "-";
       const platforms = item.platforms.join(", ") || "-";
-      const published = item.platforms
-        .map((p) => (isPublished(state, item.slug, p) ? `${p}✓` : p))
-        .join(", ");
+      // Was rendered as "published: twitter, medium, substack" for items that
+      // had never been published, which reads as the opposite of the truth.
+      const done = item.platforms.filter((p) => isPublished(state, item.slug, p));
       log(`  [${item.type}] ${item.slug}`);
       log(`    status: ${item.status} | section: ${item.section} | publishAt: ${due}`);
-      log(`    platforms: ${platforms} | published: ${published || "-"}`);
+      log(`    platforms: ${platforms} | published: ${done.join(", ") || "none"}`);
       log(`    canonical: ${transform.articleCanonicalUrl(config.siteUrl, item) || "(set SITE_URL)"}`);
     }
     return;

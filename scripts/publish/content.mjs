@@ -2,6 +2,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT } from "./config.mjs";
 import { parseFrontmatter } from "../lib/frontmatter.mjs";
+import { draftBody } from "../lib/linkedin.mjs";
 
 const CONTENT_DIRS = [
   { dir: "articles", type: "article" },
@@ -21,10 +22,10 @@ function asList(value) {
     .filter(Boolean);
 }
 
-function extractPostDraft(body) {
-  const match = body.match(/## Draft \(copy to LinkedIn\)\s*\n([\s\S]*?)(?=\n---|\n## |$)/);
-  return match ? match[1].trim() : body.trim();
-}
+// One definition of "the publishable part of a post", shared with the gate and
+// the renderer. This used to be a second regex here that only matched the exact
+// heading "## Draft (copy to LinkedIn)".
+const extractPostDraft = draftBody;
 
 export function loadContent() {
   const items = [];

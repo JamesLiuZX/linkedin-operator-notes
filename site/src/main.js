@@ -176,6 +176,13 @@ function renderArticle(article) {
   const heroAlt = article.heroAlt || hero?.alt || article.title;
   let html = marked.parse(article.body);
   html = stripLeadingH1(html);
+  // Local figures are authored as assets/foo.svg so the path is readable in the
+  // markdown itself. Resolve them against BASE_URL, since an article renders at
+  // /{section}/{slug} and a relative path would look for /markets/assets/.
+  html = html.replace(
+    /(<img[^>]+src=")(?:\.\/)?assets\//gi,
+    `$1${import.meta.env.BASE_URL.replace(/\/$/, "")}/assets/`
+  );
 
   const hasFigure = /<figure>/i.test(html);
   if (!hasFigure && hero) {

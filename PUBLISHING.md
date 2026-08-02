@@ -1,15 +1,30 @@
 # Cross-posting automation
 
-Post on your site first, then sync to **Twitter/X**, **Medium**, and **Substack** on a schedule.
+Post on your site first, then sync to **LinkedIn**, **Twitter/X**, **Medium**, and
+**Substack** on a schedule.
 
 ## How it works
 
 ```
 articles/*.md  ──►  site /{section}/{slug}  ──►  cron picks due posts
+posts/*.md                                    ├── LinkedIn (prepares the paste, never posts)
                                               ├── Twitter (excerpt + link)
                                               ├── Medium (API or manual import queue)
                                               └── Substack (email-to-post)
 ```
+
+**LinkedIn stays human.** Personal-profile posting needs an approved app with
+`w_member_social`, which is not worth blocking a content system on. So the
+publisher prepares the exact paste at `.publish/linkedin/<slug>.txt`, validates
+it against the composer's real constraints, and reports `queued-import` rather
+than pretending to publish. It hard-fails on:
+
+- over 3,000 characters
+- markdown left in the body, which LinkedIn renders as literal characters
+- unfilled `{{ }}` slots
+
+Preview any atom before scheduling with `npm run linkedin -- posts/<file>.md`,
+which prints the visible fold, the paste, and the character budget.
 
 1. Write content in `articles/` (long-form) or `posts/` (short atoms)
 2. Add scheduling frontmatter (see below). Run `npm run content:check`
@@ -27,9 +42,10 @@ Add these to any markdown file in `articles/` or `posts/`:
 title: "Your headline"
 slug: my-post-slug
 section: markets           # markets | agents | shipping | notes
-status: scheduled          # draft | compliance-checked | scheduled | published | queued-import | partial
+status: scheduled          # draft | ready | compliance-checked | scheduled | published | queued-import | partial
 publishAt: 2026-08-05T01:00:00Z   # UTC — 01:00 UTC = 09:00 HKT
-platforms: twitter, medium, substack
+platforms: twitter, medium, substack     # posts/ use: linkedin
+derivedFrom: articles/01-three-trust-surfaces.md   # posts/ only, required by the gate
 tags: markets, trust, product
 twitterExcerpt: "Optional custom hook for the first tweet"
 summary: "One-line blurb for the site card and OG tags"

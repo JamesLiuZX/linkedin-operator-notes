@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" width="1200" height="660" role="img" aria-labelledby="ttsTitle ttsDesc" font-family="Georgia, 'Times New Roman', serif">
+  <title id="ttsTitle">The three trust surfaces of a market product</title>
+  <desc id="ttsDesc">Price quality, resolution clarity, and post-commit surprise. For each surface: the question the user is actually asking, what teams ship instead, and the operator test that settles it.</desc>
+
+  <rect width="1200" height="660" fill="#f7f5f0"/>
+
+  <g font-family="ui-monospace, Menlo, Consolas, monospace">
+    <text x="60" y="66" font-size="13" letter-spacing="3.4" fill="#8a8378">THREE TRUST SURFACES</text>
+  </g>
+  <text x="60" y="118" font-size="34" fill="#16233a">Users forgive losing. They do not forgive feeling played.</text>
+  <text x="60" y="152" font-size="17" fill="#5d6472">Trust does not leak in a brand workshop. It leaks in the five minutes after someone commits money.</text>
+
+  <line x1="60" y1="188" x2="1140" y2="188" stroke="#d8d2c6" stroke-width="1"/>
+
+  <!-- columns -->
+  <g>
+    <!-- 1. PRICE -->
+    <g transform="translate(60,224)">
+      <text x="0" y="0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" letter-spacing="2.6" fill="#1b4a8f">01 &#183; PRICE</text>
+      <text x="0" y="42" font-size="25" fill="#16233a">Can I get out?</text>
+
+      <text x="0" y="86" font-size="13" font-family="ui-monospace, Menlo, Consolas, monospace" letter-spacing="1.6" fill="#8a8378">USER IS ASKING</text>
+      <text x="0" y="112" font-size="16" fill="#3b4354">If I tap here, am I in the</text>
+      <text x="0" y="134" font-size="16" fill="#3b4354">game or am I exit liquidity?</text>
+
+      <text x="0" y="180" font-size="13" font-family="ui-monospace, Menlo, Consolas, monospace" letter-spacing="1.6" fill="#8a8378">TEAMS SHIP INSTEAD</text>
+      <text x="0" y="206" font-size="16" fill="#3b4354">More listings, because the</text>
+      <text x="0" y="228" font-size="16" fill="#3b4354">calendar looked empty.</text>
+
+      <rect x="-14" y="256" width="328" height="106" fill="#eee9df" stroke="#d8d2c6"/>
+      <text x="0" y="282" font-size="13" font-family="ui-monospace, Menlo, Consolas, monospace" letter-spacing="1.6" fill="#1b4a8f">OPERATOR TEST</text>
+      <text x="0" y="308" font-size="16" fill="#16233a">Would you take the other</text>
+      <text x="0" y="330" font-size="16" fill="#16233a">side, with your own money,</text>
+      <text x="0" y="352" font-size="16" fill="#16233a">needing to exit within an hour?</text>
+    </g>
+
+    <line x1="410" y1="212" x2="410" y2="596" stroke="#d8d2c6" stroke-width="1"/>
+
+    <!-- 2. RESOLUTION -->
+    <g transform="translate(444,224)">
+      <text x="0" y="0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" letter-spacing="2.6" fill="#1b4a8f">02 &#183; RESOLUTION</text>
+      <text x="0" y="42" font-size="25" fill="#16233a">Who decided, and how?</text>
+
+      <text x="0" y="86" font-size="13" font-family="ui-monospace, Menlo, Consolas, monospace" letter-spacing="1.6" fill="#8a8378">USER IS ASKING</text>
+      <text x="0" y="112" font-size="16" fill="#3b4354">I can accept losing. I cannot</text>
+      <text x="0" y="134" font-size="16" fill="#3b4354">accept not knowing why.</text>
+
+      <text x="0" y="180" font-size="13" font-family="ui-monospace, Menlo, Consolas, monospace" letter-spacing="1.6" fill="#8a8378">TEAMS SHIP INSTEAD</text>
+      <text x="0" y="206" font-size="16" fill="#3b4354">A clever question that</text>
+      <text x="0" y="228" font-size="16" fill="#3b4354">screenshots well, settles badly.</text>
+
+      <rect x="-14" y="256" width="328" height="106" fill="#eee9df" stroke="#d8d2c6"/>
+      <text x="0" y="282" font-size="13" font-family="ui-monospace, Menlo, Consolas, monospace" letter-spacing="1.6" fill="#1b4a8f">OPERATOR TEST</text>
+      <text x="0" y="308" font-size="16" fill="#16233a">Hand the settle rules to an</text>
+      <text x="0" y="330" font-size="16" fill="#16233a">outsider. 30 seconds. Can they</text>
+      <text x="0" y="352" font-size="16" fill="#16233a">say what happens if it flakes?</text>
+    </g>
+
+    <line x1="794" y1="212" x2="794" y2="596" stroke="#d8d2c6" stroke-width="1"/>
+
+    <!-- 3. SURPRISE -->
+    <g transform="translate(828,224)">
+      <text x="0" y="0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" letter-spacing="2.6" fill="#1b4a8f">03 &#183; SURPRISE</text>
+      <text x="0" y="42" font-size="25" fill="#16233a">Did the floor move?</text>
+
+      <text x="0" y="86" font-size="13" font-family="ui-monospace, Menlo, Consolas, monospace" letter-spacing="1.6" fill="#8a8378">USER IS ASKING</text>
+      <text x="0" y="112" font-size="16" fill="#3b4354">I committed, then the venue</text>
+      <text x="0" y="134" font-size="16" fill="#3b4354">changed something on me.</text>
+
+      <text x="0" y="180" font-size="13" font-family="ui-monospace, Menlo, Consolas, monospace" letter-spacing="1.6" fill="#8a8378">TEAMS SHIP INSTEAD</text>
+      <text x="0" y="206" font-size="16" fill="#3b4354">A debate about which squad</text>
+      <text x="0" y="228" font-size="16" fill="#3b4354">owns the ticket.</text>
+
+      <rect x="-14" y="256" width="328" height="106" fill="#eee9df" stroke="#d8d2c6"/>
+      <text x="0" y="282" font-size="13" font-family="ui-monospace, Menlo, Consolas, monospace" letter-spacing="1.6" fill="#1b4a8f">OPERATOR TEST</text>
+      <text x="0" y="308" font-size="16" fill="#16233a">List every way the app can</text>
+      <text x="0" y="330" font-size="16" fill="#16233a">change money, access, or</text>
+      <text x="0" y="352" font-size="16" fill="#16233a">outcome after the tap.</text>
+    </g>
+  </g>
+
+  <line x1="60" y1="618" x2="1140" y2="618" stroke="#d8d2c6" stroke-width="1"/>
+  <text x="60" y="646" font-size="15" fill="#5d6472">Roadmap question: does this make prices feel more real, settles feel cleaner, or the app feel less surprising? If not, it is decoration for a spike.</text>
+</svg>
