@@ -27,6 +27,7 @@ Positioning: *Operator who ships prediction markets and AI products at scale —
 | [tools/resolution-risk/](./tools/resolution-risk/) | Scores market criteria by dispute risk (evidence for Essay 1) |
 | [scripts/ledger/](./scripts/ledger/) | Calibration Ledger: the Pillar 1 demo, scored in public |
 | [apps/](./apps/) | Shipped browser demos (`npm run apps` builds them for Pages) |
+| [site/src/demos/](./site/src/demos/) | Interactive demos (`/demos`) — start with `npm run restyle -- --list` |
 
 ## Daily commands
 

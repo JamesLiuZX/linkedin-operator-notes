@@ -2,6 +2,7 @@ import "./style.css";
 import { marked } from "marked";
 import manifest from "../../articles/unsplash-manifest.json";
 import { ARTICLES, bySlug, bySection, SECTIONS } from "./content.js";
+import { DEMOS, findDemo } from "./demos/index.js";
 import { currentPath, navigate, onRoute } from "./router.js";
 
 marked.setOptions({ gfm: true, breaks: false });
@@ -68,6 +69,12 @@ function route(path = currentPath()) {
   if (clean === "/" || clean === "/home") return renderHome();
 
   const parts = clean.split("/").filter(Boolean);
+  if (parts[0] === "demos") {
+    if (parts.length === 1) return renderDemosIndex();
+    const demo = findDemo(parts[1]);
+    if (demo) return renderDemo(demo);
+    return renderDemosIndex();
+  }
   if (parts.length === 1) {
     const item = bySlug(parts[0]);
     if (item) return renderArticle(item);
@@ -106,6 +113,7 @@ function renderHome() {
         `<a class="section-chip" href="${import.meta.env.BASE_URL.replace(/\/$/, "")}/${s.id}">${escapeHtml(s.title)} <span>${s.items.length}</span></a>`
     )
     .join("");
+  const demosChip = `<a class="section-chip" href="${import.meta.env.BASE_URL.replace(/\/$/, "")}/demos">Demos <span>${DEMOS.length}</span></a>`;
 
   setMeta({
     title: "Market Ops Notes",
@@ -120,7 +128,7 @@ function renderHome() {
         <div class="eyebrow">Market Ops Notes</div>
         <h1>Field notes from markets and agents</h1>
         <p>Resolution, liquidity, incentives, and AI pointed at systems that have consequences.</p>
-        <div class="section-nav">${sectionNav}</div>
+        <div class="section-nav">${sectionNav}${demosChip}</div>
       </header>
       <section class="article-grid">${cards || '<p class="note">No published pieces yet.</p>'}</section>
       <p class="note">
@@ -168,6 +176,68 @@ function renderSection(section) {
       <section class="article-grid">${cards}</section>
     </main>
   `;
+}
+
+function renderDemosIndex() {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  const cards = DEMOS.map(
+    (d) => `
+      <a class="article-card demo-card" href="${base}/demos/${d.slug}">
+        <div class="body">
+          <div class="series">Demo</div>
+          <h2>${escapeHtml(d.title)}</h2>
+          <div class="meta">${escapeHtml(d.tagline)}</div>
+        </div>
+      </a>`
+  ).join("");
+
+  setMeta({
+    title: "Demos · Market Ops Notes",
+    description: "Interactive demos — deterministic in the browser, extensible to real model calls from the CLI.",
+  });
+
+  document.getElementById("app").innerHTML = `
+    <main class="home">
+      <nav class="topbar">
+        <a href="${base}/">← All notes</a>
+        <a class="brand" href="${base}/">Market Ops Notes</a>
+        <span></span>
+      </nav>
+      <header class="brand-lockup">
+        <div class="eyebrow">demos</div>
+        <h1>Play with the ideas</h1>
+        <p>Deterministic in the browser. Extensible to real model calls from the CLI.</p>
+      </header>
+      <section class="article-grid">${cards}</section>
+    </main>
+  `;
+}
+
+function renderDemo(demo) {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+  setMeta({
+    title: `${demo.title} · Market Ops Notes`,
+    description: demo.tagline,
+  });
+
+  document.getElementById("app").innerHTML = `
+    <div class="article-shell">
+      <nav class="topbar">
+        <a href="${base}/demos">← All demos</a>
+        <a class="brand" href="${base}/">Market Ops Notes</a>
+        <span></span>
+      </nav>
+      <header class="brand-lockup demo-header">
+        <div class="eyebrow">demo</div>
+        <h1>${escapeHtml(demo.title)}</h1>
+        <p>${escapeHtml(demo.tagline)}</p>
+      </header>
+      <div class="demo-mount" data-role="demo-mount"></div>
+    </div>
+  `;
+  demo.mount(document.querySelector('[data-role="demo-mount"]'));
+  window.scrollTo(0, 0);
 }
 
 function renderArticle(article) {
