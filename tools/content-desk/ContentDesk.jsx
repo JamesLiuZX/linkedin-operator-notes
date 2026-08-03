@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
+import { analyze as analyzeContent } from "@lib/analyze.mjs";
 
 /* ============================================================================
    CONTENT DESK
@@ -17,10 +18,12 @@ const STAGES = [
   { id: "published", label: "Published", hint: "Live with a canonical URL." },
 ];
 
+// Labels only. Thresholds live in scripts/lib/analyze.mjs so CI is the source
+// of truth for what "passing" means.
 const KINDS = {
-  article: { label: "Essay",  min: 900, max: 2200, density: 6.0, hook: 15 },
-  post:    { label: "Atom",   min: 150, max: 350,  density: 5.0, hook: 12 },
-  demo:    { label: "Demo",   min: 80,  max: 300,  density: 4.0, hook: 12 },
+  article: { label: "Essay" },
+  post:    { label: "Atom" },
+  demo:    { label: "Demo" },
 };
 
 const SECTIONS = {
@@ -32,133 +35,51 @@ const SECTIONS = {
 
 /* ------------------------------------------------------------------ rules */
 
-const LLM_TELLS = ["delve","tapestry","testament to","in today's fast-paced","ever-evolving",
-  "game-changer","game changer","dive into","deep dive into","navigate the complexities",
-  "at the end of the day","moreover","furthermore","in conclusion","revolutionize",
-  "seamless","seamlessly","cutting-edge","harness the power","elevate your","empower",
-  "supercharge","myriad","plethora","underscore","pivotal","the realm of","paradigm shift",
-  "holistic approach","unlock the","unleash","transformative","leverage the","landscape of",
-  "it's worth noting","that being said","a double-edged sword","the bottom line is"];
+// The scorer is IMPORTED, not reimplemented. An earlier version of this file
+// kept its own copy of the rule tables and they drifted from CI: the local
+// LLM_TELLS list had lost "crucial" and "robust solution", and the takeaway
+// check ran against the raw file instead of the body. Both meant the desk
+// showed a green score for content the gate rejected. Do not inline it again.
 
-const BAIT = ["save this","bookmark this","comment below","drop a comment","agree?",
-  "thoughts?","like and share","follow for more","read till the end"];
+/**
+ * The desk supports a "demo" kind that the CLI does not, because a demo writeup
+ * is shorter than an atom. Everything else defers to the shared spec.
+ */
+const DEMO_SPEC = { minWords: 80, maxWords: 300, minDensity: 4.0, maxHook: 12 };
 
-const HEDGES = ["might","could be","perhaps","generally","typically","somewhat","arguably",
-  "i think","i believe","kind of","sort of","fairly","relatively","it seems"];
-
-const BAD_OPENERS = [/^in the world of/i,/^as a (pm|product manager|founder)/i,/^have you ever/i,
-  /^let'?s talk about/i,/^i'?ve been thinking about/i,/^in recent years/i,/^picture this/i,
-  /^imagine/i,/^we all know/i];
-
-const STOP_CAPS = new Set(["The","A","An","I","It","This","That","But","And","If","When","What",
-  "Why","How","So","Then","You","We","They","There","He","She","My","Most","Every","No","Not",
-  "One","Two","Now","Here"]);
-
-const RECEIPTS = [/\b\d+(\.\d+)?\s?%/, /\$\s?[\d,.]+/, /\bq[1-4]\b/i, /\b(20\d\d)\b/,
-  /\b(i was wrong|got it wrong|it broke|we broke|didn'?t work|failed|lost|missed|regret|my mistake|had to roll back)\b/i];
-
-const splitSentences = (t) => t.replace(/```[\s\S]*?```/g," ").split(/(?<=[.!?])\s+|\n{2,}/)
-  .map(s=>s.trim()).filter(s=>s.length>1);
-const wordsOf = (t) => t.split(/\s+/).filter(w=>/[a-z0-9]/i.test(w));
-
-function stdev(ns){ if(ns.length<2) return 0;
-  const m=ns.reduce((a,b)=>a+b,0)/ns.length;
-  return Math.sqrt(ns.reduce((a,b)=>a+(b-m)**2,0)/(ns.length-1)); }
-
-const NUM_WORDS = "one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|dozen|half";
-
-function specifics(text){
-  const spans=[];
-  const patterns=[
-    [/\$\s?[\d,.]+\s?(k|m|bn|b|million|billion)?/gi,"money"],
-    [/\b\d+(\.\d+)?\s?%/g,"percent"],
-    [/\b\d{4}-\d{2}-\d{2}\b/g,"date"],
-    [/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+\d{1,2}/gi,"date"],
-    [/\bq[1-4]\s?('?\d{2}|\d{4})?\b/gi,"quarter"],
-    [new RegExp(`\\b(${NUM_WORDS})\\s+[a-z]{3,}`,"gi"),"measure"],
-    [/\b\d[\d,]*(\.\d+)?(st|nd|rd|th|x|k|m)?\b/gi,"number"],
-  ];
-  const taken=(a,b)=>spans.some(s=>a<s.end&&b>s.start);
-  for(const [re,kind] of patterns){
-    for(const m of text.matchAll(re)){
-      const start=m.index, end=m.index+m[0].length;
-      if(!taken(start,end)) spans.push({start,end,kind,text:m[0].trim()});
-    }
+function analyze(raw, kind) {
+  const text = raw || "";
+  // Empty is "not started", not "failing", so the ledger does not scream at a
+  // card the moment it is created.
+  if (!text.trim()) {
+    return {
+      checks: [{ id: "empty", label: "No draft yet", status: "warn", detail: "paste a draft to score it" }],
+      score: 0, fails: 0, warns: 1,
+      stats: { wc: 0, density: 0, sd: 0, specifics: 0 },
+    };
   }
-  for(const s of splitSentences(text)){
-    const at=text.indexOf(s);
-    const toks=s.split(/\s+/);
-    let cursor=0;
-    for(let i=0;i<toks.length;i++){
-      const raw=toks[i];
-      const idx=s.indexOf(raw,cursor);
-      cursor=idx+raw.length;
-      if(i===0) continue;
-      const t=raw.replace(/[^A-Za-z0-9.'-]/g,"");
-      if(/^[A-Z][A-Za-z0-9.'-]{2,}$/.test(t) && !STOP_CAPS.has(t)){
-        const start=at+idx, end=start+raw.length;
-        if(!taken(start,end)) spans.push({start,end,kind:"name",text:t});
+  // A demo writeup is scored against post rules, then its length and density
+  // checks are relaxed to the demo spec.
+  if (kind === "demo") {
+    const r = analyzeContent(text, "post");
+    const checks = r.checks.map((c) => {
+      if (c.id === "density") {
+        const pass = r.stats.density >= DEMO_SPEC.minDensity;
+        return { ...c, status: pass ? "pass" : "fail",
+          detail: `${r.stats.density.toFixed(1)} / 100w (need ${DEMO_SPEC.minDensity})` };
       }
-    }
+      if (c.id === "length") {
+        const pass = r.stats.wc >= DEMO_SPEC.minWords && r.stats.wc <= DEMO_SPEC.maxWords;
+        return { ...c, status: pass ? "pass" : "warn",
+          detail: `${r.stats.wc} (${DEMO_SPEC.minWords}-${DEMO_SPEC.maxWords})` };
+      }
+      return c;
+    });
+    const fails = checks.filter((c) => c.status === "fail").length;
+    const warns = checks.filter((c) => c.status === "warn").length;
+    return { checks, fails, warns, score: Math.max(0, Math.round(100 - fails * 14 - warns * 5)), stats: r.stats };
   }
-  return spans;
-}
-
-function analyze(raw, kind){
-  const spec = KINDS[kind] || KINDS.post;
-  const text = (raw||"").replace(/<!--[\s\S]*?-->/g,"").replace(/^#{1,6}\s.*$/gm,"").trim();
-  const lower = text.toLowerCase();
-  const sents = splitSentences(text);
-  const wc = wordsOf(text).length;
-  const lens = sents.map(s=>wordsOf(s).length).filter(n=>n>0);
-  const sp = specifics(text);
-  const density = wc ? (sp.length/wc)*100 : 0;
-
-  const checks=[];
-  const add=(id,label,status,detail)=>checks.push({id,label,status,detail});
-
-  const dashes=(text.match(/—/g)||[]).length+(text.match(/\s–\s/g)||[]).length;
-  add("dashes","No em dashes",dashes?"fail":"pass",dashes?`${dashes} found`:"clean");
-
-  const takeaway=/^\s*\*{0,2}takeaway\*{0,2}\s*:/im.test(raw||"");
-  add("takeaway","Takeaway line",takeaway?"pass":"fail",takeaway?"present":"missing");
-
-  const tells=LLM_TELLS.filter(t=>lower.includes(t));
-  add("tells","No LLM tells",tells.length?"fail":"pass",tells.length?tells.slice(0,4).join(", "):"clean");
-
-  const notJust=/\bnot (just|only)\b[^.;]{1,60}\b(but|it'?s)\b/i.test(text);
-  add("notjust",'No "not just X, but Y"',notJust?"fail":"pass",notJust?"rewrite as a direct claim":"clean");
-
-  const bait=BAIT.filter(b=>lower.includes(b));
-  add("bait","No engagement bait",bait.length?"fail":"pass",bait.length?bait.join(", "):"clean");
-
-  const first=sents[0]||"";
-  const fl=wordsOf(first).length;
-  const badOpen=BAD_OPENERS.some(re=>re.test(first));
-  const hookOk=text.length>0 && !badOpen && (fl<=spec.hook || /\d/.test(first) || specifics(first).some(h=>h.kind==="name"));
-  add("hook","Hook lands",text.length===0?"warn":hookOk?"pass":"fail",
-    badOpen?"banned opener":`${fl} words`);
-
-  add("density","Specificity density",density>=spec.density?"pass":"fail",
-    `${density.toFixed(1)} / 100w (need ${spec.density})`);
-
-  const r=RECEIPTS.filter(re=>re.test(text)).length;
-  add("receipts","Has receipts",r?"pass":"fail",r?`${r} patterns`:"no number, date, or admission");
-
-  const sd=stdev(lens);
-  add("rhythm","Sentence variance",sd>=5.5?"pass":"warn",`stdev ${sd.toFixed(1)} (want 5.5+)`);
-
-  const hedgeCount=HEDGES.reduce((n,h)=>n+(lower.split(h).length-1),0);
-  const hedgeRate=wc?(hedgeCount/wc)*100:0;
-  add("hedges","Hedge density",hedgeRate<2.5?"pass":"warn",`${hedgeRate.toFixed(1)}%`);
-
-  const lenOk=wc>=spec.min&&wc<=spec.max;
-  add("length","Word count",wc===0?"warn":lenOk?"pass":"warn",`${wc} (${spec.min}-${spec.max})`);
-
-  const fails=checks.filter(c=>c.status==="fail").length;
-  const warns=checks.filter(c=>c.status==="warn").length;
-  const score=wc===0?0:Math.max(0,Math.round(100-fails*14-warns*5));
-  return {checks,score,fails,warns,stats:{wc,density,sd,specifics:sp.length}};
+  return analyzeContent(text, kind === "article" ? "article" : "post");
 }
 
 /* ------------------------------------------------------------------- seed */

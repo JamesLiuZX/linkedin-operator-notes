@@ -67,17 +67,29 @@ function build(files, kind) {
   });
 }
 
-// Only 'published' renders on the live site. In DEV, show drafts too.
+// Statuses that render publicly. A piece stays invisible until its status is
+// advanced by hand, which is the editorial gate, not an accident.
 const VISIBLE = new Set(["published", "scheduled", "compliance-checked"]);
 const isDev = import.meta.env?.DEV;
 
-const all = [...build(articleFiles, "article"), ...build(postFiles, "post")]
-  .filter((item) => {
-    if (item.path.toLowerCase().includes("readme")) return false;
-    if (isDev) return true;
-    return VISIBLE.has(item.status) || item.status === "published";
-  })
-  .filter((item) => item.kind === "article" || isDev)
+/**
+ * Drafts are visible in dev, and on any deploy that opts in with
+ * VITE_SHOW_DRAFTS=1. Use that on a Vercel PREVIEW deployment to read the whole
+ * library before promoting anything. Never set it on production: it would
+ * publish unedited drafts under the author's name.
+ */
+export const SHOW_DRAFTS = isDev || import.meta.env?.VITE_SHOW_DRAFTS === "1";
+
+// Everything on disk, before any visibility filtering. The dashboard needs the
+// drafts; the public site must not render them.
+const everything = [...build(articleFiles, "article"), ...build(postFiles, "post")].filter(
+  (item) => !item.path.toLowerCase().includes("readme")
+);
+
+const all = everything
+  .filter((item) => (SHOW_DRAFTS ? true : VISIBLE.has(item.status)))
+  // posts/ are LinkedIn and X drafts, not web pages. They never render publicly.
+  .filter((item) => item.kind === "article" || SHOW_DRAFTS)
   .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
 
 export const ARTICLES = all.filter((i) => i.kind === "article");
@@ -87,6 +99,21 @@ export const ALL = all;
 export function bySlug(slug) {
   return all.find((i) => i.slug === slug) || null;
 }
+
+/**
+ * Look an item up by its repo-relative path, e.g. "posts/09-resolution-linter.md".
+ * The schedule refers to assets that way; the Vite glob keys are "../../posts/...".
+ * Unlike bySlug this searches EVERY file, including ones the live site filters
+ * out, because the dashboard has to show a draft that is not on the site yet.
+ */
+export function byPath(repoPath) {
+  const want = String(repoPath || "").replace(/^\.?\//, "");
+  if (!want) return null;
+  return everything.find((i) => i.path.replace(/^(\.\.\/)+/, "") === want) || null;
+}
+
+/** Every parsed file regardless of status. Dashboard only. */
+export const ALL_INCLUDING_DRAFTS = everything;
 
 export const SECTIONS = [
   {

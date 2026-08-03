@@ -6,7 +6,7 @@ series: Market Ops Notes
 section: markets
 summary: "Four tests before the next dollar of incentives: marginal user, priced behavior, spreadsheet, day 31."
 status: draft
-publishAt: 2026-08-26T01:00:00Z
+publishAt: 2026-08-18T01:00:00Z
 platforms: twitter, medium, substack
 tags: markets, incentives, retention
 hero: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTc0MzUxfA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80"
@@ -46,15 +46,13 @@ Reader action: Draw the retention curve with rewards set to zero and get the roo
 <figcaption>If a spreadsheet can beat your product, your reward program is a mining job with better branding.</figcaption>
 </figure>
 
-Most reward systems in trading products fail the same way.
+Most reward systems in trading products fail the same way. They optimise for screenshots of volume, then act surprised when farmers arrive on day 2.
 
-They optimize for screenshots of volume. Then they act surprised when farmers arrive.
-
-In prediction markets, incentives have two jobs that conflict. Help real users learn the loop: deposit, decide, trade, resolve, return. Avoid paying professionals to extract the program. Growth wants the first. Finance wants a chart. Farmers want the gap between what you priced and what you meant.
+Incentives have 2 jobs that conflict. Teach real users the loop: deposit, decide, trade, resolve, return. Avoid paying professionals to extract the program. Growth wants the first, finance wants a chart, and farmers want the gap between what you priced and what you meant.
 
 That gap is the product.
 
-If you only remember the shape of the failure: you paid for a parade, and the people who showed up knew the route better than you did.
+You paid for a parade, and the people who showed up knew the route better than you did.
 
 ---
 
@@ -65,35 +63,67 @@ If you only remember the shape of the failure: you paid for a parade, and the pe
 <figcaption>What is: activity that looks like a community. What could be: a cohort that still has a reason to play when points stop shouting.</figcaption>
 </figure>
 
-**What leadership celebrates:** week-one volume, referral counts, the campaign retro with green arrows.
+**What leadership celebrates:** week-1 volume, referral counts, a campaign retro with green arrows.
 
-**What Tuesday reveals:** wash patterns, single-touch accounts, and a retention curve that collapses when points go to zero.
+**What Tuesday reveals:** wash patterns, single-touch accounts, and a retention curve that collapses when points hit 0.
 
-Farmers are not villains in a morality play. They are rational readers of your rules. If your program pays for "trade once during event X," they will trade once during event X. If it pays for notional that can be round-tripped, they will round-trip. If it pays for invites that never become traders, they will invite empty shells.
+The category makes this easy to hide. Kalshi and Polymarket did a combined $44.8B in June 2026, and sector volume was $8.6B in April 2026. Against numbers like those, a rewarded cohort looks like a rounding error in the right direction. Then check open interest: $1.11B on 1 May 2026, roughly 13% of the monthly volume headline. Most of what gets celebrated is turnover, and rewarded turnover is the cheapest kind to manufacture.
+
+Farmers are not villains. They are rational readers of your rules. Pay for "trade once during event X" and they trade once during event X. Pay for round-trippable notional and they round-trip. Pay for invites and you get 500 empty shells.
 
 You did not get hacked. You got interpreted.
 
-The uncomfortable reframe: incentive design is UX for people who optimize. Soft users feel your brand. Hard users feel your loopholes. Both are your users. Only one of them writes your unit economics.
+Incentive design is UX for people who optimise. Soft users feel your brand. Hard users feel your loopholes. Both are your users, and only 1 group writes your unit economics.
+
+---
+
+### The formula, and the term it does not have
+
+Abstractions are easy to nod at, so here is a real one. Polymarket publishes its maker reward rule:
+
+```
+S(v) = ((max_spread - order_spread) / max_spread)^2 x order_size
+```
+
+Orders beyond `max_spread`, typically 3 cents from the midpoint, score 0. Two-sided quoting is required through `Q_min = min(Q_one, Q_two)`, and single-sided liquidity takes a 3x penalty. The daily pool splits pro-rata by score across roughly 288 sampled epochs a day.
+
+It is a good rule. The square does real work: an order 0.5 cents from the midpoint earns about 69% of a mid-touching order, while one at 2.5 cents earns 2.8%. It pays hard for tightness, which is what a thin book needs most.
+
+Now read it again looking for the variable representing whether the order filled.
+
+There is not one.
+
+That absence is the entire farming surface. The optimal strategy is to rest at minimum size as close to the midpoint as the tick allows, on both sides, and cancel when real flow arrives. You collect for displaying liquidity and never take the adverse selection that displaying it is meant to compensate.
+
+I rebuilt this as a simulator to find out what the gap costs. At settings that look unremarkable, a $5,000 daily pool buys liquidity at $0.042 per filled share, with farmers taking 49% of the budget while filling 15% of the volume. The book advertises a 0.1 cent spread. The taker experiences 1.5 cents.
+
+That 14x gap between quoted and realised is not slippage. It is orders that were never going to be there.
+
+The cost curve is also convex in the one variable you do not control. A program that looks defensible at a 40% cancel rate is nowhere near defensible at 85%, and cancel rate is set by the farmer's infrastructure, not by your rules.
+
+One term fixes most of it: disqualify makers whose fill rate falls below a floor. It is the term the published rule does not have, and it has a real cost that I would rather state than bury. Set the floor too high and you drive off honest makers, because honest makers get filled precisely when they are wrong. The floor has to be low enough to catch the strategy and high enough to survive being adversely selected.
+
+Here is my admission. I have defended a rewards program in a review using displayed-depth charts, and I was wrong about which chart mattered. Displayed depth was flattering and meaningless. Nobody in that room asked for cost per filled unit, including me, and the program ran for a quarter on that basis.
 
 ---
 
 ### Four tests before you spend the next dollar
 
-Run these in the design review, not in the postmortem.
+Run these in the design review, not the postmortem.
 
 #### 1. Who is the marginal user?
 
-If the next dollar of rewards mostly attracts people who never stick after incentives end, you are renting volume. Say it out loud. Renting can be a tactic. It is not a strategy, and it is not "growth" if you call the hangover a retention bug.
+If the next dollar mostly attracts people who leave on day 31, you are renting volume. Renting is a valid tactic. It is not a strategy, and it is not growth if you call the hangover a retention bug.
 
-Ask: if this person never earned another point, would they still have a reason to open the app on a quiet week? If the honest answer is no, you are buying a screenshot.
+Ask: with 0 further points, would this person open the app on a quiet Tuesday? If not, you bought a screenshot.
 
 #### 2. What behavior is priced?
 
-Paying for "trade once during event X" is easy to farm. Paying for sequences that look like real usage is harder and usually healthier: return after resolution, multi-market activity over time, non-wash patterns, competent second sessions.
+"Trade once during event X" is trivially farmable. A sequence is not: return after resolve, activity across 3 days, 2 market families, non-wash patterns.
 
-Price the loop you want people to learn. If you price a stunt, you will get stunt artists.
+Price the loop you want learned. Price a stunt and you get stunt artists.
 
-**Operator test:** Write the behavior in one sentence a farmer would try to fake. Then ask whether your detection story is stronger than their spreadsheet. If not, change the behavior, not the monitoring theater.
+**Operator test:** write the priced behavior in 1 sentence a farmer would try to fake. Ask whether your detection story beats their spreadsheet. If not, change the behavior rather than the monitoring.
 
 #### 3. Can a spreadsheet beat your product?
 
@@ -102,107 +132,74 @@ Price the loop you want people to learn. If you price a stunt, you will get stun
 <figcaption>The farmer's real product is the grid. Yours has to be better than the grid at teaching taste for markets.</figcaption>
 </figure>
 
-If someone can win the program without developing taste for markets, farmers will find it. Taste means: reading a question, forming a view, sizing with skin in the game, living with resolve, coming back when the calendar is boring.
+If someone can win without developing taste for markets, farmers will. Taste means reading a question, forming a view, sizing with skin in the game, and returning when the calendar is boring.
 
-A program that can be cleared by scripting notional, cycling the same thin market, or farming referrals without first trades is not onboarding. It is a bounty board.
+A program cleared by scripting notional, cycling 1 thin market, or farming referrals without first trades is a bounty board.
 
-This test is cruel and useful. Sit with a sharp operator for thirty minutes and ask them to break your rules on paper. Whatever they find, assume someone already found it in production.
+Sit a sharp operator down for 30 minutes and ask them to break your rules on paper. Assume whatever they find was found in production 2 weeks ago.
 
 #### 4. What happens on day 31?
 
-Draw the retention curve assuming rewards go to zero. If the product story collapses, the rewards were life support.
+Draw the retention curve with rewards at 0. If the product story collapses, the rewards were life support.
 
-Life support can keep a patient alive during surgery. It cannot be the personality of the hospital. Campaigns that only work while subsidized are marketing expense with a product costume.
+Life support keeps a patient alive through surgery. It cannot be the personality of the hospital. A campaign that only works while subsidised is marketing expense in a product costume.
 
-**Operator test:** In the memo to leadership, include the "rewards → 0" chart next to the launch chart. If that slide is not allowed in the room, you already know the answer.
-
----
-
-### Design patterns that survive contact with extractors
-
-You do not need a novel theory of points. You need boring constraints that make real usage cheaper than fake usage.
-
-**Prefer sequences over spikes.** Return after resolve. Trade across days. Touch more than one market family. Sequences are annoying to fake at scale without looking like wash. Spikes are a farmer's favorite meal.
-
-**Prefer identity continuity over viral emptiness.** Rewards that deepen a user's relationship to a theme (team, topic, recurring calendar) beat rewards that pay for a single screenshot of notional.
-
-**Prefer liquidity-aware eligibility.** Paying people to trade ghost markets teaches them the venue is decorative. If a market is too thin to exit without eating glass, it should not be a rewards sink.
-
-**Prefer clear anti-patterns in the rules, not only in the fine print.** Wash trading, self-dealing loops, referral shells: name them. Ambiguous enforcement feels arbitrary. Clear constraints feel like a venue with standards.
-
-**Prefer cohort health over blended vanity.** Separate rewarded-acquired users from organic. Watch D7 / D30 after the boost ends. If you only report blended volume, farmers will forever look like product-market fit.
-
-None of this requires disclosing internal thresholds in public writing. It requires admitting that incentive design is a product surface, not a growth garnish.
+**Operator test:** put the "rewards to 0" chart beside the launch chart in the same memo. If that slide is unwelcome in the room, you already have your answer.
 
 ---
 
-### The false war: "gamification bad" vs "points forever"
+### Four constraints that survive contact with extractors
 
-Gamification is not the enemy. Unexamined incentive design is.
+5 boring constraints that make real usage cheaper than fake usage.
 
-Points can teach the loop. Badges can mark competence. Referrals can bring people who actually trade. The failure mode is not "fun." The failure mode is paying for the wrong movie: a clip of volume instead of a habit of returning.
+**Price sequences, not spikes.** Return after resolve, activity across 3 days, 2 market families. Expensive to fake without looking like wash.
 
-Conversely, moral purity ("we would never do rewards") often just moves the subsidy into fee holidays, listing spam, or paid acquisition that still collapses on day 31. The mechanism changes. The honesty requirement does not.
+**Require fills, not quotes.** A fill-rate floor, low enough to survive adverse selection. This is the missing term from the formula above, and it is worth more than every detection system you could build instead.
 
-**What is:** a campaign brief that asks for "more activity this week."
+**Gate on liquidity.** A market too thin to exit should not be a rewards sink. Paying people to trade ghost markets teaches them the venue is decorative, which costs more than the rewards.
 
-**What could be:** a program that leaves behind a cohort with a reason to play when the points stop shouting.
+**Name anti-patterns in the rules, not the fine print.** Wash trading, self-dealing loops, referral shells. Ambiguous enforcement feels arbitrary. Named constraints feel like standards.
 
-That second sentence is the only definition of success worth defending in a roadmap meeting.
-
----
-
-### How rewards talk to the three trust surfaces
-
-Incentives do not live in a silo. They amplify whatever your venue already is.
-
-If prices feel fake, rewards teach people to poke a toy for points. If resolution is fuzzy, rewards drag more money into disputes. If the app surprises people after the tap, rewards buy anger at scale.
-
-So before you launch the next program, pressure-test the three surfaces from the trust essay: price quality, resolution clarity, surprise. A reward on top of a leak is not growth. It is a louder leak.
-
-**Operator test:** Would you put your own money through the rewarded path, knowing you might need to exit, settle, and understand the fee? If you would only do it "for the points," you designed a farm.
+**Report cohorts, not blends.** Separate rewarded-acquired from organic, watch D7 and D30 after the boost ends. Blended volume makes farmers look like product-market fit indefinitely.
 
 ---
 
-### A short failure gallery (patterns, not gossip)
+### The failure gallery, in 4 lines
 
-You do not need confidential metrics to recognize the shapes.
+**The event bounty.** Pay for 1 trade during the final, get exactly 1 trade during the final, and a week-2 ghost town with a good retro slide.
 
-**The event bounty.** Pay for one trade during the final. Get one trade during the final. Week-two is a ghost town with a beautiful retro slide.
+**The notional treadmill.** Pay for round-trippable volume in a 3-level book. Get a liquidity mirage plus a trust hangover for anyone who tried to exit at size.
 
-**The notional treadmill.** Pay for volume that can be round-tripped in a thin book. Get volume. Also get a liquidity mirage and a trust hangover for anyone who tried to exit for real.
+**The referral shell.** Pay for invites, get 500 accounts and 12 traders. Top-of-funnel looks excellent until you segment for first competent trade.
 
-**The referral shell.** Pay for invites. Get accounts. Not traders. Your top-of-funnel looks world-class until you segment for first competent trade.
+**The points personality.** Day 31 is not a dip. It is the real product arriving 30 days late to its own launch.
 
-**The points personality.** The product only makes sense while subsidized. Day 31 is not a dip. It is the real product showing up late to its own launch.
+All 4 fail the same test. The program taught extraction instead of the loop.
 
-Each pattern fails the same underlying test: the program did not teach the loop. It taught extraction.
+---
 
-If your current draft resembles any of these, rewrite the priced behavior before you rewrite the creative. Creative cannot save a bounty board.
+### Rewards amplify the three trust surfaces
+
+If prices feel fake, rewards teach people to poke a toy for points. If resolution is fuzzy, rewards drag more money into disputes, and the $60M Strategy dispute over 1 ambiguous word is that at scale. If the app surprises people after the tap, rewards buy anger at volume.
+
+A reward on top of a leak is a louder leak.
+
+**Operator test:** would you put your own money through the rewarded path, knowing you might need to exit, settle, and read the fee? If the answer is "only for the points," you designed a farm.
 
 ---
 
 ### The Monday decision
 
-When someone proposes a rewards push for the next marquee, do not start with the creative.
+Start with the 4 tests rather than the creative. Name the priced behavior, the day-31 story, how you separate cohort health from blended vanity, and what gets killed if wash shows up. Put the "rewards to 0" chart beside the launch forecast.
 
-Start with the four tests. Name the priced behavior. Name the day-31 story. Name how you will separate cohort health from blended vanity. Name what you will kill if wash shows up. Put the "rewards → 0" chart in the same deck as the launch forecast so nobody can celebrate week one in isolation.
-
-Picture the other world. You still run campaigns. Charts still move. But the marginal dollar buys a second session after resolve, not a single stunt during the final. Farmers still try. The rules make real usage the cheaper path. Leadership still gets a launch. You get a cohort that still opens the app when the points stop shouting.
-
-That is the difference between renting volume and growing a venue.
+Then compute 1 number before the meeting: dollars per filled unit. In my simulator that number was $0.042 while every displayed-depth chart looked healthy. If nobody in the room has seen it, the program was not reviewed. It was admired.
 
 ---
 
 ### Takeaway
 
-Rewards fail when they buy screenshots and call the hangover retention.
+Rewards fail when they buy screenshots and the hangover gets filed as a retention bug.
 
-Before you ship the next program:
+Before the next program: name the marginal user, name the priced behavior, run the spreadsheet test, and draw the day-31 curve at 0.
 
-1. **Marginal user:** will they stick when points end?
-2. **Priced behavior:** sequence and loop, not a one-tap stunt
-3. **Spreadsheet test:** can farming beat taste for markets?
-4. **Day 31:** draw rewards → 0 before you celebrate week one
-
-If you only remember one line, make it this: if a spreadsheet can beat your product, you did not design growth. You designed a bounty.
+If a spreadsheet can beat your product, you did not design growth. You designed a bounty.
