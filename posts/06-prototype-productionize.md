@@ -5,7 +5,7 @@ pillar: field-notes
 section: agents
 status: ready
 derivedFrom: articles/03-prototype-aggressively-productionize-suspiciously.md
-publishAt: 2026-08-20T01:00:00Z
+publishAt: 2026-08-27T08:30:00Z
 platforms: linkedin
 tags: agents, ai, product
 ---

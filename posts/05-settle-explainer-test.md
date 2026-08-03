@@ -5,7 +5,7 @@ pillar: field-notes
 section: markets
 status: ready
 derivedFrom: articles/01-three-trust-surfaces.md
-publishAt: 2026-08-18T01:00:00Z
+publishAt: 2026-08-11T08:30:00Z
 platforms: linkedin
 tags: markets, resolution, product
 ---

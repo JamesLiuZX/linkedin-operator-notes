@@ -50,8 +50,8 @@
     {
       "id": "w2-tue",
       "week": 2, "date": "2026-08-11", "time": "08:30", "channel": "linkedin",
-      "kind": "atom", "pillar": "markets", "asset": "posts/08-three-trust-surfaces.md",
-      "title": "Three trust surfaces",
+      "kind": "atom", "pillar": "markets", "asset": "posts/05-settle-explainer-test.md",
+      "title": "The 30-second test I run before a market lists",
       "hook": "Users forgive a bad beat. They will not forgive feeling hustled.",
       "status": "ready",
       "linkInComment": "/markets/01-three-trust-surfaces"
@@ -95,17 +95,17 @@
     {
       "id": "w4-tue",
       "week": 4, "date": "2026-08-25", "time": "08:30", "channel": "linkedin",
-      "kind": "atom", "pillar": "shipping", "asset": "posts/01-post-event-retention.md",
-      "title": "After the final",
+      "kind": "atom", "pillar": "shipping", "asset": "posts/08-tuesday-after-the-final.md",
+      "title": "The metric that tells you whether the spike was product-market fit",
       "hook": "Marquee events create the illusion of product-market fit.",
-      "status": "ready",
+      "status": "drafted",
       "linkInComment": "/shipping/02-after-the-final"
     },
     {
       "id": "w4-thu",
       "week": 4, "date": "2026-08-27", "time": "08:30", "channel": "linkedin",
-      "kind": "teardown", "pillar": "agents", "asset": "posts/07-ai-trading-agent.md",
-      "title": "Prototype aggressively, productionize suspiciously",
+      "kind": "teardown", "pillar": "agents", "asset": "posts/06-prototype-productionize.md",
+      "title": "A weekend agent cannot validate the 5 things that decide the roadmap",
       "hook": "A weekend prototype cannot validate risk controls. Say so out loud.",
       "status": "ready",
       "linkInComment": "/agents/03-prototype-aggressively-productionize-suspiciously"
@@ -186,18 +186,18 @@
     {
       "id": "w8-tue",
       "week": 8, "date": "2026-09-22", "time": "08:30", "channel": "linkedin",
-      "kind": "atom", "pillar": "markets", "asset": "posts/03-rewards-vs-farming.md",
-      "title": "Rewards vs farming",
+      "kind": "atom", "pillar": "markets", "asset": "posts/09-rewards-day-31.md",
+      "title": "Draw the retention curve assuming rewards go to zero on day 31",
       "hook": "If your program pays for resting orders, you are paying for pictures.",
-      "status": "ready"
+      "status": "drafted"
     },
     {
       "id": "w8-thu",
       "week": 8, "date": "2026-09-24", "time": "08:30", "channel": "linkedin",
-      "kind": "atom", "pillar": "shipping", "asset": "posts/05-compliance-as-product.md",
-      "title": "Compliance as a product input",
+      "kind": "atom", "pillar": "shipping", "asset": "posts/10-compliance-as-input.md",
+      "title": "Ask legal late and you do not get a delay, you get a redesign",
       "hook": "Compliance is not a gate at the end. It is a field in the data model.",
-      "status": "ready",
+      "status": "drafted",
       "linkInComment": "/shipping/05-compliance-as-product"
     },
 
