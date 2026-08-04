@@ -46,6 +46,10 @@ jobs:
 
       - run: npm --prefix site ci
 
+      # The site reads gate scores and uses them to decide what is publishable,
+      # so they are regenerated from the content before either build.
+      - run: node scripts/gate-scores.mjs
+
       # Root-relative build, which is what Vercel serves.
       - name: Build (Vercel layout)
         run: npm --prefix site run build && node scripts/build-seo.mjs

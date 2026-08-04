@@ -1,15 +1,24 @@
+import "@fontsource/syne/700.css";
+import "@fontsource/syne/800.css";
+import "@fontsource/source-serif-4/400.css";
+import "@fontsource/source-serif-4/600.css";
+import "@fontsource/source-serif-4/400-italic.css";
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/500.css";
 import "./style.css";
 import "./viz/palette.css";
 import "./viz/viz.css";
 import { marked } from "marked";
 import manifest from "../../articles/unsplash-manifest.json";
-import { ARTICLES, bySlug, bySection, SECTIONS } from "./content.js";
+import { ARTICLES, POSTS, bySlug, bySection, SECTIONS } from "./content.js";
 import { DEMOS, demoBySlug } from "./demos/index.js";
 import { currentPath, navigate, onRoute } from "./router.js";
 import { renderDashboard } from "./dashboard/index.js";
 import { hydrateCharts } from "./viz/charts.js";
 
 marked.setOptions({ gfm: true, breaks: false });
+
+const SECTION_LABEL = Object.fromEntries(SECTIONS.map((x) => [x.id, x.title]));
 
 function stripLeadingH1(html) {
   return html.replace(/^\s*<h1[^>]*>[\s\S]*?<\/h1>/i, "");
@@ -93,24 +102,50 @@ function route(path = currentPath()) {
   return renderHome();
 }
 
+const isDraftItem = (i) => i.status !== "ready" && i.status !== "published";
+
+/** The gate's own verdict on a piece, set in mono so the digits line up. */
+function scoreBadge(item) {
+  const g = item.gate;
+  if (!g) return "";
+  return `<div class="score${g.score < 90 ? " low" : ""}">${g.score} <em>/100</em></div>`;
+}
+
+/**
+ * One entry in the contents page. Carries what a reader chooses on: what it is,
+ * how long it takes, and what the quality gate made of it.
+ */
+function indexRow(item, n, sectionLabel) {
+  const bits = [`<span>${escapeHtml(sectionLabel || item.section)}</span>`];
+  if (item.kind === "post") {
+    bits.push(`<span>${item.chars} chars</span>`);
+    if (item.derivedFrom) {
+      bits.push(`<span>from ${escapeHtml(item.derivedFrom.replace(/^[a-z-]+\//, ""))}</span>`);
+    }
+  } else {
+    bits.push(`<span>${item.readingMinutes} min</span>`);
+  }
+  return `
+    <a class="row" href="${hrefFor(item)}">
+      <div class="num">${String(n).padStart(2, "0")}</div>
+      <div>
+        <div class="row-t">${escapeHtml(item.title)}</div>
+        ${item.summary ? `<p class="row-s">${escapeHtml(item.summary)}</p>` : ""}
+        <div class="row-m">${bits.join("")}</div>
+      </div>
+      <div class="side">
+        ${scoreBadge(item)}
+        <span class="chip${isDraftItem(item) ? " draft" : ""}">${
+          isDraftItem(item) ? "draft" : "ready"
+        }</span>
+      </div>
+    </a>`;
+}
+
 function renderHome() {
   const sections = bySection();
-  const cards = ARTICLES.map((a, idx) => {
-    const hero = manifest.articles[a.slug]?.hero;
-    const featured = idx === 0 ? "featured" : "";
-    return `
-      <a class="article-card ${featured}" href="${hrefFor(a)}" style="animation-delay:${idx * 80}ms">
-        <div class="media" style="background-image:url('${hero?.url || a.figure || ""}')"></div>
-        <div class="body">
-          <div class="series">${escapeHtml(a.series || a.section)}${
-            a.status === "draft" ? " · draft" : ""
-          }</div>
-          <h2>${escapeHtml(a.title)}</h2>
-          <div class="meta">${escapeHtml(a.summary)}</div>
-        </div>
-      </a>
-    `;
-  }).join("");
+  const cards = ARTICLES.map((a, i) => indexRow(a, i + 1, SECTION_LABEL[a.section])).join("");
+  const atoms = POSTS.map((p, i) => indexRow(p, i + 1, SECTION_LABEL[p.section])).join("");
 
   const sectionNav = sections
     .map(
@@ -154,8 +189,9 @@ function renderHome() {
         </div>
         <div class="strip-grid">${demoStrip}</div>
       </section>
-      <section class="article-grid">${
-        cards ||
+      <section class="idx">${
+        cards ?
+        `<span class="label">Essays</span>` + cards :
         `<div class="empty-lib">
            <h3>No essays are published yet.</h3>
            <p>Nine are written and pass the quality gate. They stay invisible until their <code>status:</code> frontmatter is advanced past <code>draft</code>, which is deliberate: the gate is editorial, not mechanical.</p>
@@ -173,19 +209,7 @@ function renderHome() {
 function renderSection(section) {
   const items = ARTICLES.filter((a) => a.section === section.id);
   const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-  const cards = items
-    .map(
-      (a, idx) => `
-      <a class="article-card" href="${hrefFor(a)}" style="animation-delay:${idx * 80}ms">
-        <div class="media" style="background-image:url('${manifest.articles[a.slug]?.hero?.url || a.figure || ""}')"></div>
-        <div class="body">
-          <div class="series">${escapeHtml(a.series || section.title)}</div>
-          <h2>${escapeHtml(a.title)}</h2>
-          <div class="meta">${escapeHtml(a.summary)}</div>
-        </div>
-      </a>`
-    )
-    .join("");
+  const cards = items.map((a, i) => indexRow(a, i + 1, section.title)).join("");
 
   setMeta({
     title: `${section.title} · Market Ops Notes`,
@@ -204,12 +228,59 @@ function renderSection(section) {
         <h1>${escapeHtml(section.title)}</h1>
         <p>${escapeHtml(section.blurb)}</p>
       </header>
-      <section class="article-grid">${cards}</section>
+      <section class="idx">${cards}</section>
     </main>
   `;
 }
 
+function atomParagraphs(text) {
+  return String(text)
+    .split(/\n{2,}/)
+    .filter((t) => t.trim())
+    .map((t) => `<p>${escapeHtml(t).replace(/\n/g, "<br>")}</p>`)
+    .join("");
+}
+
+/** A LinkedIn atom, shown split at the fold. Visible in dev and preview only. */
+function renderAtom(item) {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  setMeta({
+    title: `${item.title} · Market Ops Notes`,
+    description: item.summary,
+    url: window.location.origin + hrefFor(item),
+  });
+  const by = ["<span>James Liu</span>", `<span>${item.chars} characters</span>`];
+  if (item.derivedFrom) by.push(`<span>derived from ${escapeHtml(item.derivedFrom)}</span>`);
+  if (item.gate) by.push(`<span>gate ${item.gate.score}/100</span>`);
+
+  document.getElementById("app").innerHTML = `
+    <nav class="bar"><div class="wrap">
+      <a href="${base}/">&larr; Index</a>
+      <a class="home" href="${base}/">Market Ops Notes</a>
+      <a href="${base}/${item.section}">${escapeHtml(SECTION_LABEL[item.section] || item.section)}</a>
+    </div></nav>
+    <main class="wrap">
+      <header class="head">
+        <div class="label">${escapeHtml(SECTION_LABEL[item.section] || item.section)}${
+          item.pillar ? ` &middot; ${escapeHtml(item.pillar)}` : ""
+        }</div>
+        <h1>${escapeHtml(item.title)}</h1>
+        <div class="by">${by.join("")}</div>
+      </header>
+      <div class="atom">
+        <div class="above">${atomParagraphs(item.fold?.visible || item.draft)}</div>
+        ${item.fold?.truncated ? '<div class="fold"><b>see more</b></div>' : ""}
+        ${atomParagraphs(item.fold?.hidden || "")}
+      </div>
+      ${item.firstComment
+        ? `<div class="fc"><span class="label">First comment</span>${atomParagraphs(item.firstComment)}</div>`
+        : ""}
+    </main>`;
+  window.scrollTo(0, 0);
+}
+
 function renderArticle(article) {
+  if (article.kind === "post") return renderAtom(article);
   const hero = manifest.articles[article.slug]?.hero;
   const heroUrl = article.figure || hero?.url || "";
   const heroAlt = article.heroAlt || hero?.alt || article.title;

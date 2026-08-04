@@ -8,6 +8,8 @@
 //   resolve: { alias: { '@lib': path.resolve(__dirname, '../scripts/lib') } }
 
 import { parseFrontmatter } from "@lib/frontmatter.mjs";
+import { draftBody, firstCommentBlock, fold } from "@lib/linkedin.mjs";
+import GATE from "./gate-scores.json";
 
 const articleFiles = import.meta.glob("../../articles/*.md", {
   query: "?raw",
@@ -56,10 +58,19 @@ function build(files, kind) {
       tags: data.tags || [],
       section: data.section || "notes",
       series: data.series || "",
+      pillar: data.pillar || "",
+      derivedFrom: data.derivedFrom || "",
       summary: data.summary || excerpt(body),
       figure: data.figure || data.hero || null,
       heroAlt: data.heroAlt || "",
       readingMinutes: Math.max(1, Math.round(body.split(/\s+/).length / 225)),
+      // An atom's publishable body is the Draft section. Everything above it is
+      // notes to the operator and must never reach a reader.
+      draft: kind === "post" ? draftBody(body) : "",
+      firstComment: kind === "post" ? firstCommentBlock(body) : "",
+      fold: kind === "post" ? fold(draftBody(body)) : null,
+      chars: kind === "post" ? draftBody(body).length : 0,
+      gate: GATE[slug] || null,
       body,
       frontmatter: data,
       raw,
@@ -69,16 +80,27 @@ function build(files, kind) {
 
 // Statuses that render publicly. A piece stays invisible until its status is
 // advanced by hand, which is the editorial gate, not an accident.
+// `ready` means the mechanical gate passes but a human has not signed it off,
+// so it deliberately does NOT appear here.
 const VISIBLE = new Set(["published", "scheduled", "compliance-checked"]);
 const isDev = import.meta.env?.DEV;
 
 /**
  * Drafts are visible in dev, and on any deploy that opts in with
- * VITE_SHOW_DRAFTS=1. Use that on a Vercel PREVIEW deployment to read the whole
+ * VITE_SHOW_DRAFTS=1. Use that on a preview deployment to read the whole
  * library before promoting anything. Never set it on production: it would
  * publish unedited drafts under the author's name.
  */
 export const SHOW_DRAFTS = isDev || import.meta.env?.VITE_SHOW_DRAFTS === "1";
+
+/**
+ * A piece carrying an unfilled {{ }} slot is unfinished by definition: the
+ * quality gate refuses to pass it and the publisher refuses to send it. This is
+ * a floor under every other visibility rule, including SHOW_DRAFTS, so a
+ * preview build can never leak "{{COST: name the thing that went wrong}}" onto
+ * a public URL.
+ */
+const isFinished = (item) => !item.gate?.hasHoles;
 
 // Everything on disk, before any visibility filtering. The dashboard needs the
 // drafts; the public site must not render them.
@@ -87,6 +109,7 @@ const everything = [...build(articleFiles, "article"), ...build(postFiles, "post
 );
 
 const all = everything
+  .filter(isFinished)
   .filter((item) => (SHOW_DRAFTS ? true : VISIBLE.has(item.status)))
   // posts/ are LinkedIn and X drafts, not web pages. They never render publicly.
   .filter((item) => item.kind === "article" || SHOW_DRAFTS)

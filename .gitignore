@@ -17,3 +17,6 @@ site/.vite/
 # LinkedIn paste queue is generated at publish time, not source
 .publish/linkedin/
 .publish/linkedin-queue.jsonl
+
+# Generated from the content by scripts/gate-scores.mjs before every build
+site/src/gate-scores.json

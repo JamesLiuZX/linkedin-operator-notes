@@ -11,11 +11,11 @@
     "linkedin:list": "node scripts/linkedin.mjs --list",
     "schedule:check": "node scripts/schedule-check.mjs",
     "unsplash": "node scripts/fetch-unsplash.mjs",
-    "site": "npm --prefix site run dev",
+    "site": "node scripts/gate-scores.mjs && npm --prefix site run dev",
     "site:install": "npm --prefix site install",
-    "site:build": "npm --prefix site run build && node scripts/build-seo.mjs",
+    "site:build": "node scripts/gate-scores.mjs && node scripts/build-apps.mjs && npm --prefix site run build && node scripts/build-seo.mjs",
     "site:preview": "npm --prefix site run preview",
-    "vercel:build": "npm --prefix site ci && npm --prefix site run build && node scripts/build-seo.mjs",
+    "vercel:build": "npm --prefix site ci && node scripts/gate-scores.mjs && npm --prefix site run build && node scripts/build-seo.mjs",
     "publish": "node scripts/publish/index.mjs",
     "publish:dry": "node scripts/publish/index.mjs --dry-run --scheduled",
     "publish:list": "node scripts/publish/index.mjs --list",
@@ -27,6 +27,7 @@
     "ledger:test": "node scripts/ledger/selftest.mjs",
     "risk": "node tools/resolution-risk/scan.mjs",
     "risk:test": "node tools/resolution-risk/test.mjs",
+    "site:data": "node scripts/gate-scores.mjs",
     "restyle": "node scripts/restyle-generate.mjs"
   },
   "dependencies": {

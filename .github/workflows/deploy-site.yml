@@ -6,8 +6,9 @@ on:
     paths:
       - "site/**"
       - "articles/**"
-      - "scripts/lib/**"
+      - "scripts/**"
       - "posts/**"
+  # Lets the site be deployed from a feature branch before it merges.
   workflow_dispatch:
 
 permissions:
@@ -30,6 +31,13 @@ jobs:
           node-version: "22"
 
       - run: npm --prefix site ci
+
+      # Gate scores are read by the site and decide what is publishable, so
+      # they are regenerated from the content on every deploy rather than
+      # committed and left to drift.
+      - run: node scripts/gate-scores.mjs
+      - run: node scripts/build-apps.mjs
+
       - run: BASE_PATH=/linkedin-operator-notes/ npm --prefix site run build
       - name: SPA fallback
         run: cp site/dist/index.html site/dist/404.html
