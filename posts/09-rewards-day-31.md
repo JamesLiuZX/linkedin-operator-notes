@@ -6,7 +6,7 @@ section: markets
 status: draft
 blockedOn: one operating number only James can supply
 derivedFrom: articles/04-rewards-vs-farming.md
-publishAt: 2026-09-03T01:00:00Z
+publishAt: 2026-09-22T08:30:00Z
 platforms: linkedin
 tags: markets, incentives, growth
 ---

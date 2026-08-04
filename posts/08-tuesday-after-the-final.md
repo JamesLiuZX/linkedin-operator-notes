@@ -6,7 +6,7 @@ section: markets
 status: draft
 blockedOn: one operating number only James can supply
 derivedFrom: articles/02-after-the-final.md
-publishAt: 2026-09-01T01:00:00Z
+publishAt: 2026-08-25T08:30:00Z
 platforms: linkedin
 tags: markets, retention, lifecycle
 ---

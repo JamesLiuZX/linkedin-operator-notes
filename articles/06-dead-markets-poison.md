@@ -6,7 +6,7 @@ series: Market Ops Notes
 section: markets
 summary: "Thin inventory teaches users to distrust every mid. Listing bars and death plans are product work."
 status: draft
-publishAt: 2026-09-09T01:00:00Z
+publishAt: 2026-09-15T01:00:00Z
 platforms: twitter, medium, substack
 tags: markets, liquidity, listings
 hero: "https://images.unsplash.com/photo-1584472376859-889e77a8ccac?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8ZW1wdHklMjBzdG9yZSUyMGFpc2xlJTIwZmx1b3Jlc2NlbnR8ZW58MHx8fHwxNzg0OTc0MzYzfDA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80"
@@ -49,13 +49,13 @@ A dead market does not just fail quietly in a corner of your catalog.
 
 It teaches.
 
-Fat spreads. Ghost mids. You cannot get out without eating glass. The UI can look expensive and the product still feels like a toy. One session is enough. The user does not file a thoughtful bug about "liquidity quality on long-tail inventory." They learn a simpler lesson: this place is decorative. The number on the screen is not a price. It is a suggestion with teeth.
+Fat spreads. Ghost mids. No exit without eating glass. The interface can look expensive and the product still feels like a toy, and 1 session is enough to learn it. Nobody files a thoughtful bug about liquidity quality on long-tail inventory. They learn something simpler: this place is decorative, and the number on screen is a suggestion with teeth.
 
-Then they open a liquid market on your venue and bring that lesson with them.
+Then they open 1 of your liquid markets and bring that lesson with them.
 
-Suspicion is sticky. Once a mid feels fake, every future mid needs extra proof. You will pay that proof in maker spend, support time, and slower adoption of the markets that actually work.
+Suspicion is sticky. Once a mid feels fake, every future mid needs extra proof, and you pay for that proof in maker spend, support time, and slower adoption of the 4 markets that actually work.
 
-That is the poison. Thin inventory does not stay local. It contaminates trust in the whole room.
+Thin inventory does not stay local. It contaminates the whole room.
 
 ---
 
@@ -66,116 +66,124 @@ That is the poison. Thin inventory does not stay local. It contaminates trust in
 <figcaption>What is: a listing plan that fills the calendar. What could be: a bar that kills decorative inventory before users learn the wrong lesson.</figcaption>
 </figure>
 
-Growth wants content. The calendar looks empty. A competitor screenshots a longer list. Someone proposes forty new questions because "discovery needs breadth."
+Growth wants content. The calendar looks empty. A competitor screenshots a longer list. Someone proposes 40 new questions because discovery needs breadth.
 
 Breadth without depth is a museum of prices that do not behave like prices.
 
-**What the spike / listing count proved:** you can publish text on a page.
+**What a listing count proves:** you can publish text on a page.
 
-**What it did not prove:** anyone can enter and exit without feeling like exit liquidity.
+**What it does not prove:** anyone can enter and exit without becoming exit liquidity.
 
-I would rather ship fewer markets that behave like markets. Maker incentives, listing bars, killing decorative inventory: those are product calls, not finance chores. And if a market is thin, say so. Silence is UX too. People fill silence by assuming you are hiding something.
+I would rather ship 4 markets that behave like markets. Maker incentives, listing bars, and killing decorative inventory are product calls, not finance chores. If a market is thin, label it. Silence is UX too, and people fill silence by assuming you are hiding something.
 
-The usual response to thinness is to list more stuff. That usually makes it worse. You trade one liquid question people understand for forty thin ones that exist to fill a slide.
+The usual response to thinness is to list more, which makes it worse. You trade 1 liquid question people understand for 40 thin ones that exist to fill a slide.
 
-**Operator test:** Would you put your own money in, knowing you might need to exit in the next hour? If the honest answer is "only if nothing moves," you do not have a market. You have a prop.
+**Operator test:** would you put $500 in knowing you might need to exit within the hour? If the honest answer is "only if nothing moves," that is a prop, not a market.
 
 ---
 
 ### How poison spreads
 
-Dead markets train three bad beliefs that leak upward.
+Dead markets train 3 bad beliefs that leak upward.
 
-1. **The mid is cosplay.** If the displayed price is untradeable in size, users stop believing numbers elsewhere, including where depth is real.
-2. **Exiting is a trap.** Once someone eats glass on a thin book, every future confirm button carries that memory.
-3. **The venue is a casino of listings, not a market.** Catalog length starts to feel like a dark pattern: abundance as theater.
+1. **The mid is cosplay.** If the displayed price is untradeable in size, users stop believing numbers elsewhere, including the 4 markets where depth is real.
+2. **Exiting is a trap.** Once someone eats glass on a 3-level book, every future confirm button carries that memory.
+3. **The venue is a casino of listings.** Catalog length starts to read as a dark pattern: abundance as theatre.
 
-None of these require a scandal. They require one quiet Tuesday and a market that should never have been listed.
+None of these require a scandal. They require 1 quiet Tuesday and a market that should never have been listed.
 
-Resolution trust and surprise trust can be perfect and still lose to this. The fair loser who cannot exit fairly is not a fair loser. They are someone who got stuck in your decorative inventory.
+Resolution trust and surprise trust can both be perfect and still lose to this. A fair loser who cannot exit fairly is not a fair loser. They are someone stuck in your decorative inventory.
 
 ---
 
-### A listing bar that deserves the name
+### The listing bar has a dollar figure
+
+The argument against a long calendar usually gets made with adjectives, and adjectives lose to a growth target. So here is the arithmetic.
+
+Take a user putting $500 into a market at 50 cents and decide what slippage they should feel. Half a percent is a defensible bar. Under Hanson's LMSR that requires a liquidity parameter of 49,750, and the worst-case loss on that market maker is b times ln 2, which is $34,484.
+
+Per market.
+
+List 40 at that depth and you have written a $1,379,374 worst-case commitment. List 4 and it is $137,937. That is the same decision priced 10x apart, and it is a more persuasive argument for focus than any opinion about focus.
+
+The reason to reason in LMSR even when you ship an order book is that it is the one market maker whose worst case has a closed form. $34,484 fits in a budget line. "We need more makers" does not.
+
+Two more numbers for the same meeting. Sector open interest was $1.11B on 1 May 2026 against $8.6B of April volume, so roughly 13% of the category headline is positions anyone is holding. And quadrupling b flattens the impact curve while quadrupling the cheque, which is the entire liquidity tradeoff, usually discussed with neither number present.
+
+My admission: I argued for a shorter listing calendar on taste and lost, twice. The argument needed $34,484 in it and I did not have the number, so I lost to someone who had a target and a spreadsheet.
+
+---
+
+### The five tests before a listing
 
 <figure>
 <img src="https://images.unsplash.com/photo-1560221328-12fe60f83ab8?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzg0OTc0MzY1fA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80" alt="close-up photo of monitor displaying graph" />
 <figcaption>If the chart cannot be entered and exited, it is not a market. It is wallpaper with a candle pattern.</figcaption>
 </figure>
 
-Before something lists, pressure-test more than the witty prompt.
+5 tests before something lists, and the witty prompt is not 1 of them.
 
-**Comprehension:** Can a smart first-timer understand the question without a seminar?
+**Comprehension:** can a smart first-timer read the question without a seminar?
 
-**Settle:** Can a non-lawyer explain resolution in thirty seconds? (If not, you are booking a dispute.)
+**Settle:** can a non-lawyer explain resolution in 30 seconds? If not, you are pre-booking a dispute.
 
-**Depth plan:** What makes this tradeable in the first week? Market makers, seeding, event heat, or honest "thin" labeling?
+**Depth plan:** what makes this tradeable in week 1? Makers, seeding, event heat, or an honest "thin" label?
 
-**Exit story:** In a realistic size for your target user, what does getting out cost when the news moves?
+**Exit story:** at $500, what does getting out cost when the news moves?
 
-**Death plan:** What kills this market if it fails the above after listing? Sunset is a feature. Zombie inventory is a choice.
+**Death plan:** what kills this market if it fails the above? Sunset is a feature. Zombie inventory is a choice.
 
-If your listing process cannot answer the death plan question, you will accumulate props until the home feed feels like a flea market of abandoned questions.
+A listing process that cannot answer test 5 accumulates props until the home feed reads like a flea market of abandoned questions.
 
-Public-safe principle: quality control for partner markets and long-tail listings is the same muscle. A bad listing from a partner poisons you, not them. Your brand is on the confirm button.
+The same muscle covers partner listings. A bad listing from a partner poisons you, not them, because your brand is on the confirm button.
 
 ---
 
 ### What to ship instead of forty thin questions
 
-**Curate hard at the edges.** Featured rows and "all markets" pages teach different lessons. Overwhelm is not discovery. It is a trust tax with scroll physics.
+**Make thinness legible.** "Low liquidity" is respect, not shame. Users can opt into a prop knowing it is a prop. They cannot forgive a mid that pretended to be a price.
 
-**Make thinness legible.** "Low liquidity" is not shame. It is respect. Users can opt into a prop if they know it is a prop. They cannot forgive a mid that pretended to be a price.
+**Point incentives where books can heal.** Rewards dumped into ghost markets teach farming and deadness in 1 move. Aim them at markets that can absorb activity without becoming wash theatre.
 
-**Concentrate incentives where books can heal.** Rewards that dump notional into ghost markets teach farming and teach deadness at the same time. If you run incentives, point them at markets that can absorb activity without becoming wash theater.
+**Sunset in public.** Killing a long-tail family is not failure when the alternative teaches users the venue is full of traps. Write the sunset copy before you need it.
 
-**Sunset in public.** Killing a category or a long-tail family is not failure if the alternative is teaching users that your venue is full of traps. Write the sunset copy before you need it.
+**Measure contamination, not volume per market.** Track whether users who touch thin inventory show worse D30 or more trust tickets afterward. Celebrate only listings shipped and you will never see the poison.
 
-**Measure contamination, not just volume per market.** Watch whether users who touch thin inventory show worse retention or worse trust tickets afterward. If you only celebrate listings shipped, you will never see the poison.
-
-A simple operating rhythm helps. Weekly: top thin markets by touch volume from new users. Monthly: sunset candidates with owners and copy. Quarterly: category mix review against Tuesday reality, not against competitor screenshot length. Ritualize killing props the way you ritualize launching them.
+An operating rhythm helps. Weekly: top thin markets by new-user touch volume. Monthly: sunset candidates with owners and copy. Quarterly: category mix against Tuesday reality rather than competitor screenshot length.
 
 ---
 
 ### Sports, politics, crypto: different deadness
 
-Not every category dies the same way.
+3 categories, 3 ways to die.
 
-Sports can look alive on marquee nights and hollow on Tuesday. Politics can choke on ambiguous settle. Crypto-adjacent questions can suffer from narrative churn and oracle drama. The product problem is shared: a market that cannot be exited fairly teaches the wrong lesson. The ops response differs by category mix, calendar density, and how natural hedging shows up (often: it doesn't, especially in pure speculation sports books).
+Sports looks alive on marquee nights and hollow by Tuesday. Politics chokes on ambiguous settle. Crypto questions suffer narrative churn and oracle drama. The product failure is shared: a market that cannot be exited fairly teaches the wrong lesson. Sports books rarely have natural hedgers, so volume can look institutional while staying emotionally retail.
 
-Do not copy a competitor's catalog breadth and assume you copied their liquidity. You may have copied their screenshot.
+Copying a competitor's catalog breadth does not copy their liquidity. It copies their screenshot.
 
-Category mix is a retention tool when it creates recurring reasons to return. It is a poison vector when it is only a way to inflate listing count. The question is not "do we have sports and politics and culture?" The question is whether each family has at least a few markets that pass the exit test on a normal week.
+**Operator test:** for each category, name the Tuesday story. If it only works as a parade, you need bridges and listing discipline rather than more floats.
 
-**Operator test:** For each category you list, name the Tuesday story. If the category only works as a parade, you need bridges and listing discipline, not more parade floats.
-
-One more practical rule for roadmap fights: when growth asks for breadth and trading asks for depth, make them pick a pilot. Ten liquid markets that behave beat fifty props every time in cohort health, even when the screenshot looks quieter. Quiet screenshots with healthy Tuesday cohorts beat loud catalogs with contaminated trust. Ship the quieter catalog on purpose, and defend that choice in the room.
+When growth asks for breadth and trading asks for depth, make them run a pilot. 10 liquid markets beat 50 props on cohort health every time, even though the screenshot looks quieter. Ship the quieter catalog on purpose and defend it in the room.
 
 ---
 
 ### "All markets" pages and the overwhelm tax
 
-Discovery UX is where dead inventory becomes a product crime in public.
+An "all markets" page dumping 400 thin questions into an endless scroll does not create choice. It creates noise that hides the 4 markets behaving like markets. First-timers bounce, power users filter, screenshot farmers find the weirdest mid, and the brand looks busy while feeling hollow.
 
-An "all markets" page that dumps every thin question into an endless scroll does not create choice. It creates noise that hides the few markets that behave like markets. First-timers bounce. Power users filter. Screenshot farmers find the weirdest mid. Your brand looks busy and feels hollow.
+Removing 1 thing usually beats adding 1 thing. Pull decorative rows off default surfaces, put thin markets behind honest labels, and feature the liquid comprehensible questions where new money lands.
 
-One thing to remove often beats one thing to add. Remove decorative rows from default surfaces. Put thin markets behind honest labels or secondary navigation. Feature liquid, comprehensible questions where new money actually lands.
-
-Mobile makes this sharper. On a small screen, every extra dead row is a trust lesson delivered with a thumb. If you are choosing between another listing and removing a zombie from the default feed, remove the zombie.
-
-Partner listings need the same discipline. A partner's catalog ambition is not your obligation. Quality control is. If their market cannot clear your exit test and death plan, it does not get a seat on your confirm button.
+Mobile sharpens it. On a 6-inch screen every dead row is a trust lesson delivered by thumb. Choosing between another listing and removing a zombie from the default feed, remove the zombie.
 
 ---
 
 ### The Monday decision
 
-When someone proposes filling the calendar because discovery "needs content," ask for the exit story and the death plan.
+When someone proposes 40 listings because discovery needs content, ask for the exit story, the death plan, and the subsidy figure.
 
-Ask whether the new listings make prices feel more real or make the venue feel more like a prop warehouse. Ask whether "all markets" will create overwhelm that hides the liquid ones. Ask whether rewards or campaigns will shove users into glass exits. Ask for the contamination metric you will watch after ship.
+That last one ends most of these conversations. $34,484 per market at a 0.5% slippage bar is either affordable 4 times or it is not affordable 40 times, and the arithmetic decides rather than the loudest person in the room.
 
-Picture the other world. Fewer markets. Each one exit-able in a realistic size. Thinness labeled when it exists. Decorative inventory killed before it teaches. Growth still has something to say. Users stop treating your mids like cosplay.
-
-That is how a venue stays a venue.
+The other world is not exotic. 4 markets, each exit-able at $500. Thinness labelled where it exists. Decorative inventory killed before it teaches anyone anything. Growth still has something to say, and users stop treating your mids as cosplay.
 
 ---
 
@@ -183,11 +191,6 @@ That is how a venue stays a venue.
 
 Dead markets do not fail in isolation. They teach users to distrust the whole room.
 
-Before you list the next wave:
+Before the next listing wave, run 4 checks: the exit test at $500, the week-1 depth plan, the death plan, and the contamination metric you will watch after ship.
 
-1. **Exit test:** own money, one-hour exit, realistic size
-2. **Depth plan:** how it stays tradeable in week one
-3. **Death plan:** how you sunset if it fails
-4. **Contamination metrics:** what thin inventory does to retention and trust tickets
-
-If you only remember one line, make it this: I'd rather ship fewer markets that behave like real markets than a catalog of props that poison the venue.
+I would rather ship 4 markets that behave like markets than 40 props that poison the venue, and at a 0.5% slippage bar the difference between those 2 plans is about $1.24M of worst-case subsidy.

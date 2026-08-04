@@ -1,0 +1,286 @@
+{
+  "$comment": "Source of truth for the posting dashboard. Times are Asia/Singapore. The dashboard reads this file directly; scripts/publish reads publishAt frontmatter on the asset. Keep the two in step by running npm run schedule:check.",
+  "timezone": "Asia/Singapore",
+  "startDate": "2026-08-03",
+  "weeks": 12,
+  "targetMix": {
+    "$comment": "Per 4-week block. DELIBERATELY BELOW 00-positioning.md, which asks for 4 demos and 6-8 atoms a month. This plan ships 2 demos per 4 weeks because a demo built to the standard in site/src/demos takes most of a week, and weeks 1-4 also carry the existing essay backlog. Raise these numbers only after two demos have actually shipped on time; a target that is missed every month stops being a target. The 12-week plan totals 4 demos, 4 essays, 1 teardown.",
+    "demo": 2,
+    "essay": 2,
+    "teardown": 1,
+    "atom": 3
+  },
+  "channels": {
+    "linkedin": { "label": "LinkedIn", "note": "Link goes in the first comment, never the body. Outbound links in the body cost about 60% of reach." },
+    "x": { "label": "X", "note": "Excerpt plus canonical link. Never the full body." },
+    "site": { "label": "Site", "note": "Canonical. Publishes first, everything else points here." },
+    "substack": { "label": "Substack", "note": "Monthly. Bundle, do not glue." }
+  },
+  "entries": [
+    {
+      "id": "w1-site",
+      "week": 1, "date": "2026-08-04", "time": "07:00", "channel": "site",
+      "kind": "essay", "pillar": "markets", "asset": "articles/07-the-sentence-is-the-product.md",
+      "title": "The sentence is the product",
+      "hook": "The oracle was right. The sentence was wrong.",
+      "status": "ready",
+      "notes": "Ships with the resolution linter. Essay and demo drop the same morning so the post has something to point at."
+    },
+    {
+      "id": "w1-tue",
+      "week": 1, "date": "2026-08-04", "time": "08:30", "channel": "linkedin",
+      "kind": "demo", "pillar": "markets", "asset": "posts/09-resolution-linter.md",
+      "demo": "resolution-linter",
+      "title": "I built a linter for market resolution criteria",
+      "hook": "I ran three real prediction markets through a linter. All three failed.",
+      "status": "ready",
+      "linkInComment": "/demos/resolution-linter",
+      "notes": "Strongest opener in the whole plan. Record a 40 second screen capture of the Ukraine example failing, that is the dwell-time asset."
+    },
+    {
+      "id": "w1-thu",
+      "week": 1, "date": "2026-08-06", "time": "08:30", "channel": "x",
+      "kind": "thread", "pillar": "markets", "asset": "articles/07-the-sentence-is-the-product.md",
+      "title": "Thread: five words that cost real money",
+      "hook": "Most prediction market disputes are not oracle failures. They are writing failures.",
+      "status": "ready",
+      "notes": "Seven tweets max. Tweet 1 is the whole argument. Link to the canonical essay in the last tweet only."
+    },
+
+    {
+      "id": "w2-tue",
+      "week": 2, "date": "2026-08-11", "time": "08:30", "channel": "linkedin",
+      "kind": "atom", "pillar": "markets", "asset": "posts/05-settle-explainer-test.md",
+      "title": "The 30-second test I run before a market lists",
+      "hook": "Users forgive a bad beat. They will not forgive feeling hustled.",
+      "status": "ready",
+      "linkInComment": "/markets/01-three-trust-surfaces"
+    },
+    {
+      "id": "w2-thu",
+      "week": 2, "date": "2026-08-13", "time": "08:30", "channel": "linkedin",
+      "kind": "atom", "pillar": "agents", "asset": "posts/02-pm-opens-prs.md",
+      "title": "The PM who opens PRs",
+      "hook": "I opened 14 pull requests last quarter. None of them were features.",
+      "status": "ready"
+    },
+
+    {
+      "id": "w3-site",
+      "week": 3, "date": "2026-08-18", "time": "07:00", "channel": "site",
+      "kind": "essay", "pillar": "markets", "asset": "articles/04-rewards-vs-farming.md",
+      "title": "Your rewards program bought a crowd",
+      "hook": "The scoring rule has no term for whether the order ever fills.",
+      "status": "ready"
+    },
+    {
+      "id": "w3-tue",
+      "week": 3, "date": "2026-08-18", "time": "08:30", "channel": "linkedin",
+      "kind": "demo", "pillar": "markets", "asset": "posts/10-farm-lab.md",
+      "demo": "farm-lab",
+      "title": "A rewards program that buys nothing",
+      "hook": "I rebuilt a liquidity rewards program as a simulator. It buys almost nothing.",
+      "status": "ready",
+      "linkInComment": "/demos/farm-lab"
+    },
+    {
+      "id": "w3-thu",
+      "week": 3, "date": "2026-08-20", "time": "08:30", "channel": "x",
+      "kind": "thread", "pillar": "markets", "asset": "articles/04-rewards-vs-farming.md",
+      "title": "Thread: the missing term",
+      "hook": "Polymarket's maker reward pays for tightness. It has no term for fills.",
+      "status": "ready"
+    },
+
+    {
+      "id": "w4-tue",
+      "week": 4, "date": "2026-08-25", "time": "08:30", "channel": "linkedin",
+      "kind": "atom", "pillar": "shipping", "asset": "posts/08-tuesday-after-the-final.md",
+      "title": "The metric that tells you whether the spike was product-market fit",
+      "hook": "Marquee events create the illusion of product-market fit.",
+      "status": "drafted",
+      "linkInComment": "/shipping/02-after-the-final"
+    },
+    {
+      "id": "w4-thu",
+      "week": 4, "date": "2026-08-27", "time": "08:30", "channel": "linkedin",
+      "kind": "teardown", "pillar": "agents", "asset": "posts/06-prototype-productionize.md",
+      "title": "A weekend agent cannot validate the 5 things that decide the roadmap",
+      "hook": "A weekend prototype cannot validate risk controls. Say so out loud.",
+      "status": "ready",
+      "linkInComment": "/agents/03-prototype-aggressively-productionize-suspiciously"
+    },
+
+    {
+      "id": "w5-site",
+      "week": 5, "date": "2026-09-01", "time": "07:00", "channel": "site",
+      "kind": "essay", "pillar": "agents", "asset": "articles/08-the-harness-is-the-edge.md",
+      "title": "The harness is the edge",
+      "hook": "An unaided frontier model forecasts worse than the general public.",
+      "status": "ready"
+    },
+    {
+      "id": "w5-tue",
+      "week": 5, "date": "2026-09-01", "time": "08:30", "channel": "linkedin",
+      "kind": "demo", "pillar": "agents", "asset": "posts/11-calibration-lab.md",
+      "demo": "calibration-lab",
+      "title": "Your agent is not smarter than the market",
+      "hook": "Frontier LLMs score 0.13 on Brier. The market scores 0.09.",
+      "status": "ready",
+      "linkInComment": "/demos/calibration-lab",
+      "notes": "This is the piece that travels to the AI audience. Keep the market-design substance in it so they stay for the right reason."
+    },
+    {
+      "id": "w5-thu",
+      "week": 5, "date": "2026-09-03", "time": "08:30", "channel": "x",
+      "kind": "thread", "pillar": "agents", "asset": "articles/08-the-harness-is-the-edge.md",
+      "title": "Thread: sharper is not better",
+      "hook": "Turning up an agent's confidence makes it feel smarter and score worse.",
+      "status": "ready"
+    },
+
+    {
+      "id": "w6-tue",
+      "week": 6, "date": "2026-09-08", "time": "08:30", "channel": "linkedin",
+      "kind": "atom", "pillar": "agents", "asset": "posts/04-ai-partnership-lessons.md",
+      "title": "AI partnership lessons",
+      "hook": "Every AI partnership I worked on died the same way.",
+      "status": "ready"
+    },
+    {
+      "id": "w6-thu",
+      "week": 6, "date": "2026-09-10", "time": "08:30", "channel": "linkedin",
+      "kind": "atom", "pillar": "shipping", "asset": "posts/06-gen-media-product-lens.md",
+      "title": "Gen media, product lens",
+      "hook": "Generated media is a cost curve decision before it is a taste decision.",
+      "status": "ready"
+    },
+
+    {
+      "id": "w7-site",
+      "week": 7, "date": "2026-09-15", "time": "07:00", "channel": "site",
+      "kind": "essay", "pillar": "markets", "asset": "articles/06-dead-markets-poison.md",
+      "title": "Dead markets poison the whole venue",
+      "hook": "One dead market teaches a lesson that forty live ones cannot untech.",
+      "status": "ready"
+    },
+    {
+      "id": "w7-tue",
+      "week": 7, "date": "2026-09-15", "time": "08:30", "channel": "linkedin",
+      "kind": "demo", "pillar": "markets", "asset": "posts/12-liquidity-budget.md",
+      "demo": "liquidity-lab",
+      "title": "What it costs to feel real",
+      "hook": "Half a percent of slippage on a $500 order has a price. Here it is.",
+      "status": "ready",
+      "linkInComment": "/demos/liquidity-lab"
+    },
+    {
+      "id": "w7-thu",
+      "week": 7, "date": "2026-09-17", "time": "08:30", "channel": "x",
+      "kind": "thread", "pillar": "markets", "asset": "articles/06-dead-markets-poison.md",
+      "title": "Thread: the listing bar",
+      "hook": "Every market you list is a cheque. Most teams never write the number down.",
+      "status": "ready"
+    },
+
+    {
+      "id": "w8-tue",
+      "week": 8, "date": "2026-09-22", "time": "08:30", "channel": "linkedin",
+      "kind": "atom", "pillar": "markets", "asset": "posts/09-rewards-day-31.md",
+      "title": "Draw the retention curve assuming rewards go to zero on day 31",
+      "hook": "If your program pays for resting orders, you are paying for pictures.",
+      "status": "drafted"
+    },
+    {
+      "id": "w8-thu",
+      "week": 8, "date": "2026-09-24", "time": "08:30", "channel": "linkedin",
+      "kind": "atom", "pillar": "shipping", "asset": "posts/10-compliance-as-input.md",
+      "title": "Ask legal late and you do not get a delay, you get a redesign",
+      "hook": "Compliance is not a gate at the end. It is a field in the data model.",
+      "status": "drafted",
+      "linkInComment": "/shipping/05-compliance-as-product"
+    },
+
+    {
+      "id": "w9-site",
+      "week": 9, "date": "2026-09-29", "time": "07:00", "channel": "site",
+      "kind": "essay", "pillar": "shipping", "asset": "articles/09-jurisdiction-is-a-product-field.md",
+      "title": "Jurisdiction is a field, not a flag",
+      "hook": "Two federal appeals courts disagree. Your data model has to agree with both.",
+      "status": "ready"
+    },
+    {
+      "id": "w9-tue",
+      "week": 9, "date": "2026-09-29", "time": "08:30", "channel": "linkedin",
+      "kind": "atom", "pillar": "shipping", "asset": "articles/09-jurisdiction-is-a-product-field.md",
+      "title": "Jurisdiction is a field",
+      "hook": "The Third Circuit said swaps. The Ninth may not. Ship for both.",
+      "status": "drafted",
+      "notes": "Derive the atom from the essay after it publishes. Do not compose it independently."
+    },
+    {
+      "id": "w9-news",
+      "week": 9, "date": "2026-10-01", "time": "09:00", "channel": "substack",
+      "kind": "newsletter", "pillar": "markets", "asset": "",
+      "title": "Issue 1: the three things that leak trust",
+      "hook": "Bundle of the trust-surface arc, rebuilt with the demos embedded.",
+      "status": "idea",
+      "notes": "Not a glue job. Add the linter walkthrough and the farm lab numbers, which the atoms never had room for."
+    },
+
+    {
+      "id": "w10-tue",
+      "week": 10, "date": "2026-10-06", "time": "08:30", "channel": "linkedin",
+      "kind": "teardown", "pillar": "agents", "asset": "",
+      "title": "How the content system compiles",
+      "hook": "One markdown file becomes a page, a post, a thread, and a CI failure.",
+      "status": "idea",
+      "notes": "Teardown of this repo. The quality gate is the interesting part, not the publishing."
+    },
+    {
+      "id": "w10-thu",
+      "week": 10, "date": "2026-10-08", "time": "08:30", "channel": "linkedin",
+      "kind": "atom", "pillar": "markets", "asset": "",
+      "title": "The 13% number",
+      "hook": "Open interest is 13% of monthly volume. Most of the headline is turnover.",
+      "status": "idea",
+      "notes": "Receipt is in research/SOURCES.md: $1.11B OI on 1 May 2026 against $8.6B April volume."
+    },
+
+    {
+      "id": "w11-tue",
+      "week": 11, "date": "2026-10-13", "time": "08:30", "channel": "linkedin",
+      "kind": "atom", "pillar": "markets", "asset": "",
+      "title": "Adverse selection you cannot see",
+      "hook": "Your best market maker is quietly your worst-informed counterparty.",
+      "status": "idea"
+    },
+    {
+      "id": "w11-thu",
+      "week": 11, "date": "2026-10-15", "time": "08:30", "channel": "linkedin",
+      "kind": "atom", "pillar": "shipping", "asset": "",
+      "title": "KYC to first trade",
+      "hook": "The funnel step nobody instruments is the one between approval and the first tap.",
+      "status": "idea"
+    },
+
+    {
+      "id": "w12-tue",
+      "week": 12, "date": "2026-10-20", "time": "08:30", "channel": "linkedin",
+      "kind": "demo", "pillar": "agents", "asset": "",
+      "title": "Demo 5, unscoped",
+      "hook": "",
+      "status": "idea",
+      "notes": "Deliberately empty. By week 12 the reader response should pick this, not the plan."
+    },
+    {
+      "id": "w12-thu",
+      "week": 12, "date": "2026-10-22", "time": "08:30", "channel": "linkedin",
+      "kind": "atom", "pillar": "markets", "asset": "",
+      "title": "Twelve week retrospective",
+      "hook": "What got likes, what got DMs, and why they were different pieces.",
+      "status": "idea",
+      "notes": "Publish the real numbers, including the ones that disappointed. That is the receipt."
+    }
+  ]
+}

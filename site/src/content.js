@@ -78,18 +78,41 @@ function build(files, kind) {
   });
 }
 
+// Statuses that render publicly. A piece stays invisible until its status is
+// advanced by hand, which is the editorial gate, not an accident.
+// `ready` means the mechanical gate passes but a human has not signed it off,
+// so it deliberately does NOT appear here.
+const VISIBLE = new Set(["published", "scheduled", "compliance-checked"]);
 const isDev = import.meta.env?.DEV;
 
-// What goes public is decided by the gate, not by a status field a human forgot
-// to update. A piece carrying an unfilled {{ }} slot is unfinished by
-// definition, and an unfinished piece on a public URL costs more than an empty
-// section does. Drafts without holes still render, marked as drafts.
-const all = [...build(articleFiles, "article"), ...build(postFiles, "post")]
-  .filter((item) => {
-    if (item.path.toLowerCase().includes("readme")) return false;
-    if (isDev) return true;
-    return !item.gate?.hasHoles;
-  })
+/**
+ * Drafts are visible in dev, and on any deploy that opts in with
+ * VITE_SHOW_DRAFTS=1. Use that on a preview deployment to read the whole
+ * library before promoting anything. Never set it on production: it would
+ * publish unedited drafts under the author's name.
+ */
+export const SHOW_DRAFTS = isDev || import.meta.env?.VITE_SHOW_DRAFTS === "1";
+
+/**
+ * A piece carrying an unfilled {{ }} slot is unfinished by definition: the
+ * quality gate refuses to pass it and the publisher refuses to send it. This is
+ * a floor under every other visibility rule, including SHOW_DRAFTS, so a
+ * preview build can never leak "{{COST: name the thing that went wrong}}" onto
+ * a public URL.
+ */
+const isFinished = (item) => !item.gate?.hasHoles;
+
+// Everything on disk, before any visibility filtering. The dashboard needs the
+// drafts; the public site must not render them.
+const everything = [...build(articleFiles, "article"), ...build(postFiles, "post")].filter(
+  (item) => !item.path.toLowerCase().includes("readme")
+);
+
+const all = everything
+  .filter(isFinished)
+  .filter((item) => (SHOW_DRAFTS ? true : VISIBLE.has(item.status)))
+  // posts/ are LinkedIn and X drafts, not web pages. They never render publicly.
+  .filter((item) => item.kind === "article" || SHOW_DRAFTS)
   .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
 
 export const ARTICLES = all.filter((i) => i.kind === "article");
@@ -99,6 +122,21 @@ export const ALL = all;
 export function bySlug(slug) {
   return all.find((i) => i.slug === slug) || null;
 }
+
+/**
+ * Look an item up by its repo-relative path, e.g. "posts/09-resolution-linter.md".
+ * The schedule refers to assets that way; the Vite glob keys are "../../posts/...".
+ * Unlike bySlug this searches EVERY file, including ones the live site filters
+ * out, because the dashboard has to show a draft that is not on the site yet.
+ */
+export function byPath(repoPath) {
+  const want = String(repoPath || "").replace(/^\.?\//, "");
+  if (!want) return null;
+  return everything.find((i) => i.path.replace(/^(\.\.\/)+/, "") === want) || null;
+}
+
+/** Every parsed file regardless of status. Dashboard only. */
+export const ALL_INCLUDING_DRAFTS = everything;
 
 export const SECTIONS = [
   {

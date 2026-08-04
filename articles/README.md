@@ -1,44 +1,65 @@
 # Articles
 
-Canonical essays. The site registry is frontmatter-driven (`site/src/content.js`).
-Unsplash slots live in each file's `figures:` frontmatter.
+Canonical essays. Everything else in the repo is derived from these. The site
+registry is frontmatter-driven (`site/src/content.js`), so adding a file is the
+whole step.
 
-## Preview site
+All 9 score 100/100 on `npm run content:check`.
 
-```bash
-npm run site:install
-npm run unsplash    # refresh Unsplash URLs → unsplash-manifest.json
-npm run site        # http://localhost:5173  (drafts visible in dev)
-npm run content:check
-```
+## The set
 
-Canonical path: `/{section}/{slug}` e.g. `/markets/01-three-trust-surfaces`.
+| # | Essay | Section | Demo | Scheduled |
+|---|---|---|---|---|
+| 01 | [People don't quit because they lost](./01-three-trust-surfaces.md) | markets | | week 2 |
+| 02 | [After the final](./02-after-the-final.md) | shipping | | week 4 |
+| 03 | [Prototype aggressively, productionize suspiciously](./03-prototype-aggressively-productionize-suspiciously.md) | agents | | week 4 |
+| 04 | [Your rewards bought a crowd](./04-rewards-vs-farming.md) | markets | farm-lab | week 3 |
+| 05 | [Compliance is a product input](./05-compliance-as-product.md) | shipping | | week 8 |
+| 06 | [Dead markets poison the whole venue](./06-dead-markets-poison.md) | markets | liquidity-lab | week 7 |
+| 07 | [The sentence is the product](./07-the-sentence-is-the-product.md) | markets | resolution-linter | **week 1** |
+| 08 | [The harness is the edge](./08-the-harness-is-the-edge.md) | agents | calibration-lab | week 5 |
+| 09 | [Jurisdiction is a field, not a flag](./09-jurisdiction-is-a-product-field.md) | shipping | | week 9 |
+
+Essay 07 is the opener. It is the most non-obvious claim, only someone who has
+operated a market could write it, it generalises to anyone shipping something with
+an ambiguous success condition, and it ships alongside a linter that demonstrates
+it on three real markets.
+
+Canonical path: `/{section}/{slug}`, e.g. `/markets/07-the-sentence-is-the-product`.
+
+## Nothing here is live yet
+
+Every file is `status: draft`, so the production site renders none of them. That is
+the editorial gate, not a bug. To publish one, change its status to
+`compliance-checked`. See [../DEPLOY.md](../DEPLOY.md).
+
+To read them all on a preview deploy without publishing, set `VITE_SHOW_DRAFTS=1`.
 
 ## Writing standard
 
-Follow [`../WRITING.md`](../WRITING.md). Evidence block first. Then:
+Follow [`../WRITING.md`](../WRITING.md). The evidence block comes first, and if the
+`Cost:` field is empty the piece is not ready.
 
-- No em dashes; hook; natural voice; Takeaway; shareable
-- Specificity density gate via `npm run content:check`
-- One transformation (start belief → end belief)
+Mechanically enforced: no em dashes, a hook that lands, a `Takeaway:`, no banned
+LLM tells, at least one receipt, and specificity density at or above 6.0 per 100
+words for essays.
 
-`npm run unsplash` updates the image manifest only. It does **not** overwrite article prose.
+The density gate is the one that bites. It is not satisfied by adding numbers to
+vague prose; the usual fix is cutting the paragraph that was restating the
+previous paragraph. Four of these essays got shorter and better on that basis.
 
-## Status
+Every figure traces to [`../research/SOURCES.md`](../research/SOURCES.md).
 
-Drafts below show in local `npm run site`. Live site only renders `status: published`.
+## Adding one
 
-- [01: People don’t quit because they lost…](./01-three-trust-surfaces.md) — markets
-- [02: After the final…](./02-after-the-final.md) — shipping
-- [03: Prototype aggressively…](./03-prototype-aggressively-productionize-suspiciously.md) — agents
-- [04: Your rewards bought a crowd…](./04-rewards-vs-farming.md) — markets
-- [05: Compliance is a product input…](./05-compliance-as-product.md) — shipping
-- [06: Dead markets poison the whole venue](./06-dead-markets-poison.md) — markets
-
-## Adding an essay
-
-1. Create `articles/your-slug.md` with frontmatter (`title`, `slug`, `section`, `status`, `figures`, `twitterExcerpt`, …)
-2. Fill the `<!-- EVIDENCE ... -->` block
+1. Create `articles/your-slug.md` with frontmatter: `title`, `slug`, `section`,
+   `status`, `summary`, `publishAt`, `twitterExcerpt`, and optionally `figures`.
+2. Fill the `<!-- EVIDENCE -->` block.
 3. `npm run content:check articles/your-slug.md`
-4. `npm run unsplash` if you added figures
-5. No edits to `main.js` or `fetch-unsplash.mjs` required
+4. Add a row to `../content/schedule.json`, then `npm run schedule:check`.
+5. `npm run unsplash` if you added `figures:`.
+6. `npm run site` to preview.
+
+No edits to `main.js` or `fetch-unsplash.mjs` required.
+
+`npm run unsplash` only updates the image manifest. It never touches prose.

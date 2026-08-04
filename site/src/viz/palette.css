@@ -1,0 +1,121 @@
+/* site/src/viz/palette.css
+ *
+ * Chart tokens for the demo surfaces. The categorical order is the CVD-safety
+ * mechanism, not decoration. Both modes were run through the palette validator
+ * against this site's actual surfaces and pass all five checks:
+ *
+ *   light, surface #f2f4ee, adjacent pairs
+ *     worst CVD dE 10.3 (deutan, orange vs green), normal-vision dE 24.5, all >= 3:1
+ *   dark, surface #161b18, adjacent pairs
+ *     worst CVD dE 10.7 (deutan, orange vs green), normal-vision dE 21.0, all >= 3:1
+ *
+ * Scatter and dot forms compare every pair at once, not just neighbours, so they
+ * cap at the three all-pairs-safe slots: green, orange, plum (--cat-scatter-*).
+ * Adding blue to that set drops green vs blue to dE 14.1 in normal vision, under
+ * the 15 floor. Do not "just add one more series" to a dot chart.
+ *
+ * If you change a hex here, re-run the validator before committing.
+ */
+
+.viz {
+  color-scheme: light;
+
+  --viz-surface: #f2f4ee;
+  --viz-plane: #e8ebe4;
+  --viz-ink: #0e1210;
+  --viz-ink-2: #4a544c;
+  --viz-muted: #79837b;
+  --viz-grid: #d7ddd3;
+  --viz-axis: #b9c2b8;
+  --viz-ring: rgba(14, 18, 16, 0.12);
+
+  --cat-1: #00805b; /* green  */
+  --cat-2: #c2410c; /* orange */
+  --cat-3: #1d6fa3; /* blue   */
+  --cat-4: #a37a00; /* gold   */
+  --cat-5: #7e3f8f; /* plum   */
+
+  /* all-pairs safe subset, for dot and scatter forms only */
+  --cat-scatter-1: #00805b;
+  --cat-scatter-2: #c2410c;
+  --cat-scatter-3: #7e3f8f;
+
+  /* sequential ramp, single hue, light to dark. Ordinal use starts at seq-3. */
+  --seq-1: #cfe4dc;
+  --seq-2: #a3ccbf;
+  --seq-3: #6fb09c;
+  --seq-4: #3d9377;
+  --seq-5: #00805b;
+  --seq-6: #04624a;
+  --seq-7: #064436;
+
+  /* status. Reserved. Never reused as a series colour. Always with icon + label. */
+  --ok: #0ca30c;
+  --warn: #fab219;
+  --serious: #ec835a;
+  --critical: #d03b3b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) .viz {
+    color-scheme: dark;
+
+    --viz-surface: #161b18;
+    --viz-plane: #0e1210;
+    --viz-ink: #f2f4ee;
+    --viz-ink-2: #c2cac3;
+    --viz-muted: #8d968e;
+    --viz-grid: #262d28;
+    --viz-axis: #333b35;
+    --viz-ring: rgba(242, 244, 238, 0.14);
+
+    --cat-1: #1fa87e;
+    --cat-2: #e2551f;
+    --cat-3: #4d9bd4;
+    --cat-4: #a5851a;
+    --cat-5: #a578b8;
+
+    --cat-scatter-1: #1fa87e;
+    --cat-scatter-2: #e2551f;
+    --cat-scatter-3: #a578b8;
+
+    --seq-1: #0b3a2c;
+    --seq-2: #0f5140;
+    --seq-3: #146854;
+    --seq-4: #188069;
+    --seq-5: #1fa87e;
+    --seq-6: #4fbf9a;
+    --seq-7: #85d5ba;
+  }
+}
+
+:root[data-theme="dark"] .viz {
+  color-scheme: dark;
+
+  --viz-surface: #161b18;
+  --viz-plane: #0e1210;
+  --viz-ink: #f2f4ee;
+  --viz-ink-2: #c2cac3;
+  --viz-muted: #8d968e;
+  --viz-grid: #262d28;
+  --viz-axis: #333b35;
+  --viz-ring: rgba(242, 244, 238, 0.14);
+
+  --cat-1: #1fa87e;
+  --cat-2: #e2551f;
+  --cat-3: #4d9bd4;
+  --cat-4: #a5851a;
+  --cat-5: #a578b8;
+
+  --cat-scatter-1: #1fa87e;
+  --cat-scatter-2: #e2551f;
+  --cat-scatter-3: #a578b8;
+
+  --seq-1: #0b3a2c;
+  --seq-2: #0f5140;
+  --seq-3: #146854;
+  --seq-4: #188069;
+  --seq-5: #1fa87e;
+  --seq-6: #4fbf9a;
+  --seq-7: #85d5ba;
+}

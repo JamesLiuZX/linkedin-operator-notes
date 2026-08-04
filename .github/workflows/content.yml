@@ -5,10 +5,14 @@ on:
     paths:
       - "posts/**"
       - "articles/**"
+      - "content/**"
       - "scripts/**"
       - "site/**"
+      - "package.json"
+      - "vercel.json"
   push:
     branches: [master]
+  workflow_dispatch:
 
 jobs:
   check:
@@ -27,7 +31,11 @@ jobs:
       - name: Quality gate (drafts, advisory)
         run: node scripts/content-check.mjs --strict --warn-only
 
-      - run: node scripts/publish/index.mjs --dry-run --scheduled
+      - name: Schedule integrity
+        run: node scripts/schedule-check.mjs
+
+      - name: Publisher dry run
+        run: node scripts/publish/index.mjs --dry-run --scheduled
 
       # Catches a diagram added to articles/assets/ without the served copy.
       - name: Figures mirrored into the site
@@ -35,8 +43,21 @@ jobs:
           node scripts/build-apps.mjs
           git diff --exit-code --stat -- site/public \
             || (echo "::error::site/public is stale. Run npm run apps and commit." && exit 1)
+
       - run: npm --prefix site ci
+
+      # The site reads gate scores and uses them to decide what is publishable,
+      # so they are regenerated from the content before either build.
       - run: node scripts/gate-scores.mjs
-      - run: BASE_PATH=/linkedin-operator-notes/ npm --prefix site run build
-      - name: SPA fallback
+
+      # Root-relative build, which is what Vercel serves.
+      - name: Build (Vercel layout)
+        run: npm --prefix site run build && node scripts/build-seo.mjs
+
+      # Subpath build, which is what GitHub Pages serves. Both must compile so
+      # switching hosts is never a surprise.
+      - name: Build (Pages layout)
+        run: BASE_PATH=/linkedin-operator-notes/ npm --prefix site run build
+
+      - name: SPA fallback for Pages
         run: cp site/dist/index.html site/dist/404.html

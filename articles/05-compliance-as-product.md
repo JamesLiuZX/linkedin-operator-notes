@@ -70,7 +70,23 @@ When teams treat structure as "legal will decide," they accidentally treat the c
 
 **What could be:** a listing bar that includes settle clarity, eligibility, and marketing constraints before creative gets excited.
 
-**Operator test:** Can you explain, in one breath, who can trade this, how it resolves, and what you are allowed to say about it publicly? If any answer is "we'll figure it out," the market is not ready. Your campaign is early.
+**Operator test:** can you explain in 1 breath who can trade this, how it resolves, and what you are allowed to say about it publicly? If any of the 3 answers is "we'll figure it out," the market is not ready and the campaign is early.
+
+---
+
+### What "moving target" actually looks like
+
+Abstractions let people nod without changing anything, so here is the real calendar for a single contract type in the United States.
+
+The Third Circuit ruled for Kalshi on 7 April 2026, holding sports event contracts are swaps under the Commodity Exchange Act and therefore federally preempted. The Ninth Circuit heard Nevada's appeal on 16 April 2026, 9 days later, and the panel did not obviously read it the same way.
+
+Around those 2 dates: the CFTC sued Arizona, Connecticut and Illinois on 2 April 2026 to block state enforcement. A Tennessee court converted a restraining order into a preliminary injunction on 19 February 2026. A Maryland court had denied Kalshi the same relief on 1 August 2025, finding state gaming authority could coexist with CFTC oversight. On 10 June 2026 the CFTC issued a new proposed rule revising Rule 40.11.
+
+6 dates, 18 months, 1 contract type, and 2 federal appeals courts that disagree.
+
+Read that as a product requirement rather than as news. It means the mapping from jurisdiction to what you may list is data that changes mid-quarter, not configuration you set at launch. A schema that assumes the mapping is stable will be wrong on a schedule.
+
+Which is where I got it wrong. I designed a market model where jurisdiction was a launch-day config flag rather than a field on the market object. Retrofitting it cost roughly 3 months of engineering time that should have been 3 days of schema design, and the person who paid for that was an engineer who had not been in the room when I made the call.
 
 ---
 
@@ -97,13 +113,13 @@ This is the same family as the surprise trust surface. Compliance debt shows up 
 
 ### Speed vs clarity is a false choice
 
-Teams love a false war: ship fast and confuse people, or go slow and "be responsible."
+Teams love a false war. Ship fast and confuse people, or go slow and be responsible.
 
-The long-term brand choice is different. Ship with clear constraints. Clear does not mean slow forever. It means you do not train users to assume the product is arbitrary.
+The brand choice is a third thing: ship with clear constraints. Clear is not slow forever. It means you do not train users to assume the product is arbitrary.
 
-A confusing restriction without explanation spends trust. A delayed listing with a boring, honest settle story can earn it. The calendar is not the only clock. The trust balance is the other one, and it compounds in both directions.
+A confusing restriction with no explanation spends trust. A listing delayed 2 weeks with a boring honest settle story earns it. The calendar is 1 clock. The trust balance is the other, and it compounds both ways.
 
-Public-safe principle, no jurisdiction theater required: if your expansion creates product inconsistency users can feel, treat that feeling as a P0 UX bug, not as a legal side effect.
+If expansion creates inconsistency users can feel, treat that feeling as a P0 UX bug rather than a legal side effect.
 
 ---
 
@@ -114,15 +130,15 @@ Public-safe principle, no jurisdiction theater required: if your expansion creat
 <figcaption>Legal speaks risk. Users speak outcomes. Eng speaks state machines. Someone has to make those sticky notes into one product.</figcaption>
 </figure>
 
-Legal speaks in risk. Users speak in outcomes. Eng speaks in state machines. Growth speaks in campaigns. Your job is the shared language.
+Legal speaks risk. Users speak outcomes. Eng speaks state machines. Growth speaks campaigns. The job is the shared language.
 
-That means bringing prototypes, not just decks. "Here's the settle explainer a normal person can read in thirty seconds." "Here's the empty state when a market is unavailable." "Here's the push copy after a restriction." "Here's what we will not claim in ads."
+Which means prototypes rather than decks. The settle explainer a normal person reads in 30 seconds. The empty state when a market is unavailable. The push copy after a restriction. The 3 claims you will not make in ads.
 
-Compliance partners who only see slideware become gates. Compliance partners who see flows become design partners. Early. Often. With the awkward edges visible.
+Compliance partners who see slideware become gates. Compliance partners who see flows become design partners.
 
-I have watched teams "align" in a meeting and still ship three different products: the one legal thought was approved, the one eng implemented, and the one growth promoted. Translation failed. The user got the collision.
+I have watched a team align in a meeting and ship 3 different products: the 1 legal thought was approved, the 1 eng implemented, and the 1 growth promoted. The user got the collision.
 
-**Operator test:** Before kickoff, write the user-facing sentences for list, restrict, resolve, and refuse. If legal, eng, and growth cannot sign the same four sentences, you do not have alignment. You have a future incident with better snacks.
+**Operator test:** before kickoff, write the user-facing sentences for list, restrict, resolve, and refuse. If legal, eng and growth cannot sign the same 4 sentences, that is not alignment. It is a future incident with better snacks.
 
 ---
 
@@ -145,17 +161,15 @@ Skip any one and you are borrowing trust from every clean market you have ever s
 
 ### What "design partner" looks like on a calendar
 
-Principle-level, no internal process dump required.
+4 weeks, principle-level, no process dump required.
 
-**Week −3:** constraints workshop with a strawman listing, not a vibe. What cannot ship. What can ship with copy changes. What needs a different market family.
+**Week 3 before ship:** constraints workshop against a strawman listing. What cannot ship, what ships with copy changes, what needs a different market family.
 
-**Week −2:** prototype the unhappy paths. Restricted state. Delayed resolve. Source-of-truth conflict. Fee visibility. The meeting should hurt a little. Hurt early is cheaper than hurt in the App Store reviews.
+**Week 2:** prototype the 4 unhappy paths. Restricted state, delayed resolve, source conflict, fee visibility. The meeting should hurt slightly, because hurting early is cheaper than hurting in App Store reviews.
 
-**Week −1:** freeze the four sentences (list, restrict, resolve, refuse). Campaign creative locked to those sentences. No "we'll soften it in review."
+**Week 1:** freeze the 4 sentences. Campaign creative locks to them, with no softening in review.
 
-**Ship week:** monitor trust tickets as hard as volume. Tags for price, resolution, surprise, eligibility. If you cannot tag it, you cannot learn.
-
-This is not bureaucracy worship. It is how you keep a venue alive across expansions without teaching users that your product is random.
+**Ship week:** monitor trust tickets as hard as volume, tagged for price, resolution, surprise and eligibility. What you cannot tag, you cannot learn.
 
 ---
 
@@ -177,25 +191,18 @@ This is also where AI feature requests collide with licensed surfaces. An agent 
 
 ### The Monday decision
 
-When a roadmap item is "launch this market family" or "expand this surface," do not start with the witty question.
+When the roadmap item is "launch this market family," do not start with the witty question.
 
-Start with structure. Who can trade. How it settles. What you can say. What the app shows when the answer is no. Invite compliance as a design partner with a prototype, not as a final boss with a PDF. Bring the unhappy paths. Make the meeting slightly uncomfortable on purpose.
+Start with structure. Who can trade, how it settles, what you may say, and what the app shows when the answer is no. Bring compliance a prototype rather than a PDF, and bring the unhappy paths. Make the meeting slightly uncomfortable on purpose.
 
-Picture the other world. You still ship. You still grow. But users meet clear constraints instead of silent ones. Legal is in the room when the copy is still cheap to change. Eng builds one product, not three colliding ones. The brand feels steady across uneven eligibility because the story is honest.
-
-That is how market products still exist next year.
+Then ask 1 schema question: is jurisdiction a field on the market object, or a flag? If it is a flag and you already have 2 jurisdictions, you are carrying the debt now. It cost me 3 months of somebody else's Q2.
 
 ---
 
 ### Takeaway
 
-Compliance is a product input. Treat it like one.
+Compliance is a product input, and the 6 dates above are why.
 
-Before the next listing or expansion:
+Before the next listing: structure first, so eligibility and settle and marketing claims are features. Narrate constraints, because silence feels extractive and clarity feels like a standard. Write the 4 shared sentences for list, restrict, resolve and refuse. Prototype the unhappy paths with compliance before the campaign, not after.
 
-1. **Structure first:** eligibility, settle, marketing claims are features
-2. **Narrate constraints:** silence feels extractive; clarity feels like a standard
-3. **Translate:** four shared sentences for list, restrict, resolve, refuse
-4. **Prototype unhappy paths** with compliance early, not after the campaign
-
-If you only remember one line, make it this: if you design the fun market first and ask legal later, you do not get a delay. You get a redesign.
+Design the fun market first and ask legal later and you do not get a delay. You get a redesign.

@@ -1,26 +1,37 @@
 # LinkedIn Operator Notes — James Liu
 
-Personal content system to build credibility, following, and opportunities around:
+A content system, four working demos, and a posting dashboard, in one repo.
+
+Positioning: *operator who ships prediction markets and AI products at scale, not
+an AI influencer.* Full argument in [00-positioning.md](./00-positioning.md).
+
+Three pillars:
 
 1. **Prediction markets as products** (primary)
 2. **AI that ships** (secondary)
 3. **Gen media with taste** (tertiary)
 
-Positioning: *Operator who ships prediction markets and AI products at scale — not an AI influencer.*
+---
 
-## How to use this repo
+## What is in here
 
-| File | Purpose |
-|------|---------|
-| [WRITING.md](./WRITING.md) | Voice contract + quality gate (`npm run content:check`) |
-| [REVIEW.md](./REVIEW.md) | Critique of this pipeline across 12 dimensions, and what changed because of it |
+| Path | What it is |
+|---|---|
+| [articles/](./articles/) | Canonical essays. Source of truth for everything else. |
+| [posts/](./posts/) | Short LinkedIn atoms, each derived from an essay or a tool. Never composed independently. |
+| [site/src/demos/](./site/src/demos/) | Interactive demos. Zero-key, client-side, deterministic. |
+| [site/src/dashboard/](./site/src/dashboard/) | The posting dashboard at `/dashboard`. |
+| [content/schedule.json](./content/schedule.json) | 12-week posting plan. The only place it lives. |
+| [research/SOURCES.md](./research/SOURCES.md) | Receipt bank. Every number in the content traces to a row here. |
+| [WRITING.md](./WRITING.md) | Voice contract. `npm run content:check` enforces the mechanical half. |
+| [REVIEW.md](./REVIEW.md) | Critique of this pipeline across 12 dimensions, and what changed because of it. |
+| [scripts/lib/analyze.mjs](./scripts/lib/analyze.mjs) | The one analyzer. CI, the site, and the desk all import it. |
 | [00-positioning.md](./00-positioning.md) | Positioning, pillars, library shape |
 | [PLAN-30-DAYS.md](./PLAN-30-DAYS.md) | First 14-day shipping milestone |
-| [PUBLISHING.md](./PUBLISHING.md) | Cross-post to X / Medium / Substack |
+| [PUBLISHING.md](./PUBLISHING.md) | Cross-posting to X, Medium, Substack |
 | [PATCHES.md](./PATCHES.md) | Architecture notes from the optimization pass |
+| [DEPLOY.md](./DEPLOY.md) | Vercel and Pages setup, and how to publish a draft |
 | [01-profile.md](./01-profile.md) | LinkedIn headline, about, featured |
-| [posts/](./posts/) | Short LinkedIn atoms (derived from essays) |
-| [articles/](./articles/) | Canonical essays (source of truth) |
 | [ideas/idea-bank.md](./ideas/idea-bank.md) | Idea backlog + spec'd build projects |
 | [ideas/demo-bank.md](./ideas/demo-bank.md) | Buildable demo backlog, ranked by ROI |
 | [tools/content-desk/](./tools/content-desk/) | Local evidence + gate UI |
@@ -28,43 +39,72 @@ Positioning: *Operator who ships prediction markets and AI products at scale —
 | [scripts/ledger/](./scripts/ledger/) | Calibration Ledger: the Pillar 1 demo, scored in public |
 | [apps/](./apps/) | Shipped browser demos (`npm run apps` builds them for Pages) |
 
+---
+
+## The demos
+
+Each one exists to make an argument checkable, and each is attached to an essay.
+They run entirely in the browser: no backend, no keys, no model calls, and the
+same inputs always give the same numbers.
+
+| Demo | Question it answers | Essay |
+|---|---|---|
+| [Resolution linter](./site/src/demos/resolution-linter.js) | Where is the dispute surface in this market's rules? 16 rules, 3 real markets that blew up. | 07 |
+| [Farm lab](./site/src/demos/farm-lab.js) | What does a liquidity rewards program actually buy per filled unit? | 04 |
+| [Liquidity lab](./site/src/demos/liquidity-lab.js) | What does "this market feels dead" cost to fix, in dollars? | 06 |
+| [Calibration lab](./site/src/demos/calibration-lab.js) | Is the agent better than the price it is trading against? | 08 |
+
+The linter is the flagship. It scores the real Polymarket Ukraine-minerals market
+at 3/100 and its rewrite at 95/100, which is the whole argument in one screen.
+
+---
+
 ## Daily commands
 
 ```bash
+npm run check                  # content gate + schedule integrity. Run before pushing.
 npm run content:check          # quality gate (CI enforces on non-drafts)
 npm run content:strict         # enforce on drafts too
 npm run linkedin:list          # the atom queue, with each post's visible fold
 npm run linkedin -- posts/01-resolution-risk-scanner.md   # exact paste + fold + char budget
-npm run site:install && npm run site
-npm run unsplash               # resolve figures: from article frontmatter
+npm run site:install && npm run site   # dev server, drafts visible
+npm run site:build             # production build + sitemap
+npm run unsplash               # resolve figures from article frontmatter
 npm run publish:list
-npm run publish:dry
-npm run desk:install && npm run desk   # content desk UI
+npm run publish:dry            # see what cross-posting would do
+npm run desk:install && npm run desk   # local evidence desk
 npm run apps                   # build apps/ into site/public/apps/
 npm run ledger -- --help       # calibration ledger CLI
 npm run risk                   # score market criteria by dispute risk
 npm run risk:test              # pin the rule table
 ```
 
-Canonical site URLs are path-based: `/{section}/{slug}` (not hash routes).
+---
 
 ## Adding an essay
 
-1. Create `articles/your-slug.md` with YAML frontmatter (`title`, `slug`, `section`, `status`, `figures`, …)
-2. Fill the evidence block (see WRITING.md)
-3. Run `npm run content:check articles/your-slug.md`
-4. Run `npm run unsplash` if you added `figures:`
-5. Preview with `npm run site` (drafts show in dev; only `published` on the live site)
+1. Create `articles/your-slug.md` with frontmatter (`title`, `slug`, `section`,
+   `status`, `summary`, `publishAt`).
+2. Fill the `<!-- EVIDENCE -->` block **before drafting**. If the `Cost:` field is
+   empty, the piece is not ready. That field is the difference between a post and
+   a press release.
+3. `npm run content:check articles/your-slug.md` until it passes.
+4. Add a row to `content/schedule.json`, then `npm run schedule:check`.
+5. Preview with `npm run site`.
 
-No edits to `site/src/main.js` required.
+No edits to `site/src/main.js` required. The registry is frontmatter-driven.
 
-## Start today
+## Adding a demo
 
-1. Read `PLAN-30-DAYS.md`, ship the library URL first
-2. Update LinkedIn profile using `01-profile.md`
-3. Post `posts/01-resolution-risk-scanner.md`. It is gate-clean and it points at
-   a tool anyone can run, which is the only kind of first post worth making
-4. Fill the `{{ }}` slots in posts 8 to 10. They are the pieces only you can finish
+1. Write `site/src/demos/your-demo.js` exporting `meta` and `mount(root)`.
+2. Add one line to `site/src/demos/index.js`.
+
+The route, the card, the sitemap entry, and the dashboard link all follow from
+that. If a chart is involved, read the palette note at the top of
+`site/src/viz/palette.css` first: the categorical order is a colorblind-safety
+mechanism, not decoration, and changing a hex means re-running the validator.
+
+---
 
 ## The one rule that makes the rest work
 
@@ -73,14 +113,29 @@ figure only you have, it carries a `{{ }}` slot and the gate refuses to publish
 it. A held draft is the correct state. A fabricated number is not, and on a
 public profile it is unrecoverable.
 
+## Nothing is published yet, on purpose
+
+All essays pass the gate and are `status: draft`, so the live site renders none
+of them. Publishing is a decision you make per piece, by editing frontmatter.
+See [DEPLOY.md](./DEPLOY.md).
+
+The demos and the dashboard are live regardless.
+
+---
+
 ## Success metrics
 
-- Profile views from PMs / founders / recruiters / trading firms
-- Inbound DMs that aren't spam
-- Real opportunities: intros, talks, advisory, roles
+Profile views from PMs, founders, recruiters and trading firms. Inbound DMs that
+are not spam. Real opportunities: intros, talks, advisory, roles.
 
-Ignore: friend group-chat reactions, vanity like counts.
+Ignore likes and group-chat reactions. DMs matter more than reach, and a demo
+someone reopens matters more than either.
+
+---
 
 ## Compliance
 
-Never post non-public metrics, unreleased roadmaps, customer data, or confidential Crypto.com / ByteDance details.
+Never post non-public metrics, unreleased roadmaps, customer data, or confidential
+Crypto.com / ByteDance details. Prefer principles, anonymized patterns, and
+publicly shareable outcomes. Every number in the published content comes from
+[research/SOURCES.md](./research/SOURCES.md), which is entirely public sources.

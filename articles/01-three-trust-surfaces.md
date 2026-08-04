@@ -157,15 +157,19 @@ Surprise is also where well-meant AI features go to die. A fluent explainer that
 
 ---
 
-### How the three surfaces talk to each other
+### What the leaks actually cost
 
-Teams love to fix one surface and ignore the coupling.
+Three surfaces, three price tags. None of these are hypothetical.
 
-A clean settle on a dead market still teaches that prices are cosplay. A liquid book with a surprise fee still feels extractive. A transparent fee table on a fuzzy resolution market still ends in a support queue that spends your trust balance. The surfaces are a system. Roadmaps that assign each to a different squad without a shared vocabulary will keep shipping local wins and global churn.
+**Price.** Sector open interest was $1.11B on 1 May 2026 against $8.6B of April volume, so about 13% of the headline is positions anyone is actually holding. Depth is rarer than the volume charts imply. Making it feel real has a number: to hold slippage at or under 0.5% for a $500 order at 50 cents, an LMSR needs a liquidity parameter of 49,750, which is a worst-case subsidy of $34,484 per market. List 40 of those and you have committed $1,379,374.
 
-That is why I want support tags and roadmap reviews to speak the same three words: price, resolution, surprise. If a ticket or a feature cannot point at one of them, ask whether it belongs in the core loop or in the decoration pile.
+**Resolution.** A Polymarket contract on the Ukraine minerals deal moved from 9% to 100% between 24 and 25 March 2025 and resolved YES with no agreement reached, after an attacker cast 5M UMA, about 25% of that round. A separate dispute over whether Strategy sold Bitcoin in May ran past $60M, and it turned on the word "significant" sitting in a sentence with no test in it. A Wall Street Journal investigation in May 2026 found that in most disputed markets more than half the votes came from the 10 largest wallets, and at least 60% of active UMA voters could be linked to live Polymarket accounts.
 
-Campaigns amplify the system you already have. They do not invent a better one.
+**Surprise.** No public number, which is the point. It shows up as support tickets per 1,000 users and nobody publishes that.
+
+The surfaces are 1 system. A clean settle on a dead market still teaches that prices are cosplay. A liquid book with a surprise fee still feels extractive. Assign the 3 to different squads without a shared vocabulary and you ship local wins and global churn.
+
+So support tags and roadmap reviews should speak the same 3 words: price, resolution, surprise. A ticket that cannot point at 1 of them belongs in the decoration pile.
 
 ---
 
@@ -176,34 +180,28 @@ Campaigns amplify the system you already have. They do not invent a better one.
 <figcaption>Tuesday. No parade. No final. Just the product you actually built.</figcaption>
 </figure>
 
-Campaigns amplify whatever you already are. Big events make that obvious. The stadium fills, the charts look like product-market fit, then Tuesday shows up.
+Campaigns amplify whatever you already are. June 2026 made that obvious: Kalshi and Polymarket cleared $44.8B combined, the charts looked like product-market fit, and then the tournament ended.
 
-If Tuesday is empty, you didn’t build a venue. You rented a crowd.
+If Tuesday is empty, you did not build a venue. You rented a crowd.
 
-So when a roadmap item shows up (new game mode, new reward, new tab, new AI wrapper), I ask one thing:
+So when a roadmap item shows up, new game mode, new reward, new tab, new AI wrapper, I ask 1 thing.
 
 Does this make prices feel more real, settles feel cleaner, or the app feel less surprising?
 
-If not, it’s probably decoration for a spike. Decks are fine. Just don’t confuse them with the work that keeps the person who lost fairly and still opened the app next week.
+If not, it is decoration for a spike.
 
-A useful follow-up in the same meeting: name which surface gets worse if we ship this half-finished. Growth features often improve a dashboard while quietly taxing surprise or resolution. Make that tradeoff speakable. Unspoken tradeoffs become user stories with one-star endings.
+The follow-up question in the same meeting is the useful one: name which of the 3 surfaces gets worse if we ship this half-finished. Growth features routinely improve a dashboard while quietly taxing surprise or resolution, and an unspoken tradeoff becomes a 1-star user story 6 weeks later.
 
-Picture the other world for a second. Fewer markets, each one exit-able. Settles so plain they bore Twitter. An app that never flinches after the tap. Growth still matters. It just stops being a coat of paint on a hole.
+The other world is not exotic. Fewer markets, each one exit-able at $500. Settles plain enough to bore Twitter. An app that does not flinch after the tap.
 
-That person who lost fairly and came back? They’re not a metric. They’re the proof you built something that deserves a second session.
-
-That person is the whole game. Everyone else is traffic.
+The person who lost fairly and came back is not a metric. They are proof you built something worth a second session.
 
 ---
 
 ### Takeaway
 
-Users don’t churn because they lost. They churn because the venue felt uneven.
+Users do not churn because they lost. They churn because the venue felt uneven.
 
-Before you ship the next growth idea, pressure-test the three surfaces:
+Pressure-test 3 things before the next growth idea. Can someone enter and exit this market at size? Could a non-lawyer explain the settle in 30 seconds? Where can the app still surprise someone after they have committed?
 
-1. **Price:** Does this market feel fair to enter and exit?
-2. **Resolution:** Could a non-lawyer explain how it settles in 30 seconds?
-3. **Surprise:** Where might the app feel extractive after someone has already committed?
-
-If you only remember one line, make it this: build for the user who lost money fairly and still came back. That cohort is the only one worth growing.
+Build for the user who lost money fairly and came back anyway. That cohort is the only one worth growing.
