@@ -8,6 +8,8 @@
 //   resolve: { alias: { '@lib': path.resolve(__dirname, '../scripts/lib') } }
 
 import { parseFrontmatter } from "@lib/frontmatter.mjs";
+import { draftBody, firstCommentBlock, fold } from "@lib/linkedin.mjs";
+import GATE from "./gate-scores.json";
 
 const articleFiles = import.meta.glob("../../articles/*.md", {
   query: "?raw",
@@ -56,10 +58,19 @@ function build(files, kind) {
       tags: data.tags || [],
       section: data.section || "notes",
       series: data.series || "",
+      pillar: data.pillar || "",
+      derivedFrom: data.derivedFrom || "",
       summary: data.summary || excerpt(body),
       figure: data.figure || data.hero || null,
       heroAlt: data.heroAlt || "",
       readingMinutes: Math.max(1, Math.round(body.split(/\s+/).length / 225)),
+      // An atom's publishable body is the Draft section. Everything above it is
+      // notes to the operator and must never reach a reader.
+      draft: kind === "post" ? draftBody(body) : "",
+      firstComment: kind === "post" ? firstCommentBlock(body) : "",
+      fold: kind === "post" ? fold(draftBody(body)) : null,
+      chars: kind === "post" ? draftBody(body).length : 0,
+      gate: GATE[slug] || null,
       body,
       frontmatter: data,
       raw,
@@ -67,17 +78,18 @@ function build(files, kind) {
   });
 }
 
-// Only 'published' renders on the live site. In DEV, show drafts too.
-const VISIBLE = new Set(["published", "scheduled", "compliance-checked"]);
 const isDev = import.meta.env?.DEV;
 
+// What goes public is decided by the gate, not by a status field a human forgot
+// to update. A piece carrying an unfilled {{ }} slot is unfinished by
+// definition, and an unfinished piece on a public URL costs more than an empty
+// section does. Drafts without holes still render, marked as drafts.
 const all = [...build(articleFiles, "article"), ...build(postFiles, "post")]
   .filter((item) => {
     if (item.path.toLowerCase().includes("readme")) return false;
     if (isDev) return true;
-    return VISIBLE.has(item.status) || item.status === "published";
+    return !item.gate?.hasHoles;
   })
-  .filter((item) => item.kind === "article" || isDev)
   .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
 
 export const ARTICLES = all.filter((i) => i.kind === "article");

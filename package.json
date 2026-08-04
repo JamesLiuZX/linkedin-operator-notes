@@ -9,9 +9,9 @@
     "linkedin": "node scripts/linkedin.mjs",
     "linkedin:list": "node scripts/linkedin.mjs --list",
     "unsplash": "node scripts/fetch-unsplash.mjs",
-    "site": "npm --prefix site run dev",
+    "site": "node scripts/gate-scores.mjs && npm --prefix site run dev",
     "site:install": "npm --prefix site install",
-    "site:build": "npm --prefix site run build",
+    "site:build": "node scripts/gate-scores.mjs && node scripts/build-apps.mjs && npm --prefix site run build",
     "publish": "node scripts/publish/index.mjs",
     "publish:dry": "node scripts/publish/index.mjs --dry-run --scheduled",
     "publish:list": "node scripts/publish/index.mjs --list",
@@ -22,7 +22,8 @@
     "ledger": "node scripts/ledger/index.mjs",
     "ledger:test": "node scripts/ledger/selftest.mjs",
     "risk": "node tools/resolution-risk/scan.mjs",
-    "risk:test": "node tools/resolution-risk/test.mjs"
+    "risk:test": "node tools/resolution-risk/test.mjs",
+    "site:data": "node scripts/gate-scores.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0"

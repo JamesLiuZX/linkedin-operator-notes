@@ -36,6 +36,7 @@ jobs:
           git diff --exit-code --stat -- site/public \
             || (echo "::error::site/public is stale. Run npm run apps and commit." && exit 1)
       - run: npm --prefix site ci
+      - run: node scripts/gate-scores.mjs
       - run: BASE_PATH=/linkedin-operator-notes/ npm --prefix site run build
       - name: SPA fallback
         run: cp site/dist/index.html site/dist/404.html
