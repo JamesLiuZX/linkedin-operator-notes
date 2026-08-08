@@ -9,6 +9,7 @@
 
 import { parseFrontmatter } from "@lib/frontmatter.mjs";
 import { draftBody, firstCommentBlock, fold } from "@lib/linkedin.mjs";
+import { SECTIONS } from "@lib/sections.mjs";
 import GATE from "./gate-scores.json";
 
 const articleFiles = import.meta.glob("../../articles/*.md", {
@@ -140,28 +141,7 @@ export function byPath(repoPath) {
 /** Every parsed file regardless of status. Dashboard only. */
 export const ALL_INCLUDING_DRAFTS = everything;
 
-export const SECTIONS = [
-  {
-    id: "markets",
-    title: "Market design",
-    blurb: "Resolution, liquidity, incentives, and what breaks when real money shows up.",
-  },
-  {
-    id: "agents",
-    title: "Agents on rails",
-    blurb: "LLMs pointed at systems that have consequences.",
-  },
-  {
-    id: "shipping",
-    title: "Shipping",
-    blurb: "Zero to one inside a regulated exchange.",
-  },
-  {
-    id: "notes",
-    title: "Field notes",
-    blurb: "Shorter observations from the desk.",
-  },
-];
+export { SECTIONS };
 
 export function bySection() {
   return SECTIONS.map((s) => ({ ...s, items: all.filter((i) => i.section === s.id) })).filter(

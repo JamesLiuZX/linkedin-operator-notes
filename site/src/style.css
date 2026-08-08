@@ -136,6 +136,44 @@
   margin: clamp(3rem, 7vw, 5rem) 0 0;
 }
 
+.idx-group {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+}
+
+.idx-group:first-child {
+  margin-top: 0;
+}
+
+.demo-group + .demo-group {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+}
+
+.idx-group-head,
+.demo-group .idx-group-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1.5rem;
+  flex-wrap: wrap;
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--ink);
+}
+
+.idx-group-blurb {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  max-width: 40ch;
+}
+
+@media (min-width: 40rem) {
+  .idx-group-blurb {
+    text-align: right;
+  }
+}
+
 .idx > .label {
   display: block;
   padding-bottom: 0.7rem;
