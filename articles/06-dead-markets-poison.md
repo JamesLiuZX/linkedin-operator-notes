@@ -5,7 +5,7 @@ author: James Liu
 series: Market Ops Notes
 section: markets
 summary: "Thin inventory teaches users to distrust every mid. Listing bars and death plans are product work."
-status: draft
+status: compliance-checked
 publishAt: 2026-09-15T01:00:00Z
 platforms: twitter, medium, substack
 tags: markets, liquidity, listings

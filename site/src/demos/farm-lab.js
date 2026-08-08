@@ -21,7 +21,12 @@ export const meta = {
   tagline: "Move the sliders until your rewards program is buying nothing.",
   section: "markets",
   pillar: "Market design",
-  essay: "04-rewards-vs-farming",
+  // 04-rewards-vs-farming is the personal-experience essay this demo was
+  // originally scoped for; it stays held pending evidence only the author has.
+  // 10-the-metric-is-the-alibi is a second, fully public companion piece built
+  // entirely from this demo's own deterministic run, so the "read the essay"
+  // link below has somewhere to go in the meantime.
+  essay: "10-the-metric-is-the-alibi",
   blurb:
     "A liquidity-rewards simulator built on Polymarket's published quadratic scoring rule. Shows the number nobody reports: dollars paid per dollar of liquidity that actually filled.",
   buildNote:

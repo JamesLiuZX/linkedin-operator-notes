@@ -5,7 +5,7 @@ author: James Liu
 series: Build Notes
 section: agents
 summary: "AI demos steal roadmaps. Bounded autonomy is the adult version."
-status: draft
+status: compliance-checked
 publishAt: 2026-08-19T01:00:00Z
 platforms: twitter, medium, substack
 tags: ai, agents, product

@@ -69,9 +69,6 @@
   padding: 0 var(--pad);
 }
 
-.mono {
-  font-family: var(--mono);
-}
 
 .label {
   font-family: var(--mono);
@@ -619,45 +616,15 @@
   color: var(--pine);
 }
 
-/* —— Demos —— */
-.demo-card {
-  min-height: 140px;
-  background: rgba(26, 58, 47, 0.9);
-}
-
-.demo-card .series,
-.demo-card h2,
-.demo-card .meta {
-  color: #f3f5f1;
-}
+/* .demo-card's real definition lives in viz.css (light card, border, hover
+   lift). This used to also carry a dark-hero-photo treatment left over from
+   an earlier design; it made every demo card title render near-invisible
+   (off-white text with nothing dark behind it) and has been removed. */
 
 .demo-header p {
   max-width: 52ch;
 }
 
-.demo-mount {
-  max-width: var(--wide);
-  margin: 0 auto;
-  padding: 0 1.25rem 5rem;
-}
-
-.restyle-lab {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.restyle-controls {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 1rem;
-  align-items: end;
-}
-
-.restyle-field {
-  display: grid;
-  gap: 0.35rem;
-  font-size: 0.85rem;
-}
 
 .restyle-field > span {
   font-family: "IBM Plex Mono", monospace;
@@ -667,27 +634,6 @@
   color: var(--muted);
 }
 
-.restyle-field select,
-.restyle-field textarea {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.85rem;
-  padding: 0.55rem 0.65rem;
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid var(--line);
-  color: var(--ink);
-  resize: vertical;
-}
-
-.restyle-field-wide {
-  grid-column: 1 / -1;
-}
-
-.restyle-checkbox {
-  flex-direction: row;
-  align-items: center;
-  display: flex;
-  gap: 0.5rem;
-}
 
 .restyle-checkbox input {
   width: 1rem;
@@ -705,18 +651,6 @@
   font-size: 0.8rem;
 }
 
-.restyle-storyboard {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 0.75rem;
-}
-
-.restyle-frame {
-  width: 100%;
-  height: auto;
-  border: 1px solid var(--line);
-  background: #111;
-}
 
 .restyle-frame .frame-label {
   fill: #f3f5f1;
@@ -737,30 +671,14 @@
   font-size: 10px;
 }
 
-.restyle-prompt-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
-}
 
 .restyle-prompt-box,
 .restyle-cli {
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.4);
+  background: var(--card);
   padding: 0.85rem;
 }
 
-.restyle-prompt-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.5rem;
-}
 
 .restyle-prompt-head button {
   font-family: "IBM Plex Mono", monospace;
@@ -823,10 +741,14 @@ body {
 
 body {
   min-height: 100vh;
+  /* All three stops are tokens now. They previously hardcoded light hex at
+     0% and 100% with only the 35% stop themed, so a dark-mode page taller
+     than one screen faded back to a pale background by the time a reader
+     scrolled past the first section, mid-content, on every long page. */
   background:
     radial-gradient(1200px 600px at 10% -10%, rgba(47, 107, 85, 0.18), transparent 55%),
     radial-gradient(900px 500px at 100% 0%, rgba(139, 58, 47, 0.1), transparent 50%),
-    linear-gradient(180deg, #eef1ea 0%, var(--paper) 35%, #dde3d8 100%);
+    linear-gradient(180deg, var(--paper) 0%, var(--paper) 35%, var(--paper-2) 100%);
 }
 
 a {
@@ -883,7 +805,7 @@ a:hover {
   color: var(--ink-soft);
   border: 1px solid var(--line);
   padding: 0.35rem 0.65rem;
-  background: rgba(255, 255, 255, 0.35);
+  background: var(--card);
 }
 
 .section-chip span {
@@ -932,7 +854,7 @@ a:hover {
   position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.45);
+  background: var(--card);
   text-decoration: none;
   color: inherit;
   min-height: 220px;
@@ -1035,7 +957,7 @@ a:hover {
   gap: 1rem;
   padding: 0.85rem 1.25rem;
   backdrop-filter: blur(10px);
-  background: rgba(232, 235, 228, 0.82);
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
   border-bottom: 1px solid var(--line);
 }
 
@@ -1082,6 +1004,17 @@ a:hover {
   background:
     linear-gradient(180deg, rgba(10, 14, 12, 0.15), rgba(10, 14, 12, 0.78)),
     radial-gradient(800px 400px at 20% 20%, rgba(47, 107, 85, 0.28), transparent 60%);
+}
+
+/* No essay has to have bought or drawn a photo to publish. Pieces with no
+   figure get a plain dark field instead of an empty <img> and a broken alt
+   tag; .veil still lays its glow over the top, so the two treatments read
+   as the same family rather than as one being a fallback for the other. */
+.hero.no-photo {
+  background:
+    radial-gradient(900px 480px at 15% 12%, rgba(47, 107, 85, 0.4), transparent 62%),
+    radial-gradient(700px 420px at 92% 88%, rgba(139, 58, 47, 0.16), transparent 58%),
+    linear-gradient(155deg, #16241d 0%, #0d1411 60%, #101a15 100%);
 }
 
 .hero .copy {
@@ -1241,17 +1174,6 @@ a:hover {
 }
 
 /* —— Demos —— */
-.demo-card {
-  min-height: 140px;
-  background: rgba(26, 58, 47, 0.9);
-}
-
-.demo-card .series,
-.demo-card h2,
-.demo-card .meta {
-  color: #f3f5f1;
-}
-
 .demo-header p {
   max-width: 52ch;
 }
@@ -1269,7 +1191,7 @@ a:hover {
 
 .restyle-controls {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1rem;
   align-items: end;
 }
@@ -1293,10 +1215,18 @@ a:hover {
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.85rem;
   padding: 0.55rem 0.65rem;
-  background: rgba(255, 255, 255, 0.55);
+  background: var(--card);
   border: 1px solid var(--line);
   color: var(--ink);
   resize: vertical;
+  width: 100%;
+  min-width: 0;
+}
+
+.restyle-field select {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .restyle-field-wide {
@@ -1367,7 +1297,7 @@ a:hover {
 .restyle-prompt-box,
 .restyle-cli {
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.4);
+  background: var(--card);
   padding: 0.85rem;
 }
 

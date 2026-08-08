@@ -5,7 +5,7 @@ author: James Liu
 series: Market Ops Notes
 section: agents
 summary: "An unaided frontier model forecasts worse than the market and worse than the general public. What closes the gap is not a bigger model."
-status: draft
+status: compliance-checked
 publishAt: 2026-09-01T01:00:00Z
 platforms: twitter, medium, substack
 tags: agents, forecasting, calibration

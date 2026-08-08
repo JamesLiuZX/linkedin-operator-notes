@@ -5,7 +5,7 @@ author: James Liu
 series: Market Ops Notes
 section: markets
 summary: "Most prediction market disputes are not oracle failures. They are writing failures, and they are catchable by a checklist."
-status: draft
+status: compliance-checked
 publishAt: 2026-08-04T01:00:00Z
 platforms: twitter, medium, substack
 tags: markets, resolution, product

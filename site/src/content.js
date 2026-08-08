@@ -81,8 +81,10 @@ function build(files, kind) {
 // Statuses that render publicly. A piece stays invisible until its status is
 // advanced by hand, which is the editorial gate, not an accident.
 // `ready` means the mechanical gate passes but a human has not signed it off,
-// so it deliberately does NOT appear here.
-const VISIBLE = new Set(["published", "scheduled", "compliance-checked"]);
+// so it deliberately does NOT appear here. Exported so the UI's "draft" chip
+// checks the exact same set as public visibility rather than a second,
+// independently-maintained list that can silently drift from this one.
+export const VISIBLE = new Set(["published", "scheduled", "compliance-checked"]);
 const isDev = import.meta.env?.DEV;
 
 /**

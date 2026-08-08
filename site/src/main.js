@@ -1,16 +1,23 @@
-import "@fontsource/syne/700.css";
-import "@fontsource/syne/800.css";
-import "@fontsource/source-serif-4/400.css";
-import "@fontsource/source-serif-4/600.css";
-import "@fontsource/source-serif-4/400-italic.css";
-import "@fontsource/ibm-plex-mono/400.css";
-import "@fontsource/ibm-plex-mono/500.css";
+// Latin-subset imports only. The flat "700.css" style import pulls every
+// unicode-range subset fontsource ships (latin, latin-ext, cyrillic,
+// cyrillic-ext, greek, vietnamese) -- ~9 font files per weight for a site
+// that is English-only. The browser only ever downloads the range it needs,
+// but the CSS still carries every @font-face declaration, and Vite still
+// treats each referenced file as a build asset. latin-*.css cuts each weight
+// from 9 files to 1.
+import "@fontsource/syne/latin-700.css";
+import "@fontsource/syne/latin-800.css";
+import "@fontsource/source-serif-4/latin-400.css";
+import "@fontsource/source-serif-4/latin-600.css";
+import "@fontsource/source-serif-4/latin-400-italic.css";
+import "@fontsource/ibm-plex-mono/latin-400.css";
+import "@fontsource/ibm-plex-mono/latin-500.css";
 import "./style.css";
 import "./viz/palette.css";
 import "./viz/viz.css";
 import { marked } from "marked";
 import manifest from "../../articles/unsplash-manifest.json";
-import { ARTICLES, POSTS, bySlug, bySection, SECTIONS } from "./content.js";
+import { ARTICLES, POSTS, bySlug, bySection, SECTIONS, VISIBLE } from "./content.js";
 import { DEMOS, demoBySlug } from "./demos/index.js";
 import { currentPath, navigate, onRoute } from "./router.js";
 import { renderDashboard } from "./dashboard/index.js";
@@ -102,7 +109,9 @@ function route(path = currentPath()) {
   return renderHome();
 }
 
-const isDraftItem = (i) => i.status !== "ready" && i.status !== "published";
+// Same rule public visibility uses. "ready" (gate passes, no human sign-off
+// yet) is deliberately treated as a draft here too.
+const isDraftItem = (i) => !VISIBLE.has(i.status);
 
 /** The gate's own verdict on a piece, set in mono so the digits line up. */
 function scoreBadge(item) {
@@ -193,14 +202,13 @@ function renderHome() {
         cards ?
         `<span class="label">Essays</span>` + cards :
         `<div class="empty-lib">
-           <h3>No essays are published yet.</h3>
-           <p>Nine are written and pass the quality gate. They stay invisible until their <code>status:</code> frontmatter is advanced past <code>draft</code>, which is deliberate: the gate is editorial, not mechanical.</p>
-           <p>To read them all on a preview deploy, set <code>VITE_SHOW_DRAFTS=1</code>. To publish one, set its status to <code>compliance-checked</code>.</p>
-           <p>The demos above need no such approval and are live now.</p>
+           <h3>The essays are being held for a final read.</h3>
+           <p>Nine pieces already pass an automated quality gate on evidence, specificity, and voice. None of that replaces a human deciding a piece is ready to put a name on, so the writing publishes on its own schedule while the demos above ship as soon as they work.</p>
+           <p>Check back soon, or start with something you can use today.</p>
          </div>`
       }</section>
       <p class="note">
-        Canonical paths: <code>/{section}/{slug}</code>. Demos run entirely in the browser, with no backend and no model calls.
+        Demos run entirely in the browser, with no backend and no model calls.
       </p>
     </main>
   `;
@@ -317,10 +325,10 @@ function renderArticle(article) {
       <nav class="topbar">
         <a href="${base}/">← All notes</a>
         <a class="brand" href="${base}/">Market Ops Notes</a>
-        <a href="${hero?.unsplashUrl || "https://unsplash.com"}" target="_blank" rel="noreferrer">Unsplash credit</a>
+        ${hero ? `<a href="${hero.unsplashUrl || "https://unsplash.com"}" target="_blank" rel="noreferrer">Unsplash credit</a>` : "<span></span>"}
       </nav>
-      <header class="hero">
-        <img src="${heroUrl}" alt="${escapeHtml(heroAlt)}" />
+      <header class="hero${heroUrl ? "" : " no-photo"}">
+        ${heroUrl ? `<img src="${heroUrl}" alt="${escapeHtml(heroAlt)}" />` : ""}
         <div class="veil"></div>
         <div class="copy">
           <div class="series">${escapeHtml(article.series || article.section)}</div>

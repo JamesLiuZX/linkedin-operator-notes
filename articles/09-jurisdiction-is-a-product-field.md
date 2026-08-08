@@ -5,7 +5,7 @@ author: James Liu
 series: Market Ops Notes
 section: shipping
 summary: "Two federal appeals courts disagree about the same contract. That is not a legal footnote, it is a schema decision you make once."
-status: draft
+status: compliance-checked
 publishAt: 2026-09-29T01:00:00Z
 platforms: twitter, medium, substack
 tags: shipping, compliance, regulation

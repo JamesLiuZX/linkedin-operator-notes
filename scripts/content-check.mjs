@@ -155,6 +155,10 @@ const STRONG_RECEIPTS = [
   [/\b\d{4}-\d{2}-\d{2}\b/, 'ISO date'],
   [/\bq[1-4]\s?(20\d\d|'\d\d)\b/i, 'quarter'],
   [/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+\d{1,2},?\s+20\d\d/i, 'calendar date'],
+  // Day-month-year order ("7 April 2026"), the international/legal-filing
+  // convention. Equally checkable; the month-first pattern above missed it
+  // outright, which failed an essay built entirely out of court-filing dates.
+  [/\b\d{1,2}\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\s+20\d\d/i, 'calendar date'],
   [/\b(in|since|during|by)\s+20\d\d\b/i, 'year anchor'],
   [/\b(i was wrong|got it wrong|it broke|we broke|didn'?t work|failed|lost|missed|regret|my mistake|shipped it anyway|had to roll back|i shipped a bug|i mispriced|i misread)\b/i, 'admission'],
   // First-person admissions of a gap. Narrow on purpose: "I have not" only
