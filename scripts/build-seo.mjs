@@ -15,6 +15,7 @@ import { join, dirname, extname, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseFrontmatter } from "./lib/frontmatter.mjs";
 import { SECTIONS as SECTION_DEFS } from "./lib/sections.mjs";
+import { VISIBLE_STATUSES } from "./lib/status.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "site", "dist");
@@ -36,8 +37,9 @@ function resolveBase() {
   return (picked || "").replace(/\/$/, "");
 }
 
-// Statuses the live site actually renders. Must match site/src/content.js.
-const LIVE = new Set(["published", "scheduled", "compliance-checked"]);
+// Statuses the live site actually renders, shared with site/src/content.js
+// via ./lib/status.mjs so the two cannot drift the way they just had.
+const LIVE = new Set(VISIBLE_STATUSES);
 
 async function articles() {
   const dir = join(ROOT, "articles");

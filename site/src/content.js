@@ -10,6 +10,7 @@
 import { parseFrontmatter } from "@lib/frontmatter.mjs";
 import { draftBody, firstCommentBlock, fold } from "@lib/linkedin.mjs";
 import { SECTIONS } from "@lib/sections.mjs";
+import { VISIBLE_STATUSES } from "@lib/status.mjs";
 import GATE from "./gate-scores.json";
 
 const articleFiles = import.meta.glob("../../articles/*.md", {
@@ -85,7 +86,9 @@ function build(files, kind) {
 // so it deliberately does NOT appear here. Exported so the UI's "draft" chip
 // checks the exact same set as public visibility rather than a second,
 // independently-maintained list that can silently drift from this one.
-export const VISIBLE = new Set(["published", "scheduled", "compliance-checked"]);
+// The set itself lives in @lib/status.mjs, shared with scripts/build-seo.mjs,
+// for the same reason.
+export const VISIBLE = new Set(VISIBLE_STATUSES);
 const isDev = import.meta.env?.DEV;
 
 /**
