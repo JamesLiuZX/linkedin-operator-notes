@@ -1,15 +1,17 @@
 // site/src/demos/slop-gate.js
 //
-// Paste anything. This runs the same specificity, rhythm, hook, and
+// Paste anything. This runs the same specificity, rhythm, hook, sourcing, and
 // tell-detection checks the posting dashboard runs on every draft in this
 // repo (scripts/lib/analyze.mjs), on whatever text you give it.
 //
-// Scoped honestly: it is not the full CI gate. The evidence block, the
-// unfilled-slot check, and the LinkedIn fold/hashtag checks are specific to
-// this repo's own frontmatter and publishing conventions, and do not mean
-// anything on a paragraph with no frontmatter. What runs here is the part
-// that travels: em dashes, LLM tells, hedges, hook strength, specificity
-// density, and whether anything in the text is actually checkable.
+// Scoped honestly: it is not the full CI gate. scripts/content-check.mjs
+// builds on the same shared function and adds 9 more checks, the evidence
+// block, unfilled slots, derivedFrom provenance, and the LinkedIn fold and
+// hashtag checks, all specific to this repo's own frontmatter and publishing
+// conventions. None of those mean anything on a paragraph with no
+// frontmatter, so they are left out here on purpose, not by accident: see
+// articles/15-a-checklist-not-a-model.md for the pass where "on purpose" and
+// "by accident" briefly stopped being distinguishable.
 
 import { analyze } from "@lib/analyze.mjs";
 import { statRow, esc, tableView } from "../viz/charts.js";
@@ -22,9 +24,9 @@ export const meta = {
   pillar: "AI & agents",
   essay: "15-a-checklist-not-a-model",
   blurb:
-    "The dashboard's own analyzer (scripts/lib/analyze.mjs), pointed at whatever you paste instead of this repo's drafts. Eleven checks: em dashes, LLM tells, hedge words, engagement bait, hook strength, specificity density, and receipts.",
+    "The dashboard's own analyzer (scripts/lib/analyze.mjs), pointed at whatever you paste instead of this repo's drafts. 12 checks: em dashes, LLM tells, hedge words, engagement bait, hook strength, specificity density, named sourcing, and receipts.",
   buildNote:
-    "No model call. It is the literal function the posting dashboard imports, not a reimplementation, so a score here matches a score there for the same text. It runs a narrower set of checks than the CI gate: the evidence block, unfilled-slot, and LinkedIn-fold checks are specific to this repo's frontmatter and are left out, since they mean nothing on a pasted paragraph.",
+    "No model call. It is the literal function the posting dashboard and the CI gate both import, not a reimplementation, so a score here matches what either of them would say about the same text. It runs a narrower set of checks than the full CI gate: the evidence block, unfilled-slot, provenance, and LinkedIn fold/hashtag checks are specific to this repo's frontmatter and are left out, since they mean nothing on a pasted paragraph.",
 };
 
 const EXAMPLES = [
