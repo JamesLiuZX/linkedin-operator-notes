@@ -3,6 +3,11 @@
 Post on your site first, then sync to **LinkedIn**, **Twitter/X**, **Medium**, and
 **Substack** on a schedule.
 
+This is the API-based pipeline: it auto-posts to X and leaves LinkedIn, Medium,
+and Substack as manual steps, for the reasons below. [BROWSER-POSTING.md](./BROWSER-POSTING.md)
+covers the other mechanism, a browser-automation agent that closes those three
+gaps by acting as you, already logged in.
+
 ## How it works
 
 ```

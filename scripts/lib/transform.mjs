@@ -1,3 +1,9 @@
+// scripts/lib/transform.mjs
+// Platform text transforms: X threads, Medium body cleanup, Substack HTML.
+// Zero dependencies, browser-safe, so the dashboard can render the exact same
+// ready-to-paste text the API-based publisher would send, not a second
+// reimplementation of the same formatting rules.
+
 const MAX_TWEET = 280;
 const HARD_MAX_TWEETS = 9;
 

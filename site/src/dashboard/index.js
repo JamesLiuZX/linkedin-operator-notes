@@ -10,6 +10,7 @@
 import schedule from "../../../content/schedule.json";
 import { byPath } from "../content.js";
 import { analyze } from "@lib/analyze.mjs";
+import { toThread, articleCanonicalUrl } from "@lib/transform.mjs";
 import { demoBySlug } from "../demos/index.js";
 import { statRow, meter, esc, fmt } from "../viz/charts.js";
 
@@ -27,14 +28,46 @@ const STATUS_TONE = {
 
 /* ------------------------------------------------------------------ derive */
 
+/**
+ * What a channel actually needs pasted somewhere, computed from the same
+ * source file and the same transform functions the API-based publisher
+ * would use. This is the one place "what do I copy for this row" is decided,
+ * so a browser-driven posting session and `npm run publish` never disagree
+ * about what a post says.
+ */
+function buildCopy(e, item, siteUrl) {
+  if (!item) return null;
+
+  if (e.channel === "linkedin" && item.kind === "post") {
+    return { kind: "linkedin", body: item.draft, comment: item.firstComment || "" };
+  }
+
+  if (e.channel === "x" && item.kind === "article") {
+    return { kind: "thread", tweets: toThread(item, siteUrl) };
+  }
+
+  if (e.channel === "site" && item.kind === "article") {
+    const platforms = (item.frontmatter?.platforms || []).map((p) => String(p).toLowerCase());
+    return {
+      kind: "site",
+      url: articleCanonicalUrl(siteUrl, item),
+      medium: platforms.includes("medium"),
+      substack: platforms.includes("substack"),
+    };
+  }
+
+  return null;
+}
+
 /** Join each schedule entry to its markdown asset and score it. */
-export function buildRows(today = new Date()) {
+export function buildRows(today = new Date(), siteUrl = "") {
   return schedule.entries.map((e) => {
     const item = e.asset ? byPath(e.asset) : null;
     const kind = e.asset?.startsWith("articles") ? "article" : "post";
     const quality = item ? analyze(item.raw, kind) : null;
     const when = new Date(`${e.date}T${e.time || "08:30"}:00+08:00`);
     const demo = e.demo ? demoBySlug(e.demo) : null;
+    const copy = buildCopy(e, item, siteUrl);
 
     return {
       ...e,
@@ -42,6 +75,7 @@ export function buildRows(today = new Date()) {
       demo,
       quality,
       when,
+      copy,
       isPast: when < today,
       // "At risk" is the only judgement this dashboard makes: a date that has
       // arrived with an asset that would not survive the gate.
@@ -74,7 +108,8 @@ let filters = { channel: "all", kind: "all", status: "all" };
 
 export function renderDashboard(mountEl, { basePath = "" } = {}) {
   const today = new Date();
-  const rows = buildRows(today);
+  const siteUrl = `${window.location.origin}${basePath}`;
+  const rows = buildRows(today, siteUrl);
 
   const upcoming = rows
     .filter((r) => !r.isPast && r.status !== "published")
@@ -211,17 +246,57 @@ export function renderDashboard(mountEl, { basePath = "" } = {}) {
   mountEl.querySelectorAll("[data-copy]").forEach((b) =>
     b.addEventListener("click", async () => {
       const row = rows.find((r) => r.id === b.dataset.copy);
-      if (!row?.item) return;
-      const body = row.item.body.replace(/<!--[\s\S]*?-->/g, "").trim();
+      const part = b.dataset.part || "";
+      if (!row?.copy) return;
+
+      let text = "";
+      if (row.copy.kind === "linkedin") text = part === "comment" ? row.copy.comment : row.copy.body;
+      else if (row.copy.kind === "thread") text = row.copy.tweets[Number(part.split(":")[1])] || "";
+      else if (row.copy.kind === "site") text = row.copy.url;
+      if (!text) return;
+
+      const original = b.textContent;
       try {
-        await navigator.clipboard.writeText(body);
+        await navigator.clipboard.writeText(text);
         b.textContent = "Copied";
       } catch {
         b.textContent = "Copy blocked";
       }
-      setTimeout(() => (b.textContent = "Copy body"), 1400);
+      setTimeout(() => (b.textContent = original), 1400);
     })
   );
+}
+
+/** The copy affordance for a row, shaped by its channel. Nothing here writes
+ * anything: it hands back exactly the text a human, or a browser-driven
+ * agent acting on a human's behalf, would need to paste, and nothing more. */
+function copyActions(r) {
+  if (!r.copy) return "";
+
+  if (r.copy.kind === "linkedin") {
+    return `
+      <button class="btn-ghost sm" data-copy="${esc(r.id)}" data-part="body">Copy post</button>
+      ${r.copy.comment ? `<button class="btn-ghost sm" data-copy="${esc(r.id)}" data-part="comment">Copy first comment</button>` : ""}
+    `;
+  }
+
+  if (r.copy.kind === "thread") {
+    return r.copy.tweets
+      .map(
+        (t, i) =>
+          `<button class="btn-ghost sm" data-copy="${esc(r.id)}" data-part="tweet:${i}">Copy tweet ${i + 1}/${r.copy.tweets.length}${t.length > 280 ? " (over 280)" : ""}</button>`
+      )
+      .join("");
+  }
+
+  if (r.copy.kind === "site") {
+    const bits = [`<button class="btn-ghost sm" data-copy="${esc(r.id)}" data-part="url">Copy link</button>`];
+    if (r.copy.medium) bits.push(`<span class="note-inline mono">Medium: medium.com/p/import</span>`);
+    if (r.copy.substack) bits.push(`<span class="note-inline mono">Substack: paste into a new post</span>`);
+    return bits.join("");
+  }
+
+  return "";
 }
 
 function slotCard(r, basePath) {
@@ -260,7 +335,7 @@ function slotCard(r, basePath) {
     ${r.notes ? `<p class="slot-notes">${esc(r.notes)}</p>` : ""}
     <div class="slot-actions">
       ${links.join("")}
-      ${r.item ? `<button class="btn-ghost sm" data-copy="${esc(r.id)}">Copy body</button>` : ""}
+      ${copyActions(r)}
     </div>
   </article>`;
 }

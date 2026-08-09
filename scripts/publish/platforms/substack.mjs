@@ -1,4 +1,4 @@
-import { substackHtmlFromMarkdown, articleCanonicalUrl } from "../transform.mjs";
+import { substackHtmlFromMarkdown, articleCanonicalUrl } from "../../lib/transform.mjs";
 import { checkPlatformConfig } from "../config.mjs";
 
 export function checkConfig(config) {

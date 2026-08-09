@@ -39,6 +39,15 @@ a unique key. Use the filename to disambiguate.
 | [10-farm-lab](./10-farm-lab.md) | markets | `articles/04` + demo | ready |
 | [11-calibration-lab](./11-calibration-lab.md) | agents | `articles/08` + demo | ready |
 | [12-liquidity-budget](./12-liquidity-budget.md) | markets | `articles/06` + demo | ready |
+| [13-restyle-lab](./13-restyle-lab.md) | media | `articles/11` + demo | ready |
+| [14-retention-curve](./14-retention-curve.md) | media | `articles/12` + demo | ready |
+| [15-workflow-roi](./15-workflow-roi.md) | growth | `articles/13` + demo | ready |
+| [16-reach-exit-tax](./16-reach-exit-tax.md) | growth | `articles/14` | ready |
+| [17-gate-drift](./17-gate-drift.md) | agents | `articles/15` + demo | ready |
+
+13 through 17 are the diversification pass's atoms, one per new essay (11-15). All follow
+the `## Draft` / `## First comment` shape below to the letter; a couple of the older atoms
+above it predate that convention and the gate flags them for it (`draft`, not blocking).
 
 The exact publish dates live in [`../content/schedule.json`](../content/schedule.json).
 

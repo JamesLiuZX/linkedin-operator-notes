@@ -21,7 +21,7 @@ import {
   listPendingHuman,
 } from "./state.mjs";
 import { runComplianceChecks, hasBlockingIssues } from "./compliance.mjs";
-import * as transform from "./transform.mjs";
+import * as transform from "../lib/transform.mjs";
 import { patchFrontmatter } from "../lib/frontmatter.mjs";
 import { publishToTwitter } from "./platforms/twitter.mjs";
 import { publishToMedium } from "./platforms/medium.mjs";

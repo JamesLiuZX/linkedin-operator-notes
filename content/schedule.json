@@ -2,7 +2,7 @@
   "$comment": "Source of truth for the posting dashboard. Times are Asia/Singapore. The dashboard reads this file directly; scripts/publish reads publishAt frontmatter on the asset. Keep the two in step by running npm run schedule:check.",
   "timezone": "Asia/Singapore",
   "startDate": "2026-08-03",
-  "weeks": 12,
+  "weeks": 13,
   "targetMix": {
     "$comment": "Per 4-week block. DELIBERATELY BELOW 00-positioning.md, which asks for 4 demos and 6-8 atoms a month. This plan ships 2 demos per 4 weeks because a demo built to the standard in site/src/demos takes most of a week, and weeks 1-4 also carry the existing essay backlog. Raise these numbers only after two demos have actually shipped on time; a target that is missed every month stops being a target. The 12-week plan totals 4 demos, 4 essays, 1 teardown.",
     "demo": 2,
@@ -281,6 +281,145 @@
       "hook": "What got likes, what got DMs, and why they were different pieces.",
       "status": "idea",
       "notes": "Publish the real numbers, including the ones that disappointed. That is the receipt."
+    },
+
+    {
+      "id": "w13-e11-site",
+      "week": 13, "date": "2026-08-08", "time": "07:00", "channel": "site",
+      "kind": "essay", "pillar": "media", "asset": "articles/11-the-scene-is-not-the-prompt.md",
+      "title": "The scene is not the prompt",
+      "hook": "Four video models shipped this year. Only one reads the audio cue you write into the prompt.",
+      "status": "published",
+      "notes": "Diversification pass: gen media & UGC. Ships with Restyle Lab."
+    },
+    {
+      "id": "w13-e11-linkedin",
+      "week": 13, "date": "2026-08-10", "time": "08:30", "channel": "linkedin",
+      "kind": "atom", "pillar": "media", "asset": "posts/13-restyle-lab.md",
+      "demo": "restyle-lab",
+      "title": "Three of four video models throw away your audio cue",
+      "hook": "Four video models shipped this year. Three of the four threw away the audio cue.",
+      "status": "ready",
+      "linkInComment": "/demos/restyle-lab"
+    },
+    {
+      "id": "w13-e11-x",
+      "week": 13, "date": "2026-08-10", "time": "09:15", "channel": "x",
+      "kind": "thread", "pillar": "media", "asset": "articles/11-the-scene-is-not-the-prompt.md",
+      "title": "Thread: the audio cue three models drop",
+      "hook": "Four video models shipped this season. Only one of them has a slot for the audio cue you write into the prompt.",
+      "status": "ready"
+    },
+
+    {
+      "id": "w13-e12-site",
+      "week": 13, "date": "2026-08-08", "time": "07:05", "channel": "site",
+      "kind": "essay", "pillar": "media", "asset": "articles/12-the-hook-rate-is-not-one-number.md",
+      "title": "The hook rate is not one number",
+      "hook": "A 30% hook rate is 'good' on Meta and barely 'baseline' on TikTok.",
+      "status": "published",
+      "notes": "Diversification pass: gen media & UGC. Ships with Retention Curve Lab."
+    },
+    {
+      "id": "w13-e12-linkedin",
+      "week": 13, "date": "2026-08-12", "time": "08:30", "channel": "linkedin",
+      "kind": "atom", "pillar": "media", "asset": "posts/14-retention-curve.md",
+      "demo": "retention-lab",
+      "title": "A 30% hook rate is elite on one platform and mediocre on another",
+      "hook": "A 30% hook rate is elite on one platform and barely passing on another. Same footage, same 30%.",
+      "status": "ready",
+      "linkInComment": "/demos/retention-lab"
+    },
+    {
+      "id": "w13-e12-x",
+      "week": 13, "date": "2026-08-12", "time": "09:15", "channel": "x",
+      "kind": "thread", "pillar": "media", "asset": "articles/12-the-hook-rate-is-not-one-number.md",
+      "title": "Thread: two platforms, two windows",
+      "hook": "Meta counts a hook at 3 seconds. TikTok counts it at 2. Same video, two different verdicts.",
+      "status": "ready"
+    },
+
+    {
+      "id": "w13-e13-site",
+      "week": 13, "date": "2026-08-08", "time": "07:10", "channel": "site",
+      "kind": "essay", "pillar": "growth", "asset": "articles/13-the-stopwatch-not-the-forecast.md",
+      "title": "The stopwatch, not the forecast",
+      "hook": "Developers forecast AI tools would make them 24% faster. A stopwatch measured 19% slower.",
+      "status": "published",
+      "notes": "Diversification pass: growth & AI workflows. Ships with Workflow ROI Lab."
+    },
+    {
+      "id": "w13-e13-linkedin",
+      "week": 13, "date": "2026-08-14", "time": "08:30", "channel": "linkedin",
+      "kind": "atom", "pillar": "growth", "asset": "posts/15-workflow-roi.md",
+      "demo": "workflow-roi-lab",
+      "title": "Developers felt 20% faster with AI. A stopwatch said 19% slower.",
+      "hook": "Developers using AI coding tools forecast they would finish 24% faster. A stopwatch measured 19% slower.",
+      "status": "ready",
+      "linkInComment": "/demos/workflow-roi-lab"
+    },
+    {
+      "id": "w13-e13-x",
+      "week": 13, "date": "2026-08-14", "time": "09:15", "channel": "x",
+      "kind": "thread", "pillar": "growth", "asset": "articles/13-the-stopwatch-not-the-forecast.md",
+      "title": "Thread: token cost is not the number",
+      "hook": "Token cost is rarely what decides an AI workflow's ROI. Review time is, and self-report is not a measurement of it.",
+      "status": "ready"
+    },
+
+    {
+      "id": "w13-e14-site",
+      "week": 13, "date": "2026-08-08", "time": "07:15", "channel": "site",
+      "kind": "essay", "pillar": "growth", "asset": "articles/14-reach-has-an-exit-tax.md",
+      "title": "Reach has an exit tax",
+      "hook": "A link in a LinkedIn post's body costs about 60% of its reach.",
+      "status": "published",
+      "notes": "Diversification pass: growth & AI workflows. No companion demo."
+    },
+    {
+      "id": "w13-e14-linkedin",
+      "week": 13, "date": "2026-08-17", "time": "08:30", "channel": "linkedin",
+      "kind": "atom", "pillar": "growth", "asset": "posts/16-reach-exit-tax.md",
+      "title": "A link in your post body costs about 60% of its reach",
+      "hook": "A link sitting in the body of a LinkedIn post costs roughly 60% of that post's reach.",
+      "status": "ready",
+      "linkInComment": "/growth/14-reach-has-an-exit-tax"
+    },
+    {
+      "id": "w13-e14-x",
+      "week": 13, "date": "2026-08-17", "time": "09:15", "channel": "x",
+      "kind": "thread", "pillar": "growth", "asset": "articles/14-reach-has-an-exit-tax.md",
+      "title": "Thread: delivery mechanics, not writing advice",
+      "hook": "An outbound link in a LinkedIn post's body costs roughly 60% of its reach. The fix changes nothing about what the post says.",
+      "status": "ready"
+    },
+
+    {
+      "id": "w13-e15-site",
+      "week": 13, "date": "2026-08-08", "time": "07:20", "channel": "site",
+      "kind": "essay", "pillar": "agents", "asset": "articles/15-a-checklist-not-a-model.md",
+      "title": "A checklist, not a model",
+      "hook": "Same 77-word post. 95/100 on one copy of this site's quality gate, 66/100 on another.",
+      "status": "published",
+      "notes": "Diversification pass: AI & agents. Ships with Slop Gate. Also fixes the drift it describes."
+    },
+    {
+      "id": "w13-e15-linkedin",
+      "week": 13, "date": "2026-08-19", "time": "08:30", "channel": "linkedin",
+      "kind": "atom", "pillar": "agents", "asset": "posts/17-gate-drift.md",
+      "demo": "slop-gate",
+      "title": "Same 77-word post. 95/100 on one tool, 66/100 on another.",
+      "hook": "Same 77-word post. 95 out of 100 on one copy of a quality-gate function in my own repo. 66 out of 100 on another.",
+      "status": "ready",
+      "linkInComment": "/demos/slop-gate"
+    },
+    {
+      "id": "w13-e15-x",
+      "week": 13, "date": "2026-08-19", "time": "09:15", "channel": "x",
+      "kind": "thread", "pillar": "agents", "asset": "articles/15-a-checklist-not-a-model.md",
+      "title": "Thread: I found a bug in my own quality gate",
+      "hook": "Same 77-word post, two scores from two copies of the same analyzer. I found the drift by accident and fixed it.",
+      "status": "ready"
     }
   ]
 }

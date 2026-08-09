@@ -21,7 +21,7 @@ Three pillars:
 | [posts/](./posts/) | Short LinkedIn atoms, each derived from an essay or a tool. Never composed independently. |
 | [site/src/demos/](./site/src/demos/) | Interactive demos. Zero-key, client-side, deterministic. |
 | [site/src/dashboard/](./site/src/dashboard/) | The posting dashboard at `/dashboard`. |
-| [content/schedule.json](./content/schedule.json) | 12-week posting plan. The only place it lives. |
+| [content/schedule.json](./content/schedule.json) | 13-week posting plan. The only place it lives. |
 | [research/SOURCES.md](./research/SOURCES.md) | Receipt bank. Every number in the content traces to a row here. |
 | [WRITING.md](./WRITING.md) | Voice contract. `npm run content:check` enforces the mechanical half. |
 | [REVIEW.md](./REVIEW.md) | Critique of this pipeline across 12 dimensions, and what changed because of it. |
@@ -29,6 +29,7 @@ Three pillars:
 | [00-positioning.md](./00-positioning.md) | Positioning, pillars, library shape |
 | [PLAN-30-DAYS.md](./PLAN-30-DAYS.md) | First 14-day shipping milestone |
 | [PUBLISHING.md](./PUBLISHING.md) | Cross-posting to X, Medium, Substack |
+| [BROWSER-POSTING.md](./BROWSER-POSTING.md) | The browser-agent posting prompt: LinkedIn, X, Medium, Substack from the dashboard |
 | [PATCHES.md](./PATCHES.md) | Architecture notes from the optimization pass |
 | [DEPLOY.md](./DEPLOY.md) | Vercel and Pages setup, and how to publish a draft |
 | [01-profile.md](./01-profile.md) | LinkedIn headline, about, featured |
