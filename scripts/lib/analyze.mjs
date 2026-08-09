@@ -1,12 +1,23 @@
 // scripts/lib/analyze.mjs
 //
-// THE analyzer. One implementation, three consumers:
-//   - scripts/content-check.mjs   (CLI + CI gate)
-//   - site/src/dashboard/*        (live scores in the posting dashboard)
-//   - tools/content-desk/*        (local evidence desk)
+// THE analyzer. One set of rule tables and one scoring formula, two consumers:
+//   - scripts/content-check.mjs   (CLI + CI gate) imports coreChecks() and
+//     scoreChecks() below and layers its own file-specific checks on top:
+//     the evidence block, unfilled slots, derivedFrom provenance, and the
+//     LinkedIn-native fold/length/hashtag/link checks. None of those mean
+//     anything on text with no frontmatter, so they stay there, not here.
+//   - site/src/dashboard/* and site/src/demos/slop-gate.js call analyze()
+//     directly, for a score on text that may have no frontmatter at all.
+//
+// This file used to claim exactly this "one implementation" and content-check.mjs
+// carried its own complete, independently maintained copy of every table and
+// function below, at a different scoring weight, with a different receipts
+// list, and missing a "vague sourcing" check entirely. The two had quietly
+// drifted apart; see articles/15-a-checklist-not-a-model.md for the writeup.
+// This merge is the actual fix: import from here, do not re-paste.
 //
 // Browser-safe: no node: imports, no fs, no process. Keep it that way, otherwise
-// the site build breaks and the desk silently drifts from CI again.
+// the site build breaks and the two copies can start drifting again.
 
 import { parseFrontmatter } from "./frontmatter.mjs";
 
@@ -41,6 +52,15 @@ export const BAD_OPENERS = [
   /^picture this/i, /^imagine/i, /^we all know/i,
 ];
 
+// Appeals to authority with no authority named. Worse than no citation: an
+// employer who cannot check "public reporting described sharp cool-downs"
+// discounts every number in the piece, including the ones you can defend.
+export const VAGUE_SOURCING = [
+  "public reporting", "reports suggest", "studies show", "research shows",
+  "it is widely", "many teams report", "secondary outlets", "industry data",
+  "sources indicate", "some estimates", "commonly cited",
+];
+
 export const SPECS = {
   post: { minWords: 150, maxWords: 350, minDensity: 5.0, maxHook: 12 },
   article: { minWords: 900, maxWords: 2200, minDensity: 6.0, maxHook: 15 },
@@ -65,7 +85,7 @@ export function words(text) {
   return text.split(/\s+/).filter((w) => /[a-z0-9]/i.test(w));
 }
 
-function stdev(nums) {
+export function stdev(nums) {
   if (nums.length < 2) return 0;
   const mean = nums.reduce((a, b) => a + b, 0) / nums.length;
   const v = nums.reduce((a, b) => a + (b - mean) ** 2, 0) / (nums.length - 1);
@@ -119,18 +139,55 @@ export function countSpecifics(text) {
   return spans;
 }
 
-const RECEIPT_PATTERNS = [
-  /\b\d+(\.\d+)?\s?%/,
-  /\$\s?[\d,.]+/,
-  /\bq[1-4]\b/i,
-  /\b(20\d\d)\b/,
-  /\b(i was wrong|got it wrong|it broke|we broke|didn'?t work|failed|lost|missed|regret|my mistake|shipped it anyway|had to roll back)\b/i,
+// A receipt is something a reader could check, or something that cost the
+// author to admit. "three surfaces" and "30 seconds" are neither, and an
+// earlier, looser version of this list counted them, which is how a piece
+// could score well with nothing in it a stranger could verify.
+export const STRONG_RECEIPTS = [
+  [/\$\s?[\d,.]+/, "money"],
+  [/\b\d+(\.\d+)?\s?%/, "percentage"],
+  [/\b\d{4}-\d{2}-\d{2}\b/, "ISO date"],
+  [/\bq[1-4]\s?(20\d\d|'\d\d)\b/i, "quarter"],
+  [/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+\d{1,2},?\s+20\d\d/i, "calendar date"],
+  // Day-month-year order ("7 April 2026"), the international/legal-filing
+  // convention. Equally checkable; the month-first pattern above missed it
+  // outright, which failed an essay built entirely out of court-filing dates.
+  [/\b\d{1,2}\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\s+20\d\d/i, "calendar date"],
+  [/\b(in|since|during|by)\s+20\d\d\b/i, "year anchor"],
+  [/\b(i was wrong|got it wrong|it broke|we broke|didn'?t work|failed|lost|missed|regret|my mistake|shipped it anyway|had to roll back|i shipped a bug|i mispriced|i misread)\b/i, "admission"],
+  // First-person admissions of a gap. Narrow on purpose: "I have not" only
+  // counts in first person, so "teams have not" cannot buy a receipt.
+  [/\bi (have not|had not|haven'?t|hadn'?t) \w+/i, "admission"],
+  [/\bwould have (shipped|published|posted|sent|listed)\b/i, "near miss"],
+  // A path or URL into something the reader can actually open and run.
+  [/\b(scripts|tools|apps|articles|posts|data)\/[\w./-]+/, "artifact path"],
+  [/https?:\/\/[^\s)]+/, "link"],
 ];
 
-export function analyze(raw, kind = "post") {
+export function strongReceipts(text) {
+  return STRONG_RECEIPTS.filter(([re]) => re.test(text)).map(([, label]) => label);
+}
+
+/** One weighting, used everywhere a checks array gets turned into a score. */
+export function scoreChecks(checks) {
+  const fails = checks.filter((c) => c.status === "fail").length;
+  const warns = checks.filter((c) => c.status === "warn").length;
+  return { fails, warns, score: Math.max(0, Math.round(100 - fails * 10 - warns * 4)) };
+}
+
+/**
+ * The checks that apply to any prose, a repo file or a pasted paragraph
+ * alike: no em dashes, ends with a Takeaway, no LLM tells, no manufactured
+ * triad, no engagement bait, a hook that lands, specificity density, a real
+ * receipt, a named source, sentence rhythm, hedge density, word count.
+ *
+ * @param {string} source  the publishable text: an article's body, or a
+ *        post's "## Draft" section, or arbitrary pasted text with neither
+ * @param {'post'|'article'} kind
+ */
+export function coreChecks(source, kind = "post") {
   const spec = SPECS[kind] || SPECS.post;
-  const { body } = parseFrontmatter(raw);
-  const text = body
+  const text = source
     .replace(/<!--[\s\S]*?-->/g, "") // evidence block never counts
     .replace(/^#{1,6}\s.*$/gm, "") // headings excluded from prose stats
     .trim();
@@ -160,8 +217,8 @@ export function analyze(raw, kind = "post") {
     dashes ? `${dashes} found. Replace with a period or a comma.` : "clean");
 
   const hasTakeaway =
-    /^\s*\*{0,2}takeaway\*{0,2}\s*:/im.test(body) ||
-    /^#{1,6}\s+\*{0,2}takeaway\*{0,2}\s*$/im.test(body);
+    /^\s*\*{0,2}takeaway\*{0,2}\s*:/im.test(source) ||
+    /^#{1,6}\s+\*{0,2}takeaway\*{0,2}\s*$/im.test(source);
   add("takeaway", "Ends with a Takeaway", hasTakeaway ? "pass" : "fail",
     hasTakeaway ? "present" : "add a Takeaway section or Takeaway: line at the end");
 
@@ -191,10 +248,16 @@ export function analyze(raw, kind = "post") {
   add("density", "Specificity density", density >= spec.minDensity ? "pass" : "fail",
     `${density.toFixed(1)} per 100 words (need ${spec.minDensity}). ${specifics.length} specifics in ${wc} words.`);
 
-  const receipts = RECEIPT_PATTERNS.filter((re) => re.test(text)).length;
-  add("receipts", "Has receipts", receipts ? "pass" : "fail",
-    receipts ? `${receipts} receipt patterns`
-      : "no number, date, or admission. This is the Cost field being empty.");
+  const receipts = strongReceipts(text);
+  add("receipts", "Has receipts", receipts.length ? "pass" : "fail",
+    receipts.length ? receipts.join(", ")
+      : "nothing checkable and nothing admitted. A bare count is not a receipt.");
+
+  // A named source with a link is evidence. "Public reporting described" is a
+  // shrug wearing evidence's clothes, and it discounts the claims either side.
+  const vague = VAGUE_SOURCING.filter((v) => lower.includes(v));
+  add("sourcing", "Named sources", vague.length ? "fail" : "pass",
+    vague.length ? `${vague.join(", ")}. Name the source and link it, or cut the claim.` : "clean");
 
   // warns
   const sd = stdev(lens);
@@ -209,15 +272,17 @@ export function analyze(raw, kind = "post") {
   add("length", "Word count", lenOk ? "pass" : "warn",
     `${wc} words (target ${spec.minWords} to ${spec.maxWords})`);
 
-  const fails = checks.filter((c) => c.status === "fail").length;
-  const warns = checks.filter((c) => c.status === "warn").length;
-  const score = Math.max(0, Math.round(100 - fails * 14 - warns * 5));
-
   return {
     checks,
-    score,
-    fails,
-    warns,
+    text,
     stats: { wc, density, sd, specifics: specifics.length, hedgeRate },
   };
+}
+
+/** Score on raw file text, no frontmatter required. Dashboard and Slop Gate use this directly. */
+export function analyze(raw, kind = "post") {
+  const { body } = parseFrontmatter(raw);
+  const { checks, stats } = coreChecks(body, kind);
+  const { score, fails, warns } = scoreChecks(checks);
+  return { checks, score, fails, warns, stats };
 }

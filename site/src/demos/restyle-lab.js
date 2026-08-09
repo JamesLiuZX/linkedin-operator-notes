@@ -6,6 +6,19 @@
 // which shares the same registries from @lib/restyle.mjs.
 import { SCENES, STYLES, MODELS, findScene, findStyle, findModel, compilePrompt } from "@lib/restyle.mjs";
 
+export const meta = {
+  slug: "restyle-lab",
+  title: "Restyle Lab",
+  tagline: "Compile a scene into a video-gen prompt, storyboard, and CLI command for Seedance, Kling, Veo, or Sora.",
+  section: "media",
+  pillar: "Gen media",
+  essay: "11-the-scene-is-not-the-prompt",
+  blurb:
+    "A prompt compiler for four current video-gen models, not one. Pick a scene and a style once, and it writes each model's own dialect: who gets an audio cue, who gets a camera verb up front, who drops the sound cue on the floor.",
+  buildNote:
+    "No model call and no network request. Scene, style, and per-model prompt tips are a small registry in scripts/lib/restyle.mjs; storyboard frames are seeded from a hash of the shot text, so the same inputs always draw the same frames.",
+};
+
 function escapeHtml(s) {
   return String(s || "")
     .replaceAll("&", "&amp;")

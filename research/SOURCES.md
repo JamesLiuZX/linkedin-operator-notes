@@ -126,3 +126,63 @@ Use these to schedule, not to write. Never let them touch the voice.
 comment, never the body. Post lands 30 to 60 minutes before a window where you
 can actually reply. A demo GIF beats a screenshot because it buys dwell seconds
 honestly. None of this is a reason to write worse.
+
+---
+
+## Gen media: video generation models
+
+Verified August 2026, for the Restyle Lab demo and its essay. Model behavior
+shifts fast; re-verify vendor claims before citing a specific number in a new
+piece.
+
+| Fact | Detail | Source |
+|---|---|---|
+| Four labs shipped a text-to-video API in the same season | Sora 2 (OpenAI), Veo 3.1 (Google DeepMind), Kling 3.0 (Kuaishou), Seedance 2.0 (ByteDance) | vendor product pages |
+| Veo 3.1 generates audio natively | Dialogue, sound effects, and ambience generated in the same pass as the picture, lip-synced to the generated face | [Google DeepMind](https://deepmind.google/models/veo/) |
+| Veo 3.1 native clip length | One generation call produces an 8-second clip with synchronized audio | same |
+| Other three vendors, this generation | Sora 2, Kling 3.0, and Seedance 2.0 do not ship the audio track in the same call; audio is a separate step or absent | cross-referenced vendor comparison coverage, Aug 2026 |
+
+**The line this supports.** "Video generation" is not one capability with four
+brand names on it. Only one of the four current frontier models treats sound
+as part of the same generation as the picture. A prompt compiler that does not
+know which model it is targeting will write audio cues for three models that
+throw them away.
+
+---
+
+## Short-form video and UGC: hook rate
+
+Verified August 2026, for the Retention Curve Lab demo and its essay.
+
+| Fact | Detail | Source |
+|---|---|---|
+| Hook rate, definition | Share of impressions that keep watching past the platform's early-drop-off window | [Hawky.ai](https://hawky.ai/blog/hook-rate) |
+| Meta's measurement window | 3-second video plays / impressions | same |
+| TikTok's measurement window | 2-second video views / impressions, one second shorter than Meta's | same |
+| Meta hook rate bands | 25 to 30% solid, 30 to 40% good, 40%+ elite | same |
+| TikTok hook rate bands | 30 to 35% baseline, 40%+ top quartile | same |
+
+**The catch worth naming.** Meta and TikTok are not measuring the same thing.
+A TikTok hook rate and a Meta hook rate one point apart are not a tie, because
+the two platforms are integrating a different width of window before they call
+a viewer "hooked." Comparing the two numbers directly is a unit error, the
+video equivalent of comparing a price in dollars to a price in cents.
+
+---
+
+## AI workflow economics
+
+Verified August 2026, for the Workflow ROI Lab demo and its essay.
+
+| Fact | Detail | Source |
+|---|---|---|
+| Claude Sonnet 5 pricing | $2 / $10 per million input/output tokens, introductory, through 31 August 2026; $3 / $15 standard pricing after | [Anthropic](https://www.anthropic.com/news/claude-sonnet-5) |
+| Claude Haiku 4.5 pricing | $1 / $5 per million input/output tokens | [Anthropic](https://www.anthropic.com/news/claude-haiku-4-5) |
+| Claude Opus 4.5 pricing | $5 / $25 per million input/output tokens | [Anthropic](https://www.anthropic.com/news/claude-opus-4-5) |
+| METR RCT on AI coding tools | 16 experienced open-source developers, 246 real tasks in codebases they knew well, randomized to allow or disallow AI tool use | [METR, 10 Jul 2025](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) |
+| METR result | Access to AI tools increased completion time by 19%. Before starting, developers had forecast a 24% speedup. After finishing, still believing they had been faster, they estimated a 20% speedup | same |
+
+**The line this supports.** The gap in the METR result is not 19 points, it is
+39: what developers believed after the task (20% faster) minus what a stopwatch
+measured (19% slower). Self-report is not a measurement instrument for whether
+an AI workflow paid for itself. A before/after time log is.

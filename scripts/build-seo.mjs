@@ -14,6 +14,7 @@ import { readdir, readFile, writeFile, mkdir } from "node:fs/promises";
 import { join, dirname, extname, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseFrontmatter } from "./lib/frontmatter.mjs";
+import { SECTIONS as SECTION_DEFS } from "./lib/sections.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "site", "dist");
@@ -81,7 +82,9 @@ async function demos() {
   return out;
 }
 
-const SECTIONS = ["markets", "agents", "shipping", "notes"];
+// Derived from the shared list, not hand-copied, so a new category in
+// scripts/lib/sections.mjs cannot go stale here the way this array once did.
+const SECTIONS = SECTION_DEFS.map((s) => s.id);
 
 async function main() {
   const base = resolveBase();

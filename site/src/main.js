@@ -17,7 +17,7 @@ import "./viz/palette.css";
 import "./viz/viz.css";
 import { marked } from "marked";
 import manifest from "../../articles/unsplash-manifest.json";
-import { ARTICLES, POSTS, bySlug, bySection, SECTIONS, VISIBLE } from "./content.js";
+import { ARTICLES, bySlug, SECTIONS, VISIBLE } from "./content.js";
 import { DEMOS, demoBySlug } from "./demos/index.js";
 import { currentPath, navigate, onRoute } from "./router.js";
 import { renderDashboard } from "./dashboard/index.js";
@@ -26,6 +26,20 @@ import { hydrateCharts } from "./viz/charts.js";
 marked.setOptions({ gfm: true, breaks: false });
 
 const SECTION_LABEL = Object.fromEntries(SECTIONS.map((x) => [x.id, x.title]));
+
+/** Essays grouped by category, in SECTIONS order, empty categories dropped. */
+function articlesBySection() {
+  return SECTIONS.map((s) => ({ ...s, items: ARTICLES.filter((a) => a.section === s.id) })).filter(
+    (s) => s.items.length
+  );
+}
+
+/** Demos grouped by category, same rule as articlesBySection. */
+function demosBySection() {
+  return SECTIONS.map((s) => ({ ...s, items: DEMOS.filter((d) => d.section === s.id) })).filter(
+    (s) => s.items.length
+  );
+}
 
 function stripLeadingH1(html) {
   return html.replace(/^\s*<h1[^>]*>[\s\S]*?<\/h1>/i, "");
@@ -99,6 +113,11 @@ function route(path = currentPath()) {
   if (parts.length === 1) {
     const item = bySlug(parts[0]);
     if (item) return renderArticle(item);
+    // A bare category path, e.g. /markets from a section-nav chip. Without this,
+    // every one-segment path that isn't an article slug fell through to the
+    // homepage, so the category chips silently never showed a filtered page.
+    const bareSection = SECTIONS.find((s) => s.id === parts[0]);
+    if (bareSection) return renderSection(bareSection);
   }
   if (parts.length >= 2) {
     const item = bySlug(parts[1]) || bySlug(parts[parts.length - 1]);
@@ -152,11 +171,9 @@ function indexRow(item, n, sectionLabel) {
 }
 
 function renderHome() {
-  const sections = bySection();
-  const cards = ARTICLES.map((a, i) => indexRow(a, i + 1, SECTION_LABEL[a.section])).join("");
-  const atoms = POSTS.map((p, i) => indexRow(p, i + 1, SECTION_LABEL[p.section])).join("");
+  const groups = articlesBySection();
 
-  const sectionNav = sections
+  const sectionNav = groups
     .map(
       (s) =>
         `<a class="section-chip" href="${import.meta.env.BASE_URL.replace(/\/$/, "")}/${s.id}">${escapeHtml(s.title)} <span>${s.items.length}</span></a>`
@@ -167,12 +184,17 @@ function renderHome() {
   setMeta({
     title: "Market Ops Notes",
     description:
-      "Field notes on prediction-market products and shipping AI near money.",
+      "Field notes on markets, AI agents, gen media, and growth, each one attached to something you can run.",
     url: window.location.origin + import.meta.env.BASE_URL.replace(/\/$/, "") + "/",
   });
 
   const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-  const demoStrip = DEMOS.slice(0, 4)
+  // One demo per category, in SECTIONS order, so the front-door strip reads as
+  // diverse rather than whichever four happen to sit first in the registry.
+  const demoStrip = demosBySection()
+    .map((s) => s.items[0])
+    .filter(Boolean)
+    .slice(0, 4)
     .map(
       (d) =>
         `<a class="strip-card" href="${base}/demos/${d.slug}">
@@ -182,13 +204,26 @@ function renderHome() {
     )
     .join("");
 
+  const essaySections = groups
+    .map(
+      (s) => `
+      <div class="idx-group">
+        <div class="idx-group-head">
+          <span class="label">${escapeHtml(s.title)}</span>
+          <p class="idx-group-blurb">${escapeHtml(s.blurb)}</p>
+        </div>
+        ${s.items.map((a, i) => indexRow(a, i + 1, s.title)).join("")}
+      </div>`
+    )
+    .join("");
+
   document.getElementById("app").innerHTML = `
     ${siteNav("/")}
     <main class="home">
       <header class="brand-lockup">
         <div class="eyebrow">Market Ops Notes</div>
-        <h1>Field notes from markets and agents</h1>
-        <p>Resolution, liquidity, incentives, and AI pointed at systems that have consequences.</p>
+        <h1>Field notes from markets, agents, and what else ships</h1>
+        <p>Resolution, liquidity, and incentives, plus AI workflows, gen media, and growth, each argument attached to something that runs.</p>
         <div class="section-nav">${sectionNav}${demosChip}</div>
       </header>
       <section class="strip">
@@ -199,8 +234,8 @@ function renderHome() {
         <div class="strip-grid">${demoStrip}</div>
       </section>
       <section class="idx">${
-        cards ?
-        `<span class="label">Essays</span>` + cards :
+        groups.length ?
+        essaySections :
         `<div class="empty-lib">
            <h3>The essays are being held for a final read.</h3>
            <p>Nine pieces already pass an automated quality gate on evidence, specificity, and voice. None of that replaces a human deciding a piece is ready to put a name on, so the writing publishes on its own schedule while the demos above ship as soon as they work.</p>
@@ -367,9 +402,11 @@ function renderDemoIndex() {
   setMeta({
     title: "Demos · Market Ops Notes",
     description:
-      "Interactive prototypes for prediction-market product decisions. Resolution linting, reward farming, liquidity budgets, and forecast calibration.",
+      "Interactive prototypes across market design, AI agents, gen media, and growth. Everything runs in the browser, and the numbers are the same every time you load them.",
     url: window.location.origin + base + "/demos",
   });
+
+  const groups = demosBySection();
 
   document.getElementById("app").innerHTML = `
     ${siteNav("/demos")}
@@ -377,20 +414,33 @@ function renderDemoIndex() {
       <header class="brand-lockup">
         <div class="eyebrow">Demos</div>
         <h1>Things you can poke</h1>
-        <p>Four prototypes, each one attached to an argument. Everything runs in the browser. No keys, no backend, no model calls, so the numbers are the same every time you load them.</p>
+        <p>${DEMOS.length} prototypes across ${groups.length} categories, each one attached to an argument. Everything runs in the browser. No keys, no backend, no model calls, so the numbers are the same every time you load them.</p>
       </header>
-      <section class="demo-cards">
-        ${DEMOS.map(
-          (d, i) => `
-          <a class="demo-card" href="${base}/demos/${d.slug}" style="animation-delay:${i * 70}ms">
-            <div class="series">${escapeHtml(d.pillar)}</div>
-            <h2>${escapeHtml(d.title)}</h2>
-            <p class="tagline">${escapeHtml(d.tagline)}</p>
-            <p class="meta">${escapeHtml(d.blurb)}</p>
-            <span class="go mono">Open →</span>
-          </a>`
-        ).join("")}
-      </section>
+      ${groups
+        .map(
+          (s) => `
+        <section class="demo-group">
+          <div class="idx-group-head">
+            <span class="label">${escapeHtml(s.title)}</span>
+            <p class="idx-group-blurb">${escapeHtml(s.blurb)}</p>
+          </div>
+          <div class="demo-cards">
+            ${s.items
+              .map(
+                (d, i) => `
+              <a class="demo-card" href="${base}/demos/${d.slug}" style="animation-delay:${i * 70}ms">
+                <div class="series">${escapeHtml(d.pillar)}</div>
+                <h2>${escapeHtml(d.title)}</h2>
+                <p class="tagline">${escapeHtml(d.tagline)}</p>
+                <p class="meta">${escapeHtml(d.blurb)}</p>
+                <span class="go mono">Open →</span>
+              </a>`
+              )
+              .join("")}
+          </div>
+        </section>`
+        )
+        .join("")}
     </main>`;
   window.scrollTo(0, 0);
 }

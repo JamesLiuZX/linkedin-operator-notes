@@ -79,9 +79,11 @@ Full detail in [WRITING.md](./WRITING.md). Mechanical gate: `npm run content:che
 Structure by the problem the reader has, not by chronology.
 
 ```
-/                     the thesis, three sections, latest pieces
+/                     the thesis, six sections, latest pieces
 /markets              Market design
-/agents               Agents on rails
+/agents               AI & agents (trading agents to everyday tooling)
+/media                Gen media & UGC
+/growth               Growth & AI workflows
 /shipping             Shipping inside a regulated exchange
 /{section}/{slug}     the canonical piece
 ```
