@@ -9,7 +9,6 @@
 
 import schedule from "../../../content/schedule.json";
 import { byPath } from "../content.js";
-import { analyze } from "@lib/analyze.mjs";
 import { toThread, articleCanonicalUrl } from "@lib/transform.mjs";
 import { demoBySlug } from "../demos/index.js";
 import { statRow, meter, esc, fmt } from "../viz/charts.js";
@@ -63,8 +62,13 @@ function buildCopy(e, item, siteUrl) {
 export function buildRows(today = new Date(), siteUrl = "") {
   return schedule.entries.map((e) => {
     const item = e.asset ? byPath(e.asset) : null;
-    const kind = e.asset?.startsWith("articles") ? "article" : "post";
-    const quality = item ? analyze(item.raw, kind) : null;
+    // item.gate comes from site/src/gate-scores.json, built by the same
+    // analyze() npm run content:check runs, cannibalization and LinkedIn
+    // checks included. Recomputing with the lighter core analyzer here used
+    // to make this dashboard disagree with the CI gate on exactly the rows
+    // that mattered most: real files with a derivedFrom source to overlap
+    // against, and a `## Draft` section to isolate.
+    const quality = item?.gate || null;
     const when = new Date(`${e.date}T${e.time || "08:30"}:00+08:00`);
     const demo = e.demo ? demoBySlug(e.demo) : null;
     const copy = buildCopy(e, item, siteUrl);

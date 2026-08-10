@@ -6,6 +6,17 @@
 // repo's own quality signal, and a visitor evaluating the author is better
 // served seeing it than not.
 //
+// This is also the ONLY correct source for a per-file score anywhere in the
+// browser bundle. The file-specific checks (cannibalization against
+// derivedFrom, LinkedIn-renderable, evidence block, provenance) need real fs
+// access to resolve, which a browser bundle cannot do, so nothing client-side
+// may recompute a score for a real repo file. It must read this JSON instead.
+// The dashboard learned this the hard way: it used to call the lighter
+// core-only analyze() straight from lib/analyze.mjs, which quietly agreed
+// with npm run content:check on nothing but the shared prose checks. See
+// posts/17-gate-drift.md for the same bug, once already, in a different pair
+// of files.
+//
 // Also records whether a piece carries unfilled {{ }} slots, which is what the
 // production build uses to decide visibility: a piece the gate refuses to pass
 // is a piece that has no business on a public URL.
@@ -56,6 +67,10 @@ for (const [dir, kind] of [['articles', 'article'], ['posts', 'post']]) {
       // A piece with an unfilled slot is unfinished by definition. The site
       // uses this, not the status field, to decide what goes public.
       hasHoles: holes ? holes.status === 'fail' : false,
+      // Full per-check detail, not just the totals, so a UI (the dashboard)
+      // can show which named check failed and why without re-scoring the
+      // file itself.
+      checks: r.checks,
     };
   }
 }

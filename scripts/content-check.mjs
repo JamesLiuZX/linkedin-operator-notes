@@ -219,8 +219,11 @@ async function collect() {
   return out;
 }
 
-/** Resolve derivedFrom, which may be repo-relative or relative to the post. */
-async function resolveSource(path, from) {
+/** Resolve derivedFrom, which may be repo-relative or relative to the post.
+ * Exported so any other Node script scoring a post against the real gate
+ * (schedule-check.mjs) resolves derivedFrom the same way this CLI does,
+ * instead of growing a second copy that can drift from this one. */
+export async function resolveSource(path, from) {
   if (!from) return { sourceExists: null };
   const candidates = [resolve(process.cwd(), String(from)), resolve(dirname(path), String(from))];
   for (const c of candidates) {

@@ -21,7 +21,11 @@ import { readFile, access } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseFrontmatter } from "./lib/frontmatter.mjs";
-import { analyze } from "./lib/analyze.mjs";
+// The real gate, not the lighter core checks: schedule.json rows are always
+// real registered files with derivedFrom context, so scoring them with the
+// same analyze() + resolveSource() npm run content:check uses is what makes
+// "would fail the gate" here mean the same thing it means everywhere else.
+import { analyze, resolveSource } from "./content-check.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const warnOnly = process.argv.includes("--warn-only");
@@ -87,7 +91,8 @@ for (const e of schedule.entries) {
     const raw = await readFile(abs, "utf8");
     const { data } = parseFrontmatter(raw);
     const kind = e.asset.startsWith("articles") ? "article" : "post";
-    const r = analyze(raw, kind);
+    const ctx = kind === "post" ? await resolveSource(e.asset, data.derivedFrom) : {};
+    const r = analyze(raw, kind, ctx);
     scored++;
     if (r.fails > 0) {
       gateFails++;
