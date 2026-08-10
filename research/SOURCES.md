@@ -186,3 +186,120 @@ Verified August 2026, for the Workflow ROI Lab demo and its essay.
 39: what developers believed after the task (20% faster) minus what a stopwatch
 measured (19% slower). Self-report is not a measurement instrument for whether
 an AI workflow paid for itself. A before/after time log is.
+
+---
+
+## Computer-use agents: OSWorld
+
+Verified August 2026.
+
+| Fact | Detail | Source |
+|---|---|---|
+| OSWorld, definition | Benchmark that scores agents on real desktop and web tasks in a live OS, not a scripted sandbox | [OSUniverse paper](https://arxiv.org/pdf/2505.03570) |
+| Early baseline | Computer-use agents scored around 12% on OSWorld in April 2024 | [AgentAtlas](https://arxiv.org/html/2605.20530v1) |
+| Human baseline | About 72% on standard OSWorld tasks | same |
+| 2026 standard-task state | Multiple frontier systems now reach or pass the human baseline on standard OSWorld tasks | same |
+| OSWorld 2.0 | A longer-horizon extension where the median task takes a human 1.6 hours to complete | same |
+| OSWorld 2.0 result | The best frontier system completes only 20.6% of OSWorld 2.0 tasks | same |
+| Benchmark-wide trend | Best verified success rates across OSWorld, WebArena, GAIA, and WebVoyager rose roughly 5 to 7 times between 2023 and early 2026 | same |
+
+**The line this supports.** Two numbers describe two different jobs. Near or
+above 72% is the standard OSWorld task: open an app, click through a few
+screens, done in minutes. 20.6% is OSWorld 2.0: a task that takes a human
+1.6 hours. An agent that clears the first bar has not demonstrated anything
+about the second one.
+
+---
+
+## Long-context and retrieval: lost in the middle
+
+Verified August 2026.
+
+| Fact | Detail | Source |
+|---|---|---|
+| "Lost in the Middle" finding | LLM accuracy on multi-document QA and key-value retrieval follows a U-shaped curve by position: highest when the answer sits at the start or end of the context, and degrades by more than 30% when it sits in the middle | [summary of Liu et al., via getmaxim.ai](https://www.getmaxim.ai/articles/solving-the-lost-in-the-middle-problem-advanced-rag-techniques-for-long-context-llms/) |
+| Replication | The U-shaped pattern replicated across six model families: GPT-3.5-Turbo, GPT-4, Claude 1.3, LongChat-13B, MPT-30B, Cohere Command | same |
+| Retrieval accuracy at scale | A retriever reporting 90% accuracy at 1M tokens of indexed context still returns a wrong result on roughly 1 in 10 queries | same |
+
+**The line this supports.** A bigger context window is not the same claim as
+a more accurate answer. The U-curve means the model's blind spot is the
+middle of whatever you hand it, so the fix is what you put at the start and
+end, or what you retrieve instead of pasting in whole, not how many tokens
+the window technically holds.
+
+---
+
+## Multi-agent chains: the compounding math
+
+Verified August 2026.
+
+| Fact | Detail | Source |
+|---|---|---|
+| Five-step chain at 95% | Five agents chained together, each independently 95% reliable, produce an end-to-end success rate of 0.95^5, about 77% | [MindStudio](https://www.mindstudio.ai/blog/multi-agent-reliability-compounding-problem-77-percent) |
+| Ten-step chain at 85% | Ten steps at 85% per-step reliability compound to 0.85^10, about 20% | [Cloud AI](https://cloudai.pt/multi-agent-reliability-85-per-step-20-at-step-10/) |
+| Token overhead | Multi-agent architectures use 1.6x to 6.2x more tokens than a comparable single-agent workflow for the same task | [Zartis](https://www.zartis.com/the-compounding-errors-problem-why-multi-agent-systems-fail-and-the-architecture-that-fixes-it/) |
+| Failure-mode split | Specification failures account for roughly 42% of documented multi-agent failures, coordination failures roughly 37% | [Galileo](https://galileo.ai/blog/multi-agent-ai-failures-prevention) |
+| Metric gap | Pass@1 evaluation, whether an agent succeeds once under ideal conditions, overestimates real production reliability by 20 to 40 percentage points | [Towards a Science of AI Agent Reliability](https://arxiv.org/pdf/2602.16666) |
+
+**The line this supports.** This is not a study finding, it is arithmetic:
+0.95 multiplied by itself five times is 0.7738. Every additional independent
+step in a chain is a multiplication by a number under 1, and the count of
+steps, not any single step's quality, is what decides whether the chain is
+still reliable by the end of it.
+
+---
+
+## Voice AI in customer service
+
+Verified August 2026.
+
+| Fact | Detail | Source |
+|---|---|---|
+| Contact-center adoption | 88% of contact centers use AI in some form | [Digital Applied](https://www.digitalapplied.com/blog/customer-service-ai-agent-statistics-2026-data) |
+| Full integration | Of those, only 25% have fully integrated it into their workflow | same |
+| Enterprise production use | 67% of Fortune 500 companies run production voice AI systems | [CloudTalk](https://www.cloudtalk.io/blog/ai-voice-agent-statistics/) |
+| Banking sector | 78% of the top 50 banks have deployed a production voice agent for at least one customer-facing use case, up from 34% in 2024 | [Ringly.io](https://www.ringly.io/blog/voice-ai-statistics-2026) |
+| Satisfaction trend | Customer satisfaction with AI voice interactions rose from 53% in 2022 to 72% in 2025 | same |
+
+**The line this supports.** 88% and 25% describe the same population. Almost
+every contact center has AI turned on somewhere. Barely a quarter have
+finished the harder work of making it the actual workflow instead of a
+pilot running next to the real one.
+
+---
+
+## AI avatars and synthetic UGC
+
+Verified August 2026.
+
+| Fact | Detail | Source |
+|---|---|---|
+| Arcads | AI UGC-ad startup founded 2024, raised a $16M seed round in December 2025, crosses 6,000 clients producing roughly 100,000 ad assets a month | [Lovino.ai](https://lovino.ai/blog/seedance-2-vs-arcads-creatify-heygen-best-ai-ugc-ads) |
+| Avatar library scale | Arcads offers a 300+ AI-actor library built for direct-response ad performance | same |
+| Language coverage | HeyGen supports 175+ languages with voice cloning and lip-sync; Synthesia covers 140+ | [HeyGen](https://www.heygen.com/blog/best-ai-video-generator-for-ads), [DesignRevision](https://designrevision.com/blog/best-ai-ugc-tools) |
+| Ad-readiness comparison | In one hands-on comparison, roughly 70% of HeyGen outputs needed re-rendering or script fixes before they were ad-ready, against about 40% for MakeUGC and 35% for Arcads | [AdGenerate](https://adgenerate.ai/blog/makeugc-vs-arcads-vs-heygen) |
+| The polish problem | The same comparison found that highly polished avatar output is increasingly recognized by TikTok and Instagram audiences as the "professional AI video" look, and scrolled past, while rougher, more direct-response-style avatars performed closer to real UGC | same |
+
+**The line this supports.** UGC's entire value proposition was that it does
+not look produced. An avatar tool optimized for visual polish is optimizing
+against the one property that made the format work in the first place.
+
+---
+
+## AI-generated ad creative performance
+
+Verified August 2026.
+
+| Fact | Detail | Source |
+|---|---|---|
+| CTR study | A study by researchers at Columbia, Harvard, and Carnegie Mellon analyzing 500M+ ad impressions found AI-generated ads achieved a 0.76% CTR against 0.65% for human-created ads | [Digital Applied](https://www.digitalapplied.com/blog/ai-ad-creative-benchmark-2026-ctr-roas-data) |
+| Conversion gap | Conversion rates for AI-generated ads dropped 8% on high-consideration purchases, widening to 14% on purchases over $500 | same |
+| Low-price parity | On lower-priced consumer products, AI-generated creative reached full conversion parity with human-produced ads | same |
+| Meta Advantage+ | Advantage+ Shopping campaigns, which test 150+ creative combinations per campaign, delivered 32% lower cost per acquisition than manually configured campaigns, and boosted CTR 15 to 20% | [community discussion citing Meta](https://community.shopify.com/t/meta-advantage/579987) |
+| Creative fatigue | Smartly.io's analysis of 6.7M ad placements across Instagram and TikTok found AI-driven creative rotation cut frequency-related performance decay by 38.4%, keeping ads above baseline CTR for an average of 19.3 days versus 7.1 days for a static single-creative campaign | [Digital Applied](https://www.digitalapplied.com/blog/ai-ad-creative-benchmark-2026-ctr-roas-data) |
+
+**The line this supports.** The click and the sale are not the same
+customer decision. AI creative wins the higher-volume, lower-stakes one and
+loses ground on the slower, higher-consideration one, and a single CTR
+number averages the two into a result that overstates the part that is
+actually working.

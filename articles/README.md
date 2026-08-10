@@ -4,7 +4,7 @@ Canonical essays. Everything else in the repo is derived from these. The site
 registry is frontmatter-driven (`site/src/content.js`), so adding a file is the
 whole step.
 
-All 15 pass `npm run content:check`. The 11 non-draft pieces score 96/100 each;
+All 21 pass `npm run content:check`. Most non-draft pieces score 96/100;
 the gate got stricter after the early ones were first written, so 100/100 is no
 longer the bar, 0 blocking failures is.
 
@@ -32,6 +32,12 @@ homepage grouping from the same field, so a new section is one array entry in
 | 13 | [The stopwatch, not the forecast](./13-the-stopwatch-not-the-forecast.md) | growth | workflow-roi-lab | live | — |
 | 14 | [Reach has an exit tax](./14-reach-has-an-exit-tax.md) | growth | | live | — |
 | 15 | [A checklist, not a model](./15-a-checklist-not-a-model.md) | agents | slop-gate | live | — |
+| 16 | [The benchmark is the short task](./16-the-benchmark-is-the-short-task.md) | agents | | backlog | — |
+| 17 | [The middle of the window is where facts go to die](./17-the-middle-of-the-window.md) | agents | | backlog | — |
+| 18 | [Five agents at 95% each is one system at 77%](./18-five-agents-at-95-percent.md) | agents | | backlog | — |
+| 19 | [88% use it. 25% finished integrating it.](./19-88-percent-use-it-25-percent-finished.md) | growth | | backlog | — |
+| 20 | [The tell isn't the face, it's the polish](./20-the-tell-isnt-the-face.md) | media | | backlog | — |
+| 21 | [AI creative wins the click and loses the sale](./21-the-click-and-the-sale.md) | growth | | backlog | — |
 
 Essay 07 is the opener. It is the most non-obvious claim, only someone who has
 operated a market could write it, it generalises to anyone shipping something with
@@ -49,15 +55,27 @@ but are not queued for auto-cross-posting; they have no row in
 `content/schedule.json` on purpose, since that file is a LinkedIn posting plan,
 not a publish gate.
 
+Essays 16 to 21 are a backlog batch: three on AI agents (computer-use benchmark
+horizons, long-context retrieval, multi-agent reliability math), two on growth
+(voice-AI adoption versus integration, AI ad-creative CTR-versus-conversion),
+one on media (AI avatar tools for UGC ads). Same evidentiary bar, sourced in
+[`../research/SOURCES.md`](../research/SOURCES.md). `status: ready` on all six
+means the mechanical gate passed but nobody has read them again with an
+employer's risk tolerance in mind; that is the `compliance-checked` step, and
+it has not happened yet, so they do not render on the live site. Promote a
+piece to `compliance-checked` (and give it a `publishAt`) when it is actually
+ready to ship.
+
 Canonical path: `/{section}/{slug}`, e.g. `/markets/07-the-sentence-is-the-product`
 or `/media/11-the-scene-is-not-the-prompt`.
 
-## Most of this is live
+## Most of this is live, some of it is a backlog
 
-11 of 15 files carry a status that renders publicly (`published` or
-`compliance-checked`); 4 (01, 02, 04, 05) are still `status: draft`, so
-production does not render them yet. That is the editorial gate working, not a
-bug. To publish a draft, change its status to `compliance-checked`. See
+11 of 21 files carry a status that renders publicly (`published` or
+`compliance-checked`); 4 (01, 02, 04, 05) are still `status: draft`; 6 (16-21)
+are `status: ready`, gate-passing but not yet reviewed or scheduled. Neither
+`draft` nor `ready` renders on production. That is the editorial gate working,
+not a bug. To publish one, change its status to `compliance-checked`. See
 [../DEPLOY.md](../DEPLOY.md).
 
 To read the drafts too, on a preview deploy without publishing them, set

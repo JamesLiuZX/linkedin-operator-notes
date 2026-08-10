@@ -44,10 +44,20 @@ a unique key. Use the filename to disambiguate.
 | [15-workflow-roi](./15-workflow-roi.md) | growth | `articles/13` + demo | ready |
 | [16-reach-exit-tax](./16-reach-exit-tax.md) | growth | `articles/14` | ready |
 | [17-gate-drift](./17-gate-drift.md) | agents | `articles/15` + demo | ready |
+| [18-the-benchmark-is-the-short-task](./18-the-benchmark-is-the-short-task.md) | agents | `articles/16` | ready |
+| [19-lost-in-the-middle](./19-lost-in-the-middle.md) | agents | `articles/17` | ready |
+| [20-five-agents-at-95-percent](./20-five-agents-at-95-percent.md) | agents | `articles/18` | ready |
+| [21-adoption-vs-integration](./21-adoption-vs-integration.md) | growth | `articles/19` | ready |
+| [22-the-tell-isnt-the-face](./22-the-tell-isnt-the-face.md) | media | `articles/20` | ready |
+| [23-the-click-and-the-sale](./23-the-click-and-the-sale.md) | growth | `articles/21` | ready |
+| [24-spec-failures-vs-coordination-failures](./24-spec-failures-vs-coordination-failures.md) | agents | `articles/18` | ready |
+| [25-creative-fatigue-decay](./25-creative-fatigue-decay.md) | growth | `articles/21` | ready |
 
-13 through 17 are the diversification pass's atoms, one per new essay (11-15). All follow
-the `## Draft` / `## First comment` shape below to the letter; a couple of the older atoms
-above it predate that convention and the gate flags them for it (`draft`, not blocking).
+13 through 17 are the diversification pass's atoms, one per new essay (11-15). 18 through 25
+are a backlog batch off essays 16-21, two essays (18, 21) each carrying a second atom on a
+different angle. All follow the `## Draft` / `## First comment` shape below to the letter; a
+couple of the older atoms above it predate that convention and the gate flags them for it
+(`draft`, not blocking).
 
 The exact publish dates live in [`../content/schedule.json`](../content/schedule.json).
 
