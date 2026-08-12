@@ -27,6 +27,7 @@ Three pillars:
 | [REVIEW.md](./REVIEW.md) | Critique of this pipeline across 12 dimensions, and what changed because of it. |
 | [scripts/lib/analyze.mjs](./scripts/lib/analyze.mjs) | The one analyzer. CI, the site, and the desk all import it. |
 | [00-positioning.md](./00-positioning.md) | Positioning, pillars, library shape |
+| [09-course-funnel.md](./09-course-funnel.md) | How this repo and the [udemy](https://github.com/JamesLiuZX/udemy) course repo form one funnel: posting phases, KDP, distribution, money |
 | [PLAN-30-DAYS.md](./PLAN-30-DAYS.md) | First 14-day shipping milestone |
 | [PUBLISHING.md](./PUBLISHING.md) | Cross-posting to X, Medium, Substack |
 | [BROWSER-POSTING.md](./BROWSER-POSTING.md) | The browser-agent posting prompt: LinkedIn, X, Medium, Substack from the dashboard |

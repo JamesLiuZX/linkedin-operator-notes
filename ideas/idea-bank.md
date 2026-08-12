@@ -43,6 +43,14 @@ Mark published with date when you ship.
 
 ## AI that ships
 
+Course-gap essays (from [09-course-funnel.md](../09-course-funnel.md) §3: each fills
+a Udemy course section with no essay coverage; write as the section gets scripted):
+
+- [ ] The margin trap: an AI feature that loses money per power user, computed live (course 7.5)
+- [ ] Score the same output twice, disagree with yourself: rubric inconsistency (course 0.4)
+- [ ] The six places RAG breaks in production, with public postmortem receipts (course 5.5)
+- [ ] Prompt injection in PM language: the lethal trifecta (course 8.2)
+
 - [~] PM who opens PRs (atoms: posts/03, posts/04. The repo itself is the receipt)
 - [ ] AI partnership lessons. BLOCKED: needs one public outcome, one named constraint,
       and one thing that went wrong. Without those it is a McKinsey slide, which is
