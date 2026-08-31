@@ -33,7 +33,7 @@ const DISCLOSURE_PATTERNS = [
   },
 ];
 
-const REQUIRED_FOR_PUBLISH = ["scheduled", "compliance-checked"];
+const REQUIRED_FOR_PUBLISH = ["scheduled", "compliance-checked", "partial"];
 // Align with WRITING.md / content-check.mjs essay band
 const ARTICLE_MIN_WORDS = 900;
 const ARTICLE_TARGET_MIN = 900;
@@ -110,7 +110,7 @@ export function runComplianceChecks(item) {
   if (!REQUIRED_FOR_PUBLISH.includes(item.status)) {
     issues.push({
       level: "error",
-      message: `Status must be "scheduled" or "compliance-checked" (current: ${item.status})`,
+      message: `Status must be one of ${REQUIRED_FOR_PUBLISH.map((s) => `"${s}"`).join(", ")} (current: ${item.status})`,
     });
   }
 

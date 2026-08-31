@@ -85,7 +85,9 @@ export function loadContent() {
 
 export function findDueItems(items, { now = new Date(), includeFuture = false } = {}) {
   return items.filter((item) => {
-    if (!["scheduled", "compliance-checked"].includes(item.status)) return false;
+    // `partial` = some platforms succeeded or were skipped for missing
+    // config; state.json knows which, so retrying is idempotent.
+    if (!["scheduled", "compliance-checked", "partial"].includes(item.status)) return false;
     if (!item.platforms.length) return false;
     if (!item.publishAt) return false;
     const due = new Date(item.publishAt);
