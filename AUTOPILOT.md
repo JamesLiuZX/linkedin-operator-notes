@@ -1,5 +1,12 @@
 # Autopilot: the portfolio queue and the loop that runs it
 
+> **HQ is moving to `JamesLiuZX/command`** (James's call, 2026-08-31): a
+> dedicated private command repo holding the doctrine, this queue, and the
+> status log. The content is staged and pushes the moment James creates the
+> empty repo. Until `github.com/JamesLiuZX/command` exists with content,
+> THIS file remains authoritative; after that, sessions and routines read
+> and log there, and this file becomes a pointer stub.
+
 Written 2026-08-31 from a full audit of every active repo. This file is the
 single place where project status, priorities, and the autopilot loop live.
 Every scheduled session updates the status log at the bottom.
