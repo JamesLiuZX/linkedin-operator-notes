@@ -65,7 +65,7 @@ figures:
 **Status flow:** `draft` → `compliance-checked` → `scheduled` → (auto) `published`
 (or `queued-import` / `partial` when Medium still needs a human / some platforms failed)
 
-Only items with status `scheduled` or `compliance-checked` and a past `publishAt` will publish.
+Only items with status `scheduled`, `compliance-checked`, or `partial` (retry) and a past `publishAt` will publish. A platform whose credentials are missing is skipped and stays pending; it does not fail the item.
 
 Canonical URL: `{SITE_URL}/{section}/{slug}` (hash URLs like `/#/slug` redirect).
 
@@ -192,7 +192,7 @@ Before publishing, the script checks:
 
 - No em dashes (`—`)
 - No corporate filler words
-- Status is `scheduled` or `compliance-checked`
+- Status is `scheduled`, `compliance-checked`, or `partial`
 - `platforms` and `publishAt` are set
 
 Warnings (non-blocking): missing Takeaway section on articles.
