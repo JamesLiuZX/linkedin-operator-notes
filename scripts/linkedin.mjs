@@ -16,7 +16,11 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { join, basename, extname } from 'node:path';
 import { parseFrontmatter } from './lib/frontmatter.mjs';
-import { analyzeLinkedIn, FOLD, MAX } from './lib/linkedin.mjs';
+import { absolutizeLinks, analyzeLinkedIn, FOLD, MAX } from './lib/linkedin.mjs';
+
+// First comments are authored with site-relative links so they survive a
+// domain move; the paste needs real URLs. Same default as BROWSER-POSTING.md.
+const SITE_URL = process.env.SITE_URL || 'https://jamesliuzx.github.io/linkedin-operator-notes';
 
 const C = {
   red: '\x1b[31m', yellow: '\x1b[33m', green: '\x1b[32m',
@@ -46,9 +50,11 @@ async function renderOne(path) {
   const { data, body } = parseFrontmatter(src);
   const li = analyzeLinkedIn(body);
 
+  const firstComment = li.firstComment ? absolutizeLinks(li.firstComment, SITE_URL) : '';
+
   if (raw) {
     process.stdout.write(li.plain + '\n');
-    if (li.firstComment) process.stdout.write('\n--- FIRST COMMENT ---\n' + li.firstComment + '\n');
+    if (firstComment) process.stdout.write('\n--- FIRST COMMENT ---\n' + firstComment + '\n');
     return;
   }
 
@@ -69,9 +75,9 @@ async function renderOne(path) {
   console.log(`\n${C.dim}--- paste this ---${C.off}`);
   console.log(li.plain);
 
-  if (li.firstComment) {
+  if (firstComment) {
     console.log(`\n${C.dim}--- first comment (post this immediately after) ---${C.off}`);
-    console.log(li.firstComment);
+    console.log(firstComment);
   }
 
   const col = over ? C.red : li.chars < 400 ? C.yellow : C.green;

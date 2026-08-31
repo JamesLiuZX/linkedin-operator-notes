@@ -4,7 +4,7 @@ slug: 10-farm-lab
 section: markets
 pillar: markets
 format: demo
-status: draft
+status: ready
 derivedFrom: articles/04-rewards-vs-farming.md
 demo: farm-lab
 linkInComment: /demos/farm-lab
@@ -20,7 +20,7 @@ Counterexample: A fill-rate floor set too high drives off honest makers who get 
 Reader action: Compute cost per FILLED unit, not cost per displayed unit, before the next budget review.
 -->
 
-# Your rewards program has no term for whether the order fills
+## Draft
 
 Polymarket publishes its maker reward formula. Read it closely:
 
@@ -49,3 +49,7 @@ It also has a cost, which I would rather state than hide: set the floor too high
 I have defended a rewards program using displayed-depth charts. Displayed depth was the wrong chart.
 
 Takeaway: report dollars per filled unit, not dollars per displayed unit, or you are buying a picture of a market.
+
+## First comment
+
+Try it: /demos/farm-lab

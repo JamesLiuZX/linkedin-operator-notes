@@ -9,6 +9,7 @@
 
 import schedule from "../../../content/schedule.json";
 import { byPath } from "../content.js";
+import { absolutizeLinks } from "@lib/linkedin.mjs";
 import { toThread, articleCanonicalUrl } from "@lib/transform.mjs";
 import { demoBySlug } from "../demos/index.js";
 import { statRow, meter, esc, fmt } from "../viz/charts.js";
@@ -38,7 +39,13 @@ function buildCopy(e, item, siteUrl) {
   if (!item) return null;
 
   if (e.channel === "linkedin" && item.kind === "post") {
-    return { kind: "linkedin", body: item.draft, comment: item.firstComment || "" };
+    return {
+      kind: "linkedin",
+      body: item.draft,
+      // Relative paths in a LinkedIn comment paste as dead text; the copy
+      // surface is where they become real URLs (see absolutizeLinks).
+      comment: absolutizeLinks(item.firstComment || "", siteUrl),
+    };
   }
 
   if (e.channel === "x" && item.kind === "article") {

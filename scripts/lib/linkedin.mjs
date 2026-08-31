@@ -77,6 +77,18 @@ export function firstCommentBlock(body) {
   return '';
 }
 
+/**
+ * Site-relative paths ("/demos/farm-lab") paste into LinkedIn as dead text.
+ * Authors keep first comments portable by writing relative paths; the copy
+ * surfaces (dashboard, scripts/linkedin.mjs) absolutize them against the
+ * live site URL at copy time, so the pasted comment carries clickable links.
+ */
+export function absolutizeLinks(text, base) {
+  const b = String(base || '').replace(/\/$/, '');
+  if (!b) return String(text);
+  return String(text).replace(/(^|[\s(])\/((?:[\w-]+\/)*[\w-]+)/g, `$1${b}/$2`);
+}
+
 /** Trailing hashtags, which LinkedIn reads but readers mostly do not. */
 export function hashtags(text) {
   return [...text.matchAll(/(?:^|\s)(#[A-Za-z][A-Za-z0-9]{1,39})/g)].map((m) => m[1]);

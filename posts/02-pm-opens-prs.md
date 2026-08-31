@@ -17,8 +17,6 @@ Counterexample: Anything touching the order path. A PM prototype near matching l
 Reader action: Prototype the edge case instead of writing the third revision of the paragraph describing it.
 -->
 
-# The PM who opens PRs
-
 I opened 14 pull requests last quarter. None of them were features.
 
 Internal tooling, a seed-data script, and 3 fixes to copy that was wrong in a way only someone reading 200 support tickets a week would ever notice.

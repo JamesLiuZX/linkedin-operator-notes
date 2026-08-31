@@ -20,7 +20,7 @@ Counterexample: Over-tight criteria that nobody trades. The CPI market scores 10
 Reader action: Run your next market's resolution text through the 6 clause checks before it lists.
 -->
 
-# I built a linter for market resolution criteria
+## Draft
 
 I ran three real prediction markets through a linter. All three failed.
 
@@ -49,3 +49,9 @@ Same event. Same oracle. Same traders. The only thing that changed was the sente
 The uncomfortable part: I have shipped criteria this loose. "Credible reporting" is a phrase I would have waved through two years ago because it sounded careful.
 
 Takeaway: if you cannot write the settle explainer without squirming, the market is not ready to list.
+
+## First comment
+
+Try it: /demos/resolution-linter
+
+The longer version of the argument: /markets/07-the-sentence-is-the-product

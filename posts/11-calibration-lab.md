@@ -4,7 +4,7 @@ slug: 11-calibration-lab
 section: agents
 pillar: agents
 format: demo
-status: draft
+status: ready
 derivedFrom: articles/08-the-harness-is-the-edge.md
 demo: calibration-lab
 linkInComment: /demos/calibration-lab
@@ -20,7 +20,7 @@ Counterexample: A well-scaffolded agent at 0.075 does beat the market, so this i
 Reader action: Score your agent's Brier against the market price before you scope anything else.
 -->
 
-# Your agent is not smarter than the market
+## Draft
 
 Frontier LLMs score 0.122 to 0.136 on Brier. Lower is better.
 
@@ -49,3 +49,9 @@ My first trading-agent prototype reported 85% and 90% on nearly everything. I re
 You cannot. You have to score it.
 
 Takeaway: before you scope an agent near money, run its Brier against the market price. If it loses, the answer is scaffolding, not a bigger model.
+
+## First comment
+
+Try it: /demos/calibration-lab
+
+The longer version of the argument: /agents/08-the-harness-is-the-edge
