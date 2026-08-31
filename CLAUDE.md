@@ -33,11 +33,10 @@ Rules for every session:
 
 ## Where things live
 
-- `AUTOPILOT.md` — cross-project queue, priorities, autopilot loop, human-only
-  blockers, weekly status log. **Update it whenever status changes.**
-  Moving to the dedicated HQ repo `JamesLiuZX/command` — once that repo
-  exists with content, read and log there instead (this repo keeps this
-  CLAUDE.md for repo-specific doctrine).
+- `AUTOPILOT.md` — **moved to the private HQ repo `JamesLiuZX/command`**:
+  cross-project queue, priorities, autopilot loop, human-only blockers,
+  weekly status log. Read and log there; the local file is a pointer stub.
+  This CLAUDE.md stays for repo-specific doctrine.
 - `content/schedule.json` — the posting queue (single source of truth).
 - `BROWSER-POSTING.md` — the Cowork/browser-agent posting prompt. Posting to
   LinkedIn/X/Medium/Substack happens through it, on James's logged-in browser.
