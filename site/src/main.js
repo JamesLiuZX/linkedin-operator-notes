@@ -292,7 +292,7 @@ function renderAtom(item) {
     description: item.summary,
     url: window.location.origin + hrefFor(item),
   });
-  const by = ["<span>James Liu</span>", `<span>${item.chars} characters</span>`];
+  const by = [`<span><a href="https://jamesliuzx.com" rel="author">James Liu</a></span>`, `<span>${item.chars} characters</span>`];
   if (item.derivedFrom) by.push(`<span>derived from ${escapeHtml(item.derivedFrom)}</span>`);
   if (item.gate) by.push(`<span>gate ${item.gate.score}/100</span>`);
 
@@ -368,7 +368,7 @@ function renderArticle(article) {
         <div class="copy">
           <div class="series">${escapeHtml(article.series || article.section)}</div>
           <h1>${escapeHtml(article.title)}</h1>
-          <div class="byline">James Liu · ${article.readingMinutes} min read</div>
+          <div class="byline"><a href="https://jamesliuzx.com" rel="author">James Liu</a> · ${article.readingMinutes} min read</div>
         </div>
       </header>
       <article class="content">${html}</article>

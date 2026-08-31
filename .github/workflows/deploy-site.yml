@@ -42,6 +42,15 @@ jobs:
       - name: SPA fallback
         run: cp site/dist/index.html site/dist/404.html
 
+      # Without this the deployed site ships no sitemap.xml or robots.txt at
+      # all; build-seo.mjs used to run only in the CI compile check, which
+      # deploys nothing. SITE_URL (repo secret) wins when set; the Pages URL
+      # is the fallback so the sitemap is absolute either way.
+      - name: Sitemap and robots
+        env:
+          SITE_URL: ${{ secrets.SITE_URL }}
+        run: node scripts/build-seo.mjs --base "${SITE_URL:-https://jamesliuzx.github.io/linkedin-operator-notes}"
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site/dist

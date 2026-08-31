@@ -8,6 +8,16 @@
       name="description"
       content="Field notes on prediction-market products and shipping AI near money."
     />
+    <!-- Static fallback for scrapers that do not run JS (LinkedIn, X, Slack).
+         main.js overwrites these per route for browsers and Googlebot. -->
+    <meta property="og:site_name" content="Market Ops Notes" />
+    <meta property="og:title" content="Market Ops Notes" />
+    <meta
+      property="og:description"
+      content="Field notes on prediction-market products and shipping AI near money."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
     <!-- Fonts are self-hosted via @fontsource and imported in main.js. A CDN
          link here would race the bundle and fall back silently when blocked. -->
     <meta name="color-scheme" content="light dark" />
