@@ -5,7 +5,7 @@ author: James Liu
 series: Market Ops Notes
 section: agents
 summary: "The same 77-word post scored 95/100 on one copy of this site's quality gate and 66/100 on another. Both were real. I found the drift by accident, then merged the two into one, and the gap that is left is now the correct kind."
-status: published
+status: compliance-checked
 publishAt: 2026-08-08T07:20:00Z
 platforms: twitter, medium, substack
 tags: ai, agents, content-ops, evals

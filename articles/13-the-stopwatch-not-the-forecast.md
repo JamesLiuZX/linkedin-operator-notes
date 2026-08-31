@@ -5,7 +5,7 @@ author: James Liu
 series: Market Ops Notes
 section: growth
 summary: "Developers forecast AI tools would make them 24% faster. Afterward, they still believed 20%. A stopwatch measured 19% slower. The gap between belief and measurement, not the token bill, is what decides whether a workflow pays for itself."
-status: published
+status: compliance-checked
 publishAt: 2026-08-08T07:10:00Z
 platforms: twitter, medium, substack
 tags: growth, ai-workflows, roi, claude

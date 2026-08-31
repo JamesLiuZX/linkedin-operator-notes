@@ -5,7 +5,7 @@ author: James Liu
 series: Market Ops Notes
 section: growth
 summary: "A link in a LinkedIn post's body costs the post about 60% of its reach. Not the topic, not the writing, the link's address. Move it to the first comment and change nothing else."
-status: published
+status: compliance-checked
 publishAt: 2026-08-08T07:15:00Z
 platforms: twitter, medium, substack
 tags: growth, linkedin, distribution, content-ops
