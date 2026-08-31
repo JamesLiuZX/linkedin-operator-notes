@@ -5,7 +5,7 @@ author: James Liu
 series: Market Ops Notes
 section: media
 summary: "Two campaigns, both reporting a 30% hook rate. On Meta that is inside the 'good' band. On TikTok it is barely 'baseline.' Same number, different platform, different verdict."
-status: published
+status: compliance-checked
 publishAt: 2026-08-08T07:05:00Z
 platforms: twitter, medium, substack
 tags: media, ugc, growth, short-form-video

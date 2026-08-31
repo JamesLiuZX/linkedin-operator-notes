@@ -5,7 +5,7 @@ author: James Liu
 series: Market Ops Notes
 section: media
 summary: "Compile one scene for four current video-gen models and only one of the four, Veo 3.1, keeps the audio cue. The other three drop it, silently."
-status: published
+status: compliance-checked
 publishAt: 2026-08-08T07:00:00Z
 platforms: twitter, medium, substack
 tags: media, video-gen, gen-media, prompt-engineering
