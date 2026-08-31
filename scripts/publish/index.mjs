@@ -18,6 +18,7 @@ import {
   recordPublish,
   pendingPlatforms,
   isPublished,
+  isQueuedImport,
   listPendingHuman,
 } from "./state.mjs";
 import { runComplianceChecks, hasBlockingIssues } from "./compliance.mjs";
@@ -94,6 +95,12 @@ async function publishItem(item, state, config) {
   const results = [];
 
   for (const platform of pending) {
+    if (!dryRun && isQueuedImport(state, item.slug, platform)) {
+      log(`  ~  ${platform}: already queued for human import; skipping`);
+      results.push({ ok: true, platform, status: "queued-import", requiresHuman: true, skipped: true });
+      continue;
+    }
+
     const cfg = checkPlatformConfig(config, platform);
     if (!cfg.ok) {
       log(`  x  ${platform}: missing config: ${cfg.missing.join(", ")}`);
@@ -101,6 +108,7 @@ async function publishItem(item, state, config) {
         ok: false,
         platform,
         error: `missing config: ${cfg.missing.join(", ")}`,
+        skipped: true,
       });
       continue;
     }
@@ -146,7 +154,12 @@ async function publishItem(item, state, config) {
     }
   }
 
-  if (!dryRun && results.length) {
+  // Only rewrite frontmatter when something was actually attempted this run.
+  // A run where every platform was skipped (missing config, or already queued
+  // for a human) must leave the item untouched, or one credential-less cron
+  // run silently burns the whole queue to `partial`.
+  const attempted = results.filter((r) => !r.skipped);
+  if (!dryRun && attempted.length) {
     const status = rollUp(results);
     if (status === "published" || status === "partial" || status === "queued-import") {
       await syncStatus(item, status === "queued-import" ? "queued-import" : status);
