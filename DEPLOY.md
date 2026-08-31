@@ -71,6 +71,8 @@ difference matters to `scripts/publish`, not to the site:
 
 - `compliance-checked` and `scheduled` with a past `publishAt` are eligible for
   cross-posting to X, Medium, and Substack.
+- `partial` (some platforms done, some not) is retried; `.publish/state.json`
+  tracks which platforms are done, so retries never double-post.
 - `published` is terminal. The publisher skips it.
 
 So if you want a page live on the site but **not** auto-cross-posted, use
