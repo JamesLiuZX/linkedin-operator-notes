@@ -2,6 +2,11 @@
 
 LinkedIn is rented attention. Email is owned. Courses are last.
 
+> **2026-08-12 update:** the Udemy marketplace course is the exception to
+> "courses are last", because Udemy brings its own demand and does not draw on
+> this audience's trust budget. The cohort rule below still stands. Full
+> reconciliation and the revised funnel: [09-course-funnel.md](./09-course-funnel.md).
+
 ## Ladder
 
 | Stage | When | What |
