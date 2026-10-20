@@ -4,7 +4,22 @@ This doc connects this repo to [jamesliuzx/udemy](https://github.com/JamesLiuZX/
 the course production pipeline. Where it conflicts with the ladder in
 [06-newsletter-and-products.md](./06-newsletter-and-products.md), this doc wins.
 Written 2026-08-12, when the course repo had Section 0 built (4 lectures, 15.1 min)
-and 96 lectures left to write.
+and 96 lectures left to write. That snapshot is stale: the status note below
+replaces it.
+
+> **Status, 2026-10-20.** This is a proposal, not a decision. Every box in §9 is
+> still unchecked. `content/schedule.json` stays the committed plan, and sessions
+> must not re-slot rows because of this doc (CLAUDE.md rule 4: re-planning is
+> James's call). The dates below counted from the schedule start on 2026-08-03
+> and have passed, so read the phases by milestone, as §4 says.
+>
+> The claims about the course repo were rechecked against `JamesLiuZX/udemy`
+> `main` at 9a6089f, and the ones that had gone stale are corrected in place.
+> Since 2026-08-12 that repo has grown to three courses and a separate `books/`
+> system with seven KDP titles. `ai-for-pms` now has 102 lectures drafted across
+> 12 sections, and 12 artifacts. Narration is TTS by the author's choice. Live
+> counts and sign-off state belong to that repo's `STATUS.md`, so this doc does
+> not copy them.
 
 ## 1. The reconciliation
 
@@ -15,7 +30,7 @@ about two different products:
 | Product | Price | Who finds it | Validation needed |
 |---|---|---|---|
 | Udemy course | $24.99 launch, $74.99 standard | Udemy search + Udemy Business | Udemy's own marketplace demand research (done, in `docs/00-strategy.md` there) |
-| Cohort / advisory | $500+ | This audience, via DMs | The 06 rule: 20+ replies, 5+ asks, or a 50-email waitlist |
+| Cohort / advisory | {{SLOT: cohort price, James only}} | This audience, via DMs | The 06 rule: 20+ replies, 5+ asks, or a 50-email waitlist |
 
 The "validate first" rule was written for a high-ticket cohort sold to the
 LinkedIn audience. It still applies to that. A marketplace course is a different
@@ -47,7 +62,8 @@ generic version is commodity and its reviews say "I could have used ChatGPT."
 
 The thing that makes the non-generic version credible is this repo's Pillar 1.
 "Owns a prediction market at exchange scale" is what separates the instructor
-from the 400 other AI-for-PMs courses. The pillars do not move:
+from the 400 other AI-for-PMs courses (the udemy repo's own count, `docs/00-strategy.md`
+section 6). The pillars do not move:
 
 1. **Prediction markets as products**: the moat. Proof a specific human expert exists.
 2. **AI that ships**: the commercial lane. The course monetizes this pillar.
@@ -71,8 +87,8 @@ LinkedIn coat. Make the mapping explicit and stop writing anything twice:
 | 19-88-percent-use-it-25-percent-finished | 9.1 adoption, acceptance, deflection | essay first |
 | 13-the-stopwatch-not-the-forecast | 9.3 A/B testing nondeterministic features | already published |
 | 15-a-checklist-not-a-model | 4.4 LLM-as-judge | already published |
-| 08-the-harness-is-the-edge + calibration lab | Section 4 evaluation, the section that justifies the price | essay exists, lecture next |
-| 03-prototype-aggressively-productionize-suspiciously | 6.4 / 6.6 agent patterns, when not to | essay exists |
+| 08-the-harness-is-the-edge + calibration lab | Section 4 evaluation, the section that justifies the price | essay exists, lecture drafted |
+| 03-prototype-aggressively-productionize-suspiciously | 6.4 agent patterns, 6.7 when an agent is the wrong answer | essay exists |
 | posts/24-spec-failures-vs-coordination-failures | Section 3 specifying AI features | atom exists |
 | 10-the-metric-is-the-alibi | 9.5 dashboards leadership reads | essay exists |
 | Workflow ROI Lab demo | Section 7 cost and unit economics | demo exists, lecture reuses its model |
@@ -89,10 +105,12 @@ proof:
 | RAG breaks in production | 5.5 | The six places, with receipts from public postmortems. |
 | Prompt injection for PMs | 8.2 | The lethal trifecta, in PM language. |
 
-Rule going forward: every course section gets at most one derived essay, and
-every new essay names its course section in frontmatter the same way atoms name
-their essay. `derives:` gains a `kind: lecture` entry. One idea, many surfaces,
-now spanning both repos.
+Rule going forward: every course section gets at most one derived essay, and the
+mapping lives in the tables above. Do not add a `derives:` frontmatter key for
+it: no script reads that key (REVIEW.md section 6), and an atom's `derivedFrom:`
+must name a file in this repo, so a lecture in the course repo cannot go there
+without failing the gate. Name the course section in the schedule row's `notes`
+instead. One idea, many surfaces, now spanning both repos.
 
 ## 4. What to post: three phases keyed to course milestones
 
@@ -124,8 +142,12 @@ re-aims slots, it does not replace the plan.
   the first compound; the market checklist still ships later for Pillar 1.
 - Post the margin-trap and rubric essays here. They are the two strongest
   converters because they produce the "I need this at work" feeling.
-- Record the human-voice lectures (promo, 0.1, section intros, 11.2 to 11.5).
-  This is the one part Claude cannot do and the one part Udemy requires.
+- Sign off the lectures: reading each one and setting `verified: true` is the
+  one part Claude cannot do. Recorded voice is not required. The author elected
+  full TTS delivery (`human_voice_required: []` in
+  `courses/ai-for-pms/course.yaml`, and the 2026-08-12 note in the udemy launch
+  playbook), and Udemy accepts TTS with the AI disclosure line. Presence is
+  earned through the sign-off in 0.1 and 11.5 and fast Q&A.
 
 **Phase C, launch (target w11 to w12, mid-October). Milestone: course live on Udemy.**
 
@@ -174,20 +196,22 @@ verified nowhere ships nowhere.
 
 ## 6. Amazon KDP: a compile target, not a project
 
-Do not write a book. Compile one. The course source is one markdown file per
-lecture, narration and slides together, already verified sentence by sentence.
-That is a manuscript wearing a video coat.
+Superseded in part, 2026-10-20. After this was written, the course repo built
+its own `books/` system: seven titles, a separate pipeline, and
+`docs/05-kdp-playbook.md` for sequencing and launch. That playbook governs the
+mechanics. Its first title, `stop-guessing`, is aimed at the same reader as the
+course. The original framing is kept where it still holds, and the one real
+disagreement is flagged.
 
-- **What:** "The AI Feature Workbook", the 11 artifacts plus the narration
-  prose restructured into chapters. Workbook, not memoir.
-- **When:** only after the course has 10+ reviews and a stable quarterly
-  update loop, realistically Q1 2027. KDP before then steals launch focus.
-- **Why bother at honest expectations:** niche B2B nonfiction on KDP makes
-  hundreds a month at best. The real returns are "author of" authority, Amazon
-  search as another discovery surface, and a back-of-book link driving artifact
-  downloads to the email list. Treat royalties as rounding.
-- **How:** a `pipeline/manuscript.py` build target later, same source, same QC
-  spirit. Zero new writing.
+- **Why bother at honest expectations:** the real returns are "author of"
+  authority, Amazon search as another discovery surface, and a back-of-book
+  link driving artifact downloads to the email list. Treat royalties as
+  rounding.
+- **When (open, James's call):** this doc gated KDP on the course reaching 10+
+  reviews and a stable quarterly update loop. The KDP playbook instead
+  sequences by title: finish `stop-guessing`, launch it, read 90 days of data,
+  then pick title two. It does not wait on course reviews. Both agree on one
+  rule: never bulk-publish. Pick one gate and record it in §9.
 
 The essays here could also compile into a field-notes book one day. That is a
 year-two decision, gated on the newsletter proving people want the voice.
@@ -206,7 +230,8 @@ Already documented, so pointers not repetition:
 - The site gets one addition: a `/course` page owning the pitch, so LinkedIn
   can point at your domain instead of Udemy's, and the email capture happens on
   the way through. Udemy takes a bigger cut of organic-landing sales than
-  coupon-link sales anyway.
+  coupon-link sales anyway (confirm the current revenue-share terms in the
+  instructor dashboard before relying on this).
 
 What is deliberately not a channel: paid ads, engagement pods, follow-for-follow,
 DM automation. Same reasoning as the rest of the system. Reach you rent breaks
@@ -214,28 +239,33 @@ the operator brand you are building to own.
 
 ## 8. Money, honestly
 
-| Surface | Realistic 90-day | Realistic year-one | What actually drives it |
-|---|---|---|---|
-| Udemy course | $300 to $3k | $2k to $15k | Reviews, completion rate, Q&A speed, then Udemy Business inclusion |
-| KDP workbook | $0 (not launched) | Low hundreds total | Exists for authority and search, not income |
-| Cohort / advisory | $0 to $2k | $5k to $30k | The LinkedIn brand plus the 06 validation gate |
-| The brand itself | inbound DMs | roles, talks, intros | Everything above compounds into this |
+The first version of this section carried dollar ranges for 90 days and year
+one. None had a source, so they are removed (they remain in commit 72bf21e).
+Fill them from real numbers only: Udemy instructor revenue after launch, KDP
+reports after a title ships, and invoiced advisory work.
 
-The honest read: the course is the best near-term cash surface, advisory is the
-best per-hour surface, and the LinkedIn brand is the asset that appreciates.
-Every artifact in both repos serves the third thing even when the first two
-underperform.
+| Surface | What actually drives it |
+|---|---|
+| Udemy course | Reviews, completion rate, Q&A speed, then Udemy Business inclusion |
+| KDP book | Exists for authority and search, not income |
+| Cohort / advisory | The LinkedIn brand plus the 06 validation gate |
+| The brand itself | Everything above compounds into this |
+
+The working view, unproven until there is data: the course is the best
+near-term cash surface, advisory is the best per-hour surface, and the LinkedIn
+brand is the asset that appreciates. Every artifact in both repos serves the
+third thing even when the first two underperform.
 
 ## 9. Decisions to lock now
 
 - [ ] Adopt this doc's funnel as the ladder; 06 keeps the cohort validation rule.
-- [ ] Course launch target: w11 of the schedule (mid-October), milestone-gated, not date-gated.
+- [ ] Course launch date: set a real one once the sign-off is done (the udemy repo's `STATUS.md` records none). This doc's w11, mid-October, has passed.
 - [ ] Free compound #1 switches to the eval-harness spreadsheet; market checklist ships second.
 - [ ] Newsletter platform locked by w8 so issue #1 lands w9 as scheduled.
 - [ ] The four gap essays enter the idea bank now (margin trap, rubric inconsistency, RAG breaks, prompt injection).
 - [ ] One bio sentence everywhere, this week: LinkedIn, site, Udemy instructor profile.
 - [ ] Course promo cap: 1 in 5 posts, forever.
-- [ ] KDP deferred until the course has 10+ reviews. No exceptions, including enthusiasm.
+- [ ] KDP gate: this doc's rule (deferred until the course has 10+ reviews) or the KDP playbook's (finish `stop-guessing`, launch, read 90 days of data). Pick one.
 
 ## Takeaway
 
