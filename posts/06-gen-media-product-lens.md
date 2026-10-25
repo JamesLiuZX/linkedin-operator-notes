@@ -17,8 +17,6 @@ Counterexample: For internal assets with no distribution surface, full automatio
 Reader action: Size the human review step before the generation step, then set volume to whatever review can clear.
 -->
 
-# Generated media is a cost curve decision before it is a taste decision
-
 Most generative media posts are demos. "Look what I made." Fine for art, weak for product.
 
 Inside a growth system the question is never model quality on its own. It is whether the output survives contact with distribution, and there are 4 tests for that.

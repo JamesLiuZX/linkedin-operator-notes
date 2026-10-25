@@ -17,8 +17,6 @@ Counterexample: A partnership can survive a mediocre demo if distribution is rea
 Reader action: Before signature, name the person who owns auth, data flow, failure modes, and support.
 -->
 
-# Every AI partnership I worked on died the same way
-
 The demo is the least predictive part of an AI partnership.
 
 It is also the cheapest, which is why it gets 80% of the attention and almost none of the blame.

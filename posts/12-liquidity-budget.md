@@ -4,7 +4,7 @@ slug: 12-liquidity-budget
 section: markets
 pillar: markets
 format: demo
-status: draft
+status: ready
 derivedFrom: articles/06-dead-markets-poison.md
 demo: liquidity-lab
 linkInComment: /demos/liquidity-lab
@@ -20,26 +20,32 @@ Counterexample: Some markets deserve to be thin. A long-dated tail market with t
 Reader action: Price the slippage target before the listing meeting, not after the complaint.
 -->
 
-# What it costs to make a market feel real
+## Draft
 
 "This market feels dead" is not feedback anyone can act on. So I priced it.
 
-Take a user about to put $500 into a market trading at 50 cents. Decide what slippage they should feel. Half a percent is a reasonable bar.
+A user is about to put $500 into a market trading at 50 cents. Say half a percent of slippage is the most you want them to feel.
 
-Under Hanson's LMSR, that requires a liquidity parameter of 49,750, and the worst case loss on that market maker is b times ln 2. Which is $34,484.
+Hanson's LMSR gets there with a liquidity parameter, b, of 49,750. The market maker's worst-case loss is b times ln 2: $34,484.
 
 Per market.
 
-List 40 of them at that depth and you have written a $1,379,374 worst-case commitment. List four and it is $137,937.
+At that depth, 40 markets is a $1,379,374 worst-case commitment. Four is $137,937.
 
 That arithmetic is the argument against a full calendar, and it is more persuasive than any opinion about focus. I know, because I made the opinion version and lost.
 
-The reason to reason in LMSR even if you ship an order book is that it is the one market maker whose worst case has a closed form. You can put it in a budget line. "We need more makers" cannot go in a budget line.
+I reach for LMSR even when the venue runs an order book, because its worst case has a closed form. That gives you a number for the budget. "We need more makers" is not one.
 
-The other number worth carrying into that meeting: sector open interest was $1.11B on 1 May 2026 against $8.6B of April volume. Roughly 13% of the monthly headline is actual positions. The rest is turnover.
+One more number for that meeting. On 1 May 2026, sector open interest was $1.11B. April volume was $8.6B. Roughly 13% of the monthly headline is actual positions, and the rest is turnover.
 
 So when someone quotes a volume number at you as evidence the category is deep, ask what the open interest was.
 
 There is a version of this that is wrong, and I will say it before someone else does. Some markets should be thin. A long-dated tail market with three traders is fine, as long as the product tells the user that before they tap, rather than after.
 
 Takeaway: pick the slippage a user should feel, price it, and let the number decide how many markets you list.
+
+## First comment
+
+Try it: /demos/liquidity-lab
+
+The longer version of the argument: /markets/06-dead-markets-poison
