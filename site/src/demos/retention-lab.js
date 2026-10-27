@@ -12,8 +12,8 @@ import { PLATFORMS, HOOK_STYLES, DEFAULTS, simulate } from "@lib/retention.mjs";
 
 export const meta = {
   slug: "retention-lab",
-  title: "Retention Curve Lab",
-  tagline: "Set a hook style, captions, and pacing. Watch where the viewers actually go.",
+  title: "Watch-Time Simulator",
+  tagline: "Where do viewers drop off, and what keeps them?",
   section: "media",
   pillar: "Gen media",
   essay: "12-the-hook-rate-is-not-one-number",

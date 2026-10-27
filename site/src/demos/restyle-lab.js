@@ -8,8 +8,8 @@ import { SCENES, STYLES, MODELS, findScene, findStyle, findModel, compilePrompt 
 
 export const meta = {
   slug: "restyle-lab",
-  title: "Restyle Lab",
-  tagline: "Compile a scene into a video-gen prompt, storyboard, and CLI command for Seedance, Kling, Veo, or Sora.",
+  title: "Video Prompt Studio",
+  tagline: "One scene, written for Seedance, Kling, Veo and Sora.",
   section: "media",
   pillar: "Gen media",
   essay: "11-the-scene-is-not-the-prompt",

@@ -242,6 +242,9 @@ export function lineChart(series, opts = {}) {
         label: s.label,
         color: s.color || SERIES[i % SERIES.length],
         points: s.points,
+        // Each point in the chart's own axis formats, so the tooltip reads
+        // "$500, 55.6c" rather than "500.000, 0.556".
+        text: s.points.map((p) => [xFormat(p[0]), yFormat(p[1])]),
       })),
     })
   );
@@ -288,14 +291,19 @@ export function hydrateCharts(root) {
       line.setAttribute("x1", m.l + t * iw);
       line.setAttribute("x2", m.l + t * iw);
 
-      const rows = cfg.series.map((s) => {
-        let best = s.points[0];
-        for (const p of s.points) if (Math.abs(p[0] - xv) < Math.abs(best[0] - xv)) best = p;
+      let head = xv.toFixed(3);
+      const rows = cfg.series.map((s, si) => {
+        let best = 0;
+        s.points.forEach((p, j) => {
+          if (Math.abs(p[0] - xv) < Math.abs(s.points[best][0] - xv)) best = j;
+        });
+        const text = s.text?.[best];
+        if (si === 0 && text) head = text[0];
         return `<div class="tip-row"><span class="swatch" style="background:${s.color}"></span>${esc(
           s.label
-        )}<b class="mono">${best[1].toFixed(3)}</b></div>`;
+        )}<b class="mono">${esc(text ? text[1] : s.points[best][1].toFixed(3))}</b></div>`;
       });
-      tip.innerHTML = `<div class="tip-head mono">${xv.toFixed(3)}</div>${rows.join("")}`;
+      tip.innerHTML = `<div class="tip-head mono">${esc(head)}</div>${rows.join("")}`;
       tip.hidden = false;
       const localX = ((evt.clientX - box.left) / box.width) * 100;
       tip.style.left = `${Math.min(72, Math.max(4, localX))}%`;

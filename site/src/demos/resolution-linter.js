@@ -14,8 +14,8 @@ import { statRow, meter, esc, tableView } from "../viz/charts.js";
 
 export const meta = {
   slug: "resolution-linter",
-  title: "Resolution linter",
-  tagline: "Paste market rules. See the dispute surface before your users find it.",
+  title: "Market Rules Check",
+  tagline: "Will these rules start a dispute?",
   section: "markets",
   pillar: "Market design",
   essay: "07-the-sentence-is-the-product",

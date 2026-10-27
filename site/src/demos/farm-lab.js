@@ -17,8 +17,8 @@ import { statRow, stackedBar, lineChart, depthLadder, legend, fmt, esc, tableVie
 
 export const meta = {
   slug: "farm-lab",
-  title: "Farm lab",
-  tagline: "Move the sliders until your rewards program is buying nothing.",
+  title: "Rewards Check",
+  tagline: "Is your liquidity-rewards program buying real liquidity?",
   section: "markets",
   pillar: "Market design",
   // 04-rewards-vs-farming is the personal-experience essay this demo was

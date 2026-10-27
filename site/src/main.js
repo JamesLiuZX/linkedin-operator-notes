@@ -12,9 +12,13 @@ import "@fontsource/source-serif-4/latin-600.css";
 import "@fontsource/source-serif-4/latin-400-italic.css";
 import "@fontsource/ibm-plex-mono/latin-400.css";
 import "@fontsource/ibm-plex-mono/latin-500.css";
+import "@fontsource/ibm-plex-sans/latin-400.css";
+import "@fontsource/ibm-plex-sans/latin-500.css";
+import "@fontsource/ibm-plex-sans/latin-600.css";
 import "./style.css";
 import "./viz/palette.css";
 import "./viz/viz.css";
+import "./demos/kit.css";
 import { marked } from "marked";
 import manifest from "../../articles/unsplash-manifest.json";
 import { ARTICLES, bySlug, SECTIONS, VISIBLE } from "./content.js";
@@ -195,13 +199,7 @@ function renderHome() {
     .map((s) => s.items[0])
     .filter(Boolean)
     .slice(0, 4)
-    .map(
-      (d) =>
-        `<a class="strip-card" href="${base}/demos/${d.slug}">
-           <strong>${escapeHtml(d.title)}</strong>
-           <span>${escapeHtml(d.tagline)}</span>
-         </a>`
-    )
+    .map(demoTile)
     .join("");
 
   const essaySections = groups
@@ -226,12 +224,12 @@ function renderHome() {
         <p>Resolution, liquidity, and incentives, plus AI workflows, gen media, and growth, each argument attached to something that runs.</p>
         <div class="section-nav">${sectionNav}${demosChip}</div>
       </header>
-      <section class="strip">
-        <div class="strip-head">
-          <h2>Poke something</h2>
-          <a href="${base}/demos" class="mono">All demos →</a>
+      <section class="kit-strip" aria-labelledby="strip-h">
+        <div class="kit-section-head">
+          <h2 id="strip-h">Try a demo</h2>
+          <a class="kit-link" href="${base}/demos">All ${DEMOS.length} demos</a>
         </div>
-        <div class="strip-grid">${demoStrip}</div>
+        <div class="kit-tiles">${demoStrip}</div>
       </section>
       <section class="idx">${
         groups.length ?
@@ -397,12 +395,27 @@ function siteNav(active = "") {
   </nav>`;
 }
 
+const ARROW =
+  '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h9.5M8.5 4l4 4-4 4"/></svg>';
+
+/** A demo as a product tile: pillar, name, the question it answers. */
+function demoTile(d, i = 0) {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  return `
+    <a class="kit-tile" href="${base}/demos/${d.slug}" style="animation-delay:${i * 60}ms">
+      <span class="kit-tile-eyebrow">${escapeHtml(d.pillar)}</span>
+      <span class="kit-tile-title">${escapeHtml(d.title)}</span>
+      <span class="kit-tile-q">${escapeHtml(d.tagline)}</span>
+      <span class="kit-tile-go" aria-hidden="true">Open ${ARROW}</span>
+    </a>`;
+}
+
 function renderDemoIndex() {
   const base = import.meta.env.BASE_URL.replace(/\/$/, "");
   setMeta({
     title: "Demos · Market Ops Notes",
     description:
-      "Interactive prototypes across market design, AI agents, gen media, and growth. Everything runs in the browser, and the numbers are the same every time you load them.",
+      "Interactive demos across market design, AI agents, gen media, and growth. Everything runs in the browser, and the numbers are the same every time you load them.",
     url: window.location.origin + base + "/demos",
   });
 
@@ -411,38 +424,80 @@ function renderDemoIndex() {
   document.getElementById("app").innerHTML = `
     ${siteNav("/demos")}
     <main class="home">
-      <header class="brand-lockup">
-        <div class="eyebrow">Demos</div>
-        <h1>Things you can poke</h1>
-        <p>${DEMOS.length} prototypes across ${groups.length} categories, each one attached to an argument. Everything runs in the browser. No keys, no backend, no model calls, so the numbers are the same every time you load them.</p>
+      <header class="kit-head">
+        <p class="kit-eyebrow">Demos</p>
+        <h1 class="kit-title">Check the numbers yourself</h1>
+        <p class="kit-question">${DEMOS.length} small tools, each built to make one argument from these notes checkable. Pick a scenario and the answer updates as you go.</p>
+        <p class="kit-intro">Everything runs in your browser: no sign-up and no model calls, so the same inputs always give the same numbers.</p>
       </header>
       ${groups
         .map(
           (s) => `
-        <section class="demo-group">
-          <div class="idx-group-head">
-            <span class="label">${escapeHtml(s.title)}</span>
-            <p class="idx-group-blurb">${escapeHtml(s.blurb)}</p>
+        <section class="kit-group" aria-labelledby="group-${s.id}">
+          <div class="kit-section-head">
+            <h2 id="group-${s.id}">${escapeHtml(s.title)}</h2>
+            <p>${escapeHtml(s.blurb)}</p>
           </div>
-          <div class="demo-cards">
-            ${s.items
-              .map(
-                (d, i) => `
-              <a class="demo-card" href="${base}/demos/${d.slug}" style="animation-delay:${i * 70}ms">
-                <div class="series">${escapeHtml(d.pillar)}</div>
-                <h2>${escapeHtml(d.title)}</h2>
-                <p class="tagline">${escapeHtml(d.tagline)}</p>
-                <p class="meta">${escapeHtml(d.blurb)}</p>
-                <span class="go mono">Open →</span>
-              </a>`
-              )
-              .join("")}
-          </div>
+          <div class="kit-tiles">${s.items.map(demoTile).join("")}</div>
         </section>`
         )
         .join("")}
     </main>`;
   window.scrollTo(0, 0);
+}
+
+/**
+ * "How this works": the technical detail a converted demo moves out of its
+ * header. Reads meta.how (paragraphs), meta.formulas ([{ label, expr }]),
+ * meta.buildNote and meta.sources ([{ label, href }]); each one is optional.
+ */
+function howItWorks(demo) {
+  const how = demo.how || [];
+  const formulas = demo.formulas || [];
+  const sources = demo.sources || [];
+  return `
+    <details class="kit-disclosure kit-how">
+      <summary>How this works</summary>
+      <div class="kit-disclosure-body kit-prose">
+        ${how.map((p) => `<p>${escapeHtml(p)}</p>`).join("")}
+        ${
+          formulas.length
+            ? `<dl class="kit-formulas">${formulas
+                .map((f) => `<div><dt>${escapeHtml(f.label)}</dt><dd><code>${escapeHtml(f.expr)}</code></dd></div>`)
+                .join("")}</dl>`
+            : ""
+        }
+        ${demo.buildNote ? `<p>${escapeHtml(demo.buildNote)}</p>` : ""}
+        ${
+          sources.length
+            ? `<p class="kit-sources-head">Sources</p>
+               <ul class="kit-sources">${sources
+                 .map(
+                   (s) =>
+                     `<li><a href="${escapeHtml(s.href)}" target="_blank" rel="noreferrer">${escapeHtml(s.label)}</a></li>`
+                 )
+                 .join("")}</ul>`
+            : ""
+        }
+      </div>
+    </details>`;
+}
+
+/** Three other demos: the same category first, then one from each other. */
+function moreDemos(demo) {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  const groups = demosBySection();
+  const same = DEMOS.filter((d) => d.section === demo.section && d.slug !== demo.slug);
+  const others = groups.filter((s) => s.id !== demo.section).map((s) => s.items[0]);
+  const picks = [...same, ...others].filter(Boolean).slice(0, 3);
+  return `
+    <section aria-labelledby="more-demos-h">
+      <div class="kit-section-head">
+        <h2 id="more-demos-h">More demos</h2>
+        <a class="kit-link" href="${base}/demos">All ${DEMOS.length} demos</a>
+      </div>
+      <div class="kit-tiles">${picks.map(demoTile).join("")}</div>
+    </section>`;
 }
 
 function renderDemo(demo) {
@@ -457,21 +512,26 @@ function renderDemo(demo) {
 
   document.getElementById("app").innerHTML = `
     ${siteNav("/demos")}
-    <main class="demo-shell viz">
-      <header class="demo-head">
-        <div class="eyebrow">${escapeHtml(demo.pillar)}</div>
-        <h1>${escapeHtml(demo.title)}</h1>
-        <p class="tagline">${escapeHtml(demo.tagline)}</p>
-        <p class="demo-blurb">${escapeHtml(demo.blurb)}</p>
-        <div class="demo-links">
-          ${essay ? `<a href="${base}/${essay.section}/${essay.slug}">Read the essay this came from</a>` : ""}
-          <a href="${base}/demos">All demos</a>
-        </div>
+    <main class="demo-shell viz kit">
+      <header class="kit-head">
+        <p class="kit-eyebrow">${escapeHtml(demo.pillar)}</p>
+        <h1 class="kit-title">${escapeHtml(demo.title)}</h1>
+        <p class="kit-question">${escapeHtml(demo.tagline)}</p>
+        ${demo.blurb ? `<p class="kit-intro">${escapeHtml(demo.blurb)}</p>` : ""}
       </header>
       <div id="demo-root"></div>
-      <footer class="demo-foot">
-        <h4>How it is built</h4>
-        <p>${escapeHtml(demo.buildNote)}</p>
+      <footer class="kit-foot">
+        ${howItWorks(demo)}
+        ${
+          essay
+            ? `<a class="kit-essay" href="${base}/${essay.section}/${essay.slug}">
+                 <span class="kit-essay-kicker">The essay behind this demo</span>
+                 <span class="kit-essay-title">${escapeHtml(essay.title)}</span>
+                 ${essay.summary ? `<span class="kit-essay-summary">${escapeHtml(essay.summary)}</span>` : ""}
+               </a>`
+            : ""
+        }
+        ${moreDemos(demo)}
       </footer>
     </main>`;
 

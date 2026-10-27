@@ -18,8 +18,8 @@ import { statRow, esc, tableView } from "../viz/charts.js";
 
 export const meta = {
   slug: "slop-gate",
-  title: "Slop Gate",
-  tagline: "Paste a draft. Run the same checklist this site runs on its own drafts.",
+  title: "Draft Check",
+  tagline: "Does this draft read like a person wrote it?",
   section: "agents",
   pillar: "AI & agents",
   essay: "15-a-checklist-not-a-model",

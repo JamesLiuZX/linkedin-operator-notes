@@ -23,8 +23,8 @@ import { statRow, barsH, lineChart, reliabilityPlot, legend, fmt, esc, tableView
 
 export const meta = {
   slug: "calibration-lab",
-  title: "Calibration lab",
-  tagline: "Sharper forecasts feel better and score worse. Watch it happen.",
+  title: "Forecast Scorecard",
+  tagline: "Are your forecasts as good as they feel?",
   section: "agents",
   pillar: "Agents on rails",
   essay: "08-the-harness-is-the-edge",
