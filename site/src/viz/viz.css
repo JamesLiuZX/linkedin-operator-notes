@@ -469,6 +469,12 @@ textarea {
   display: none;
 }
 
+/* The hidden attribute does nothing on SVG elements, so the idle crosshair
+   used to draw as a stray vertical line at the chart's left edge. */
+.viz-svg [hidden] {
+  display: none;
+}
+
 .viz-tip {
   position: absolute;
   top: 8px;

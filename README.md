@@ -51,14 +51,14 @@ calls, and the same inputs always give the same numbers.
 
 | Category | Demo | Question it answers | Essay |
 |---|---|---|---|
-| Market design | [Resolution linter](./site/src/demos/resolution-linter.js) | Where is the dispute surface in this market's rules? 16 rules, 3 real markets that blew up. | 07 |
-| Market design | [Farm lab](./site/src/demos/farm-lab.js) | What does a liquidity rewards program actually buy per filled unit? | 10 |
-| Market design | [Liquidity lab](./site/src/demos/liquidity-lab.js) | What does "this market feels dead" cost to fix, in dollars? | 06 |
-| AI & agents | [Calibration lab](./site/src/demos/calibration-lab.js) | Is the agent better than the price it is trading against? | 08 |
-| AI & agents | [Slop Gate](./site/src/demos/slop-gate.js) | Paste any text: does it pass the same checks this site runs on its own drafts? | 15 |
-| Gen media & UGC | [Restyle Lab](./site/src/demos/restyle-lab.js) | Compile one scene into a prompt for 4 current video-gen models at once. | 11 |
-| Gen media & UGC | [Retention Curve Lab](./site/src/demos/retention-lab.js) | What does a hook style actually do to a short-form video's retention curve? | 12 |
-| Growth & AI workflows | [Workflow ROI Lab](./site/src/demos/workflow-roi-lab.js) | Where does an AI-assisted workflow stop paying for itself? | 13 |
+| Market design | [Market Rules Check](./site/src/demos/resolution-linter.js) | Where is the dispute surface in this market's rules? 16 rules, 3 real markets that blew up. | 07 |
+| Market design | [Rewards Check](./site/src/demos/farm-lab.js) | What does a liquidity rewards program actually buy per filled unit? | 10 |
+| Market design | [Market Depth Budget](./site/src/demos/liquidity-lab.js) | What does "this market feels dead" cost to fix, in dollars? | 06 |
+| AI & agents | [Forecast Scorecard](./site/src/demos/calibration-lab.js) | Is the agent better than the price it is trading against? | 08 |
+| AI & agents | [Draft Check](./site/src/demos/slop-gate.js) | Paste any text: does it pass the same checks this site runs on its own drafts? | 15 |
+| Gen media & UGC | [Video Prompt Studio](./site/src/demos/restyle-lab.js) | Compile one scene into a prompt for 4 current video-gen models at once. | 11 |
+| Gen media & UGC | [Watch-Time Simulator](./site/src/demos/retention-lab.js) | What does a hook style actually do to a short-form video's retention curve? | 12 |
+| Growth & AI workflows | [AI Payback Check](./site/src/demos/workflow-roi-lab.js) | Where does an AI-assisted workflow stop paying for itself? | 13 |
 
 The linter is the flagship. It scores the real Polymarket Ukraine-minerals market
 at 3/100 and its rewrite at 95/100, which is the whole argument in one screen.

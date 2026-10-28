@@ -3,8 +3,13 @@
 // The demo kit. Every demo page is built from these pieces so the eight demos
 // read as one product: a question, scenario pills, one answer, one chart, the
 // assumptions beside it, and the detail a click away. Styles live in kit.css,
-// imported once by main.js. The page header and "How this works" come from the
-// template in main.js, driven by the demo's `meta`.
+// imported once by main.js.
+//
+// The page around mount() is the template in main.js, driven by `meta`:
+//   title (2 or 3 plain words, no "Lab"), tagline (the question), pillar (the
+//   eyebrow), blurb (1 or 2 plain sentences), and for "How this works":
+//   how (paragraphs), formulas ([{ label, expr }]), sources ([{ label, href }])
+//   and buildNote. Keep slug, section, essay and pillar as they are.
 //
 // A calculator demo is one call (workflow-roi-lab.js is the full example):
 //
@@ -38,7 +43,10 @@
 //
 // Text tools (linter, slop gate, restyle) skip calculator() and compose the
 // same parts by hand: scenarioBar() for sample pills, answerCard() for the
-// verdict, card() for findings, disclosure() for rule IDs and detail.
+// verdict, card() plus status() for findings, disclosure() for rule IDs and
+// detail. Lay them out with .kit-grid.kit-grid-split (input first, 50/50 on
+// desktop), a .kit-panel around a textarea.kit-textarea, and .kit-code for
+// code-like output.
 
 import { esc } from "../viz/charts.js";
 
@@ -223,10 +231,14 @@ export function stats(items) {
 
 /* -------------------------------------------------- cards and tables --- */
 
-/** A chart whose title states the takeaway. body is chart HTML; note is HTML. */
-export function chartCard({ title, body = "", note = "", level = 3 }) {
+/**
+ * A chart whose title states the takeaway. body is chart HTML; note is HTML.
+ * fit: true lets a short-label barsH() shrink to the card on phones instead
+ * of scrolling sideways (keep its labels to about 10 characters).
+ */
+export function chartCard({ title, body = "", note = "", level = 3, fit = false }) {
   return `
-    <section class="kit-card kit-chart">
+    <section class="kit-card kit-chart${fit ? " kit-chart-fit" : ""}">
       <h${level} class="kit-chart-title">${esc(title)}</h${level}>
       <div class="kit-chart-body">${body}</div>
       ${note ? `<p class="kit-chart-note">${note}</p>` : ""}
@@ -352,7 +364,7 @@ export function assumptions({
   moreLabel = "More assumptions",
 }) {
   const el = document.createElement("aside");
-  el.className = "kit-panel";
+  el.className = "kit-panel kit-panel-collapsible";
   el.setAttribute("aria-label", title);
   const bodyId = nextId("kit-panel");
   const all = [...controls, ...more].filter((c) => !c.heading);

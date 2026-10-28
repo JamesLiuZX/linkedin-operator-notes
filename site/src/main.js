@@ -199,7 +199,7 @@ function renderHome() {
     .map((s) => s.items[0])
     .filter(Boolean)
     .slice(0, 4)
-    .map(demoTile)
+    .map((d, i) => demoTile(d, i))
     .join("");
 
   const essaySections = groups
@@ -398,12 +398,15 @@ function siteNav(active = "") {
 const ARROW =
   '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h9.5M8.5 4l4 4-4 4"/></svg>';
 
-/** A demo as a product tile: pillar, name, the question it answers. */
-function demoTile(d, i = 0) {
+/**
+ * A demo as a product tile: pillar, name, the question it answers. Under a
+ * category heading the pillar only repeats it, so pass { eyebrow: false }.
+ */
+function demoTile(d, i = 0, { eyebrow = true } = {}) {
   const base = import.meta.env.BASE_URL.replace(/\/$/, "");
   return `
     <a class="kit-tile" href="${base}/demos/${d.slug}" style="animation-delay:${i * 60}ms">
-      <span class="kit-tile-eyebrow">${escapeHtml(d.pillar)}</span>
+      ${eyebrow ? `<span class="kit-tile-eyebrow">${escapeHtml(d.pillar)}</span>` : ""}
       <span class="kit-tile-title">${escapeHtml(d.title)}</span>
       <span class="kit-tile-q">${escapeHtml(d.tagline)}</span>
       <span class="kit-tile-go" aria-hidden="true">Open ${ARROW}</span>
@@ -438,7 +441,7 @@ function renderDemoIndex() {
             <h2 id="group-${s.id}">${escapeHtml(s.title)}</h2>
             <p>${escapeHtml(s.blurb)}</p>
           </div>
-          <div class="kit-tiles">${s.items.map(demoTile).join("")}</div>
+          <div class="kit-tiles">${s.items.map((d, i) => demoTile(d, i, { eyebrow: false })).join("")}</div>
         </section>`
         )
         .join("")}
@@ -496,7 +499,7 @@ function moreDemos(demo) {
         <h2 id="more-demos-h">More demos</h2>
         <a class="kit-link" href="${base}/demos">All ${DEMOS.length} demos</a>
       </div>
-      <div class="kit-tiles">${picks.map(demoTile).join("")}</div>
+      <div class="kit-tiles">${picks.map((d, i) => demoTile(d, i)).join("")}</div>
     </section>`;
 }
 

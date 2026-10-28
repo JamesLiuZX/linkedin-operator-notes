@@ -55,7 +55,7 @@
 }
 
 .kit-head {
-  max-width: 46rem;
+  max-width: 56rem;
   margin: 0 0 2rem;
 }
 
@@ -67,9 +67,11 @@
 
 .kit-title {
   margin: 0;
+  text-wrap: balance;
   font-family: var(--display);
   font-weight: 800;
-  font-size: clamp(2rem, 4.5vw, 3.1rem);
+  /* Capped so a 2 or 3 word name stays on one line at desktop widths. */
+  font-size: clamp(2rem, 4vw, 2.75rem);
   line-height: 1.05;
   letter-spacing: -0.025em;
   color: var(--ink);
@@ -77,6 +79,8 @@
 
 .kit-question {
   margin: 0.8rem 0 0;
+  max-width: 40rem;
+  text-wrap: pretty;
   font-family: var(--serif);
   font-size: clamp(1.15rem, 2.2vw, 1.375rem);
   line-height: 1.4;
@@ -159,15 +163,24 @@
 
 /* ------------------------------------------------------------- layout --- */
 
+/* Every grid track here is minmax(0, 1fr), never auto: below 640px a chart
+   keeps a 500px minimum and scrolls inside its card (viz.css), and an auto
+   track would pass that width up and scroll the whole page sideways. */
 .kit-grid {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.75rem;
   align-items: start;
 }
 
 .kit-stage {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.5rem;
+  min-width: 0;
+}
+
+.kit-main-chart {
   min-width: 0;
 }
 
@@ -179,6 +192,11 @@
   .kit-grid {
     grid-template-columns: minmax(0, 64fr) minmax(0, 36fr);
     gap: 2rem;
+  }
+
+  /* Text tools: the input panel first, the verdict and findings beside it. */
+  .kit-grid.kit-grid-split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
   .kit-panel {
@@ -209,7 +227,8 @@
 .kit-block-title,
 .kit-chart-title {
   margin: 0;
-  max-width: 52ch;
+  max-width: 60ch;
+  text-wrap: balance;
   font: 600 1.0625rem/1.4 var(--sans);
   color: var(--ink);
 }
@@ -236,6 +255,7 @@
 .kit-chart-note {
   margin: 0.9rem 0 0;
   max-width: 64ch;
+  text-wrap: pretty;
   font: 400 0.875rem/1.55 var(--sans);
   color: var(--kit-muted);
 }
@@ -295,6 +315,7 @@
 .kit-verdict {
   margin: 0.35rem 0 0;
   max-width: 46ch;
+  text-wrap: pretty;
   font: 400 1.125rem/1.55 var(--sans);
   color: var(--ink-soft);
 }
@@ -637,6 +658,32 @@
   transform: translateX(16px);
 }
 
+/* Text input for the text tools: prose in, so sans, not mono. */
+.kit-textarea {
+  width: 100%;
+  min-height: 16rem;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--viz-surface, var(--card));
+  color: var(--ink);
+  font: 400 0.9375rem/1.6 var(--sans);
+  resize: vertical;
+}
+
+/* Genuinely code-like output only: a compiled prompt, a CLI command. */
+.kit-code {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+  border-radius: 12px;
+  background: var(--paper-2);
+  color: var(--ink);
+  font: 400 0.84rem/1.6 var(--mono);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
 /* -------------------------------------------------------- disclosures --- */
 
 .kit-disclosure {
@@ -705,6 +752,7 @@
 
 .kit-disclosure-body {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.5rem;
   padding: 0.25rem 0 2rem;
   min-width: 0;
@@ -1102,6 +1150,7 @@
 
 .kit-pill:focus-visible,
 .kit-text-btn:focus-visible,
+.kit-textarea:focus-visible,
 .kit-panel-toggle:focus-visible,
 .kit-disclosure > summary:focus-visible,
 .kit-more > summary:focus-visible,
@@ -1167,8 +1216,13 @@
     padding: 1.15rem 1rem;
   }
 
-  /* The panel becomes a closed-by-default "Adjust assumptions" disclosure. */
   .kit-panel {
+    padding: 1.1rem;
+  }
+
+  /* An assumptions() panel becomes a closed "Adjust assumptions" disclosure.
+     A plain .kit-panel (a text tool's input) stays open. */
+  .kit-panel-collapsible {
     padding: 0;
     background: none;
   }
@@ -1189,15 +1243,15 @@
     cursor: pointer;
   }
 
-  .kit-panel.is-open .kit-panel-toggle .kit-chevron {
+  .kit-panel-collapsible.is-open .kit-panel-toggle .kit-chevron {
     rotate: 180deg;
   }
 
-  .kit-panel:not(.is-open) .kit-panel-body {
+  .kit-panel-collapsible:not(.is-open) .kit-panel-body {
     display: none;
   }
 
-  .kit-panel.is-open .kit-panel-body {
+  .kit-panel-collapsible.is-open .kit-panel-body {
     margin-top: 0.5rem;
     padding: 1.1rem 1.1rem 0.9rem;
     border-radius: 14px;
@@ -1224,5 +1278,53 @@
 
   .kit-tile {
     min-height: 0;
+  }
+
+  /* Stats become label-left, value-right rows. */
+  .kit-stats {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.7rem;
+  }
+
+  .kit-stat {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 1rem;
+    align-items: baseline;
+  }
+
+  .kit-stat-value {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 1.125rem;
+    text-align: right;
+  }
+
+  .kit-stat-sub {
+    grid-column: 1 / -1;
+  }
+
+  /* chartCard({ fit: true }): a short-label bar chart shrinks to the card
+     instead of scrolling its values out of view, and its text scales up to
+     stay legible. The longest bar's value may run a few pixels into the
+     card's padding, so the scroll box must not clip it. Keep bar labels to
+     about 10 characters when you use it. */
+  .kit-chart-fit .chart-scroll {
+    overflow: visible;
+  }
+
+  .kit-chart-fit .chart-scroll > .viz-svg {
+    min-width: 0;
+  }
+
+  .kit-chart-fit .viz-svg .bar-label,
+  .kit-chart-fit .viz-svg .bar-value {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .kit-chart-fit .viz-svg .bar-label,
+  .kit-chart-fit .viz-svg .bar-value {
+    font-size: 20px;
   }
 }

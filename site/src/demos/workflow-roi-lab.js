@@ -209,13 +209,14 @@ function view(p) {
       title: chartTitle,
       body: barsH(
         [
-          { label: "By hand, today", value: r.manualCost },
-          { label: "With AI: tokens", value: r.tokenCost },
-          { label: "With AI: review", value: r.reviewCost },
-          { label: "With AI: rework", value: r.reworkCost },
+          { label: "By hand", value: r.manualCost },
+          { label: "AI tokens", value: r.tokenCost },
+          { label: "AI review", value: r.reviewCost },
+          { label: "AI rework", value: r.reworkCost },
         ],
         { format: usd3 }
       ),
+      fit: true,
       note: "Time the review step for real before you claim the savings. When METR timed experienced developers, they forecast a 24% speedup, still believed 20% afterward, and a stopwatch measured 19% slower.",
     },
     breakdown:
