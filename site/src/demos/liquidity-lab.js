@@ -126,7 +126,7 @@ const TARGET = 0.005; // half a percent: the slippage bar the essay argues for
 const SCENARIOS = [
   { id: "base", label: "Base case" },
   { id: "dead", label: "A dead market", values: { b: 400, order: 2000, bookMakers: 3, bookSize: 60, bookStep: 3 } },
-  { id: "real", label: "One that feels real", values: { b: 24000, order: 2000, bookMakers: 14, bookSize: 900, bookStep: 0.5 } },
+  { id: "real", label: "A deep market", values: { b: 24000, order: 2000, bookMakers: 14, bookSize: 900, bookStep: 0.5 } },
 ].map((s) => ({
   ...s,
   note: (v) =>
