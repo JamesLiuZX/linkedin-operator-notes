@@ -1,0 +1,235 @@
+/* site/src/demos/resolution-linter.css
+ *
+ * Market Rules Check. The kit supplies the sample pills, the answer card, the
+ * status chips, the input panel and the disclosures. This file styles only what
+ * is particular to a text checker: the input, the finding cards and the rules
+ * table. Everything is a token or derived from one, so dark mode follows.
+ */
+
+/* The kit's cards set their own display, which beats the hidden attribute. */
+.mrc [hidden] {
+  display: none !important;
+}
+
+/* ------------------------------------------------------------- input --- */
+
+.mrc-input {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+}
+
+.mrc-field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.mrc .mrc-textarea {
+  min-height: 21rem;
+}
+
+.mrc-input .kit-actions {
+  margin-top: 0.1rem;
+}
+
+@media (min-width: 641px) {
+  /* A sample's story can run to three lines. Reserve two so the page below it
+     does not jump when the reader switches sample. */
+  .mrc .kit-scenarios-note {
+    min-height: 2.9em;
+  }
+
+  /* The answer card is narrower here than in a calculator (a 50/50 split), so
+     the kit's auto-fit would drop the third stat to a second row. */
+  .mrc .kit-answer .kit-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+/* ---------------------------------------------------------- findings --- */
+
+.mrc-findings {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.mrc-list {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mrc-finding {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.3rem 1.4rem 1.35rem;
+}
+
+.mrc-finding-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.75rem;
+}
+
+.mrc-finding-note {
+  font: 400 0.875rem/1.3 var(--sans);
+  color: var(--kit-muted);
+}
+
+.mrc-finding-title {
+  margin: 0;
+  max-width: 34rem;
+  text-wrap: balance;
+  font: 600 1.125rem/1.35 var(--sans);
+  color: var(--ink);
+}
+
+/* What the rule found: a quote with the matched words marked, or a dashed
+   line when the problem is something missing. */
+.mrc-hits {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mrc-hits li {
+  margin: 0;
+  padding: 0.5rem 0.8rem;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  font: 400 0.9375rem/1.5 var(--sans);
+  color: var(--ink-soft);
+}
+
+.mrc-hits .mrc-quote {
+  border-color: transparent;
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+  color: var(--ink);
+}
+
+.mrc-hits mark {
+  padding: 0.05em 0.25em;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--pine) 18%, transparent);
+  color: inherit;
+  font-weight: 600;
+}
+
+.mrc-quote-note {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.8125rem;
+  color: var(--kit-muted);
+}
+
+.mrc-hits .mrc-more {
+  padding: 0.1rem 0.2rem;
+  border: 0;
+  font-size: 0.8125rem;
+  color: var(--kit-muted);
+}
+
+.mrc-why {
+  margin: 0;
+  max-width: 62ch;
+  font: 400 0.9375rem/1.6 var(--sans);
+  color: var(--ink-soft);
+}
+
+.mrc-fix {
+  padding: 0.8rem 1rem 0.9rem;
+  border-radius: 12px;
+  background: var(--paper-2);
+}
+
+.mrc-fix p {
+  margin: 0;
+  max-width: 62ch;
+  font: 400 0.9375rem/1.55 var(--sans);
+  color: var(--ink-soft);
+}
+
+.mrc-fix .mrc-fix-label {
+  margin-bottom: 0.2rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.mrc-clear {
+  margin: 0;
+  font: 400 0.875rem/1.5 var(--sans);
+  color: var(--kit-muted);
+}
+
+.mrc-findings .mrc-clear {
+  margin-top: 0.9rem;
+}
+
+/* ------------------------------------------------------ all the rules --- */
+
+.mrc-score {
+  margin: 0;
+  max-width: 62ch;
+  font: 400 0.9375rem/1.6 var(--sans);
+  color: var(--ink-soft);
+}
+
+/* Rule names are long. Let them wrap rather than scroll. */
+.mrc-rules .kit-table th,
+.mrc-rules .kit-table td {
+  white-space: normal;
+  vertical-align: top;
+}
+
+.mrc-rules .kit-table td:nth-child(2) {
+  color: var(--kit-muted);
+}
+
+.mrc-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------ mobile --- */
+
+/* One column: answer first, as in the calculators. The stage's children join
+   the page grid so the input can sit between the answer and the findings. */
+@media (max-width: 959px) {
+  .mrc .kit-stage {
+    display: contents;
+  }
+
+  .mrc-input {
+    order: 1;
+  }
+
+  .mrc [data-slot="findings"] {
+    order: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .mrc .mrc-textarea {
+    min-height: 11rem;
+  }
+
+  .mrc-finding {
+    padding: 1.1rem 1rem 1.15rem;
+  }
+
+  .mrc-fix {
+    padding: 0.75rem 0.85rem 0.8rem;
+  }
+}

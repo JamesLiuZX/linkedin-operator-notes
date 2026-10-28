@@ -1,0 +1,439 @@
+/* site/src/demos/restyle-lab.css
+ *
+ * Video Prompt Studio. The kit supplies the scene pills, the cards, the style
+ * panel and the disclosures. This file styles what is particular to a builder:
+ * the model tabs, the prompt blocks and their Copy buttons, the style picker
+ * and the storyboard. Mono appears only in the prompt and the command, through
+ * the kit's .kit-code. Everything is a token or derived from one, so dark mode
+ * follows.
+ */
+
+/* The kit's cards set their own display, which beats the hidden attribute. */
+.vps [hidden] {
+  display: none !important;
+}
+
+/* ------------------------------------------------------ own scene --- */
+
+.vps-custom {
+  display: grid;
+  gap: 0.45rem;
+  max-width: 44rem;
+  margin: -0.5rem 0 1.75rem;
+}
+
+.vps-custom .kit-textarea {
+  min-height: 5.5rem;
+}
+
+/* ------------------------------------------------------ output card --- */
+
+.vps-output {
+  display: grid;
+  gap: 1.1rem;
+  padding: 1.5rem 1.5rem 1.35rem;
+}
+
+.vps-title {
+  margin: 0;
+  max-width: 34rem;
+  text-wrap: balance;
+  font: 600 1.0625rem/1.4 var(--sans);
+  color: var(--ink);
+}
+
+/* One tab per model. Raised pill on a tray, so it reads as a different
+   control from the scene pills above (which are the page's main choice). */
+.vps-tabs {
+  display: flex;
+  gap: 4px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-radius: 999px;
+  background: var(--paper-2);
+}
+
+.vps-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.vps-tab {
+  flex: none;
+  min-height: 40px;
+  padding: 0 1.05rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-soft);
+  font: 500 0.9375rem/1 var(--sans);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
+}
+
+.vps-tab:hover {
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
+  color: var(--ink);
+}
+
+.vps-tab[aria-selected="true"] {
+  background: color-mix(in srgb, var(--pine) 12%, var(--viz-surface, var(--card)));
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--pine) 55%, transparent);
+  color: var(--ink);
+}
+
+.vps-tab:focus-visible {
+  outline: 2px solid var(--pine);
+  outline-offset: 1px;
+}
+
+.vps-panel {
+  display: grid;
+  gap: 1.1rem;
+  min-width: 0;
+}
+
+.vps-about {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.vps-meta {
+  margin: 0;
+  font: 500 0.875rem/1.4 var(--sans);
+  color: var(--kit-muted);
+}
+
+.vps-strength {
+  margin: 0;
+  max-width: 62ch;
+  font: 400 0.9375rem/1.55 var(--sans);
+  color: var(--ink-soft);
+}
+
+.vps-block {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.vps-block-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.vps-block-head h3 {
+  margin: 0;
+  font: 600 0.9375rem/1.3 var(--sans);
+  color: var(--ink);
+}
+
+/* The part of the prompt this model adds, shaded. */
+.vps .kit-code mark {
+  padding: 0.1em 0.2em;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--pine) 16%, transparent);
+  color: inherit;
+}
+
+.vps-caption {
+  margin: 0;
+  max-width: 62ch;
+  font: 400 0.8125rem/1.5 var(--sans);
+  color: var(--kit-muted);
+}
+
+.vps-copy {
+  min-height: 36px;
+  padding: 0 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--pine);
+  font: 500 0.875rem/1 var(--sans);
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.vps-copy:hover {
+  border-color: color-mix(in srgb, var(--pine) 45%, transparent);
+  background: color-mix(in srgb, var(--pine) 8%, transparent);
+}
+
+.vps-copy:focus-visible {
+  outline: 2px solid var(--pine);
+  outline-offset: 2px;
+}
+
+/* ----------------------------------------------------- style picker --- */
+
+.vps-styles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* A radio group: the input covers its card, so the whole card is the target. */
+.vps-style {
+  position: relative;
+  display: block;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.vps-style input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.vps-style-card {
+  position: relative;
+  display: grid;
+  gap: 0.55rem;
+  align-content: start;
+  height: 100%;
+  min-height: 76px;
+  padding: 0.75rem 2rem 0.8rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--viz-surface, var(--card));
+  transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+
+.vps-style:hover .vps-style-card {
+  border-color: color-mix(in srgb, var(--pine) 45%, transparent);
+}
+
+.vps-style input:checked + .vps-style-card {
+  border-color: var(--pine);
+  box-shadow: 0 0 0 1px var(--pine);
+  background: color-mix(in srgb, var(--pine) 7%, var(--viz-surface, var(--card)));
+}
+
+.vps-style input:focus-visible + .vps-style-card {
+  outline: 2px solid var(--pine);
+  outline-offset: 2px;
+}
+
+.vps-swatch {
+  display: flex;
+  gap: 4px;
+}
+
+.vps-swatch i {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.vps-style-name {
+  font: 500 0.9375rem/1.3 var(--sans);
+  color: var(--ink);
+}
+
+/* The selected card also shows a tick, so it is not told by colour alone. */
+.vps-check {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: none;
+  stroke: var(--pine);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.vps-style input:checked + .vps-style-card .vps-check {
+  opacity: 1;
+}
+
+.vps-style-blurb {
+  min-height: 3em;
+  margin: 0.9rem 0 0;
+  font: 400 0.875rem/1.5 var(--sans);
+  color: var(--kit-muted);
+}
+
+/* --------------------------------------------------------- storyboard --- */
+
+.vps-frames {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.vps-frame {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  min-width: 0;
+  margin: 0;
+}
+
+.vps-frame-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--line-2);
+}
+
+.vps-frame figcaption {
+  font: 400 0.875rem/1.5 var(--sans);
+  color: var(--ink-soft);
+}
+
+/* Text drawn on the frame: always white on its dark strip, in either theme. */
+.vps-frame-label {
+  fill: #fff;
+  font: 600 11px var(--sans);
+}
+
+.vps-frame-camera,
+.vps-frame-index {
+  fill: rgb(255 255 255 / 0.85);
+  font: 400 9.5px var(--sans);
+}
+
+.vps-frame-index {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* ------------------------------------------------- notes and the CLI --- */
+
+.vps-lede {
+  margin: 0;
+  max-width: 62ch;
+  font: 400 0.9375rem/1.6 var(--sans);
+  color: var(--ink-soft);
+}
+
+.vps-lede a {
+  color: var(--pine);
+}
+
+.vps-lede a:focus-visible {
+  border-radius: 3px;
+  outline: 2px solid var(--pine);
+  outline-offset: 2px;
+}
+
+/* The command and the key name are code-like text, so they stay in mono. */
+.vps-lede code {
+  font: 400 0.875em var(--mono);
+  color: var(--ink);
+}
+
+.vps-models {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.vps-models .vps-meta {
+  font: 500 0.875rem/1.4 var(--sans);
+  color: var(--kit-muted);
+}
+
+.vps-models .vps-tips-label {
+  margin-top: 0.25rem;
+  font: 600 0.8125rem/1.3 var(--sans);
+  color: var(--ink);
+}
+
+.vps-tips {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0 0 0 1.1rem;
+  font: 400 0.9375rem/1.5 var(--sans);
+  color: var(--ink-soft);
+}
+
+.vps-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vps-tab,
+  .vps-copy,
+  .vps-style-card,
+  .vps-check {
+    transition: none;
+  }
+}
+
+/* ------------------------------------------------------------ mobile --- */
+
+@media (min-width: 641px) and (max-width: 959px) {
+  .vps-styles {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* One column: pick the style before reading the prompt. */
+@media (max-width: 959px) {
+  .vps-style-panel {
+    order: -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .vps-output {
+    padding: 1.15rem 1rem 1.05rem;
+  }
+
+  .vps-copy {
+    min-height: 44px;
+    padding: 0 1rem;
+  }
+
+  .vps-frames,
+  .vps-models {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Four tabs do not fit one row on a phone: a 2 by 2 grid instead. */
+@media (max-width: 520px) {
+  .vps-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    overflow: visible;
+    border-radius: 16px;
+  }
+
+  .vps-tab {
+    min-height: 44px;
+    padding: 0 0.5rem;
+    border-radius: 12px;
+  }
+}
