@@ -14,7 +14,7 @@ tags: growth, ai-workflows, roi
 Claim: Self-reported speedup is not a reliable measurement of whether an AI workflow paid for itself, and token cost is rarely the number that actually decides it.
 Moment: Building a breakeven calculator and finding the token-cost bar on the chart is consistently the smallest of four, by close to two orders of magnitude, at realistic token counts.
 Numbers: METR's randomized trial, 16 experienced developers, 246 tasks: AI access increased completion time 19%, despite a pre-task forecast of 24% faster and a post-task belief of still being 20% faster. Claude Sonnet 5 costs $2 input / $10 output per million tokens (intro, through 31 Aug 2026).
-Names: Workflow ROI Lab, METR, Anthropic, Claude Sonnet 5.
+Names: AI Payback Check, METR, Anthropic, Claude Sonnet 5.
 Cost: the token prices are exact; the task volume, minutes, and rework rate a real workflow needs are assumptions the calculator asks you to set yourself, not a number I can hand you.
 Counterexample: a task with a small, fixed, well-understood manual cost may not be worth automating at all, regardless of how the AI math works out, since building and maintaining the automation is not priced here.
 Reader action: time the review step on a stopwatch, across enough tasks to trust the average, before claiming a workflow saved time.
