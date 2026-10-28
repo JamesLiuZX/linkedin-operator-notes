@@ -1,0 +1,212 @@
+/* site/src/demos/slop-gate.css
+ *
+ * Draft Check. The kit supplies the sample pills, the answer card, the status
+ * chips, the input panel, the switch and the disclosures. This file styles what
+ * is particular to a text checker: the input, the flag cards, the list of what
+ * already works, and the raw-score tables. Everything is a token or derived
+ * from one, so dark mode follows.
+ */
+
+/* The kit's cards set their own display, which beats the hidden attribute. */
+.dc [hidden] {
+  display: none !important;
+}
+
+/* ------------------------------------------------------------- input --- */
+
+.dc-input {
+  display: grid;
+  gap: 1.1rem;
+  align-content: start;
+}
+
+.dc-field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.dc .dc-textarea {
+  min-height: 20rem;
+}
+
+.dc-count {
+  font-variant-numeric: tabular-nums;
+}
+
+.dc-input .kit-actions {
+  margin-top: 0;
+}
+
+.dc-results {
+  display: grid;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+/* The answer card is narrower here than in a calculator (a 50/50 split), so
+   the kit's auto-fit would drop the third stat to a second row. */
+@media (min-width: 641px) {
+  .dc .kit-answer .kit-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+/* ------------------------------------------------------------- flags --- */
+
+.dc-flags {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.dc-list {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dc-flag {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.3rem 1.4rem 1.35rem;
+}
+
+.dc-flag-top {
+  display: flex;
+}
+
+.dc-flag-title {
+  margin: 0;
+  max-width: 34rem;
+  text-wrap: balance;
+  font: 600 1.125rem/1.35 var(--sans);
+  color: var(--ink);
+}
+
+.dc-found {
+  margin: 0;
+  max-width: 62ch;
+  font: 400 0.9375rem/1.6 var(--sans);
+  color: var(--ink-soft);
+}
+
+/* The phrases that tripped a check, as quotes. */
+.dc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dc-chips li {
+  margin: 0;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  color: var(--ink);
+  font: 500 0.875rem/1.35 var(--sans);
+}
+
+.dc-tip {
+  padding: 0.8rem 1rem 0.9rem;
+  border-radius: 12px;
+  background: var(--paper-2);
+}
+
+.dc-tip p {
+  margin: 0;
+  max-width: 62ch;
+  font: 400 0.9375rem/1.55 var(--sans);
+  color: var(--ink-soft);
+}
+
+.dc-tip .dc-tip-label {
+  margin-bottom: 0.2rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ----------------------------------------------------- what works ------ */
+
+.dc-pass-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr));
+  gap: 0.65rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dc-pass-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0;
+  font: 400 0.9375rem/1.4 var(--sans);
+  color: var(--ink-soft);
+}
+
+.dc-pass-list .kit-icon {
+  margin-top: 0.05rem;
+  color: var(--kit-good);
+}
+
+/* --------------------------------------------------------- raw scores --- */
+
+/* The analyzer's detail strings are long. Let them wrap rather than scroll. */
+.dc-raw .kit-table th,
+.dc-raw .kit-table td {
+  white-space: normal;
+  vertical-align: top;
+}
+
+.dc-raw .kit-table td:last-child {
+  min-width: 14rem;
+}
+
+.dc-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------ mobile --- */
+
+/* One column: answer first, as in the calculators. The stage's children join
+   the page grid so the input can sit between the answer and the flags. */
+@media (max-width: 959px) {
+  .dc .kit-stage {
+    display: contents;
+  }
+
+  .dc-input {
+    order: 1;
+  }
+
+  .dc-results {
+    order: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .dc .dc-textarea {
+    min-height: 11rem;
+  }
+
+  .dc-flag {
+    padding: 1.1rem 1rem 1.15rem;
+  }
+
+  .dc-tip {
+    padding: 0.75rem 0.85rem 0.8rem;
+  }
+}
