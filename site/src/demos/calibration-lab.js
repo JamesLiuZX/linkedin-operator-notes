@@ -18,8 +18,12 @@
 // the forecaster has. Confidence is how hard it pushes its forecasts toward 0 or
 // 1. Turning up confidence with no extra knowledge makes forecasts feel sharper
 // and score worse, which is the failure mode this demo exists to make visible.
+//
+// The maths below the meta block is unchanged; the view is built with the kit.
 
-import { statRow, barsH, lineChart, reliabilityPlot, legend, fmt, esc, tableView } from "../viz/charts.js";
+import { barsH, lineChart, reliabilityPlot, legend, fmt } from "../viz/charts.js";
+import { calculator, card, chartCard, hl, table } from "./kit.js";
+import "./calibration-lab.css";
 
 export const meta = {
   slug: "calibration-lab",
@@ -29,7 +33,31 @@ export const meta = {
   pillar: "Agents on rails",
   essay: "08-the-harness-is-the-edge",
   blurb:
+    "A forecaster can sound sure without knowing more. Compare a simulated agent with published benchmarks, then turn its confidence up and see what the extra certainty costs.",
+  how: [
     "Brier scores, reliability diagrams, and the decomposition that separates knowing things from sounding sure. Benchmarked against published market and LLM forecast accuracy.",
+    "Benchmark scores are published figures. The agent is simulated across 400 seeded markets, so the same slider position always gives the same result.",
+    "Knowledge is how much signal the forecaster has. Confidence is how hard it pushes its forecasts toward 0 or 1. Turning confidence up with no extra knowledge makes forecasts feel sharper and score worse, which is the failure mode this page exists to make visible.",
+    "The ordering to take away: an unaided frontier model scores worse than the market it wants to trade against, and worse than the general public. Scaffolding closes the gap. The edge is the harness, not the model.",
+    "The market baseline is a simulated forecaster tuned until its Brier score lands on the published 0.09, so the skill score and the benchmark bar always agree. The markets sit far enough from 50 cents that every published benchmark here is reachable. In a world of coin flips the market baseline would be out of reach.",
+  ],
+  formulas: [
+    { label: "Brier score", expr: "average of (forecast − outcome)² over the 400 markets" },
+    { label: "Skill against the market", expr: "1 − your Brier score / the market's Brier score" },
+    { label: "Murphy decomposition", expr: "Brier = reliability − resolution + uncertainty" },
+    {
+      label: "The simulated forecaster",
+      expr: "sigmoid(confidence × (knowledge × logit(true probability) + noise × (1 − knowledge)) + bias)",
+    },
+  ],
+  sources: [
+    {
+      label: "Keyrock: prediction market accuracy and Brier scores",
+      href: "https://keyrock.com/knowledge-hub/prediction-market-accuracy-brier-scores/",
+    },
+    { label: "arXiv 2511.07678: the AIA Forecaster", href: "https://arxiv.org/pdf/2511.07678" },
+    { label: "Hindcast, arXiv 2607.14051: the best general LLM forecaster", href: "https://arxiv.org/html/2607.14051" },
+  ],
   buildNote:
     "Seeded generator, so a given slider position always produces the same 400 markets. Benchmark Brier scores are published figures, not simulated; the agent is the simulated part and is labelled that way.",
 };
@@ -139,14 +167,63 @@ export function decompose(preds, w, bins = 10) {
 
 /* ------------------------------------------------------------------- view */
 
+// The old "Load ..." button, as a named scenario. Each starts from DEFAULTS.
+const SCENARIOS = [
+  { id: "base", label: "Base case" },
+  { id: "loud", label: "Confident and wrong", values: { knowledge: 0.45, confidence: 2.4, bias: 0.25 } },
+].map((s) => ({
+  ...s,
+  note: (v) =>
+    `Knowledge ${fmt.pct(v.knowledge)}, confidence ${v.confidence.toFixed(2)}x, ${
+      v.bias === 0 ? "no lean" : v.bias > 0 ? "leaning toward yes" : "leaning toward no"
+    }.`,
+}));
+
+const signed = (v, digits = 2) => `${v < 0 ? "−" : v > 0 ? "+" : ""}${Math.abs(v).toFixed(digits)}`;
+
 const CONTROLS = [
-  { key: "knowledge", label: "Knowledge (signal recovered)", min: 0, max: 0.95, step: 0.01, fmt: (v) => fmt.pct(v) },
-  { key: "confidence", label: "Confidence (how hard it pushes)", min: 0.2, max: 3, step: 0.05, fmt: (v) => `${v.toFixed(2)}x` },
-  { key: "bias", label: "Directional bias", min: -1.5, max: 1.5, step: 0.05, fmt: (v) => v.toFixed(2) },
+  {
+    key: "knowledge",
+    label: "What it actually knows",
+    hint: "knowledge",
+    help: "How much of the real signal it recovers. More is better.",
+    min: 0,
+    max: 0.95,
+    step: 0.01,
+    format: (v) => fmt.pct(v),
+  },
+  {
+    key: "confidence",
+    label: "How sure it sounds",
+    hint: "confidence",
+    help: "How hard it pushes forecasts toward 0% or 100%. It adds no knowledge.",
+    min: 0.2,
+    max: 3,
+    step: 0.05,
+    format: (v) => `${v.toFixed(2)}x`,
+  },
 ];
 
+const MORE = [
+  {
+    key: "bias",
+    label: "Lean toward yes",
+    hint: "directional bias",
+    help: "Nudges every forecast the same way. Below zero leans toward no.",
+    min: -1.5,
+    max: 1.5,
+    step: 0.05,
+    format: (v) => signed(v),
+  },
+];
+
+const ordinal = (n) => {
+  const s = ["th", "st", "nd", "rd"];
+  const v = n % 100;
+  return `${n}${s[(v - 20) % 10] || s[v] || s[0]}`;
+};
+
 export function mount(root) {
-  const p = { ...DEFAULTS };
   const w = world();
 
   // The baseline has to BE the published market number, otherwise the skill
@@ -155,6 +232,8 @@ export function mount(root) {
   // simulated Brier lands on the published 0.09, and use that same forecaster
   // for the reliability diagram.
   const marketBrier = BENCHMARKS.find((b) => b.label.startsWith("Market price")).value;
+  const publicBrier = BENCHMARKS.find((b) => b.label === "General public").value;
+  const frontierBrier = BENCHMARKS.find((b) => b.label.startsWith("Frontier")).value;
   const marketPreds = (() => {
     let lo = 0.5;
     let hi = 0.999;
@@ -168,77 +247,100 @@ export function mount(root) {
     return preds;
   })();
 
-  root.innerHTML = `
-    <div class="demo-grid lab">
-      <section class="demo-input">
-        <div class="controls">${CONTROLS.map(
-          (c) => `
-          <label class="control" for="cl-${c.key}">
-            <span class="control-label">${esc(c.label)}<b class="mono" id="cl-${c.key}-v"></b></span>
-            <input type="range" id="cl-${c.key}" min="${c.min}" max="${c.max}" step="${c.step}" value="${p[c.key]}" />
-          </label>`
-        ).join("")}</div>
-        <div class="row-actions">
-          <button id="cl-reset" class="btn-ghost">Reset</button>
-          <button id="cl-loud" class="btn-ghost">Load "confident and wrong"</button>
-          <button id="cl-best" class="btn-ghost">Find best confidence</button>
-        </div>
-        <p class="model-note">Benchmark scores are published figures. The agent is simulated across ${N_MARKETS} seeded markets, so the same slider position always gives the same result.</p>
-      </section>
-      <section class="demo-output" id="cl-out"></section>
-    </div>`;
+  // Sweep confidence at fixed knowledge. The whole point of the demo.
+  const sweepFor = (p) => {
+    const sweep = [];
+    for (let c = 0.2; c <= 3.001; c += 0.05) {
+      sweep.push([c, brier(forecast(w, { ...p, confidence: c }, 0), w)]);
+    }
+    return sweep;
+  };
+  const bestOf = (sweep) => sweep.reduce((a, b) => (b[1] < a[1] ? b : a));
 
-  const out = root.querySelector("#cl-out");
-
-  const render = () => {
+  function view(p) {
     const preds = forecast(w, p, 0);
     const bs = brier(preds, w);
     const d = decompose(preds, w, p.bins);
     const md = decompose(marketPreds, w, p.bins);
     const bss = 1 - bs / marketBrier; // skill against the market baseline
 
-    // Sweep confidence at fixed knowledge. The whole point of the demo.
-    const sweep = [];
-    for (let c = 0.2; c <= 3.001; c += 0.05) {
-      sweep.push([c, brier(forecast(w, { ...p, confidence: c }, 0), w)]);
-    }
-    const best = sweep.reduce((a, b) => (b[1] < a[1] ? b : a));
+    const sweep = sweepFor(p);
+    const best = bestOf(sweep);
+    const bestX = `${best[0].toFixed(2)}x`;
+    const atBest = Math.abs(p.confidence - best[0]) < 0.025; // within half a slider step
 
     const bars = [
       ...BENCHMARKS.map((b) => ({ label: b.label, value: b.value, note: b.note, color: "var(--seq-3)" })),
       { label: "Your agent", value: bs, color: "var(--cat-2)", note: "simulated" },
     ].sort((a, b) => a.value - b.value);
+    const rank = bars.findIndex((b) => b.label === "Your agent") + 1;
 
-    const tone = bs <= 0.09 ? "good" : bs <= 0.121 ? "warning" : "critical";
+    const tone = bs <= marketBrier ? "good" : bs <= publicBrier ? "warn" : "bad";
+    const status = { good: "Beats the market", warn: "Behind the market", bad: "Behind the general public" }[tone];
 
-    out.innerHTML = `
-      ${statRow([
-        { label: "Brier score", value: bs.toFixed(3), sub: "lower is better", tone },
-        { label: "Skill vs market", value: (bss >= 0 ? "+" : "") + bss.toFixed(3), sub: bss > 0 ? "beats the market baseline" : "worse than the market baseline", tone: bss > 0 ? "good" : "critical" },
-        { label: "Reliability", value: d.reliability.toFixed(4), sub: "miscalibration, lower is better", tone: d.reliability > 0.02 ? "warning" : "" },
-        { label: "Resolution", value: d.resolution.toFixed(4), sub: "discrimination, higher is better" },
-      ])}
+    let verdict;
+    if (bs <= marketBrier) {
+      verdict = `Your agent scores ${hl(bs.toFixed(3))}, ahead of the market's ${hl(marketBrier.toFixed(3))}. Before you believe that, check the miscalibration: a good total can hide a badly calibrated middle.`;
+    } else if (atBest) {
+      verdict = `Your agent scores ${hl(bs.toFixed(3))}, behind the market's ${hl(marketBrier.toFixed(3))}. Its confidence is already at the best setting for this much knowledge, ${hl(bestX)}.`;
+    } else if (best[1] <= marketBrier) {
+      verdict = `Your agent scores ${hl(bs.toFixed(3))}, behind the market's ${hl(marketBrier.toFixed(3))}. At its best confidence, ${hl(bestX)}, it would score ${hl(best[1].toFixed(3))}, ahead of the market. The knowledge is there, but the confidence is off.`;
+    } else {
+      verdict = `Your agent scores ${hl(bs.toFixed(3))}, behind the market's ${hl(marketBrier.toFixed(3))}. At its best confidence, ${hl(bestX)}, it would score ${hl(best[1].toFixed(3))}, still behind the market. Confidence alone cannot close the gap.`;
+    }
 
-      <div class="chart-block">
-        <h4>Brier scores, published benchmarks against your agent</h4>
-        ${barsH(bars, { format: (v) => v.toFixed(3), width: 660, labelW: 250 })}
-        <p class="chart-note">Lower is better, so the bars read backwards from the usual instinct. The unaided frontier model at 0.130 sits below the general public at 0.121. That is the finding that should change how you scope an agent.</p>
-      </div>
+    const chartTitle =
+      rank === 1
+        ? "Your agent beats every published forecaster on this chart."
+        : rank === bars.length
+          ? `Your agent ranks last of ${bars.length}, behind every published forecaster.`
+          : `Your agent ranks ${ordinal(rank)} of ${bars.length}.`;
 
-      <div class="chart-block two-up">
-        <div>
-          <h4>Reliability diagram</h4>
-          ${reliabilityPlot([
-            { label: "Market", points: md.points.map((q) => [q[0], q[1]]) },
-            { label: "Your agent", points: d.points.map((q) => [q[0], q[1]]) },
-          ])}
-          ${legend([{ label: "Market" }, { label: "Your agent" }], { scatter: true })}
-          <p class="chart-note">On the diagonal means when it says 70% the thing happens 70% of the time. Below the line to the right is overconfidence, and it is what the confidence slider manufactures.</p>
-        </div>
-        <div>
-          <h4>Brier against confidence, knowledge held fixed</h4>
-          ${lineChart([{ label: "Brier", points: sweep, color: "var(--cat-2)" }], {
-            xLabel: "confidence multiplier",
+    // The most confident bucket of forecasts: what the agent says against what happens.
+    const top = d.points[d.points.length - 1];
+
+    const lowest = sweep[0][0];
+    const highest = sweep[sweep.length - 1][0];
+    const sweepTitle =
+      best[0] <= lowest + 1e-9
+        ? `At this much knowledge, the best confidence is the lowest on the slider, ${bestX}.`
+        : best[0] >= highest - 1e-9
+          ? `At this much knowledge, the best confidence is the highest on the slider, ${bestX}.`
+          : `Your agent would score best at ${bestX} confidence. Past that, extra certainty costs score.`;
+
+    return {
+      hero: {
+        label: "Your agent's Brier score",
+        value: bs,
+        format: (v) => v.toFixed(3),
+        unit: "lower is better",
+        tone,
+        status,
+        verdict,
+        stats: [
+          { label: "Against the market", value: signed(bss, 3), sub: "skill score, 0 is a tie" },
+          { label: "Miscalibration", value: d.reliability.toFixed(4), sub: "reliability, fixable without new knowledge" },
+          { label: "Discrimination", value: d.resolution.toFixed(4), sub: "resolution, higher is better" },
+        ],
+      },
+      chart: {
+        title: chartTitle,
+        body: barsH(bars, { format: (v) => v.toFixed(3), width: 560, labelW: 225 }),
+        note: `Lower is better, so a shorter bar is a better forecaster. The unaided frontier model at ${frontierBrier.toFixed(3)} scores worse than the general public at ${publicBrier.toFixed(3)}. That is the finding that should change how you scope an agent.`,
+      },
+      breakdown:
+        `<div class="sc-pair">${chartCard({
+          title: `When your agent says ${fmt.pct(top[0])}, it happens ${fmt.pct(top[1])} of the time.`,
+          body:
+            reliabilityPlot([
+              { label: "Market baseline", points: md.points.map((q) => [q[0], q[1]]) },
+              { label: "Your agent", points: d.points.map((q) => [q[0], q[1]]) },
+            ]) + legend([{ label: "Market baseline" }, { label: "Your agent" }], { scatter: true }),
+          note: "Dots on the diagonal mean that when it says 70%, the thing happens 70% of the time. Dots below the line on the right mean overconfidence, which is what the confidence slider manufactures. The market baseline is simulated to match the published 0.09.",
+        })}${chartCard({
+          title: sweepTitle,
+          body: lineChart([{ label: "Brier", points: sweep, color: "var(--cat-2)" }], {
+            xLabel: "How sure the agent sounds (confidence multiplier)",
             xFormat: (v) => `${v.toFixed(1)}x`,
             yFormat: (v) => v.toFixed(3),
             // Domain deliberately includes the market baseline, so the reader can
@@ -248,66 +350,39 @@ export function mount(root) {
               Math.max(...sweep.map((s) => s[1])) * 1.02,
             ],
             guide: { y: marketBrier, label: "market baseline" },
-          })}
-          <p class="chart-note">The minimum sits at <b class="mono">${best[0].toFixed(2)}x</b>. Everything to the right buys confidence with no extra knowledge, and pays for it in score.</p>
-        </div>
-      </div>
-
-      <div class="takeaway-box">
-        <strong>Read this before you put it near money.</strong>
-        <p>Your agent scores <b class="mono">${bs.toFixed(3)}</b> against a market baseline of <b class="mono">${marketBrier.toFixed(3)}</b>. ${
-          bss > 0
-            ? "It beats the baseline here. Before believing that, check the reliability term, because a good total can hide a badly calibrated middle."
-            : `It is worse than the price it would be trading against, by <b class="mono">${(bs - marketBrier).toFixed(3)}</b>. An agent in this state does not need a bigger model. It needs retrieval, a resolution-criteria reader, and a reason to abstain.`
-        }</p>
-        <p>Of the total, <b class="mono">${d.reliability.toFixed(4)}</b> is miscalibration you could fix without knowing anything new, just by reporting less extreme numbers.</p>
-      </div>
-
-      ${tableView(
-        ["Forecaster", "Brier", "Source"],
-        [
-          ...BENCHMARKS.map((b) => [b.label, b.value.toFixed(3), b.note]),
-          ["Your agent (simulated)", bs.toFixed(3), `knowledge ${fmt.pct(p.knowledge)}, confidence ${p.confidence.toFixed(2)}x`],
-        ],
-        { caption: "Published benchmarks and the current simulated agent" }
-      )}`;
-  };
-
-  const syncLabels = () => {
-    for (const c of CONTROLS) {
-      root.querySelector(`#cl-${c.key}-v`).textContent = c.fmt(p[c.key]);
-      root.querySelector(`#cl-${c.key}`).value = p[c.key];
-    }
-  };
-
-  for (const c of CONTROLS) {
-    root.querySelector(`#cl-${c.key}`).addEventListener("input", (e) => {
-      p[c.key] = Number(e.target.value);
-      syncLabels();
-      render();
-    });
+          }),
+          note:
+            best[0] >= highest - 1e-9
+              ? "The dashed line is the market baseline. Here the extra confidence is backed by enough knowledge to pay for itself."
+              : "Everything to the right of the minimum buys confidence with no extra knowledge, and pays for it in score. The dashed line is the market baseline.",
+        })}</div>` +
+        card({
+          title: "Published benchmarks and your agent",
+          body: table(
+            ["Forecaster", "Brier", "Source"],
+            [
+              ...BENCHMARKS.map((b) => [b.label, b.value.toFixed(3), b.note]),
+              ["Your agent (simulated)", bs.toFixed(3), `knowledge ${fmt.pct(p.knowledge)}, confidence ${p.confidence.toFixed(2)}x`],
+            ],
+            { numeric: [1] }
+          ),
+        }),
+    };
   }
-  root.querySelector("#cl-reset").addEventListener("click", () => {
-    Object.assign(p, DEFAULTS);
-    syncLabels();
-    render();
-  });
-  root.querySelector("#cl-loud").addEventListener("click", () => {
-    Object.assign(p, DEFAULTS, { knowledge: 0.45, confidence: 2.4, bias: 0.25 });
-    syncLabels();
-    render();
-  });
-  root.querySelector("#cl-best").addEventListener("click", () => {
-    let best = { c: 1, v: Infinity };
-    for (let c = 0.2; c <= 3.001; c += 0.05) {
-      const v = brier(forecast(w, { ...p, confidence: c }, 0), w);
-      if (v < best.v) best = { c, v };
-    }
-    p.confidence = Number(best.c.toFixed(2));
-    syncLabels();
-    render();
-  });
 
-  syncLabels();
-  render();
+  calculator(root, {
+    defaults: DEFAULTS,
+    scenarios: SCENARIOS,
+    controls: CONTROLS,
+    more: MORE,
+    actions: [
+      {
+        label: "Find best confidence",
+        run(state) {
+          state.confidence = Number(bestOf(sweepFor(state))[0].toFixed(2));
+        },
+      },
+    ],
+    view,
+  });
 }
