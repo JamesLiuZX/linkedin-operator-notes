@@ -16,18 +16,31 @@
 //
 // Then it prices the same order against a thin order book, so you can read off
 // how much resting depth a given subsidy is worth.
+//
+// The maths below the meta block is unchanged; the view is built with the kit.
 
-import { statRow, lineChart, legend, fmt, esc, tableView } from "../viz/charts.js";
+import { lineChart, legend, fmt } from "../viz/charts.js";
+import { calculator, card, chartCard, hl, stats, table } from "./kit.js";
 
 export const meta = {
   slug: "liquidity-lab",
-  title: "Liquidity lab",
-  tagline: "Put a dollar figure on 'this market feels dead'.",
+  title: "Market Depth Budget",
+  tagline: "What does it cost to make a market feel alive?",
   section: "markets",
   pillar: "Market design",
   essay: "06-dead-markets-poison",
   blurb:
+    "A thin market moves against every order, and users notice. Pick a scenario to see what one order pays over the mid, and what it costs to make that number small.",
+  how: [
     "An LMSR sandbox that turns a liquidity complaint into a budget line. Set the slippage a user should feel, read off the subsidy it costs, and see the resting depth that would match it.",
+    "It uses Hanson's LMSR because it is the one market maker whose worst-case subsidy has a closed form, which makes it the only honest way to put a liquidity decision in a budget line. Then it prices the same order against a thin order book, so you can read off how much resting depth a given subsidy is worth.",
+    "Worst-case subsidy is b times ln 2. That is the number to take into the budget conversation, because it is the largest cheque the market maker can ever be asked to write.",
+  ],
+  formulas: [
+    { label: "Cost function, binary market (q is net YES shares)", expr: "C(q) = b × ln(1 + e^(q/b))" },
+    { label: "Marginal price", expr: "p(q) = 1 / (1 + e^(−q/b))" },
+    { label: "Worst-case subsidy", expr: "b × ln 2" },
+  ],
   buildNote:
     "Closed-form LMSR, no simulation. b * ln(2) is the worst-case loss, which is why this is the market maker to reason with even if you ship an order book.",
 };
@@ -107,148 +120,190 @@ export function bForSlippage(dollars, p0, target) {
 
 /* ------------------------------------------------------------------- view */
 
+const TARGET = 0.005; // half a percent: the slippage bar the essay argues for
+
+// The old "Load ..." buttons, as named scenarios. Each starts from DEFAULTS.
+const SCENARIOS = [
+  { id: "base", label: "Base case" },
+  { id: "dead", label: "A dead market", values: { b: 400, order: 2000, bookMakers: 3, bookSize: 60, bookStep: 3 } },
+  { id: "real", label: "A deep market", values: { b: 24000, order: 2000, bookMakers: 14, bookSize: 900, bookStep: 0.5 } },
+].map((s) => ({
+  ...s,
+  note: (v) =>
+    `A $${fmt.int(v.order)} order at ${fmt.cents(v.price)}, market depth ${fmt.int(v.b)}, ${v.bookMakers} book levels a side.`,
+}));
+
 const CONTROLS = [
-  { key: "b", label: "Liquidity parameter b", min: 200, max: 40000, step: 200, fmt: (v) => fmt.int(v) },
-  { key: "price", label: "Starting price", min: 0.05, max: 0.95, step: 0.01, fmt: (v) => fmt.cents(v) },
-  { key: "order", label: "Order size", min: 25, max: 20000, step: 25, fmt: (v) => `$${fmt.int(v)}` },
-  { key: "bookMakers", label: "Book: levels per side", min: 1, max: 20, step: 1, fmt: (v) => fmt.int(v) },
-  { key: "bookSize", label: "Book: size per level", min: 25, max: 2000, step: 25, fmt: (v) => `${fmt.int(v)} sh` },
-  { key: "bookStep", label: "Book: tick between levels", min: 0.5, max: 5, step: 0.5, fmt: (v) => `${v.toFixed(1)}c` },
+  {
+    key: "b",
+    label: "Market depth",
+    hint: "LMSR b",
+    help: "Deeper markets move less per dollar, and cost more to back.",
+    min: 200,
+    max: 40000,
+    step: 200,
+    format: (v) => fmt.int(v),
+  },
+  {
+    key: "order",
+    label: "Order size",
+    help: "What one user puts in.",
+    min: 25,
+    max: 20000,
+    step: 25,
+    format: (v) => `$${fmt.int(v)}`,
+  },
 ];
 
-export function mount(root) {
-  const p = { ...DEFAULTS };
+const MORE = [
+  {
+    key: "price",
+    label: "Starting price",
+    hint: "the mid",
+    help: "Where the market sits before the order.",
+    min: 0.05,
+    max: 0.95,
+    step: 0.01,
+    format: (v) => fmt.cents(v),
+  },
+  { heading: "Order book, for comparison" },
+  { key: "bookMakers", label: "Price levels per side", min: 1, max: 20, step: 1, format: (v) => fmt.int(v) },
+  { key: "bookSize", label: "Shares at each level", min: 25, max: 2000, step: 25, format: (v) => `${fmt.int(v)} shares` },
+  { key: "bookStep", label: "Gap between levels", hint: "tick", min: 0.5, max: 5, step: 0.5, format: (v) => `${v.toFixed(1)}c` },
+];
 
-  root.innerHTML = `
-    <div class="demo-grid lab">
-      <section class="demo-input">
-        <div class="controls">${CONTROLS.map(
-          (c) => `
-          <label class="control" for="ll-${c.key}">
-            <span class="control-label">${esc(c.label)}<b class="mono" id="ll-${c.key}-v"></b></span>
-            <input type="range" id="ll-${c.key}" min="${c.min}" max="${c.max}" step="${c.step}" value="${p[c.key]}" />
-          </label>`
-        ).join("")}</div>
-        <div class="row-actions">
-          <button id="ll-reset" class="btn-ghost">Reset</button>
-          <button id="ll-dead" class="btn-ghost">Load a dead market</button>
-          <button id="ll-real" class="btn-ghost">Load one that feels real</button>
-        </div>
-        <p class="model-note">Worst-case subsidy is b times ln 2. That is the number to take into the budget conversation, because it is the largest cheque the market maker can ever be asked to write.</p>
-      </section>
-      <section class="demo-output" id="ll-out"></section>
-    </div>`;
+/** Name a comparison depth by its ratio to the one being tested. */
+function depthLabel(b, base) {
+  if (b === base) return "This depth";
+  const r = b / base;
+  if (r === 4) return "4× depth";
+  if (r === 0.5) return "½ depth";
+  if (r === 0.25) return "¼ depth";
+  return `${+r.toFixed(2)}× depth`;
+}
 
-  const out = root.querySelector("#ll-out");
+function view(p) {
+  const amm = buyLmsr(p.order, p.price, p.b);
+  const book = buyBook(p.order, p.price, p);
+  const worstCase = p.b * Math.LN2;
+  const bNeeded = bForSlippage(p.order, p.price, TARGET);
+  const needed = bNeeded * Math.LN2;
 
-  const render = () => {
-    const amm = buyLmsr(p.order, p.price, p.b);
-    const book = buyBook(p.order, p.price, p);
-    const worstCase = p.b * Math.LN2;
+  // Impact curve: marginal price against dollars spent, three subsidy levels.
+  const bs = [Math.max(200, p.b / 4), p.b, p.b * 4];
+  const impact = bs.map((b) => {
+    const pts = [];
+    for (let d = 0; d <= p.order * 2; d += Math.max(5, (p.order * 2) / 60)) {
+      pts.push([d, buyLmsr(d, p.price, b).pEnd]);
+    }
+    return { label: depthLabel(b, p.b), points: pts };
+  });
 
-    const target = 0.005; // half a percent
-    const bNeeded = bForSlippage(p.order, p.price, target);
+  // Slippage against order size, same three subsidy levels.
+  const slip = bs.map((b) => {
+    const pts = [];
+    for (let d = 25; d <= p.order * 3; d += Math.max(25, (p.order * 3) / 50)) {
+      pts.push([d, buyLmsr(d, p.price, b).slippagePct * 100]);
+    }
+    return { label: depthLabel(b, p.b), points: pts };
+  });
 
-    // Impact curve: marginal price against dollars spent, three subsidy levels.
-    const bs = [Math.max(200, p.b / 4), p.b, p.b * 4];
-    const impact = bs.map((b, i) => {
-      const pts = [];
-      for (let d = 0; d <= p.order * 2; d += Math.max(5, (p.order * 2) / 60)) {
-        pts.push([d, buyLmsr(d, p.price, b).pEnd]);
-      }
-      return { label: `b = ${fmt.int(b)}`, points: pts };
-    });
+  const within = amm.slippagePct <= TARGET;
+  const tone = within ? "good" : amm.slippagePct > 0.03 ? "bad" : "warn";
+  const order = `$${fmt.int(p.order)}`;
 
-    // Slippage against order size, same three subsidy levels.
-    const slip = bs.map((b) => {
-      const pts = [];
-      for (let d = 25; d <= p.order * 3; d += Math.max(25, (p.order * 3) / 50)) {
-        pts.push([d, buyLmsr(d, p.price, b).slippagePct * 100]);
-      }
-      return { label: `b = ${fmt.int(b)}`, points: pts };
-    });
+  const verdict = within
+    ? `A ${hl(order)} order fills at an average ${hl(fmt.cents(amm.avg))}, ${hl(fmt.pct(amm.slippagePct, 2))} over the ${fmt.cents(p.price)} mid. The cheapest depth that holds the 0.5% target costs ${hl(`$${fmt.int(needed)}`)} per market, worst case.`
+    : `A ${hl(order)} order fills at an average ${hl(fmt.cents(amm.avg))}, ${hl(fmt.pct(amm.slippagePct, 2))} over the ${fmt.cents(p.price)} mid. Holding it to 0.5% would cost ${hl(`$${fmt.int(needed)}`)} per market, worst case.`;
 
-    const tone = amm.slippagePct > 0.03 ? "critical" : amm.slippagePct > 0.01 ? "warning" : "good";
+  // Where the slippage curve at this depth crosses the target, from its samples.
+  const mine = slip[1].points;
+  const firstOver = mine.findIndex(([, s]) => s > TARGET * 100);
+  const slipTitle =
+    firstOver === -1
+      ? `At this depth, every order up to $${fmt.int(mine[mine.length - 1][0])} stays inside the 0.5% target.`
+      : firstOver === 0
+        ? `At this depth, even a $${fmt.int(mine[0][0])} order slips past the 0.5% target.`
+        : `At this depth, orders over about $${fmt.int(mine[firstOver - 1][0])} slip past the 0.5% target.`;
 
-    out.innerHTML = `
-      ${statRow([
-        { label: "Slippage on this order", value: fmt.pct(amm.slippagePct, 2), sub: `avg ${fmt.cents(amm.avg)} vs ${fmt.cents(p.price)} mid`, tone },
-        { label: "Worst-case subsidy", value: `$${fmt.int(worstCase)}`, sub: "b times ln 2" },
-        { label: "Price after fill", value: fmt.cents(amm.pEnd), sub: `moved ${((amm.pEnd - p.price) * 100).toFixed(2)}c` },
-        { label: "Same order, resting book", value: book.filled ? fmt.pct(book.slippagePct, 2) : "unfillable", sub: book.filled ? `avg ${fmt.cents(book.avg)}` : `only $${fmt.int(book.spent)} available`, tone: book.filled ? "" : "critical" },
-      ])}
+  const venueTitle = book.filled
+    ? `A resting book fills this order at ${fmt.pct(book.slippagePct, 2)} slippage, against ${fmt.pct(amm.slippagePct, 2)} from the market maker.`
+    : `The resting book cannot fill this order: only $${fmt.int(book.spent)} is on it.`;
 
-      <div class="chart-block">
-        <h4>Price impact: what a $${fmt.int(p.order)} order does to the screen</h4>
-        ${lineChart(impact, {
-          xLabel: "dollars bought",
+  return {
+    hero: {
+      label: "Worst-case cost of this depth",
+      value: worstCase,
+      format: (v) => `$${fmt.int(v)}`,
+      unit: "per market",
+      tone,
+      status: within ? "Inside the 0.5% target" : "Over the 0.5% target",
+      verdict,
+      stats: [
+        { label: "Price after the order", value: fmt.cents(amm.pEnd), sub: `moved ${((amm.pEnd - p.price) * 100).toFixed(2)}c` },
+        {
+          label: "Same order on an order book",
+          value: book.filled ? fmt.pct(book.slippagePct, 2) : "Not enough depth",
+          sub: book.filled ? `slippage, average ${fmt.cents(book.avg)}` : `only $${fmt.int(book.spent)} on the book`,
+        },
+        { label: "Depth for the 0.5% target", value: fmt.int(bNeeded), sub: `this market has ${fmt.int(p.b)}` },
+      ],
+    },
+    chart: {
+      title: "Four times the depth flattens the curve. It also costs four times as much.",
+      body:
+        lineChart(impact, {
+          xLabel: "Dollars bought",
           xFormat: (v) => `$${fmt.int(v)}`,
           yFormat: (v) => fmt.cents(v),
           yDomain: [p.price, Math.min(0.999, Math.max(...impact.flatMap((s) => s.points.map((x) => x[1]))))],
           guide: { y: p.price, label: "starting mid" },
-        })}
-        ${legend(impact.map((s) => ({ label: s.label })))}
-        <p class="chart-note">Quadrupling b flattens the curve. It also quadruples the cheque. That trade is the entire liquidity conversation, and it is usually had without either number on the table.</p>
-      </div>
-
-      <div class="chart-block">
-        <h4>Slippage against order size</h4>
-        ${lineChart(slip, {
-          xLabel: "order size, dollars",
-          xFormat: (v) => `$${fmt.int(v)}`,
-          yFormat: (v) => `${v.toFixed(1)}%`,
-          yDomain: [0, Math.max(1, Math.max(...slip.flatMap((s) => s.points.map((x) => x[1]))))],
-          guide: { y: 0.5, label: "0.5% target" },
-        })}
-        ${legend(slip.map((s) => ({ label: s.label })))}
-      </div>
-
-      <div class="takeaway-box">
-        <strong>The budget line.</strong>
-        <p>To hold slippage at or under <b class="mono">0.50%</b> for a <b class="mono">$${fmt.int(p.order)}</b> order at <b class="mono">${fmt.cents(p.price)}</b>, you need <b class="mono">b = ${fmt.int(bNeeded)}</b>, which is a worst-case subsidy of <b class="mono">$${fmt.int(bNeeded * Math.LN2)}</b> per market.</p>
-        <p>Listing 40 markets at that depth is a <b class="mono">$${fmt.int(bNeeded * Math.LN2 * 40)}</b> worst-case commitment. Listing four is <b class="mono">$${fmt.int(bNeeded * Math.LN2 * 4)}</b>. That arithmetic is the argument against a full calendar, and it is more persuasive than any opinion about focus.</p>
-      </div>
-
-      ${tableView(
-        ["Venue", "Shares filled", "Average price", "Slippage", "Notes"],
-        [
-          ["LMSR", fmt.int(amm.shares), fmt.cents(amm.avg), fmt.pct(amm.slippagePct, 2), `b = ${fmt.int(p.b)}, worst case $${fmt.int(worstCase)}`],
-          ["Resting book", fmt.int(book.shares), fmt.cents(book.avg), book.filled ? fmt.pct(book.slippagePct, 2) : "n/a", book.filled ? `${p.bookMakers} levels x ${p.bookSize} sh` : `order exceeds displayed depth`],
-        ],
-        { caption: "Same order, two venue designs" }
-      )}`;
+        }) + legend(impact.map((s, i) => ({ label: `${s.label}, $${fmt.int(bs[i] * Math.LN2)} worst case` }))),
+      note: "That trade is the entire liquidity conversation, and it is usually had without either number on the table.",
+    },
+    breakdown:
+      chartCard({
+        title: slipTitle,
+        body:
+          lineChart(slip, {
+            xLabel: "Order size",
+            xFormat: (v) => `$${fmt.int(v)}`,
+            yFormat: (v) => `${v.toFixed(1)}%`,
+            yDomain: [0, Math.max(1, Math.max(...slip.flatMap((s) => s.points.map((x) => x[1]))))],
+            guide: { y: 0.5, label: "0.5% target" },
+          }) + legend(slip.map((s) => ({ label: s.label }))),
+      }) +
+      card({
+        title: `Listing 40 markets at this standard is a $${fmt.int(needed * 40)} worst-case commitment. Four is $${fmt.int(needed * 4)}.`,
+        body: `
+          <p>Holding a ${hl(order)} order at ${hl(fmt.cents(p.price))} to 0.5% slippage takes depth ${hl(fmt.int(bNeeded))}, a worst case of ${hl(`$${fmt.int(needed)}`)} per market.</p>
+          ${stats([
+            { label: "One market", value: `$${fmt.int(needed)}` },
+            { label: "Four markets", value: `$${fmt.int(needed * 4)}` },
+            { label: "Forty markets", value: `$${fmt.int(needed * 40)}` },
+          ])}
+          <p>That arithmetic is the argument against a full calendar, and it is more persuasive than any opinion about focus.</p>`,
+      }) +
+      card({
+        title: venueTitle,
+        body: table(
+          ["Venue", "Shares filled", "Average price", "Slippage", "Notes"],
+          [
+            ["Market maker (LMSR)", fmt.int(amm.shares), fmt.cents(amm.avg), fmt.pct(amm.slippagePct, 2), `depth ${fmt.int(p.b)}, worst case $${fmt.int(worstCase)}`],
+            [
+              "Resting book",
+              fmt.int(book.shares),
+              fmt.cents(book.avg),
+              book.filled ? fmt.pct(book.slippagePct, 2) : "n/a",
+              book.filled ? `${p.bookMakers} levels × ${fmt.int(p.bookSize)} shares` : "order exceeds displayed depth",
+            ],
+          ],
+          { numeric: [1, 2, 3] }
+        ),
+      }),
   };
+}
 
-  const syncLabels = () => {
-    for (const c of CONTROLS) {
-      root.querySelector(`#ll-${c.key}-v`).textContent = c.fmt(p[c.key]);
-      root.querySelector(`#ll-${c.key}`).value = p[c.key];
-    }
-  };
-
-  for (const c of CONTROLS) {
-    root.querySelector(`#ll-${c.key}`).addEventListener("input", (e) => {
-      p[c.key] = Number(e.target.value);
-      syncLabels();
-      render();
-    });
-  }
-  root.querySelector("#ll-reset").addEventListener("click", () => {
-    Object.assign(p, DEFAULTS);
-    syncLabels();
-    render();
-  });
-  root.querySelector("#ll-dead").addEventListener("click", () => {
-    Object.assign(p, DEFAULTS, { b: 400, order: 2000, bookMakers: 3, bookSize: 60, bookStep: 3 });
-    syncLabels();
-    render();
-  });
-  root.querySelector("#ll-real").addEventListener("click", () => {
-    Object.assign(p, DEFAULTS, { b: 24000, order: 2000, bookMakers: 14, bookSize: 900, bookStep: 0.5 });
-    syncLabels();
-    render();
-  });
-
-  syncLabels();
-  render();
+export function mount(root) {
+  calculator(root, { defaults: DEFAULTS, scenarios: SCENARIOS, controls: CONTROLS, more: MORE, view });
 }

@@ -12,7 +12,7 @@ twitterExcerpt: "One hands-on comparison found roughly 70% of a leading AI-avata
 
 <!-- EVIDENCE
 Claim: UGC advertising works because it does not look produced. AI avatar tools optimized for visual polish are optimizing against the exact property that made the format effective, and one hands-on comparison found the more polished tool performed worse on ad-readiness, not better.
-Moment: Researching AI avatar tools for UGC-style ads after writing about video-model prompt compiling for Restyle Lab, and finding the industry's own comparison writeups already naming the failure mode: audiences on TikTok and Instagram recognizing "the professional AI video look" and scrolling past it.
+Moment: Researching AI avatar tools for UGC-style ads after writing about video-model prompt compiling for Video Prompt Studio, and finding the industry's own comparison writeups already naming the failure mode: audiences on TikTok and Instagram recognizing "the professional AI video look" and scrolling past it.
 Numbers: Arcads, an AI UGC-ad startup founded in 2024, raised a $16M seed round in December 2025, crosses 6,000 clients producing roughly 100,000 ad assets a month, from a 300-plus AI-actor library. HeyGen supports 175-plus languages with voice cloning and lip-sync; Synthesia covers 140-plus. In one hands-on comparison, roughly 70% of HeyGen outputs needed re-rendering or a script fix before they were ad-ready, against about 40% for MakeUGC and 35% for Arcads.
 Names: Arcads, HeyGen, Synthesia, MakeUGC.
 Cost: the 70/40/35 re-render comparison is 1 hands-on test, not a controlled study across a large sample, so treat it as a documented data point on 3 specific tools at 1 point in time, not a permanent ranking of the category.

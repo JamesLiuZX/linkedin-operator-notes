@@ -15,9 +15,9 @@ demo: retention-lab
 
 <!-- EVIDENCE
 Claim: A hook rate reported from one platform is not comparable to a hook rate reported from another without knowing the measurement window, because Meta and TikTok do not count the same seconds.
-Moment: Building Retention Curve Lab's platform picker and finding that a single "good" guide line could not sit on the chart, because the two platforms' published bands do not share a denominator: three seconds against two.
+Moment: Building Watch-Time Simulator's platform picker and finding that a single "good" guide line could not sit on the chart, because the two platforms' published bands do not share a denominator: three seconds against two.
 Numbers: Meta's hook rate is 3-second video plays divided by impressions; TikTok's is 2-second video views divided by impressions. Meta's published bands: 25-30% solid, 30-40% good, 40%+ elite. TikTok's: 30-35% baseline, 40%+ top quartile (Hawky.ai). At the demo's default settings, a slow-build hook style with no captions, the simulated rate lands at 20.9% on Meta, under the solid band.
-Names: Retention Curve Lab, Hawky.ai, Meta, TikTok.
+Names: Watch-Time Simulator, Hawky.ai, Meta, TikTok.
 Cost: the hook-style deltas in the demo (cold open, pattern interrupt, on-screen question, slow build) and the pacing and caption modifiers are a model I calibrated so the defaults land inside Hawky's published bands, not measurements pulled from a real ad account. Plug in numbers from your own account instead of the defaults, because the defaults are a starting point, not a claim about your content.
 Counterexample: a creator with no ad spend and no platform-reported hook-rate column cannot run this comparison at all. The whole framework only applies once a platform is surfacing the 2-second or 3-second metric back to you, which today usually means a business or ads account, not every account on the platform.
 Reader action: before comparing a hook rate across two campaigns or two platforms, check which platform produced each number and what window it used, not just the percentage.
@@ -27,7 +27,7 @@ Reader action: before comparing a hook rate across two campaigns or two platform
 
 Two campaigns, both reporting a 30% hook rate. On Meta that sits inside the "good" band, 30 to 40%. On TikTok the same 30% is barely inside "baseline," the lowest tier Hawky.ai names at all. Same number. Different platforms. Not the same result, and not close.
 
-The reason is not creative quality. It is the denominator. Meta's hook rate is 3-second video plays divided by impressions. TikTok's is 2-second video views divided by impressions, a window one full second narrower. A viewer who bails at second 2.5 counts against a TikTok creative and for a Meta one, on the exact same footage, because the two platforms drew the finish line for "hooked" in different places. I built Retention Curve Lab to make this concrete rather than argued about: pick a platform, a hook style, a pacing setting, and a video length, and it draws the retention curve and reads off where it lands against each platform's own published bands, not a single universal number.
+The reason is not creative quality. It is the denominator. Meta's hook rate is 3-second video plays divided by impressions. TikTok's is 2-second video views divided by impressions, a window one full second narrower. A viewer who bails at second 2.5 counts against a TikTok creative and for a Meta one, on the exact same footage, because the two platforms drew the finish line for "hooked" in different places. I built Watch-Time Simulator to make this concrete rather than argued about: pick a platform, a hook style, a pacing setting, and a video length, and it draws the retention curve and reads off where it lands against each platform's own published bands, not a single universal number.
 
 ## Where the cliff actually sits
 
@@ -45,7 +45,7 @@ Neither lever is free to test in the real world. A single paid test across hook 
 
 ## The counterexample
 
-This entire framework assumes a platform is handing you the 2-second or 3-second number in the first place. An organic creator with no ads account and no business dashboard does not see a hook-rate column at all, and for that account the comparison in this piece does not exist, because there is nothing to compare. Retention Curve Lab and the bands it is built against apply specifically to accounts running paid or business-tier video, where the platform's own reporting surfaces the metric. That is a real, narrower audience than "anyone posting short-form video," and it is worth saying plainly rather than letting the framing imply otherwise.
+This entire framework assumes a platform is handing you the 2-second or 3-second number in the first place. An organic creator with no ads account and no business dashboard does not see a hook-rate column at all, and for that account the comparison in this piece does not exist, because there is nothing to compare. Watch-Time Simulator and the bands it is built against apply specifically to accounts running paid or business-tier video, where the platform's own reporting surfaces the metric. That is a real, narrower audience than "anyone posting short-form video," and it is worth saying plainly rather than letting the framing imply otherwise.
 
 ## What to check Monday
 

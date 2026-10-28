@@ -14,7 +14,7 @@ tags: ai, agents, content-ops
 Claim: Two copies of this site's own quality-gate function had quietly drifted apart, disagreeing on which checks ran and how a failure was scored, until they got merged into one shared core.
 Moment: Running the same clean 77-word LinkedIn post through both copies while building a paste-anything demo and getting two different scores for identical text.
 Numbers: before the merge, one copy ran 11 checks at 14 points per fail, the other ran 21 at 10 points per fail. The same post scored 95 on one, 66 on the other. After merging, the shared core scores it 96; the full gate still scores it 66, now for 3 specific, correct reasons instead of an accident.
-Names: Slop Gate, scripts/lib/analyze.mjs, scripts/content-check.mjs.
+Names: Draft Check, scripts/lib/analyze.mjs, scripts/content-check.mjs.
 Cost: I found the drift by accident, comparing two files to decide which one a demo should call, not by auditing the pipeline on purpose.
 Counterexample: for text that already cleanly passes every shared check, the two copies always agreed. The gap only ever showed up on the specific boundary of a file with no frontmatter.
 Reader action: if two tools in your own stack claim to implement the same rule, run one input through both before trusting either number.

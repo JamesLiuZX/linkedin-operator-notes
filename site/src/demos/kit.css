@@ -1,0 +1,1330 @@
+/* site/src/demos/kit.css
+ *
+ * Styles for the demo kit (kit.js), the demo page template, the /demos index
+ * tiles and the home-page demo strip. Imported once, by main.js.
+ *
+ * Rules of the system, so later edits keep to them:
+ *   - Syne for the page title only. IBM Plex Sans for every label, button,
+ *     stat and helper. Source Serif 4 for prose. Mono only for code-like text.
+ *   - Sentence case. No uppercase, no letter-spaced labels.
+ *   - Colour comes from the site tokens (style.css) and the chart tokens
+ *     (viz/palette.css, never edited here). Status colour always travels with
+ *     an icon and a word.
+ *   - Everything below is a token or derived from one, so dark mode follows.
+ */
+
+/* ------------------------------------------------------------- tokens --- */
+
+:root {
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* --muted fails AA for small text on paper; pulled 30% toward ink it passes
+     in both themes (light 5.7:1 on --paper-2, dark 6.5:1 on cards). */
+  --kit-muted: color-mix(in srgb, var(--muted) 70%, var(--ink));
+  --kit-track: color-mix(in srgb, var(--ink) 16%, transparent);
+  --kit-radius: 16px;
+  --kit-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px rgb(0 0 0 / 0.05);
+  --kit-shadow-lift: 0 2px 4px rgb(0 0 0 / 0.05), 0 14px 32px rgb(0 0 0 / 0.08);
+}
+
+/* Status inks: the reserved status hues, darkened (light) or lightened (dark)
+   until a status word clears 4.5:1 on its tinted chip. */
+.viz {
+  --kit-good: color-mix(in srgb, var(--ok) 72%, #000);
+  --kit-warn: color-mix(in srgb, var(--warn) 55%, #000);
+  --kit-bad: color-mix(in srgb, var(--critical) 78%, #000);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) .viz {
+    --kit-good: color-mix(in srgb, var(--ok) 70%, #fff);
+    --kit-warn: var(--warn);
+    --kit-bad: color-mix(in srgb, var(--critical) 72%, #fff);
+  }
+}
+
+:root[data-theme="dark"] .viz {
+  --kit-good: color-mix(in srgb, var(--ok) 70%, #fff);
+  --kit-warn: var(--warn);
+  --kit-bad: color-mix(in srgb, var(--critical) 72%, #fff);
+}
+
+/* ---------------------------------------------------------- page head --- */
+
+.demo-shell.kit {
+  padding-top: clamp(1.75rem, 5vw, 3rem);
+}
+
+.kit-head {
+  max-width: 56rem;
+  margin: 0 0 2rem;
+}
+
+.kit-eyebrow {
+  margin: 0 0 0.6rem;
+  font: 500 0.875rem/1.3 var(--sans);
+  color: var(--pine);
+}
+
+.kit-title {
+  margin: 0;
+  text-wrap: balance;
+  font-family: var(--display);
+  font-weight: 800;
+  /* Capped so a 2 or 3 word name stays on one line at desktop widths. */
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+.kit-question {
+  margin: 0.8rem 0 0;
+  max-width: 40rem;
+  text-wrap: pretty;
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 2.2vw, 1.375rem);
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+.kit-intro {
+  margin: 0.75rem 0 0;
+  max-width: 40rem;
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--kit-muted);
+}
+
+/* ------------------------------------------------------- scenario bar --- */
+
+.kit-scenarios {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.9rem;
+  margin: 0 0 1.75rem;
+  min-width: 0;
+}
+
+.kit-scenarios-label {
+  font: 500 0.875rem/1.3 var(--sans);
+  color: var(--kit-muted);
+}
+
+.kit-pills {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-radius: 999px;
+  background: var(--paper-2);
+}
+
+.kit-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.kit-pill {
+  flex: none;
+  min-height: 40px;
+  padding: 0 1.1rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-soft);
+  font: 500 0.9375rem/1 var(--sans);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.kit-pill:hover {
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
+  color: var(--ink);
+}
+
+.kit-pill[aria-pressed="true"] {
+  background: var(--pine);
+  color: var(--paper);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.12);
+}
+
+.kit-scenarios-note {
+  flex-basis: 100%;
+  margin: 0;
+  min-height: 1.45em;
+  font: 400 0.875rem/1.45 var(--sans);
+  color: var(--kit-muted);
+}
+
+/* ------------------------------------------------------------- layout --- */
+
+/* Every grid track here is minmax(0, 1fr), never auto: below 640px a chart
+   keeps a 500px minimum and scrolls inside its card (viz.css), and an auto
+   track would pass that width up and scroll the whole page sideways. */
+.kit-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.75rem;
+  align-items: start;
+}
+
+.kit-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+.kit-main-chart {
+  min-width: 0;
+}
+
+.kit-breakdown {
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 960px) {
+  .kit-grid {
+    grid-template-columns: minmax(0, 64fr) minmax(0, 36fr);
+    gap: 2rem;
+  }
+
+  /* Text tools: the input panel first, the verdict and findings beside it. */
+  .kit-grid.kit-grid-split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .kit-panel {
+    position: sticky;
+    top: 1.5rem;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+/* -------------------------------------------------------------- cards --- */
+
+.kit-card {
+  min-width: 0;
+  background: var(--viz-surface, var(--card));
+  border: 1px solid var(--line-2);
+  border-radius: var(--kit-radius);
+  box-shadow: var(--kit-shadow);
+}
+
+.kit-block {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.4rem 1.5rem;
+}
+
+.kit-block-title,
+.kit-chart-title {
+  margin: 0;
+  max-width: 60ch;
+  text-wrap: balance;
+  font: 600 1.0625rem/1.4 var(--sans);
+  color: var(--ink);
+}
+
+.kit-block p {
+  margin: 0;
+  max-width: 64ch;
+  font: 400 0.9375rem/1.6 var(--sans);
+  color: var(--ink-soft);
+}
+
+.kit-chart {
+  padding: 1.5rem 1.5rem 1.25rem;
+}
+
+.kit-chart-title {
+  margin-bottom: 1rem;
+}
+
+.kit-chart-body {
+  min-width: 0;
+}
+
+.kit-chart-note {
+  margin: 0.9rem 0 0;
+  max-width: 64ch;
+  text-wrap: pretty;
+  font: 400 0.875rem/1.55 var(--sans);
+  color: var(--kit-muted);
+}
+
+.kit-hl {
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* -------------------------------------------------------- answer card --- */
+
+.kit-answer {
+  display: grid;
+  gap: 0.6rem;
+  padding: 1.75rem 1.75rem 1.5rem;
+}
+
+.kit-answer-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+.kit-answer-label {
+  margin: 0;
+  font: 500 0.9375rem/1.4 var(--sans);
+  color: var(--kit-muted);
+}
+
+.kit-answer-value {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.6rem;
+  margin: 0.15rem 0 0;
+  font-family: var(--sans);
+  line-height: 1;
+  color: var(--ink);
+}
+
+.kit-answer-num {
+  font-size: clamp(2.75rem, 6vw, 4rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  font-variant-numeric: tabular-nums;
+}
+
+.kit-answer-unit {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--kit-muted);
+}
+
+.kit-verdict {
+  margin: 0.35rem 0 0;
+  max-width: 46ch;
+  text-wrap: pretty;
+  font: 400 1.125rem/1.55 var(--sans);
+  color: var(--ink-soft);
+}
+
+.kit-answer-stats {
+  margin-top: 0.9rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line-2);
+}
+
+.kit-answer-stats:empty {
+  display: none;
+}
+
+/* -------------------------------------------------------------- stats --- */
+
+.kit-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 1rem 1.5rem;
+  margin: 0;
+}
+
+.kit-stat {
+  display: grid;
+  align-content: start;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.kit-stat dt {
+  font: 500 0.8125rem/1.35 var(--sans);
+  color: var(--kit-muted);
+}
+
+.kit-stat-value {
+  margin: 0;
+  font: 600 1.375rem/1.2 var(--sans);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.kit-stat-sub {
+  margin: 0;
+  font: 400 0.8125rem/1.4 var(--sans);
+  color: var(--kit-muted);
+}
+
+/* ------------------------------------------------------------- status --- */
+
+.kit-status {
+  --tone: var(--ink-soft);
+  --tone-base: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem 0.3rem 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--tone-base) 12%, transparent);
+  color: var(--tone);
+  font: 500 0.875rem/1.3 var(--sans);
+}
+
+.kit-status.tone-good {
+  --tone: var(--kit-good);
+  --tone-base: var(--ok);
+}
+
+.kit-status.tone-warn {
+  --tone: var(--kit-warn);
+  --tone-base: var(--warn);
+}
+
+.kit-status.tone-bad {
+  --tone: var(--kit-bad);
+  --tone-base: var(--critical);
+}
+
+.kit-icon,
+.kit-chevron {
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.kit-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.kit-chevron {
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--kit-muted);
+  transition: rotate 200ms ease;
+}
+
+/* -------------------------------------------------- assumptions panel --- */
+
+.kit-panel {
+  min-width: 0;
+  padding: 1.4rem 1.4rem 1.1rem;
+  border-radius: var(--kit-radius);
+  background: var(--paper-2);
+}
+
+.kit-panel-toggle {
+  display: none;
+}
+
+.kit-panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.1rem;
+}
+
+.kit-panel-head h2 {
+  margin: 0;
+  font: 600 1rem/1.3 var(--sans);
+  color: var(--ink);
+}
+
+.kit-controls {
+  display: grid;
+  gap: 1.35rem;
+}
+
+.kit-controls-heading {
+  margin: 0.25rem 0 -0.5rem;
+  font: 600 0.8125rem/1.3 var(--sans);
+  color: var(--ink-soft);
+}
+
+.kit-field {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.kit-field-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.kit-label {
+  font: 500 0.9375rem/1.35 var(--sans);
+  color: var(--ink);
+}
+
+.kit-hint {
+  margin-left: 0.2rem;
+  font-weight: 400;
+  font-size: 0.8125rem;
+  color: var(--kit-muted);
+  white-space: nowrap;
+}
+
+.kit-value {
+  flex: none;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: var(--viz-surface, var(--card));
+  color: var(--ink);
+  font: 500 0.8125rem/1 var(--sans);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.kit-help {
+  margin: 0;
+  font: 400 0.8125rem/1.45 var(--sans);
+  color: var(--kit-muted);
+}
+
+.kit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-top: 1.1rem;
+}
+
+.kit-text-btn {
+  padding: 0.35rem 0.15rem;
+  margin: -0.35rem -0.15rem;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--pine);
+  font: 500 0.875rem/1.2 var(--sans);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: text-decoration-color 150ms ease;
+}
+
+.kit-text-btn:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Range: 6px track filled in pine up to --fill (set by kit.js), 20px thumb. */
+.kit-range {
+  --fill: 50%;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 24px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.kit-range::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--pine) 0 var(--fill), var(--kit-track) var(--fill) 100%);
+}
+
+.kit-range::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--kit-track);
+}
+
+.kit-range::-moz-range-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--pine);
+}
+
+.kit-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  margin-top: -7px;
+  border: 2px solid var(--pine);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
+  transition: transform 120ms ease;
+}
+
+.kit-range::-moz-range-thumb {
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--pine);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
+}
+
+.kit-range:active::-webkit-slider-thumb {
+  transform: scale(1.12);
+}
+
+/* Select */
+.kit-select {
+  position: relative;
+}
+
+.kit-select select {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.6rem 2.5rem 0.6rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--viz-surface, var(--card));
+  color: var(--ink);
+  font: 500 0.9375rem/1.3 var(--sans);
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.kit-select .kit-chevron {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  translate: 0 -50%;
+  pointer-events: none;
+}
+
+/* Toggle (a checkbox with role="switch") */
+.kit-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.kit-toggle input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.kit-toggle-track {
+  position: relative;
+  flex: none;
+  width: 40px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--kit-track);
+  transition: background-color 150ms ease;
+}
+
+.kit-toggle-track::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);
+  transition: transform 150ms ease;
+}
+
+.kit-toggle input:checked + .kit-toggle-track {
+  background: var(--pine);
+}
+
+.kit-toggle input:checked + .kit-toggle-track::after {
+  transform: translateX(16px);
+}
+
+/* Text input for the text tools: prose in, so sans, not mono. */
+.kit-textarea {
+  width: 100%;
+  min-height: 16rem;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--viz-surface, var(--card));
+  color: var(--ink);
+  font: 400 0.9375rem/1.6 var(--sans);
+  resize: vertical;
+}
+
+/* Genuinely code-like output only: a compiled prompt, a CLI command. */
+.kit-code {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+  border-radius: 12px;
+  background: var(--paper-2);
+  color: var(--ink);
+  font: 400 0.84rem/1.6 var(--mono);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* -------------------------------------------------------- disclosures --- */
+
+.kit-disclosure {
+  border-top: 1px solid var(--line);
+}
+
+.kit-disclosure[hidden] {
+  display: none;
+}
+
+.kit-disclosure > summary,
+.kit-more > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  list-style: none;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.kit-disclosure > summary {
+  min-height: 56px;
+  padding: 0.75rem 0;
+  font: 600 1.0625rem/1.3 var(--sans);
+}
+
+.kit-more {
+  margin-top: 1.35rem;
+  border-top: 1px solid var(--line);
+}
+
+.kit-more > summary {
+  min-height: 48px;
+  padding: 0.5rem 0;
+  font: 500 0.9375rem/1.3 var(--sans);
+}
+
+.kit-more > .kit-controls {
+  padding: 0.4rem 0 0.25rem;
+}
+
+.kit-disclosure > summary::-webkit-details-marker,
+.kit-more > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* A drawn chevron, so a summary needs no icon markup. */
+.kit-disclosure > summary::after,
+.kit-more > summary::after {
+  content: "";
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.35rem;
+  border-right: 2px solid var(--kit-muted);
+  border-bottom: 2px solid var(--kit-muted);
+  transform: translateY(-25%) rotate(45deg);
+  transition: transform 200ms ease;
+}
+
+.kit-disclosure[open] > summary::after,
+.kit-more[open] > summary::after {
+  transform: translateY(25%) rotate(-135deg);
+}
+
+.kit-disclosure-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 0.25rem 0 2rem;
+  min-width: 0;
+}
+
+/* -------------------------------------------------------------- table --- */
+
+.kit-table-wrap {
+  overflow-x: auto;
+  min-width: 0;
+}
+
+.kit-table {
+  width: 100%;
+  border-collapse: collapse;
+  font: 400 0.875rem/1.4 var(--sans);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+}
+
+.kit-table caption {
+  caption-side: top;
+  padding-bottom: 0.6rem;
+  text-align: left;
+  font: 600 1.0625rem/1.4 var(--sans);
+  color: var(--ink);
+}
+
+.kit-table th,
+.kit-table td {
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid var(--line-2);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.kit-table th:first-child,
+.kit-table td:first-child {
+  padding-left: 0;
+}
+
+.kit-table thead th {
+  font-weight: 500;
+  font-size: 0.8125rem;
+  color: var(--kit-muted);
+}
+
+.kit-table tbody th {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.kit-table .num {
+  text-align: right;
+}
+
+/* ------------------------------------------------- chart chrome (.kit) --- */
+/* charts.js draws the marks; these only restyle its text and tooltip. */
+
+.kit .viz-svg,
+.kit .viz-svg .mono {
+  font-family: var(--sans);
+}
+
+.kit .viz-svg .tick,
+.kit .viz-svg .axis-label,
+.kit .viz-svg .guide-label {
+  fill: var(--kit-muted);
+}
+
+.kit .viz-svg .tick {
+  font-size: 11px;
+}
+
+.kit .viz-svg .bar-label {
+  fill: var(--ink-soft);
+  font-size: 12px;
+}
+
+.kit .viz-svg .bar-value {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.kit .viz-svg .series-label {
+  font-size: 12px;
+}
+
+.kit .axis-title {
+  font: 400 0.8125rem/1.4 var(--sans);
+  color: var(--kit-muted);
+}
+
+.kit .viz-legend {
+  font: 400 0.8125rem/1.4 var(--sans);
+  color: var(--ink-soft);
+}
+
+.kit .viz-tip {
+  border-color: var(--line);
+  border-radius: 10px;
+  background: var(--viz-surface, var(--card));
+  box-shadow: var(--kit-shadow);
+  font-family: var(--sans);
+}
+
+.kit .viz-tip .mono {
+  font-family: var(--sans);
+}
+
+.kit .viz-table summary {
+  font: 500 0.875rem/1.4 var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* ----------------------------------------------------------- page foot --- */
+
+.kit-foot {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+}
+
+/* Under a calculator's "See the full breakdown", "How this works" sits flush
+   so the two disclosures read as one list. */
+#demo-root:has(.kit-breakdown:not([hidden])) + .kit-foot {
+  margin-top: 0;
+}
+
+.kit-how {
+  border-bottom: 1px solid var(--line);
+}
+
+.kit-how .kit-disclosure-body {
+  gap: 1rem;
+  max-width: 44rem;
+}
+
+.kit-prose p {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.kit-formulas {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0.25rem 0;
+  padding: 1rem 1.1rem;
+  border-radius: 12px;
+  background: var(--paper-2);
+}
+
+.kit-formulas div {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.kit-formulas dt {
+  font: 500 0.8125rem/1.4 var(--sans);
+  color: var(--kit-muted);
+}
+
+.kit-formulas dd {
+  margin: 0;
+}
+
+.kit-formulas code {
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  color: var(--ink);
+}
+
+.kit-prose .kit-sources-head {
+  margin-top: 0.5rem;
+  font: 600 0.9375rem/1.4 var(--sans);
+  color: var(--ink);
+}
+
+.kit-sources {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font: 400 0.9375rem/1.5 var(--sans);
+  color: var(--ink-soft);
+}
+
+.kit-sources a {
+  color: var(--pine);
+}
+
+.kit-essay {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 44rem;
+  padding: 1.15rem 1.35rem;
+  border: 1px solid var(--line);
+  border-radius: var(--kit-radius);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.kit-essay:hover {
+  border-color: var(--pine);
+  background: color-mix(in srgb, var(--pine) 4%, transparent);
+  color: var(--ink);
+}
+
+.kit-essay-kicker {
+  font: 500 0.8125rem/1.3 var(--sans);
+  color: var(--pine);
+}
+
+.kit-essay-title {
+  font: 600 1.125rem/1.35 var(--sans);
+}
+
+.kit-essay-summary {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-family: var(--serif);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--kit-muted);
+}
+
+/* --------------------------------------------- tiles: index, home, foot --- */
+
+.kit-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 1.5rem;
+  margin: 0 0 1rem;
+}
+
+.kit-section-head h2 {
+  margin: 0;
+  font: 600 1.25rem/1.3 var(--sans);
+  color: var(--ink);
+}
+
+.kit-section-head p {
+  margin: 0;
+  max-width: 52ch;
+  font: 400 0.9375rem/1.5 var(--sans);
+  color: var(--kit-muted);
+}
+
+.kit-link {
+  font: 500 0.9375rem/1.3 var(--sans);
+  color: var(--pine);
+  text-decoration: none;
+}
+
+.kit-link:hover {
+  color: var(--pine);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.kit-group + .kit-group {
+  margin-top: clamp(2.5rem, 6vw, 3.5rem);
+}
+
+.kit-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: 1rem;
+}
+
+.kit-strip {
+  margin: 0 0 3rem;
+}
+
+.kit-strip .kit-tiles {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+}
+
+.kit-tile {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 0.45rem;
+  min-height: 12rem;
+  padding: 1.35rem 1.35rem 1.15rem;
+  border: 1px solid var(--line-2);
+  border-radius: var(--kit-radius);
+  background: var(--card);
+  box-shadow: var(--kit-shadow);
+  color: var(--ink);
+  text-decoration: none;
+  animation: rise 500ms ease both;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.kit-tile:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--pine) 35%, transparent);
+  box-shadow: var(--kit-shadow-lift);
+  color: var(--ink);
+}
+
+.kit-tile-eyebrow {
+  font: 500 0.8125rem/1.3 var(--sans);
+  color: var(--pine);
+}
+
+.kit-tile-title {
+  font: 600 1.25rem/1.25 var(--sans);
+  letter-spacing: -0.01em;
+}
+
+.kit-tile-q {
+  font-family: var(--serif);
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.kit-tile-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+  font: 500 0.875rem/1.3 var(--sans);
+  color: var(--pine);
+}
+
+.kit-tile-go svg {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 180ms ease;
+}
+
+.kit-tile:hover .kit-tile-go svg {
+  transform: translateX(3px);
+}
+
+/* ------------------------------------------------------------- motion --- */
+
+.kit-fade {
+  animation: kit-fade 300ms ease both;
+}
+
+@keyframes kit-fade {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kit-fade,
+  .kit-tile {
+    animation: none;
+  }
+
+  .kit-pill,
+  .kit-tile,
+  .kit-tile-go svg,
+  .kit-chevron,
+  .kit-essay,
+  .kit-text-btn,
+  .kit-toggle-track,
+  .kit-toggle-track::after,
+  .kit-range::-webkit-slider-thumb,
+  .kit-disclosure > summary::after,
+  .kit-more > summary::after {
+    transition: none;
+  }
+
+  .kit-tile:hover,
+  .kit-tile:hover .kit-tile-go svg {
+    transform: none;
+  }
+}
+
+/* -------------------------------------------------------------- focus --- */
+
+.kit-pill:focus-visible,
+.kit-text-btn:focus-visible,
+.kit-textarea:focus-visible,
+.kit-panel-toggle:focus-visible,
+.kit-disclosure > summary:focus-visible,
+.kit-more > summary:focus-visible,
+.kit-select select:focus-visible,
+.kit-tile:focus-visible,
+.kit-essay:focus-visible,
+.kit-link:focus-visible,
+.kit-sources a:focus-visible {
+  outline: 2px solid var(--pine);
+  outline-offset: 2px;
+}
+
+.kit-pill:focus-visible {
+  outline-offset: 1px;
+}
+
+.kit-range:focus-visible {
+  outline: 2px solid var(--pine);
+  outline-offset: 4px;
+  border-radius: 999px;
+}
+
+.kit-toggle input:focus-visible + .kit-toggle-track {
+  outline: 2px solid var(--pine);
+  outline-offset: 3px;
+}
+
+/* ------------------------------------------------------------- mobile --- */
+
+@media (min-width: 641px) {
+  .kit-panel-toggle {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .demo-shell.kit {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .kit-head {
+    margin-bottom: 1.5rem;
+  }
+
+  .kit-scenarios {
+    margin-bottom: 1.25rem;
+  }
+
+  .kit-pill {
+    min-height: 44px;
+  }
+
+  .kit-answer {
+    padding: 1.35rem 1.25rem 1.25rem;
+  }
+
+  .kit-chart {
+    padding: 1.15rem 1rem 1rem;
+  }
+
+  .kit-block {
+    padding: 1.15rem 1rem;
+  }
+
+  .kit-panel {
+    padding: 1.1rem;
+  }
+
+  /* An assumptions() panel becomes a closed "Adjust assumptions" disclosure.
+     A plain .kit-panel (a text tool's input) stays open. */
+  .kit-panel-collapsible {
+    padding: 0;
+    background: none;
+  }
+
+  .kit-panel-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    min-height: 52px;
+    padding: 0 1.1rem;
+    border: 0;
+    border-radius: 14px;
+    background: var(--paper-2);
+    color: var(--ink);
+    font: 600 1rem/1.3 var(--sans);
+    cursor: pointer;
+  }
+
+  .kit-panel-collapsible.is-open .kit-panel-toggle .kit-chevron {
+    rotate: 180deg;
+  }
+
+  .kit-panel-collapsible:not(.is-open) .kit-panel-body {
+    display: none;
+  }
+
+  .kit-panel-collapsible.is-open .kit-panel-body {
+    margin-top: 0.5rem;
+    padding: 1.1rem 1.1rem 0.9rem;
+    border-radius: 14px;
+    background: var(--paper-2);
+  }
+
+  .kit-panel-head {
+    justify-content: flex-end;
+  }
+
+  /* The toggle already says what this is. */
+  .kit-panel-head h2 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .kit-text-btn {
+    min-height: 44px;
+  }
+
+  .kit-tile {
+    min-height: 0;
+  }
+
+  /* Stats become label-left, value-right rows. */
+  .kit-stats {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.7rem;
+  }
+
+  .kit-stat {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 1rem;
+    align-items: baseline;
+  }
+
+  .kit-stat-value {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 1.125rem;
+    text-align: right;
+  }
+
+  .kit-stat-sub {
+    grid-column: 1 / -1;
+  }
+
+  /* chartCard({ fit: true }): a short-label bar chart shrinks to the card
+     instead of scrolling its values out of view, and its text scales up to
+     stay legible. The longest bar's value may run a few pixels into the
+     card's padding, so the scroll box must not clip it. Keep bar labels to
+     about 10 characters when you use it. */
+  .kit-chart-fit .chart-scroll {
+    overflow: visible;
+  }
+
+  .kit-chart-fit .chart-scroll > .viz-svg {
+    min-width: 0;
+  }
+
+  .kit-chart-fit .viz-svg .bar-label,
+  .kit-chart-fit .viz-svg .bar-value {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .kit-chart-fit .viz-svg .bar-label,
+  .kit-chart-fit .viz-svg .bar-value {
+    font-size: 20px;
+  }
+}

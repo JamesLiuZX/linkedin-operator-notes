@@ -1,28 +1,53 @@
 // site/src/demos/resolution-linter.js
 //
-// Paste a market's resolution criteria, get back the dispute surface.
+// Market Rules Check: paste a market's resolution criteria, get back the
+// dispute surface.
 //
 // The thesis this demo exists to prove: most prediction-market disputes are not
 // oracle failures, they are writing failures. Every rule below maps to a real
-// class of dispute, and the three loaded examples are real markets that went
-// wrong in exactly the way the rule describes.
+// class of dispute. Two of the sample markets are real ones that went wrong in
+// the way a rule describes, one is a recurring class of dispute, and one is a
+// control that should come back clean.
 //
 // Deterministic. No model call. That is the point: you do not need an LLM to
 // catch this, you need a checklist that someone actually runs.
+//
+// The rules, scoring and samples below the meta block are unchanged. The view
+// is built from the demo kit: sample pills, an answer card, finding cards, and
+// the rule IDs in a disclosure.
 
-import { statRow, meter, esc, tableView } from "../viz/charts.js";
+import { esc } from "../viz/charts.js";
+import { answerCard, card, disclosure, hl, scenarioBar, status, table } from "./kit.js";
+import "./resolution-linter.css";
 
 export const meta = {
   slug: "resolution-linter",
-  title: "Resolution linter",
-  tagline: "Paste market rules. See the dispute surface before your users find it.",
+  title: "Market Rules Check",
+  tagline: "Will these rules start a dispute?",
   section: "markets",
   pillar: "Market design",
   essay: "07-the-sentence-is-the-product",
   blurb:
+    "Paste the rules a prediction market settles by and see which wording could start a dispute. Start with a market that actually blew up.",
+  how: [
     "A deterministic linter for prediction-market resolution criteria. 16 rules, each mapped to a real dispute class. Load a market that actually blew up and watch it fail.",
+    "The thesis: most prediction-market disputes are not oracle failures, they are writing failures. Two of the four sample markets are real ones that went wrong, one is a recurring class of dispute, and one is a control that should come back clean.",
+    "Each rule counts once, however many times it matches, because six vague adjectives are one writing problem, not six. A blocker costs 22 points, a major issue 12 and a minor one 5, from 100. Any blocker, or a score under 55, means do not list. Under 80 needs a rewrite.",
+  ],
+  formulas: [{ label: "Score", expr: "max(0, 100 − 22 × blockers − 12 × major − 5 × minor)" }],
   buildNote:
     "No model call. Regex, a clause checklist, and a scoring function. Built to make the point that this class of failure is catchable by a checklist nobody runs.",
+  sources: [
+    {
+      label: "The Defiant: the $60M+ dispute over Strategy's May Bitcoin sale",
+      href: "https://thedefiant.io/news/markets/usd85m-polymarket-dispute-over-strategy-s-may-bitcoin-sale-puts-uma-s-token-voting-oracle-on",
+    },
+    {
+      label: "Orochi Network: oracle manipulation in Polymarket, 2025",
+      href: "https://orochi.network/blog/oracle-manipulation-in-polymarket-2025",
+    },
+    { label: "Polymarket docs: how resolution works", href: "https://docs.polymarket.com/concepts/resolution" },
+  ],
 };
 
 /* ------------------------------------------------------------------ rules */
@@ -343,6 +368,7 @@ const EXAMPLES = [
   {
     id: "ukraine",
     name: "Ukraine minerals (real, resolved wrong)",
+    label: "Ukraine minerals",
     receipt:
       "Traded on Polymarket. Between 24 and 25 March 2025 the odds moved 9% to 100% and it resolved YES with no agreement reached. The attacker cast 5M UMA, about 25% of that resolution round.",
     text: `Will Ukraine agree to Trump's mineral deal before April?
@@ -363,6 +389,7 @@ If a signed text is published and later withdrawn, the first publication stands.
   {
     id: "strategy-btc",
     name: "Strategy sells Bitcoin (real, $60M disputed)",
+    label: "Strategy sells Bitcoin",
     receipt:
       "A $60M+ dispute over whether Strategy sold Bitcoin in May put UMA's token-voting oracle on trial. A WSJ investigation in May 2026 found that in most disputed markets, more than half the votes came from the ten largest wallets.",
     text: `Will Strategy sell Bitcoin in May?
@@ -385,6 +412,7 @@ If a filing is later amended, the first filed figure stands.`,
   {
     id: "match",
     name: "Sports abandonment (the season-long ticket generator)",
+    label: "A sports match",
     receipt:
       "Not one incident, a recurring class. Postponement, abandonment, forfeit and extra time are the largest steady source of settlement tickets across a season.",
     text: `Will Team A win the match on Saturday?
@@ -407,6 +435,7 @@ A walkover or forfeit awarded to Team A resolves YES.`,
   {
     id: "cpi",
     name: "CPI print (control: how it should read)",
+    label: "A well-written market",
     receipt:
       "Nothing broke here. This is what a market looks like when the sentence was written before the listing, not after the dispute.",
     text: `Will US CPI year-over-year for July 2026 come in at or above 3.0%?
@@ -424,158 +453,300 @@ Subsequent revisions do not change the resolution. The first published figure st
 
 /* ------------------------------------------------------------------- view */
 
-const SEV_ICON = { blocker: "!!", major: "!", minor: "." };
+// Plain-English names for the rules, by id. The rule's own label stays in the
+// "all rules" table.
+const PLAIN = {
+  "no-source": "No named source of truth",
+  "no-timezone": "A deadline with no timezone",
+  "no-source-failure": "No fallback if the source fails",
+  "no-void-rule": "No rule for a market that cannot settle",
+  "no-edge-cases": "No rule for a postponed or abandoned match",
+  "subjective-adjective": "Vague words that can be read two ways",
+  "unbounded-time": "A time reference with no real date",
+  "announce-vs-complete": "Announced and completed not told apart",
+  "weasel-quantifier": "An approximate number in a threshold",
+  "passive-determiner": "A decision with no one named to make it",
+  "ambiguous-deadline": "Unclear whether the deadline day counts",
+  "compound-condition": "“And” and “or” mixed without brackets",
+  "any-all-scope": "“Any” or “all” with no count",
+  "undefined-superlative": "A “first” or “largest” with no tie-break",
+  "no-rounding": "A number threshold with no rounding rule",
+  "vague-pronoun": "A sentence that opens on “it” or “this”",
+};
+
+const SEVERITY = {
+  blocker: { tone: "bad", word: "Blocker", note: "Fix before listing" },
+  major: { tone: "warn", word: "Major", note: "A dispute is likely" },
+  minor: { tone: "neutral", word: "Minor", note: "Tighten in review" },
+};
+
+const VERDICT_TONE = { block: "bad", work: "warn", ok: "good" };
+
+const plural = (n, one, many = `${one}s`) => (n === 1 ? one : many);
+const lowerFirst = (s) => `${s.charAt(0).toLowerCase()}${s.slice(1)}`;
+const sentence = (s) => {
+  const t = String(s).trim();
+  return t ? `${t[0].toUpperCase()}${t.slice(1)}${/[.!?…]$/.test(t) ? "" : "."}` : "";
+};
+
+/** Findings grouped by rule, worst first: the same grouping as the score uses. */
+function groupFindings(findings) {
+  const grouped = [];
+  const seen = new Set();
+  for (const f of findings) {
+    if (seen.has(f.id)) {
+      grouped[grouped.findIndex((g) => g.id === f.id)].hits.push(f);
+    } else {
+      seen.add(f.id);
+      grouped.push({ ...f, hits: [f] });
+    }
+  }
+  const order = { blocker: 0, major: 1, minor: 2 };
+  return grouped.sort((a, b) => order[a.severity] - order[b.severity]);
+}
+
+/* A hit is a short quote from the market's text with the matched words marked,
+   or, for something missing, a plain sentence saying what is absent. */
+
+// Some matches stop at their first character ("before A"). Take the rest of the word.
+function matchEnd(text, at, len) {
+  const rest = text.slice(at + len).match(/^[\w%'’-]*(?:[.,]\d[\w%]*)*/)[0];
+  return at + len + rest.length;
+}
+
+// Excerpts are cut at a fixed length. Drop the half word and use a real ellipsis.
+const tidy = (s) => s.replace(/\s+/g, " ").replace(/\s+\S*\.\.\.$/, "…");
+
+function hitHtml(h) {
+  if (h.excerpt === "(absent)" || h.id === "announce-vs-complete") return `<li>${esc(sentence(h.note))}</li>`;
+  const ctx = h.note.replace(/^\.\.\./, "… ").replace(/\.\.\.$/, " …");
+  const at = ctx.toLowerCase().indexOf(h.excerpt.toLowerCase());
+  if (at >= 0) {
+    const end = matchEnd(ctx, at, h.excerpt.length);
+    return `<li class="mrc-quote">${esc(ctx.slice(0, at))}<mark>${esc(ctx.slice(at, end))}</mark>${esc(ctx.slice(end))}</li>`;
+  }
+  return `<li class="mrc-quote">“${esc(tidy(h.excerpt))}”<span class="mrc-quote-note">${esc(sentence(h.note))}</span></li>`;
+}
+
+function findingHtml(g) {
+  const sev = SEVERITY[g.severity];
+  const shown = g.hits.slice(0, 3);
+  const more = g.hits.length - shown.length;
+  return `
+    <li class="kit-card mrc-finding">
+      <div class="mrc-finding-top">${status(sev.tone, sev.word)}<span class="mrc-finding-note">${esc(sev.note)}</span></div>
+      <h3 class="mrc-finding-title">${esc(PLAIN[g.id] || g.label)}</h3>
+      <ul class="mrc-hits">${shown.map(hitHtml).join("")}${more > 0 ? `<li class="mrc-more">and ${more} more</li>` : ""}</ul>
+      <p class="mrc-why">${esc(g.why)}</p>
+      <div class="mrc-fix"><p class="mrc-fix-label">Suggested fix</p><p>${esc(g.fix)}</p></div>
+    </li>`;
+}
+
+/** The live sentence under the hero number, from the findings. */
+function verdictFor(r, top) {
+  const { blocker, major, minor } = r.counts;
+  if (!r.findings.length) {
+    return "Nothing here is likely to start a dispute. Every clause the checker looks for is present, and no vague wording matched.";
+  }
+  const worst = hl(lowerFirst(PLAIN[top.id] || top.label));
+  if (!blocker && !major) {
+    return `Nothing here is likely to start a dispute. Worth tightening: ${worst}${minor > 1 ? `, and ${hl(String(minor - 1))} more` : ""}.`;
+  }
+  if (blocker) {
+    return `The most serious problem: ${worst}. A market with a blocker should not list until it is fixed.`;
+  }
+  return `The most serious problem: ${worst}. Until it is fixed, two readers could settle this market differently.`;
+}
+
+/** The detail behind the verdict: the score, and every rule with its ID. */
+function rulesHtml(r, grouped) {
+  const fired = new Set(grouped.map((g) => g.id));
+  const rows = RULES.map((rl) => [
+    rl.label,
+    rl.id,
+    `${rl.severity[0].toUpperCase()}${rl.severity.slice(1)}`,
+    fired.has(rl.id) ? "Fired" : "Clear",
+  ]);
+  rows.sort((a, b) => (b[3] === "Fired") - (a[3] === "Fired"));
+  return `
+    <p class="mrc-score">Score: ${hl(`${r.score} out of 100`)}. Each rule that fires counts once, however many times it matches: a blocker costs ${SEV.blocker} points, a major issue ${SEV.major} and a minor one ${SEV.minor}.</p>
+    <div class="mrc-rules">${table(["Rule", "Rule ID", "Severity", "Result"], rows)}</div>`;
+}
+
+function reportText(r) {
+  return [
+    `Market Rules Check: ${r.verdict.label} (score ${r.score}/100)`,
+    `${r.counts.blocker} blockers, ${r.counts.major} major, ${r.counts.minor} minor`,
+    "",
+    ...r.findings.map((f) => `[${f.severity}] ${f.label}: ${f.excerpt === "(absent)" ? f.note : f.excerpt}`),
+  ].join("\n");
+}
+
+/** What a sample's rewrite scores, said from the rules rather than asserted. */
+function rewriteNote(ex) {
+  const rr = lint(ex.rewrite);
+  const risk = rr.counts.blocker + rr.counts.major;
+  return `A rewrite of the same market. It comes back ${rr.verdict.label.toLowerCase()}, with ${risk} ${plural(risk, "issue")} likely to start a dispute.`;
+}
 
 export function mount(root) {
   root.innerHTML = `
-    <div class="demo-grid linter">
-      <section class="demo-input">
-        <div class="field-head">
-          <label for="lint-src">Resolution criteria</label>
-          <select id="lint-example" class="mono">
-            <option value="">Load an example...</option>
-            ${EXAMPLES.map((e) => `<option value="${e.id}">${esc(e.name)}</option>`).join("")}
-          </select>
+    <div class="mrc">
+      <div data-slot="bar"></div>
+      <div class="kit-grid kit-grid-split">
+        <section class="kit-panel mrc-input" aria-label="The market's rules">
+          <div class="mrc-field">
+            <label class="kit-label" for="mrc-src">Market question and resolution rules</label>
+            <textarea id="mrc-src" class="kit-textarea mrc-textarea" spellcheck="false" aria-describedby="mrc-help"
+              placeholder="Paste the market question and its resolution criteria."></textarea>
+            <p class="kit-help" id="mrc-help">Everything runs in your browser. Edit the text and the check updates as you type.</p>
+          </div>
+          <div class="kit-actions">
+            <button type="button" class="kit-text-btn" data-act="rewrite" hidden>See a rewrite</button>
+            <button type="button" class="kit-text-btn" data-act="copy">Copy report</button>
+            <button type="button" class="kit-text-btn" data-act="clear">Clear</button>
+          </div>
+        </section>
+        <div class="kit-stage">
+          <div data-slot="answer"></div>
+          <div data-slot="empty" hidden>${card({ title: "Nothing to check yet", body: "<p>Paste a market's rules, or pick a sample above.</p>" })}</div>
+          <div data-slot="findings"></div>
         </div>
-        <textarea id="lint-src" spellcheck="false"
-          placeholder="Paste the market question and its resolution criteria."></textarea>
-        <div id="lint-receipt" class="receipt" hidden></div>
-        <div class="row-actions">
-          <button id="lint-clear" class="btn-ghost">Clear</button>
-          <button id="lint-rewrite" class="btn-ghost" hidden>Show the rewrite</button>
-          <button id="lint-copy" class="btn-ghost">Copy report</button>
-        </div>
-      </section>
-      <section class="demo-output" id="lint-out"></section>
+      </div>
+      ${disclosure({ summary: `See all ${RULES.length} rules`, className: "kit-breakdown" })}
+      <p class="mrc-sr" role="status" data-slot="status"></p>
     </div>`;
 
-  const src = root.querySelector("#lint-src");
-  const out = root.querySelector("#lint-out");
-  const receipt = root.querySelector("#lint-receipt");
-  const rewriteBtn = root.querySelector("#lint-rewrite");
-  let current = null;
+  const $ = (sel) => root.querySelector(sel);
+  const src = $("#mrc-src");
+  const emptyEl = $('[data-slot="empty"]');
+  const findingsEl = $('[data-slot="findings"]');
+  const statusEl = $('[data-slot="status"]');
+  const rewriteBtn = $('[data-act="rewrite"]');
+  const breakdown = $(".kit-breakdown");
+  const breakdownBody = breakdown.querySelector(".kit-disclosure-body");
+
+  const answer = answerCard();
+  $('[data-slot="answer"]').replaceWith(answer.el);
+
+  const bar = scenarioBar({
+    items: EXAMPLES.map((e) => ({ id: e.id, label: e.label, note: e.receipt })),
+    label: "Sample market",
+    onSelect: (id) => load(id),
+  });
+  $('[data-slot="bar"]').replaceWith(bar.el);
+  const noteEl = bar.el.querySelector(".kit-scenarios-note");
+
+  let current = null; // the sample on screen, or null
   let showingRewrite = false;
+  let edited = false; // the reader has changed the text
 
-  const render = () => {
-    const r = lint(src.value);
-    const grouped = [];
-    const seen = new Set();
-    for (const f of r.findings) {
-      if (seen.has(f.id)) {
-        grouped[grouped.findIndex((g) => g.id === f.id)].hits.push(f);
-      } else {
-        seen.add(f.id);
-        grouped.push({ ...f, hits: [f] });
-      }
-    }
-    const order = { blocker: 0, major: 1, minor: 2 };
-    grouped.sort((a, b) => order[a.severity] - order[b.severity]);
-
-    const empty = !src.value.trim();
-
-    out.innerHTML = empty
-      ? `<p class="note">Paste criteria on the left, or load one of the three markets that actually went wrong.</p>`
-      : `
-      <div class="verdict tone-${r.verdict.tone}">
-        <span class="verdict-badge">${esc(r.verdict.label)}</span>
-        <span class="verdict-score mono">${r.score}<small>/100</small></span>
-      </div>
-      ${statRow([
-        { label: "Blockers", value: String(r.counts.blocker), sub: "must fix before listing", tone: r.counts.blocker ? "critical" : "good" },
-        { label: "Major", value: String(r.counts.major), sub: "dispute likely", tone: r.counts.major ? "warning" : "good" },
-        { label: "Minor", value: String(r.counts.minor), sub: "tighten in review" },
-        { label: "Rules run", value: String(r.rulesRun), sub: "deterministic, no model" },
-      ])}
-      ${meter({
-        label: "Clauses present",
-        value: 6 - grouped.filter((g) => g.excerpt === "(absent)").length,
-        max: 6,
-        display: `${6 - grouped.filter((g) => g.excerpt === "(absent)").length} of 6`,
-      })}
-      ${
-        grouped.length
-          ? `<ol class="findings">${grouped
-              .map(
-                (g) => `
-        <li class="finding sev-${g.severity}">
-          <div class="finding-head">
-            <span class="sev-tag mono" aria-label="${g.severity}">${SEV_ICON[g.severity]}</span>
-            <strong>${esc(g.label)}</strong>
-            <span class="sev-word mono">${g.severity}</span>
-          </div>
-          <div class="finding-hits">${g.hits
-            .slice(0, 4)
-            .map((h) =>
-              h.excerpt === "(absent)"
-                ? `<code class="absent">${esc(h.note)}</code>`
-                : `<code>${esc(h.excerpt)}</code>`
-            )
-            .join("")}${g.hits.length > 4 ? `<span class="more mono">+${g.hits.length - 4} more</span>` : ""}</div>
-          <p class="finding-why">${esc(g.why)}</p>
-          <p class="finding-fix"><span class="mono">fix</span> ${esc(g.fix)}</p>
-        </li>`
-              )
-              .join("")}</ol>`
-          : `<p class="clean-note">No findings. Every clause the linter looks for is present and no ambiguous construction fired.</p>`
-      }
-      ${tableView(
-        ["Rule", "Severity", "Fired"],
-        RULES.map((rl) => [rl.label, rl.severity, grouped.some((g) => g.id === rl.id) ? "yes" : "no"]),
-        { caption: "All 16 rules and whether each fired on the current text" }
-      )}`;
+  const syncActions = () => {
+    rewriteBtn.hidden = !current?.rewrite || edited;
+    rewriteBtn.textContent = showingRewrite ? "Back to the original" : "See a rewrite";
   };
 
-  root.querySelector("#lint-example").addEventListener("change", (e) => {
-    const ex = EXAMPLES.find((x) => x.id === e.target.value);
-    current = ex || null;
+  function render({ animate = false } = {}) {
+    const empty = !src.value.trim();
+    answer.el.hidden = empty;
+    findingsEl.hidden = empty;
+    emptyEl.hidden = !empty;
+    breakdown.hidden = empty;
+    if (empty) return;
+
+    const r = lint(src.value);
+    const grouped = groupFindings(r.findings);
+    const { blocker, major, minor } = r.counts;
+    const risk = blocker + major;
+
+    answer.update(
+      {
+        label: "Dispute check",
+        value: risk,
+        format: (v) => String(Math.round(v)),
+        unit: `${plural(risk, "issue")} likely to start a dispute`,
+        tone: VERDICT_TONE[r.verdict.key],
+        status: r.verdict.label,
+        verdict: verdictFor(r, grouped[0]),
+        stats: [
+          { label: "Blockers", value: String(blocker), sub: SEVERITY.blocker.note },
+          { label: "Major issues", value: String(major), sub: SEVERITY.major.note },
+          { label: "Minor issues", value: String(minor), sub: SEVERITY.minor.note },
+        ],
+      },
+      { animate }
+    );
+
+    const clear = RULES.length - grouped.length;
+    findingsEl.innerHTML = grouped.length
+      ? `<section class="mrc-findings" aria-labelledby="mrc-found-h">
+           <div class="kit-section-head"><h2 id="mrc-found-h">What to fix</h2><p>Worst first, each with a suggested fix.</p></div>
+           <ol class="mrc-list">${grouped.map(findingHtml).join("")}</ol>
+           <p class="mrc-clear">${clear} of ${RULES.length} rules came back clear.</p>
+         </section>`
+      : `<p class="mrc-clear">All ${RULES.length} rules came back clear.</p>`;
+
+    breakdownBody.innerHTML = rulesHtml(r, grouped);
+  }
+
+  function load(id) {
+    const ex = EXAMPLES.find((x) => x.id === id);
+    if (!ex) return;
+    current = ex;
     showingRewrite = false;
-    if (ex) {
-      src.value = ex.text;
-      receipt.textContent = ex.receipt;
-      receipt.hidden = false;
-      rewriteBtn.hidden = !ex.rewrite;
-      rewriteBtn.textContent = "Show the rewrite";
-    } else {
-      receipt.hidden = true;
-      rewriteBtn.hidden = true;
-    }
-    render();
-  });
+    edited = false;
+    src.value = ex.text;
+    bar.select(ex.id);
+    syncActions();
+    render({ animate: true });
+  }
 
   rewriteBtn.addEventListener("click", () => {
-    if (!current?.rewrite) return;
+    if (!current?.rewrite || edited) return;
     showingRewrite = !showingRewrite;
     src.value = showingRewrite ? current.rewrite : current.text;
-    rewriteBtn.textContent = showingRewrite ? "Back to the original" : "Show the rewrite";
-    render();
+    noteEl.textContent = showingRewrite ? rewriteNote(current) : current.receipt;
+    syncActions();
+    render({ animate: true });
   });
 
-  root.querySelector("#lint-clear").addEventListener("click", () => {
+  $('[data-act="clear"]').addEventListener("click", () => {
     src.value = "";
-    receipt.hidden = true;
-    rewriteBtn.hidden = true;
     current = null;
+    showingRewrite = false;
+    edited = true;
+    bar.select(null);
+    noteEl.textContent = "Paste a market's rules, or pick a sample above.";
+    syncActions();
+    render();
+    src.focus();
+  });
+
+  const copyBtn = $('[data-act="copy"]');
+  copyBtn.addEventListener("click", async () => {
+    let message = "Copied";
+    try {
+      await navigator.clipboard.writeText(reportText(lint(src.value)));
+    } catch {
+      message = "Copy blocked";
+    }
+    copyBtn.textContent = message;
+    statusEl.textContent = message === "Copied" ? "Report copied to the clipboard." : "The browser blocked copying.";
+    setTimeout(() => {
+      copyBtn.textContent = "Copy report";
+      statusEl.textContent = "";
+    }, 1400);
+  });
+
+  src.addEventListener("input", () => {
+    if (!edited) {
+      edited = true;
+      bar.select(null);
+      noteEl.textContent = "Your own text. Pick a sample above to start over.";
+      syncActions();
+    }
     render();
   });
 
-  root.querySelector("#lint-copy").addEventListener("click", async (e) => {
-    const r = lint(src.value);
-    const lines = [
-      `Resolution lint: ${r.verdict.label} (${r.score}/100)`,
-      `${r.counts.blocker} blockers, ${r.counts.major} major, ${r.counts.minor} minor`,
-      "",
-      ...r.findings.map((f) => `[${f.severity}] ${f.label} - ${f.excerpt}`),
-    ];
-    try {
-      await navigator.clipboard.writeText(lines.join("\n"));
-      e.target.textContent = "Copied";
-      setTimeout(() => (e.target.textContent = "Copy report"), 1400);
-    } catch {
-      e.target.textContent = "Copy blocked";
-      setTimeout(() => (e.target.textContent = "Copy report"), 1400);
-    }
-  });
-
-  src.addEventListener("input", render);
-  render();
+  load(EXAMPLES[0].id);
 }

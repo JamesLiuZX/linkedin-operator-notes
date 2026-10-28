@@ -32,12 +32,11 @@
 }
 
 .site-nav .nav-links a {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.74rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  font-weight: 500;
   text-decoration: none;
-  color: var(--muted);
+  color: var(--kit-muted);
   padding-bottom: 2px;
   border-bottom: 1px solid transparent;
 }
@@ -46,67 +45,6 @@
 .site-nav .nav-links a.on {
   color: var(--field);
   border-bottom-color: var(--field);
-}
-
-/* ------------------------------------------------------- home demo strip - */
-
-.strip {
-  margin: 0 0 3rem;
-}
-
-.strip-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.9rem;
-}
-
-.strip-head h2 {
-  font-family: Syne, sans-serif;
-  font-size: 1.1rem;
-  letter-spacing: 0.02em;
-  margin: 0;
-}
-
-.strip-head a {
-  font-size: 0.74rem;
-  text-decoration: none;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.strip-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 0.75rem;
-}
-
-.strip-card {
-  display: grid;
-  gap: 0.3rem;
-  padding: 0.9rem 1rem;
-  text-decoration: none;
-  color: var(--ink);
-  background: var(--card);
-  border: 1px solid var(--line);
-  transition: border-color 160ms ease, transform 160ms ease;
-}
-
-.strip-card:hover {
-  border-color: var(--field);
-  transform: translateY(-2px);
-}
-
-.strip-card strong {
-  font-family: Syne, sans-serif;
-  font-size: 0.95rem;
-}
-
-.strip-card span {
-  font-size: 0.85rem;
-  color: var(--muted);
-  line-height: 1.45;
 }
 
 /* --------------------------------------------------------- empty library - */
@@ -143,139 +81,12 @@
   padding: 0.05em 0.3em;
 }
 
-/* ------------------------------------------------------------ demo cards - */
-
-.demo-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
-}
-
-.demo-card {
-  display: grid;
-  gap: 0.5rem;
-  align-content: start;
-  padding: 1.4rem;
-  text-decoration: none;
-  color: var(--ink);
-  background: var(--card);
-  border: 1px solid var(--line);
-  animation: rise 600ms ease both;
-  transition: border-color 160ms ease, transform 160ms ease;
-}
-
-.demo-card:hover {
-  border-color: var(--field);
-  transform: translateY(-3px);
-}
-
-.demo-card .series {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--field);
-}
-
-.demo-card h2 {
-  font-family: Syne, sans-serif;
-  font-size: 1.5rem;
-  line-height: 1.1;
-  margin: 0;
-}
-
-.demo-card .tagline {
-  margin: 0;
-  font-size: 1rem;
-  color: var(--ink-soft);
-}
-
-.demo-card .meta {
-  margin: 0;
-  font-size: 0.88rem;
-  color: var(--muted);
-  line-height: 1.5;
-}
-
-.demo-card .go {
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--field);
-}
-
 /* ------------------------------------------------------------ demo shell - */
 
 .demo-shell {
   max-width: var(--wide);
   margin: 0 auto;
   padding: 2rem 1.25rem 5rem;
-}
-
-.demo-head {
-  margin-bottom: 2rem;
-  max-width: 62ch;
-}
-
-.demo-head .eyebrow {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--field);
-}
-
-.demo-head h1 {
-  font-family: Syne, sans-serif;
-  font-weight: 800;
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  line-height: 1;
-  letter-spacing: -0.025em;
-  margin: 0.4rem 0 0.6rem;
-}
-
-.demo-head .tagline {
-  font-size: 1.2rem;
-  color: var(--ink-soft);
-  margin: 0 0 0.6rem;
-}
-
-.demo-head .demo-blurb {
-  font-size: 0.95rem;
-  color: var(--muted);
-  margin: 0 0 0.9rem;
-}
-
-.demo-links {
-  display: flex;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.74rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.demo-foot {
-  margin-top: 3rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--line);
-  max-width: 62ch;
-}
-
-.demo-foot h4 {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--field);
-  margin: 0 0 0.4rem;
-}
-
-.demo-foot p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.92rem;
 }
 
 /* --------------------------------------------------------- demo layout -- */
@@ -655,6 +466,12 @@ textarea {
 /* display:grid below would otherwise beat the [hidden] default and leave an
    empty tooltip box parked over every chart. */
 .viz-tip[hidden] {
+  display: none;
+}
+
+/* The hidden attribute does nothing on SVG elements, so the idle crosshair
+   used to draw as a stray vertical line at the chart's left edge. */
+.viz-svg [hidden] {
   display: none;
 }
 
@@ -1236,8 +1053,6 @@ textarea:focus-visible,
 input[type="range"]:focus-visible,
 input[type="checkbox"]:focus-visible,
 .site-nav a:focus-visible,
-.demo-card:focus-visible,
-.strip-card:focus-visible,
 .slot-actions a:focus-visible {
   outline: 2px solid var(--field);
   outline-offset: 2px;

@@ -15,9 +15,9 @@ demo: farm-lab
 
 <!-- EVIDENCE
 Claim: A rewards program's headline efficiency metric can hold steady while the reward flips from paying market quality to paying market decoration, and only the composition underneath would show you.
-Moment: Running Farm Lab's default settings against its own "looks fine, buys nothing" preset and watching cost per filled share come back identical to three decimal places while farmer capture moved 17 points.
+Moment: Running Rewards Check's default settings against its own "looks fine, buys nothing" preset and watching cost per filled share come back identical to three decimal places while farmer capture moved 17 points.
 Numbers: cost per filled share $0.042 in both runs; farmer capture 49.3% ($2,466 of $5,000) in the default run versus 66.1% ($3,303 of $5,000) in the farmed run; displayed depth 12,600 shares versus 7,200 shares; fillable depth 11,070 versus 5,508; farmer fill rate 15% versus 6%; a 30% fill-rate floor applied to the farmed run sends farmer reward to $0 and hands the full $5,000 pool to honest makers.
-Names: Farm Lab, Polymarket, the quadratic scoring rule, cost per filled share, fill-rate floor, farmer capture.
+Names: Rewards Check, Polymarket, the quadratic scoring rule, cost per filled share, fill-rate floor, farmer capture.
 Cost: The participant behaviour in this model is mine, not measured off a live order book. The scoring formula is Polymarket's published rule and is exact. The farmer and honest-maker cohorts, their cancel rates, and their sizes are a model, and I labelled it that way in the build rather than passing it off as observed data.
 Counterexample: A venue with deep organic liquidity that exists independent of the rewards program will not show this pattern, because the aggregate metric is only blind when the reward is a meaningful share of total depth. Bootstrapping a book from zero and topping up an already-liquid one are different problems, and this essay is about the first one.
 Reader action: Pull your own program's cost-per-fill number, then split it by cohort before the next budget review.
@@ -27,7 +27,7 @@ Reader action: Pull your own program's cost-per-fill number, then split it by co
 
 Cost per filled share: $0.042. Then I broke the program, and it was $0.042 again.
 
-Farm Lab is a deterministic simulator of a liquidity rewards program, built on Polymarket's published scoring rule: `S(v) = ((max_spread - order_spread) / max_spread)^2 x order_size`. Feed it a daily pool, a cohort of honest market makers, a cohort of reward farmers, and a rate at which farmers cancel before they fill, and it tells you exactly where the pool went. Same inputs, same output, every time, so anyone can check the arithmetic against the docs.
+Rewards Check is a deterministic simulator of a liquidity rewards program, built on Polymarket's published scoring rule: `S(v) = ((max_spread - order_spread) / max_spread)^2 x order_size`. Feed it a daily pool, a cohort of honest market makers, a cohort of reward farmers, and a rate at which farmers cancel before they fill, and it tells you exactly where the pool went. Same inputs, same output, every time, so anyone can check the arithmetic against the docs.
 
 The default run: a $5,000 daily pool, a 3c maximum spread, 12 honest makers quoting 1.8c off midpoint at 900 shares, 18 farmers sitting 0.1c off midpoint at the 100-share minimum, and a farmer cancel rate of 85%. Farmers capture 49.3% of the pool, $2,466 of it. Honest makers take the rest.
 
@@ -51,7 +51,7 @@ I want to be precise about the mechanism, because it is not "farmers are sneaky.
 
 ## The fix is one term the rule does not have
 
-Farm Lab has a slider called fill-rate floor, off by default because the published rule has no equivalent. Turn it to 30% and apply it to the farmed run: any cohort whose orders fill less than 30% of the time they are attempted is disqualified from the pool entirely. Farmer fill rate in that run is 6%, well under the floor. Farmer reward goes to $0. Honest makers, who fill 100% of what they display, take the full $5,000.
+Rewards Check has a slider called fill-rate floor, off by default because the published rule has no equivalent. Turn it to 30% and apply it to the farmed run: any cohort whose orders fill less than 30% of the time they are attempted is disqualified from the pool entirely. Farmer fill rate in that run is 6%, well under the floor. Farmer reward goes to $0. Honest makers, who fill 100% of what they display, take the full $5,000.
 
 One added term. Not a smarter scoring function, not a bigger pool, not a maximum-farmers rule that a determined farmer routes around with more wallets. A floor on the one thing the quadratic rule never asked about: did the order that scored the points ever trade.
 

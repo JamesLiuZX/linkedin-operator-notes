@@ -1,0 +1,20 @@
+/* site/src/demos/calibration-lab.css
+ *
+ * Forecast Scorecard only. In the full breakdown the reliability diagram and
+ * the confidence curve sit side by side: the square diagram gets the narrower
+ * column and the wide curve the broader one, so both keep readable tick text
+ * instead of scaling to a whole card. Everything else is kit.css.
+ */
+
+.sc-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (min-width: 960px) {
+  .sc-pair {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+}
