@@ -9,7 +9,7 @@
 
 import schedule from "../../../content/schedule.json";
 import { byPath } from "../content.js";
-import { absolutizeLinks } from "@lib/linkedin.mjs";
+import { absolutizeLinks, xThreadTweets } from "@lib/linkedin.mjs";
 import { toThread, articleCanonicalUrl } from "@lib/transform.mjs";
 import { demoBySlug } from "../demos/index.js";
 import { statRow, meter, esc, fmt } from "../viz/charts.js";
@@ -46,6 +46,13 @@ function buildCopy(e, item, siteUrl) {
       // surface is where they become real URLs (see absolutizeLinks).
       comment: absolutizeLinks(item.firstComment || "", siteUrl),
     };
+  }
+
+  // A digest post ships its own thread (see xThreadTweets), so the X row
+  // copies that instead of re-splitting the LinkedIn body.
+  if (e.channel === "x" && item.kind === "post") {
+    const tweets = xThreadTweets(item.body).map((t) => absolutizeLinks(t, siteUrl));
+    if (tweets.length) return { kind: "thread", tweets };
   }
 
   if (e.channel === "x" && item.kind === "article") {
@@ -320,6 +327,13 @@ function slotCard(r, basePath) {
   if (r.item && r.item.kind === "article")
     links.push(`<a href="${basePath}/${r.item.section}/${r.item.slug}">Read essay</a>`);
   if (r.linkInComment && !r.demo) links.push(`<a href="${basePath}${r.linkInComment}">Canonical</a>`);
+  // Digest posts list their media (carousel PDF, cover image) for the posting
+  // session to attach. Paths are site-relative, served from site/public.
+  String(r.item?.frontmatter?.media || "")
+    .split(",")
+    .map((m) => m.trim())
+    .filter(Boolean)
+    .forEach((m) => links.push(`<a href="${basePath}${m}" download>${esc(m.split("/").pop())}</a>`));
 
   return `
   <article class="slot${r.atRisk ? " at-risk" : ""}">

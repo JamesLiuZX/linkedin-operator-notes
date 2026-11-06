@@ -303,3 +303,29 @@ customer decision. AI creative wins the higher-volume, lower-stakes one and
 loses ground on the slower, higher-consideration one, and a single CTR
 number averages the two into a result that overstates the part that is
 actually working.
+
+---
+
+## AI digest receipts
+
+One block per digest, newest first. Each AI digest run (DIGEST.md) appends its
+block here, and every number in its post and cards traces to a row. Vendor
+claims say so in the Fact column.
+
+### 2026-11-06: security gets a unit price
+
+| Fact | Number | Window | Source |
+|---|---|---|---|
+| OpenAI cyber model: candidate Linux kernel findings analyzed | 2,308 | mid-Oct 2026 run, published 4 Nov 2026 | [OpenAI](https://openai.com/index/a-thousand-fewer-paths-to-root/) via [dev.to summary](https://dev.to/jathurshan_sownthararasa_/tech-trends-week-of-nov-6-2026-ai-security-research-audit-skills-images-26-1b5g) |
+| Findings dynamically reproduced | 1,724 | same | same |
+| Working local privilege escalation (root) exploits | 948 | same | same |
+| API credits for the run | $1,213,430, about $1,280 per exploit | same | [AI Weekly, 5 Nov 2026](https://aiweekly.co/ai-news-today/edition/2026-11-05) |
+| Cloudflare security-audit skill: one run vs repeated runs | roughly half of the repeat-run total (Cloudflare's own test runs) | README, Nov 2026 | [GitHub](https://github.com/cloudflare/security-audit-skill) |
+| OpenAI Images 2.6 speed (vendor claim) | 50% faster generation | released 4 Nov 2026 | [OpenAI](https://openai.com/index/introducing-images-2-6/) via [dev.to summary](https://dev.to/jathurshan_sownthararasa_/tech-trends-week-of-nov-6-2026-ai-security-research-audit-skills-images-26-1b5g) |
+| Images 2.6 reported image-output price | $30 per million image-output tokens | Nov 2026 | same dev.to summary, citing OpenAI's pricing page |
+| Conductor Cloud read-only, then shutdown | 13 Nov 2026, then 20 Nov 2026 | announced 4 to 5 Nov 2026 | [Sam on AI](https://samonai.substack.com/p/ai-brief-november-5-2026), [The Neuron](https://www.theneuron.ai/digest/everything-that-happened-in-ai-today-thursday-november-5-2026/) |
+| Cognition SWE-2 Flash price | one-fifth of SWE-2 | 5 Nov 2026 | [Sam on AI](https://samonai.substack.com/p/ai-brief-november-5-2026) |
+| SWE-2 Flash size | 276B total, 12B active parameters | same | same |
+| SWE-2 Flash FrontierCode 2.0 (Cognition's own benchmark) | 3.2% base to 24.0% | same | same |
+| CMU 11-768 AI Agents term | 25 Aug to 3 Dec 2026 | Fall 2026 | [cmu-agents.com](https://cmu-agents.com), [course breakdown](https://www.heyuan110.com/posts/ai/2026-09-08-cmu-11-768-ai-agents-course/) |
+| Complete Claude Code Course rating | 4.6 from 165 ratings | updated Oct 2026 | [Udemy](https://www.udemy.com/course/complete-claude-code-course-beginner-to-advanced/) |

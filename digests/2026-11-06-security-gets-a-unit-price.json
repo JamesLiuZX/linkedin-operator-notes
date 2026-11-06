@@ -1,0 +1,89 @@
+{
+  "slug": "2026-11-06-security-gets-a-unit-price",
+  "date": "2026-11-06",
+  "edition": "6 Nov 2026",
+  "handle": "James Liu · Market Ops Notes",
+  "cover": {
+    "headline": "AI found *948* ways to root Linux. About *$1,280* each.",
+    "sub": "Five moves from the last 48 hours that change a builder's week, plus three new courses."
+  },
+  "items": [
+    {
+      "kicker": "Security",
+      "title": "OpenAI's unreleased cyber model wrote *948* root exploits",
+      "stat": "948",
+      "statLabel": "working Linux root exploits from one research run",
+      "what": "A mid-October run took 2,308 candidate kernel bugs, reproduced 1,724 and turned 948 into working local privilege escalations.",
+      "why": "That is about $1,280 of API credits per exploit. Attackers can buy the same run, so price AI security review like a pentest.",
+      "source": "openai.com, 4 Nov",
+      "url": "https://openai.com/index/a-thousand-fewer-paths-to-root/"
+    },
+    {
+      "kicker": "Agent skills",
+      "title": "Cloudflare open-sourced its *security audit* skill",
+      "stat": "50%",
+      "statLabel": "roughly: the share of repeat-run findings one run catches",
+      "what": "One set of agents hunts. A fresh agent then tries to disprove each finding before it reaches the report. MIT licensed.",
+      "why": "Split the agent that finds from the agent that checks. Then schedule it, because one run misses about half.",
+      "source": "github.com/cloudflare",
+      "url": "https://github.com/cloudflare/security-audit-skill"
+    },
+    {
+      "kicker": "Gen media",
+      "title": "OpenAI Images 2.6: *50% faster*, now with GIFs",
+      "stat": "2",
+      "statLabel": "API tiers: Flare for speed, Sunburst for detail",
+      "what": "Live in ChatGPT, Codex and the API since 4 Nov. Adds marked-up edit regions and SVG export.",
+      "why": "Draft on Flare, finish on Sunburst. SVG export puts generated assets into design files, not only into feeds.",
+      "source": "openai.com, 4 Nov",
+      "url": "https://openai.com/index/introducing-images-2-6/"
+    },
+    {
+      "kicker": "Vendor risk",
+      "title": "Meta bought Conductor. Its cloud shuts on *20 Nov*",
+      "stat": "7 days",
+      "statLabel": "from read-only on 13 Nov to shutdown",
+      "what": "Conductor splits one coding project across several AI agents. Deletion of cloud user data starts on 20 Nov.",
+      "why": "Agent tooling is consolidating. Keep an export path and a second tool someone has already tested.",
+      "source": "Sam on AI, 5 Nov",
+      "url": "https://samonai.substack.com/p/ai-brief-november-5-2026"
+    },
+    {
+      "kicker": "Coding agents",
+      "title": "SWE-2 Flash runs at *one-fifth* of SWE-2's price",
+      "stat": "1/5",
+      "statLabel": "of SWE-2's price, inside Devin",
+      "what": "Cognition's new model: 276B parameters with 12B active, built on Thinking Machines' Inkling-Small. Weights withheld.",
+      "why": "Route routine tasks to the cheap tier and judge it on cost per finished task, not per token.",
+      "source": "Sam on AI, 5 Nov",
+      "url": "https://samonai.substack.com/p/ai-brief-november-5-2026"
+    }
+  ],
+  "coursesTitle": "Worth an *evening* this week",
+  "courses": [
+    {
+      "platform": "YouTube",
+      "price": "Free",
+      "title": "AI Agents, CMU 11-768 (Fall 2026)",
+      "note": "Graham Neubig and Daniel Fried on harnesses, evals and RL. Lectures post as the term runs to 3 Dec.",
+      "url": "https://cmu-agents.com"
+    },
+    {
+      "platform": "Udemy",
+      "price": "Paid",
+      "title": "Complete Claude Code Course: Beginner to Advanced",
+      "note": "Badged hot and new, rated 4.6 from 165 reviews, updated October 2026.",
+      "url": "https://www.udemy.com/course/complete-claude-code-course-beginner-to-advanced/"
+    },
+    {
+      "platform": "Udemy",
+      "price": "Paid",
+      "title": "Claude Code 2026: Agents Teams, Subagents, MCP & Skills",
+      "note": "28 lectures in 2h 35m on CLAUDE.md, skills, MCP, hooks and scheduling. Updated October 2026.",
+      "url": "https://www.udemy.com/course/claude-code-2026-masterclass/"
+    }
+  ],
+  "readTitle": "Two prices landed this week",
+  "read": "Finding a path to root now costs about *$1,280*. Routine coding just got a tier at *one-fifth* the price. Whoever owns the budget line for AI review now decides how secure the product is.",
+  "takeaway": "Put AI security review on the launch checklist, with a budget and a schedule."
+}

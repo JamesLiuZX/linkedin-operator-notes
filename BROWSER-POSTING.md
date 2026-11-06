@@ -101,6 +101,10 @@ matching procedure. Do not mix procedures.
 2. Go to linkedin.com, start a new post, paste. Confirm before posting that
    nothing pasted as a literal asterisk, pound sign, or markdown artifact — if
    it did, stop and report it rather than editing the paste by hand.
+   AI digest rows (DIGEST.md) also show a "carousel.pdf" link. Download it,
+   then in the composer choose "Add a document", upload the PDF and use the
+   row's title as the document title. If the upload fails, stop and report it
+   rather than posting the text without its carousel.
 3. Publish the post.
 4. Immediately click "Copy first comment" on the same row (skip this if the
    row has no such button). Open the post you just published, add the first
@@ -120,7 +124,9 @@ matching procedure. Do not mix procedures.
 1. The row shows one button per tweet: "Copy tweet 1/N", "Copy tweet 2/N", etc.
    If any button's label says "(over 280)", stop and report it instead of
    posting a thread you know is broken.
-2. Go to x.com, start a new post, click "Copy tweet 1/N", paste, post it.
+2. Go to x.com, start a new post, click "Copy tweet 1/N", paste. If the row
+   shows a "cover.png" link (AI digest rows), download it and attach it to
+   tweet 1 as an image. Post it.
 3. Reply to the tweet you just posted with tweet 2 (copy, paste, post as a
    reply). Continue in order until all N tweets are posted as a single reply
    chain.

@@ -1,0 +1,316 @@
+/* site/src/portal.css
+   The AI digest and courses pages. Built only from the tokens in style.css,
+   so light and dark mode follow the rest of the site. */
+
+.portal .brand-lockup {
+  margin-bottom: 1.5rem;
+}
+
+/* ------------------------------------------------ digest cards and lists */
+
+.digest-latest {
+  margin: 2rem 0 2.75rem;
+}
+
+.digest-list {
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 30rem), 1fr));
+  margin: 1.5rem 0 2.5rem;
+}
+
+.digest-card {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 1.2rem;
+  align-items: start;
+  padding: 1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.digest-card:hover,
+.digest-card:focus-visible {
+  border-color: var(--field-glow);
+  transform: translateY(-1px);
+}
+
+.digest-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1080 / 1350;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.digest-card-copy .eyebrow,
+.digest-head .eyebrow {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.digest-card-t {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.3rem;
+  line-height: 1.15;
+  margin: 0.35rem 0 0.5rem;
+}
+
+.digest-card p {
+  margin: 0;
+  font-family: var(--serif);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 560px) {
+  .digest-card {
+    grid-template-columns: 6.25rem 1fr;
+    gap: 0.9rem;
+  }
+  .digest-card-t {
+    font-size: 1.05rem;
+  }
+}
+
+/* ---------------------------------------------------------- digest page */
+
+.digest {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 1.25rem var(--pad) 5rem;
+}
+
+.digest-head {
+  max-width: var(--max);
+  margin: 1.5rem auto;
+}
+
+.digest-head h1 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.9rem, 5vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.digest-dek {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.digest-media {
+  margin: 0 auto 2rem;
+}
+
+.digest-strip {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(78%, 19rem);
+  gap: 0.9rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0.25rem 0.25rem 1rem;
+}
+
+.digest-strip a {
+  display: block;
+  scroll-snap-align: start;
+}
+
+.digest-strip img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.digest-pdf,
+.digest-more a {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--field-glow);
+}
+
+.digest-body {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.digest-body h2 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  margin: 2.25rem 0 0.6rem;
+}
+
+.digest-body ul {
+  padding-left: 1.2rem;
+}
+
+.digest-more {
+  max-width: var(--max);
+  margin: 3rem auto 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.subscribe {
+  max-width: var(--max);
+  margin: 2.5rem auto 0;
+  padding: 1.2rem 1.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card);
+  border: 1px solid var(--field-glow);
+  border-radius: 10px;
+}
+
+.subscribe p {
+  flex: 1 1 18rem;
+  margin: 0;
+  font-family: var(--serif);
+  line-height: 1.45;
+}
+
+.subscribe-btn {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* -------------------------------------------------------------- courses */
+
+.course-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  margin: 1.5rem 0 3rem;
+}
+
+.course-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.1rem 1.2rem 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.course-card h3 {
+  margin: 0.2rem 0 0;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.course-card p,
+.course-row p {
+  margin: 0;
+  font-family: var(--serif);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.course-meta,
+.course-row-p {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.course-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pill-chip {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+}
+
+.pill-chip.solid {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.75rem 0 1rem;
+}
+
+.filter-bar button {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.filter-bar button.on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.course-row {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
+  color: inherit;
+  text-decoration: none;
+}
+
+.course-row[hidden] {
+  display: none;
+}
+
+.course-row-t {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.25;
+}
+
+.course-row:hover .course-row-t,
+.course-row:focus-visible .course-row-t {
+  color: var(--field-glow);
+}

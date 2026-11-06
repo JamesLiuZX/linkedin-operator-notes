@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "npm run content:check && npm run schedule:check",
+    "check": "npm run content:check && npm run schedule:check && npm run digest:check",
+    "digest:check": "node scripts/digest-check.mjs",
+    "digest:render": "node scripts/digest-render.mjs",
     "content:check": "node scripts/content-check.mjs",
     "content:check:json": "node scripts/content-check.mjs --json",
     "content:strict": "node scripts/content-check.mjs --strict",

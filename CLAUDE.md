@@ -87,6 +87,13 @@ Rules for every session:
 - `WRITING.md` — voice contract, enforced by `npm run content:check`.
 - `10-portal-and-surfaces.md`: the 2026-11-06 brief (AI-in-PM portal, skills
   pack, motion clips). A proposal; `content/schedule.json` is unchanged.
+- `DIGEST.md`: the every-two-days AI digest runbook (James, 2026-11-06), run by
+  a cloud scheduled task. Editions live in `digests/` (page `.md` plus card
+  data `.json`) and publish to `/digest` on the site. Their posts are
+  `posts/dg-*.md` and stay `ready` for the posting session. Media is rendered
+  by `scripts/digest-render.mjs` into `site/public/digests/`. Course picks live
+  in `content/courses.json` and publish to `/courses`. `scripts/digest-check.mjs`
+  is the gate.
 
 ## Daily commands
 

@@ -420,6 +420,25 @@
       "title": "Thread: I found a bug in my own quality gate",
       "hook": "Same 77-word post, two scores from two copies of the same analyzer. I found the drift by accident and fixed it.",
       "status": "ready"
+    },
+    {
+      "id": "dg-2026-11-06-li",
+      "week": 14, "date": "2026-11-07", "time": "09:00", "channel": "linkedin",
+      "kind": "atom", "pillar": "agents", "asset": "posts/dg-2026-11-06-security-gets-a-unit-price.md",
+      "title": "AI digest: AI found 948 ways to root Linux for about $1,280 each",
+      "hook": "AI found 948 ways to root Linux for about $1,280 each.",
+      "status": "ready",
+      "linkInComment": "/digest/2026-11-06-security-gets-a-unit-price",
+      "notes": "AI digest (DIGEST.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment."
+    },
+    {
+      "id": "dg-2026-11-06-x",
+      "week": 14, "date": "2026-11-07", "time": "21:00", "channel": "x",
+      "kind": "thread", "pillar": "agents", "asset": "posts/dg-2026-11-06-security-gets-a-unit-price.md",
+      "title": "AI digest thread: AI found 948 ways to root Linux",
+      "hook": "AI found 948 ways to root Linux for about $1,280 each.",
+      "status": "ready",
+      "notes": "AI digest (DIGEST.md). Attach cover.png to tweet 1. Tweets come from the post's X thread section."
     }
   ]
 }

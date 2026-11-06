@@ -19,7 +19,9 @@ import "./style.css";
 import "./viz/palette.css";
 import "./viz/viz.css";
 import "./demos/kit.css";
+import "./portal.css";
 import { marked } from "marked";
+import { DIGESTS, digestBySlug, COURSES, SUBSCRIBE_URL, fmtDate } from "./digests.js";
 import manifest from "../../articles/unsplash-manifest.json";
 import { ARTICLES, bySlug, SECTIONS, VISIBLE } from "./content.js";
 import { DEMOS, demoBySlug } from "./demos/index.js";
@@ -107,12 +109,19 @@ function route(path = currentPath()) {
   if (clean === "/" || clean === "/home") return renderHome();
   if (clean === "/dashboard") return renderDash();
   if (clean === "/demos") return renderDemoIndex();
+  if (clean === "/digest") return renderDigestIndex();
+  if (clean === "/courses") return renderCourses();
 
   const parts = clean.split("/").filter(Boolean);
   if (parts[0] === "demos" && parts[1]) {
     const demo = demoBySlug(parts[1]);
     if (demo) return renderDemo(demo);
     return renderDemoIndex();
+  }
+  if (parts[0] === "digest" && parts[1]) {
+    const digest = digestBySlug(parts[1]);
+    if (digest) return renderDigest(digest);
+    return renderDigestIndex();
   }
   if (parts.length === 1) {
     const item = bySlug(parts[0]);
@@ -184,6 +193,11 @@ function renderHome() {
     )
     .join("");
   const demosChip = `<a class="section-chip" href="${import.meta.env.BASE_URL.replace(/\/$/, "")}/demos">Demos <span>${DEMOS.length}</span></a>`;
+  const portalChips =
+    (DIGESTS.length
+      ? `<a class="section-chip" href="${import.meta.env.BASE_URL.replace(/\/$/, "")}/digest">AI digest <span>${DIGESTS.length}</span></a>`
+      : "") +
+    `<a class="section-chip" href="${import.meta.env.BASE_URL.replace(/\/$/, "")}/courses">Courses</a>`;
 
   setMeta({
     title: "Market Ops Notes",
@@ -222,8 +236,9 @@ function renderHome() {
         <div class="eyebrow">Market Ops Notes</div>
         <h1>Field notes from markets, agents, and what else ships</h1>
         <p>Resolution, liquidity, and incentives, plus AI workflows, gen media, and growth, each argument attached to something that runs.</p>
-        <div class="section-nav">${sectionNav}${demosChip}</div>
+        <div class="section-nav">${sectionNav}${demosChip}${portalChips}</div>
       </header>
+      ${latestDigest()}
       <section class="kit-strip" aria-labelledby="strip-h">
         <div class="kit-section-head">
           <h2 id="strip-h">Try a demo</h2>
@@ -381,6 +396,8 @@ function siteNav(active = "") {
   const base = import.meta.env.BASE_URL.replace(/\/$/, "");
   const links = [
     ["/", "Notes"],
+    ["/digest", "AI digest"],
+    ["/courses", "Courses"],
     ["/demos", "Demos"],
     ["/dashboard", "Dashboard"],
   ];
@@ -559,6 +576,207 @@ function renderDash() {
   const app = document.getElementById("app");
   app.innerHTML = siteNav("/dashboard") + '<div id="dash-root"></div>';
   renderDashboard(document.getElementById("dash-root"), { basePath: base });
+  window.scrollTo(0, 0);
+}
+
+/* ------------------------------------------------------------- portal */
+
+function subscribeBlock(where = "") {
+  if (!SUBSCRIBE_URL) return "";
+  return `<aside class="subscribe${where ? ` ${where}` : ""}">
+    <p>A new digest lands every two days. Get it by email instead of hoping the feed shows it to you.</p>
+    <a class="subscribe-btn" href="${escapeHtml(SUBSCRIBE_URL)}" target="_blank" rel="noreferrer">Get it by email</a>
+  </aside>`;
+}
+
+function slideUrls(d) {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  return Array.from(
+    { length: d.slides },
+    (_, i) => `${base}/digests/${d.slug}/slide-${String(i + 1).padStart(2, "0")}.png`
+  );
+}
+
+/** Alt text per slide, from the same card data the renderer drew them from. */
+function slideAlts(d) {
+  const c = d.cards;
+  if (!c) return [];
+  const plain = (s) => String(s || "").replace(/\*/g, "");
+  const alts = [`Cover: ${plain(c.cover?.headline || d.title)}`];
+  (c.items || []).forEach((it, i) => alts.push(`${i + 1}. ${plain(it.title)}`));
+  if (c.courses?.length) alts.push("New courses worth an evening");
+  alts.push(`My read: ${plain(c.takeaway)}`);
+  return alts;
+}
+
+function digestCard(d) {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  return `
+    <a class="digest-card" href="${base}/digest/${d.slug}">
+      ${d.cover ? `<img src="${base}${d.cover}" alt="" loading="lazy" width="1080" height="1350" />` : ""}
+      <div class="digest-card-copy">
+        <div class="eyebrow">AI digest · ${escapeHtml(fmtDate(d.date))}</div>
+        <div class="digest-card-t">${escapeHtml(d.title)}</div>
+        ${d.summary ? `<p>${escapeHtml(d.summary)}</p>` : ""}
+      </div>
+    </a>`;
+}
+
+function latestDigest() {
+  const d = DIGESTS[0];
+  if (!d) return "";
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  return `
+    <section class="digest-latest" aria-labelledby="dl-h">
+      <div class="kit-section-head">
+        <h2 id="dl-h">Latest AI digest</h2>
+        <a class="kit-link" href="${base}/digest">Every edition</a>
+      </div>
+      ${digestCard(d)}
+    </section>`;
+}
+
+function renderDigestIndex() {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  setMeta({
+    title: "AI digest · Market Ops Notes",
+    description:
+      "Every two days: what shipped in AI, what it changes for people building products, and the new courses worth an evening. Every number links to its source.",
+    url: window.location.origin + base + "/digest",
+  });
+  document.getElementById("app").innerHTML = `
+    ${siteNav("/digest")}
+    <main class="home portal">
+      <header class="brand-lockup">
+        <div class="eyebrow">AI digest</div>
+        <h1>What shipped in AI, read by someone who ships</h1>
+        <p>Every two days: the releases that change a builder's week, what they mean for people running products, and the new Udemy and YouTube courses worth an evening. Every number links to its source.</p>
+      </header>
+      ${
+        DIGESTS.length
+          ? `<section class="digest-list">${DIGESTS.map(digestCard).join("")}</section>`
+          : `<div class="empty-lib"><h3>The first edition is on its way.</h3><p>A new one lands here every two days.</p></div>`
+      }
+      ${subscribeBlock()}
+    </main>`;
+  window.scrollTo(0, 0);
+}
+
+function renderDigest(d) {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  let html = stripLeadingH1(marked.parse(d.body));
+  html = html.replace(/<a href="(https?:\/\/[^"]+)"/g, '<a href="$1" target="_blank" rel="noreferrer"');
+  const slides = slideUrls(d);
+  const alts = slideAlts(d);
+  setMeta({
+    title: `${d.title} · AI digest`,
+    description: d.summary,
+    url: window.location.origin + base + `/digest/${d.slug}`,
+    image: d.cover ? window.location.origin + base + d.cover : "",
+  });
+  const at = DIGESTS.indexOf(d);
+  const newer = DIGESTS[at - 1];
+  const older = DIGESTS[at + 1];
+  document.getElementById("app").innerHTML = `
+    ${siteNav("/digest")}
+    <main class="digest">
+      <header class="digest-head">
+        <div class="eyebrow">AI digest · ${escapeHtml(fmtDate(d.date))}</div>
+        <h1>${escapeHtml(d.title)}</h1>
+        ${d.summary ? `<p class="digest-dek">${escapeHtml(d.summary)}</p>` : ""}
+      </header>
+      ${
+        slides.length
+          ? `<section class="digest-media" aria-label="The carousel">
+        <div class="digest-strip">${slides
+          .map(
+            (s, n) =>
+              `<a href="${s}" target="_blank" rel="noreferrer"><img src="${s}" alt="${escapeHtml(alts[n] || `Slide ${n + 1}`)}" loading="lazy" width="1080" height="1350" /></a>`
+          )
+          .join("")}</div>
+        ${d.carousel ? `<a class="digest-pdf" href="${base}${d.carousel}" download>Download the carousel as a PDF</a>` : ""}
+      </section>`
+          : ""
+      }
+      <article class="content digest-body">${html}</article>
+      ${subscribeBlock("inline")}
+      <nav class="digest-more">
+        ${newer ? `<a href="${base}/digest/${newer.slug}">Newer: ${escapeHtml(fmtDate(newer.date))}</a>` : "<span></span>"}
+        <a href="${base}/digest">Every edition</a>
+        ${older ? `<a href="${base}/digest/${older.slug}">Older: ${escapeHtml(fmtDate(older.date))}</a>` : "<span></span>"}
+      </nav>
+    </main>`;
+  window.scrollTo(0, 0);
+}
+
+function renderCourses() {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  setMeta({
+    title: "Courses · Market Ops Notes",
+    description: "James Liu's AI courses, plus the new Udemy and YouTube courses picked in each AI digest.",
+    url: window.location.origin + base + "/courses",
+  });
+  const mine = (COURSES.mine || [])
+    .map(
+      (c) => `
+    <article class="course-card">
+      <div class="course-chips"><span class="pill-chip solid">${escapeHtml(c.platform)}</span><span class="pill-chip">${escapeHtml(c.status)}</span></div>
+      <h3>${escapeHtml(c.title)}</h3>
+      <p>${escapeHtml(c.promise)}</p>
+      ${c.lectures ? `<div class="course-meta">${c.lectures} lectures · ${c.hours} hours</div>` : ""}
+      ${
+        c.url
+          ? `<a class="kit-link" href="${escapeHtml(c.url)}" target="_blank" rel="noreferrer">Open on ${escapeHtml(c.platform)}</a>`
+          : SUBSCRIBE_URL
+            ? `<a class="kit-link" href="${escapeHtml(SUBSCRIBE_URL)}" target="_blank" rel="noreferrer">Get the launch email</a>`
+            : ""
+      }
+    </article>`
+    )
+    .join("");
+  const picks = [...(COURSES.picks || [])].sort((a, b) => b.added.localeCompare(a.added));
+  const platforms = [...new Set(picks.map((p) => p.platform))];
+  const rows = picks
+    .map(
+      (p) => `
+    <a class="course-row" href="${escapeHtml(p.url)}" target="_blank" rel="noreferrer" data-platform="${escapeHtml(p.platform)}" data-free="${/free/i.test(p.price) ? "1" : "0"}">
+      <div class="course-chips"><span class="pill-chip solid">${escapeHtml(p.platform)}</span><span class="pill-chip">${escapeHtml(p.price)}</span></div>
+      <div class="course-row-t">${escapeHtml(p.title)}</div>
+      <div class="course-row-p">${escapeHtml(p.provider)} · picked ${escapeHtml(fmtDate(p.added))}</div>
+      <p>${escapeHtml(p.why)}</p>
+    </a>`
+    )
+    .join("");
+  document.getElementById("app").innerHTML = `
+    ${siteNav("/courses")}
+    <main class="home portal">
+      <header class="brand-lockup">
+        <div class="eyebrow">Courses</div>
+        <h1>Learn it properly, then use it at work tomorrow</h1>
+        <p>My own courses first. Below them, the new Udemy and YouTube courses each AI digest picked as worth an evening, newest first.</p>
+      </header>
+      ${mine ? `<section class="course-grid" aria-label="My courses">${mine}</section>` : ""}
+      <section class="course-picks" aria-labelledby="picks-h">
+        <div class="kit-section-head"><h2 id="picks-h">New courses worth your time</h2></div>
+        <div class="filter-bar" role="group" aria-label="Filter the course picks">
+          <button type="button" class="on" data-filter="all">All</button>
+          ${platforms.map((p) => `<button type="button" data-filter="${escapeHtml(p)}">${escapeHtml(p)}</button>`).join("")}
+          <button type="button" data-filter="free">Free</button>
+        </div>
+        <div class="course-list">${rows || `<p class="note">The first picks arrive with the first digest.</p>`}</div>
+      </section>
+      ${subscribeBlock()}
+    </main>`;
+  const bar = document.querySelector(".filter-bar");
+  bar?.addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-filter]");
+    if (!b) return;
+    bar.querySelectorAll("button").forEach((x) => x.classList.toggle("on", x === b));
+    const f = b.dataset.filter;
+    document.querySelectorAll(".course-row").forEach((r) => {
+      r.hidden = !(f === "all" || (f === "free" ? r.dataset.free === "1" : r.dataset.platform === f));
+    });
+  });
   window.scrollTo(0, 0);
 }
 

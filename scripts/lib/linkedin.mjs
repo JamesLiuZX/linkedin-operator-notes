@@ -78,6 +78,24 @@ export function firstCommentBlock(body) {
 }
 
 /**
+ * A digest post carries its own X thread under "## X thread", one tweet per
+ * block, blocks separated by a line holding only "---". Like the first comment,
+ * it sits outside "## Draft", so the LinkedIn gate never reads it;
+ * scripts/digest-check.mjs checks its length instead.
+ */
+export function xThreadTweets(body) {
+  const secs = sections(body);
+  for (const [k, v] of secs) {
+    if (!k.startsWith('x thread')) continue;
+    return v
+      .split(/^\s*---\s*$/m)
+      .map((t) => t.trim())
+      .filter(Boolean);
+  }
+  return [];
+}
+
+/**
  * Site-relative paths ("/demos/farm-lab") paste into LinkedIn as dead text.
  * Authors keep first comments portable by writing relative paths; the copy
  * surfaces (dashboard, scripts/linkedin.mjs) absolutize them against the

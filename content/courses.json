@@ -1,0 +1,67 @@
+{
+  "$comment": "Read by site/src/digests.js for /courses, checked by scripts/digest-check.mjs. 'mine' is James's own courses (facts from JamesLiuZX/udemy course.yaml; set url once a course is live). 'picks' grows with each AI digest run, newest added last; DIGEST.md has the rules. No em dashes.",
+  "mine": [
+    {
+      "slug": "ai-for-pms",
+      "title": "AI Product Skills for PMs & Analysts",
+      "promise": "Stop guessing whether the AI feature your team ships actually works: eval-based acceptance criteria, a golden-set eval harness, token economics and de-risking hallucination.",
+      "platform": "Udemy",
+      "status": "Coming to Udemy",
+      "lectures": 102,
+      "hours": 8.2,
+      "url": ""
+    },
+    {
+      "slug": "ai-agents-for-work",
+      "title": "AI Agents for Your Job",
+      "promise": "Build agents that triage your inbox, draft your reports and chase your invoices with n8n, then learn to check their work and know what never to automate.",
+      "platform": "Udemy",
+      "status": "Coming to Udemy",
+      "lectures": 76,
+      "hours": 3.6,
+      "url": ""
+    },
+    {
+      "slug": "ai-ugc-ads",
+      "title": "AI UGC & Video Ads",
+      "promise": "Build the creative testing machine: brief, batch-generate statics and UGC video with AI, pre-flight compliance failures and run tests that find winners.",
+      "platform": "Udemy",
+      "status": "Coming to Udemy",
+      "lectures": 81,
+      "hours": 6,
+      "url": ""
+    }
+  ],
+  "picks": [
+    {
+      "added": "2026-11-06",
+      "digest": "2026-11-06-security-gets-a-unit-price",
+      "title": "AI Agents, CMU 11-768 (Fall 2026)",
+      "provider": "Carnegie Mellon University, Graham Neubig and Daniel Fried",
+      "platform": "YouTube",
+      "price": "Free",
+      "url": "https://cmu-agents.com",
+      "why": "A graduate course on building agent harnesses, designing evals and training agents with RL. Recordings post as the term runs to 3 Dec."
+    },
+    {
+      "added": "2026-11-06",
+      "digest": "2026-11-06-security-gets-a-unit-price",
+      "title": "Complete Claude Code Course: Beginner to Advanced",
+      "provider": "Udemy instructor course",
+      "platform": "Udemy",
+      "price": "Paid",
+      "url": "https://www.udemy.com/course/complete-claude-code-course-beginner-to-advanced/",
+      "why": "Covers MCP, skills, subagents, debugging and testing. Badged hot and new, rated 4.6 from 165 reviews, updated October 2026."
+    },
+    {
+      "added": "2026-11-06",
+      "digest": "2026-11-06-security-gets-a-unit-price",
+      "title": "Claude Code 2026: Agents Teams, Subagents, MCP & Skills",
+      "provider": "Udemy instructor course",
+      "platform": "Udemy",
+      "price": "Paid",
+      "url": "https://www.udemy.com/course/claude-code-2026-masterclass/",
+      "why": "A short 2h 35m route through CLAUDE.md, skills, MCP, hooks and scheduling. Updated October 2026."
+    }
+  ]
+}

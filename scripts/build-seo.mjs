@@ -84,6 +84,29 @@ async function demos() {
   return out;
 }
 
+/** Published AI digests. Same rule as site/src/digests.js: status: published only. */
+async function digests() {
+  const dir = join(ROOT, "digests");
+  let names = [];
+  try {
+    names = await readdir(dir);
+  } catch {
+    return [];
+  }
+  const out = [];
+  for (const name of names) {
+    if (extname(name) !== ".md" || basename(name).toLowerCase() === "readme.md") continue;
+    const { data } = parseFrontmatter(await readFile(join(dir, name), "utf8"));
+    if (data.status !== "published") continue;
+    out.push({
+      loc: `/digest/${data.slug || name.replace(/\.md$/, "")}`,
+      lastmod: String(data.date || "") || null,
+      priority: "0.7",
+    });
+  }
+  return out;
+}
+
 // Derived from the shared list, not hand-copied, so a new category in
 // scripts/lib/sections.mjs cannot go stale here the way this array once did.
 const SECTIONS = SECTION_DEFS.map((s) => s.id);
@@ -96,8 +119,11 @@ async function main() {
     { loc: "/", lastmod: today, priority: "1.0" },
     { loc: "/demos", lastmod: today, priority: "0.9" },
     ...SECTIONS.map((s) => ({ loc: `/${s}`, lastmod: today, priority: "0.6" })),
+    { loc: "/digest", lastmod: today, priority: "0.9" },
+    { loc: "/courses", lastmod: today, priority: "0.8" },
     ...(await articles()),
     ...(await demos()),
+    ...(await digests()),
   ];
 
   // /dashboard is deliberately absent: it is a working surface, not a landing page.
@@ -139,7 +165,12 @@ Disallow: /
       `${base ? ` for ${base}` : " with relative locs (set SITE_URL for absolute)"}`
   );
 
-  const liveArticles = urls.filter((u) => !["/", "/demos", ...SECTIONS.map((s) => `/${s}`)].includes(u.loc) && !u.loc.startsWith("/demos/"));
+  const liveArticles = urls.filter(
+    (u) =>
+      !["/", "/demos", "/digest", "/courses", ...SECTIONS.map((s) => `/${s}`)].includes(u.loc) &&
+      !u.loc.startsWith("/demos/") &&
+      !u.loc.startsWith("/digest/")
+  );
   if (liveArticles.length === 0) {
     console.log(
       "seo: note, 0 essays are published. Advance an article's status past 'draft' to put it in the sitemap."
