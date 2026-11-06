@@ -21,7 +21,7 @@ import "./viz/viz.css";
 import "./demos/kit.css";
 import "./portal.css";
 import { marked } from "marked";
-import { DIGESTS, digestBySlug, COURSES, SUBSCRIBE_URL, fmtDate } from "./digests.js";
+import { DIGESTS, digestBySlug, COURSES, SUBSCRIBE_URL, FOLLOW_URL, fmtDate } from "./digests.js";
 import manifest from "../../articles/unsplash-manifest.json";
 import { ARTICLES, bySlug, SECTIONS, VISIBLE } from "./content.js";
 import { DEMOS, demoBySlug } from "./demos/index.js";
@@ -582,10 +582,16 @@ function renderDash() {
 /* ------------------------------------------------------------- portal */
 
 function subscribeBlock(where = "") {
-  if (!SUBSCRIBE_URL) return "";
-  return `<aside class="subscribe${where ? ` ${where}` : ""}">
+  const cls = `subscribe${where ? ` ${where}` : ""}`;
+  if (SUBSCRIBE_URL)
+    return `<aside class="${cls}">
     <p>A new digest lands every two days. Get it by email instead of hoping the feed shows it to you.</p>
     <a class="subscribe-btn" href="${escapeHtml(SUBSCRIBE_URL)}" target="_blank" rel="noreferrer">Get it by email</a>
+  </aside>`;
+  if (!FOLLOW_URL) return "";
+  return `<aside class="${cls}">
+    <p>A new digest lands every two days, posted on LinkedIn as a carousel. Follow to see each one.</p>
+    <a class="subscribe-btn" href="${escapeHtml(FOLLOW_URL)}" target="_blank" rel="noreferrer">Follow on LinkedIn</a>
   </aside>`;
 }
 

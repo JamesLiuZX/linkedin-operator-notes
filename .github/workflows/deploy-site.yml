@@ -38,7 +38,11 @@ jobs:
       - run: node scripts/gate-scores.mjs
       - run: node scripts/build-apps.mjs
 
+      # The Substack secret, once James sets it, switches on the digest's
+      # "Get it by email" buttons (site/src/digests.js). Empty is fine.
       - run: BASE_PATH=/linkedin-operator-notes/ npm --prefix site run build
+        env:
+          VITE_SUBSTACK_URL: ${{ secrets.SUBSTACK_PUBLICATION_URL }}
       - name: SPA fallback
         run: cp site/dist/index.html site/dist/404.html
 

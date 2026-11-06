@@ -15,8 +15,21 @@ const cards = import.meta.glob("../../digests/*.json", { import: "default", eage
 
 const SHOW = Boolean(import.meta.env?.DEV) || import.meta.env?.VITE_SHOW_DRAFTS === "1";
 
-/** Set to James's Substack URL to switch on the "get it by email" buttons. */
-export const SUBSCRIBE_URL = "";
+/**
+ * James's Substack publication, e.g. "https://name.substack.com". There is no
+ * publication yet. Creating one needs his account, so a session can't do it.
+ * Either set SUBSTACK below or set the repo secret SUBSTACK_PUBLICATION_URL,
+ * which deploy-site.yml passes in as VITE_SUBSTACK_URL. Both switch on the
+ * "Get it by email" buttons. Until then, the subscribe block offers a LinkedIn
+ * follow instead.
+ */
+const SUBSTACK = "";
+const substack = String(SUBSTACK || import.meta.env?.VITE_SUBSTACK_URL || "").trim().replace(/\/+$/, "");
+/** A bare publication URL goes to its subscribe page. */
+export const SUBSCRIBE_URL = substack && !/\/subscribe$/.test(substack) ? `${substack}/subscribe` : substack;
+
+/** Where the digest is posted. Used when there is no email list yet. */
+export const FOLLOW_URL = "https://www.linkedin.com/in/james-liu-zx/";
 
 export const DIGESTS = Object.entries(pages)
   .filter(([path]) => !/readme\.md$/i.test(path))
