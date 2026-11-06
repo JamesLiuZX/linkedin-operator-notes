@@ -85,6 +85,8 @@ Rules for every session:
   LinkedIn/X/Medium/Substack happens through it, on James's logged-in browser.
 - `PUBLISHING.md` / `DEPLOY.md` — API cross-post pipeline and site deploys.
 - `WRITING.md` — voice contract, enforced by `npm run content:check`.
+- `10-portal-and-surfaces.md`: the 2026-11-06 brief (AI-in-PM portal, skills
+  pack, motion clips). A proposal; `content/schedule.json` is unchanged.
 
 ## Daily commands
 
