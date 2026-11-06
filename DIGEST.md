@@ -1,7 +1,9 @@
 # DIGEST.md: the AI digest, every two days
 
-The scheduled task "AI digest (every 2 days)" runs this file in a cloud
-session. It needs no laptop. One run produces one edition:
+The scheduled task "AI digest (every 2 days)" runs this file in a cloud session
+at 07:23 SGT on even-numbered days. It needs no laptop. If `digests/` already
+has an edition dated today, stop: another run made it. One run produces one
+edition:
 
 1. **A portal page** on the site, `digests/<slug>.md`, live as soon as the run lands.
 2. **A LinkedIn post and an X thread**, `posts/dg-<slug>.md`. They are queued
@@ -107,7 +109,7 @@ This is a LinkedIn atom per WRITING.md section 3, plus an `## X thread` section.
   - `platforms: linkedin`
   - `digest: <slug>`
   - `media:` the carousel.pdf and cover.png paths
-  - `publishAt:` 01:00 UTC on the day after the edition
+  - `publishAt:` 01:00 UTC (09:00 SGT) on the edition's date
 
 **Receipts:** append a block under "AI digest receipts" in
 `research/SOURCES.md`, with one row per number.
@@ -125,8 +127,9 @@ has these fields:
 
 **Schedule:** append two rows to `content/schedule.json` by copying the
 reference rows:
-- `dg-<slug>-li` at 09:00 and `dg-<slug>-x` at 21:00, both on the day after
-  the edition
+- `dg-<slug>-li` at 09:00 and `dg-<slug>-x` at 21:00, both on the edition's
+  date, so the news is posted while it is fresh. The first edition was made in
+  an afternoon, so it was posted the next day.
 - `status: ready`
 - `week` counted from `startDate`
 
