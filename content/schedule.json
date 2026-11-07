@@ -439,6 +439,25 @@
       "hook": "AI found 948 ways to root Linux for about $1,280 each.",
       "status": "ready",
       "notes": "AI digest (DIGEST.md). Attach cover.png to tweet 1. Tweets come from the post's X thread section."
+    },
+    {
+      "id": "dg-2026-11-08-li",
+      "week": 14, "date": "2026-11-08", "time": "09:00", "channel": "linkedin",
+      "kind": "atom", "pillar": "agents", "asset": "posts/dg-2026-11-08-the-fence-is-the-feature.md",
+      "title": "AI digest: Claude can now read 24 months of your bank transactions",
+      "hook": "Claude can now read 24 months of your bank transactions.",
+      "status": "ready",
+      "linkInComment": "/digest/2026-11-08-the-fence-is-the-feature",
+      "notes": "AI digest (DIGEST.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment."
+    },
+    {
+      "id": "dg-2026-11-08-x",
+      "week": 14, "date": "2026-11-08", "time": "21:00", "channel": "x",
+      "kind": "thread", "pillar": "agents", "asset": "posts/dg-2026-11-08-the-fence-is-the-feature.md",
+      "title": "AI digest thread: Claude can now read your bank, read-only",
+      "hook": "Claude can now read 24 months of your bank transactions. It can't move a cent.",
+      "status": "ready",
+      "notes": "AI digest (DIGEST.md). Attach cover.png to tweet 1. Tweets come from the post's X thread section."
     }
   ]
 }

@@ -167,8 +167,12 @@ function courses(d, n, total) {
   </div>`
     )
     .join("");
+  // The label names the platforms this edition actually picked, so an
+  // all-YouTube edition never claims a Udemy course it does not have.
+  const platforms = [...new Set((d.courses || []).map((c) => c.platform).filter(Boolean))];
+  const where = platforms.length > 1 ? `${platforms.slice(0, -1).join(", ")} and ${platforms.at(-1)}` : platforms[0] || "";
   return `<section class="slide light courses">
-  <div class="top"><span><b>New courses</b> · Udemy and YouTube</span><span>${n}/${total}</span></div>
+  <div class="top"><span><b>New courses</b>${where ? ` · ${esc(where)}` : ""}</span><span>${n}/${total}</span></div>
   <h2>${accent(d.coursesTitle || "Worth an evening this week")}</h2>
   ${rows}
   <div class="foot"><span>${esc(d.handle)}</span><span>All picks: /courses</span></div>

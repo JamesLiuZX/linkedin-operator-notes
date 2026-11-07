@@ -312,6 +312,26 @@ One block per digest, newest first. Each AI digest run (DIGEST.md) appends its
 block here, and every number in its post and cards traces to a row. Vendor
 claims say so in the Fact column.
 
+### 2026-11-08: the fence is the feature
+
+| Fact | Number | Window | Source |
+|---|---|---|---|
+| Claude Personal Finance: transaction history Claude can read | up to 24 months (Anthropic: "up to two years") | beta from 5 Nov 2026, US Pro, Max and Ultra | [Anthropic](https://claude.com/blog/introducing-personal-finance-in-claude), [Claude Help Center](https://support.claude.com/en/articles/18185620-use-personal-finance-in-claude) |
+| Banks one user can link | up to 16, US banks only | Nov 2026 | [Claude Help Center](https://support.claude.com/en/articles/18185620-use-personal-finance-in-claude) |
+| GPT-6 Cyber API price | $20 per 1M input tokens, $100 per 1M output tokens | released 5 Nov 2026 | [OpenAI API docs](https://developers.openai.com/api/docs/models/gpt-6-cyber) |
+| GPT-6 Cyber context window | 1,050,000 tokens, 128,000 max output | same | same |
+| GPT-6 Cyber ExploitGym, intended-exploit success (OpenAI's own eval) | 48.45% vs GPT-6 Astra's 42.43% | system card, 5 Nov 2026 | [OpenAI system card](https://deploymentsafety.openai.com/gpt-6-cyber) |
+| GPT-6 Cyber blocker deception (OpenAI's own eval, lower is better) | 20.29% vs GPT-6 Astra's 11.66% | same | same |
+| DeepMind RSA-1024 signature forgery (DeepMind's claim, theoretical) | about 1,600x better than the previous best attack, when the attacker controls a small part of the signed data | announced 6 Nov 2026 | [Google DeepMind on X](https://x.com/GoogleDeepMind/status/2118755418675765656) via [Interesting Engineering](https://interestingengineering.com/ai-robotics/google-deepmind-agents-expose-older-encryption-flaws) |
+| DeepMind batch factoring: average cost per additional 1024-bit key (DeepMind's claim) | about 30x lower than previous batch techniques | same | same |
+| Gemini Omni 1.2 Flash 720p price (Google list price) | $0.07 per second, 30% less than Gemini Omni 1.1 Flash | GA on Google Cloud 6 Nov 2026; released 5 Nov | [Google Cloud](https://cloud.google.com/blog/products/ai-machine-learning/gemini-omni-1-2-flash-generally-available), [RuntimeWire](https://runtimewire.com/article/google-gemini-omni-1-2-flash-15-second-clips) |
+| Gemini Omni 1.2 Flash maximum clip length | 15 seconds, up from 10 | same | [Google Cloud](https://cloud.google.com/blog/products/ai-machine-learning/gemini-omni-1-2-flash-generally-available) |
+| One 15-second 720p clip at list price | $1.05 (computed: 15 x $0.07) | same | computed from the two rows above |
+| Foundry Local with Qwen3.8-27B: hardware and context | NVIDIA GPU with at least 24 GB VRAM; 4-bit model about 18 GB; 64K-token context, up to 262K on 32 GB or more | 5 Nov 2026 | [Microsoft Foundry blog](https://devblogs.microsoft.com/foundry/foundry-local-agentic-coding-qwen3-8-27b/) |
+| Qwen3.8-27B benchmarks (Qwen's published model card, not Microsoft's tests) | 73.0 Terminal Bench 2.1, 61.7 SWE-bench Pro | same | same |
+| MCP Security Fundamentals course | about 2 hours, posted 29 Oct 2026 | Oct 2026 | [freeCodeCamp](https://www.freecodecamp.org/news/secure-your-ai-agents-free-model-context-protocol-mcp-security-course/) |
+| Learn Vector Databases for Beginners course | 1.5 hours, posted 3 Nov 2026 | Nov 2026 | [freeCodeCamp](https://www.freecodecamp.org/news/learn-vector-databases-for-beginners-embeddings-similarity-search-chromadb/) |
+
 ### 2026-11-06: security gets a unit price
 
 | Fact | Number | Window | Source |

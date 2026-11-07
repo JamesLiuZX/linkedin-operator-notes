@@ -1,0 +1,82 @@
+{
+  "slug": "2026-11-08-the-fence-is-the-feature",
+  "date": "2026-11-08",
+  "edition": "8 Nov 2026",
+  "handle": "James Liu · Market Ops Notes",
+  "cover": {
+    "headline": "Claude now reads *24 months* of your bank history. *Read-only.*",
+    "sub": "Five launches from 5 to 7 Nov and the fences around them, plus two free courses."
+  },
+  "items": [
+    {
+      "kicker": "Fintech",
+      "title": "Claude can read your bank. It can't *move money*",
+      "stat": "24",
+      "statLabel": "months of transactions it reads, across up to 16 US banks",
+      "what": "Anthropic's Personal Finance beta links accounts through Plaid for US Pro, Max and Ultra users. Read-only, and off in Claude Code.",
+      "why": "An assistant now sees the same feed as a budgeting app. Insight stops being the moat; what you are licensed to do with the money is.",
+      "source": "claude.com, 5 Nov",
+      "url": "https://claude.com/blog/introducing-personal-finance-in-claude"
+    },
+    {
+      "kicker": "Security",
+      "title": "GPT-6 Cyber ships *invite-only*",
+      "stat": "$100",
+      "statLabel": "per million output tokens, for approved Daybreak Red orgs",
+      "what": "Rated Critical for cybersecurity. Orgs need SSO, MFA and IP allowlisting. Individuals also need a physical FIDO2 key.",
+      "why": "Copy the access model for your own strong AI tools: verified identity, hardware keys and allowlisted networks first.",
+      "source": "OpenAI, 5 Nov",
+      "url": "https://deploymentsafety.openai.com/gpt-6-cyber"
+    },
+    {
+      "kicker": "Cryptography",
+      "title": "DeepMind's agents found two cracks in *1024-bit RSA*",
+      "stat": "30x",
+      "statLabel": "cheaper to factor each extra 1024-bit key in a batch",
+      "what": "Agents guided by cryptanalysts also found a signature forgery about 1,600x better than the old best, in theory. RSA-2048 is untouched.",
+      "why": "1024-bit keys still hide in old HSMs, VPN boxes, firmware and internal PKI. Inventory them this week and set retirement dates.",
+      "source": "Google DeepMind, 6 Nov",
+      "url": "https://x.com/GoogleDeepMind/status/2118755418675765656"
+    },
+    {
+      "kicker": "Gen media",
+      "title": "Gemini Omni 1.2 Flash: *15-second* clips, 30% cheaper",
+      "stat": "$1.05",
+      "statLabel": "list price of one 15-second 720p clip at $0.07 a second",
+      "what": "Generally available on Google Cloud since 6 Nov. Clips run up to 15 seconds, up from 10, with an invisible SynthID watermark.",
+      "why": "A 15-second ad variant now costs about a dollar to draft. The real cost moves to human review and the media behind the winners.",
+      "source": "Google Cloud, 6 Nov",
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/gemini-omni-1-2-flash-generally-available"
+    },
+    {
+      "kicker": "On-device",
+      "title": "Microsoft runs a coding agent *on one GPU*",
+      "stat": "24",
+      "statLabel": "GB of GPU memory runs Qwen3.8-27B behind GitHub Copilot",
+      "what": "Foundry Local serves a 4-bit Qwen3.8-27B, about 18 GB, to Copilot via bring-your-own-key. Microsoft says code never leaves the machine.",
+      "why": "Code that can't leave the building gets an agent without a cloud exception. Expect weaker reasoning than frontier models.",
+      "source": "Microsoft, 5 Nov",
+      "url": "https://devblogs.microsoft.com/foundry/foundry-local-agentic-coding-qwen3-8-27b/"
+    }
+  ],
+  "coursesTitle": "Two free *evenings* this week",
+  "courses": [
+    {
+      "platform": "YouTube",
+      "price": "Free",
+      "title": "MCP Security Fundamentals",
+      "note": "freeCodeCamp, about 2 hours, posted 29 Oct. Break the lethal trifecta with architecture, not prompt filters.",
+      "url": "https://www.youtube.com/watch?v=gYXLRMycVMk"
+    },
+    {
+      "platform": "YouTube",
+      "price": "Free",
+      "title": "Learn Vector Databases for Beginners",
+      "note": "freeCodeCamp, 1.5 hours, posted 3 Nov. Embeddings, HNSW and IVF indexes, then a ChromaDB search build.",
+      "url": "https://youtu.be/lR931Iz8Z6U"
+    }
+  ],
+  "readTitle": "The fence is the *feature*",
+  "read": "Claude reads your bank but can't move *a cent*. GPT-6 Cyber needs *hardware keys*. Microsoft's coding agent never leaves the laptop. Pick the fence before the model.",
+  "takeaway": "Write the permissions first: what the AI reads, what it can do, where it runs."
+}

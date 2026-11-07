@@ -62,6 +62,26 @@
       "price": "Paid",
       "url": "https://www.udemy.com/course/claude-code-2026-masterclass/",
       "why": "A short 2h 35m route through CLAUDE.md, skills, MCP, hooks and scheduling. Updated October 2026."
+    },
+    {
+      "added": "2026-11-08",
+      "digest": "2026-11-08-the-fence-is-the-feature",
+      "title": "MCP Security Fundamentals",
+      "provider": "freeCodeCamp.org",
+      "platform": "YouTube",
+      "price": "Free",
+      "url": "https://www.youtube.com/watch?v=gYXLRMycVMk",
+      "why": "About two hours on how AI agents get exploited and how to break the lethal trifecta with architectural boundaries instead of prompt filters. Posted 29 Oct 2026."
+    },
+    {
+      "added": "2026-11-08",
+      "digest": "2026-11-08-the-fence-is-the-feature",
+      "title": "Learn Vector Databases for Beginners: Embeddings, Similarity Search & ChromaDB",
+      "provider": "freeCodeCamp.org, course by codeEdx",
+      "platform": "YouTube",
+      "price": "Free",
+      "url": "https://youtu.be/lR931Iz8Z6U",
+      "why": "A 1.5-hour start on embeddings, cosine similarity and HNSW and IVF indexes, ending with a semantic search build in ChromaDB. Posted 3 Nov 2026."
     }
   ]
 }
