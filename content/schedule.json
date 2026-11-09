@@ -458,6 +458,25 @@
       "hook": "Claude can now read 24 months of your bank transactions. It can't move a cent.",
       "status": "ready",
       "notes": "AI digest (DIGEST.md). Attach cover.png to tweet 1. Tweets come from the post's X thread section."
+    },
+    {
+      "id": "dg-2026-11-10-li",
+      "week": 15, "date": "2026-11-10", "time": "09:00", "channel": "linkedin",
+      "kind": "atom", "pillar": "agents", "asset": "posts/dg-2026-11-10-same-price-different-bill.md",
+      "title": "AI digest: Same token price. $0.14 a task versus $0.41",
+      "hook": "Same token price. $0.14 a task versus $0.41.",
+      "status": "ready",
+      "linkInComment": "/digest/2026-11-10-same-price-different-bill",
+      "notes": "AI digest (DIGEST.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment."
+    },
+    {
+      "id": "dg-2026-11-10-x",
+      "week": 15, "date": "2026-11-10", "time": "21:00", "channel": "x",
+      "kind": "thread", "pillar": "agents", "asset": "posts/dg-2026-11-10-same-price-different-bill.md",
+      "title": "AI digest thread: same token price, a third of the bill",
+      "hook": "Meta's Muse Ember and Claude Haiku 5.5 cost the same per token. Per task, Ember costs $0.14 and Haiku $0.41.",
+      "status": "ready",
+      "notes": "AI digest (DIGEST.md). Attach cover.png to tweet 1. Tweets come from the post's X thread section."
     }
   ]
 }

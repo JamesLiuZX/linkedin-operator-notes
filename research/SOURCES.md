@@ -312,6 +312,29 @@ One block per digest, newest first. Each AI digest run (DIGEST.md) appends its
 block here, and every number in its post and cards traces to a row. Vendor
 claims say so in the Fact column.
 
+### 2026-11-10: same price, different bill
+
+| Fact | Number | Window | Source |
+|---|---|---|---|
+| Muse Ember list price (Meta) | $0.10 per 1M input tokens, $0.50 per 1M output, $0.004 cached input; $0.30, $1.50 and $0.012 for prompts over 200K tokens | released 9 Nov 2026 | [Meta](https://research.meta.ai/blog/muse-ember) |
+| Muse Ember context and output | 1M-token context, up to 512K output tokens | same | same |
+| Claude Haiku 5.5 list price | $0.10 per 1M input, $0.50 per 1M output, $0.01 cache read, for prompts up to 100,000 tokens ($0.50 and $2.50 above) | Nov 2026 | [Claude Platform pricing](https://platform.claude.com/docs/en/about-claude/pricing) |
+| Artificial Analysis Intelligence Index v5 (AA's run, published in Meta's post) | Muse Ember 36, Claude Haiku 5.5 36, GPT-6 Luna 28, all at max settings | 9 Nov 2026 | [Meta](https://research.meta.ai/blog/muse-ember) |
+| Cost per AA Intelligence Index task (AA estimates, published by Meta) | Muse Ember $0.136 at a score of 35.8; Claude Haiku 5.5 $0.411 at 36.2 (rounded to $0.14 and $0.41; about a third, computed) | same | same |
+| FrontierCode 2.0-AA, in Meta's own table | Muse Ember 27.2%, Claude Haiku 5.5 34.9% | same | same |
+| Claude Fable 5.2 and Mythos 5.2 price | $8 per 1M input, $40 per 1M output; Fable 5.1 and Mythos 5.1 were $10 and $50 (a 20% cut, computed) | released 9 Nov 2026 | [Anthropic](https://www.anthropic.com/claude-fable-and-mythos-5-2), [Claude Platform release notes](https://platform.claude.com/docs/en/release-notes/overview) |
+| Claude Opus 5.5 price | $4 per 1M input, $20 per 1M output (Fable 5.2 is 2x, computed) | Nov 2026 | [Claude Platform pricing](https://platform.claude.com/docs/en/about-claude/pricing) |
+| Fable 5.2 context and output | 1M-token context, 128K max output | 9 Nov 2026 | [What's new in Claude Fable 5.2](https://platform.claude.com/docs/en/models/fable-5-2/whats-new-fable-5-2) |
+| Fable 5.2 and Mythos 5.2 data retention | 30-day retention required; zero data retention only if Anthropic expressly authorizes it | same | [Claude Platform release notes](https://platform.claude.com/docs/en/release-notes/overview) |
+| Fable 5.2 API errors | forced tool_choice and fixed thinking budgets return HTTP 400; refusals return HTTP 200 with stop_reason "refusal" | same | [What's new in Claude Fable 5.2](https://platform.claude.com/docs/en/models/fable-5-2/whats-new-fable-5-2) |
+| Fable 5.2 speed vs Fable 5.1 (Anthropic's claim) | outputs up to 30% faster | same | [Anthropic](https://www.anthropic.com/claude-fable-and-mythos-5-2) |
+| Fable 5.2 safeguard blocks vs Fable 5.1 (Anthropic's early testing) | about 55% fewer overall | same | same |
+| Fable 5.2 on the AA Intelligence Index v5 (AA's run) | 65 at max effort, first; Gemini 4 Carbon 60, Claude Opus 5.5 59 | 9 Nov 2026 | Artificial Analysis on X (post title as returned by search), [The Decoder](https://the-decoder.com/claude-fable-5-2-and-mythos-5-2-cement-anthropics-ai-lead-just-before-its-ipo/) |
+| ChatGPT Enterprise AWS Marketplace listing | 4 products in one listing (Chat, ChatGPT Work, Codex, dots); private-offer pricing; eligible spend counts toward AWS EDP or PPA commitments | 9 Nov 2026 | [OpenAI](https://openai.com/index/chatgpt-enterprise-aws-marketplace/) (did not load) via [PPC Land](https://ppc.land/aws-customers-can-now-buy-chatgpt-enterprise-against-cloud-commitments/) |
+| Google Maps Platform sandbox in AI Studio | 100 calls per API per day, quota resets every 24 hours, no credit card | 9 Nov 2026 | [Google Developers Blog](https://developers.googleblog.com/from-prompt-to-app-build-with-google-maps-in-ai-studio/) |
+| Jev prefill-only inference course | about 2 hours, posted 29 Oct 2026 | Oct 2026 | [freeCodeCamp](https://www.freecodecamp.org/news/high-speed-decision-pipelines-jev-and-prefill-only-inference-from-scratch/) |
+| Hybrid search in PostgreSQL course | about 1 hour, posted 21 Oct 2026, over 240,000 Simple English Wikipedia articles | Oct 2026 | [freeCodeCamp](https://www.freecodecamp.org/news/build-a-hybrid-search-engine-in-postgresql-bm25-vector-retrieval/) |
+
 ### 2026-11-08: the fence is the feature
 
 | Fact | Number | Window | Source |

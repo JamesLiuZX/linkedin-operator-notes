@@ -1,0 +1,72 @@
+{
+  "slug": "2026-11-10-same-price-different-bill",
+  "date": "2026-11-10",
+  "edition": "10 Nov 2026",
+  "handle": "James Liu · Market Ops Notes",
+  "cover": {
+    "headline": "Same token price. *$0.14* a task versus *$0.41*.",
+    "sub": "Meta's Muse Ember lists at Claude Haiku 5.5's price. Four launches on 9 Nov, the bill behind each, and two free courses."
+  },
+  "items": [
+    {
+      "kicker": "Agent models",
+      "title": "Muse Ember: Haiku's price, *a third* of the bill",
+      "stat": "$0.14",
+      "statLabel": "per Artificial Analysis task, against $0.41 for Claude Haiku 5.5",
+      "what": "Meta's new small model lists at $0.10 in and $0.50 out per million tokens, the same as Haiku 5.5. Both score 36 on the AA index.",
+      "why": "Same sticker, about a third of the cost per task, because the bill follows tokens spent. Compare models on dollars per finished task.",
+      "source": "Meta, 9 Nov",
+      "url": "https://research.meta.ai/blog/muse-ember"
+    },
+    {
+      "kicker": "Frontier models",
+      "title": "Claude Fable 5.2 is *20% cheaper*. Read the terms",
+      "stat": "$8",
+      "statLabel": "per million input tokens, down from $10. Output is $40, down from $50",
+      "what": "Anthropic's top model has a 1M context and leads the AA index at 65. Mythos 5.2 is the same model, for vetted security and bio teams.",
+      "why": "It still costs 2x Opus 5.5 per token and needs 30-day data retention unless Anthropic approves zero retention. Clear both first.",
+      "source": "anthropic.com, 9 Nov",
+      "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2"
+    },
+    {
+      "kicker": "Procurement",
+      "title": "ChatGPT Enterprise now bills through *AWS*",
+      "stat": "4",
+      "statLabel": "products in one listing: Chat, ChatGPT Work, Codex and dots",
+      "what": "Sold by OpenAI, billed by AWS, and eligible spend counts toward AWS commitments. Pricing comes as a private offer.",
+      "why": "The invoice moves to AWS. OpenAI stays the data processor, with AWS as a subprocessor, so the vendor review still has to happen.",
+      "source": "PPC Land, 9 Nov",
+      "url": "https://ppc.land/aws-customers-can-now-buy-chatgpt-enterprise-against-cloud-commitments/"
+    },
+    {
+      "kicker": "Dev tools",
+      "title": "Google Maps in AI Studio: prototype with *no card*",
+      "stat": "100",
+      "statLabel": "free calls per API per day in the AI Studio sandbox",
+      "what": "Describe a map app to Gemini and AI Studio wires in Maps, Places and Routes with no credit card, then shows a live map.",
+      "why": "A branch finder or delivery map can be demoed in one sitting. Production needs a billing account, so price it before you promise it.",
+      "source": "Google, 9 Nov",
+      "url": "https://developers.googleblog.com/from-prompt-to-app-build-with-google-maps-in-ai-studio/"
+    }
+  ],
+  "coursesTitle": "Two free courses for *this week*",
+  "courses": [
+    {
+      "platform": "YouTube",
+      "price": "Free",
+      "title": "Jev: Prefill-Only Inference from Scratch",
+      "note": "freeCodeCamp, about 2 hours, posted 29 Oct. Models that decide in the prefill pass, with no token-by-token decoding.",
+      "url": "https://www.youtube.com/watch?v=aZglGvBPQGs"
+    },
+    {
+      "platform": "YouTube",
+      "price": "Free",
+      "title": "Hybrid Search in PostgreSQL: BM25 + Vectors",
+      "note": "freeCodeCamp, about 1 hour, posted 21 Oct. Keyword and vector search in one database, merged in SQL.",
+      "url": "https://youtu.be/kT7nXO32L-Q"
+    }
+  ],
+  "readTitle": "Same price, *different bill*",
+  "read": "Ember matches Haiku's sticker and costs *a third* per task. Fable 5.2 got cheaper and still runs *2x* Opus 5.5 per token. The AWS listing moves the invoice, not the data.",
+  "takeaway": "Price the finished task, not the token. Then read the retention terms."
+}

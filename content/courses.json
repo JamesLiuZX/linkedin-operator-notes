@@ -82,6 +82,26 @@
       "price": "Free",
       "url": "https://youtu.be/lR931Iz8Z6U",
       "why": "A 1.5-hour start on embeddings, cosine similarity and HNSW and IVF indexes, ending with a semantic search build in ChromaDB. Posted 3 Nov 2026."
+    },
+    {
+      "added": "2026-11-10",
+      "digest": "2026-11-10-same-price-different-bill",
+      "title": "Jev Course: Prefill-Only Inference and Decision Models from Scratch",
+      "provider": "freeCodeCamp.org",
+      "platform": "YouTube",
+      "price": "Free",
+      "url": "https://www.youtube.com/watch?v=aZglGvBPQGs",
+      "why": "About two hours of PyTorch on models that classify and act in the prefill pass instead of decoding token by token, with KV-cache reuse across repeated system prompts. Posted 29 Oct 2026."
+    },
+    {
+      "added": "2026-11-10",
+      "digest": "2026-11-10-same-price-different-bill",
+      "title": "Build a Hybrid Search Engine in PostgreSQL: BM25 + Vector Retrieval",
+      "provider": "freeCodeCamp.org",
+      "platform": "YouTube",
+      "price": "Free",
+      "url": "https://youtu.be/kT7nXO32L-Q",
+      "why": "About an hour on keyword and vector search inside one PostgreSQL database, merged with Reciprocal Rank Fusion in SQL, over 240,000 Simple English Wikipedia articles. Posted 21 Oct 2026."
     }
   ]
 }
