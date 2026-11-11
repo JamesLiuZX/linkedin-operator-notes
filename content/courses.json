@@ -102,6 +102,26 @@
       "price": "Free",
       "url": "https://youtu.be/kT7nXO32L-Q",
       "why": "About an hour on keyword and vector search inside one PostgreSQL database, merged with Reciprocal Rank Fusion in SQL, over 240,000 Simple English Wikipedia articles. Posted 21 Oct 2026."
+    },
+    {
+      "added": "2026-11-12",
+      "digest": "2026-11-12-stolen-ai-keys-spend-like-cash",
+      "title": "Learn Agentic Coding with Codex & AI Coding Agents",
+      "provider": "freeCodeCamp.org, taught by Tom Chant of Scrimba",
+      "platform": "YouTube",
+      "price": "Free",
+      "url": "https://youtu.be/ajfQWhGQGLE",
+      "why": "About two hours on prompts and AGENTS.md files, Plan Mode and skills, testing agent changes and MCP, with a section on using Git safely with an agent and protecting API keys and other secrets. Posted 10 Nov 2026."
+    },
+    {
+      "added": "2026-11-12",
+      "digest": "2026-11-12-stolen-ai-keys-spend-like-cash",
+      "title": "The Anatomy of an AI Data Center",
+      "provider": "freeCodeCamp.org, course by Beau Carnes",
+      "platform": "YouTube",
+      "price": "Free",
+      "url": "https://youtu.be/QKNsHZatiWU",
+      "why": "An 8-hour tour of power, cooling, optical networking and multi-gigawatt construction, ending on the economics of GPU cloud hosting and capacity contracts. Posted 16 Oct 2026."
     }
   ]
 }

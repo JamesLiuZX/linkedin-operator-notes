@@ -312,6 +312,30 @@ One block per digest, newest first. Each AI digest run (DIGEST.md) appends its
 block here, and every number in its post and cards traces to a row. Vendor
 claims say so in the Fact column.
 
+### 2026-11-12: stolen AI keys spend like cash
+
+| Fact | Number | Window | Source |
+|---|---|---|---|
+| Railway: unauthorized AI usage on stolen keys (Railway's estimate) | about $740,000 | attack 20 to 21 Oct 2026; report published 10 Nov 2026 | [Railway](https://blog.railway.com/p/incident-report-october-security-incident) |
+| Railway: workspaces that could have had environment variables decrypted (upper bound) | at most 1.85%, about 100,000 | same | same |
+| Railway: provider refund positions, as Railway reports them | AWS Bedrock and Google Gemini refund fraud; OpenAI and SpaceXSI review case by case; OpenRouter has a no-refund policy and Railway covers those costs; Railway covers Anthropic key costs while talks continue | same | same |
+| Railway: other exposure | 353 build histories read; BYOK agent keys and GitHub OAuth tokens decrypted for 1,852 users (all reset) | same | same |
+| Notion: workspaces affected by the Fireworks incident | under 1% | advisory updated 10 Nov 2026 | [Notion](https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor) |
+| Notion timeline | Fireworks notified Notion 2 Nov; Notion disconnected 3 Nov; Fireworks confirmed the final dataset 8 Nov; customers contacted 9 Nov 2026 | Nov 2026 | same |
+| Fireworks AI: cloud-provider incident, then access to Fireworks development machines | 23 Oct 2026, then 24 Oct 2026 | update published 9 Nov 2026 | [Fireworks AI](https://fireworks.ai/security/bulletins/october-2026-security-incident-update) |
+| Gemini 4 Carbon API price (Google list price) | $2 per 1M input tokens and $10 per 1M output until 30 Nov 2026; $4 and $20 after (2x, computed) | released 10 Nov 2026 | [Google](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/) |
+| Gemini 4 Carbon on third-party benchmarks (results reported by Google) | #1 on CursorBench 4.0, Perplexity's WANDR and Zapier's AutomationBench, at more than 2x lower cost per task than the next best external model | same | same |
+| Gemini 4 Carbon finance evaluations (pre-release, reported by Google) | matched the best model tested on Hebbia's E2E Financial Agentic evaluation; top of 23 frontier configurations on Balyasny Asset Management's General Financial Intelligence benchmark | same | same |
+| Gemini 4 Carbon agentic honesty (Google's own 375-task benchmark) | 92% passed, against 70% for Gemini 4 Argon | same | same |
+| Claude Data default-on date for Enterprise plans | 19 Nov 2026 | announced 10 Nov 2026 | [Anthropic](https://claude.com/resources/articles/sheets-whiteboards-data) |
+| Claude Compliance API and Marketplace (Anthropic's figures) | more than 100 security and compliance tools; more than 9,000 connectors and plugins | 10 Nov 2026 | [Anthropic](https://claude.com/resources/articles/more-ways-to-work-with-claude-sheets-whiteboards-and-interactive-connectors) |
+| Advantage Solutions forecast assembly (customer result quoted by Anthropic) | about 10 hours to under 30 minutes per forecast cycle | same | same |
+| RAISE Act: covered developers, registration deadline, incident window | more than $500M annual revenue; register by 1 Jan 2027; critical safety incidents reported within 72 hours | registration portal opened 10 Nov 2026 | [TechCrunch](https://techcrunch.com/2026/11/10/openai-anthropic-face-new-oversight-as-new-yorks-ai-safety-law-takes-effect/) |
+| RAISE Act penalties | up to $1M for one violation, up to $3M for subsequent violations | same | same |
+| DIGIT placement and compliance start | DIGIT sits within the New York State Department of Financial Services; compliance and regular reporting begin January 2027 | announced 21 Sep 2026 | [Governor of New York](https://www.governor.ny.gov/news/ai-safety-governor-hochul-announces-next-steps-regulate-major-ai-developers-and-protect-new) |
+| Learn Agentic Coding with Codex & AI Coding Agents course | about 2 hours, posted 10 Nov 2026 | Nov 2026 | [freeCodeCamp](https://www.freecodecamp.org/news/learn-agentic-coding-with-codex-ai-coding-agents) |
+| The Anatomy of an AI Data Center course | 8-hour watch, posted 16 Oct 2026 | Oct 2026 | [freeCodeCamp](https://www.freecodecamp.org/news/the-anatomy-of-an-ai-data-center) |
+
 ### 2026-11-10: same price, different bill
 
 | Fact | Number | Window | Source |
