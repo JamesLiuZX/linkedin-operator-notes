@@ -122,6 +122,26 @@
       "price": "Free",
       "url": "https://youtu.be/QKNsHZatiWU",
       "why": "An 8-hour tour of power, cooling, optical networking and multi-gigawatt construction, ending on the economics of GPU cloud hosting and capacity contracts. Posted 16 Oct 2026."
+    },
+    {
+      "added": "2026-11-16",
+      "digest": "2026-11-16-your-thumb-is-the-spending-limit",
+      "title": "Agentic Payments: How AI Agents Move Money",
+      "provider": "Maven free lesson by Zdenek Nemec (Superface.ai) and Emmanuel Paraskakis",
+      "platform": "Maven",
+      "price": "Free",
+      "url": "https://maven.com/p/df4c6b/agentic-payments-how-ai-agents-move-money",
+      "why": "A 60-minute recorded lesson from 23 Sep 2026 that sorts agent payments into commerce, machine payments and treasury, covers ACP, UCP, AP2, x402 and Visa and Mastercard payment identity, and ends with a way to prioritize a payments roadmap."
+    },
+    {
+      "added": "2026-11-16",
+      "digest": "2026-11-16-your-thumb-is-the-spending-limit",
+      "title": "Build and Train a GLM-5.3-Flash Model From Scratch with Python",
+      "provider": "freeCodeCamp.org, course by @vukrosic",
+      "platform": "YouTube",
+      "price": "Free",
+      "url": "https://youtu.be/-gfgQfw2g_E",
+      "why": "44 minutes through tokenization, linear and sparse attention, mixture-of-experts routing, image tokens, pre-training experiments and reward design for reinforcement learning. Posted 14 Nov 2026."
     }
   ]
 }

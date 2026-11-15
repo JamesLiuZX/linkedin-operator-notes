@@ -1,0 +1,82 @@
+{
+  "slug": "2026-11-16-your-thumb-is-the-spending-limit",
+  "date": "2026-11-16",
+  "edition": "16 Nov 2026",
+  "handle": "James Liu · Market Ops Notes",
+  "cover": {
+    "headline": "ChatGPT's agents can pay now. Spending limits *come later*.",
+    "sub": "Every purchase waits for Face ID or a fingerprint. Five moves from 13 Nov that change a builder's week, plus two free courses."
+  },
+  "items": [
+    {
+      "kicker": "Payments",
+      "title": "ChatGPT's agents can now *check out* for you",
+      "stat": "0",
+      "statLabel": "card numbers the agent or the merchant sees. It pays with a token",
+      "what": "ChatGPT Wallet opened on 13 Nov to some US Pro users with US cards, built with Amex, Mastercard and Visa. Each purchase needs Face ID or a fingerprint.",
+      "why": "No spending limits yet. OpenAI asks merchants to verify its cloud browser with Web Bot Auth and tune fraud rules to pass real agent checkouts.",
+      "source": "TechCrunch, 13 Nov",
+      "url": "https://techcrunch.com/2026/11/13/chatgpts-new-wallet-lets-ai-agents-shop-and-check-out-for-you/"
+    },
+    {
+      "kicker": "Personal finance",
+      "title": "Gemini can read Google Wallet, *not spend from it*",
+      "stat": "$0",
+      "statLabel": "that Gemini can move from your accounts. It has read access only",
+      "what": "Since 13 Nov, US Gemini users can connect Google Wallet and Plaid-linked bank and card accounts, then ask about spending, subscriptions and budgets.",
+      "why": "Claude's finance beta drew the same line on 5 Nov. Reading transactions is turning into a free assistant feature. Moving money is the licensed part.",
+      "source": "blog.google, 13 Nov",
+      "url": "https://blog.google/innovation-and-ai/products/gemini-app/google-wallet-gemini-app/"
+    },
+    {
+      "kicker": "Security",
+      "title": "A key Cursor gave Fireworks led to a *poisoned extension*",
+      "stat": "5,000",
+      "statLabel": "users, at most, may have received the tampered Claude Code build",
+      "what": "The key opened stored agent traces, mostly from 2025. Some held unredacted credentials, and one let the attacker plant a backdoored extension on 29 Oct.",
+      "why": "Agent logs hold whatever the agent touched. Redact secrets before traces are stored, and give each vendor its own scoped key you can revoke fast.",
+      "source": "cursor.com, 13 Nov",
+      "url": "https://cursor.com/blog/security-incident-update"
+    },
+    {
+      "kicker": "Cost controls",
+      "title": "Cloudflare caps now *pause* Workers at a hard limit",
+      "stat": "10 min",
+      "statLabel": "at most before spend shows on the dashboard. Blocking comes after",
+      "what": "Spend Management went into beta on 13 Nov for pay-as-you-go accounts: a limit per product, email alerts, and an automatic pause at the cap.",
+      "why": "Cloudflare warns recorded spend can exceed a limit, so size caps for the overrun. Model calls need AI Gateway budgets, a separate control.",
+      "source": "Cloudflare, 13 Nov",
+      "url": "https://blog.cloudflare.com/spend-management/"
+    },
+    {
+      "kicker": "Financial stability",
+      "title": "The Fed's survey now ranks AI the *top-cited risk*",
+      "stat": "$680B",
+      "statLabel": "of advanced-computing debt issuance by October 2026, per the Fed",
+      "what": "AI led the risks named by 23 market contacts in the Fed's November report. The largest US banks have close to $1 trillion of related exposure.",
+      "why": "The Fed says reports of agentic systems in cyber events have risen since May. If you sell to banks, expect reviews of what your agents can touch.",
+      "source": "Federal Reserve, 13 Nov",
+      "url": "https://www.federalreserve.gov/publications/files/financial-stability-report-20261113.pdf"
+    }
+  ],
+  "coursesTitle": "Two free courses, one on *agent payments*",
+  "courses": [
+    {
+      "platform": "Maven",
+      "price": "Free",
+      "title": "Agentic Payments: How AI Agents Move Money",
+      "note": "A 60-minute recorded lesson from 23 Sep on ACP, AP2, x402 and card-network agent identity, plus a way to rank a payments roadmap.",
+      "url": "https://maven.com/p/df4c6b/agentic-payments-how-ai-agents-move-money"
+    },
+    {
+      "platform": "YouTube",
+      "price": "Free",
+      "title": "Build and Train a GLM-5.3-Flash Model From Scratch",
+      "note": "freeCodeCamp, 44 minutes, posted 14 Nov. Sparse attention, mixture of experts, vision tokens and RL rewards, in Python.",
+      "url": "https://youtu.be/-gfgQfw2g_E"
+    }
+  ],
+  "readTitle": "Treat every agent like a new *cardholder*",
+  "read": "Payments teams already know the controls: a *token*, a step-up check, a *spending cap*, a log and fast revocation. ChatGPT shipped the token and the check on 13 Nov. The cap is still a plan, and Cursor's breach shows what an unscrubbed *agent log* costs.",
+  "takeaway": "Before an agent spends or holds a key, cap it, scrub its logs and scope the key."
+}

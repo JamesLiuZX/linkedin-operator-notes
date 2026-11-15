@@ -496,6 +496,25 @@
       "hook": "Railway's attacker went for AI provider keys first, and stolen keys ran up about $740,000.",
       "status": "ready",
       "notes": "AI digest (DIGEST.md). Attach cover.png to tweet 1. Tweets come from the post's X thread section."
+    },
+    {
+      "id": "dg-2026-11-16-li",
+      "week": 16, "date": "2026-11-16", "time": "09:00", "channel": "linkedin",
+      "kind": "atom", "pillar": "agents", "asset": "posts/dg-2026-11-16-your-thumb-is-the-spending-limit.md",
+      "title": "AI digest: ChatGPT's agents got a wallet on 13 Nov. Limits come later",
+      "hook": "ChatGPT's agents got a wallet on 13 Nov. Limits come later.",
+      "status": "ready",
+      "linkInComment": "/digest/2026-11-16-your-thumb-is-the-spending-limit",
+      "notes": "AI digest (DIGEST.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment."
+    },
+    {
+      "id": "dg-2026-11-16-x",
+      "week": 16, "date": "2026-11-16", "time": "21:00", "channel": "x",
+      "kind": "thread", "pillar": "agents", "asset": "posts/dg-2026-11-16-your-thumb-is-the-spending-limit.md",
+      "title": "AI digest thread: ChatGPT's agents can pay, spending limits come later",
+      "hook": "ChatGPT's agents can now pay at checkout. They use a card token, never the card number, and every purchase waits for Face ID or a fingerprint.",
+      "status": "ready",
+      "notes": "AI digest (DIGEST.md). Attach cover.png to tweet 1. Tweets come from the post's X thread section."
     }
   ]
 }

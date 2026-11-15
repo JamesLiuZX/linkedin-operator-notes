@@ -312,6 +312,30 @@ One block per digest, newest first. Each AI digest run (DIGEST.md) appends its
 block here, and every number in its post and cards traces to a row. Vendor
 claims say so in the Fact column.
 
+### 2026-11-16: your thumb is the spending limit
+
+| Fact | Number | Window | Source |
+|---|---|---|---|
+| ChatGPT Wallet launch and eligibility (TechCrunch) | launched Friday 13 Nov 2026 for a limited number of US ChatGPT Pro subscribers aged 18 or over with a US-issued card | 13 Nov 2026 | [TechCrunch](https://techcrunch.com/2026/11/13/chatgpts-new-wallet-lets-ai-agents-shop-and-check-out-for-you/) |
+| ChatGPT Wallet card data (the "0" on the card) | pays with a payment token; neither the agent nor the merchant receives the card number | same | same |
+| ChatGPT Wallet approval and limits | a security check such as Face ID or a fingerprint for every purchase; spending limits not yet available, planned by purchase category or time period, no date given | same | same |
+| ChatGPT Wallet card networks and merchant guidance (OpenAI) | built with American Express, Mastercard and Visa; existing checkout pages should work without a Wallet-specific integration; Web Bot Auth for verified ChatGPT cloud-browser requests | 13 Nov 2026 | [OpenAI Developer Community](https://community.openai.com/t/introducing-chatgpt-wallet/1416044) (OpenAI's own pages did not load) |
+| Gemini and Google Wallet scope (Google) | all Gemini app users in the US, web, Android and iOS; Plaid linking optional; read-only, "can't move, manage, or invest your money" | 13 Nov 2026 | [Google](https://blog.google/innovation-and-ai/products/gemini-app/google-wallet-gemini-app/) |
+| Gemini and Google Wallet eligibility | 18 or over, in the US, personal Google account, Keep Activity on; cannot make transactions with Wallet payment methods | Nov 2026 | [Gemini Apps Help](https://support.google.com/gemini/answer/18112192) |
+| Claude Personal Finance, read-only, for comparison | launched 5 Nov 2026 | Nov 2026 | [Anthropic](https://claude.com/blog/introducing-personal-finance-in-claude) (2026-11-08 block) |
+| Cursor: tampered extension and window | Anthropic.claude-code 2.1.312 and 2.1.313, served from the Cursor VS Code marketplace cache for about 11 hours on 29 Oct 2026 (about 2:27am to 1:35pm PT) | update published 13 Nov 2026 | [Cursor update](https://cursor.com/blog/security-incident-update), [Cursor notice](https://cursor.com/blog/claude-code-extension-security-notice) |
+| Cursor: users who may have received the build | up to 5,000 | same | [Cursor update](https://cursor.com/blog/security-incident-update) |
+| Cursor: exposure | fewer than 0.05% of non-Privacy Mode users had coding agent traces exposed; less than 0.01% of customers had API credentials exposed | same | same |
+| Cursor timeline | first announced 29 Oct; notice updated 30 Oct; last attacker activity seen 1 Nov; update 13 Nov 2026, about two weeks of investigation | Oct to Nov 2026 | same |
+| Cloudflare Spend Management | beta from 13 Nov 2026 for pay-as-you-go customers; Workers and Durable Objects first | 13 Nov 2026 | [Cloudflare](https://blog.cloudflare.com/spend-management/) |
+| Cloudflare enforcement lag | spend shown in under 10 minutes; caps propagate asynchronously; goal to close the measurement-to-enforcement gap to under a minute is future work; "recorded spend can exceed a limit" | same | [Cloudflare](https://blog.cloudflare.com/spend-management/), [Cloudflare changelog](https://developers.cloudflare.com/changelog/post/2026-11-13-spend-management/) |
+| Fed survey of salient risks | 23 market contacts, Sep and Oct 2026; AI the top-cited risk, with the greatest increase since the spring survey (20 contacts) | report dated November 2026, PDF and page dated 13 Nov 2026, information as of 28 Oct 2026 | [Federal Reserve](https://www.federalreserve.gov/publications/files/financial-stability-report-20261113.pdf) |
+| Fed: advanced-computing debt issuance | more than $680 billion by Oct 2026, about fivefold from $130 billion in all of 2023 | same | same |
+| Fed: bank exposure | the largest US bank holding companies have close to $1 trillion of exposure to large technology firms, data center developers, related SPEs and private credit vehicles, and utilities | same | same |
+| Fed: agentic systems and cyber events | reports of agentic systems involved in cyber events have increased in frequency since the May 2026 report | same | same |
+| Agentic Payments: How AI Agents Move Money (Maven) | free, 60 minutes, recorded 23 Sep 2026 | Sep 2026 | [Maven](https://maven.com/p/df4c6b/agentic-payments-how-ai-agents-move-money) |
+| Build and Train a GLM-5.3-Flash Model From Scratch with Python | 44-minute watch, posted 14 Nov 2026 | Nov 2026 | [freeCodeCamp](https://www.freecodecamp.org/news/build-and-train-a-glm-53-flash-model-from-scratch-with-python/) |
+
 ### 2026-11-12: stolen AI keys spend like cash
 
 | Fact | Number | Window | Source |
