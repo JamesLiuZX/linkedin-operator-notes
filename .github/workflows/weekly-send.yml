@@ -1,0 +1,60 @@
+name: Weekly send
+
+# Hands the newest issue of the weekly to Kit, the email service. The issue
+# itself is written and landed earlier the same day by the scheduled task that
+# follows NEWSLETTER.md. Nothing is mailed until James has set KIT_API_KEY,
+# and nothing is mailed without a look until he has set KIT_SEND to "live".
+
+on:
+  schedule:
+    # Tuesdays at 12:00 UTC = 20:00 Singapore
+    - cron: "0 12 * * 2"
+  workflow_dispatch:
+    inputs:
+      issue:
+        description: "Issue slug to send (leave empty for the newest)"
+        required: false
+        type: string
+      mode:
+        description: "draft saves it in Kit for a look. send schedules it"
+        required: false
+        type: choice
+        options:
+          - draft
+          - send
+        default: draft
+
+permissions:
+  contents: read
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      # The gate first. An issue that fails it is not mailed.
+      - name: Handbook gate
+        run: node scripts/hub-check.mjs
+
+      - name: Hand the issue to Kit
+        env:
+          KIT_API_KEY: ${{ secrets.KIT_API_KEY }}
+          KIT_SEGMENT_ID: ${{ vars.KIT_SEGMENT_ID }}
+          KIT_TEMPLATE_ID: ${{ vars.KIT_TEMPLATE_ID }}
+          KIT_SEND: ${{ vars.KIT_SEND }}
+          SITE_URL: ${{ secrets.SITE_URL }}
+          MODE: ${{ inputs.mode }}
+          ISSUE: ${{ inputs.issue }}
+        run: |
+          ARGS=""
+          if [ -n "$ISSUE" ]; then ARGS="$ARGS --issue $ISSUE"; fi
+          # A manual run does what was asked. A scheduled run sends only once KIT_SEND is live.
+          if [ "$MODE" = "send" ] || { [ -z "$MODE" ] && [ "$KIT_SEND" = "live" ]; }; then
+            ARGS="$ARGS --send"
+          fi
+          node scripts/weekly-send.mjs $ARGS

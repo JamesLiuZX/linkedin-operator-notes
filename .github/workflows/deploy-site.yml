@@ -8,6 +8,9 @@ on:
       - "articles/**"
       - "scripts/**"
       - "posts/**"
+      # The AI Workflow Handbook: its pages, its skills and its weekly issues.
+      - "hub/**"
+      - "skills/**"
   # Lets the site be deployed from a feature branch before it merges.
   workflow_dispatch:
 
@@ -46,6 +49,9 @@ jobs:
       - name: SPA fallback
         run: cp site/dist/index.html site/dist/404.html
 
+      # This step also builds the AI Workflow Handbook: build-seo.mjs ends by
+      # running scripts/hub-build.mjs, which takes over "/" and keeps the
+      # older app at its own routes.
       # Without this the deployed site ships no sitemap.xml or robots.txt at
       # all; build-seo.mjs used to run only in the CI compile check, which
       # deploys nothing. SITE_URL (repo secret) wins when set; the Pages URL

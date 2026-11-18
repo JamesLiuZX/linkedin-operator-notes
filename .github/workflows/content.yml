@@ -8,6 +8,8 @@ on:
       - "content/**"
       - "scripts/**"
       - "site/**"
+      - "hub/**"
+      - "skills/**"
       - "package.json"
       - "vercel.json"
   push:
@@ -45,6 +47,11 @@ jobs:
             || (echo "::error::site/public is stale. Run npm run apps and commit." && exit 1)
 
       - run: npm --prefix site ci
+
+      # The AI Workflow Handbook's gate: every skill's checker on every worked
+      # example, the statistics tests, versions, issues and house style.
+      - name: Handbook gate
+        run: node scripts/hub-check.mjs
 
       # The site reads gate scores and uses them to decide what is publishable,
       # so they are regenerated from the content before either build.
