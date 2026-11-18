@@ -1,0 +1,227 @@
+{
+  "title": "One-tap reorder, six months on",
+  "plan": {
+    "name": "One-tap reorder",
+    "summary": "A Home card for returning customers that places last week's order again, to the same address, on the next available slot, with the saved card.",
+    "ships": "First week of January 2027, to every customer with at least three orders",
+    "goal": "More returning customers order each week, and a repeat order takes under two minutes."
+  },
+  "asOf": "2026-11-18",
+  "failedOn": "2027-07-05",
+  "inputs": [
+    { "id": "T", "label": "Journey teardown", "detail": "Four apps, three stages" },
+    { "id": "S", "label": "Interview synthesis", "detail": "Eight weekly shoppers" },
+    { "id": "P", "label": "Plan constraints", "detail": "Operations not consulted; stock service owned by another team, full basket response time unknown; no order data or baseline" }
+  ],
+  "risks": [
+    {
+      "id": "R1",
+      "area": "operations",
+      "title": "Reorders fail at the last step on stock",
+      "story": "Returning customers tap Reorder on last week's basket and reach confirmation with several items gone, because Tangelo checks stock only at the end. Checkout fails, the two minute promise breaks on the first try, and the customers who most wanted speed go back to rebuilding by hand or leave.",
+      "likelihood": "high",
+      "likelihoodWhy": "Tangelo checkout already fails at the last step on stock, and the one existing Reorder user found four items unavailable.",
+      "impact": "high",
+      "impactWhy": "It breaks the feature's core promise on the exact customers the plan targets.",
+      "evidence": {
+        "status": "supported",
+        "from": "T",
+        "detail": "Teardown: Tangelo checkout fails at the last step when items are out of stock; no stock check when the basket opens. Synthesis: the one Reorder user hit four unavailable items.",
+        "expect": "Share of checkouts failing on an out-of-stock item is higher for reorder checkouts than for hand-built ones."
+      },
+      "tripwire": {
+        "metric": "Share of checkouts that fail on an out-of-stock item",
+        "threshold": "Rises more than 2 percentage points above its level in the four weeks before launch",
+        "check": "2027-01-18",
+        "owner": "Product manager, one-tap reorder"
+      },
+      "mitigation": "Check stock when the card renders and show the true item count and unavailable items on the card, before the button is tapped.",
+      "test": "Replay last week's baskets of a sample of eligible customers against this week's stock and count how many would have failed at checkout."
+    },
+    {
+      "id": "R2",
+      "area": "behaviour",
+      "title": "One tap turns into unwanted substitutions",
+      "story": "Customers who used to scan their basket now tap once and never see what changed. Pickers substitute missing items the customer would have removed, the doorstep reveals the swaps, and complaints and refunds rise while customers learn that the fast path is the risky one.",
+      "likelihood": "high",
+      "likelihoodWhy": "Five of eight interviewed shoppers have already received a substitution they did not want, without a one tap flow.",
+      "impact": "medium",
+      "impactWhy": "Each bad substitution costs a refund or a contact and erodes trust in the feature.",
+      "evidence": {
+        "status": "supported",
+        "from": "S",
+        "detail": "Five of eight received an unwanted substitution.",
+        "expect": "Substitution complaints per 100 orders are higher on reorder orders than on hand-built orders."
+      },
+      "tripwire": {
+        "metric": "Substitution complaints per 100 orders",
+        "threshold": "Rises more than 25% above its level in the four weeks before launch",
+        "check": "2027-02-01",
+        "owner": "Head of customer support"
+      },
+      "mitigation": "Show any likely substitutions on the confirmation screen with a one tap way to refuse them, and default reorder substitutions to ask first.",
+      "test": "Show five shoppers from the interview panel a reorder confirmation with substitutions listed and see whether they spot and refuse them."
+    },
+    {
+      "id": "R3",
+      "area": "operations",
+      "title": "Reorders swamp the next available slots",
+      "story": "Thousands of eligible customers tap Reorder on the same mornings, and every order lands on the next available slot. Operations, who were never consulted, see the earliest slots fill in minutes while later slots sit empty, drivers are overloaded at peak, and late deliveries rise.",
+      "likelihood": "medium",
+      "likelihoodWhy": "The default slot rule concentrates demand by design, and operations have not seen the plan.",
+      "impact": "high",
+      "impactWhy": "Late or missed deliveries hit every customer, not just reorder users.",
+      "evidence": {
+        "status": "supported",
+        "from": "P",
+        "detail": "Operations run the delivery slots and have not been consulted. Synthesis: four of eight lost a slot they wanted.",
+        "expect": "Delivery slot utilisation becomes lopsided, with the earliest slots full and later slots underused."
+      },
+      "tripwire": {
+        "metric": "Delivery slot utilisation",
+        "threshold": "Earliest available slot of the day above 95% utilisation on more than 3 days in a week",
+        "check": "2027-01-15",
+        "owner": "Head of delivery operations"
+      },
+      "mitigation": "Default reorders to the customer's usual slot, or let them pick from a short list, and agree slot rules with operations before launch.",
+      "test": "Meet operations this month with the eligible customer count and model the slot load from current order times."
+    },
+    {
+      "id": "R4",
+      "area": "money",
+      "title": "The about $61 estimate becomes a surprise charge",
+      "story": "The card says about $61, but prices have moved and the saved card is charged more. Customers who were already puzzled by a basket costing more each week now see it happen without review, raise disputes, contact support and some stop trusting the card altogether.",
+      "likelihood": "medium",
+      "likelihoodWhy": "Three of eight shoppers already notice the same basket costing more and cannot tell why.",
+      "impact": "medium",
+      "impactWhy": "Refunds, disputes and support contacts eat the margin the extra orders bring.",
+      "evidence": {
+        "status": "supported",
+        "from": "S",
+        "detail": "Three of eight notice price drift on the same basket.",
+        "expect": "Support contacts about price or charges rise after launch, concentrated on reorder orders."
+      },
+      "tripwire": {
+        "metric": "Contacts to support, by reason (price or charge)",
+        "threshold": "Rises more than 20% above its level in the four weeks before launch",
+        "check": "2027-02-01",
+        "owner": "Head of customer support"
+      },
+      "mitigation": "Show the current total and any price changes since last week on the card, not an estimate.",
+      "test": "Recompute last week's baskets at this week's prices for a sample of customers and measure how far the total moves."
+    },
+    {
+      "id": "R5",
+      "area": "behaviour",
+      "title": "Accidental reorders get cancelled",
+      "story": "A single button at the top of Home places a full order with the saved card. Customers tap it by mistake while scrolling, or before checking the fridge, and cancel later. Pickers have already started, food is wasted, and cancellations rise as fast as orders.",
+      "likelihood": "medium",
+      "likelihoodWhy": "A one tap purchase at the top of the most visited screen invites mistaken taps, but nothing in the inputs measures this.",
+      "impact": "medium",
+      "impactWhy": "Cancelled orders inflate the target metric while costing picking time and stock.",
+      "evidence": {
+        "status": "unknown",
+        "expect": "Orders cancelled before delivery rise, and a large share of them were placed from the reorder card."
+      },
+      "tripwire": {
+        "metric": "Orders cancelled before delivery",
+        "threshold": "More than 5% of reorder card orders are cancelled before delivery",
+        "check": "2027-01-25",
+        "owner": "Product manager, one-tap reorder"
+      },
+      "mitigation": "Make the confirmation screen a real confirm step with an undo window before the order goes to picking.",
+      "test": "Usability test the card with eight returning customers and count unintended taps."
+    },
+    {
+      "id": "R6",
+      "area": "money",
+      "title": "Baskets shrink as browsing stops",
+      "story": "Returning customers stop browsing because the card does the work. They reorder the usual 23 items and no longer add the extras they found while rebuilding by hand. Orders per customer rise slightly, items per order fall, and revenue per customer is flat.",
+      "likelihood": "medium",
+      "likelihoodWhy": "Skipping the basket build removes the moments when extra items get added, but no data shows how many are added today.",
+      "impact": "medium",
+      "impactWhy": "It would make the target metric look good while revenue does not move.",
+      "evidence": {
+        "status": "unknown",
+        "expect": "Items per order falls for customers who use the reorder card compared with those who do not."
+      }
+    },
+    {
+      "id": "R7",
+      "area": "users",
+      "title": "The usual shop is not usual",
+      "story": "Customers with three or more orders include people whose last order was a party, a holiday stock up or a one off. The card offers that basket as their usual shop, they ignore or distrust it, and the feature reaches fewer real weekly shoppers than the eligibility rule suggests.",
+      "likelihood": "medium",
+      "likelihoodWhy": "Three orders is a low bar and last week is a single sample, but no order data shows how often baskets repeat.",
+      "impact": "medium",
+      "impactWhy": "A wrong usual basket wastes the top of Home for those customers.",
+      "evidence": {
+        "status": "unknown",
+        "expect": "Many eligible customers see the card and never tap it, and their last orders differ widely from earlier ones."
+      }
+    },
+    {
+      "id": "R8",
+      "area": "users",
+      "title": "Gains come from people who ordered anyway",
+      "story": "The customers who tap Reorder are the six in eight who already rebuild the same basket every week. They save time, but they would have ordered anyway, so orders per returning customer per week barely moves and the plan's first goal is not met.",
+      "likelihood": "medium",
+      "likelihoodWhy": "The interviewed shoppers are already weekly shoppers, so the research says more about speed than about extra orders.",
+      "impact": "medium",
+      "impactWhy": "The headline goal fails even if the feature is well liked.",
+      "evidence": {
+        "status": "supported",
+        "from": "S",
+        "detail": "All eight participants are weekly shoppers; six of eight rebuild the same basket weekly.",
+        "expect": "Repeat order time falls, but orders per returning customer per week is flat against customers without the card."
+      }
+    },
+    {
+      "id": "R9",
+      "area": "rules",
+      "title": "Charging a saved card without review draws disputes",
+      "story": "A customer who moved, changed cards or shares an account is charged and delivered to last week's address without seeing a review screen. Disputes and chargebacks follow, and a complaint about orders placed with one tap spreads on social media. Payments and legal decide whether the flow is acceptable.",
+      "likelihood": "low",
+      "likelihoodWhy": "A confirmation screen follows the tap, which limits this, though its content is not described.",
+      "impact": "medium",
+      "impactWhy": "Chargebacks carry fees and a reputational story is hard to undo.",
+      "evidence": {
+        "status": "unknown",
+        "expect": "Contacts to support about wrong address or unrecognised charges rise among reorder orders."
+      }
+    },
+    {
+      "id": "R10",
+      "area": "build",
+      "title": "The stock service is too slow for a full basket",
+      "story": "The card needs a stock answer on 23 items before it can be honest. The stock service belongs to another team and its response time on a full basket is unknown. If it is slow, the Home screen waits or the card shows stale counts, and the fix sits in another team's backlog.",
+      "likelihood": "medium",
+      "likelihoodWhy": "The plan itself says the response time is not known and the owning team is separate.",
+      "impact": "high",
+      "impactWhy": "It blocks the main mitigation for the worst risk, R1.",
+      "evidence": {
+        "status": "unknown",
+        "from": "P",
+        "detail": "The plan states the response time on a full basket is not known.",
+        "expect": "Home screen load time rises or the card shows item counts that differ from checkout."
+      }
+    },
+    {
+      "id": "R11",
+      "area": "build",
+      "title": "A team nobody asked holds a veto",
+      "story": "Beyond operations and the stock team, payments, support and the Home screen owners may each need to change something or sign off. One of them has other priorities for January, the launch slips or ships without its safeguards, and nobody planned for it. Fill in who they are.",
+      "likelihood": "medium",
+      "likelihoodWhy": "Two dependent teams are already named as not consulted or unknown, which suggests others are too.",
+      "impact": "medium",
+      "impactWhy": "A slip or a stripped launch removes the mitigations for the top risks.",
+      "evidence": {
+        "status": "unknown",
+        "expect": "Late requests from other teams in the weeks before launch, or launch items marked blocked by another team."
+      }
+    }
+  ],
+  "top": ["R1", "R3", "R2", "R4", "R5"],
+  "skipped": {},
+  "cut": ["A risk about expired saved cards failing payment was folded into R9 to keep the list short."]
+}

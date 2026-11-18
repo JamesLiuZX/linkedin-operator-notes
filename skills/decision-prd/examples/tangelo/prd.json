@@ -16,19 +16,19 @@
     {
       "id": "T",
       "label": "Journey teardown",
-      "detail": "4 apps, 3 stages",
+      "detail": "4 apps, 3 stages, 24 screens",
       "href": "journey-teardown.html"
     },
     {
       "id": "S",
       "label": "Interview synthesis",
-      "detail": "8 weekly shoppers",
+      "detail": "8 weekly shoppers, 36 verified quotes",
       "href": "interview-synthesis.html"
     },
     {
       "id": "R",
       "label": "Pre-mortem",
-      "detail": "9 risks, 4 tripwires",
+      "detail": "11 risks, 5 tripwires",
       "href": "premortem.html"
     }
   ],
@@ -45,12 +45,12 @@
           "id": "1.1",
           "screen": "home",
           "title": "Last week's basket is three taps away",
-          "problem": "Repeating a shop means opening Orders, opening the order, then tapping Reorder. Seven of eight customers we spoke to buy mostly the same things each week, and none of them had found that route.",
+          "problem": "Repeating a shop means opening Orders, opening the order, then tapping Reorder. Six of eight customers rebuild the same basket by hand each week, and five of them had never found that route.",
           "change": "Put a card at the top of Home: \"Your usual shop, 23 items, about $61\". One tap opens last week's basket, ready to edit.",
-          "why": "The card opens a basket, never a checkout. A repeat order still needs a look before it is paid for.",
+          "why": "The first plan was a button that places the order. The pre-mortem argued against it, so the card opens a basket and never pays.",
           "constraint": {
             "label": "Risk from the pre-mortem",
-            "text": "A one-tap repeat can shrink baskets, because people stop browsing (R3). Items per order is a guardrail on the test, with a stop line at a 3% fall."
+            "text": "A tap that places an order invites accidental orders and disputed charges (R5, R9), so the customer always sees the basket first. Baskets may also shrink once browsing stops (R6), so items per order is a guardrail on the test."
           },
           "evidence": [
             {
@@ -225,8 +225,8 @@
           ],
           "sources": [
             "T:stage 1",
-            "S:theme 1, 7 of 8",
-            "R:R3"
+            "S:themes 1 and 6",
+            "R:R5, R6, R9"
           ],
           "know": {
             "baseline": "Median time from opening the app to placing a repeat order. Not measured yet.",
@@ -238,11 +238,11 @@
           "id": "1.2",
           "screen": "home",
           "title": "Staples run out between shops",
-          "problem": "Four of eight customers described a second, smaller order midweek for something they forgot. Nothing on Home knows what a customer is about to run out of.",
+          "problem": "Four of eight customers place a second, smaller order midweek for something they forgot. Nothing on Home knows what a customer is about to run out of.",
           "change": "Add a \"Running low?\" row with up to three items, chosen from how often this customer buys each one: \"Whole milk, every 6 days\".",
           "constraint": {
-            "label": "Risk from the pre-mortem",
-            "text": "A wrong guess reads as nagging (R7). The row needs at least four past orders of an item before it will show it, and it never shows more than three."
+            "label": "Risk",
+            "text": "A wrong guess reads as nagging. The row needs at least four past orders of an item before it shows it, and it never shows more than three."
           },
           "evidence": [
             {
@@ -409,8 +409,7 @@
           ],
           "sources": [
             "T:stage 1",
-            "S:unprompted, 4 of 8",
-            "R:R7"
+            "S:theme 4, 4 of 8"
           ],
           "know": {
             "baseline": "Share of orders followed by a smaller order within 3 days.",
@@ -431,11 +430,11 @@
           "id": "2.1",
           "screen": "basket",
           "title": "Out-of-stock items surface at the last step",
-          "problem": "Stock is checked when the customer taps Place order. A repeated basket with two missing items fails there, and the customer is sent back to find and remove them.",
+          "problem": "Stock is checked when the customer taps Place order. A repeated basket with missing items fails there, which is what happened to the one customer who had used Reorder.",
           "change": "Check stock when the basket opens. List what is missing at the top, with one suggested swap each and a Remove button.",
           "constraint": {
             "label": "Dependency",
-            "text": "The stock service has to answer inside one second, or the basket opens without the check and says so (R8). Engineering to confirm the current response time."
+            "text": "The stock service has to answer inside one second on a full basket, or the basket opens without the check and says so (R10). Its owners have not confirmed the response time."
           },
           "evidence": [
             {
@@ -595,9 +594,9 @@
             }
           ],
           "sources": [
-            "T:stage 2",
-            "S:theme 3, 5 of 8",
-            "R:R2, R8"
+            "T:stages 2 and 3",
+            "S:theme 6",
+            "R:R1, R10"
           ],
           "know": {
             "baseline": "Share of checkouts that hit an out-of-stock error.",
@@ -611,10 +610,10 @@
           "title": "Substitutions are a surprise at the door",
           "problem": "When an item runs out after the order is placed, the picker chooses a replacement. Five of eight customers had received a swap they did not want, and learned of it when the bags arrived.",
           "change": "Give every basket line a rule, set once and remembered: swap for something similar, swap for a named item, or do not swap.",
-          "why": "One customer wanted the opposite: \"I'd rather get something than nothing.\" The default stays at similar item, so nobody loses what they have today.",
+          "why": "One customer wanted the opposite: \"Beans are beans.\" The default stays at similar item, so nobody loses what they have today.",
           "constraint": {
             "label": "Dependency",
-            "text": "Rules add a step for pickers. Operations to estimate the effect on picking time before this is scheduled (R5)."
+            "text": "Rules add a step for pickers. Operations to estimate the effect on picking time before this is scheduled."
           },
           "evidence": [
             {
@@ -768,8 +767,8 @@
           ],
           "sources": [
             "T:stage 2",
-            "S:theme 3, 5 of 8",
-            "R:R5"
+            "S:theme 2, 5 of 8",
+            "R:R2"
           ],
           "know": {
             "baseline": "Substitution complaints per 100 orders.",
@@ -794,7 +793,7 @@
           "change": "Show the next three slots on Home. Picking one holds it for 20 minutes, and the basket and checkout both show the held slot.",
           "constraint": {
             "label": "Risk from the pre-mortem",
-            "text": "Held slots that are never used cost capacity (R4). A hold lasts 20 minutes, one per customer, and slot utilisation is a tripwire at 85%."
+            "text": "Faster repeat orders could fill the nearest slots (R3), and a held slot that goes unused costs capacity. A hold lasts 20 minutes, one per customer, and operations own that limit."
           },
           "evidence": [
             {
@@ -968,8 +967,8 @@
           ],
           "sources": [
             "T:stage 3",
-            "S:theme 4, 4 of 8",
-            "R:R4"
+            "S:theme 3, 4 of 8",
+            "R:R3"
           ],
           "know": {
             "baseline": "Share of checkouts where the first slot shown was full.",
@@ -985,7 +984,7 @@
           "change": "Mark each line that costs more than last time with its old price, and add one line to the basket: \"3 items cost more than last week. That adds $1.40.\"",
           "constraint": {
             "label": "Needs legal review",
-            "text": "A was-price is a pricing claim in most markets. Legal to confirm the wording and how long a previous price may be shown (R9). Nothing ships until they have."
+            "text": "A was-price is a pricing claim in most markets. Legal to confirm the wording and how long a previous price may be shown. Nothing ships until they have."
           },
           "evidence": [
             {
@@ -1147,9 +1146,9 @@
             }
           ],
           "sources": [
-            "T:stage 3",
+            "T:stage 2",
             "S:theme 5, 3 of 8",
-            "R:R6, R9"
+            "R:R4"
           ],
           "know": {
             "baseline": "Contacts about a total that was higher than expected.",

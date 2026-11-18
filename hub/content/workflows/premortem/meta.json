@@ -5,7 +5,10 @@
   "promise": "Stress a plan before you commit to it: the ways it fails, the evidence for each, and the number that tells you to stop.",
   "gives": "A one-page risk register: ranked failure stories, each top one with a tripwire, an owner and a date.",
   "stage": "decide",
-  "roles": ["strategy", "product"],
+  "roles": [
+    "strategy",
+    "product"
+  ],
   "runtime": "5 min",
   "review": "20 min",
   "needs": "A written plan",
@@ -20,10 +23,21 @@
     "case": "tangelo",
     "file": "premortem.html",
     "label": "One-tap reorder, six months on",
-    "note": "Nine failure stories across six areas. The top four carry tripwires.",
-    "inputs": ["input/plan.md", "premortem.json"]
+    "note": "Eleven failure stories across six areas. The top five carry tripwires, and six are marked as guesses.",
+    "inputs": [
+      "input/plan.md",
+      "premortem.json"
+    ]
   },
-  "chain": { "before": ["journey-teardown", "interview-synthesis"], "after": ["decision-prd"] },
+  "chain": {
+    "before": [
+      "journey-teardown",
+      "interview-synthesis"
+    ],
+    "after": [
+      "decision-prd"
+    ]
+  },
   "when": [
     "A plan is about to be approved and everyone in the room likes it.",
     "You are writing a PRD and want the constraints before the scope.",
@@ -35,35 +49,115 @@
     "The decision is already made and nobody will act on a risk."
   ],
   "inputs": [
-    { "name": "The plan", "note": "A PRD, a memo or half a page: what ships, to whom, and what it is meant to change." },
-    { "name": "What you already know", "note": "Research, numbers, past attempts. Risks are weighed against this." },
-    { "name": "What you can measure", "note": "The metrics you actually have, so tripwires use real ones." }
+    {
+      "name": "The plan",
+      "note": "A PRD, a memo or half a page: what ships, to whom, and what it is meant to change."
+    },
+    {
+      "name": "What you already know",
+      "note": "Research, numbers, past attempts. Risks are weighed against this."
+    },
+    {
+      "name": "What you can measure",
+      "note": "The metrics you actually have, so tripwires use real ones."
+    }
   ],
   "outputs": [
-    { "name": "premortem.html", "note": "The register: a likelihood and impact grid and one card per risk." },
-    { "name": "premortem.json", "note": "The risks as data. The PRD skill turns the top ones into constraints." }
+    {
+      "name": "premortem.html",
+      "note": "The register: a likelihood and impact grid and one card per risk."
+    },
+    {
+      "name": "premortem.json",
+      "note": "The risks as data. The PRD skill turns the top ones into constraints."
+    }
   ],
   "steps": [
-    { "title": "Assume it failed", "body": "Each risk is written as a short story dated six months after launch. Six areas are covered: users, behaviour, operations, money, rules and reputation, and build." },
-    { "title": "Demand evidence for each story", "body": "For every risk it states what you would expect to see if it were true, and whether your inputs support it, contradict it or say nothing." },
-    { "title": "Rank by likelihood and impact", "body": "Each is rated low, medium or high, with a reason. A risk with no supporting evidence is marked as a guess." },
-    { "title": "Attach a tripwire to the top risks", "body": "A metric you already have, a threshold, a date to check it and who checks." },
-    { "title": "Say what would change the plan", "body": "A mitigation that changes scope, and the cheapest test that would settle the risk before launch." }
+    {
+      "title": "Assume it failed",
+      "body": "Each risk is written as a short story dated six months after launch. Six areas are covered: users, behaviour, operations, money, rules and reputation, and build."
+    },
+    {
+      "title": "Demand evidence for each story",
+      "body": "For every risk it states what you would expect to see if it were true, and whether your inputs support it, contradict it or say nothing."
+    },
+    {
+      "title": "Rank by likelihood and impact",
+      "body": "Each is rated low, medium or high, with a reason. A risk with no supporting evidence is marked as a guess."
+    },
+    {
+      "title": "Attach a tripwire to the top risks",
+      "body": "A metric you already have, a threshold, a date to check it and who checks."
+    },
+    {
+      "title": "Say what would change the plan",
+      "body": "A mitigation that changes scope, and the cheapest test that would settle the risk before launch."
+    }
   ],
   "checks": [
-    { "name": "Every top risk has a complete tripwire", "how": "script", "note": "Metric, threshold, check date and owner are all required. A threshold with no number in it is rejected." },
-    { "name": "Evidence is labelled", "how": "script", "note": "Each risk is marked supported, contradicted or unknown, and names the input it rests on." },
-    { "name": "All six areas were considered", "how": "script", "note": "An area with no risk has to say why." },
-    { "name": "The list is short enough to act on", "how": "script", "note": "Twelve risks at most, and no more than five rated high." },
-    { "name": "Every risk says who, doing what, and what follows", "how": "script", "note": "A story under 25 words is rejected as a restated worry." },
-    { "name": "Tripwires use metrics you have", "how": "review", "note": "Check each metric exists in your dashboards today." }
+    {
+      "name": "Every top risk has a complete tripwire",
+      "how": "script",
+      "note": "Metric, threshold, check date and owner are all required. A threshold with no number in it is rejected."
+    },
+    {
+      "name": "Evidence is labelled",
+      "how": "script",
+      "note": "Each risk is marked supported, contradicted or unknown, names the input it rests on, and says what you would expect to see if it were true."
+    },
+    {
+      "name": "All six areas were considered",
+      "how": "script",
+      "note": "An area with no risk has to say why."
+    },
+    {
+      "name": "The list is short enough to act on",
+      "how": "script",
+      "note": "Twelve risks at most, three to five with tripwires, and no more than five rated high on both likelihood and impact."
+    },
+    {
+      "name": "Every risk is a story",
+      "how": "script",
+      "note": "25 to 90 words: who, doing what, and what follows. A one-line worry is rejected."
+    },
+    {
+      "name": "Tripwires use metrics you have",
+      "how": "review",
+      "note": "Check each metric exists in your dashboards today."
+    }
   ],
   "failures": [
-    { "title": "A long list of plausible worries", "body": "Models are good at generating risks. Twenty risks are as useful as none.", "catch": "The output is capped and only the top ones get tripwires. If everything is rated high, ask it to rank again against your evidence." },
-    { "title": "It cannot know your organisation", "body": "The risk that kills most plans is internal: a dependency, a reorganisation, a team nobody asked.", "catch": "Add those yourself in the review. The build area is where they belong." },
-    { "title": "Tripwires nobody watches", "body": "A threshold in a document is not a decision.", "catch": "Each tripwire has an owner and a date. Put the date in a calendar before you close the file." }
+    {
+      "title": "A long list of plausible worries",
+      "body": "Models are good at generating risks. Twenty risks are as useful as none.",
+      "catch": "The output is capped and only the top ones get tripwires. If everything is rated high, ask it to rank again against your evidence."
+    },
+    {
+      "title": "It cannot know your organisation",
+      "body": "The risk that kills most plans is internal: a dependency, a reorganisation, a team nobody asked.",
+      "catch": "Add those yourself in the review. The build area is where they belong."
+    },
+    {
+      "title": "Tripwires nobody watches",
+      "body": "A threshold in a document is not a decision.",
+      "catch": "Each tripwire has an owner and a date. Put the date in a calendar before you close the file."
+    }
   ],
   "version": "1.0.0",
   "verified": "2026-11-18",
-  "changelog": [{ "version": "1.0.0", "date": "2026-11-18", "note": "First release." }]
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-18",
+      "note": "First release."
+    }
+  ],
+  "run": {
+    "date": "2026-11-18",
+    "by": "A fresh agent session, given only the skill folder and the plan. Nobody answered its questions.",
+    "passed": 5,
+    "total": 5,
+    "note": "It passed on the first run of the checker. The run listed 14 gaps in the instructions. The ones that mattered are fixed in this version.",
+    "log": "examples/tangelo/RUN.md"
+  }
 }

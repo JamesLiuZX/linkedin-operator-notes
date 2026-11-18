@@ -41,13 +41,13 @@ A list of worries is easy to produce and changes nothing. The output of this ski
    - `rules`: law, policy, platform terms, or reputation.
    - `build`: dependencies, performance, and the teams nobody asked.
    A story is two or three sentences: who, doing what, and what follows. "Users might not like it" is not a story. If an area truly has no risk, say why under `skipped`.
-3. **Demand evidence.** For each story write what you would expect to see if it were true (`expect`). Then mark it against the inputs: `supported` (an input shows it), `contradicted` (an input argues against it), or `unknown`. Name the input in `from`. An unknown is a guess, and the output says so.
+3. **Demand evidence.** For each story write what you would expect to see if it were true (`expect`). Then mark it against the inputs: `supported` (an input shows it), `contradicted` (an input argues against it), or `unknown`. Name the input in `from`. The plan counts as an input: a constraint it admits to is evidence. When two inputs bear on a risk, name the stronger and mention the other in `detail`. An unknown is a guess, and the output says so.
 4. **Rate likelihood and impact** as low, medium or high, each with a one-line reason. Evidence moves likelihood. A contradicted risk is rarely high.
 5. **Rank, and cap the list.** Twelve risks at most. Choose the top three to five by likelihood and impact together, and list their IDs in `top`, worst first.
 6. **Give every top risk a tripwire:**
-   - `metric`: one the team already has.
-   - `threshold`: with a number in it. "Falls more than 3% below the control group."
-   - `check`: a date.
+   - `metric`: one the team already has. If a risk deserves a tripwire and nothing measurable exists, it cannot be a top risk. Leave it out of `top` and say in its mitigation what would have to be measured.
+   - `threshold`: with a number in it. When there is no baseline, make it relative: "Rises more than 2 points above its level in the four weeks before launch."
+   - `check`: a date after today, soon enough to act on.
    - `owner`: a role or a name.
 7. **Say what would change the plan.** For each top risk, a `mitigation` that changes scope or design, and the cheapest `test` that would settle the risk before launch.
 8. **Check.** Run `python3 scripts/check.py premortem.json`. Fix every failure.
@@ -55,7 +55,7 @@ A list of worries is easy to produce and changes nothing. The output of this ski
 
 ## Rules that keep it honest
 
-- **Fewer, sharper.** If you have twenty risks you have not ranked them. Cut to twelve and say which you cut.
+- **Fewer, sharper.** If you have twenty risks you have not ranked them. Cut to twelve, and when you cut any, say which under `cut`.
 - **A tripwire has a number.** "Monitor closely" is not a tripwire.
 - **Use the team's own evidence against the plan.** The most useful risks are the ones their own research already points to.
 - **Say what you cannot know.** The risk that kills most plans is internal: a dependency, a reorganisation, a team that was never consulted. Name it under `build` as an unknown and tell the user to fill it in.

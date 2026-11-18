@@ -36,7 +36,7 @@ One JSON object. The examples come from an invented plan for a library app. They
 - `failedOn` is the imagined date of the post-mortem, about six months after launch.
 - `inputs` lists the evidence you were given. Risks cite it by `id`.
 - `top` lists the IDs of the three to five risks that carry tripwires, worst first.
-- `cut` is optional: what you left out to stay within twelve risks.
+- `cut` is needed only when you left risks out to stay within twelve. Say which.
 
 ## A risk
 
@@ -71,7 +71,7 @@ One JSON object. The examples come from an invented plan for a library app. They
 - `area` is one of `users`, `behaviour`, `operations`, `money`, `rules`, `build`.
 - `title` names the failure in under ten words.
 - `story` is 25 to 90 words: who, doing what, and what follows.
-- `likelihood` and `impact` are `low`, `medium` or `high`. Each has a reason.
+- `likelihood` and `impact` are `low`, `medium` or `high`. Each has a reason of at least four words.
 - `evidence.status` is `supported`, `contradicted` or `unknown`. `from` is the `id` of an input, required unless the status is `unknown`. `expect` says what you would see if the risk were real, and is always required.
 - `mitigation` and `test` are required for risks in `top`, optional for the rest.
 
@@ -83,7 +83,7 @@ Required for every risk in `top`. Leave it out, or set it to `null`, for the oth
 |---|---|
 | `metric` | Something the team measures today |
 | `threshold` | Contains a number |
-| `check` | A date, `YYYY-MM-DD`, after `asOf` |
+| `check` | A date, `YYYY-MM-DD`, later than `asOf` (the day the pre-mortem was written) |
 | `owner` | A role or a name |
 
 ## Skipped areas

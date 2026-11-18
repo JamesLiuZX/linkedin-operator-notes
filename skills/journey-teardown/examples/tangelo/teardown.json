@@ -1,0 +1,2497 @@
+{
+ "title": "The repeat weekly shop: why it is slow in Tangelo",
+ "question": "Why does a repeat shop take a returning customer so long in Tangelo, and what would make it a two minute job?",
+ "us": "tangelo",
+ "captured": "2026-11-18",
+ "note": "Tangelo, Pippin, Marrow and Sorrel are fictional. Every screen is a schematic drawing made for this example, not a screenshot. All lanes are schematic drawings dated 18 Nov 2026; the labels are what is on each screen. Time was not measured: speed is judged from the screens and taps shown, so two minutes is a target, not a timing. The question is the user's, not the one in the input file.",
+ "apps": [
+  {
+   "id": "pippin",
+   "name": "Pippin",
+   "accent": "#5b3df5",
+   "role": "Competitor"
+  },
+  {
+   "id": "marrow",
+   "name": "Marrow",
+   "accent": "#c2410c",
+   "role": "Competitor"
+  },
+  {
+   "id": "sorrel",
+   "name": "Sorrel",
+   "accent": "#0e7490",
+   "role": "Competitor"
+  },
+  {
+   "id": "tangelo",
+   "name": "Tangelo",
+   "accent": "#14532d",
+   "role": "Our product"
+  }
+ ],
+ "dimensions": [
+  {
+   "id": "clarity",
+   "name": "Clarity",
+   "means": "You can tell what to do next without reading twice."
+  },
+  {
+   "id": "speed",
+   "name": "Speed",
+   "means": "Few steps and little typing to finish the stage."
+  },
+  {
+   "id": "transparency",
+   "name": "Transparency",
+   "means": "Costs, limits and consequences are shown before they bite."
+  },
+  {
+   "id": "trust",
+   "name": "Trust",
+   "means": "Nothing surprises the user later."
+  },
+  {
+   "id": "engagement",
+   "name": "Engagement",
+   "means": "It gives a reason to come back or go further."
+  }
+ ],
+ "stages": [
+  {
+   "id": "S1",
+   "name": "Open the app",
+   "finding": "Pippin and Marrow put the repeat on Home, while Tangelo starts a returning customer at the catalogue and keeps Reorder under the Orders tab.",
+   "lanes": [
+    {
+     "app": "pippin",
+     "flow": "Home leads with a one-tap reorder",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the app on Home",
+       "blocks": [
+        [
+         "bar",
+         "Good evening, Sam",
+         {
+          "sub": "Delivering to Flat 2"
+         }
+        ],
+        [
+         "card",
+         "Reorder last shop",
+         {
+          "sub": "26 items · $64.10",
+          "action": "Reorder",
+          "accent": true,
+          "hi": true
+         }
+        ],
+        [
+         "text",
+         "Last shop: Sunday 8 Nov"
+        ],
+        [
+         "title",
+         "Fresh this week"
+        ],
+        [
+         "grid",
+         "",
+         {
+          "n": 3
+         }
+        ],
+        [
+         "row",
+         "Weekly deals",
+         {
+          "right": "See all"
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 0
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "\"Reorder last shop\" is the first card under the greeting, with \"26 items · $64.10\" and a Reorder button on it."
+        },
+        {
+         "k": "note",
+         "t": "\"Last shop: Sunday 8 Nov\" dates the order that the card will repeat."
+        }
+       ]
+      },
+      {
+       "step": "Taps Reorder, basket opens filled",
+       "blocks": [
+        [
+         "title",
+         "Your basket"
+        ],
+        [
+         "text",
+         "26 items filled from last shop",
+         {
+          "hi": true
+         }
+        ],
+        [
+         "row",
+         "Bananas 6",
+         {
+          "right": "$2.20"
+         }
+        ],
+        [
+         "row",
+         "Greek yogurt 1kg",
+         {
+          "right": "$4.60"
+         }
+        ],
+        [
+         "row",
+         "Pasta 500g",
+         {
+          "right": "$1.30"
+         }
+        ],
+        [
+         "row",
+         "Cheddar block",
+         {
+          "right": "$4.25"
+         }
+        ],
+        [
+         "row",
+         "Chicken thighs",
+         {
+          "right": "$7.80"
+         }
+        ],
+        [
+         "row",
+         "Spinach bag",
+         {
+          "right": "$2.50"
+         }
+        ],
+        [
+         "text",
+         "+ 20 more items"
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Continue"
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 1
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "\"26 items filled from last shop\" confirms the tap filled the basket, the same 26 the Home card promised on screen 1."
+        },
+        {
+         "k": "friction",
+         "t": "The $64.10 total from the Home card is not repeated anywhere on this screen, only line prices and \"+ 20 more items\"."
+        },
+        {
+         "k": "note",
+         "t": "Every line shows a price and nothing else, so stock is not mentioned at this point."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "The reorder card is the first thing on Home, but the basket drops the total."
+      },
+      "speed": {
+       "n": 5,
+       "why": "One tap on Reorder turns Home into a filled 26 item basket."
+      },
+      "transparency": {
+       "n": 3,
+       "why": "Count and total on the card, then no total and no stock status in the basket."
+      },
+      "trust": {
+       "n": 4,
+       "why": "Reorder opens the basket with a Continue button, it does not jump to payment."
+      },
+      "engagement": {
+       "n": 3,
+       "why": "Fresh this week and Weekly deals sit below the card, nothing tied to the repeat."
+      }
+     },
+     "verdict": "The fastest route from Home to a full basket, but the basket forgets the total the card showed.",
+     "well": [
+      "Puts last shop first on Home with its date, count and total.",
+      "One tap fills the basket with all 26 items."
+     ],
+     "wrong": [
+      "The basket screen shows no total and no stock status."
+     ],
+     "steal": [
+      "A Reorder last shop card with item count, total and date at the top of Home."
+     ]
+    },
+    {
+     "app": "marrow",
+     "flow": "Home asks for the slot, then shows usuals",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the app on Home",
+       "blocks": [
+        [
+         "bar",
+         "Hi Priya",
+         {
+          "sub": "Delivering to 9 Alder Court"
+         }
+        ],
+        [
+         "title",
+         "Pick your slot"
+        ],
+        [
+         "slots",
+         "Today 6pm|Tmrw 8am|Tmrw 6pm",
+         {
+          "on": 0,
+          "hi": true
+         }
+        ],
+        [
+         "text",
+         "Held for 15 minutes"
+        ],
+        [
+         "title",
+         "Your usuals"
+        ],
+        [
+         "row",
+         "Oat milk 1L",
+         {
+          "sub": "Every 7 days",
+          "right": "Due"
+         }
+        ],
+        [
+         "row",
+         "Porridge oats 1kg",
+         {
+          "sub": "Every 14 days",
+          "right": "Due"
+         }
+        ],
+        [
+         "row",
+         "Butter 250g",
+         {
+          "sub": "Every 14 days",
+          "right": "In 3 days"
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 0
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "\"Pick your slot\" comes before anything else on Home, and \"Held for 15 minutes\" says the chosen time is reserved."
+        },
+        {
+         "k": "good",
+         "t": "\"Your usuals\" rows carry a rhythm and a status, such as \"Every 7 days\" and \"Due\" for oat milk."
+        },
+        {
+         "k": "note",
+         "t": "The 15 minute hold starts on Home, before the customer has added a single item."
+        }
+       ]
+      },
+      {
+       "step": "Opens usuals, adds what is due",
+       "blocks": [
+        [
+         "title",
+         "Your usuals"
+        ],
+        [
+         "text",
+         "7 items · 2 are due"
+        ],
+        [
+         "row",
+         "Oat milk 1L",
+         {
+          "right": "Due"
+         }
+        ],
+        [
+         "row",
+         "Porridge oats 1kg",
+         {
+          "right": "Due"
+         }
+        ],
+        [
+         "row",
+         "Butter 250g",
+         {
+          "right": "In 3 days"
+         }
+        ],
+        [
+         "row",
+         "Bananas 6",
+         {
+          "right": "In 4 days"
+         }
+        ],
+        [
+         "row",
+         "Rice 2kg",
+         {
+          "right": "In 9 days"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Add the 2 that are due",
+         {
+          "hi": true
+         }
+        ],
+        [
+         "cta",
+         "Add all 7",
+         {
+          "ghost": true
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 0
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "Two buttons, \"Add the 2 that are due\" and \"Add all 7\", give a partial or a full repeat in one tap each."
+        },
+        {
+         "k": "friction",
+         "t": "No line has a price and there is no total, so the cost of \"Add all 7\" is unknown."
+        },
+        {
+         "k": "note",
+         "t": "\"7 items · 2 are due\" heads a list that shows only five of the seven rows."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "Slot first, then usuals, with two plainly worded add buttons."
+      },
+      "speed": {
+       "n": 3,
+       "why": "Two screens to add usuals, and the usuals list is seven items, not a whole shop."
+      },
+      "transparency": {
+       "n": 3,
+       "why": "The slot hold time is stated, but the usuals carry no prices or total."
+      },
+      "trust": {
+       "n": 4,
+       "why": "Holding the slot up front removes a reason for checkout to surprise later."
+      },
+      "engagement": {
+       "n": 4,
+       "why": "Due and In 3 days labels give a reason to come back on the item's rhythm."
+      }
+     },
+     "verdict": "Settles the slot and surfaces what is due on the first screen, but prices are missing from the usuals.",
+     "well": [
+      "Slot is picked and held on Home.",
+      "Usuals show how often each item is bought and whether it is due.",
+      "One tap adds only what is due, or all of it."
+     ],
+     "wrong": [
+      "No prices or total on the usuals list.",
+      "The list header says 7 items but shows five rows."
+     ],
+     "steal": [
+      "Due and In N days labels on repeat items.",
+      "A slot picker with a stated hold time on Home."
+     ]
+    },
+    {
+     "app": "sorrel",
+     "flow": "Promo-led Home, Buy again sits low",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the app on Home",
+       "blocks": [
+        [
+         "bar",
+         "Welcome back",
+         {
+          "sub": "Deals picked for you"
+         }
+        ],
+        [
+         "banner",
+         "Spring sale: 20% off",
+         {
+          "sub": "Fresh produce, ends Sunday",
+          "accent": true
+         }
+        ],
+        [
+         "banner",
+         "Free delivery weekend",
+         {
+          "sub": "On orders over $35"
+         }
+        ],
+        [
+         "grid",
+         "",
+         {
+          "n": 2
+         }
+        ],
+        [
+         "banner",
+         "Meal deal $12",
+         {
+          "sub": "Main, side and a drink"
+         }
+        ],
+        [
+         "row",
+         "Buy again",
+         {
+          "right": "See all",
+          "hi": true
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 0
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "Three promo banners and a product grid sit above \"Buy again\", which is the last row before the tab bar."
+        },
+        {
+         "k": "note",
+         "t": "The greeting is \"Welcome back\" with \"Deals picked for you\", no name and no address."
+        }
+       ]
+      },
+      {
+       "step": "Scrolls down and opens Buy again",
+       "blocks": [
+        [
+         "title",
+         "Buy again"
+        ],
+        [
+         "row",
+         "Pasta 500g",
+         {
+          "sub": "Bought 3 times",
+          "right": "$1.45"
+         }
+        ],
+        [
+         "row",
+         "Cheddar block",
+         {
+          "sub": "Bought 2 times",
+          "right": "$4.60"
+         }
+        ],
+        [
+         "row",
+         "Olive oil 500ml",
+         {
+          "sub": "Bought 2 times",
+          "right": "$6.90"
+         }
+        ],
+        [
+         "row",
+         "Bananas 6",
+         {
+          "sub": "Bought 5 times",
+          "right": "$2.20"
+         }
+        ],
+        [
+         "row",
+         "Rice 2kg",
+         {
+          "sub": "Bought once",
+          "right": "$3.80"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Add 5 to basket",
+         {
+          "ghost": true,
+          "hi": true
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 0
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "Each line says how often it was bought, such as \"Bought 5 times\" for bananas, next to its price."
+        },
+        {
+         "k": "friction",
+         "t": "The only action, \"Add 5 to basket\", is an outlined button with no total beside it."
+        },
+        {
+         "k": "note",
+         "t": "This is a list of items ranked by habit, with no past order or date to repeat whole."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 2,
+       "why": "Buy again is a small row under three banners, easy to miss."
+      },
+      "speed": {
+       "n": 2,
+       "why": "A scroll, a See all tap and an add that covers five items, not a shop."
+      },
+      "transparency": {
+       "n": 3,
+       "why": "Prices and purchase counts per line, but no total for the add."
+      },
+      "trust": {
+       "n": 3,
+       "why": "Nothing misleading on these screens, and nothing reassuring either."
+      },
+      "engagement": {
+       "n": 3,
+       "why": "Deals give a reason to browse, not a reason to repeat a shop."
+      }
+     },
+     "verdict": "Shows how often each item was bought, but buries the repeat under promotions.",
+     "well": [
+      "Bought N times labels make the list personal.",
+      "Every Buy again line carries a price."
+     ],
+     "wrong": [
+      "Buy again sits below three banners and a grid.",
+      "The add button is outlined and has no total."
+     ],
+     "steal": [
+      "Purchase counts on each repeat line."
+     ]
+    },
+    {
+     "app": "tangelo",
+     "flow": "Home is browse-first, Orders holds reorder",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the app on Home",
+       "blocks": [
+        [
+         "bar",
+         "Good evening, Maya",
+         {
+          "sub": "Deliver to 14 Linden Road"
+         }
+        ],
+        [
+         "search",
+         "Search groceries"
+        ],
+        [
+         "chips",
+         "All|Fruit|Dairy|Bakery",
+         {
+          "on": 0
+         }
+        ],
+        [
+         "banner",
+         "Free delivery over $40",
+         {
+          "sub": "Applied at checkout"
+         }
+        ],
+        [
+         "title",
+         "Popular this week",
+         {
+          "hi": true
+         }
+        ],
+        [
+         "grid",
+         "",
+         {
+          "n": 3
+         }
+        ],
+        [
+         "grid",
+         "",
+         {
+          "n": 3
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 0
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "Home has search, category chips, a delivery banner and six \"Popular this week\" tiles, and nothing about past orders."
+        },
+        {
+         "k": "note",
+         "t": "\"Free delivery over $40\" carries the sub line \"Applied at checkout\", a promise the later screens have to keep."
+        },
+        {
+         "k": "idea",
+         "t": "A \"Reorder last shop\" card under the greeting would bring the Sunday orders from the Orders tab onto Home."
+        }
+       ]
+      },
+      {
+       "step": "Finds Orders, the only way to repeat",
+       "blocks": [
+        [
+         "title",
+         "Orders"
+        ],
+        [
+         "card",
+         "Sun 15 Nov",
+         {
+          "sub": "23 items · $59.80",
+          "action": "Reorder",
+          "hi": true
+         }
+        ],
+        [
+         "card",
+         "Sun 8 Nov",
+         {
+          "sub": "26 items · $64.10",
+          "action": "Reorder"
+         }
+        ],
+        [
+         "card",
+         "Sun 1 Nov",
+         {
+          "sub": "21 items · $55.90",
+          "action": "Reorder"
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 2
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "Each order card shows date, item count, total and a Reorder button, such as \"23 items · $59.80\"."
+        },
+        {
+         "k": "friction",
+         "t": "Reorder lives on the Orders tab, the third tab, so the customer must know to leave Home to find it."
+        },
+        {
+         "k": "note",
+         "t": "Three Sundays in a row (15, 8 and 1 Nov) show a weekly habit that the Home screen on screen 1 ignores."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 2,
+       "why": "Home gives no sign that a repeat exists; it starts from the catalogue."
+      },
+      "speed": {
+       "n": 3,
+       "why": "A tab change then Reorder; what Reorder fills is not shown on these screens."
+      },
+      "transparency": {
+       "n": 3,
+       "why": "Order cards show count and total, Home's delivery promise is unexplained."
+      },
+      "trust": {
+       "n": 3,
+       "why": "Nothing surprising here; the screens do not show where Reorder leads."
+      },
+      "engagement": {
+       "n": 2,
+       "why": "Popular this week is generic and ignores three weekly orders on record."
+      }
+     },
+     "verdict": "Order history has everything a repeat needs, but Home never points to it.",
+     "well": [
+      "Order cards carry date, count, total and Reorder.",
+      "The weekly rhythm is visible in Orders."
+     ],
+     "wrong": [
+      "No route to repeat a shop from Home.",
+      "All three Reorder buttons look the same, none is marked as the usual."
+     ]
+    }
+   ],
+   "synthesis": {
+    "best": [
+     {
+      "app": "pippin",
+      "why": "One Reorder tap on Home fills a 26 item basket, with count, total and date shown first."
+     },
+     {
+      "app": "marrow",
+      "why": "Slot and due usuals are settled on the first screen."
+     }
+    ],
+    "patterns": [
+     {
+      "name": "The repeat is on Home",
+      "text": "The returning customer's own history is the first thing below the greeting.",
+      "seen": [
+       "pippin",
+       "marrow"
+      ]
+     },
+     {
+      "name": "Count and total before the tap",
+      "text": "The order to repeat shows how many items and what it cost.",
+      "seen": [
+       "pippin",
+       "tangelo"
+      ]
+     },
+     {
+      "name": "Repeat items carry their habit",
+      "text": "Lines say how often they are bought or when they are due.",
+      "seen": [
+       "marrow",
+       "sorrel"
+      ]
+     }
+    ],
+    "anti": [
+     {
+      "name": "Repeat buried under browsing",
+      "text": "Promotions, search or popular tiles take Home and the repeat sits lower or on another tab.",
+      "seen": [
+       "sorrel",
+       "tangelo"
+      ]
+     },
+     {
+      "name": "Repeat list with no total",
+      "text": "The customer adds items without knowing what they will cost together.",
+      "seen": [
+       "marrow",
+       "sorrel"
+      ]
+     }
+    ],
+    "ideal": [
+     {
+      "name": "Offer last shop on Home",
+      "text": "A card with the date, item count, total and one Reorder button."
+     },
+     {
+      "name": "Fill the basket, do not pay",
+      "text": "One tap opens the filled basket for editing."
+     },
+     {
+      "name": "Mark what is due",
+      "text": "Items bought on a rhythm say whether they are due this week."
+     }
+    ],
+    "gaps": [
+     {
+      "p": "P0",
+      "title": "No repeat on Home",
+      "today": "Home is search, chips, a delivery banner and Popular this week; Reorder sits on the third tab, Orders.",
+      "fix": "A Reorder last shop card at the top of Home with date, item count, total and one button.",
+      "benchmark": "pippin"
+     },
+     {
+      "p": "P2",
+      "title": "No sign of what is due",
+      "today": "Orders shows three Sunday orders, but no item says how often it is bought or whether it is due.",
+      "fix": "Due and In N days labels on repeat items, with an add the due ones button.",
+      "benchmark": "marrow"
+     }
+    ]
+   }
+  },
+  {
+   "id": "S2",
+   "name": "Build the basket",
+   "finding": "Pippin and Sorrel tell the customer what changed since the last order at the top of the basket, while Tangelo's basket is names and prices and raises nothing.",
+   "lanes": [
+    {
+     "app": "pippin",
+     "flow": "Stock check up front, swap or remove",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Basket opens with a stock check",
+       "blocks": [
+        [
+         "title",
+         "Basket check"
+        ],
+        [
+         "banner",
+         "2 items out of stock",
+         {
+          "sub": "Swap or remove before checkout",
+          "accent": true,
+          "hi": true
+         }
+        ],
+        [
+         "row",
+         "Greek yogurt 1kg",
+         {
+          "sub": "Swap or remove",
+          "right": "Out",
+          "warn": true
+         }
+        ],
+        [
+         "row",
+         "Chicken thighs",
+         {
+          "sub": "Swap or remove",
+          "right": "Out",
+          "warn": true
+         }
+        ],
+        [
+         "row",
+         "Bananas 6",
+         {
+          "right": "$2.20"
+         }
+        ],
+        [
+         "row",
+         "Pasta 500g",
+         {
+          "right": "$1.30"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Review swaps",
+         {
+          "ghost": true
+         }
+        ],
+        [
+         "cta",
+         "Continue"
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "\"2 items out of stock\" heads the basket with \"Swap or remove before checkout\", before the customer reaches payment."
+        },
+        {
+         "k": "good",
+         "t": "The two missing lines are red and marked \"Out\", each with \"Swap or remove\" under the name."
+        },
+        {
+         "k": "friction",
+         "t": "\"Continue\" is the filled button and \"Review swaps\" is outlined, so the easy path skips the two problems."
+        }
+       ]
+      },
+      {
+       "step": "Looks at a swap suggestion",
+       "blocks": [
+        [
+         "title",
+         "Basket check",
+         {
+          "dim": true
+         }
+        ],
+        [
+         "row",
+         "Greek yogurt 1kg",
+         {
+          "right": "Out",
+          "warn": true,
+          "dim": true
+         }
+        ],
+        [
+         "row",
+         "Chicken thighs",
+         {
+          "right": "Out",
+          "warn": true,
+          "dim": true
+         }
+        ],
+        [
+         "row",
+         "Bananas 6",
+         {
+          "right": "$2.20",
+          "dim": true
+         }
+        ],
+        [
+         "sheet",
+         "Swap Greek yogurt 1kg",
+         {
+          "items": [
+           "Skyr 900g · $4.90",
+           "Greek yogurt 500g · $2.50",
+           "Remove from basket"
+          ],
+          "on": 0,
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "Each swap shows its price, such as \"Skyr 900g · $4.90\", and \"Remove from basket\" sits beside them."
+        },
+        {
+         "k": "note",
+         "t": "The sheet handles Greek yogurt only, so the chicken thighs from screen 1 need a second pass."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "The banner says what is wrong and what to do before checkout."
+      },
+      "speed": {
+       "n": 4,
+       "why": "A swap is one sheet and one tap, but one item at a time."
+      },
+      "transparency": {
+       "n": 4,
+       "why": "Stock and swap prices are shown, the basket total is not."
+      },
+      "trust": {
+       "n": 4,
+       "why": "Stock problems surface in the basket, but Continue lets them be skipped."
+      },
+      "engagement": {
+       "n": 3,
+       "why": "Swap options keep the shop going, nothing more."
+      }
+     },
+     "verdict": "Catches stock problems before checkout, but makes skipping them the default button.",
+     "well": [
+      "Out of stock items are flagged at the top of the basket.",
+      "Swap choices show their prices."
+     ],
+     "wrong": [
+      "Continue is more prominent than Review swaps.",
+      "No basket total on either screen."
+     ],
+     "steal": [
+      "A basket check banner naming how many items are out, before checkout.",
+      "Priced swap choices in a bottom sheet."
+     ]
+    },
+    {
+     "app": "marrow",
+     "flow": "Every line carries a swap preference",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads the basket lines",
+       "blocks": [
+        [
+         "title",
+         "Your basket"
+        ],
+        [
+         "text",
+         "Tap a line to change its rule"
+        ],
+        [
+         "row",
+         "Oat milk 1L",
+         {
+          "sub": "If out: Swap for similar",
+          "right": "$1.90"
+         }
+        ],
+        [
+         "row",
+         "Porridge oats 1kg",
+         {
+          "sub": "If out: Do not swap",
+          "right": "$2.80",
+          "hi": true
+         }
+        ],
+        [
+         "row",
+         "Butter 250g",
+         {
+          "sub": "If out: Let me choose",
+          "right": "$2.60"
+         }
+        ],
+        [
+         "row",
+         "Bananas 6",
+         {
+          "sub": "If out: Swap for similar",
+          "right": "$2.10"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Continue"
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 1
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "Every line states its out of stock rule, such as \"If out: Do not swap\" on porridge oats."
+        },
+        {
+         "k": "friction",
+         "t": "No line says whether the item is in stock today, and there is no total or item count."
+        },
+        {
+         "k": "note",
+         "t": "\"Tap a line to change its rule\" is the only instruction, placed above the list."
+        }
+       ]
+      },
+      {
+       "step": "Sets the rule for one line",
+       "blocks": [
+        [
+         "title",
+         "Your basket",
+         {
+          "dim": true
+         }
+        ],
+        [
+         "row",
+         "Oat milk 1L",
+         {
+          "right": "$1.90",
+          "dim": true
+         }
+        ],
+        [
+         "row",
+         "Porridge oats 1kg",
+         {
+          "right": "$2.80",
+          "dim": true
+         }
+        ],
+        [
+         "row",
+         "Butter 250g",
+         {
+          "right": "$2.60",
+          "dim": true
+         }
+        ],
+        [
+         "sheet",
+         "If this is out of stock",
+         {
+          "items": [
+           "Swap for similar",
+           "Let me choose a swap",
+           "Do not swap"
+          ],
+          "on": 0,
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "The sheet offers three plain choices: \"Swap for similar\", \"Let me choose a swap\" and \"Do not swap\"."
+        },
+        {
+         "k": "friction",
+         "t": "The sheet title \"If this is out of stock\" does not name the line it is changing."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 3,
+       "why": "Rules per line are clear, the sheet does not say which line it edits."
+      },
+      "speed": {
+       "n": 3,
+       "why": "Setting a rule means a tap per line; whether rules persist is not shown."
+      },
+      "transparency": {
+       "n": 3,
+       "why": "Rules and prices are visible, current stock and the total are not."
+      },
+      "trust": {
+       "n": 4,
+       "why": "The customer decides in advance what happens to a missing item."
+      },
+      "engagement": {
+       "n": 3,
+       "why": "Nothing on these screens beyond the basket itself."
+      }
+     },
+     "verdict": "Lets the customer decide what happens to every missing item, but never says what is missing now.",
+     "well": [
+      "An out of stock rule on every line.",
+      "Three plain rule choices."
+     ],
+     "wrong": [
+      "No current stock status.",
+      "No basket total.",
+      "The rule sheet does not name its item."
+     ],
+     "steal": [
+      "A per line If out rule set in the basket."
+     ]
+    },
+    {
+     "app": "sorrel",
+     "flow": "Basket flags price changes, not stock",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the basket",
+       "blocks": [
+        [
+         "title",
+         "Basket"
+        ],
+        [
+         "banner",
+         "3 prices changed",
+         {
+          "sub": "Since your last order",
+          "accent": true,
+          "hi": true
+         }
+        ],
+        [
+         "row",
+         "Pasta 500g",
+         {
+          "sub": "was $1.20",
+          "right": "$1.45"
+         }
+        ],
+        [
+         "row",
+         "Cheddar block",
+         {
+          "sub": "was $4.25",
+          "right": "$4.60"
+         }
+        ],
+        [
+         "row",
+         "Olive oil 500ml",
+         {
+          "sub": "was $6.40",
+          "right": "$6.90"
+         }
+        ],
+        [
+         "row",
+         "Bananas 6",
+         {
+          "right": "$2.20"
+         }
+        ],
+        [
+         "row",
+         "Rice 2kg",
+         {
+          "right": "$3.80"
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 1
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "\"3 prices changed\" heads the basket, and each changed line keeps its old price, such as \"was $1.20\" for pasta."
+        },
+        {
+         "k": "note",
+         "t": "All three changes are rises: $1.20 to $1.45, $4.25 to $4.60 and $6.40 to $6.90."
+        },
+        {
+         "k": "friction",
+         "t": "Prices are checked against the last order, but no line says anything about stock."
+        }
+       ]
+      },
+      {
+       "step": "Scrolls to the totals",
+       "blocks": [
+        [
+         "text",
+         "+ 12 more items"
+        ],
+        [
+         "row",
+         "Subtotal (18 items)",
+         {
+          "right": "$52.35"
+         }
+        ],
+        [
+         "row",
+         "Delivery",
+         {
+          "right": "$3.50"
+         }
+        ],
+        [
+         "row",
+         "Promo SPRING20",
+         {
+          "right": "-$5.00"
+         }
+        ],
+        [
+         "row",
+         "Total",
+         {
+          "right": "$50.85",
+          "hi": true
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Checkout"
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 1
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "Subtotal, delivery, \"Promo SPRING20\" at \"-$5.00\" and the total are all listed above Checkout."
+        },
+        {
+         "k": "note",
+         "t": "Five lines on screen 1 plus \"+ 12 more items\" make 17 lines, against \"Subtotal (18 items)\" here."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "The price change banner and was prices read at a glance."
+      },
+      "speed": {
+       "n": 3,
+       "why": "Two screens of scrolling to reach Checkout, nothing to fix along the way."
+      },
+      "transparency": {
+       "n": 4,
+       "why": "Price changes and a full breakdown, but stock is not mentioned."
+      },
+      "trust": {
+       "n": 3,
+       "why": "Honest about prices, silent on stock, and the item count does not add up."
+      },
+      "engagement": {
+       "n": 3,
+       "why": "The promo line rewards the order, nothing else invites more."
+      }
+     },
+     "verdict": "Tells the customer exactly what got dearer and what they will pay, but says nothing about stock.",
+     "well": [
+      "Flags price changes since the last order.",
+      "Full cost breakdown before Checkout, promo included."
+     ],
+     "wrong": [
+      "No stock status in the basket.",
+      "Line count and item count disagree with no explanation."
+     ],
+     "steal": [
+      "A was price under each changed line.",
+      "A promo as its own line in the totals."
+     ]
+    },
+    {
+     "app": "tangelo",
+     "flow": "A plain list with prices and a total",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the basket",
+       "blocks": [
+        [
+         "title",
+         "Basket"
+        ],
+        [
+         "row",
+         "Whole milk 2L",
+         {
+          "right": "$2.10"
+         }
+        ],
+        [
+         "row",
+         "Oat milk 1L",
+         {
+          "right": "$1.85"
+         }
+        ],
+        [
+         "row",
+         "Sourdough loaf",
+         {
+          "right": "$3.40"
+         }
+        ],
+        [
+         "row",
+         "Free range eggs 12",
+         {
+          "right": "$3.95"
+         }
+        ],
+        [
+         "row",
+         "Bananas 6",
+         {
+          "right": "$2.20"
+         }
+        ],
+        [
+         "row",
+         "Pasta 500g",
+         {
+          "right": "$1.30"
+         }
+        ],
+        [
+         "text",
+         "+ 17 more items"
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 1
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "Each line is a name and a price, such as \"Whole milk 2L\" at \"$2.10\", with no stock status or swap rule."
+        },
+        {
+         "k": "note",
+         "t": "Nothing on the basket says where its items came from or whether any price changed."
+        }
+       ]
+      },
+      {
+       "step": "Reaches the bottom, taps Checkout",
+       "blocks": [
+        [
+         "text",
+         "+ 17 more items"
+        ],
+        [
+         "row",
+         "Subtotal (23 items)",
+         {
+          "right": "$56.70"
+         }
+        ],
+        [
+         "row",
+         "Delivery",
+         {
+          "right": "$4.50",
+          "hi": true
+         }
+        ],
+        [
+         "row",
+         "Total",
+         {
+          "right": "$61.20"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Checkout"
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 1
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "Subtotal, delivery and total are listed above Checkout, and $56.70 plus $4.50 makes the $61.20 shown."
+        },
+        {
+         "k": "friction",
+         "t": "Delivery is charged at $4.50 on a $56.70 subtotal, with no line saying why."
+        },
+        {
+         "k": "note",
+         "t": "Six lines on screen 1 plus \"+ 17 more items\" match \"Subtotal (23 items)\"."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 3,
+       "why": "A plain list and a clear Checkout, nothing to decide."
+      },
+      "speed": {
+       "n": 3,
+       "why": "A scroll to the totals and one tap, with no problems raised on the way."
+      },
+      "transparency": {
+       "n": 2,
+       "why": "No stock, no price changes, and a delivery charge with no reason."
+      },
+      "trust": {
+       "n": 2,
+       "why": "Nothing warns of the stock failure seen at checkout or explains delivery."
+      },
+      "engagement": {
+       "n": 2,
+       "why": "Nothing on the basket beyond the list and the totals."
+      }
+     },
+     "verdict": "The totals add up and are shown before Checkout, but the basket raises no problem the order will hit later.",
+     "well": [
+      "Subtotal, delivery and total before Checkout.",
+      "Item count matches the lines."
+     ],
+     "wrong": [
+      "No stock check.",
+      "Delivery charge unexplained."
+     ]
+    }
+   ],
+   "synthesis": {
+    "best": [
+     {
+      "app": "pippin",
+      "why": "Out of stock items are flagged and swapped, with prices, before checkout."
+     },
+     {
+      "app": "sorrel",
+      "why": "Price rises since the last order are flagged with the old price, and the totals are fully broken down."
+     }
+    ],
+    "patterns": [
+     {
+      "name": "Lead the basket with what changed",
+      "text": "A banner at the top says what is different since the last order: stock or price.",
+      "seen": [
+       "pippin",
+       "sorrel"
+      ]
+     },
+     {
+      "name": "Decide on missing items in the basket",
+      "text": "Swaps or a standing rule are settled before checkout.",
+      "seen": [
+       "pippin",
+       "marrow"
+      ]
+     },
+     {
+      "name": "Full breakdown above Checkout",
+      "text": "Subtotal, delivery and total are listed before the button.",
+      "seen": [
+       "sorrel",
+       "tangelo"
+      ]
+     }
+    ],
+    "anti": [
+     {
+      "name": "Basket silent on stock",
+      "text": "Nothing in the basket says an item is unavailable, so the problem waits for checkout.",
+      "seen": [
+       "sorrel",
+       "tangelo"
+      ]
+     },
+     {
+      "name": "Basket with no total",
+      "text": "The customer edits the basket without seeing what it now costs.",
+      "seen": [
+       "pippin",
+       "marrow"
+      ]
+     },
+     {
+      "name": "A charge with no reason",
+      "text": "Delivery is charged on a basket above the advertised free delivery threshold, with no line explaining it.",
+      "seen": [
+       "tangelo"
+      ]
+     }
+    ],
+    "ideal": [
+     {
+      "name": "Check the basket on open",
+      "text": "A banner lists what is out of stock and what changed price since last time."
+     },
+     {
+      "name": "Resolve each problem in place",
+      "text": "Priced swaps, remove, or a standing If out rule, one tap each."
+     },
+     {
+      "name": "Show what the customer will pay",
+      "text": "Subtotal, delivery, any offer and the total, with a reason for every charge."
+     }
+    ],
+    "gaps": [
+     {
+      "p": "P0",
+      "title": "The basket does not check stock",
+      "today": "The basket is a plain list of names and prices; the two missing items surface only at Place order.",
+      "fix": "A basket check banner on open naming what is out, with priced swaps or remove for each.",
+      "benchmark": "pippin"
+     },
+     {
+      "p": "P1",
+      "title": "Delivery charged under a free delivery banner",
+      "today": "Home says Free delivery over $40, Applied at checkout; the basket charges $4.50 on $56.70 with no line saying why.",
+      "fix": "Apply the offer as its own line, or say on the delivery line why it does not apply.",
+      "benchmark": null,
+      "benchmarkNote": "No app on the board shows a free delivery threshold applied or explained. The screens do not show whether this is a bug or a condition."
+     },
+     {
+      "p": "P2",
+      "title": "No sign of price changes",
+      "today": "Lines carry today's price only, so a rise since the last order would go unnoticed.",
+      "fix": "A price change banner with the old price under each changed line.",
+      "benchmark": "sorrel"
+     }
+    ]
+   }
+  },
+  {
+   "id": "S3",
+   "name": "Slot and checkout",
+   "finding": "Marrow's checkout is one tap because the slot was held on Home, while Tangelo leaves the slot and the stock problem to the last step, where the order fails.",
+   "lanes": [
+    {
+     "app": "pippin",
+     "flow": "Slot chosen at checkout, then one-page pay",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Picks a slot at checkout",
+       "blocks": [
+        [
+         "title",
+         "Checkout"
+        ],
+        [
+         "text",
+         "Choose a delivery slot",
+         {
+          "bold": true
+         }
+        ],
+        [
+         "slots",
+         "Today 6pm|Tmrw 8am|Tmrw 6pm",
+         {
+          "on": -1
+         }
+        ],
+        [
+         "text",
+         "Today 6pm is full",
+         {
+          "warn": true,
+          "hi": true
+         }
+        ],
+        [
+         "row",
+         "Deliver to",
+         {
+          "right": "Flat 2"
+         }
+        ],
+        [
+         "row",
+         "Payment",
+         {
+          "right": "Card 4242"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Continue"
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "The slot is picked only now, and \"Today 6pm is full\" in red is the first thing the customer learns about it."
+        },
+        {
+         "k": "good",
+         "t": "Address and card are already filled in: \"Deliver to Flat 2\" and \"Card 4242\"."
+        }
+       ]
+      },
+      {
+       "step": "Reviews the payment summary",
+       "blocks": [
+        [
+         "title",
+         "Pay"
+        ],
+        [
+         "row",
+         "Items (25)",
+         {
+          "right": "$56.60"
+         }
+        ],
+        [
+         "row",
+         "Delivery",
+         {
+          "right": "$3.00"
+         }
+        ],
+        [
+         "row",
+         "Slot",
+         {
+          "right": "Tmrw 8am"
+         }
+        ],
+        [
+         "row",
+         "Total",
+         {
+          "right": "$59.60"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Pay $59.60",
+         {
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "The button reads \"Pay $59.60\", the same figure as the Total line above it."
+        },
+        {
+         "k": "note",
+         "t": "The summary repeats the chosen slot, \"Tmrw 8am\", alongside items and delivery."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "Two short screens, each with one obvious button."
+      },
+      "speed": {
+       "n": 3,
+       "why": "Slot choice waits until checkout and takes its own screen."
+      },
+      "transparency": {
+       "n": 4,
+       "why": "Full summary, slot included, and the amount is on the button."
+      },
+      "trust": {
+       "n": 4,
+       "why": "The full slot is flagged before choosing, the total matches the button."
+      },
+      "engagement": {
+       "n": 3,
+       "why": "The lane ends at Pay; no confirmation screen is shown."
+      }
+     },
+     "verdict": "A clean two screen payment with the amount on the button, but the slot is left until the end.",
+     "well": [
+      "Saved address and card.",
+      "Pay button names the amount."
+     ],
+     "wrong": [
+      "Slot is chosen last, and the first slot is already full."
+     ],
+     "steal": [
+      "A Pay button that names the total."
+     ]
+    },
+    {
+     "app": "marrow",
+     "flow": "Held slot, one Pay button, confirmation",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Checks out with the slot held",
+       "blocks": [
+        [
+         "title",
+         "Checkout"
+        ],
+        [
+         "card",
+         "Your held slot",
+         {
+          "sub": "Tmrw 8am · 11 min left",
+          "hi": true
+         }
+        ],
+        [
+         "row",
+         "Deliver to",
+         {
+          "right": "9 Alder Court"
+         }
+        ],
+        [
+         "row",
+         "Items (9)",
+         {
+          "right": "$24.30"
+         }
+        ],
+        [
+         "row",
+         "Delivery",
+         {
+          "right": "$2.50"
+         }
+        ],
+        [
+         "row",
+         "Total",
+         {
+          "right": "$26.80"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Pay $26.80"
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "\"Your held slot\" shows \"Tmrw 8am · 11 min left\", so checkout needs no slot choice at all."
+        },
+        {
+         "k": "good",
+         "t": "One screen holds address, items, delivery, total and \"Pay $26.80\", which matches the Total line."
+        },
+        {
+         "k": "note",
+         "t": "The \"11 min left\" countdown keeps time pressure on the customer while they pay."
+        }
+       ]
+      },
+      {
+       "step": "Sees the order confirmed",
+       "blocks": [
+        [
+         "title",
+         "Order confirmed"
+        ],
+        [
+         "banner",
+         "Thank you, Priya",
+         {
+          "sub": "Arrives Tmrw 8am",
+          "accent": true,
+          "hi": true
+         }
+        ],
+        [
+         "row",
+         "Order 40817",
+         {
+          "right": "$26.80"
+         }
+        ],
+        [
+         "row",
+         "Items",
+         {
+          "right": "9"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Track order",
+         {
+          "ghost": true
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 2
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "The confirmation repeats \"Arrives Tmrw 8am\" and \"$26.80\", the slot and total from screen 1."
+        },
+        {
+         "k": "note",
+         "t": "\"Track order\" is the only next action offered after the order."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "One screen and one button, though the countdown competes for attention."
+      },
+      "speed": {
+       "n": 5,
+       "why": "Checkout is a single tap on Pay because the slot is already held."
+      },
+      "transparency": {
+       "n": 4,
+       "why": "Full breakdown and the hold time left are both shown."
+      },
+      "trust": {
+       "n": 4,
+       "why": "The confirmation matches the checkout figures exactly."
+      },
+      "engagement": {
+       "n": 4,
+       "why": "Track order gives a clear next step after paying."
+      }
+     },
+     "verdict": "Checkout is one tap because the slot was settled earlier, but a running countdown hangs over it.",
+     "well": [
+      "Held slot carried into checkout.",
+      "Pay button names the amount.",
+      "Confirmation repeats slot and total."
+     ],
+     "wrong": [
+      "The countdown adds pressure at the moment of payment."
+     ],
+     "steal": [
+      "Carry a held slot into checkout so it needs no slot choice.",
+      "A confirmation that repeats arrival time and total."
+     ]
+    },
+    {
+     "app": "sorrel",
+     "flow": "Late error, then back to slot and totals",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Places the order, hits an error",
+       "blocks": [
+        [
+         "title",
+         "Review order"
+        ],
+        [
+         "card",
+         "Cannot place order",
+         {
+          "sub": "2 items are no longer available",
+          "action": "Back",
+          "hi": true
+         }
+        ],
+        [
+         "row",
+         "Slot",
+         {
+          "right": "Tmrw 6pm"
+         }
+        ],
+        [
+         "row",
+         "Payment",
+         {
+          "right": "Card 1180"
+         }
+        ],
+        [
+         "row",
+         "Total",
+         {
+          "right": "$50.85"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Place order"
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "\"Cannot place order\" with \"2 items are no longer available\" appears on Review order, after slot and payment are set."
+        },
+        {
+         "k": "friction",
+         "t": "The error does not name the two items, and its only action is \"Back\"."
+        }
+       ]
+      },
+      {
+       "step": "Goes back to the slot and totals",
+       "blocks": [
+        [
+         "title",
+         "Pick a slot"
+        ],
+        [
+         "slots",
+         "Today 6pm|Tmrw 8am|Tmrw 6pm",
+         {
+          "on": 2
+         }
+        ],
+        [
+         "row",
+         "Subtotal (16 items)",
+         {
+          "right": "$46.70"
+         }
+        ],
+        [
+         "row",
+         "Delivery",
+         {
+          "right": "$3.50"
+         }
+        ],
+        [
+         "row",
+         "Total",
+         {
+          "right": "$50.20",
+          "hi": true
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Place order"
+        ]
+       ],
+       "notes": [
+        {
+         "k": "note",
+         "t": "The total moves from $50.85 on screen 1 to $50.20 here, and this breakdown has no promo line."
+        },
+        {
+         "k": "good",
+         "t": "The slot the customer had, \"Tmrw 6pm\", is still selected after going back."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 2,
+       "why": "The error does not say which items or what to do about them."
+      },
+      "speed": {
+       "n": 1,
+       "why": "The order fails at the last step and sends the customer back a screen."
+      },
+      "transparency": {
+       "n": 2,
+       "why": "Unnamed items and a total that changes with no line explaining it."
+      },
+      "trust": {
+       "n": 1,
+       "why": "A late failure followed by a total that moves without a reason."
+      },
+      "engagement": {
+       "n": 2,
+       "why": "Back is offered, nothing helps the customer recover the shop."
+      }
+     },
+     "verdict": "Keeps the chosen slot after an error, but fails late and changes the total without saying why.",
+     "well": [
+      "The slot survives the trip back."
+     ],
+     "wrong": [
+      "Stock failure at the last step.",
+      "Error does not name the items.",
+      "Total changes with no explanation."
+     ],
+     "steal": [
+      "Keep the customer's slot when they are sent back."
+     ]
+    },
+    {
+     "app": "tangelo",
+     "flow": "Slot at checkout, then Place order fails",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Picks a slot at checkout",
+       "blocks": [
+        [
+         "title",
+         "Checkout"
+        ],
+        [
+         "text",
+         "Deliver to 14 Linden Road"
+        ],
+        [
+         "text",
+         "Choose a slot",
+         {
+          "bold": true
+         }
+        ],
+        [
+         "slots",
+         "Today 6pm|Tmrw 8am|Tmrw 6pm",
+         {
+          "on": -1
+         }
+        ],
+        [
+         "text",
+         "Today 6pm is full",
+         {
+          "warn": true,
+          "hi": true
+         }
+        ],
+        [
+         "row",
+         "Payment",
+         {
+          "right": "Card 4242"
+         }
+        ],
+        [
+         "row",
+         "Total",
+         {
+          "right": "$61.20"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Place order"
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "The slot is chosen only at checkout, and \"Today 6pm is full\" in red is the first slot news."
+        },
+        {
+         "k": "note",
+         "t": "\"Total $61.20\" sits above Place order with no delivery or item lines on this screen."
+        }
+       ]
+      },
+      {
+       "step": "Place order fails at the last step",
+       "blocks": [
+        [
+         "title",
+         "Checkout"
+        ],
+        [
+         "card",
+         "Cannot place order",
+         {
+          "sub": "2 items are no longer available",
+          "action": "OK",
+          "hi": true
+         }
+        ],
+        [
+         "row",
+         "Slot",
+         {
+          "right": "Tmrw 8am"
+         }
+        ],
+        [
+         "row",
+         "Payment",
+         {
+          "right": "Card 4242"
+         }
+        ],
+        [
+         "row",
+         "Total",
+         {
+          "right": "$61.20"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Place order"
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "\"Cannot place order\" with \"2 items are no longer available\" appears after Place order, the last step."
+        },
+        {
+         "k": "friction",
+         "t": "The error does not name the two items, and its only action is \"OK\", with no swap or route to the basket."
+        },
+        {
+         "k": "note",
+         "t": "The total reads $61.20 on both screens, so it still counts the two items that are unavailable."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 2,
+       "why": "The error names no items and OK leaves the next step unclear."
+      },
+      "speed": {
+       "n": 1,
+       "why": "The order fails at the last tap, after slot and payment are set."
+      },
+      "transparency": {
+       "n": 2,
+       "why": "No breakdown at checkout, and the total ignores the missing items."
+      },
+      "trust": {
+       "n": 1,
+       "why": "The customer learns about missing stock only when the order is refused."
+      },
+      "engagement": {
+       "n": 1,
+       "why": "The error offers only OK; no route to fix the basket is shown."
+      }
+     },
+     "verdict": "Saved address and card make checkout short, but it fails at the last tap and gives no way out.",
+     "well": [
+      "Address and card are saved.",
+      "A full slot is flagged in red before choosing."
+     ],
+     "wrong": [
+      "Stock failure at Place order.",
+      "Error names no items and offers only OK.",
+      "Slot chosen last."
+     ]
+    }
+   ],
+   "synthesis": {
+    "best": [
+     {
+      "app": "marrow",
+      "why": "The held slot carries into a one screen checkout with the amount on the Pay button."
+     },
+     {
+      "app": "pippin",
+      "why": "Two short screens with saved details and a Pay button that names the total."
+     }
+    ],
+    "patterns": [
+     {
+      "name": "The amount is on the button",
+      "text": "The pay button names the same figure as the Total line.",
+      "seen": [
+       "pippin",
+       "marrow"
+      ]
+     },
+     {
+      "name": "Saved address and card",
+      "text": "Delivery address and payment card are already filled in at checkout.",
+      "seen": [
+       "pippin",
+       "marrow",
+       "tangelo"
+      ]
+     }
+    ],
+    "anti": [
+     {
+      "name": "Stock failure at the last step",
+      "text": "The order is refused for unavailable items after slot and payment are set.",
+      "seen": [
+       "sorrel",
+       "tangelo"
+      ]
+     },
+     {
+      "name": "An error that names nothing",
+      "text": "The customer is told two items are gone but not which ones.",
+      "seen": [
+       "sorrel",
+       "tangelo"
+      ]
+     },
+     {
+      "name": "Slot chosen last",
+      "text": "The customer meets a full slot only at checkout.",
+      "seen": [
+       "pippin",
+       "tangelo"
+      ]
+     }
+    ],
+    "ideal": [
+     {
+      "name": "Arrive with the slot held",
+      "text": "The slot picked earlier shows at checkout with the time it is held for."
+     },
+     {
+      "name": "One screen to pay",
+      "text": "Address, card, breakdown and a Pay button that names the total."
+     },
+     {
+      "name": "Confirm what was promised",
+      "text": "The confirmation repeats arrival time and total."
+     }
+    ],
+    "gaps": [
+     {
+      "p": "P0",
+      "title": "The order fails at Place order",
+      "today": "After slot and payment, Cannot place order says 2 items are no longer available, names neither, offers only OK and keeps the $61.20 total.",
+      "fix": "Check stock when the basket opens; if an item still sells out at checkout, name it and offer swaps on that screen.",
+      "benchmark": "pippin"
+     },
+     {
+      "p": "P1",
+      "title": "The slot is chosen last",
+      "today": "Choose a slot appears at checkout, where Today 6pm is already full.",
+      "fix": "Pick and hold the slot before the basket and carry it into checkout.",
+      "benchmark": "marrow"
+     },
+     {
+      "p": "P2",
+      "title": "Place order does not name the amount",
+      "today": "The button reads Place order, with the total on a line above it and no breakdown.",
+      "fix": "A Pay button that names the total, above a short breakdown.",
+      "benchmark": "pippin"
+     }
+    ]
+   }
+  }
+ ],
+ "principles": [
+  {
+   "name": "Start from last time",
+   "text": "A returning customer's first screen should offer their last shop, not the catalogue.",
+   "evidence": [
+    "S1"
+   ]
+  },
+  {
+   "name": "Bad news first",
+   "text": "Stock and price changes belong at the top of the basket, never in an error at Place order.",
+   "evidence": [
+    "S2",
+    "S3"
+   ]
+  },
+  {
+   "name": "Settle the slot early",
+   "text": "A slot held before the basket turns checkout into one tap.",
+   "evidence": [
+    "S1",
+    "S3"
+   ]
+  },
+  {
+   "name": "Every number has a line",
+   "text": "Totals, delivery charges and offers each appear where the customer decides, and agree from screen to screen.",
+   "evidence": [
+    "S1",
+    "S2",
+    "S3"
+   ]
+  }
+ ]
+}

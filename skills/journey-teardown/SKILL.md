@@ -37,14 +37,14 @@ When the input already has lanes, flows, sources or step captions, keep them as 
 
 ## Procedure
 
-1. **Fix the vocabulary first.** Before reading any screen, write down the four note labels and the five scoring dimensions with their one-line meanings (they are in the format reference). Every later note and score uses only these.
+1. **Fix the vocabulary first.** Before reading any screen, copy the five scoring dimensions into `teardown.json` as they stand in the format reference, and keep the four note labels in front of you. Every later note and score uses only these. If the user's question is about time, read Speed as steps, taps and typing. Say that nothing was timed.
 2. **Lay out the lanes.** One per app per stage. Competitors first, the user's product last. Give each lane a `flow` (what it shows), a `source` (where the screens came from and when) and its screens in order, each with a `step` saying what the user is doing.
 3. **Annotate each screen, three notes at most.** A note is one sentence that names what is on the screen and says why it matters.
    - **Good:** something others should copy.
    - **Friction:** confusion, a missing disclosure, an extra step, or a dark pattern.
    - **Note:** a neutral observation worth recording.
    - **Idea:** a concrete improvement.
-   Quote the on-screen words when they are the point. If you have nothing specific to say about a screen, give it no notes. A note may compare two screens of the same lane when both facts are on those screens, such as a total that changed. Say which screens.
+   Quote the on-screen words when they are the point. If you have nothing specific to say about a screen, give it no notes. A note may compare two screens of the same app, in this stage or another, when both facts are on those screens, such as a total that changed. Say which screens.
 4. **Score each lane on the five dimensions,** 1 to 5, whole numbers, relative to the best example seen for that stage. A 5 means you would not change it, so the best lane in a stage does not get a 5 by default. Score only what the screens show. When a dimension depends on something the lane's screens do not show, score what is visible and say so in the reason. Every score carries a reason of one line. No reason, no score. Score the user's product last and by the same rubric.
 5. **Write the lane's verdict.** One sentence in the shape "strength, but weakness". Then two or three things it does well, one to three it does wrong, and for competitors one or two things worth stealing.
 6. **Synthesise each stage,** after all its lanes are done. Give the stage a `finding`: one sentence, the thing to remember. Then fill its `synthesis`:
@@ -52,11 +52,11 @@ When the input already has lanes, flows, sources or step captions, keep them as 
    - `patterns`: what to adopt. Each names the apps it was seen in, at least two, and at least one of them a competitor.
    - `anti`: what to avoid, with the apps it was seen in.
    - `ideal`: the ideal flow for this stage as two to five numbered steps.
-   - `gaps`: where the user's product falls short. Each has a priority (P0, P1 or P2), what it does today, the fix, and the competitor that shows the fix working. If no app on the board shows it working, set `benchmark` to `null` and say so in `benchmarkNote`. Never force a benchmark that does not fit.
+   - `gaps`: where the user's product falls short. Each has a priority (P0, P1 or P2), what it does today, the fix, and the competitor that shows the fix working, in this stage or another. If no app on the board shows it working, set `benchmark` to `null` and say so in `benchmarkNote`. Never force a benchmark that does not fit.
 7. **Write the principles.** Three to six, across all stages, each with the stages it draws on.
 8. **State the coverage.** Any lane with fewer than two screens gets a `coverage` line saying why. Any app missing from a stage is listed in that stage's `missing`.
 9. **Check.** Run `python3 scripts/check.py teardown.json`. Fix every failure.
-10. **Build the board.** Copy `assets/template.html` to `board.html` and replace the JSON in the element with id `teardown-data`. If a Miro connector is available, build the Miro board as described in the Miro reference and give the user its link.
+10. **Build the board.** Copy `assets/template.html` to `board.html` and replace the JSON in the element with id `teardown-data`. If a Miro connector is connected and the user wants the board there, also build it on Miro as described in the Miro reference and give the user its link.
 
 ## Rules that keep it honest
 

@@ -4,7 +4,11 @@
   "company": {
     "name": "Tangelo",
     "what": "A fictional grocery delivery app",
-    "competitors": ["Pippin", "Marrow", "Sorrel"],
+    "competitors": [
+      "Pippin",
+      "Marrow",
+      "Sorrel"
+    ],
     "customer": "Maya, a returning customer who shops once a week",
     "question": "Why does a repeat shop take so long, and what would make it a two-minute job?"
   },
@@ -12,20 +16,20 @@
     {
       "workflow": "journey-teardown",
       "question": "How do other grocery apps handle a repeat shop?",
-      "found": "Four apps, three stages, twenty-four screens. Two of the three competitors put last week's shop on the first screen. Two check stock when the basket opens. One asks for the delivery slot before anything else. Tangelo does none of these.",
-      "changed": "Six patterns went into the PRD as reference screens, each with the apps it was seen in."
+      "found": "Four apps, three stages, twenty-four screens, sixty notes. Two of the three competitors put the repeat order on Home. Two deal with missing items inside the basket. One holds the delivery slot from the first screen. Tangelo does none of these, and its order fails at the last step.",
+      "changed": "Eight patterns and eight gaps went into the PRD as reference screens, each with the apps it was seen in."
     },
     {
       "workflow": "interview-synthesis",
       "question": "What do weekly shoppers say gets in the way?",
-      "found": "Eight interviews. Seven of eight buy mostly the same things each week. Five of eight had received a substitution they did not want. One quote that sounded right was not in any transcript, so the checker removed it.",
+      "found": "Eight interviews, thirty-six quotes, each matched to its transcript line. Six of eight rebuild the same basket by hand every week. Five of eight had received a substitution they did not want. A line the team remembered from the calls was in no transcript, so the checker removed it.",
       "changed": "Every Problem line in the PRD carries a count from this synthesis, such as 5 of 8."
     },
     {
       "workflow": "premortem",
       "question": "If one-tap reorder failed, why would it have failed?",
-      "found": "Nine failure stories. The four most likely each got a tripwire: smaller baskets, missing items at checkout, held slots nobody uses, and stale baskets.",
-      "changed": "The PRD's reorder card opens an editable basket, never a checkout, and items per order became a guardrail on the test."
+      "found": "Eleven failure stories across six areas. The five worst each got a tripwire: failed checkouts, unwanted substitutions, swamped delivery slots, a surprise charge and accidental orders. Six of the eleven are marked as guesses.",
+      "changed": "The plan itself. It began as a button that places last week's order. It became a card that opens last week's basket, and never pays."
     },
     {
       "workflow": "decision-prd",
