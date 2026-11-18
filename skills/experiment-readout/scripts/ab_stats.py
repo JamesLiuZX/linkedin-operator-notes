@@ -605,6 +605,11 @@ def readout(data):
                      + " days, not a whole number of weeks, so weekday patterns may be uneven across the run.")
     if v["mde_set"] is None:
         flags.append("No minimum effect worth shipping (mde_set) was set before the test, so power cannot be judged.")
+    if v["mde_set"] is not None and primary["result"] == "positive":
+        least = ps["ci"][0] if pm["direction"] == "up" else -ps["ci"][1]
+        if least < v["mde_set"]:
+            flags.append("The interval reaches below the " + pts(v["mde_set"])
+                         + "-point effect the team said is worth shipping, so the true effect may be smaller than that.")
     if len(guardrails) > 3:
         flags.append("There are " + str(len(guardrails))
                      + " guardrails; with several metrics, one will look bad by chance.")

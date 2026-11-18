@@ -56,7 +56,7 @@ When the input already has lanes, flows, sources or step captions, keep them as 
 7. **Write the principles.** Three to six, across all stages, each with the stages it draws on.
 8. **State the coverage.** Any lane with fewer than two screens gets a `coverage` line saying why. Any app missing from a stage is listed in that stage's `missing`.
 9. **Check.** Run `python3 scripts/check.py teardown.json`. Fix every failure.
-10. **Build the board.** Copy `assets/template.html` to `board.html` and replace the JSON in the element with id `teardown-data`. If a Miro connector is connected and the user wants the board there, also build it on Miro as described in the Miro reference and give the user its link.
+10. **Build the board.** Run `python3 scripts/build.py teardown.json board.html`. Without Python, copy `assets/template.html`, replace the JSON inside the element with id `teardown-data` by hand, and write any `</` in the text as `<\/`. If a Miro connector is connected and the user wants the board there, also build it on Miro as described in the Miro reference and give the user its link.
 
 ## Rules that keep it honest
 

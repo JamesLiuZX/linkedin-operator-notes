@@ -282,6 +282,19 @@ class Flags(unittest.TestCase):
     def test_clean_test_has_no_flags(self):
         self.assertEqual(ab.readout(make())["flags"], [])
 
+    def test_interval_below_the_effect_worth_shipping(self):
+        r = ab.readout(make(counts=(1000, 1200), mde_set=0.015))
+        self.assertTrue(any("worth shipping" in f for f in r["flags"]))
+        self.assertEqual(r["verdict"]["decision"], "ship")
+
+    def test_no_such_flag_without_a_clear_win(self):
+        r = ab.readout(make(counts=(1000, 1010), mde_set=0.015))
+        self.assertFalse(any("worth shipping" in f for f in r["flags"]))
+
+    def test_down_direction_uses_the_upper_bound(self):
+        r = ab.readout(make(counts=(1200, 1000), direction="down", mde_set=0.015))
+        self.assertTrue(any("worth shipping" in f for f in r["flags"]))
+
     def test_short_run_is_not_full_weeks(self):
         self.assertFalse(ab.readout(make(ran_days=0 + 6, planned_days=6))["checks"]["duration"]["full_weeks"])
         self.assertTrue(ab.readout(make(ran_days=21, planned_days=14))["checks"]["duration"]["full_weeks"])

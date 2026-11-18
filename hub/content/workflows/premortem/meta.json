@@ -157,7 +157,7 @@
     "by": "A fresh agent session, given only the skill folder and the plan. Nobody answered its questions.",
     "passed": 5,
     "total": 5,
-    "note": "It passed on the first run of the checker. The run listed 14 gaps in the instructions. The ones that mattered are fixed in this version.",
+    "note": "It passed on the first run of the checker. The run changed the plan itself, and it listed sixteen gaps in the instructions. The ones that mattered are fixed in this version.",
     "log": "examples/tangelo/RUN.md"
   }
 }

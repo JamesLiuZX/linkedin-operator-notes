@@ -25,6 +25,8 @@ A readout from this skill is not handed over until these hold. Six are checked b
 ## What the checker does not see
 
 - Where the counts came from.
+- Whether every user had the whole outcome window before the counts were taken.
+- That a guardrail counted per order compares two groups the test itself changed. The share of large orders can fall because new, smaller orders were added, with no existing order getting smaller.
 - Whether the metric measures what the team cares about.
 - Novelty: an effect in the first two weeks that would fade by the eighth.
 - Segments. A flat average can hide one group that gained and one that lost.

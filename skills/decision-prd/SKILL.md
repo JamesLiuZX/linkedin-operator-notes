@@ -50,7 +50,7 @@ If the user gives a topic and nothing else, ask for these three in one message, 
 5. **Write the rollout.** Rows of when, which points, and why then. Every point appears exactly once. The first row should be small enough to ship on its own, and its reason should say why these points belong together.
 6. **Add next steps and caveats.** Who has to do what before work starts, by point ID. State plainly what is estimated, unmeasured or fictional.
 7. **Check.** Run `python3 scripts/check.py prd.json`. Fix every error. Keep the warnings to report.
-8. **Build the page.** Copy `assets/template.html` to `prd.html` and replace the JSON inside the element with id `prd-data` with the contents of `prd.json`. If any text contains `</script>`, write it as `<\/script>`.
+8. **Build the page.** Run `python3 scripts/build.py prd.json prd.html`. Without Python, copy `assets/template.html`, replace the JSON inside the element with id `prd-data` by hand, and write any `</` in the text as `<\/`.
 
 ## Writing rules
 

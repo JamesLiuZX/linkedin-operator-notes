@@ -1,13 +1,12 @@
 {
-  "title": "Reorder card on Home: readout",
-  "date": "2026-11-10",
-  "headline": "Extend. The order rate rose 1.7 points, but the test has not ruled out smaller baskets.",
-  "summary": "The split was as planned, 20,912 and 20,958 customers, so the result can be read. The share of returning customers who ordered within a week rose from 33.4% to 35.1%, a gain of 1.7 points, and the true gain is likely between 0.8 and 2.6. One guardrail did not clearly hold: Orders with 15 or more items fell 1.0 points, and its interval runs from a fall of 2.6 to a rise of 0.6, so a fall bigger than the 1.0 point the team said it would accept has not been ruled out. Substitution complaints and cancelled orders did not get worse.",
+  "title": "Reorder card on Home readout",
+  "date": "2026-11-18",
+  "headline": "Extend. Ordering within 7 days rose 1.7 points, but the large-order guardrail is not yet safe.",
+  "summary": "The share of returning customers who ordered within 7 days rose 1.7 points, from 33.4% to 35.1%, with a 95% interval of 0.8 to 2.6 points. The split was fine, and the test ran the full 14 days. Orders with 15 or more items fell 1.0 points, which equals the tolerance of 1.0 points, so the interval decides: it runs from a fall of 2.6 points to a rise of 0.6 points, and a harmful fall beyond the tolerance is not ruled out. Substitution complaints and cancellations held. The test could only reliably see a change of 1.3 points, which is more than the 1.0 point the team set, and the interval reaches below 1.0 point.",
   "next": [
-    "Run for another 14 days. Set the new end date today and read out once, on that date, by the same rules.",
-    "Look at where the items went: the full spread of basket sizes in each arm, not only the share of large orders.",
-    "The test could detect a change of 1.3 points and the change worth shipping was set at 1.0, so the extra days also buy the power it lacked.",
-    "Do not ship on the main metric alone. Smaller baskets is the risk the pre-mortem named, and it is still open."
+    "Run the test for 14 more days, keep the 50/50 split, and set the new end date to 2026-12-02.",
+    "Pull the counts only after every customer has had their 7 days, and read the test once, on that date.",
+    "Read the large-order guardrail again then. Ship only if its interval no longer reaches past the 1.0-point tolerance."
   ],
   "numbers": {
     "input": {
@@ -89,8 +88,8 @@
     "checks": {
       "srm": {
         "expected": [
-          20935,
-          20935
+          20935.0,
+          20935.0
         ],
         "observed": [
           20912,
@@ -191,6 +190,8 @@
         "Extend the test until the guardrail interval is narrow enough to decide."
       ]
     },
-    "flags": []
+    "flags": [
+      "The interval reaches below the 1.0-point effect the team said is worth shipping, so the true effect may be smaller than that."
+    ]
   }
 }

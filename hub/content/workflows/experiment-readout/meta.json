@@ -5,7 +5,10 @@
   "promise": "Turn the raw numbers of an A/B test into a ship, extend or stop decision, with the checks that catch a broken test before it fools you.",
   "gives": "A one-page readout: the verdict, the checks behind it, the effect with its interval, and what to do next.",
   "stage": "measure",
-  "roles": ["data", "product"],
+  "roles": [
+    "data",
+    "product"
+  ],
   "runtime": "2 min",
   "review": "10 min",
   "needs": "Counts per variant",
@@ -20,10 +23,20 @@
     "case": "tangelo",
     "file": "experiment-readout.html",
     "label": "The reorder card test",
-    "note": "A two-week test on 41,870 returning customers, with three guardrails.",
-    "inputs": ["input/results.json", "readout.json"]
+    "note": "A two-week test on 41,870 returning customers with three guardrails. The decision is to extend.",
+    "inputs": [
+      "input/request.md",
+      "input/results.json",
+      "readout.numbers.json",
+      "readout.json"
+    ]
   },
-  "chain": { "before": ["flagged-prototype"], "after": [] },
+  "chain": {
+    "before": [
+      "flagged-prototype"
+    ],
+    "after": []
+  },
   "when": [
     "A test has finished and someone wants a yes or no.",
     "The dashboard says significant and you want to know whether to believe it.",
@@ -35,38 +48,133 @@
     "The test is still running and you plan to stop when it looks good. That is the mistake this skill exists to flag."
   ],
   "inputs": [
-    { "name": "Users and conversions per variant", "note": "The counts, not the percentages." },
-    { "name": "The planned split and duration", "note": "For example 50/50 for 14 days. Needed for the sample ratio check." },
-    { "name": "Guardrail metrics", "note": "The things that must not get worse, with their counts." },
-    { "name": "The smallest effect worth shipping", "note": "If you did not set one before the test, say so." }
+    {
+      "name": "Users and conversions per variant",
+      "note": "The counts, not the percentages."
+    },
+    {
+      "name": "The planned split and duration",
+      "note": "For example 50/50 for 14 days. Needed for the sample ratio check."
+    },
+    {
+      "name": "Guardrail metrics",
+      "note": "The things that must not get worse, with their counts."
+    },
+    {
+      "name": "The smallest effect worth shipping",
+      "note": "If you did not set one before the test, say so."
+    }
   ],
   "outputs": [
-    { "name": "readout.html", "note": "The verdict with its reasons, a chart of the effect and its interval, and the guardrails." },
-    { "name": "readout.json", "note": "Every computed number, so the result can be reproduced." }
+    {
+      "name": "readout.html",
+      "note": "The verdict with its reasons, a chart of the effect and its interval, and the guardrails."
+    },
+    {
+      "name": "readout.json",
+      "note": "Every computed number, so the result can be reproduced."
+    }
   ],
   "steps": [
-    { "title": "Check the test before the result", "body": "A script tests the sample ratio first. If users were not split as planned, the readout stops there." },
-    { "title": "Compute, do not estimate", "body": "The script calculates the difference, its confidence interval and the p-value. The model never does the arithmetic." },
-    { "title": "Ask whether the test could have seen it", "body": "It works out the smallest effect the test had the power to detect and sets it beside the effect you care about." },
-    { "title": "Read the guardrails", "body": "Each one is computed the same way and marked held, worse or unclear." },
-    { "title": "Look for the usual traps", "body": "Stopped early, too short to cover a weekly cycle, or many metrics tested with no correction." },
-    { "title": "Give one verdict", "body": "Ship, extend, stop or do not trust, with the two or three facts that decide it." }
+    {
+      "title": "Check the test before the result",
+      "body": "A script tests the sample ratio first. If users were not split as planned, the readout stops there."
+    },
+    {
+      "title": "Compute, do not estimate",
+      "body": "The script calculates the difference, its confidence interval and the p-value. The model never does the arithmetic."
+    },
+    {
+      "title": "Ask whether the test could have seen it",
+      "body": "It works out the smallest effect the test had the power to detect and sets it beside the effect you care about."
+    },
+    {
+      "title": "Read the guardrails",
+      "body": "Each one is computed the same way and marked held, worse or unclear."
+    },
+    {
+      "title": "Look for the usual traps",
+      "body": "Stopped early, too short to cover a weekly cycle, or many metrics tested with no correction."
+    },
+    {
+      "title": "Give one verdict",
+      "body": "Ship, extend, stop or do not trust, with the two or three facts that decide it."
+    }
   ],
   "checks": [
-    { "name": "The sample ratio matches the plan", "how": "script", "note": "A chi-square test on the split. Below p = 0.001 the verdict is do not trust, whatever the result looks like." },
-    { "name": "The effect and its interval are computed", "how": "script", "note": "Two-proportion difference with a 95% interval. The same arithmetic runs in the demo on this page." },
-    { "name": "Power is reported", "how": "script", "note": "The minimum detectable effect at 80% power, from the actual sample sizes." },
-    { "name": "Every guardrail has a verdict", "how": "script", "note": "A guardrail whose interval reaches past the harm line is unclear, not held." },
-    { "name": "Early stopping is called out", "how": "script", "note": "If the test ran shorter than planned, the readout says the p-value cannot be taken at face value." },
-    { "name": "The verdict follows a fixed rule", "how": "script", "note": "The decision rule is code. The model writes the explanation, not the verdict." },
-    { "name": "The counts are the right counts", "how": "review", "note": "Know where the numbers came from before you paste them in." }
+    {
+      "name": "The numbers were computed, not written",
+      "how": "script",
+      "note": "The checker reruns the statistics on the counts stored in the file and compares every figure."
+    },
+    {
+      "name": "The split was checked before the result",
+      "how": "script",
+      "note": "A chi-square test on the sample ratio. Below p = 0.001 the only decision allowed is do not trust."
+    },
+    {
+      "name": "The verdict follows the fixed rule",
+      "how": "script",
+      "note": "Eight rules, first match wins. The decision is code, and the headline has to open with it."
+    },
+    {
+      "name": "Every figure in the prose is in the numbers",
+      "how": "script",
+      "note": "A number in the headline, summary or next steps that the script did not compute fails."
+    },
+    {
+      "name": "Guardrails that did not hold are named",
+      "how": "script",
+      "note": "A guardrail that is worse or unclear has to appear by name in the summary."
+    },
+    {
+      "name": "Early stopping is called out",
+      "how": "script",
+      "note": "A test that stopped early or ran a part week has to say so."
+    },
+    {
+      "name": "The counts are the right counts",
+      "how": "review",
+      "note": "Know where the numbers came from before you paste them in."
+    }
   ],
   "failures": [
-    { "title": "Right arithmetic on wrong data", "body": "If the counts include bots, double-counted users or a tracking bug, the readout will be precise and wrong.", "catch": "The sample ratio check catches many of these, not all. Ask where the counts came from." },
-    { "title": "One kind of metric", "body": "It handles a rate per user. Ratios, revenue with long tails and sequential designs need more than this.", "catch": "The skip list says so. When in doubt, send the json to an analyst." },
-    { "title": "Significant is not the same as important", "body": "A real effect can be too small to matter.", "catch": "The readout sets the interval against the smallest effect you said was worth shipping. Set that number before the test." }
+    {
+      "title": "Right arithmetic on wrong data",
+      "body": "If the counts include bots, double-counted users or a tracking bug, the readout will be precise and wrong.",
+      "catch": "The sample ratio check catches many of these, not all. Ask where the counts came from."
+    },
+    {
+      "title": "A guardrail counted per order",
+      "body": "The test changes who orders. The share of large orders can fall because new, smaller orders were added, with no existing basket getting smaller.",
+      "catch": "The skill tells the agent to say so. Look at the full spread before you call it harm."
+    },
+    {
+      "title": "One kind of test",
+      "body": "Two arms, a rate per user, read once at the planned end. More arms, revenue per user and tests that were watched daily need another method.",
+      "catch": "The skill stops and says what kind of analysis it needs."
+    },
+    {
+      "title": "Significant is not the same as important",
+      "body": "A real effect can be too small to matter.",
+      "catch": "The script flags an interval that reaches below the smallest effect you said was worth shipping. Set that number before the test."
+    }
   ],
   "version": "1.0.0",
   "verified": "2026-11-18",
-  "changelog": [{ "version": "1.0.0", "date": "2026-11-18", "note": "First release." }]
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-18",
+      "note": "First release."
+    }
+  ],
+  "run": {
+    "date": "2026-11-18",
+    "by": "A fresh agent session, given only the skill folder and the counts written the way a product manager would paste them. Nobody answered its questions.",
+    "passed": 6,
+    "total": 6,
+    "note": "Run twice. Both passed on the first run of the checker. The first run found that a win whose interval dips below the agreed minimum effect went unremarked, so the script now flags it. The readout shown here is from the second run, unedited.",
+    "log": "examples/tangelo/RUN.md"
+  }
 }

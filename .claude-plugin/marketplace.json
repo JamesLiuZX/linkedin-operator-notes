@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "ai-workflow-handbook",
+  "owner": {
+    "name": "James Liu",
+    "url": "https://jamesliuzx.com"
+  },
+  "metadata": {
+    "description": "Practical AI workflows for product people. Every skill ships with a checker script, an output template and a worked example."
+  },
+  "plugins": [
+    {
+      "name": "handbook",
+      "source": "./skills",
+      "description": "Six workflows for product, research, data and strategy work: journey teardown, interview synthesis, pre-mortem, decision-ready PRD, flagged prototype and experiment readout. Each one checks its own output before handing it over."
+    }
+  ]
+}

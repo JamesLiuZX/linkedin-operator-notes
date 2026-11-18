@@ -43,7 +43,7 @@ The reader will be asked "how many people actually said that?" and "is that real
 8. **List what is still unknown:** questions the interviews raise and cannot answer, each with who or what to ask next.
 9. **Verify.** Run `python3 <this skill>/scripts/verify_quotes.py <path to synthesis.json> <transcripts folder> --fix`. It finds each quote in its participant's transcript, records the line number and a few lines of context, removes any quote it cannot find, logs the removal under `rejected`, and writes `verification.txt` beside `synthesis.json`. Then it re-checks the counts.
 10. **Repair what the verification broke.** If a theme lost a supporter's only quote, go back to that transcript. Either find the real words and add them, or remove the participant from `support`. Run the script again until it passes. Never restore a rejected quote by rewording it.
-11. **Build the page.** Copy `assets/template.html` to `synthesis.html` and replace the JSON in the element with id `synthesis-data`.
+11. **Build the page.** Run `python3 scripts/build.py synthesis.json synthesis.html`. Without Python, copy `assets/template.html`, replace the JSON inside the element with id `synthesis-data` by hand, and write any `</` in the text as `<\/`.
 
 ## Rules that keep it honest
 

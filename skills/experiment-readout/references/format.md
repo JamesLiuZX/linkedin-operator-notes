@@ -43,6 +43,7 @@ Two files: the input you write for the script, and the readout you assemble from
 | `test.planned_days`, `test.ran_days` | How long it was meant to run, and how long it did |
 | `test.mde_set` | The smallest absolute effect worth shipping, as a proportion (0.02 is two points). `null` if nobody set one before the test |
 | `test.alpha` | The significance level. Use 0.05 unless the team set another |
+| `test.counted_on` | Optional. The day the counts were taken, `YYYY-MM-DD`. Record it when the metric has a window, so the reader can see every user had the whole window |
 | `arms` | Control first, then the variant. Exactly two |
 | `primary.direction` | `up` if more is better, `down` if less is better |
 | `primary.counts` | Conversions in each arm, in the same order as `arms` |
@@ -68,6 +69,7 @@ Every rate is a proportion between 0 and 1. The script rejects a count larger th
 - `headline` starts with the decision in words: `Ship`, `Extend`, `Stop` or `Do not trust`. It has to match `numbers.verdict.decision`.
 - `summary` and `next` use only figures that appear in `numbers`. The checker compares them.
 - `numbers` is the script's output, pasted in whole and unchanged.
+- `title` is the test's name and the word readout. `date` is the day the readout was written.
 
 ## What the script puts in numbers
 
@@ -89,7 +91,7 @@ Every rate is a proportion between 0 and 1. The script rejects a count larger th
 - `primary.result` is `positive`, `negative` or `inconclusive`.
 - A guardrail's `verdict` is `held`, `worse` or `unclear`.
 - `verdict.reasons` are sentences the script wrote from the numbers. Use them as the base for your summary.
-- `flags` are warnings: stopped early, not a whole number of weeks, no target effect set, many guardrails, a very small arm.
+- `flags` are warnings: stopped early, not a whole number of weeks, no target effect set, an interval that reaches below the target effect, many guardrails, a very small arm.
 
 ## How each figure is computed
 

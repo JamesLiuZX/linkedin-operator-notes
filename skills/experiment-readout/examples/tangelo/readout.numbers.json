@@ -180,5 +180,7 @@
       "Extend the test until the guardrail interval is narrow enough to decide."
     ]
   },
-  "flags": []
+  "flags": [
+    "The interval reaches below the 1.0-point effect the team said is worth shipping, so the true effect may be smaller than that."
+  ]
 }

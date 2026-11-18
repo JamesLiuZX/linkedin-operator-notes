@@ -549,6 +549,13 @@ export function readout(input) {
   if (v.mde_set === null) {
     flags.push('No minimum effect worth shipping (mde_set) was set before the test, so power cannot be judged.');
   }
+  if (v.mde_set !== null && primary.result === 'positive') {
+    const least = pm.direction === 'up' ? ps.ci[0] : -ps.ci[1];
+    if (least < v.mde_set) {
+      flags.push('The interval reaches below the ' + pts(v.mde_set) +
+        '-point effect the team said is worth shipping, so the true effect may be smaller than that.');
+    }
+  }
   if (guardrails.length > 3) {
     flags.push('There are ' + guardrails.length +
       ' guardrails; with several metrics, one will look bad by chance.');

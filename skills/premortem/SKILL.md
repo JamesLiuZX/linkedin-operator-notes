@@ -51,7 +51,7 @@ A list of worries is easy to produce and changes nothing. The output of this ski
    - `owner`: a role or a name.
 7. **Say what would change the plan.** For each top risk, a `mitigation` that changes scope or design, and the cheapest `test` that would settle the risk before launch.
 8. **Check.** Run `python3 scripts/check.py premortem.json`. Fix every failure.
-9. **Build the page.** Copy `assets/template.html` to `premortem.html` and replace the JSON in the element with id `premortem-data`.
+9. **Build the page.** Run `python3 scripts/build.py premortem.json premortem.html`. Without Python, copy `assets/template.html`, replace the JSON inside the element with id `premortem-data` by hand, and write any `</` in the text as `<\/`.
 
 ## Rules that keep it honest
 

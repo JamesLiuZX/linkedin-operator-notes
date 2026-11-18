@@ -22,8 +22,10 @@ export function installSurfaces(skill) {
       id: "claude-code",
       label: "Claude Code",
       steps: [
-        { cmd: `/plugin marketplace add ${repo}`, note: "Adds this handbook as a plugin source." },
-        { cmd: `/plugin install ${SITE.plugin}@${SITE.marketplace}`, note: "Installs every skill in the pack." },
+        {
+          cmd: `/plugin install ${SITE.plugin} --marketplace ${repo}`,
+          note: `Installs every skill in the pack. On Claude Code older than 2.1.275, run /plugin marketplace add ${repo} first, then /plugin install ${SITE.plugin}@${SITE.marketplace}.`,
+        },
       ],
       after: skill
         ? `Then ask for it in plain words, or type /${SITE.plugin}:${skill}.`
