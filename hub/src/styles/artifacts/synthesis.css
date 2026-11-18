@@ -1,1 +1,630 @@
-/* hub/src/styles/artifacts/synthesis.css */
+/* hub/src/styles/artifacts/synthesis.css : the interview synthesis. */
+
+.synthesis {
+  container: synthesis / inline-size;
+  background: var(--a-bg);
+  color: var(--a-ink);
+  font-family: var(--a-sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.synthesis :where(h1, h2, h3, p, ul, li, figure, blockquote, figcaption) {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  letter-spacing: normal;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-wrap: wrap;
+}
+
+.synthesis i {
+  font-style: normal;
+}
+
+.sy-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 36px 24px 64px;
+}
+
+.sy-ey,
+.synthesis h3,
+.sy-label {
+  font-family: var(--a-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--a-muted);
+}
+
+.sy-head h1 {
+  margin-top: 12px;
+  font-size: clamp(28px, 5.4cqi, 44px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.sy-q {
+  margin-top: 14px;
+  max-width: 62ch;
+  font-size: 18px;
+  color: var(--a-ink2);
+}
+
+/* The receipt: how many quotes were checked, and how many failed. */
+.sy-proof {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 26px;
+  border: 1px solid var(--a-line);
+  border-radius: 14px;
+  background: var(--a-card);
+  overflow: hidden;
+  font-size: 14.5px;
+  color: var(--a-ink2);
+}
+
+.sy-proof > * {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 18px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.sy-proof b {
+  font-family: var(--a-mono);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--a-ink);
+}
+
+.sy-proof-ok {
+  flex: 1 1 320px;
+}
+
+.sy-proof-ok::before {
+  content: "";
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: var(--a-hi)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22' fill='none' stroke='%23131a00' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 11.5l3.2 3.2L16 8'/%3E%3C/svg%3E")
+    center / 22px no-repeat;
+}
+
+.sy-proof-x {
+  border-left: 1px solid var(--a-line);
+  background: var(--a-bad-bg);
+}
+
+.sy-proof-x b {
+  color: var(--a-bad);
+}
+
+.sy-proof-x:hover {
+  text-decoration: underline;
+}
+
+.sy-proof-none {
+  border-left: 1px solid var(--a-line);
+  color: var(--a-muted);
+}
+
+.sy-proof.warn {
+  border-color: #f0d9a8;
+  background: #fffaf0;
+}
+
+/* Participants. */
+.sy-people {
+  margin-top: 34px;
+}
+
+.sy-people-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.sy-person {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 2px 8px;
+  align-content: start;
+  padding: 12px 14px 13px;
+  border: 1px solid var(--a-line);
+  border-radius: 12px;
+  background: var(--a-card);
+}
+
+.sy-pid {
+  font-family: var(--a-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.9;
+  color: var(--a-muted);
+}
+
+.sy-person b {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.sy-person span:last-child {
+  grid-column: 1 / -1;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--a-muted);
+}
+
+/* Themes. */
+.sy-themes {
+  margin-top: 40px;
+}
+
+.sy-theme {
+  margin-top: 12px;
+  padding: 26px 30px 26px;
+  border: 1px solid var(--a-line);
+  border-radius: 20px;
+  background: var(--a-card);
+  scroll-margin-top: 16px;
+}
+
+.sy-theme-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 14px;
+}
+
+.sy-theme-head .aid {
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+.sy-theme h2 {
+  font-size: 23px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.sy-theme h2 .atag {
+  vertical-align: 3px;
+  margin-left: 4px;
+  font-size: 10.5px;
+}
+
+.sy-count {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.sy-count b {
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.sy-count span {
+  font-size: 14px;
+  color: var(--a-muted);
+}
+
+.sy-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 14px;
+}
+
+.sy-dots i {
+  display: inline-grid;
+  place-items: center;
+  min-width: 34px;
+  height: 24px;
+  padding: 0 6px;
+  border: 1px solid var(--a-line);
+  border-radius: 7px;
+  font-family: var(--a-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--a-faint);
+}
+
+.sy-dots i.on {
+  border-color: var(--a-ink);
+  background: var(--a-ink);
+  color: #fff;
+}
+
+.sy-dots i.counter {
+  border-color: var(--a-ink);
+  border-style: dashed;
+  color: var(--a-ink);
+}
+
+.sy-sum {
+  margin-top: 16px;
+  max-width: 68ch;
+  color: var(--a-ink2);
+}
+
+.sy-quotes {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.sy-quote {
+  padding: 14px 18px 13px;
+  border-left: 3px solid var(--a-ink);
+  border-radius: 4px 12px 12px 4px;
+  background: #f7f7f3;
+}
+
+.sy-quote.extra {
+  display: none;
+}
+
+.sy-quotes.all .sy-quote.extra {
+  display: block;
+}
+
+.sy-quote blockquote {
+  font-size: 17px;
+  line-height: 1.42;
+  letter-spacing: -0.01em;
+}
+
+.sy-quote blockquote::before {
+  content: "\201C";
+}
+
+.sy-quote blockquote::after {
+  content: "\201D";
+}
+
+.sy-quote figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--a-muted);
+}
+
+.sy-quote figcaption b {
+  font-family: var(--a-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--a-ink);
+}
+
+.sy-where {
+  margin-left: auto;
+  padding: 3px 9px;
+  border: 1px solid var(--a-line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--a-ink2);
+  font-family: var(--a-mono);
+  font-size: 11.5px;
+}
+
+button.sy-where {
+  cursor: pointer;
+}
+
+button.sy-where::after {
+  content: " +";
+  color: var(--a-muted);
+}
+
+.sy-quote.open button.sy-where {
+  border-color: var(--a-ink);
+  background: var(--a-ink);
+  color: #fff;
+}
+
+.sy-quote.open button.sy-where::after {
+  content: " \2212";
+  color: var(--a-hi);
+}
+
+button.sy-where:hover {
+  border-color: var(--a-ink);
+}
+
+/* The transcript, a few lines either side. */
+.sy-ctx {
+  margin-top: 12px;
+  padding: 10px 0 6px;
+  border-top: 1px dashed var(--a-line);
+  font-family: var(--a-mono);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.sy-line {
+  display: grid;
+  grid-template-columns: 30px 92px minmax(0, 1fr);
+  gap: 0 8px;
+  padding: 3px 6px;
+  border-radius: 6px;
+  color: var(--a-muted);
+}
+
+.sy-line.hit {
+  background: #fff;
+  color: var(--a-ink);
+}
+
+.sy-n {
+  text-align: right;
+  color: var(--a-faint);
+}
+
+.sy-line.hit .sy-n {
+  color: var(--a-ink);
+  font-weight: 600;
+}
+
+.sy-who {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.synthesis mark {
+  padding: 0.05em 0.1em;
+  border-radius: 3px;
+  background: var(--a-hi);
+  color: var(--a-hi-ink);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.sy-more-btn {
+  justify-self: start;
+  padding: 6px 12px;
+  border: 1px solid var(--a-line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--a-ink2);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.sy-more-btn:hover {
+  border-color: var(--a-ink);
+}
+
+.sy-counter {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--a-line2);
+}
+
+.sy-counter .sy-quote {
+  margin-top: 8px;
+  border-left-style: dashed;
+  background: transparent;
+  padding-left: 16px;
+}
+
+.sy-counter .sy-quote blockquote {
+  font-size: 15.5px;
+  color: var(--a-ink2);
+}
+
+.sy-note,
+.sy-fine {
+  margin-top: 8px;
+  font-size: 13.5px;
+  color: var(--a-muted);
+}
+
+.sy-so {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: var(--a-hi-soft);
+  font-size: 15.5px;
+  line-height: 1.45;
+}
+
+.sy-so b {
+  font-family: var(--a-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1.9;
+  text-transform: uppercase;
+}
+
+/* The rest of the page. */
+.sy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.sy-box {
+  padding: 22px 24px 24px;
+  border: 1px solid var(--a-line);
+  border-radius: 16px;
+  background: var(--a-card);
+}
+
+.sy-box h3 {
+  margin-bottom: 12px;
+}
+
+.sy-mini + .sy-mini {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--a-line2);
+}
+
+.sy-mini b {
+  font-weight: 600;
+}
+
+.sy-mini p {
+  margin: 4px 0 10px;
+  font-size: 14px;
+  color: var(--a-ink2);
+}
+
+.sy-mini .sy-quote blockquote {
+  font-size: 14.5px;
+}
+
+.sy-by {
+  margin-left: 8px;
+  font-family: var(--a-mono);
+  font-size: 11.5px;
+  color: var(--a-muted);
+  white-space: nowrap;
+}
+
+.sy-list {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+}
+
+.sy-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--a-line2);
+  font-size: 14px;
+  color: var(--a-ink2);
+}
+
+.sy-list li:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.sy-list b {
+  font-weight: 600;
+  color: var(--a-ink);
+}
+
+.sy-box .sy-fine {
+  margin: -6px 0 12px;
+}
+
+/* What the check removed. */
+.sy-rejected {
+  margin-top: 12px;
+  padding: 22px 24px 20px;
+  border: 1px solid #f3b9b2;
+  border-radius: 16px;
+  background: #fff8f7;
+  scroll-margin-top: 16px;
+}
+
+.sy-rejected h3 {
+  color: var(--a-bad);
+}
+
+.sy-reject {
+  margin-top: 12px;
+}
+
+.sy-reject blockquote {
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--a-muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--a-bad);
+  text-decoration-thickness: 2px;
+}
+
+.sy-reject p {
+  margin-top: 6px;
+  font-size: 13.5px;
+  color: var(--a-ink2);
+}
+
+.sy-reject p span {
+  color: var(--a-bad);
+  font-weight: 500;
+}
+
+@container synthesis (max-width: 700px) {
+  .sy-wrap {
+    padding: 24px 16px 44px;
+  }
+
+  .sy-people-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sy-theme {
+    padding: 20px 18px;
+  }
+
+  .sy-theme-head {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .sy-count {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .sy-count b {
+    font-size: 36px;
+  }
+
+  .sy-theme h2 {
+    font-size: 20px;
+  }
+
+  .sy-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sy-line {
+    grid-template-columns: 26px minmax(0, 1fr);
+  }
+
+  .sy-who {
+    display: none;
+  }
+
+  .sy-where {
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Experiment readout</title>
+<!-- Made with the AI Workflow Handbook skill "experiment-readout". Free, MIT licensed: https://jamesliuzx.github.io/linkedin-operator-notes/skills/ -->
+<style>*,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0;background:#f3f3ef;color:#0b0c0c;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}img,svg{max-width:100%}.adoc,.proto{--a-bg: #f3f3ef;--a-card: #ffffff;--a-ink: #0b0c0c;--a-ink2: #3a3d3b;--a-muted: #70756f;--a-faint: #a7aca6;--a-line: #e3e4de;--a-line2: #eeefea;--a-hi: #dcff4a;--a-hi-soft: #f3ffc4;--a-hi-ink: #131a00;--a-ok: #12804b;--a-ok-bg: #e2f6ea;--a-warn: #8f5500;--a-warn-bg: #fff3d9;--a-bad: #bf3327;--a-bad-bg: #fdeae7;--a-info: #2447d6;--a-info-bg: #e9eeff;--a-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;--a-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace}.aid{display:inline-flex;align-items:center;justify-content:center;min-width:2.1em;height:1.55em;padding:0 .42em;border-radius:.5em;background:var(--a-hi);color:var(--a-hi-ink);font-family:var(--a-mono);font-size:.78em;font-weight:600;letter-spacing:-.01em;white-space:nowrap;text-decoration:none}.aid.ink{background:var(--a-ink);color:var(--a-hi)}.atag{display:inline-flex;align-items:center;height:1.6em;padding:0 .55em;border-radius:.45em;font-family:var(--a-mono);font-size:.68em;font-weight:600;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;background:#eceee9;color:var(--a-ink2)}.atag.ok{background:var(--a-ok-bg);color:var(--a-ok)}.atag.warn{background:var(--a-warn-bg);color:var(--a-warn)}.atag.bad{background:var(--a-bad-bg);color:var(--a-bad)}.atag.info{background:var(--a-info-bg);color:var(--a-info)}.atag.hi{background:var(--a-hi);color:var(--a-hi-ink)}.scr{display:block;width:100%;height:auto}.readout{container:readout / inline-size;background:var(--a-bg);color:var(--a-ink);font-family:var(--a-sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}.readout :where(h1,h2,h3,p,ul,li,table,th,td,details,summary){margin:0;padding:0;max-width:none;letter-spacing:normal;font-size:inherit;font-weight:inherit;line-height:inherit;text-wrap:wrap}.readout i{font-style:normal}.ro-wrap{max-width:940px;margin:0 auto;padding:28px 24px 56px;display:grid;gap:14px}.ro-ey{margin-bottom:12px;font-family:var(--a-mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--a-muted)}.ro-verdict{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:10px 36px;padding:30px 34px;border:1px solid var(--a-line);border-radius:20px;background:var(--a-card)}.ro-word{font-size:clamp(44px,9cqi,84px);font-weight:600;line-height:1;letter-spacing:-.045em;white-space:nowrap;padding:0 .08em;margin-left:-.08em;background:linear-gradient(transparent 56%,var(--ro-tone) 56%,var(--ro-tone) 92%,transparent 92%)}.ro-ok{--ro-tone: var(--a-hi)}.ro-warn{--ro-tone: #ffd98a}.ro-bad{--ro-tone: #ffc2ba}.ro-headline{font-size:21px;font-weight:500;line-height:1.32;letter-spacing:-.015em}.ro-rule{margin-top:8px;font-family:var(--a-mono);font-size:12.5px;color:var(--a-muted)}.ro-checks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.ro-check{padding:18px 20px 20px;border:1px solid var(--a-line);border-radius:16px;background:var(--a-card)}.ro-k{display:block;font-family:var(--a-mono);font-size:11.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--a-muted)}.ro-check b{display:flex;align-items:center;gap:9px;margin:10px 0 6px;font-size:21px;font-weight:600;letter-spacing:-.02em}.ro-check b:before{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:var(--a-faint)}.ro-check.ok b:before{background:var(--a-ok)}.ro-check.warn b:before{background:#e09b12}.ro-check.bad b:before{background:var(--a-bad)}.ro-check.bad{border-color:#f3b9b2;background:#fff8f7}.ro-check p{font-size:14px;color:var(--a-ink2)}.ro-main{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:20px 40px;align-items:center;padding:28px 34px 26px;border:1px solid var(--a-line);border-radius:20px;background:var(--a-card)}.ro-metric-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}.ro-metric h2{font-size:20px;font-weight:600;letter-spacing:-.02em}.ro-rates{display:flex;flex-wrap:wrap;align-items:flex-end;gap:6px 16px;margin-top:18px;font-size:13px;color:var(--a-muted)}.ro-rates span{display:grid;gap:2px}.ro-rates b{font-size:30px;font-weight:600;line-height:1.05;letter-spacing:-.03em;color:var(--a-ink);font-variant-numeric:tabular-nums}.ro-rates>i{padding-bottom:5px;font-size:20px;color:var(--a-faint)}.ro-big{display:flex;align-items:flex-end;gap:14px;margin-bottom:14px}.ro-big b{font-size:64px;font-weight:600;line-height:.92;letter-spacing:-.05em;font-variant-numeric:tabular-nums}.ro-big span{padding-bottom:3px;font-size:13.5px;line-height:1.35;color:var(--a-muted)}.forest{width:100%}.f-plot{position:relative;height:46px}.f-plot i{position:absolute;display:block}.f-zone{top:4px;bottom:4px;border-radius:4px;background:repeating-linear-gradient(-45deg,#fbd9d4 0 5px,#fdeeeb 5px 10px)}.f-tick{bottom:0;width:1px;height:6px;background:var(--a-faint)}.f-zero{top:0;bottom:0;width:1.5px;margin-left:-.75px;background:var(--a-ink)}.f-mark{top:0;bottom:0;width:0;border-left:1.5px dashed var(--a-muted)}.f-mark b{position:absolute;left:6px;top:-3px;font-family:var(--a-mono);font-size:10.5px;font-weight:500;letter-spacing:.02em;white-space:nowrap;color:var(--a-muted)}.f-bar{top:50%;height:4px;margin-top:-2px;border-radius:2px;background:var(--f-tone);transition:left .5s cubic-bezier(.2,.8,.2,1),width .5s cubic-bezier(.2,.8,.2,1)}.f-bar:before,.f-bar:after{content:"";position:absolute;top:-6px;width:4px;height:16px;border-radius:2px;background:var(--f-tone)}.f-bar:before{left:0}.f-bar:after{right:0}.f-dot{top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border:3px solid var(--a-card);border-radius:50%;background:var(--f-tone);box-shadow:0 0 0 1px var(--f-tone);transition:left .5s cubic-bezier(.2,.8,.2,1)}.f-ok{--f-tone: var(--a-ok)}.f-bad{--f-tone: var(--a-bad)}.f-mut{--f-tone: #8a8f89}.f-axis{position:relative;height:18px;margin-top:4px;font-family:var(--a-mono);font-size:11px;color:var(--a-muted)}.f-axis span{position:absolute;transform:translate(-50%);white-space:nowrap}.ro-guards{padding:24px 34px 22px;border:1px solid var(--a-line);border-radius:20px;background:var(--a-card)}.readout h3{margin-bottom:8px;font-family:var(--a-mono);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--a-muted)}.ro-guard{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr) 88px;align-items:center;gap:8px 28px;padding:14px 0 10px;border-top:1px solid var(--a-line2)}.ro-guard:first-of-type{border-top:0}.ro-guard-name{display:grid;gap:3px}.ro-guard-name b{font-size:15.5px;font-weight:600;letter-spacing:-.01em}.ro-guard-name span{font-size:12.5px;color:var(--a-muted)}.ro-guard-v{display:grid;justify-items:end;gap:5px}.ro-guard-v b{font-size:22px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums}.ro-fine{margin-top:10px;padding-top:12px;border-top:1px solid var(--a-line2);font-size:12.5px;color:var(--a-muted)}.ro-text{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:14px}.ro-text>div,.ro-flags{padding:22px 26px 24px;border:1px solid var(--a-line);border-radius:16px;background:var(--a-card)}.ro-text>div:only-child{grid-column:1 / -1}.ro-text p,.ro-text li,.ro-flags li{font-size:15px;color:var(--a-ink2)}.ro-text ul,.ro-flags ul{display:grid;gap:9px;list-style:none}.ro-text li,.ro-flags li{position:relative;padding-left:18px}.ro-text li:before,.ro-flags li:before{content:"";position:absolute;left:0;top:.62em;width:8px;height:2px;background:var(--a-ink)}.ro-flags{border-color:#f0d9a8;background:#fffaf0}.ro-numbers{padding:0 4px}.ro-numbers summary{display:inline-flex;align-items:center;gap:8px;padding:8px 0;font-size:14px;font-weight:500;color:var(--a-ink2);cursor:pointer;list-style:none}.ro-numbers summary::-webkit-details-marker{display:none}.ro-numbers summary:before{content:"+";display:inline-grid;place-items:center;width:20px;height:20px;border-radius:6px;background:var(--a-ink);color:var(--a-hi);font-family:var(--a-mono);font-size:14px;line-height:1}.ro-numbers[open] summary:before{content:"\2212"}.ro-numbers table{width:100%;margin-top:8px;border-collapse:collapse;font-size:13.5px}.ro-numbers th,.ro-numbers td{padding:10px 0;border-top:1px solid var(--a-line);text-align:left;vertical-align:top}.ro-numbers th{width:30%;padding-right:20px;font-weight:600}.ro-numbers td{font-family:var(--a-mono);font-size:12.5px;color:var(--a-ink2)}.ro-controls{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;padding:10px 24px;border-bottom:1px solid var(--a-line);background:color-mix(in srgb,var(--a-bg) 90%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}.ro-scenarios{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}.ro-scenarios button{flex:none;padding:6px 12px;border:0;border-radius:999px;background:transparent;color:var(--a-ink2);font:inherit;font-size:13.5px;font-weight:500;cursor:pointer}.ro-scenarios button:hover{background:#fff}.ro-scenarios button.on{background:var(--a-ink);color:#fff}.ro-inputs{display:flex;flex-wrap:wrap;gap:8px 18px}.ro-inputs>div{display:flex;align-items:center;gap:8px;font-size:12.5px}.ro-inputs b{font-weight:600}.ro-inputs label{display:flex;align-items:center;gap:5px;color:var(--a-muted)}.ro-inputs input{width:82px;padding:5px 8px;border:1px solid var(--a-line);border-radius:8px;background:#fff;color:var(--a-ink);font-family:var(--a-mono);font-size:12.5px}.ro-inputs input:focus{outline:2px solid var(--a-ink);outline-offset:1px}.ro-error{padding:22px 26px;border:1px solid #f3b9b2;border-radius:16px;background:#fff8f7;color:var(--a-bad);font-size:15px}@container readout (max-width: 720px){.ro-wrap{padding:20px 16px 40px}.ro-verdict{grid-template-columns:minmax(0,1fr);padding:22px 20px}.ro-headline{font-size:18px}.ro-checks,.ro-main,.ro-text{grid-template-columns:minmax(0,1fr)}.ro-main,.ro-guards{padding:20px}.ro-big b{font-size:52px}.ro-guard{grid-template-columns:minmax(0,1fr) auto}.ro-guard-plot{grid-column:1 / -1;grid-row:2}.ro-controls{padding:8px 16px}.ro-numbers th{width:38%}}#root{min-height:100vh}</style>
+</head>
+<body>
+<div id="root"></div>
+<!-- DATA: replace the JSON inside this element with your own. -->
+<script id="readout-data" type="application/json">
+{
+ "title": "Replace this JSON with your readout.json",
+ "date": "",
+ "headline": "Ship. Replace this JSON with your readout.json.",
+ "summary": "This page is drawn from the JSON in the element with id readout-data. The numbers below come from scripts/ab_stats.py, run on placeholder counts. The format is in references/format.md.",
+ "next": [
+  "Run the script on your own counts.",
+  "Paste its output under numbers, unchanged."
+ ],
+ "numbers": {
+  "input": {
+   "test": {
+    "name": "Your test",
+    "hypothesis": "What you expected to happen.",
+    "unit": "users",
+    "planned_split": [
+     0.5,
+     0.5
+    ],
+    "planned_days": 14,
+    "ran_days": 14,
+    "start": "2026-01-05",
+    "end": "2026-01-18",
+    "mde_set": 0.02,
+    "alpha": 0.05
+   },
+   "arms": [
+    {
+     "name": "Control",
+     "users": 10000
+    },
+    {
+     "name": "Variant",
+     "users": 10000
+    }
+   ],
+   "primary": {
+    "name": "Your main metric",
+    "direction": "up",
+    "counts": [
+     3000,
+     3250
+    ]
+   },
+   "guardrails": [
+    {
+     "name": "A metric that must not get worse",
+     "harm": "up",
+     "counts": [
+      400,
+      380
+     ],
+     "tolerance": 0.01
+    }
+   ]
+  },
+  "checks": {
+   "srm": {
+    "expected": [
+     10000,
+     10000
+    ],
+    "observed": [
+     10000,
+     10000
+    ],
+    "chi2": 0,
+    "p": 1,
+    "threshold": 0.001,
+    "pass": true
+   },
+   "duration": {
+    "planned_days": 14,
+    "ran_days": 14,
+    "stopped_early": false,
+    "full_weeks": true
+   },
+   "power": {
+    "baseline": 0.3,
+    "mde_abs": 0.01815634734308258,
+    "mde_rel": 0.06052115781027527,
+    "mde_set": 0.02,
+    "adequate": true
+   }
+  },
+  "primary": {
+   "name": "Your main metric",
+   "rates": [
+    0.3,
+    0.325
+   ],
+   "diff": 0.025000000000000022,
+   "lift": 0.08333333333333341,
+   "se": 0.006552671211040579,
+   "ci": [
+    0.012157000423828024,
+    0.03784299957617202
+   ],
+   "z": 3.8138503569823725,
+   "p": 0.00013681833162739102,
+   "result": "positive"
+  },
+  "guardrails": [
+   {
+    "name": "A metric that must not get worse",
+    "rates": [
+     0.04,
+     0.038
+    ],
+    "diff": -0.0020000000000000018,
+    "se": 0.0027378093432523748,
+    "ci": [
+     -0.007366007709311916,
+     0.003366007709311913
+    ],
+    "harm": "up",
+    "tolerance": 0.01,
+    "verdict": "held"
+   }
+  ],
+  "verdict": {
+   "decision": "ship",
+   "rule": "Rule 5: positive and every guardrail held, so ship",
+   "reasons": [
+    "Your main metric rose 2.5 points, from 30.0% to 32.5%, with a 95% interval of 1.2 to 3.8.",
+    "Every guardrail held: each interval rules out harm beyond its tolerance."
+   ]
+  },
+  "flags": []
+ }
+}
+</script>
+<script>(()=>{var F=Math.sqrt(2),B=Math.sqrt(Math.PI),ne=Math.sqrt(2*Math.PI),O=class extends Error{constructor(t){super(t),this.name="InputError"}};function L(e){if(Number.isNaN(e))throw new O("erfc received NaN.");if(e<0)return 2-L(-e);let t=e*e;if(e<1.5){let l=e,h=e,u=0;for(;u<1e3&&(u+=1,l=l*(2*t)/(2*u+1),h=h+l,!(l<=h*1e-17)););return 1-2/B*Math.exp(-t)*h}let n=1e-300,o=e,s=e,r=0,i=0;for(;i<5e3;){i+=1;let l=i/2;r=e+l*r,r===0&&(r=n),r=1/r,s=e+l/s,s===0&&(s=n);let h=s*r;if(o=o*h,Math.abs(h-1)<1e-16)break}return Math.exp(-t)/(B*o)}function re(e){return .5*L(-e/F)}var M=[-39.69683028665376,220.9460984245205,-275.9285104469687,138.357751867269,-30.66479806614716,2.506628277459239],E=[-54.47609879822406,161.5858368580409,-155.6989798598866,66.80131188771972,-13.28068155288572],y=[-.007784894002430293,-.3223964580411365,-2.400758277161838,-2.549732539343734,4.374664141464968,2.938163982698783],g=[.007784695709041462,.3224671290700398,2.445134137142996,3.754408661907416],Q=.02425;function z(e){if(!(e>0&&e<1))throw new O(`normPpf needs 0 < p < 1, got ${e}.`);let t;if(e<Q){let s=Math.sqrt(-2*Math.log(e));t=(((((y[0]*s+y[1])*s+y[2])*s+y[3])*s+y[4])*s+y[5])/((((g[0]*s+g[1])*s+g[2])*s+g[3])*s+1)}else if(e<=1-Q){let s=e-.5,r=s*s;t=(((((M[0]*r+M[1])*r+M[2])*r+M[3])*r+M[4])*r+M[5])*s/(((((E[0]*r+E[1])*r+E[2])*r+E[3])*r+E[4])*r+1)}else{let s=Math.sqrt(-2*Math.log(1-e));t=-(((((y[0]*s+y[1])*s+y[2])*s+y[3])*s+y[4])*s+y[5])/((((g[0]*s+g[1])*s+g[2])*s+g[3])*s+1)}let n;e>.5?n=1-e-.5*L(t/F):n=re(t)-e;let o=n*ne*Math.exp(t*t/2);return t=t-o/(1+t*o/2),t}function oe(e){return L(Math.sqrt(e/2))}function ie(e,t){let n=e[0]+e[1],o=[n*t[0],n*t[1]],s=0;for(let i=0;i<2;i++){let l=e[i]-o[i];s=s+l*l/o[i]}let r=oe(s);return{expected:o,observed:[e[0],e[1]],chi2:s,p:r,threshold:.001,pass:r>=.001}}function Y(e,t,n){let o=e[0]/t[0],s=e[1]/t[1],r=s-o,i=Math.sqrt(o*(1-o)/t[0]+s*(1-s)/t[1]),l=[r-n*i,r+n*i],h=(e[0]+e[1])/(t[0]+t[1]),u=Math.sqrt(h*(1-h)*(1/t[0]+1/t[1])),d,p;return u>0?(d=r/u,p=L(Math.abs(d)/F)):(d=0,p=1),{rates:[o,s],diff:r,se:i,ci:l,z:d,p}}function le(e,t){let[n,o]=e,s,r;return t==="up"?(s=n>0,r=o<0):(s=o<0,r=n>0),s?"positive":r?"negative":"inconclusive"}function de(e,t,n){let[o,s]=e,r,i;return t==="down"?(r=o,i=s):(r=-s,i=-o),i<0?"worse":r>-n?"held":"unclear"}function ce(e,t,n,o,s){let i=(z(1-o/2)+z(.8))*Math.sqrt(e*(1-e)*(1/t+1/n)),l=e<=0||e>=1,h=l?null:i/e,u=s===null||l?null:i<=s;return{baseline:e,mde_abs:i,mde_rel:h,mde_set:s,adequate:u}}function x(e,t){let n=Math.pow(10,t),o=Math.floor(Math.abs(e)*n+.5),s=String((o-o%n)/n);return t>0&&(s=s+"."+String(o%n).padStart(t,"0")),e<0&&o!==0?"-"+s:s}var $=e=>x(e*100,1),J=e=>x(e*100,1)+"%";function V(e){let t=String(Math.trunc(e)),n="";for(;t.length>3;)n=","+t.slice(-3)+n,t=t.slice(0,-3);return t+n}function ue(e){let t=Math.floor((1-e)*1e3+.5),n=(t-t%10)/10;return t%10===0?n+"%":n+"."+t%10+"%"}function pe(e){return e>0?"rose":e<0?"fell":"did not move"}function D(e,t,n,o){let s=t.diff,[r,i]=t.ci,l;return s===0?l=e+" did not move":l=e+" "+pe(s)+" "+x(Math.abs(s)*100,1)+" points",o&&(l=l+", from "+J(t.rates[0])+" to "+J(t.rates[1])),l+", with a "+n+" interval of "+$(r)+" to "+$(i)}var A=e=>typeof e=="number"&&Number.isFinite(e),C=e=>A(e)&&Number.isInteger(e),I=e=>typeof e=="string",q=e=>e!==null&&typeof e=="object"&&!Array.isArray(e);function m(e,t){if(!e)throw new O(t)}function H(e,t,n){m(Array.isArray(e)&&e.length===2,t+" must be a list of two numbers.");for(let o of e)m(C(o)&&o>=n,t+" must hold whole numbers of at least "+n+".");return[e[0],e[1]]}function he(e){m(q(e),"The input must be a JSON object.");let t=e.test;m(q(t),"'test' must be an object."),m(I(t.name),"test.name must be a string.");let n=t.planned_split;m(Array.isArray(n)&&n.length===2&&n.every(a=>A(a)&&a>0),"test.planned_split must be two positive numbers."),m(Math.abs(n[0]+n[1]-1)<1e-9,"test.planned_split must sum to 1."),m(C(t.planned_days)&&t.planned_days>=1,"test.planned_days must be a whole number of at least 1."),m(C(t.ran_days)&&t.ran_days>=1,"test.ran_days must be a whole number of at least 1.");let o=t.alpha;m(A(o)&&o>0&&o<1,"test.alpha must be a number between 0 and 1.");let s=t.mde_set===void 0?null:t.mde_set;m(s===null||A(s)&&s>0,"test.mde_set must be a positive number or null.");let r=e.arms;m(Array.isArray(r),"'arms' must be a list."),m(r.length===2,"Exactly two arms are supported (control and one variant); got "+r.length+".");let i=[],l=[];for(let a of r)m(q(a)&&I(a.name),"Each arm needs a string name."),m(C(a.users)&&a.users>=1,"Arm '"+a.name+"' needs users as a whole number of at least 1."),i.push(a.users),l.push(a.name);let h=e.primary;m(q(h)&&I(h.name),"'primary' must be an object with a string name."),m(h.direction==="up"||h.direction==="down","primary.direction must be 'up' or 'down'.");let u=H(h.counts,"primary.counts",0);for(let a=0;a<2;a++)m(u[a]<=i[a],"Count "+u[a]+" for "+l[a]+" in '"+h.name+"' is larger than its denominator "+i[a]+".");let d=e.guardrails===void 0?[]:e.guardrails;m(Array.isArray(d),"'guardrails' must be a list.");let p=[];for(let a of d){m(q(a)&&I(a.name),"Each guardrail needs a string name."),m(a.harm==="up"||a.harm==="down","Guardrail '"+a.name+"' needs harm 'up' or 'down'.");let c=H(a.counts,"Guardrail '"+a.name+"' counts",0),_=a.denominators===void 0||a.denominators===null?[i[0],i[1]]:H(a.denominators,"Guardrail '"+a.name+"' denominators",1);m(A(a.tolerance)&&a.tolerance>=0,"Guardrail '"+a.name+"' needs a tolerance of at least 0.");for(let v=0;v<2;v++)m(c[v]<=_[v],"Count "+c[v]+" for "+l[v]+" in '"+a.name+"' is larger than its denominator "+_[v]+".");p.push({name:a.name,harm:a.harm,counts:c,denoms:_,tolerance:a.tolerance})}return{split:[n[0],n[1]],planned_days:t.planned_days,ran_days:t.ran_days,alpha:o,mde_set:s,names:l,users:i,primary:{name:h.name,direction:h.direction,counts:u},guardrails:p}}var me={1:"Rule 1: sample ratio mismatch, so do not trust the result",2:"Rule 2: a guardrail got worse, so stop",3:"Rule 3: the primary metric moved the wrong way, so stop",4:"Rule 4: positive but stopped early, so extend",5:"Rule 5: positive and every guardrail held, so ship",6:"Rule 6: positive but a guardrail is unclear, so extend",7:"Rule 7: inconclusive with adequate power, so stop",8:"Rule 8: inconclusive without adequate power, so extend"};function fe(e,t,n,o,s,r,i){let l=s.map(p=>p.verdict),h=o.result,u=D(o.name,o,r,!0)+".";if(!e.pass){let p=x(i.split[0]*100,0)+"/"+x(i.split[1]*100,0),a=e.p<1e-4?"below 0.0001":x(e.p,4);return["do-not-trust",1,["Arm sizes are "+V(i.users[0])+" and "+V(i.users[1])+" against a planned "+p+" split, and a gap that large happens by chance with p "+a+".","Assignment is broken, so no metric in this test can be trusted.","Fix how users are assigned and rerun the test."]]}if(l.includes("worse")){let a=s.filter(c=>c.verdict==="worse").slice(0,2).map(c=>D(c.name,c,r,!1)+", so it got significantly worse.");return a.push("A guardrail got worse, so stop whatever the primary metric says."),["stop",2,a]}if(h==="negative")return["stop",3,[u,"The whole interval is on the harmful side of zero, so the change hurts the metric it was meant to help."]];if(h==="positive"&&t.stopped_early)return["extend",4,[u,"The test stopped after "+t.ran_days+" of "+t.planned_days+" planned days, and an early look overstates significance.","Run it to the planned length before deciding."]];if(h==="positive"&&l.every(p=>p==="held")){let p=s.length?"Every guardrail held: each interval rules out harm beyond its tolerance.":"No guardrails were set, so nothing else was checked.";return["ship",5,[u,p]]}if(h==="positive"){let p=s.filter(c=>c.verdict==="unclear"),a=[u];for(let c of p.slice(0,2))a.push(D(c.name,c,r,!1)+", so a harmful change beyond the "+$(c.tolerance)+"-point tolerance is not ruled out.");return a.push("Extend the test until the guardrail interval is narrow enough to decide."),["extend",6,a]}if(h==="inconclusive"&&n.adequate===!0)return["stop",7,[u,"The test could detect a change of "+$(n.mde_abs)+" points, smaller than the "+$(n.mde_set)+" points worth shipping, and its interval still includes zero.","Stop: an effect worth shipping would most likely have shown up."]];let d;return n.adequate===!1?d="The test can only reliably detect a change of "+$(n.mde_abs)+" points, more than the "+$(n.mde_set)+" points worth shipping, so a real effect could be hiding.":d="The test can reliably detect a change of "+$(n.mde_abs)+" points, but no effect worth shipping was set to judge that against.",["extend",8,[u,d,"Extend the test to gain power, or accept that it cannot answer the question."]]}function K(e){let t=he(e),n=t.alpha,o=z(1-n/2),s=ue(n),r=t.users,i=ie(r,t.split),l={planned_days:t.planned_days,ran_days:t.ran_days,stopped_early:t.ran_days<t.planned_days,full_weeks:t.ran_days>=7&&t.ran_days%7===0},h=t.primary,u=Y(h.counts,r,o),d=u.rates[0],p={name:h.name,rates:u.rates,diff:u.diff,lift:d>0?u.diff/d:null,se:u.se,ci:u.ci,z:u.z,p:u.p,result:le(u.ci,h.direction)},a=ce(d,r[0],r[1],n,t.mde_set),c=t.guardrails.map(b=>{let R=Y(b.counts,b.denoms,o);return{name:b.name,rates:R.rates,diff:R.diff,se:R.se,ci:R.ci,harm:b.harm,tolerance:b.tolerance,verdict:de(R.ci,b.harm,b.tolerance)}}),[_,v,P]=fe(i,l,a,p,c,s,t),S=[];l.stopped_early&&S.push("The test stopped after "+t.ran_days+" of "+t.planned_days+" planned days."),l.full_weeks||S.push("The test ran "+t.ran_days+" days, not a whole number of weeks, so weekday patterns may be uneven across the run."),t.mde_set===null&&S.push("No minimum effect worth shipping (mde_set) was set before the test, so power cannot be judged."),c.length>3&&S.push("There are "+c.length+" guardrails; with several metrics, one will look bad by chance.");for(let b=0;b<2;b++)r[b]<100&&S.push("Arm "+t.names[b]+" has "+r[b]+" users; under 100 per arm the normal approximation is weak.");return(d<=0||d>=1)&&S.push("The control rate is "+J(d)+", so the power estimate is not meaningful."),{input:JSON.parse(JSON.stringify(e)),checks:{srm:i,duration:l,power:a},primary:p,guardrails:c,verdict:{decision:_,rule:me[v],reasons:P},flags:S}}var X={test:{name:"Reorder card on Home",hypothesis:"Putting last week's shop on Home gets more returning customers to order within 7 days.",unit:"returning customers",planned_split:[.5,.5],planned_days:14,ran_days:14,start:"2026-10-26",end:"2026-11-08",mde_set:.01,alpha:.05},arms:[{name:"Control",users:20912},{name:"Reorder card",users:20958}],primary:{name:"Ordered within 7 days",direction:"up",counts:[6984,7357]},guardrails:[{name:"Orders with 15 or more items",harm:"down",counts:[4120,4267],denominators:[6984,7357],tolerance:.01},{name:"Orders with a substitution complaint",harm:"up",counts:[301,268],denominators:[6984,7357],tolerance:.005},{name:"Orders cancelled before delivery",harm:"up",counts:[154,158],denominators:[6984,7357],tolerance:.005}]},Z=e=>JSON.parse(JSON.stringify(e));function j(e){let t=Z(X);return e(t),t}var W=[{id:"tangelo",label:"The Tangelo test",blurb:"Orders rose, but one guardrail cannot yet rule out real harm.",input:Z(X)},{id:"clean",label:"Every guardrail holds",blurb:"The same test, but every guardrail now rules out harm beyond its tolerance.",input:j(e=>{e.guardrails[0].counts=[4143,4409]})},{id:"srm",label:"Broken split",blurb:"A big win on paper, but the arms are far from the planned 50/50 split.",input:j(e=>{e.arms[1].users=22740,e.primary.counts=[6984,8184],e.guardrails[0].counts=[4120,4747],e.guardrails[1].counts=[301,298],e.guardrails[2].counts=[154,176];for(let t of e.guardrails)t.denominators=[6984,8184]})},{id:"small",label:"Too small to tell",blurb:"The same idea on 2,100 users per arm, too few to see a 1-point effect.",input:j(e=>{e.arms[0].users=2100,e.arms[1].users=2100,e.primary.counts=[701,727],e.guardrails[0].counts=[414,422],e.guardrails[1].counts=[30,26],e.guardrails[2].counts=[15,16];for(let t of e.guardrails)t.denominators=[701,727]})},{id:"harm",label:"A guardrail breaks",blurb:"Orders rose, but substitution complaints rose with them.",input:j(e=>{e.guardrails[1].counts=[301,412]})}];var f=e=>String(e??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;"),ee={ship:{word:"Ship",tone:"ok"},extend:{word:"Extend",tone:"warn"},stop:{word:"Stop",tone:"bad"},"do-not-trust":{word:"Do not trust",tone:"bad"}},be={held:["Held","ok"],worse:["Worse","bad"],unclear:["Unclear","warn"]},ye={positive:["Better","ok"],negative:["Worse","bad"],inconclusive:["No clear effect","warn"]},T=(e,t=1)=>`${(e*100).toFixed(t)}%`,k=(e,t=1)=>`${e>=0?"+":"\u2212"}${Math.abs(e*100).toFixed(t)}`,w=(e,t=1)=>`${e<0?"\u2212":""}${Math.abs(e*100).toFixed(t)}`,N=e=>Number(e).toLocaleString("en-US"),G=e=>e<1e-4?"< 0.0001":e<.001?e.toFixed(4):e.toFixed(3);function te({diff:e,ci:t,span:n,zone:o=null,good:s="up",mark:r=null}){let i=a=>Math.max(1,Math.min(99,50+a/n*46)),l=[-1,-.5,0,.5,1].map(a=>a*n),h=a=>a===0?"0":`${a<0?"\u2212":"+"}${Math.round(Math.abs(a)*1e4)/100}`,u=a=>s==="up"?a>0:a<0,d=t[0]>0||t[1]<0?u(e)?"ok":"bad":"mut",p=o?[o[0]===-1/0?0:i(o[0]),o[1]===1/0?100:i(o[1])]:null;return`<div class="forest" role="img" aria-label="Difference ${k(e)} points, interval ${w(t[0])} to ${w(t[1])}">
+    <div class="f-plot">
+      ${p?`<i class="f-zone" style="left:${p[0]}%;width:${p[1]-p[0]}%"></i>`:""}
+      ${l.map(a=>`<i class="${a===0?"f-zero":"f-tick"}" style="left:${i(a)}%"></i>`).join("")}
+      ${r?`<i class="f-mark" style="left:${i(r.at)}%"><b>${f(r.label)}</b></i>`:""}
+      <i class="f-bar f-${d}" data-ci style="left:${i(t[0])}%;width:${i(t[1])-i(t[0])}%"></i>
+      <i class="f-dot f-${d}" data-dot style="left:${i(e)}%"></i>
+    </div>
+    <div class="f-axis">${l.map(a=>`<span style="left:${i(a)}%">${h(a)}</span>`).join("")}</div>
+  </div>`}var se=e=>{let t=Math.max(...e.map(n=>Math.abs(n)),.005)*1.15;for(let n of[.005,.01,.02,.03,.04,.05,.075,.1,.15,.2,.3,.5,1])if(t<=n)return n;return 1};function ve(e){let t=e.numbers,n=t.input,o=ee[t.verdict.decision]||ee.extend,s=t.primary,r=se([s.ci[0],s.ci[1],t.checks.power.mde_set||0]),i=se(t.guardrails.flatMap(c=>[c.ci[0],c.ci[1],c.tolerance])),l=t.checks.srm,h=t.checks.duration,u=t.checks.power,d=l.observed[0]+l.observed[1],[p,a]=ye[s.result];return`
+  <div class="ro-wrap">
+    <header class="ro-head">
+      <div class="ro-ey">${f(n.test.name)} \xB7 ${f(n.test.unit||"")}${n.test.start?` \xB7 ${f(n.test.start)} to ${f(n.test.end)}`:""}</div>
+      <div class="ro-verdict ro-${o.tone}" data-part="verdict">
+        <div class="ro-word" data-decision>${o.word}</div>
+        <div class="ro-why">
+          <p class="ro-headline">${f(e.headline||t.verdict.reasons[0]||"")}</p>
+          <p class="ro-rule">${f(t.verdict.rule)}</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="ro-checks" data-part="checks">
+      <div class="ro-check ${l.pass?"ok":"bad"}" data-check="srm">
+        <span class="ro-k">1 \xB7 Was the split as planned?</span>
+        <b>${l.pass?"Yes":"No"}</b>
+        <p>${N(l.observed[0])} and ${N(l.observed[1])} users. Planned ${n.test.planned_split.map(c=>Math.round(c*100)).join("/")}, got ${T(l.observed[0]/d)} and ${T(l.observed[1]/d)}. p = ${G(l.p)}${l.pass?".":", far below the 0.001 line."}</p>
+      </div>
+      <div class="ro-check ${h.stopped_early||!h.full_weeks?"warn":"ok"}" data-check="duration">
+        <span class="ro-k">2 \xB7 Did it run its course?</span>
+        <b>${h.stopped_early?"Stopped early":h.full_weeks?"Yes":"Part week"}</b>
+        <p>Ran ${h.ran_days} of ${h.planned_days} planned days${h.full_weeks?", whole weeks":", not a whole number of weeks"}.</p>
+      </div>
+      <div class="ro-check ${u.adequate===!1?"warn":u.adequate?"ok":"mut"}" data-check="power">
+        <span class="ro-k">3 \xB7 Could it have seen the effect?</span>
+        <b>${u.adequate==null?"No target set":u.adequate?"Yes":"Not quite"}</b>
+        <p>It could reliably detect ${w(u.mde_abs)} points or more${u.mde_set!=null?`. The effect worth shipping was set at ${w(u.mde_set)}`:""}.</p>
+      </div>
+    </section>
+
+    <section class="ro-main" data-part="primary">
+      <div class="ro-metric">
+        <div class="ro-metric-top"><h2>${f(s.name)}</h2><span class="atag ${a}">${p}</span></div>
+        <div class="ro-rates"><span>${f(n.arms[0].name)} <b>${T(s.rates[0])}</b></span><i>\u2192</i><span>${f(n.arms[1].name)} <b>${T(s.rates[1])}</b></span></div>
+      </div>
+      <div class="ro-effect">
+        <div class="ro-big"><b data-diff>${k(s.diff)}</b><span>points<br>95% interval ${w(s.ci[0])} to ${w(s.ci[1])}</span></div>
+        ${te({diff:s.diff,ci:s.ci,span:r,good:n.primary.direction,mark:u.mde_set!=null?{at:n.primary.direction==="down"?-u.mde_set:u.mde_set,label:"worth shipping"}:null})}
+      </div>
+    </section>
+
+    <section class="ro-guards" data-part="guardrails">
+      <h3>Guardrails</h3>
+      ${t.guardrails.map(c=>{let[_,v]=be[c.verdict],P=c.harm==="down"?[-1/0,-c.tolerance]:[c.tolerance,1/0];return`<div class="ro-guard" data-guard>
+          <div class="ro-guard-name"><b>${f(c.name)}</b><span>${T(c.rates[0])} \u2192 ${T(c.rates[1])} \xB7 harm is ${c.harm==="down"?"a fall":"a rise"} of more than ${w(c.tolerance)}</span></div>
+          <div class="ro-guard-plot">${te({diff:c.diff,ci:c.ci,span:i,zone:P,good:c.harm==="down"?"up":"down"})}</div>
+          <div class="ro-guard-v"><b>${k(c.diff)}</b><span class="atag ${v}">${_}</span></div>
+        </div>`}).join("")}
+      <p class="ro-fine">The shaded band is the harm the team said it would not accept. An interval that reaches into it has not ruled that harm out.</p>
+    </section>
+
+    <section class="ro-text" data-part="text">
+      <div><h3>In plain words</h3><p>${f(e.summary||t.verdict.reasons.join(" "))}</p></div>
+      ${(e.next||[]).length?`<div><h3>Next</h3><ul>${e.next.map(c=>`<li>${f(c)}</li>`).join("")}</ul></div>`:""}
+    </section>
+
+    ${t.flags.length?`<section class="ro-flags"><h3>Read with care</h3><ul>${t.flags.map(c=>`<li>${f(c)}</li>`).join("")}</ul></section>`:""}
+
+    <details class="ro-numbers">
+      <summary>Every number, and how it was reached</summary>
+      <table>
+        <tr><th>Sample ratio</th><td>chi-square ${l.chi2.toFixed(3)}, p = ${G(l.p)}, passes at p \u2265 ${l.threshold}</td></tr>
+        <tr><th>${f(s.name)}</th><td>${N(n.primary.counts[0])} of ${N(n.arms[0].users)} and ${N(n.primary.counts[1])} of ${N(n.arms[1].users)}. Difference ${k(s.diff,2)} points, standard error ${(s.se*100).toFixed(2)}, z = ${s.z.toFixed(2)}, p = ${G(s.p)}, relative lift ${k(s.lift)}%</td></tr>
+        ${t.guardrails.map(c=>`<tr><th>${f(c.name)}</th><td>Difference ${k(c.diff,2)} points, interval ${w(c.ci[0],2)} to ${w(c.ci[1],2)}, tolerance ${w(c.tolerance,2)}</td></tr>`).join("")}
+        <tr><th>Power</th><td>Smallest detectable effect at 80% power: ${w(u.mde_abs,2)} points (${k(u.mde_rel).slice(1)}% of the baseline rate)</td></tr>
+        <tr><th>Method</th><td>Two-proportion z-test, Wald interval with unpooled standard error, alpha ${n.test.alpha}. The arithmetic is in scripts/ab_stats.py, with its tests beside it.</td></tr>
+      </table>
+    </details>
+  </div>`}var we={ship:"Ship. The main metric is better and every guardrail held.",extend:"Extend. The result is not settled yet.",stop:"Stop. The numbers do not support shipping this.","do-not-trust":"Do not trust this result. The users were not split as planned."};function ae(e,t,{interactive:n=!1}={}){e.classList.add("adoc","readout");let o=t,s=()=>{e.querySelector("[data-ro-body]").innerHTML=ve(o)};if(e.innerHTML=`${n?`<div class="ro-controls" data-ro-controls>
+      <div class="ro-scenarios" role="group" aria-label="Scenarios">${W.map((d,p)=>`<button type="button" data-scenario="${f(d.id)}" class="${p===0?"on":""}" title="${f(d.blurb)}">${f(d.label)}</button>`).join("")}</div>
+      <div class="ro-inputs" data-ro-inputs></div>
+    </div>`:""}<div data-ro-body></div>`,s(),!n)return{root:e,set(){}};let r=e.querySelector("[data-ro-inputs]"),i=(d,p,a)=>`<label><span>${f(d)}</span><input type="number" inputmode="numeric" min="0" step="1" data-in="${p}" value="${a}"></label>`,l=()=>{let d=o.numbers.input;r.innerHTML=`<div><b>${f(d.arms[0].name)}</b>${i("Users","u0",d.arms[0].users)}${i("Converted","c0",d.primary.counts[0])}</div><div><b>${f(d.arms[1].name)}</b>${i("Users","u1",d.arms[1].users)}${i("Converted","c1",d.primary.counts[1])}</div>`};function h(d,p){try{let a=K(d);o=p&&JSON.stringify(d)===JSON.stringify(p.numbers.input)?p:{numbers:a,headline:`${we[a.verdict.decision]}`,summary:a.verdict.reasons.join(" "),next:[]},e.classList.remove("ro-invalid"),s()}catch(a){e.classList.add("ro-invalid"),e.querySelector("[data-ro-body]").innerHTML=`<div class="ro-wrap"><p class="ro-error">${f(a.message||"Those counts cannot be read out.")}</p></div>`}}let u={root:e,scenario(d){let p=W.find(a=>a.id===d);p&&(e.querySelectorAll("[data-scenario]").forEach(a=>a.classList.toggle("on",a.dataset.scenario===d)),h(JSON.parse(JSON.stringify(p.input)),t),l())},set(d){o=d,s()}};return e.addEventListener("click",d=>{let p=d.target.closest("[data-scenario]");p&&u.scenario(p.dataset.scenario)}),r.addEventListener("input",()=>{let d=a=>Math.max(0,Math.round(Number(r.querySelector(`[data-in="${a}"]`).value)||0)),p=JSON.parse(JSON.stringify(o.numbers.input));p.arms[0].users=d("u0"),p.arms[1].users=d("u1"),p.primary.counts=[d("c0"),d("c1")],e.querySelectorAll("[data-scenario]").forEach(a=>a.classList.remove("on")),h(p,null)}),l(),u}var U=JSON.parse(document.getElementById("readout-data").textContent);ae(document.getElementById("root"),U);U.title&&(document.title=U.title);})();</script>
+</body>
+</html>

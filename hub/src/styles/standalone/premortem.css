@@ -1,0 +1,6 @@
+@import "../artifacts/kit.css";
+@import "../artifacts/premortem.css";
+
+#root {
+  min-height: 100vh;
+}

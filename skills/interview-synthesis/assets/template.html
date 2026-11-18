@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Interview synthesis</title>
+<!-- Made with the AI Workflow Handbook skill "interview-synthesis". Free, MIT licensed: https://jamesliuzx.github.io/linkedin-operator-notes/skills/ -->
+<style>*,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0;background:#f3f3ef;color:#0b0c0c;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}img,svg{max-width:100%}.adoc,.proto{--a-bg: #f3f3ef;--a-card: #ffffff;--a-ink: #0b0c0c;--a-ink2: #3a3d3b;--a-muted: #70756f;--a-faint: #a7aca6;--a-line: #e3e4de;--a-line2: #eeefea;--a-hi: #dcff4a;--a-hi-soft: #f3ffc4;--a-hi-ink: #131a00;--a-ok: #12804b;--a-ok-bg: #e2f6ea;--a-warn: #8f5500;--a-warn-bg: #fff3d9;--a-bad: #bf3327;--a-bad-bg: #fdeae7;--a-info: #2447d6;--a-info-bg: #e9eeff;--a-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;--a-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace}.aid{display:inline-flex;align-items:center;justify-content:center;min-width:2.1em;height:1.55em;padding:0 .42em;border-radius:.5em;background:var(--a-hi);color:var(--a-hi-ink);font-family:var(--a-mono);font-size:.78em;font-weight:600;letter-spacing:-.01em;white-space:nowrap;text-decoration:none}.aid.ink{background:var(--a-ink);color:var(--a-hi)}.atag{display:inline-flex;align-items:center;height:1.6em;padding:0 .55em;border-radius:.45em;font-family:var(--a-mono);font-size:.68em;font-weight:600;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;background:#eceee9;color:var(--a-ink2)}.atag.ok{background:var(--a-ok-bg);color:var(--a-ok)}.atag.warn{background:var(--a-warn-bg);color:var(--a-warn)}.atag.bad{background:var(--a-bad-bg);color:var(--a-bad)}.atag.info{background:var(--a-info-bg);color:var(--a-info)}.atag.hi{background:var(--a-hi);color:var(--a-hi-ink)}.scr{display:block;width:100%;height:auto}.synthesis{container:synthesis / inline-size;background:var(--a-bg);color:var(--a-ink);font-family:var(--a-sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}.synthesis :where(h1,h2,h3,p,ul,li,figure,blockquote,figcaption){margin:0;padding:0;max-width:none;letter-spacing:normal;font-size:inherit;font-weight:inherit;line-height:inherit;text-wrap:wrap}.synthesis i{font-style:normal}.sy-wrap{max-width:900px;margin:0 auto;padding:36px 24px 64px}.sy-ey,.synthesis h3,.sy-label{font-family:var(--a-mono);font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--a-muted)}.sy-head h1{margin-top:12px;font-size:clamp(28px,5.4cqi,44px);font-weight:600;line-height:1.08;letter-spacing:-.035em;text-wrap:balance}.sy-q{margin-top:14px;max-width:62ch;font-size:18px;color:var(--a-ink2)}.sy-proof{display:flex;flex-wrap:wrap;margin-top:26px;border:1px solid var(--a-line);border-radius:14px;background:var(--a-card);overflow:hidden;font-size:14.5px;color:var(--a-ink2)}.sy-proof>*{display:flex;align-items:center;gap:10px;padding:13px 18px;color:inherit;text-decoration:none}.sy-proof b{font-family:var(--a-mono);font-size:20px;font-weight:600;letter-spacing:-.03em;color:var(--a-ink)}.sy-proof-ok{flex:1 1 320px}.sy-proof-ok:before{content:"";flex:none;width:22px;height:22px;border-radius:7px;background:var(--a-hi) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22' fill='none' stroke='%23131a00' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 11.5l3.2 3.2L16 8'/%3E%3C/svg%3E") center / 22px no-repeat}.sy-proof-x{border-left:1px solid var(--a-line);background:var(--a-bad-bg)}.sy-proof-x b{color:var(--a-bad)}.sy-proof-x:hover{text-decoration:underline}.sy-proof-none{border-left:1px solid var(--a-line);color:var(--a-muted)}.sy-proof.warn{border-color:#f0d9a8;background:#fffaf0}.sy-people{margin-top:34px}.sy-people-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px}.sy-person{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 8px;align-content:start;padding:12px 14px 13px;border:1px solid var(--a-line);border-radius:12px;background:var(--a-card)}.sy-pid{font-family:var(--a-mono);font-size:11.5px;font-weight:600;line-height:1.9;color:var(--a-muted)}.sy-person b{font-size:15px;font-weight:600}.sy-person span:last-child{grid-column:1 / -1;font-size:12.5px;line-height:1.4;color:var(--a-muted)}.sy-themes{margin-top:40px}.sy-theme{margin-top:12px;padding:26px 30px;border:1px solid var(--a-line);border-radius:20px;background:var(--a-card);scroll-margin-top:16px}.sy-theme-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:start;gap:14px}.sy-theme-head .aid{margin-top:5px;font-size:13px}.sy-theme h2{font-size:23px;font-weight:600;line-height:1.2;letter-spacing:-.025em;text-wrap:balance}.sy-theme h2 .atag{vertical-align:3px;margin-left:4px;font-size:10.5px}.sy-count{display:flex;align-items:baseline;gap:6px;white-space:nowrap}.sy-count b{font-size:44px;font-weight:600;line-height:.9;letter-spacing:-.05em;font-variant-numeric:tabular-nums}.sy-count span{font-size:14px;color:var(--a-muted)}.sy-dots{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}.sy-dots i{display:inline-grid;place-items:center;min-width:34px;height:24px;padding:0 6px;border:1px solid var(--a-line);border-radius:7px;font-family:var(--a-mono);font-size:11px;font-weight:500;color:var(--a-faint)}.sy-dots i.on{border-color:var(--a-ink);background:var(--a-ink);color:#fff}.sy-dots i.counter{border-color:var(--a-ink);border-style:dashed;color:var(--a-ink)}.sy-sum{margin-top:16px;max-width:68ch;color:var(--a-ink2)}.sy-quotes{display:grid;gap:10px;margin-top:18px}.sy-quote{padding:14px 18px 13px;border-left:3px solid var(--a-ink);border-radius:4px 12px 12px 4px;background:#f7f7f3}.sy-quote.extra{display:none}.sy-quotes.all .sy-quote.extra{display:block}.sy-quote blockquote{font-size:17px;line-height:1.42;letter-spacing:-.01em}.sy-quote blockquote:before{content:"\201c"}.sy-quote blockquote:after{content:"\201d"}.sy-quote figcaption{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:8px;font-size:13px;color:var(--a-muted)}.sy-quote figcaption b{font-family:var(--a-mono);font-size:12px;font-weight:600;color:var(--a-ink)}.sy-where{margin-left:auto;padding:3px 9px;border:1px solid var(--a-line);border-radius:999px;background:#fff;color:var(--a-ink2);font-family:var(--a-mono);font-size:11.5px}button.sy-where{cursor:pointer}button.sy-where:after{content:" +";color:var(--a-muted)}.sy-quote.open button.sy-where{border-color:var(--a-ink);background:var(--a-ink);color:#fff}.sy-quote.open button.sy-where:after{content:" \2212";color:var(--a-hi)}button.sy-where:hover{border-color:var(--a-ink)}.sy-ctx{margin-top:12px;padding:10px 0 6px;border-top:1px dashed var(--a-line);font-family:var(--a-mono);font-size:12.5px;line-height:1.5}.sy-line{display:grid;grid-template-columns:30px 92px minmax(0,1fr);gap:0 8px;padding:3px 6px;border-radius:6px;color:var(--a-muted)}.sy-line.hit{background:#fff;color:var(--a-ink)}.sy-n{text-align:right;color:var(--a-faint)}.sy-line.hit .sy-n{color:var(--a-ink);font-weight:600}.sy-who{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.synthesis mark{padding:.05em .1em;border-radius:3px;background:var(--a-hi);color:var(--a-hi-ink);-webkit-box-decoration-break:clone;box-decoration-break:clone}.sy-more-btn{justify-self:start;padding:6px 12px;border:1px solid var(--a-line);border-radius:999px;background:#fff;color:var(--a-ink2);font:inherit;font-size:13px;font-weight:500;cursor:pointer}.sy-more-btn:hover{border-color:var(--a-ink)}.sy-counter{margin-top:18px;padding-top:16px;border-top:1px solid var(--a-line2)}.sy-counter .sy-quote{margin-top:8px;border-left-style:dashed;background:transparent;padding-left:16px}.sy-counter .sy-quote blockquote{font-size:15.5px;color:var(--a-ink2)}.sy-note,.sy-fine{margin-top:8px;font-size:13.5px;color:var(--a-muted)}.sy-so{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;margin-top:18px;padding:14px 18px;border-radius:12px;background:var(--a-hi-soft);font-size:15.5px;line-height:1.45}.sy-so b{font-family:var(--a-mono);font-size:12px;font-weight:600;letter-spacing:.05em;line-height:1.9;text-transform:uppercase}.sy-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:40px}.sy-box{padding:22px 24px 24px;border:1px solid var(--a-line);border-radius:16px;background:var(--a-card)}.sy-box h3{margin-bottom:12px}.sy-mini+.sy-mini{margin-top:16px;padding-top:16px;border-top:1px solid var(--a-line2)}.sy-mini b{font-weight:600}.sy-mini p{margin:4px 0 10px;font-size:14px;color:var(--a-ink2)}.sy-mini .sy-quote blockquote{font-size:14.5px}.sy-by{margin-left:8px;font-family:var(--a-mono);font-size:11.5px;color:var(--a-muted);white-space:nowrap}.sy-list{display:grid;gap:10px;list-style:none}.sy-list li{display:flex;justify-content:space-between;gap:12px;padding-top:10px;border-top:1px solid var(--a-line2);font-size:14px;color:var(--a-ink2)}.sy-list li:first-child{padding-top:0;border-top:0}.sy-list b{font-weight:600;color:var(--a-ink)}.sy-box .sy-fine{margin:-6px 0 12px}.sy-rejected{margin-top:12px;padding:22px 24px 20px;border:1px solid #f3b9b2;border-radius:16px;background:#fff8f7;scroll-margin-top:16px}.sy-rejected h3{color:var(--a-bad)}.sy-reject{margin-top:12px}.sy-reject blockquote{font-size:18px;line-height:1.4;color:var(--a-muted);text-decoration:line-through;text-decoration-color:var(--a-bad);text-decoration-thickness:2px}.sy-reject p{margin-top:6px;font-size:13.5px;color:var(--a-ink2)}.sy-reject p span{color:var(--a-bad);font-weight:500}@container synthesis (max-width: 700px){.sy-wrap{padding:24px 16px 44px}.sy-people-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.sy-theme{padding:20px 18px}.sy-theme-head{grid-template-columns:auto minmax(0,1fr)}.sy-count{grid-column:1 / -1;grid-row:1}.sy-count b{font-size:36px}.sy-theme h2{font-size:20px}.sy-grid{grid-template-columns:minmax(0,1fr)}.sy-line{grid-template-columns:26px minmax(0,1fr)}.sy-who{display:none}.sy-where{margin-left:0}}#root{min-height:100vh}</style>
+</head>
+<body>
+<div id="root"></div>
+<!-- DATA: replace the JSON inside this element with your own. -->
+<script id="synthesis-data" type="application/json">
+{
+ "title": "Replace this JSON with your synthesis.json",
+ "question": "This page is drawn from the JSON in the element with id synthesis-data. The format is in references/format.md.",
+ "date": "",
+ "participants": [
+  {
+   "id": "P1",
+   "name": "First",
+   "profile": "Who they are, in one line",
+   "file": "P1.txt"
+  },
+  {
+   "id": "P2",
+   "name": "Second",
+   "profile": "Who they are, in one line",
+   "file": "P2.txt"
+  },
+  {
+   "id": "P3",
+   "name": "Third",
+   "profile": "Who they are, in one line",
+   "file": "P3.txt"
+  }
+ ],
+ "themes": [
+  {
+   "id": "T1",
+   "name": "A theme, named as a finding",
+   "summary": "What was said, and by how many of the people you spoke to.",
+   "support": [
+    "P1",
+    "P2"
+   ],
+   "quotes": [
+    {
+     "p": "P1",
+     "text": "A quote copied word for word from the transcript.",
+     "line": 12,
+     "ctx": [
+      {
+       "n": 11,
+       "who": "Interviewer",
+       "text": "The question that was asked."
+      },
+      {
+       "n": 12,
+       "who": "P1",
+       "text": "A quote copied word for word from the transcript."
+      },
+      {
+       "n": 13,
+       "who": "Interviewer",
+       "text": "The follow-up."
+      }
+     ]
+    },
+    {
+     "p": "P2",
+     "text": "A second quote, from a second person, in their words.",
+     "line": 30
+    }
+   ],
+   "counter": {
+    "p": "P3",
+    "text": "A quote from someone who saw it differently.",
+    "line": 8
+   },
+   "so": "What this means for the decision."
+  }
+ ],
+ "unprompted": [],
+ "requests": [
+  {
+   "text": "Something a participant asked for",
+   "p": [
+    "P2"
+   ]
+  }
+ ],
+ "quiet": [
+  {
+   "p": "P3",
+   "note": "Supports no theme. Say why."
+  }
+ ],
+ "unknowns": [
+  {
+   "q": "A question the interviews cannot answer.",
+   "ask": "Where the answer could come from."
+  }
+ ],
+ "rejected": [],
+ "checked": {
+  "byHand": true
+ }
+}
+</script>
+<script>(()=>{var e=s=>String(s??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;"),y=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],m=s=>{let a=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||"");return a?`${Number(a[3])} ${y[Number(a[2])-1]} ${a[1]}`:e(s||"")};function b(s){return!s.ctx||!s.ctx.length?"":`<div class="sy-ctx" data-ctx-panel hidden>${s.ctx.map(a=>{let c=a.n===s.line,o=e(a.text);if(c){let n=a.text.indexOf(s.text);o=n===-1?`<mark>${o}</mark>`:`${e(a.text.slice(0,n))}<mark>${e(s.text)}</mark>${e(a.text.slice(n+s.text.length))}`}return`<div class="sy-line${c?" hit":""}"><span class="sy-n">${a.n}</span><span class="sy-who">${e(a.who||"")}</span><span class="sy-said">${o}</span></div>`}).join("")}</div>`}function r(s,a,c,o=""){let n=a[s.p],i=s.line?`${e(n?.file||s.p)}, line ${s.line}`:"not matched to a line";return`<figure class="sy-quote${o}" data-quote="${e(c)}">
+    <blockquote>${e(s.text)}</blockquote>
+    <figcaption><b>${e(s.p)}</b>${n?.name?` ${e(n.name)}`:""}${s.ctx&&s.ctx.length?`<button type="button" class="sy-where" data-ctx aria-expanded="false">${i}</button>`:`<span class="sy-where">${i}</span>`}</figcaption>
+    ${b(s)}
+  </figure>`}function f(s,a,c,o){return`<div class="sy-dots" aria-label="Supported by ${e(s.join(", "))}">${a.map(n=>`<i class="${s.includes(n)?"on":""}${o===n?" counter":""}" title="${e(`${n}${c[n]?.name?` ${c[n].name}`:""}`)}">${e(n)}</i>`).join("")}</div>`}function v(s,a,c){let o=c.length,n=s.quotes.length-2;return`<article class="sy-theme" data-theme="${e(s.id)}" id="${e(s.id)}">
+    <div class="sy-theme-head">
+      <span class="aid">${e(s.id)}</span>
+      <h2>${e(s.name)}${s.led?' <span class="atag warn">Asked directly</span>':""}</h2>
+      <div class="sy-count" data-count><b>${s.support.length}</b><span>of ${o}</span></div>
+    </div>
+    ${f(s.support,c,a,s.counter?.p)}
+    <p class="sy-sum">${e(s.summary)}</p>
+    <div class="sy-quotes">
+      ${s.quotes.map((i,l)=>r(i,a,`${s.id}-${l}`,l>=2?" extra":"")).join("")}
+      ${n>0?`<button type="button" class="sy-more-btn" data-more>Show all ${s.quotes.length} quotes</button>`:""}
+    </div>
+    ${s.counter?`<div class="sy-counter"><span class="sy-label">The exception</span>${r(s.counter,a,`${s.id}-c`)}${s.counterNote?`<p class="sy-note">${e(s.counterNote)}</p>`:""}</div>`:s.counterNote?`<div class="sy-counter"><span class="sy-label">The exception</span><p class="sy-note">${e(s.counterNote)}</p></div>`:""}
+    ${s.so?`<p class="sy-so"><b>So</b>${e(s.so)}</p>`:""}
+  </article>`}function x(s){let a=(s.participants||[]).map(t=>t.id),c=Object.fromEntries((s.participants||[]).map(t=>[t.id,t])),o=s.checked||{},n=!!o.byHand,i=s.rejected||[],l=s.themes||[],u=n?'<div class="sy-proof warn" data-part="proof"><span><b>Not machine-checked.</b> The quotes on this page were not matched against the transcripts by the script.</span></div>':`<div class="sy-proof" data-part="proof">
+        <span class="sy-proof-ok"><b data-found>${o.found??"0"}</b> quotes, each found word for word in its transcript</span>
+        ${o.rejected?`<a class="sy-proof-x" href="#rejected"><b>${o.rejected}</b> not found, and removed</a>`:'<span class="sy-proof-none">None rejected</span>'}
+      </div>`;return`
+  <div class="sy-wrap">
+    <header class="sy-head">
+      <div class="sy-ey">Interview synthesis \xB7 ${a.length} participants${s.date?` \xB7 ${m(s.date)}`:""}</div>
+      <h1>${e(s.title)}</h1>
+      ${s.question?`<p class="sy-q">${e(s.question)}</p>`:""}
+      ${u}
+    </header>
+
+    <section class="sy-people" data-part="people">
+      <h3>Who we spoke to</h3>
+      <div class="sy-people-grid">${(s.participants||[]).map(t=>`<div class="sy-person"><span class="sy-pid">${e(t.id)}</span><b>${e(t.name||"")}</b><span>${e(t.profile||"")}</span></div>`).join("")}</div>
+    </section>
+
+    <section class="sy-themes" data-part="themes">
+      <h3>Themes, most supported first</h3>
+      ${l.map(t=>v(t,c,a)).join("")}
+    </section>
+
+    <section class="sy-grid">
+      ${(s.unprompted||[]).length?`<div class="sy-box"><h3>Raised without being asked</h3>${s.unprompted.map((t,$)=>`<div class="sy-mini"><b>${e(t.name)}</b><span class="sy-by">${e((t.support||[]).join(", "))}</span><p>${e(t.summary)}</p>${(t.quotes||[]).slice(0,1).map(h=>r(h,c,`U${$}-0`)).join("")}</div>`).join("")}</div>`:""}
+      ${(s.requests||[]).length?`<div class="sy-box"><h3>What people asked for</h3><p class="sy-fine">Requests are recorded as said. They are not findings.</p><ul class="sy-list">${s.requests.map(t=>`<li><span>${e(t.text)}</span><span class="sy-by">${e((t.p||[]).join(", "))}</span></li>`).join("")}</ul></div>`:""}
+      ${(s.quiet||[]).length?`<div class="sy-box"><h3>Who this page says least about</h3><ul class="sy-list">${s.quiet.map(t=>`<li><span><b>${e(t.p)}${c[t.p]?.name?` ${e(c[t.p].name)}`:""}.</b> ${e(t.note)}</span></li>`).join("")}</ul></div>`:""}
+      ${(s.unknowns||[]).length?`<div class="sy-box"><h3>What the interviews cannot answer</h3><ul class="sy-list">${s.unknowns.map(t=>`<li><span><b>${e(t.q)}</b> ${e(t.ask||"")}</span></li>`).join("")}</ul></div>`:""}
+    </section>
+
+    ${i.length?`<section class="sy-rejected" id="rejected" data-part="rejected">
+        <h3>Removed by the check</h3>
+        ${i.map(t=>`<div class="sy-reject" data-reject>
+          <blockquote>${e(t.text)}</blockquote>
+          <p><b>${e(t.p)}${c[t.p]?.name?` ${e(c[t.p].name)}`:""}</b>${t.from?`, offered for ${e(t.from)}`:""}. <span>${e(t.reason||"not found in any transcript")}.</span></p>
+        </div>`).join("")}
+        <p class="sy-fine">A quote that is not in a transcript does not go on the page, however well it reads.</p>
+      </section>`:""}
+  </div>`}function d(s,a){s.classList.add("adoc","synthesis"),s.innerHTML=x(a);let c=(o,n)=>{let i=o.querySelector("[data-ctx-panel]"),l=o.querySelector("[data-ctx]");!i||!l||(i.hidden=!n,o.classList.toggle("open",n),l.setAttribute("aria-expanded",String(n)))};return s.addEventListener("click",o=>{let n=o.target.closest("[data-ctx]");if(n){let l=n.closest("[data-quote]");c(l,!l.classList.contains("open"));return}let i=o.target.closest("[data-more]");i&&(i.closest(".sy-quotes").classList.add("all"),i.remove())}),{root:s,context(o,n=!0){let i=s.querySelector(`[data-quote="${o}"]`);i&&c(i,n)},closeAll(){s.querySelectorAll("[data-quote].open").forEach(o=>c(o,!1))}}}var p=JSON.parse(document.getElementById("synthesis-data").textContent);d(document.getElementById("root"),p);p.title&&(document.title=p.title);})();</script>
+</body>
+</html>

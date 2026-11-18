@@ -29,12 +29,12 @@ export function mount(body, { base = "/", stage } = {}) {
   buildRun(tl, body.querySelector("[data-run]"), {
     ask: "Write the PRD for the weekly shop from the teardown, the synthesis and the pre-mortem.",
     steps: [
-      { title: "Read the teardown", detail: "4 apps · 3 stages · 6 patterns", at: 3.0, dur: 0.55 },
-      { title: "Read the synthesis", detail: "8 interviews · 5 themes", at: 3.65, dur: 0.55 },
-      { title: "Read the pre-mortem", detail: "9 risks · 4 tripwires", at: 4.3, dur: 0.55 },
+      { title: "Read the teardown", detail: "4 apps · 3 stages · 8 patterns", at: 3.0, dur: 0.55 },
+      { title: "Read the synthesis", detail: "8 interviews · 6 themes", at: 3.65, dur: 0.55 },
+      { title: "Read the pre-mortem", detail: "11 risks · 5 tripwires", at: 4.3, dur: 0.55 },
       { title: `Wrote ${points.length} points`, detail: "Problem first, evidence beside it", at: 5.1, dur: 11.6 },
       { title: "Ordered the rollout", detail: "3 steps, each with a reason", at: 16.9, dur: 2.0 },
-      { title: "Checked its own work", detail: "7 of 7 checks passed", at: 19.2, dur: 0.9 },
+      { title: "Checked its own work", detail: "6 of 6 checks passed", at: 19.2, dur: 0.9 },
     ],
     foot: "<b>One number per point.</b> The same IDs run through the tables and the prototype.",
     footAt: 20.2,

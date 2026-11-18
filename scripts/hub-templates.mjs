@@ -19,6 +19,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 import { SITE } from "../hub/site.config.mjs";
 import { TEMPLATES, buildTemplate, fillJson, fillSpec, readExample } from "../hub/lib/templates.mjs";
+import { readout as computeReadout } from "../hub/src/js/artifacts/ab-stats.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -125,6 +126,97 @@ const BLANK = {
       { name: "Second principle", text: "Another thing they share.", evidence: ["S1"] },
       { name: "Third principle", text: "And a third.", evidence: ["S1"] },
     ],
+  },
+  synthesis: {
+    title: "Replace this JSON with your synthesis.json",
+    question: "This page is drawn from the JSON in the element with id synthesis-data. The format is in references/format.md.",
+    date: "",
+    participants: [
+      { id: "P1", name: "First", profile: "Who they are, in one line", file: "P1.txt" },
+      { id: "P2", name: "Second", profile: "Who they are, in one line", file: "P2.txt" },
+      { id: "P3", name: "Third", profile: "Who they are, in one line", file: "P3.txt" },
+    ],
+    themes: [
+      {
+        id: "T1",
+        name: "A theme, named as a finding",
+        summary: "What was said, and by how many of the people you spoke to.",
+        support: ["P1", "P2"],
+        quotes: [
+          {
+            p: "P1",
+            text: "A quote copied word for word from the transcript.",
+            line: 12,
+            ctx: [
+              { n: 11, who: "Interviewer", text: "The question that was asked." },
+              { n: 12, who: "P1", text: "A quote copied word for word from the transcript." },
+              { n: 13, who: "Interviewer", text: "The follow-up." },
+            ],
+          },
+          { p: "P2", text: "A second quote, from a second person, in their words.", line: 30 },
+        ],
+        counter: { p: "P3", text: "A quote from someone who saw it differently.", line: 8 },
+        so: "What this means for the decision.",
+      },
+    ],
+    unprompted: [],
+    requests: [{ text: "Something a participant asked for", p: ["P2"] }],
+    quiet: [{ p: "P3", note: "Supports no theme. Say why." }],
+    unknowns: [{ q: "A question the interviews cannot answer.", ask: "Where the answer could come from." }],
+    rejected: [],
+    checked: { byHand: true },
+  },
+  premortem: {
+    title: "Replace this JSON with your premortem.json",
+    plan: {
+      name: "The plan",
+      summary: "This page is drawn from the JSON in the element with id premortem-data. The format is in references/format.md.",
+      ships: "When, and to whom",
+      goal: "What it is meant to change.",
+    },
+    asOf: "2026-01-05",
+    failedOn: "2026-07-06",
+    inputs: [{ id: "N", label: "Your notes", detail: "replace me" }],
+    risks: [
+      {
+        id: "R1",
+        area: "users",
+        title: "The failure, named in a few words",
+        story: "Who does what, and what follows from it. Two or three sentences that someone outside the team could repeat back to you after reading them once.",
+        likelihood: "medium",
+        likelihoodWhy: "Why you think it is this likely.",
+        impact: "high",
+        impactWhy: "Why it would matter this much.",
+        evidence: { status: "unknown", expect: "What you would see if it were real." },
+        tripwire: { metric: "A metric the team already has", threshold: "Rises above 10", check: "2026-02-02", owner: "A role or a name" },
+        mitigation: "The change to the plan that would help.",
+        test: "The cheapest test that would settle it.",
+      },
+    ],
+    top: ["R1"],
+    skipped: {
+      behaviour: "Say why this area has no risk.",
+      operations: "Say why this area has no risk.",
+      money: "Say why this area has no risk.",
+      rules: "Say why this area has no risk.",
+      build: "Say why this area has no risk.",
+    },
+  },
+  readout: {
+    title: "Replace this JSON with your readout.json",
+    date: "",
+    headline: "Ship. Replace this JSON with your readout.json.",
+    summary: "This page is drawn from the JSON in the element with id readout-data. The numbers below come from scripts/ab_stats.py, run on placeholder counts. The format is in references/format.md.",
+    next: ["Run the script on your own counts.", "Paste its output under numbers, unchanged."],
+    numbers: computeReadout({
+      test: { name: "Your test", hypothesis: "What you expected to happen.", unit: "users", planned_split: [0.5, 0.5], planned_days: 14, ran_days: 14, start: "2026-01-05", end: "2026-01-18", mde_set: 0.02, alpha: 0.05 },
+      arms: [
+        { name: "Control", users: 10000 },
+        { name: "Variant", users: 10000 },
+      ],
+      primary: { name: "Your main metric", direction: "up", counts: [3000, 3250] },
+      guardrails: [{ name: "A metric that must not get worse", harm: "up", counts: [400, 380], tolerance: 0.01 }],
+    }),
   },
   prototype: `const spec = {
   title: "Replace this spec with your own",

@@ -28,7 +28,7 @@ export function mount(body, { stage } = {}) {
       { title: "Read the PRD", detail: "prd.json · 6 points in 3 sections", at: 2.7, dur: 0.7 },
       { title: "Drew the app as it is today", detail: "5 screens, nothing new on them yet", at: 3.5, dur: 0.8 },
       { title: "Wired one switch per point", detail: "IDs 1.1 to 3.2, same as the PRD", at: 4.4, dur: 0.8 },
-      { title: "Checked its own work", detail: "7 of 7 checks passed", at: 19.0, dur: 0.9 },
+      { title: "Checked its own work", detail: "6 of 6 checks passed", at: 19.0, dur: 0.9 },
     ],
     foot: "<b>Every point has a switch.</b> Every switch changes a screen you can reach.",
     footAt: 20.0,

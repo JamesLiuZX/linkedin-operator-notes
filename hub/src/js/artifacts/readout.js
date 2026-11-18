@@ -28,24 +28,31 @@ const pct = (x, d = 1) => `${(x * 100).toFixed(d)}%`;
 const pts = (x, d = 1) => `${x >= 0 ? "+" : "−"}${Math.abs(x * 100).toFixed(d)}`;
 const plain = (x, d = 1) => `${x < 0 ? "−" : ""}${Math.abs(x * 100).toFixed(d)}`;
 const num = (n) => Number(n).toLocaleString("en-US");
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const day = (iso, year) => {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+  return m ? `${Number(m[3])} ${MONTHS[Number(m[2]) - 1]}${year ? ` ${m[1]}` : ""}` : esc(iso || "");
+};
 const pval = (p) => (p < 0.0001 ? "< 0.0001" : p < 0.001 ? p.toFixed(4) : p.toFixed(3));
 
-/** An interval drawn on a shared axis of percentage points. */
-function forest({ diff, ci, span, zone = null, good = "up" }) {
-  const W = 560;
-  const H = 54;
-  const x = (v) => W / 2 + (v / span) * (W / 2 - 14);
-  const cl = (v) => Math.max(8, Math.min(W - 8, x(v)));
+/** An interval drawn on a shared axis of percentage points. Plain HTML, so the labels never stretch. */
+function forest({ diff, ci, span, zone = null, good = "up", mark = null }) {
+  const x = (v) => Math.max(1, Math.min(99, 50 + (v / span) * 46));
   const ticks = [-1, -0.5, 0, 0.5, 1].map((k) => k * span);
+  const lab = (t) => (t === 0 ? "0" : `${t < 0 ? "\u2212" : "+"}${Math.round(Math.abs(t) * 10000) / 100}`);
   const side = (v) => (good === "up" ? v > 0 : v < 0);
   const tone = ci[0] > 0 || ci[1] < 0 ? (side(diff) ? "ok" : "bad") : "mut";
-  return `<svg class="forest" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Difference ${pts(diff)} points, interval ${plain(ci[0])} to ${plain(ci[1])}">
-    ${zone ? `<rect x="${zone[0] === -Infinity ? 0 : cl(zone[0])}" y="6" width="${Math.max(0, (zone[1] === Infinity ? W : cl(zone[1])) - (zone[0] === -Infinity ? 0 : cl(zone[0])))}" height="30" class="f-zone"/>` : ""}
-    ${ticks.map((t) => `<line x1="${x(t)}" x2="${x(t)}" y1="${t === 0 ? 2 : 36}" y2="40" class="${t === 0 ? "f-zero" : "f-tick"}"/><text x="${x(t)}" y="52" class="f-lab" text-anchor="middle">${t === 0 ? "0" : plain(t, span < 0.02 ? 1 : 0)}</text>`).join("")}
-    <line x1="${cl(ci[0])}" x2="${cl(ci[1])}" y1="21" y2="21" class="f-bar f-${tone}" data-ci/>
-    <line x1="${cl(ci[0])}" x2="${cl(ci[0])}" y1="14" y2="28" class="f-bar f-${tone}"/><line x1="${cl(ci[1])}" x2="${cl(ci[1])}" y1="14" y2="28" class="f-bar f-${tone}"/>
-    <circle cx="${cl(diff)}" cy="21" r="6.5" class="f-dot f-${tone}"/>
-  </svg>`;
+  const z = zone ? [zone[0] === -Infinity ? 0 : x(zone[0]), zone[1] === Infinity ? 100 : x(zone[1])] : null;
+  return `<div class="forest" role="img" aria-label="Difference ${pts(diff)} points, interval ${plain(ci[0])} to ${plain(ci[1])}">
+    <div class="f-plot">
+      ${z ? `<i class="f-zone" style="left:${z[0]}%;width:${z[1] - z[0]}%"></i>` : ""}
+      ${ticks.map((t) => `<i class="${t === 0 ? "f-zero" : "f-tick"}" style="left:${x(t)}%"></i>`).join("")}
+      ${mark ? `<i class="f-mark" style="left:${x(mark.at)}%"><b>${esc(mark.label)}</b></i>` : ""}
+      <i class="f-bar f-${tone}" data-ci style="left:${x(ci[0])}%;width:${x(ci[1]) - x(ci[0])}%"></i>
+      <i class="f-dot f-${tone}" data-dot style="left:${x(diff)}%"></i>
+    </div>
+    <div class="f-axis">${ticks.map((t) => `<span style="left:${x(t)}%">${lab(t)}</span>`).join("")}</div>
+  </div>`;
 }
 
 const niceSpan = (values) => {
@@ -70,7 +77,7 @@ export function renderReadout(data) {
   return `
   <div class="ro-wrap">
     <header class="ro-head">
-      <div class="ro-ey">${esc(input.test.name)} · ${esc(input.test.unit || "")}${input.test.start ? ` · ${esc(input.test.start)} to ${esc(input.test.end)}` : ""}</div>
+      <div class="ro-ey">${esc(input.test.name)} · ${esc(input.test.unit || "")}${input.test.start ? ` · ${day(input.test.start)} to ${day(input.test.end, true)}` : ""}</div>
       <div class="ro-verdict ro-${d.tone}" data-part="verdict">
         <div class="ro-word" data-decision>${d.word}</div>
         <div class="ro-why">
@@ -105,7 +112,7 @@ export function renderReadout(data) {
       </div>
       <div class="ro-effect">
         <div class="ro-big"><b data-diff>${pts(p.diff)}</b><span>points<br>95% interval ${plain(p.ci[0])} to ${plain(p.ci[1])}</span></div>
-        ${forest({ diff: p.diff, ci: p.ci, span, good: input.primary.direction })}
+        ${forest({ diff: p.diff, ci: p.ci, span, good: input.primary.direction, mark: pow.mde_set != null ? { at: input.primary.direction === "down" ? -pow.mde_set : pow.mde_set, label: "worth shipping" } : null })}
       </div>
     </section>
 
@@ -183,7 +190,16 @@ export function mountReadout(root, data, { interactive = false } = {}) {
   function recompute(input, base) {
     try {
       const numbers = compute(input);
-      const same = base && JSON.stringify(input) === JSON.stringify(base.numbers.input);
+      // The example's own counts keep the headline and summary that were written for them.
+      const near = (x, y) => Math.abs(x - y) < 1e-9;
+      const b = base && base.numbers;
+      const same =
+        !!b &&
+        near(numbers.primary.diff, b.primary.diff) &&
+        near(numbers.primary.se, b.primary.se) &&
+        near(numbers.checks.srm.chi2, b.checks.srm.chi2) &&
+        numbers.guardrails.length === b.guardrails.length &&
+        numbers.guardrails.every((g, i) => near(g.diff, b.guardrails[i].diff) && near(g.se, b.guardrails[i].se));
       current = same ? base : { numbers, headline: `${HEADLINE[numbers.verdict.decision]}`, summary: numbers.verdict.reasons.join(" "), next: [] };
       root.classList.remove("ro-invalid");
       draw();
@@ -221,7 +237,7 @@ export function mountReadout(root, data, { interactive = false } = {}) {
     input.arms[1].users = v("u1");
     input.primary.counts = [v("c0"), v("c1")];
     root.querySelectorAll("[data-scenario]").forEach((x) => x.classList.remove("on"));
-    recompute(input, null);
+    recompute(input, data);
   });
   drawInputs();
   return api;

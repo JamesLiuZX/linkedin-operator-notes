@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pre-mortem</title>
+<!-- Made with the AI Workflow Handbook skill "premortem". Free, MIT licensed: https://jamesliuzx.github.io/linkedin-operator-notes/skills/ -->
+<style>*,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0;background:#f3f3ef;color:#0b0c0c;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}img,svg{max-width:100%}.adoc,.proto{--a-bg: #f3f3ef;--a-card: #ffffff;--a-ink: #0b0c0c;--a-ink2: #3a3d3b;--a-muted: #70756f;--a-faint: #a7aca6;--a-line: #e3e4de;--a-line2: #eeefea;--a-hi: #dcff4a;--a-hi-soft: #f3ffc4;--a-hi-ink: #131a00;--a-ok: #12804b;--a-ok-bg: #e2f6ea;--a-warn: #8f5500;--a-warn-bg: #fff3d9;--a-bad: #bf3327;--a-bad-bg: #fdeae7;--a-info: #2447d6;--a-info-bg: #e9eeff;--a-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;--a-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace}.aid{display:inline-flex;align-items:center;justify-content:center;min-width:2.1em;height:1.55em;padding:0 .42em;border-radius:.5em;background:var(--a-hi);color:var(--a-hi-ink);font-family:var(--a-mono);font-size:.78em;font-weight:600;letter-spacing:-.01em;white-space:nowrap;text-decoration:none}.aid.ink{background:var(--a-ink);color:var(--a-hi)}.atag{display:inline-flex;align-items:center;height:1.6em;padding:0 .55em;border-radius:.45em;font-family:var(--a-mono);font-size:.68em;font-weight:600;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;background:#eceee9;color:var(--a-ink2)}.atag.ok{background:var(--a-ok-bg);color:var(--a-ok)}.atag.warn{background:var(--a-warn-bg);color:var(--a-warn)}.atag.bad{background:var(--a-bad-bg);color:var(--a-bad)}.atag.info{background:var(--a-info-bg);color:var(--a-info)}.atag.hi{background:var(--a-hi);color:var(--a-hi-ink)}.scr{display:block;width:100%;height:auto}.premortem{container:premortem / inline-size;background:var(--a-bg);color:var(--a-ink);font-family:var(--a-sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}.premortem :where(h1,h2,h3,p,ul,ol,li,dl,dt,dd,details,summary){margin:0;padding:0;max-width:none;letter-spacing:normal;font-size:inherit;font-weight:inherit;line-height:inherit;text-wrap:wrap}.premortem i{font-style:normal}.premortem a{text-decoration:none}.pm-wrap{max-width:920px;margin:0 auto;padding:36px 24px 64px}.pm-ey,.premortem h3,.pm-k{display:block;font-family:var(--a-mono);font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--a-muted)}.pm-head h1{margin-top:12px;font-size:clamp(30px,5.6cqi,46px);font-weight:600;line-height:1.06;letter-spacing:-.035em;text-wrap:balance}.pm-premise{margin-top:16px;max-width:60ch;font-size:19px;line-height:1.45;color:var(--a-ink2)}.premortem mark{padding:.04em .22em;border-radius:.2em;background:var(--a-hi);color:var(--a-hi-ink);font-weight:600;white-space:nowrap}.pm-plan{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin-top:26px;border:1px solid var(--a-line);border-radius:16px;background:var(--a-line);overflow:hidden}.pm-plan>div{padding:16px 20px 18px;background:var(--a-card)}.pm-plan .wide{grid-column:1 / -1}.pm-plan p{margin-top:5px;font-size:15px;color:var(--a-ink2)}.pm-plan b{font-weight:600;color:var(--a-ink)}.pm-over{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:12px;margin-top:12px}.pm-matrix,.pm-side{padding:22px 24px;border:1px solid var(--a-line);border-radius:20px;background:var(--a-card)}.pm-matrix{display:grid;grid-template-columns:22px minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:8px}.pm-axis-y{writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-family:var(--a-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--a-muted)}.pm-axis-x{grid-column:2;display:flex;justify-content:space-between;font-family:var(--a-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--a-muted)}.pm-cells{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:minmax(76px,1fr);gap:5px}.pm-cell{display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:5px;padding:8px;border-radius:12px;background:#f4f4f0}.pm-cell.h2{background:#fbf1df}.pm-cell.h3{background:#fbe2d3}.pm-cell.h4{background:#f8cdc3}.pm-cell .aid{font-size:12.5px}.aid.ghost{background:#fff;color:var(--a-ink);box-shadow:inset 0 0 0 1px #0b0c0c2e}.pm-side{display:grid;align-content:space-between;gap:20px}.pm-tally{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.pm-tally b{display:block;font-size:44px;font-weight:600;line-height:1;letter-spacing:-.05em;font-variant-numeric:tabular-nums}.pm-tally span{display:block;margin-top:5px;font-size:12.5px;line-height:1.3;color:var(--a-muted)}.pm-areas{display:grid;gap:7px}.pm-areas>div{display:grid;grid-template-columns:92px minmax(0,1fr) 34px;align-items:center;gap:10px;font-size:13.5px}.pm-areas i{height:8px;border-radius:4px;background:linear-gradient(to right,var(--a-ink) calc(var(--n) * 25%),var(--a-line2) calc(var(--n) * 25%))}.pm-areas b{font-family:var(--a-mono);font-size:12px;font-weight:500;text-align:right;color:var(--a-ink2)}.pm-areas .none{color:var(--a-faint)}.pm-inputs{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:12.5px}.pm-inputs .pm-k{flex-basis:100%}.pm-inputs span:not(.pm-k){padding:3px 10px;border:1px solid var(--a-line);border-radius:999px;color:var(--a-ink2)}.pm-top,.pm-cal,.pm-rest{margin-top:40px}.pm-risk{margin-top:12px;padding:26px 30px 28px;border:1px solid var(--a-line);border-radius:20px;background:var(--a-card);scroll-margin-top:16px}.pm-risk-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:start;gap:18px}.pm-rank{font-size:52px;font-weight:600;line-height:.86;letter-spacing:-.05em;color:var(--a-faint);font-variant-numeric:tabular-nums}.pm-meta{display:flex;align-items:center;gap:7px}.pm-risk h2{margin-top:8px;font-size:24px;font-weight:600;line-height:1.18;letter-spacing:-.025em;text-wrap:balance}.pm-li{display:grid;gap:6px;min-width:150px}.pm-li>div{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px}.pm-li dt{font-size:12.5px;color:var(--a-muted)}.pm-li dd{display:flex;align-items:center;gap:8px}.pm-li dd b{min-width:52px;font-family:var(--a-mono);font-size:12px;font-weight:500}.pm-lv{display:inline-flex;gap:2px}.pm-lv i{width:9px;height:9px;border-radius:2.5px;background:var(--a-line)}.pm-lv.pm-low i:nth-child(-n+1),.pm-lv.pm-medium i:nth-child(-n+2),.pm-lv.pm-high i:nth-child(-n+3){background:var(--a-ink)}.pm-lv.pm-high i:nth-child(-n+3){background:var(--a-bad)}.pm-story{margin-top:16px;max-width:70ch;font-size:16.5px;color:var(--a-ink2)}.pm-ev{margin-top:16px;padding:14px 18px 15px;border-radius:12px;background:#f7f7f3;font-size:14.5px;color:var(--a-ink2)}.pm-ev-top{display:flex;align-items:center;gap:10px;margin-bottom:5px}.pm-ev-top b{font-size:14px;font-weight:600;color:var(--a-ink)}.atag.ink{background:var(--a-ink);color:#fff}.pm-expect{margin-top:6px;color:var(--a-muted)}.pm-expect span{font-weight:500;color:var(--a-ink2)}.pm-wire{position:relative;margin-top:14px;padding:16px 18px 18px;border:1.5px dashed var(--a-ink);border-radius:14px;background:var(--a-hi-soft)}.pm-wire>.pm-k{color:var(--a-hi-ink);font-weight:600}.pm-wire-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px;margin-top:10px}.pm-wire-grid .wide{grid-column:1 / -1}.pm-wire-grid span{display:block;font-size:12.5px;color:#5c6440}.pm-wire-grid b{display:block;margin-top:1px;font-size:16px;font-weight:600;line-height:1.35;letter-spacing:-.01em}.pm-do{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 28px;margin-top:18px}.pm-do p{margin-top:5px;font-size:14.5px;color:var(--a-ink2)}.pm-cal ol{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:12px;list-style:none}.pm-cal li{display:grid;gap:12px;align-content:start;padding:16px 16px 18px;border:1px solid var(--a-line);border-radius:16px;background:var(--a-card)}.pm-cal time{display:flex;align-items:baseline;gap:8px;padding-bottom:12px;border-bottom:1px solid var(--a-line2)}.pm-cal time b{font-size:36px;font-weight:600;line-height:.9;letter-spacing:-.05em;font-variant-numeric:tabular-nums}.pm-cal time span{font-family:var(--a-mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--a-muted)}.pm-cal li>div{display:grid;justify-items:start;gap:6px}.pm-cal li>div b{font-size:13.5px;font-weight:600;line-height:1.35}.pm-cal li>div span{font-size:12.5px;line-height:1.35;color:var(--a-muted)}.pm-row{margin-top:6px;border:1px solid var(--a-line);border-radius:14px;background:var(--a-card);scroll-margin-top:16px}.pm-row summary{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto auto;align-items:center;gap:10px;padding:13px 16px;cursor:pointer;list-style:none}.pm-row summary::-webkit-details-marker{display:none}.pm-row-title{font-size:15.5px;font-weight:500;letter-spacing:-.01em}.pm-row-li{display:inline-flex;gap:8px}.pm-row[open] summary{border-bottom:1px solid var(--a-line2)}.pm-row-body{padding:2px 16px 18px}.pm-row-body .pm-story{font-size:15px}.pm-why{margin-top:12px;font-size:14px;color:var(--a-ink2)}.pm-why b{font-weight:600;color:var(--a-ink)}.pm-foot{margin-top:22px;padding-top:16px;border-top:1px solid var(--a-line);font-size:13.5px;color:var(--a-muted)}.pm-foot p+p{margin-top:4px}.pm-foot b{font-weight:600;color:var(--a-ink2)}@container premortem (max-width: 720px){.pm-wrap{padding:24px 16px 44px}.pm-premise{font-size:17px}.pm-plan,.pm-over,.pm-do{grid-template-columns:minmax(0,1fr)}.pm-risk{padding:20px 18px 22px}.pm-risk-head{grid-template-columns:auto minmax(0,1fr)}.pm-li{grid-column:1 / -1;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 20px}.pm-rank{font-size:40px}.pm-risk h2{font-size:20px}.pm-wire-grid{grid-template-columns:minmax(0,1fr)}.pm-row summary{grid-template-columns:auto minmax(0,1fr) auto}.pm-row summary .atag{display:none}}#root{min-height:100vh}</style>
+</head>
+<body>
+<div id="root"></div>
+<!-- DATA: replace the JSON inside this element with your own. -->
+<script id="premortem-data" type="application/json">
+{
+ "title": "Replace this JSON with your premortem.json",
+ "plan": {
+  "name": "The plan",
+  "summary": "This page is drawn from the JSON in the element with id premortem-data. The format is in references/format.md.",
+  "ships": "When, and to whom",
+  "goal": "What it is meant to change."
+ },
+ "asOf": "2026-01-05",
+ "failedOn": "2026-07-06",
+ "inputs": [
+  {
+   "id": "N",
+   "label": "Your notes",
+   "detail": "replace me"
+  }
+ ],
+ "risks": [
+  {
+   "id": "R1",
+   "area": "users",
+   "title": "The failure, named in a few words",
+   "story": "Who does what, and what follows from it. Two or three sentences that someone outside the team could repeat back to you after reading them once.",
+   "likelihood": "medium",
+   "likelihoodWhy": "Why you think it is this likely.",
+   "impact": "high",
+   "impactWhy": "Why it would matter this much.",
+   "evidence": {
+    "status": "unknown",
+    "expect": "What you would see if it were real."
+   },
+   "tripwire": {
+    "metric": "A metric the team already has",
+    "threshold": "Rises above 10",
+    "check": "2026-02-02",
+    "owner": "A role or a name"
+   },
+   "mitigation": "The change to the plan that would help.",
+   "test": "The cheapest test that would settle it."
+  }
+ ],
+ "top": [
+  "R1"
+ ],
+ "skipped": {
+  "behaviour": "Say why this area has no risk.",
+  "operations": "Say why this area has no risk.",
+  "money": "Say why this area has no risk.",
+  "rules": "Say why this area has no risk.",
+  "build": "Say why this area has no risk."
+ }
+}
+</script>
+<script>(()=>{var e=s=>String(s??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;"),g=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],E=["January","February","March","April","May","June","July","August","September","October","November","December"],b=s=>/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||""),f=s=>{let t=b(s);return t?`${Number(t[3])} ${g[Number(t[2])-1]} ${t[1]}`:e(s||"")},L=s=>{let t=b(s);return t?`${Number(t[3])} ${E[Number(t[2])-1]} ${t[1]}`:e(s||"")},y=[["users","Users"],["behaviour","Behaviour"],["operations","Operations"],["money","Money"],["rules","Rules"],["build","Build"]],k=Object.fromEntries(y),m=["low","medium","high"],$={supported:["Evidence for","ink"],contradicted:["Evidence against","ok"],unknown:["A guess","warn"]},h=s=>`<span class="pm-lv pm-${e(s)}"><i></i><i></i><i></i></span>`;function O(s,t){let a=s.evidence||{},[n,o]=$[a.status]||$.unknown,c=a.from&&t[a.from]?t[a.from].label:"";return`<div class="pm-ev">
+    <div class="pm-ev-top"><span class="atag ${o}">${n}</span>${c?`<b>${e(c)}</b>`:""}</div>
+    ${a.detail?`<p>${e(a.detail)}</p>`:a.status==="unknown"?"<p>Nothing in the inputs speaks to this either way.</p>":""}
+    ${a.expect?`<p class="pm-expect"><span>If it is real, you would see</span> ${e(a.expect)}</p>`:""}
+  </div>`}function N(s,t,a){let n=s.tripwire||{};return`<article class="pm-risk" data-risk="${e(s.id)}" id="${e(s.id)}">
+    <div class="pm-risk-head">
+      <span class="pm-rank">${t}</span>
+      <div>
+        <div class="pm-meta"><span class="aid">${e(s.id)}</span><span class="atag">${e(k[s.area]||s.area)}</span></div>
+        <h2>${e(s.title)}</h2>
+      </div>
+      <dl class="pm-li">
+        <div><dt>Likelihood</dt><dd>${h(s.likelihood)}<b>${e(s.likelihood)}</b></dd></div>
+        <div><dt>Impact</dt><dd>${h(s.impact)}<b>${e(s.impact)}</b></dd></div>
+      </dl>
+    </div>
+    <p class="pm-story">${e(s.story)}</p>
+    ${O(s,a)}
+    <div class="pm-wire" data-wire="${e(s.id)}">
+      <span class="pm-k">Tripwire</span>
+      <div class="pm-wire-grid">
+        <div class="wide"><span>Watch</span><b>${e(n.metric||"")}</b></div>
+        <div class="wide"><span>Trips when</span><b>${e(n.threshold||"")}</b></div>
+        <div><span>Look on</span><b>${f(n.check)}</b></div>
+        <div><span>Who looks</span><b>${e(n.owner||"")}</b></div>
+      </div>
+    </div>
+    ${s.mitigation||s.test?`<div class="pm-do">
+      ${s.mitigation?`<div><span class="pm-k">Change to the plan</span><p>${e(s.mitigation)}</p></div>`:""}
+      ${s.test?`<div><span class="pm-k">Cheapest test before launch</span><p>${e(s.test)}</p></div>`:""}
+    </div>`:""}
+  </article>`}function A(s,t){let[a,n]=$[s.evidence?.status]||$.unknown;return`<details class="pm-row" data-risk="${e(s.id)}" id="${e(s.id)}">
+    <summary>
+      <span class="aid ink">${e(s.id)}</span>
+      <span class="pm-row-title">${e(s.title)}</span>
+      <span class="atag">${e(k[s.area]||s.area)}</span>
+      <span class="atag ${n}">${a}</span>
+      <span class="pm-row-li" title="Likelihood ${e(s.likelihood)}, impact ${e(s.impact)}">${h(s.likelihood)}${h(s.impact)}</span>
+    </summary>
+    <div class="pm-row-body">
+      <p class="pm-story">${e(s.story)}</p>
+      <p class="pm-why"><b>Likelihood ${e(s.likelihood)}.</b> ${e(s.likelihoodWhy||"")} <b>Impact ${e(s.impact)}.</b> ${e(s.impactWhy||"")}</p>
+      ${O(s,t)}
+      ${s.mitigation?`<p class="pm-why"><b>What would help.</b> ${e(s.mitigation)}</p>`:""}
+    </div>
+  </details>`}function S(s,t){let a=(o,c)=>s.filter(r=>r.likelihood===o&&r.impact===c);return`<div class="pm-matrix" data-part="matrix">
+    <span class="pm-axis-y">Impact</span>
+    <div class="pm-cells">
+      ${[...m].reverse().map(o=>m.map(c=>`<div class="pm-cell h${m.indexOf(c)+m.indexOf(o)}" data-cell="${c}-${o}">${a(c,o).map(l=>`<a href="#${e(l.id)}" class="aid${t.includes(l.id)?"":" ghost"}" data-chip="${e(l.id)}" title="${e(l.title)}">${e(l.id)}</a>`).join("")}</div>`).join("")).join("")}
+    </div>
+    <div class="pm-axis-x"><span>Low</span><span>Likelihood</span><span>High</span></div>
+  </div>`}function I(s){let t=s.risks||[],a=(s.top||[]).filter(i=>t.some(p=>p.id===i)),n=Object.fromEntries(t.map(i=>[i.id,i])),o=Object.fromEntries((s.inputs||[]).map(i=>[i.id,i])),c=t.filter(i=>!a.includes(i.id)),r=i=>t.filter(p=>(p.evidence?.status||"unknown")===i).length,l=a.map(i=>n[i]).filter(i=>i.tripwire&&i.tripwire.check).sort((i,p)=>String(i.tripwire.check).localeCompare(String(p.tripwire.check))),v=s.skipped||{},d=s.plan||{};return`
+  <div class="pm-wrap">
+    <header class="pm-head">
+      <div class="pm-ey">Pre-mortem${s.asOf?` \xB7 written ${f(s.asOf)}`:""}</div>
+      <h1>${e(s.title||d.name||"Pre-mortem")}</h1>
+      <p class="pm-premise">It is <mark>${L(s.failedOn)}</mark>. The plan shipped, and it went badly. These are the reasons, written while the plan can still change.</p>
+      <div class="pm-plan">
+        <div class="wide"><span class="pm-k">The plan</span><p><b>${e(d.name||"")}.</b> ${e(d.summary||"")}</p></div>
+        ${d.ships?`<div><span class="pm-k">Ships</span><p>${e(d.ships)}</p></div>`:""}
+        ${d.goal?`<div><span class="pm-k">Meant to change</span><p>${e(d.goal)}</p></div>`:""}
+      </div>
+    </header>
+
+    <section class="pm-over" data-part="map">
+      ${S(t,a)}
+      <div class="pm-side">
+        <div class="pm-tally" data-part="tally">
+          <div><b>${t.length}</b><span>risks</span></div>
+          <div><b>${a.length}</b><span>with a tripwire</span></div>
+          <div><b>${r("unknown")}</b><span>are guesses</span></div>
+        </div>
+        <div class="pm-areas">
+          ${y.map(([i,p])=>{let u=t.filter(x=>x.area===i).length;return`<div class="${u?"":"none"}" title="${e(v[i]||"")}"><span>${p}</span><i style="--n:${u}"></i><b>${u||"none"}</b></div>`}).join("")}
+        </div>
+        ${(s.inputs||[]).length?`<p class="pm-inputs"><span class="pm-k">Weighed against</span>${s.inputs.map(i=>`<span title="${e(i.detail||"")}">${e(i.label)}</span>`).join("")}</p>`:""}
+      </div>
+    </section>
+
+    <section class="pm-top" data-part="top">
+      <h3>The ${a.length} to watch, worst first</h3>
+      ${a.map((i,p)=>N(n[i],p+1,o)).join("")}
+    </section>
+
+    ${l.length?`<section class="pm-cal" data-part="calendar">
+      <h3>Dates to put in a calendar today</h3>
+      <ol>${l.map(i=>{let p=b(i.tripwire.check);return`<li data-date="${e(i.id)}"><time datetime="${e(i.tripwire.check)}"><b>${p?Number(p[3]):""}</b><span>${p?`${g[Number(p[2])-1]} ${p[1]}`:e(i.tripwire.check)}</span></time><div><a href="#${e(i.id)}" class="aid">${e(i.id)}</a><b>${e(i.tripwire.metric)}</b><span>${e(i.tripwire.owner)}</span></div></li>`}).join("")}</ol>
+    </section>`:""}
+
+    ${c.length?`<section class="pm-rest" data-part="rest">
+      <h3>The rest of the list</h3>
+      ${c.map(i=>A(i,o)).join("")}
+    </section>`:""}
+
+    ${(s.cut||[]).length||Object.keys(v).length?`<footer class="pm-foot">
+      ${Object.entries(v).map(([i,p])=>`<p><b>No ${e((k[i]||i).toLowerCase())} risk.</b> ${e(p)}</p>`).join("")}
+      ${(s.cut||[]).map(i=>`<p><b>Left out.</b> ${e(i)}</p>`).join("")}
+    </footer>`:""}
+  </div>`}function j(s,t){return s.classList.add("adoc","premortem"),s.innerHTML=I(t),s.addEventListener("click",a=>{let n=a.target.closest("[data-chip]");if(!n)return;let o=s.querySelector(`details[data-risk="${n.dataset.chip}"]`);o&&(o.open=!0)}),{root:s,open(a,n=!0){let o=s.querySelector(`details[data-risk="${a}"]`);o&&(o.open=n)}}}var w=JSON.parse(document.getElementById("premortem-data").textContent);j(document.getElementById("root"),w);w.title&&(document.title=w.title);})();</script>
+</body>
+</html>
