@@ -1,0 +1,1230 @@
+/* hub/src/styles/artifacts/prototype.css : the phone, the switch panel, and a small kit for app screens. */
+
+.proto {
+  --pp-bg: #ffffff;
+  --pp-ink: #0b0c0c;
+  --pp-ink2: #3a3d3b;
+  --pp-muted: #70756f;
+  --pp-line: #e3e4de;
+  --pp-soft: #f3f3ef;
+  --pp-on: #0b0c0c;
+  --pp-knob: #dcff4a;
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(250px, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  gap: clamp(12px, 2.4cqw, 28px);
+  height: 100%;
+  min-height: 0;
+  font-family: var(--a-sans);
+  color: var(--pp-ink);
+}
+
+/* On the dark stage the panel belongs to the stage, so the phone is the one bright thing. */
+.stage .proto {
+  --pp-bg: transparent;
+  --pp-ink: var(--stage-ink);
+  --pp-ink2: var(--stage-ink-2);
+  --pp-muted: var(--stage-muted);
+  --pp-line: var(--stage-line);
+  --pp-soft: var(--stage-3);
+  --pp-on: var(--signal);
+  --pp-knob: #0b0c0c;
+}
+
+.proto-phone-wrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 0;
+}
+
+.proto-phone {
+  width: 300px;
+  height: 620px;
+  flex: none;
+  padding: 9px;
+  border-radius: 46px;
+  background: #0b0c0c;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 30px 60px -20px rgba(0, 0, 0, 0.55);
+  transform-origin: center;
+  will-change: transform;
+}
+
+.proto-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 37px;
+  background: var(--app-bg);
+  color: var(--a-ink);
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.35;
+  isolation: isolate;
+}
+
+/* Outputs get dropped into pages with their own heading styles. Start from nothing. */
+.proto-screen :where(h1, h2, h3, h4, p),
+.proto-panel :where(h1, h2, h3, p) {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: normal;
+  line-height: inherit;
+  max-width: none;
+  text-wrap: wrap;
+}
+
+.proto-status {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 36px;
+  padding: 0 22px 0 26px;
+  font-size: 12px;
+  background: var(--app-bg);
+}
+
+.proto-status i {
+  width: 76px;
+  height: 22px;
+  border-radius: 12px;
+  background: #0b0c0c;
+}
+
+.proto-status span {
+  justify-self: end;
+}
+
+.proto-status svg {
+  width: 23px;
+  height: 11px;
+}
+
+.proto-view {
+  position: absolute;
+  inset: 36px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  --flash: 0;
+}
+
+/* ------------------------------------------------------------ the app kit */
+
+.p-scroll {
+  flex: 1;
+  min-height: 0;
+  padding: 4px 14px 16px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  overscroll-behavior: contain;
+}
+
+.p-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.p-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 34px;
+}
+
+.p-top button {
+  all: unset;
+  cursor: pointer;
+}
+
+.p-back {
+  display: grid !important;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--a-line) !important;
+}
+
+.p-back svg {
+  width: 13px;
+  height: 13px;
+}
+
+.p-addr {
+  font-size: 11.5px;
+  color: var(--a-muted);
+}
+
+.p-addr b {
+  color: var(--a-ink);
+  font-weight: 500;
+}
+
+.p-avatar {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: var(--brand-ink);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.p-h1 {
+  margin: 6px 0 12px;
+  font-size: 23px;
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+}
+
+.p-h {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 16px 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.p-h small {
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--a-muted);
+}
+
+.p-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--a-line);
+  color: var(--a-muted);
+  font-size: 12.5px;
+}
+
+.p-search svg {
+  width: 14px;
+  height: 14px;
+}
+
+.p-chips {
+  display: flex;
+  gap: 6px;
+  margin: 12px -14px 0;
+  padding: 0 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.p-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.p-chip {
+  flex: none;
+  height: 28px;
+  padding: 0 11px;
+  border: 1px solid var(--a-line);
+  border-radius: 999px;
+  background: #fff;
+  font: inherit;
+  font-size: 12px;
+  color: var(--a-ink);
+  line-height: 26px;
+  cursor: pointer;
+}
+
+.p-chip.on {
+  background: var(--a-ink);
+  border-color: var(--a-ink);
+  color: #fff;
+}
+
+.p-card {
+  position: relative;
+  margin-top: 12px;
+  padding: 13px 14px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid var(--a-line);
+}
+
+.p-card.brand {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--brand-ink);
+}
+
+.p-card h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.p-card p {
+  margin: 3px 0 0;
+  font-size: 12px;
+  color: var(--a-muted);
+}
+
+.p-card.brand p {
+  color: color-mix(in srgb, var(--brand-ink) 78%, transparent);
+}
+
+.p-card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.p-banner {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: var(--brand-soft);
+  font-size: 12.5px;
+}
+
+.p-banner b {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.p-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--brand);
+  color: var(--brand-ink);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.p-btn.light {
+  background: #fff;
+  color: var(--brand);
+}
+
+.p-btn.ghost {
+  background: transparent;
+  color: var(--a-ink);
+  box-shadow: inset 0 0 0 1px var(--a-line);
+}
+
+.p-btn.sm {
+  height: 28px;
+  padding: 0 11px;
+  font-size: 11.5px;
+}
+
+.p-btn.wide {
+  width: 100%;
+  height: 46px;
+  font-size: 14px;
+}
+
+.p-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.p-tile {
+  position: relative;
+  padding: 10px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--a-line);
+}
+
+.p-tile b {
+  display: block;
+  margin-top: 8px;
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+.p-tile small {
+  font-size: 11.5px;
+  color: var(--a-muted);
+}
+
+.p-add {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--a-ink);
+  color: #fff;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.p-thumb {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 12px;
+  background: var(--tint, #f1f2ee);
+}
+
+.p-thumb svg {
+  width: 24px;
+  height: 24px;
+}
+
+.p-tile .p-thumb {
+  width: 100%;
+  height: 58px;
+}
+
+.p-tile .p-thumb svg {
+  width: 30px;
+  height: 30px;
+}
+
+.p-strip {
+  display: flex;
+  gap: 8px;
+  margin: 0 -14px;
+  padding: 0 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.p-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.p-mini {
+  position: relative;
+  flex: none;
+  width: 104px;
+  padding: 9px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--a-line);
+}
+
+.p-mini .p-thumb {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+}
+
+.p-mini .p-thumb svg {
+  width: 19px;
+  height: 19px;
+}
+
+.p-mini b {
+  display: block;
+  margin-top: 7px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.p-mini small {
+  display: block;
+  font-size: 10.5px;
+  color: var(--a-muted);
+}
+
+.p-mini .p-add {
+  width: 24px;
+  height: 24px;
+  font-size: 15px;
+}
+
+.p-list {
+  margin-top: 4px;
+}
+
+.p-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--a-line2);
+}
+
+.p-row b {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.p-row small {
+  display: block;
+  font-size: 11.5px;
+  color: var(--a-muted);
+}
+
+.p-row .p-price {
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.p-row.oos b {
+  color: var(--a-muted);
+  text-decoration: line-through;
+}
+
+.p-rule {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 3px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--brand-soft);
+  font-size: 10.5px;
+  color: var(--a-ink2);
+  cursor: pointer;
+}
+
+.p-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 4px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.p-step button {
+  all: unset;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #eceee9;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.p-step span {
+  min-width: 18px;
+  text-align: center;
+}
+
+.p-note {
+  position: relative;
+  margin-top: 12px;
+  padding: 11px 12px;
+  border-radius: 14px;
+  background: var(--a-warn-bg);
+  color: #5a3600;
+  font-size: 12px;
+}
+
+.p-note.info {
+  background: var(--brand-soft);
+  color: var(--a-ink);
+}
+
+.p-note.bad {
+  background: var(--a-bad-bg);
+  color: #7d1f16;
+}
+
+.p-note b {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.p-swap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  margin-top: 9px;
+  padding-top: 9px;
+  border-top: 1px solid rgba(90, 54, 0, 0.14);
+}
+
+.p-swap small {
+  display: block;
+  opacity: 0.75;
+}
+
+.p-swap div:last-child {
+  display: flex;
+  gap: 5px;
+}
+
+.p-slots {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.p-slot {
+  padding: 7px 4px;
+  border: 1px solid var(--a-line);
+  border-radius: 11px;
+  background: #fff;
+  font: inherit;
+  font-size: 11px;
+  text-align: center;
+  line-height: 1.25;
+  cursor: pointer;
+}
+
+.p-slot b {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.p-slot.on {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--brand-ink);
+}
+
+.p-slot.full {
+  opacity: 0.45;
+}
+
+.p-kv {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 5px 0;
+  font-size: 12.5px;
+  color: var(--a-ink2);
+  font-variant-numeric: tabular-nums;
+}
+
+.p-kv.total {
+  margin-top: 4px;
+  padding-top: 9px;
+  border-top: 1px solid var(--a-line);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--a-ink);
+}
+
+.p-kv.up span:last-child {
+  color: var(--a-warn);
+}
+
+.p-bar {
+  flex: none;
+  padding: 10px 14px 16px;
+  background: color-mix(in srgb, var(--app-bg) 88%, transparent);
+  border-top: 1px solid var(--a-line);
+}
+
+.p-tabbar {
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 58px;
+  padding-bottom: 8px;
+  border-top: 1px solid var(--a-line);
+  background: #fff;
+}
+
+.p-tabbar button {
+  all: unset;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 3px;
+  font-size: 10px;
+  color: var(--a-muted);
+  cursor: pointer;
+}
+
+.p-tabbar button.on {
+  color: var(--a-ink);
+  font-weight: 600;
+}
+
+.p-tabbar svg {
+  width: 19px;
+  height: 19px;
+}
+
+.p-done {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 10px;
+  height: 100%;
+  padding: 0 28px;
+  text-align: center;
+}
+
+.p-done i {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: var(--brand-ink);
+}
+
+.p-done i svg {
+  width: 28px;
+  height: 28px;
+}
+
+.p-done h2 {
+  margin: 4px 0 0;
+  font-size: 21px;
+  letter-spacing: -0.03em;
+}
+
+.p-done p {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--a-muted);
+}
+
+.p-fine {
+  margin-top: 14px;
+  font-size: 10.5px;
+  color: var(--a-faint);
+  text-align: center;
+}
+
+/* ------------------------------------------------------------------ pins */
+
+.has-pin {
+  position: relative;
+}
+
+.pin {
+  all: unset;
+  position: absolute;
+  top: -8px;
+  right: -5px;
+  z-index: 3;
+  display: none;
+  min-width: 24px;
+  height: 20px;
+  padding: 0 6px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background: var(--a-hi);
+  color: var(--a-hi-ink);
+  box-shadow: 0 0 0 1.5px #0b0c0c, 0 2px 6px rgba(0, 0, 0, 0.18);
+  font-family: var(--a-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.proto.pins .pin {
+  display: block;
+}
+
+.pin.inline {
+  position: static;
+  display: none;
+  vertical-align: 1px;
+  margin-left: 6px;
+}
+
+.proto.pins .pin.inline {
+  display: inline-block;
+}
+
+/* A piece of UI arriving because its switch was just turned on. */
+[data-flag][data-new] {
+  animation: flag-in 0.55s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1)) both;
+}
+
+@keyframes flag-in {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+    box-shadow: 0 0 0 3px var(--a-hi);
+  }
+  60% {
+    opacity: 1;
+    box-shadow: 0 0 0 3px var(--a-hi);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+/* While a clip is rendered frame by frame the entrance follows the timeline, not the clock. */
+.stage.is-capture [data-flag][data-new] {
+  animation: none;
+  opacity: calc(1 - var(--flash) * 0.7);
+  transform: translateY(calc(var(--flash) * 8px));
+  box-shadow: 0 0 0 calc(min(var(--flash) * 9px, 3px)) var(--a-hi);
+}
+
+/* --------------------------------------------------- sheets and the toast */
+
+.proto-sheet {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+.proto-sheet[hidden] {
+  display: none;
+}
+
+.proto-sheet-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 12, 12, 0.36);
+  animation: sheet-fade 0.2s ease both;
+}
+
+.proto-sheet-card {
+  position: absolute;
+  inset: auto 0 0 0;
+  max-height: 84%;
+  padding: 10px 16px 22px;
+  border-radius: 24px 24px 0 0;
+  background: #fff;
+  overflow-y: auto;
+  animation: sheet-up 0.3s var(--ease-out, ease) both;
+}
+
+.proto-grab {
+  display: block;
+  width: 38px;
+  height: 4px;
+  margin: 0 auto 12px;
+  border-radius: 2px;
+  background: var(--a-line);
+}
+
+.proto-sheet-card h3 {
+  margin: 0 0 4px;
+  font-size: 17px;
+  letter-spacing: -0.025em;
+}
+
+.proto-sheet-card p {
+  margin: 0 0 10px;
+  font-size: 12.5px;
+  color: var(--a-muted);
+}
+
+.p-opt {
+  all: unset;
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 7px;
+  padding: 11px 12px;
+  border: 1px solid var(--a-line);
+  border-radius: 13px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.p-opt::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid var(--a-faint);
+  box-sizing: border-box;
+}
+
+.p-opt.on {
+  border-color: var(--a-ink);
+  background: var(--a-hi-soft);
+}
+
+.p-opt.on::before {
+  border: 5px solid var(--a-ink);
+}
+
+.p-opt small {
+  display: block;
+  font-size: 11.5px;
+  color: var(--a-muted);
+}
+
+@keyframes sheet-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+}
+
+.proto-toast {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 76px;
+  z-index: 12;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(11, 12, 12, 0.92);
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.25s var(--ease-out, ease);
+}
+
+.proto-toast.on {
+  opacity: 1;
+  transform: none;
+}
+
+/* ------------------------------------------------------------- the panel */
+
+.proto-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  padding: clamp(12px, 1.6cqw, 18px);
+  border-radius: 18px;
+  background: var(--pp-bg);
+  color: var(--pp-ink);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.proto-panel::-webkit-scrollbar {
+  display: none;
+}
+
+.proto-panel-head h1 {
+  margin: 0;
+  font-size: 1.02em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.proto-panel-head p {
+  margin: 0.35em 0 0;
+  font-size: 0.86em;
+  color: var(--pp-muted);
+}
+
+.proto-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 0.9em;
+}
+
+.proto-presets button {
+  height: 28px;
+  padding: 0 0.8em;
+  border: 1px solid var(--pp-line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--pp-ink2);
+  font: inherit;
+  font-size: 0.82em;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.proto-presets button:hover {
+  border-color: var(--pp-ink);
+  color: var(--pp-ink);
+}
+
+.proto-presets button.on {
+  background: var(--pp-ink);
+  border-color: var(--pp-ink);
+  color: var(--stage, #fff);
+}
+
+.proto:not(.stage *) .proto-presets button.on {
+  color: #fff;
+}
+
+.proto-hold {
+  margin-left: auto;
+  border-style: dashed !important;
+  user-select: none;
+  touch-action: none;
+}
+
+.proto-hold.on {
+  background: var(--a-hi) !important;
+  border-color: var(--a-hi) !important;
+  color: var(--a-hi-ink) !important;
+}
+
+.proto-flags {
+  margin-top: 0.4em;
+}
+
+.proto-group h2 {
+  margin: 1.1em 0 0.35em;
+  font-family: var(--a-mono);
+  font-size: 0.7em;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--pp-muted);
+}
+
+.proto-flag {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.75em;
+  align-items: start;
+  padding: 0.55em 0.6em;
+  margin: 0 -0.6em;
+  border-radius: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.proto-flag.focus {
+  background: var(--pp-soft);
+}
+
+.proto-switch {
+  all: unset;
+  position: relative;
+  width: 36px;
+  height: 21px;
+  margin-top: 0.1em;
+  border-radius: 999px;
+  background: var(--pp-line);
+  box-shadow: inset 0 0 0 1px var(--pp-line);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.proto:not(.stage *) .proto-switch {
+  background: #d9dbd5;
+}
+
+.proto-switch i {
+  position: absolute;
+  left: 2.5px;
+  top: 2.5px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  transition: transform 0.24s var(--ease-spring, cubic-bezier(0.34, 1.4, 0.64, 1)), background-color 0.2s ease;
+}
+
+.proto-switch[aria-checked="true"] {
+  background: var(--pp-on) !important;
+}
+
+.proto-switch[aria-checked="true"] i {
+  transform: translateX(15px);
+  background: var(--pp-knob);
+}
+
+.proto-switch:focus-visible {
+  outline: 2px solid var(--pp-ink);
+  outline-offset: 2px;
+}
+
+.proto-flag-copy {
+  min-width: 0;
+  cursor: pointer;
+}
+
+.proto-flag-top {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.proto-id {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.3em;
+  height: 1.5em;
+  padding: 0 0.35em;
+  border-radius: 0.5em;
+  background: var(--pp-soft);
+  color: var(--pp-muted);
+  font-family: var(--a-mono);
+  font-size: 0.72em;
+  font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.proto-flag.on .proto-id {
+  background: var(--a-hi);
+  color: var(--a-hi-ink);
+}
+
+.proto-flag-top b {
+  font-size: 0.92em;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--pp-ink2);
+  transition: color 0.2s ease;
+}
+
+.proto-flag.on .proto-flag-top b {
+  color: var(--pp-ink);
+}
+
+.proto-flag-copy p {
+  display: none;
+  margin: 0.35em 0 0;
+  font-size: 0.82em;
+  line-height: 1.45;
+  color: var(--pp-muted);
+}
+
+.proto-flag.focus .proto-flag-copy p {
+  display: block;
+}
+
+.proto-flag-copy small {
+  display: none;
+  margin-top: 0.25em;
+  font-family: var(--a-mono);
+  font-size: 0.68em;
+  color: var(--pp-muted);
+}
+
+.proto-flag.focus .proto-flag-copy small {
+  display: block;
+}
+
+.proto-panel-foot {
+  margin-top: auto;
+  padding-top: 0.9em;
+}
+
+.proto-pins {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.82em;
+  color: var(--pp-ink2);
+  cursor: pointer;
+}
+
+.proto-pins input {
+  accent-color: var(--a-hi);
+  width: 15px;
+  height: 15px;
+  margin: 0;
+}
+
+.proto-screens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 0.7em;
+}
+
+.proto-screens button {
+  height: 24px;
+  padding: 0 0.7em;
+  border: 0;
+  border-radius: 999px;
+  background: var(--pp-soft);
+  color: var(--pp-muted);
+  font: inherit;
+  font-size: 0.76em;
+  cursor: pointer;
+}
+
+.proto-screens button.on {
+  background: var(--pp-ink);
+  color: var(--stage, #fff);
+}
+
+.proto:not(.stage *) .proto-screens button.on {
+  color: #fff;
+}
+
+.proto-legal {
+  margin: 0.8em 0 0;
+  font-size: 0.72em;
+  line-height: 1.45;
+  color: var(--pp-muted);
+}
+
+/* When there is no room for both, the phone goes on top and the switches below. */
+.stage[data-layout="narrow"] {
+  .proto {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .proto-panel-head p,
+  .proto-panel-foot,
+  .proto-hold {
+    display: none;
+  }
+
+  .proto-panel {
+    padding: 10px 12px;
+  }
+}

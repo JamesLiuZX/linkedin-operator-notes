@@ -1,0 +1,102 @@
+/* hub/src/styles/artifacts/kit.css
+ *
+ * Tokens shared by every output a skill produces. Outputs are always light
+ * documents, whatever theme the page around them uses, so they carry their
+ * own palette and never read the site's variables.
+ */
+
+.adoc,
+.proto {
+  --a-bg: #f3f3ef;
+  --a-card: #ffffff;
+  --a-ink: #0b0c0c;
+  --a-ink2: #3a3d3b;
+  --a-muted: #70756f;
+  --a-faint: #a7aca6;
+  --a-line: #e3e4de;
+  --a-line2: #eeefea;
+  --a-hi: #dcff4a;
+  --a-hi-soft: #f3ffc4;
+  --a-hi-ink: #131a00;
+  --a-ok: #12804b;
+  --a-ok-bg: #e2f6ea;
+  --a-warn: #8f5500;
+  --a-warn-bg: #fff3d9;
+  --a-bad: #bf3327;
+  --a-bad-bg: #fdeae7;
+  --a-info: #2447d6;
+  --a-info-bg: #e9eeff;
+  --a-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --a-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* The ID chip: one numbering scheme across the PRD, the prototype and the plan. */
+.aid {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.1em;
+  height: 1.55em;
+  padding: 0 0.42em;
+  border-radius: 0.5em;
+  background: var(--a-hi);
+  color: var(--a-hi-ink);
+  font-family: var(--a-mono);
+  font-size: 0.78em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.aid.ink {
+  background: var(--a-ink);
+  color: var(--a-hi);
+}
+
+.atag {
+  display: inline-flex;
+  align-items: center;
+  height: 1.6em;
+  padding: 0 0.55em;
+  border-radius: 0.45em;
+  font-family: var(--a-mono);
+  font-size: 0.68em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background: #eceee9;
+  color: var(--a-ink2);
+}
+
+.atag.ok {
+  background: var(--a-ok-bg);
+  color: var(--a-ok);
+}
+
+.atag.warn {
+  background: var(--a-warn-bg);
+  color: var(--a-warn);
+}
+
+.atag.bad {
+  background: var(--a-bad-bg);
+  color: var(--a-bad);
+}
+
+.atag.info {
+  background: var(--a-info-bg);
+  color: var(--a-info);
+}
+
+.atag.hi {
+  background: var(--a-hi);
+  color: var(--a-hi-ink);
+}
+
+.scr {
+  display: block;
+  width: 100%;
+  height: auto;
+}

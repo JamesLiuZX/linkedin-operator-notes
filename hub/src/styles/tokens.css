@@ -1,0 +1,139 @@
+/* hub/src/styles/tokens.css
+ *
+ * The whole visual system in one file. The idea is "quiet page, live stage":
+ * pages are ink on paper with one highlighter colour, and the only place with
+ * rich colour and motion is the stage where a workflow runs.
+ */
+
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("./fonts/geist-latin-wght-normal.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("./fonts/geist-mono-latin-wght-normal.woff2") format("woff2-variations");
+}
+
+:root {
+  color-scheme: light;
+
+  /* Paper and ink. Neutral, a hair warm, so the highlighter reads as chosen. */
+  --paper: #fbfbf9;
+  --paper-2: #f3f3ef;
+  --paper-3: #eaeae4;
+  --card: #ffffff;
+  --ink: #0b0c0c;
+  --ink-2: #353836;
+  --muted: #6c716e;
+  --faint: #a1a6a2;
+  --line: rgba(11, 12, 12, 0.11);
+  --line-2: rgba(11, 12, 12, 0.06);
+
+  /* The highlighter. Always a background behind ink, never text on paper. */
+  --hi: #dcff4a;
+  --hi-soft: #efffad;
+  --hi-ink: #131a00;
+
+  /* The stage: where a workflow runs. Dark in both themes. */
+  --stage: #0b0c0c;
+  --stage-2: #131514;
+  --stage-3: #1b1e1c;
+  --stage-4: #262a27;
+  --stage-line: rgba(255, 255, 255, 0.09);
+  --stage-line-2: rgba(255, 255, 255, 0.05);
+  --stage-ink: #eef1ea;
+  --stage-ink-2: #b9c0b8;
+  --stage-muted: #7d857e;
+  --signal: #cbff3c;
+
+  /* Meaning, used only inside artifacts and checks. */
+  --ok: #17995a;
+  --ok-soft: #e2f6ea;
+  --warn: #b26b00;
+  --warn-soft: #fff3d9;
+  --bad: #d23a2e;
+  --bad-soft: #fdeae7;
+  --info: #2b59ff;
+  --info-soft: #e9eeff;
+
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+
+  --shadow-1: 0 1px 2px rgba(11, 12, 12, 0.05), 0 1px 1px rgba(11, 12, 12, 0.03);
+  --shadow-2: 0 1px 2px rgba(11, 12, 12, 0.05), 0 12px 32px -16px rgba(11, 12, 12, 0.22);
+  --shadow-3: 0 2px 4px rgba(11, 12, 12, 0.06), 0 32px 64px -28px rgba(11, 12, 12, 0.38);
+
+  --wide: 1200px;
+  --text: 44rem;
+  --gutter: clamp(1.1rem, 4vw, 2.5rem);
+  --nav-h: 60px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #0b0c0c;
+    --paper-2: #121413;
+    --paper-3: #191c1a;
+    --card: #131514;
+    --ink: #f0f3ec;
+    --ink-2: #c3c9c1;
+    --muted: #8c948d;
+    --faint: #5f665f;
+    --line: rgba(240, 243, 236, 0.13);
+    --line-2: rgba(240, 243, 236, 0.07);
+    --hi-soft: #2c3a00;
+    --stage: #000000;
+    --stage-2: #0d0f0e;
+    --stage-3: #161917;
+    --ok-soft: #0f2a1c;
+    --warn-soft: #2e2208;
+    --bad-soft: #33130f;
+    --info-soft: #121c44;
+    --shadow-1: 0 0 0 1px rgba(255, 255, 255, 0.04);
+    --shadow-2: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 16px 40px -20px rgba(0, 0, 0, 0.8);
+    --shadow-3: 0 0 0 1px rgba(255, 255, 255, 0.07), 0 32px 64px -24px rgba(0, 0, 0, 0.9);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0b0c0c;
+  --paper-2: #121413;
+  --paper-3: #191c1a;
+  --card: #131514;
+  --ink: #f0f3ec;
+  --ink-2: #c3c9c1;
+  --muted: #8c948d;
+  --faint: #5f665f;
+  --line: rgba(240, 243, 236, 0.13);
+  --line-2: rgba(240, 243, 236, 0.07);
+  --hi-soft: #2c3a00;
+  --stage: #000000;
+  --stage-2: #0d0f0e;
+  --stage-3: #161917;
+  --ok-soft: #0f2a1c;
+  --warn-soft: #2e2208;
+  --bad-soft: #33130f;
+  --info-soft: #121c44;
+  --shadow-1: 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --shadow-2: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 16px 40px -20px rgba(0, 0, 0, 0.8);
+  --shadow-3: 0 0 0 1px rgba(255, 255, 255, 0.07), 0 32px 64px -24px rgba(0, 0, 0, 0.9);
+}

@@ -1,0 +1,71 @@
+{
+  "order": 2,
+  "title": "Interview synthesis with receipts",
+  "short": "Interview synthesis",
+  "promise": "Turn a stack of interview transcripts into themes where every claim shows how many people said it and links to their exact words.",
+  "gives": "A synthesis page: themes with counts, verified quotes, the disagreements, and what you still do not know.",
+  "stage": "understand",
+  "roles": ["research", "product"],
+  "runtime": "8 min",
+  "review": "25 min",
+  "needs": "Transcripts as text",
+  "skill": "interview-synthesis",
+  "demo": "interview-synthesis",
+  "ask": "Synthesise these eight interviews. Verify every quote.",
+  "outputName": "synthesis",
+  "demoNote": "The agent reads eight transcripts, names the themes and pulls quotes. Then a script checks every quote against the transcripts and throws one out. When it ends, click a theme to see who said it.",
+  "clipTitle": "Research synthesis where *every quote is checked*",
+  "clipLine": "A script matches each quote to its transcript. One did not match, so it was cut.",
+  "example": {
+    "case": "tangelo",
+    "file": "interview-synthesis.html",
+    "label": "Eight weekly shoppers",
+    "note": "Five themes from eight interviews, with the quote log from the checker.",
+    "inputs": ["input/P1.txt", "input/P2.txt", "input/P3.txt", "input/P4.txt", "input/P5.txt", "input/P6.txt", "input/P7.txt", "input/P8.txt", "synthesis.json"]
+  },
+  "chain": { "before": [], "after": ["decision-prd", "premortem"] },
+  "when": [
+    "You have five or more transcripts and a decision waiting on them.",
+    "Someone is going to ask how many people actually said that.",
+    "You have been burned by a summary that sounded right and was not in the recordings."
+  ],
+  "skip": [
+    "You have fewer than four interviews. Read them yourself.",
+    "You want statistics. Eight people are not a sample of your market, and this skill will not let you write 75% of customers.",
+    "The transcripts hold personal data you are not allowed to put through an AI tool."
+  ],
+  "inputs": [
+    { "name": "Transcripts", "note": "One text file per interview. Speaker labels help. Timestamps are optional." },
+    { "name": "The research question", "note": "What decision is this for?" },
+    { "name": "Who each participant is", "note": "Segment, tenure or plan, if you have it." }
+  ],
+  "outputs": [
+    { "name": "synthesis.html", "note": "Themes, counts, quotes that link back to their transcript line, and a coverage grid." },
+    { "name": "synthesis.json", "note": "The same as data. The PRD skill reads it for its Problem lines." },
+    { "name": "verification.txt", "note": "The checker's log: every quote, where it was found, and any it rejected." }
+  ],
+  "steps": [
+    { "title": "Read every transcript in full", "body": "No sampling. Each transcript is coded line by line before any theme is named." },
+    { "title": "Name themes from the codes", "body": "Themes are behaviours and needs, written as what people do. Feature requests are recorded but they are not themes." },
+    { "title": "Count people, not mentions", "body": "A theme is supported by distinct participants. One person saying it five times counts once." },
+    { "title": "Pull quotes, then verify them", "body": "A script searches each transcript for each quote, word for word. A quote that is not found is removed, and the removal is logged." },
+    { "title": "Look for the disagreement", "body": "For every theme it asks who said the opposite, and keeps that in." },
+    { "title": "Write what is still unknown", "body": "The questions the interviews raise and cannot answer, each with who to ask next." }
+  ],
+  "checks": [
+    { "name": "Every quote exists in a transcript", "how": "script", "note": "An exact match after tidying spaces and quote marks. No paraphrase is allowed inside quote marks." },
+    { "name": "Counts are people", "how": "script", "note": "The checker recounts distinct participants per theme from the quote list and rejects a count that does not match." },
+    { "name": "No percentages from small samples", "how": "script", "note": "Under 30 participants the output says 5 of 8, never 63%." },
+    { "name": "Every theme has a counter-voice, or says none was found", "how": "script", "note": "Flattening disagreement is the commonest way a synthesis misleads." },
+    { "name": "Every participant is accounted for", "how": "script", "note": "A participant with no quotes is listed, so you can check they were not ignored." },
+    { "name": "The themes answer the research question", "how": "review", "note": "Read the top three themes against the decision you have to make." }
+  ],
+  "failures": [
+    { "title": "A true quote in the wrong context", "body": "The script proves the words were said. It cannot prove they meant what the theme says they meant.", "catch": "Each quote links to its line. Open the two or three that carry your decision and read the minute around them." },
+    { "title": "Themes mirror your question", "body": "Ask about reordering and you get themes about reordering. What people cared about more may be missing.", "catch": "Read the section on what came up unprompted. It is kept separate on purpose." },
+    { "title": "Quiet participants vanish", "body": "Talkative people produce more quotable lines.", "catch": "The coverage grid shows quotes per participant. A near-empty row is a reason to reread that transcript." }
+  ],
+  "version": "1.0.0",
+  "verified": "2026-11-18",
+  "changelog": [{ "version": "1.0.0", "date": "2026-11-18", "note": "First release." }]
+}

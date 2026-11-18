@@ -1,0 +1,72 @@
+{
+  "order": 1,
+  "title": "Journey teardown on a canvas",
+  "short": "Journey teardown",
+  "promise": "Compare how several products handle the same journey, laid out stage by stage on a board, ending in the gaps worth fixing first.",
+  "gives": "A board with one lane per app per stage, scored and annotated, and a synthesis for each stage.",
+  "stage": "understand",
+  "roles": ["research", "product", "strategy"],
+  "runtime": "12 min",
+  "review": "30 min",
+  "needs": "Screens to compare. Miro is optional.",
+  "skill": "journey-teardown",
+  "demo": "journey-teardown",
+  "ask": "Tear down how these four apps handle the weekly shop.",
+  "outputName": "board",
+  "demoNote": "The agent lays out four apps across three stages, annotates every screen and scores each lane. When it ends, drag the board, zoom it and filter the notes.",
+  "clipTitle": "A competitor teardown *laid out by journey*",
+  "clipLine": "One lane per app, per stage. Your product last, under the best example.",
+  "example": {
+    "case": "tangelo",
+    "file": "journey-teardown.html",
+    "label": "Four grocery apps, three stages",
+    "note": "Twelve lanes, twenty-four screens. Tangelo is the last lane in every stage.",
+    "inputs": ["input/screens.json", "teardown.json"]
+  },
+  "chain": { "before": [], "after": ["decision-prd", "premortem"] },
+  "when": [
+    "You are about to propose changes to a journey and need to know what good looks like.",
+    "You can get screens for at least three products, your own included.",
+    "A team keeps arguing from memory about what competitors do."
+  ],
+  "skip": [
+    "You need market share, pricing or strategy. This compares screens, not businesses.",
+    "You have fewer than three products, or cannot get screens for the journey.",
+    "The journey happens mostly outside the product, such as in sales calls."
+  ],
+  "inputs": [
+    { "name": "The journey and its stages", "note": "For example: open the app, build the basket, pay." },
+    { "name": "Screens for each app at each stage", "note": "Image files or links, each with a capture date. Your own product included." },
+    { "name": "What you want to learn", "note": "One question keeps the board from turning into a gallery." }
+  ],
+  "outputs": [
+    { "name": "board.html", "note": "The whole teardown as one file you can pan, zoom and filter." },
+    { "name": "A Miro board", "note": "The same layout, built through the Miro connector when it is connected." },
+    { "name": "teardown.json", "note": "Scores, notes, patterns and gaps as data, ready for the PRD skill." }
+  ],
+  "steps": [
+    { "title": "Fix the vocabulary first", "body": "The legend and the scoring rubric go onto the board before a single screen is read, so every later note uses the same four labels and five dimensions." },
+    { "title": "Lay out one lane per app per stage", "body": "Stages run down the board and apps stack inside each. Your own product is always the last lane in a stage, directly under the best examples." },
+    { "title": "Annotate each screen, three notes at most", "body": "Each note is Good, Friction, Note or Idea. It names what is on the screen and says why that matters." },
+    { "title": "Score with a reason", "body": "Five dimensions, whole numbers from 1 to 5, each with a one-line reason. No reason, no score." },
+    { "title": "Synthesise each stage", "body": "Best in class, patterns with the apps they were seen in, the ideal flow, and your gaps with a priority and a benchmark." },
+    { "title": "Say what is missing", "body": "Screens are counted per lane, thin lanes are flagged, and anything taken from a help page rather than a real screen is marked." }
+  ],
+  "checks": [
+    { "name": "Every score has a reason", "how": "script", "note": "The checker rejects a score with no written reason, and any score that is not a whole number from 1 to 5." },
+    { "name": "Every pattern lists where it was seen", "how": "script", "note": "A pattern has to name at least two apps, and each must exist on the board." },
+    { "name": "Every gap names a benchmark", "how": "script", "note": "A gap must say what you do today, the fix, and which app shows the fix working." },
+    { "name": "No screen has more than three notes", "how": "script", "note": "More than three and nobody reads any of them." },
+    { "name": "Your product is the last lane in every stage", "how": "script", "note": "So the contrast with the best example is always in the same place." },
+    { "name": "Coverage is stated", "how": "script", "note": "Lanes with fewer than two screens are flagged on the board, not hidden." },
+    { "name": "Your product was scored by the same rubric", "how": "review", "note": "Read your own lanes last and check you were not kinder to them." }
+  ],
+  "failures": [
+    { "title": "Scores look more exact than they are", "body": "One reader scored every lane. The numbers rank screens against each other. They are not measurements.", "catch": "Use the scores to choose what to look at, then read the notes. Never quote a score without its reason." },
+    { "title": "Screens go stale", "body": "Apps change every week. A teardown is a photograph with a date on it.", "catch": "Every lane carries its capture date. Capture again anything older than a quarter before you rely on it." },
+    { "title": "It describes screens, not outcomes", "body": "A screen can look clear and still convert badly. The board cannot see that.", "catch": "Treat patterns as hypotheses. The experiment readout is where they get tested." }
+  ],
+  "version": "1.0.0",
+  "verified": "2026-11-18",
+  "changelog": [{ "version": "1.0.0", "date": "2026-11-18", "note": "First release." }]
+}

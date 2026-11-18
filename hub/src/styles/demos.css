@@ -1,0 +1,22 @@
+/* hub/src/styles/demos.css : layout that belongs to one demo. */
+
+.demo-proto-host {
+  position: absolute;
+  inset: var(--s-pad);
+}
+
+.stage.is-live .stage-chapters::before {
+  content: "Your turn";
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  margin-right: 6px;
+  padding: 0 0.6rem;
+  border-radius: 999px;
+  background: var(--signal);
+  color: var(--hi-ink);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.64rem;
+}

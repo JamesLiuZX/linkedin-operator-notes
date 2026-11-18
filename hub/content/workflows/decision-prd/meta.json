@@ -1,0 +1,72 @@
+{
+  "order": 4,
+  "title": "The decision-ready PRD",
+  "short": "Decision-ready PRD",
+  "promise": "A PRD a reviewer can approve point by point: every change is numbered, stated as a problem, tied to evidence and linked to a switch in the prototype.",
+  "gives": "One HTML page: numbered points with the evidence beside each, a priority table and a rollout plan.",
+  "stage": "specify",
+  "roles": ["product"],
+  "runtime": "7 min",
+  "review": "25 min",
+  "needs": "Research to cite",
+  "skill": "decision-prd",
+  "demo": "decision-prd",
+  "ask": "Write the PRD for the weekly shop from the teardown, the synthesis and the pre-mortem.",
+  "outputName": "PRD",
+  "demoNote": "The agent reads three pieces of research and writes six numbered points. Watch the evidence land beside each claim. When it ends, scroll the document yourself.",
+  "clipTitle": "A PRD you can approve *point by point*",
+  "clipLine": "Problem, change and evidence. One number per point, everywhere.",
+  "example": {
+    "case": "tangelo",
+    "file": "decision-prd.html",
+    "label": "Tangelo: the weekly shop PRD",
+    "note": "Six points in three sections, a priority table and a rollout plan.",
+    "inputs": ["input/brief.md", "prd.json"]
+  },
+  "chain": { "before": ["journey-teardown", "interview-synthesis", "premortem"], "after": ["flagged-prototype"] },
+  "when": [
+    "You have done the research and need a decision, not a discussion.",
+    "Reviewers skim, so the problem list has to be readable from the headings alone.",
+    "Several small changes are travelling together and each needs its own yes or no."
+  ],
+  "skip": [
+    "You have no evidence yet. Run the teardown or the synthesis first. This skill will not invent a problem.",
+    "It is a single bug fix. Write a ticket.",
+    "You need an engineering design. This says what and why, and leaves how to the team."
+  ],
+  "inputs": [
+    { "name": "Evidence", "note": "A teardown, a synthesis, a pre-mortem or your own notes. Anything a point can cite." },
+    { "name": "The product today", "note": "Screens or a description of the current behaviour." },
+    { "name": "Constraints", "note": "Rules, dependencies and dates you already know about." }
+  ],
+  "outputs": [
+    { "name": "prd.html", "note": "The document: section nav, a summary grid and one card per point." },
+    { "name": "prd.json", "note": "The same as data. The prototype skill builds one switch per point from it." }
+  ],
+  "steps": [
+    { "title": "List problems before solutions", "body": "Each point's title is the problem as a user meets it. If the problem cannot be stated from the evidence, the point is cut." },
+    { "title": "Number everything once", "body": "Section N, point N.n. The same IDs are used in the priority table, the rollout plan and the prototype." },
+    { "title": "Write Problem and Change, two sentences each", "body": "The change is a concrete move on a screen, often with the exact words the user would read." },
+    { "title": "Put the evidence beside the claim", "body": "Each point shows the product today, a reference and the proposal, and names the source." },
+    { "title": "Make constraints first-class", "body": "Rules, dependencies and risks from the pre-mortem get their own labelled callout on the point they affect. Never a footnote." },
+    { "title": "Say how you would know", "body": "Each point names a baseline to measure, the movement expected and the signal that would mean stop." },
+    { "title": "Order the rollout by reason", "body": "A table of what ships when, and why then." }
+  ],
+  "checks": [
+    { "name": "Every point has a problem, a change and evidence", "how": "script", "note": "The checker fails a point with any of the three missing." },
+    { "name": "IDs are unique and used consistently", "how": "script", "note": "Every ID in the priority and rollout tables must exist as a point, and every point must appear in the rollout." },
+    { "name": "Titles state problems", "how": "script", "note": "A title that opens with a verb such as Add or Build is rejected, so it gets rewritten as what the user faces today." },
+    { "name": "Every point says how you would know", "how": "script", "note": "Baseline, expected movement and stop signal are required." },
+    { "name": "Every figure has a source or is marked as an estimate", "how": "script", "note": "A number in a point with no source is flagged in the output." },
+    { "name": "Problem and Change stay short", "how": "script", "note": "Two sentences each, at most." },
+    { "name": "The first release is small enough to ship", "how": "review", "note": "Read the first rollout row and ask what you would cut." }
+  ],
+  "failures": [
+    { "title": "Tidy structure can hide thin evidence", "body": "A numbered card looks authoritative even when it rests on one quote.", "catch": "Each point shows how many sources it rests on. Challenge anything resting on one." },
+    { "title": "Expected movement is a guess", "body": "The skill will not invent a figure, so it writes a direction and a reason. That is honest, and it is still a guess.", "catch": "Replace the directions with your own baselines before the review." },
+    { "title": "It cannot see your politics", "body": "The rollout order reflects effort and constraints, not who has to agree.", "catch": "Reorder the rollout yourself. The IDs keep everything else in step." }
+  ],
+  "version": "1.0.0",
+  "verified": "2026-11-18",
+  "changelog": [{ "version": "1.0.0", "date": "2026-11-18", "note": "First release." }]
+}

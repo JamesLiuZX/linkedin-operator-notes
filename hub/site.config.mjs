@@ -1,0 +1,67 @@
+// hub/site.config.mjs
+//
+// The one place the hub's name, links and install commands live. Every page,
+// the newsletter, the feed and the skills pack read from here, so renaming the
+// hub or moving the skills to their own repository is a change to this file
+// only.
+
+export const SITE = {
+  name: "AI Workflow Handbook",
+  short: "Handbook",
+  tagline: "Practical AI workflows for product people",
+  description:
+    "A free handbook of working AI workflows for product, research, data and strategy. Each one is an agent skill with a live demo and a real output you can open before you install anything.",
+
+  author: {
+    name: "James Liu",
+    role: "Product owner. Builds with AI agents every working day.",
+    url: "https://jamesliuzx.com",
+    linkedin: "https://www.linkedin.com/in/james-liu-zx/",
+  },
+
+  // Where the skills are installed from. When the pack moves to its own
+  // repository, change owner/name here and nothing else.
+  repo: {
+    owner: "JamesLiuZX",
+    name: "linkedin-operator-notes",
+    branch: "master",
+    skillsDir: "skills",
+  },
+
+  // Claude Code plugin marketplace name and plugin name (.claude-plugin/).
+  marketplace: "ai-workflow-handbook",
+  plugin: "handbook",
+
+  // Used for absolute URLs (feed, Open Graph, sitemap) when SITE_URL is unset.
+  defaultOrigin: "https://jamesliuzx.github.io/linkedin-operator-notes",
+
+  weekly: {
+    name: "The Weekly Run",
+    promise: "One working AI workflow, one demo and the three changes that matter to people who ship products. Every Tuesday, about four minutes.",
+    // Filled once a sending account exists (see NEWSLETTER.md). Until then the
+    // subscribe block offers the feed and a LinkedIn follow.
+    formAction: process.env.HUB_SUBSCRIBE_ACTION || "",
+    formEmailField: process.env.HUB_SUBSCRIBE_FIELD || "email",
+    subscribeUrl: process.env.HUB_SUBSCRIBE_URL || "",
+  },
+};
+
+/** The spine of the handbook: the five stages a piece of product work moves through. */
+export const STAGES = [
+  { id: "understand", n: "01", title: "Understand", blurb: "Find out what is true before deciding anything." },
+  { id: "decide", n: "02", title: "Decide", blurb: "Choose what to do and write down what would change your mind." },
+  { id: "specify", n: "03", title: "Specify", blurb: "Turn the decision into something a team can build and a reviewer can try." },
+  { id: "measure", n: "04", title: "Measure", blurb: "Read the result honestly and say what happens next." },
+];
+
+export const ROLES = [
+  { id: "product", title: "Product" },
+  { id: "research", title: "Research" },
+  { id: "data", title: "Data" },
+  { id: "strategy", title: "Strategy" },
+];
+
+export const repoUrl = (path = "") =>
+  `https://github.com/${SITE.repo.owner}/${SITE.repo.name}${path ? `/tree/${SITE.repo.branch}/${path}` : ""}`;
+
+export const repoSlug = () => `${SITE.repo.owner}/${SITE.repo.name}`;
