@@ -5,12 +5,19 @@
 // hub or moving the skills to their own repository is a change to this file
 // only.
 
+import { readFileSync, existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+
+// The sign-up form's public address, once a sending account exists (see NEWSLETTER.md).
+const subFile = fileURLToPath(new URL("./subscribe.json", import.meta.url));
+const sub = existsSync(subFile) ? JSON.parse(readFileSync(subFile, "utf8")) : {};
+
 export const SITE = {
   name: "AI Workflow Handbook",
   short: "Handbook",
   tagline: "Practical AI workflows for product people",
   description:
-    "A free handbook of working AI workflows for product, research, data and strategy. Each one is an agent skill with a live demo and a real output you can open before you install anything.",
+    "A free handbook of working AI workflows for product, research, data and strategy. Each one is an agent skill with a live demo and a worked example you can open before you install anything.",
 
   author: {
     name: "James Liu",
@@ -38,11 +45,12 @@ export const SITE = {
   weekly: {
     name: "The Weekly Run",
     promise: "One working AI workflow, one demo and the three changes that matter to people who ship products. Every Tuesday, about four minutes.",
-    // Filled once a sending account exists (see NEWSLETTER.md). Until then the
-    // subscribe block offers the feed and a LinkedIn follow.
-    formAction: process.env.HUB_SUBSCRIBE_ACTION || "",
-    formEmailField: process.env.HUB_SUBSCRIBE_FIELD || "email",
-    subscribeUrl: process.env.HUB_SUBSCRIBE_URL || "",
+    // Filled from hub/subscribe.json once a sending account exists (see
+    // NEWSLETTER.md). Until then the subscribe block offers the feed and a
+    // LinkedIn follow.
+    formAction: process.env.HUB_SUBSCRIBE_ACTION || sub.formAction || "",
+    formEmailField: process.env.HUB_SUBSCRIBE_FIELD || sub.emailField || "email_address",
+    subscribeUrl: process.env.HUB_SUBSCRIBE_URL || sub.subscribeUrl || "",
   },
 };
 

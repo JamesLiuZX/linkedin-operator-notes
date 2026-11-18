@@ -106,7 +106,7 @@ function route(path = currentPath()) {
   }
 
   const clean = path.replace(/\/$/, "") || "/";
-  if (clean === "/" || clean === "/home") return renderHome();
+  if (clean === "/" || clean === "/home" || clean === "/archive") return renderHome();
   if (clean === "/dashboard") return renderDash();
   if (clean === "/demos") return renderDemoIndex();
   if (clean === "/digest") return renderDigestIndex();
@@ -230,7 +230,7 @@ function renderHome() {
     .join("");
 
   document.getElementById("app").innerHTML = `
-    ${siteNav("/")}
+    ${siteNav("/archive")}
     <main class="home">
       <header class="brand-lockup">
         <div class="eyebrow">Market Ops Notes</div>
@@ -275,8 +275,8 @@ function renderSection(section) {
   document.getElementById("app").innerHTML = `
     <main class="home">
       <nav class="topbar">
-        <a href="${base}/">← All notes</a>
-        <a class="brand" href="${base}/">Market Ops Notes</a>
+        <a href="${base}/archive">← All notes</a>
+        <a class="brand" href="${base}/archive">Market Ops Notes</a>
         <span></span>
       </nav>
       <header class="brand-lockup">
@@ -311,8 +311,8 @@ function renderAtom(item) {
 
   document.getElementById("app").innerHTML = `
     <nav class="bar"><div class="wrap">
-      <a href="${base}/">&larr; Index</a>
-      <a class="home" href="${base}/">Market Ops Notes</a>
+      <a href="${base}/archive">&larr; Index</a>
+      <a class="home" href="${base}/archive">Market Ops Notes</a>
       <a href="${base}/${item.section}">${escapeHtml(SECTION_LABEL[item.section] || item.section)}</a>
     </div></nav>
     <main class="wrap">
@@ -371,8 +371,8 @@ function renderArticle(article) {
   document.getElementById("app").innerHTML = `
     <div class="article-shell">
       <nav class="topbar">
-        <a href="${base}/">← All notes</a>
-        <a class="brand" href="${base}/">Market Ops Notes</a>
+        <a href="${base}/archive">← All notes</a>
+        <a class="brand" href="${base}/archive">Market Ops Notes</a>
         ${hero ? `<a href="${hero.unsplashUrl || "https://unsplash.com"}" target="_blank" rel="noreferrer">Unsplash credit</a>` : "<span></span>"}
       </nav>
       <header class="hero${heroUrl ? "" : " no-photo"}">
@@ -395,20 +395,20 @@ function renderArticle(article) {
 function siteNav(active = "") {
   const base = import.meta.env.BASE_URL.replace(/\/$/, "");
   const links = [
-    ["/", "Notes"],
+    ["/archive", "Notes"],
     ["/digest", "AI digest"],
     ["/courses", "Courses"],
     ["/demos", "Demos"],
     ["/dashboard", "Dashboard"],
   ];
   return `<nav class="site-nav">
-    <a class="brand" href="${base}/">Market Ops Notes</a>
+    <a class="brand" href="${base}/archive">Market Ops Notes</a>
     <div class="nav-links">${links
       .map(
         ([href, label]) =>
           `<a href="${base}${href}"${active === href ? ' class="on"' : ""}>${label}</a>`
       )
-      .join("")}</div>
+      .join("")}<a class="to-handbook" href="${base}/" data-reload>AI Workflow Handbook &rarr;</a></div>
   </nav>`;
 }
 

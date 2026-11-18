@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "npm run content:check && npm run schedule:check && npm run digest:check",
+    "check": "npm run content:check && npm run schedule:check && npm run digest:check && npm run hub:check",
     "digest:check": "node scripts/digest-check.mjs",
     "digest:render": "node scripts/digest-render.mjs",
     "content:check": "node scripts/content-check.mjs",
@@ -30,7 +30,13 @@
     "risk": "node tools/resolution-risk/scan.mjs",
     "risk:test": "node tools/resolution-risk/test.mjs",
     "site:data": "node scripts/gate-scores.mjs",
-    "restyle": "node scripts/restyle-generate.mjs"
+    "restyle": "node scripts/restyle-generate.mjs",
+    "hub:check": "node scripts/hub-check.mjs",
+    "hub:build": "node scripts/hub-build.mjs",
+    "hub:dev": "node scripts/hub-build.mjs --serve 4173",
+    "hub:templates": "node scripts/hub-templates.mjs",
+    "hub:media": "node scripts/hub-media.mjs",
+    "weekly:send": "node scripts/weekly-send.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0"

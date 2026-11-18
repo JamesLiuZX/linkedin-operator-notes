@@ -55,7 +55,7 @@ const NAV = [
  * @param {object} p    page: { title, description, path, body, active, ogImage, type, bodyClass, head, noindex }
  */
 export function page(ctx, p) {
-  const fullTitle = p.path === "/" ? `${SITE.name}: ${SITE.tagline.toLowerCase()}` : `${p.title} · ${SITE.name}`;
+  const fullTitle = p.path === "/" ? `${SITE.name}: ${SITE.tagline[0].toLowerCase()}${SITE.tagline.slice(1)}` : `${p.title} · ${SITE.name}`;
   const description = p.description || SITE.description;
   const canonical = ctx.abs(p.path);
   const og = ctx.abs(p.ogImage || "/hub/og/default.png");
@@ -114,7 +114,7 @@ ${p.body}
     <div class="footer-grid">
       <div class="footer-about">
         <a class="brand" href="${ctx.url("/")}">${MARK}<span>${esc(SITE.name)}</span></a>
-        <p>Working AI workflows for product people. Free, and every output on this site came from a real run.</p>
+        <p>Working AI workflows for product people. Free, and every example has passed its skill's own checks.</p>
       </div>
       <div>
         <h4>Handbook</h4>
@@ -123,6 +123,7 @@ ${p.body}
           <li><a href="${ctx.url("/case/")}">The running case</a></li>
           <li><a href="${ctx.url("/guides/start/")}">Start here</a></li>
           <li><a href="${ctx.url("/guides/checking-ai-output/")}">Checking AI output</a></li>
+          <li><a href="${ctx.url("/guides/write-your-own/")}">Write your own skill</a></li>
         </ul>
       </div>
       <div>
@@ -140,7 +141,7 @@ ${p.body}
           <li><a href="${ctx.url("/weekly/")}">${esc(SITE.weekly.name)}</a></li>
           <li><a href="${ctx.url("/feed.xml")}">RSS</a></li>
           <li><a href="${esc(SITE.author.linkedin)}" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="${ctx.url("/notes")}" data-reload>Earlier notes</a></li>
+          <li><a href="${ctx.url("/archive/")}">Earlier notes and digest</a></li>
         </ul>
       </div>
     </div>

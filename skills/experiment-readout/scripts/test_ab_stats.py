@@ -233,7 +233,7 @@ class DecisionRules(unittest.TestCase):
             reasons = ab.readout(c)["verdict"]["reasons"]
             self.assertTrue(2 <= len(reasons) <= 4, reasons)
             for s in reasons:
-                self.assertNotIn("—", s)
+                self.assertNotIn("\u2014", s)
                 self.assertTrue(s.endswith("."), s)
 
 

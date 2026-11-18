@@ -25,6 +25,8 @@ window.addEventListener("popstate", () => {
 document.addEventListener("click", (e) => {
   const a = e.target.closest("a[href]");
   if (!a || a.target || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  // The handbook is a set of real pages, not a route of this app: let the browser load it.
+  if (a.hasAttribute("data-reload")) return;
   const href = a.getAttribute("href");
   if (!href || href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("#")) {
     return;

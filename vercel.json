@@ -8,9 +8,9 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "$comment": "Path routing (/markets/{slug}, /demos/{slug}, /dashboard) is client side. Vercel resolves real files first, so this only catches routes with no file behind them.",
+      "$comment": "The handbook is real files, and Vercel resolves those first. Everything else is a client-side route of the older notes app (/markets/{slug}, /demos/{slug}, /dashboard), whose shell the build keeps at spa.html.",
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/spa.html"
     }
   ],
   "headers": [

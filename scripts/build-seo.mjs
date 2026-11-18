@@ -5,12 +5,19 @@
 // A real sitemap is the cheapest way to make the canonical paths discoverable.
 // Run this AFTER the Vite build; it writes into site/dist.
 //
-//   node scripts/build-seo.mjs [--base https://example.com]
+//   node scripts/build-seo.mjs [--base https://example.com] [--no-hub]
+//
+// It ends by running scripts/hub-build.mjs, which builds the AI Workflow
+// Handbook into the same folder and merges its pages into the sitemap. It is
+// chained here so that every host that already runs this script deploys the
+// handbook too. --no-hub skips it.
 //
 // Base URL resolution order: --base flag, SITE_URL, VERCEL_PROJECT_PRODUCTION_URL,
 // VERCEL_URL. Falls back to a relative sitemap, which is still valid.
 
 import { readdir, readFile, writeFile, mkdir } from "node:fs/promises";
+import { existsSync, readFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
 import { join, dirname, extname, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseFrontmatter } from "./lib/frontmatter.mjs";
@@ -178,4 +185,25 @@ Disallow: /
   }
 }
 
-main();
+/** The path the old app was built for, read from its own shell: "/" or "/repo-name/". */
+function builtBasePath() {
+  for (const name of ["spa.html", "index.html"]) {
+    const file = join(DIST, name);
+    if (!existsSync(file)) continue;
+    const m = /(?:src|href)="(\/[^"]*?)assets\//.exec(readFileSync(file, "utf8"));
+    if (m) return m[1];
+  }
+  return "/";
+}
+
+function buildHandbook() {
+  if (argv.includes("--no-hub")) return;
+  const base = resolveBase();
+  const env = { ...process.env, BASE_PATH: process.env.BASE_PATH || builtBasePath() };
+  if (base) env.SITE_URL = base;
+  const r = spawnSync(process.execPath, [join(ROOT, "scripts", "hub-build.mjs")], { stdio: "inherit", env });
+  if (r.status !== 0) process.exit(r.status || 1);
+}
+
+await main();
+buildHandbook();

@@ -1,0 +1,7 @@
+[
+  {
+    "date": "2026-11-18",
+    "version": "1.0.0",
+    "note": "First release. Six workflows, each with a demo, a worked example, a checker and a record of its test run. The pack installs as one plugin, and each skill has its own zip."
+  }
+]

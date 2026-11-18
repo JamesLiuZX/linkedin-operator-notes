@@ -21,7 +21,7 @@ function home(ctx) {
   const u = ctx.url;
   const flows = live(ctx);
   const hero = ctx.workflow(SITE.heroDemo || "flagged-prototype") || flows[0];
-  const checks = flows.reduce((n, w) => n + (w.checks?.length || 0), 0);
+  const checks = flows.reduce((n, w) => n + (w.checks || []).filter((c) => c.how === "script").length, 0);
   const latest = ctx.issues[0];
 
   const byStage = STAGES.map((s) => ({ ...s, items: flows.filter((w) => w.stage === s.id) })).filter((s) => s.items.length);
@@ -31,7 +31,7 @@ function home(ctx) {
     <div class="hero-copy">
       <p class="label rise"><b>Free</b> · ${flows.length} workflows · updated ${esc(fmtDate(ctx.built))}</p>
       <h1 class="hl-draw rise" style="--i:1" data-hl>AI workflows you can <span class="hl">watch</span>, <span class="hl">open</span> and <span class="hl">install</span>.</h1>
-      <p class="hero-sub rise" style="--i:2">A free handbook for product, research, data and strategy people. Every workflow is an agent skill with a live demo and a real output you can inspect before you install anything.</p>
+      <p class="hero-sub rise" style="--i:2">A free handbook for product, research, data and strategy people. Every workflow is an agent skill with a live demo and a finished example you can open before you install anything.</p>
       <div class="hero-side rise" style="--i:3">
         <div class="hero-cta">
           <a class="btn" href="${u("/workflows/")}">Browse the workflows ${ICON.arrow}</a>
@@ -52,7 +52,7 @@ function home(ctx) {
         <h2 id="how-h">Every workflow comes with three things.</h2>
       </div>
       <ol class="how-steps">
-        <li class="rise"><span class="how-n">01</span><h3>Watch it run</h3><p>Each workflow replays a real run, step by step. Scrub it like a video, or let it play.</p></li>
+        <li class="rise"><span class="how-n">01</span><h3>Watch it run</h3><p>Each demo builds the workflow's real output step by step. Scrub it like a video, or let it play.</p></li>
         <li class="rise" style="--i:1"><span class="how-n">02</span><h3>Open the output</h3><p>The finished document is on the page. Click through it and judge the quality before you commit to anything.</p></li>
         <li class="rise" style="--i:2"><span class="how-n">03</span><h3>Install the skill</h3><p>One command adds it to your agent. Point it at your own material and get the same format back.</p></li>
       </ol>
@@ -120,13 +120,13 @@ function home(ctx) {
         <h2 id="bar-h" class="hl-draw" data-hl><span class="hl">Checked</span>, not just generated.</h2>
         <p>Most AI output gets thrown away because nobody can tell if it is right. So every skill here ends with checks it has to pass, and anything that can be computed is computed by a script, not written by a model.</p>
       </div>
-      ${checks ? `<div class="bar-stat"><b>${checks}</b><span>checks across ${flows.length} skills</span></div>` : ""}
+      ${checks ? `<div class="bar-stat"><b>${checks}</b><span>checks run by a script, across ${flows.length} skills</span></div>` : ""}
     </div>
     <div class="bar-grid">
       <article class="bar-card rise">
         <span class="bar-ico">${ICON.check}</span>
         <h3>Every quote is matched</h3>
-        <p>The synthesis skill will not cite a customer quote it cannot find, character for character, in a transcript.</p>
+        <p>The synthesis skill will not cite a customer quote it cannot find, word for word, in a transcript.</p>
         <a class="arrow-link" href="${u("/workflows/interview-synthesis/")}">Interview synthesis ${ICON.arrow}</a>
       </article>
       <article class="bar-card rise" style="--i:1">

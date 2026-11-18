@@ -350,7 +350,7 @@ function aboutPage(ctx) {
       <div class="prose">
         <h2>What it is</h2>
         <p>The ${esc(SITE.name)} is a free, growing set of AI workflows for people who build products: product managers first, and the researchers, analysts and strategy people who work beside them.</p>
-        <p>Each workflow is three things at once. It is a page that explains when to use it and how it fails. It is a demo that replays a real run. And it is a skill, a small folder of plain text you can install into an AI agent so it does the same job on your material.</p>
+        <p>Each workflow is three things at once. It is a page that explains when to use it and how it fails. It is a demo that builds the real output step by step. And it is a skill, a small folder of plain text you can install into an AI agent so it does the same job on your material.</p>
         <h2>The rules it is built on</h2>
         <ol>
           <li><b>Show the output.</b> Every workflow has a finished example you can open. If the output is not worth opening, the workflow is not worth publishing.</li>
@@ -360,9 +360,9 @@ function aboutPage(ctx) {
           <li><b>Free and readable.</b> No sign-up, no paywall, MIT licence. Read every line before you run it.</li>
         </ol>
         <h2>How the examples are made</h2>
-        <p>The examples follow one fictional company, <a href="${u("/case/")}">Tangelo</a>, so the outputs connect. Each output was produced by a fresh agent session that was given only the skill and the input files, then run through the skill's own checks. The date and the result of that run are on each workflow page.</p>
+        <p>The examples follow one fictional company, <a href="${u("/case/")}">Tangelo</a>, so the outputs connect. Four of the six outputs were produced by a fresh agent session that was given only the skill folder and the input, with nobody to answer its questions. The PRD and the Tangelo prototype were written alongside their skills as reference examples, and the prototype skill was then tested on a different brief. Each workflow page says which is which, with the date, the checker's result, and a record of what the run found wrong with the skill.</p>
         <h2>Who makes it</h2>
-        <p>${esc(a.name)} is a product owner who works with AI agents every working day. The formats here are the ones he uses: a teardown laid out by journey stage, a PRD where every point is numbered and tied to evidence, a prototype where each point can be switched on and off. Nothing on this site comes from an employer, past or present.</p>
+        <p>I am ${esc(a.name)}, a product owner who works with AI agents every working day. The formats here are the ones I use: a teardown laid out by journey stage, a PRD where every point is numbered and tied to evidence, a prototype where each point can be switched on and off. Nothing on this site comes from an employer, past or present. Every company, customer and number in the examples is invented.</p>
         <p><a class="arrow-link" href="${esc(a.linkedin)}" target="_blank" rel="noopener">${ICON.linkedin} Follow on LinkedIn</a></p>
         <h2>Tell me what is wrong</h2>
         <p>If a workflow gave you a bad result, that is the most useful thing you can tell me. <a href="${repoUrl()}/issues" target="_blank" rel="noopener">Open an issue</a> with what you gave it and what came back.</p>
@@ -372,7 +372,7 @@ function aboutPage(ctx) {
           <span class="label">In numbers</span>
           <dl class="about-nums">
             <div><dt>${live(ctx).length}</dt><dd>workflows</dd></div>
-            <div><dt>${live(ctx).reduce((n, w) => n + (w.checks?.length || 0), 0)}</dt><dd>checks</dd></div>
+            <div><dt>${live(ctx).reduce((n, w) => n + (w.checks || []).filter((c) => c.how === "script").length, 0)}</dt><dd>scripted checks</dd></div>
             <div><dt>${ctx.issues.length}</dt><dd>issues</dd></div>
           </dl>
         </div>
