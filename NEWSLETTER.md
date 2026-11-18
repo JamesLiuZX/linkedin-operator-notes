@@ -124,6 +124,20 @@ copying a `hb-` row. Never re-plan an existing row.
 4. Log one line in the status log of `AUTOPILOT.md` in `JamesLiuZX/command`.
 5. Notify: "Weekly Run ready: <title>. It sends at 20:00 SGT. Reply to stop it."
 
+## How the schedule is wired
+
+The scheduled task does not start a new session each week. It wakes one
+standing session, "Weekly Run: standing session for the handbook's weekly
+newsletter", which has this repository as its source and can push to `master`.
+
+That is deliberate. On 2026-11-18 a task that starts a fresh session on each
+run was tested and its sessions had no tool for attaching a repository, so
+they could not have read this file or landed anything. If the standing session
+is ever archived or deleted, create a new session with this repository as its
+source and `master` as its branch, check that it can push, and point a new
+Tuesday task at it. Do not replace it with a task that starts fresh sessions
+unless you have tested that such a session can reach the repository.
+
 ## Sending
 
 `.github/workflows/weekly-send.yml` runs `node scripts/weekly-send.mjs` every
