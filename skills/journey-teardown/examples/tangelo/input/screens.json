@@ -1,352 +1,1428 @@
 {
-  "question": "How do grocery apps get a returning customer from opening the app to a paid repeat order?",
-  "us": "tangelo",
-  "captured": "2026-11-18",
-  "note": "Tangelo, Pippin, Marrow and Sorrel are fictional. Every screen is a schematic drawing made for this example, not a screenshot.",
-  "apps": [
-    { "id": "pippin", "name": "Pippin", "accent": "#5b3df5", "role": "Competitor" },
-    { "id": "marrow", "name": "Marrow", "accent": "#c2410c", "role": "Competitor" },
-    { "id": "sorrel", "name": "Sorrel", "accent": "#0e7490", "role": "Competitor" },
-    { "id": "tangelo", "name": "Tangelo", "accent": "#14532d", "role": "Our product" }
-  ],
-  "stages": [
+ "question": "How do grocery apps get a returning customer from opening the app to a paid repeat order?",
+ "us": "tangelo",
+ "captured": "2026-11-18",
+ "note": "Tangelo, Pippin, Marrow and Sorrel are fictional. Every screen is a schematic drawing made for this example, not a screenshot.",
+ "apps": [
+  {
+   "id": "pippin",
+   "name": "Pippin",
+   "accent": "#5b3df5",
+   "role": "Competitor"
+  },
+  {
+   "id": "marrow",
+   "name": "Marrow",
+   "accent": "#c2410c",
+   "role": "Competitor"
+  },
+  {
+   "id": "sorrel",
+   "name": "Sorrel",
+   "accent": "#0e7490",
+   "role": "Competitor"
+  },
+  {
+   "id": "tangelo",
+   "name": "Tangelo",
+   "accent": "#14532d",
+   "role": "Our product"
+  }
+ ],
+ "stages": [
+  {
+   "id": "S1",
+   "name": "Open the app",
+   "lanes": [
     {
-      "id": "S1",
-      "name": "Open the app",
-      "lanes": [
-        {
-          "app": "pippin",
-          "flow": "Home leads with a one-tap reorder",
-          "source": "Schematic, drawn 18 Nov 2026",
-          "screens": [
-            { "step": "Opens the app on Home", "blocks": [
-              ["bar", "Good evening, Sam", { "sub": "Delivering to Flat 2" }],
-              ["card", "Reorder last shop", { "sub": "26 items · $64.10", "action": "Reorder", "accent": true }],
-              ["text", "Last shop: Sunday 8 Nov"],
-              ["title", "Fresh this week"],
-              ["grid", "", { "n": 3 }],
-              ["row", "Weekly deals", { "right": "See all" }],
-              ["tabs", "", { "on": 0 }]
-            ] },
-            { "step": "Taps Reorder, basket opens filled", "blocks": [
-              ["title", "Your basket"],
-              ["text", "26 items filled from last shop"],
-              ["row", "Bananas 6", { "right": "$2.20" }],
-              ["row", "Greek yogurt 1kg", { "right": "$4.60" }],
-              ["row", "Pasta 500g", { "right": "$1.30" }],
-              ["row", "Cheddar block", { "right": "$4.25" }],
-              ["row", "Chicken thighs", { "right": "$7.80" }],
-              ["row", "Spinach bag", { "right": "$2.50" }],
-              ["text", "+ 20 more items"],
-              ["gap"],
-              ["cta", "Continue"],
-              ["tabs", "", { "on": 1 }]
-            ] }
-          ]
-        },
-        {
-          "app": "marrow",
-          "flow": "Home asks for the slot, then shows usuals",
-          "source": "Schematic, drawn 18 Nov 2026",
-          "screens": [
-            { "step": "Opens the app on Home", "blocks": [
-              ["bar", "Hi Priya", { "sub": "Delivering to 9 Alder Court" }],
-              ["title", "Pick your slot"],
-              ["slots", "Today 6pm|Tmrw 8am|Tmrw 6pm", { "on": 0 }],
-              ["text", "Held for 15 minutes"],
-              ["title", "Your usuals"],
-              ["row", "Oat milk 1L", { "sub": "Every 7 days", "right": "Due" }],
-              ["row", "Porridge oats 1kg", { "sub": "Every 14 days", "right": "Due" }],
-              ["row", "Butter 250g", { "sub": "Every 14 days", "right": "In 3 days" }],
-              ["tabs", "", { "on": 0 }]
-            ] },
-            { "step": "Opens usuals, adds what is due", "blocks": [
-              ["title", "Your usuals"],
-              ["text", "7 items · 2 are due"],
-              ["row", "Oat milk 1L", { "right": "Due" }],
-              ["row", "Porridge oats 1kg", { "right": "Due" }],
-              ["row", "Butter 250g", { "right": "In 3 days" }],
-              ["row", "Bananas 6", { "right": "In 4 days" }],
-              ["row", "Rice 2kg", { "right": "In 9 days" }],
-              ["gap"],
-              ["cta", "Add the 2 that are due"],
-              ["cta", "Add all 7", { "ghost": true }],
-              ["tabs", "", { "on": 0 }]
-            ] }
-          ]
-        },
-        {
-          "app": "sorrel",
-          "flow": "Promo-led Home, Buy again sits low",
-          "source": "Schematic, drawn 18 Nov 2026",
-          "screens": [
-            { "step": "Opens the app on Home", "blocks": [
-              ["bar", "Welcome back", { "sub": "Deals picked for you" }],
-              ["banner", "Spring sale: 20% off", { "sub": "Fresh produce, ends Sunday", "accent": true }],
-              ["banner", "Free delivery weekend", { "sub": "On orders over $35" }],
-              ["grid", "", { "n": 2 }],
-              ["banner", "Meal deal $12", { "sub": "Main, side and a drink" }],
-              ["row", "Buy again", { "right": "See all" }],
-              ["tabs", "", { "on": 0 }]
-            ] },
-            { "step": "Scrolls down and opens Buy again", "blocks": [
-              ["title", "Buy again"],
-              ["row", "Pasta 500g", { "sub": "Bought 3 times", "right": "$1.45" }],
-              ["row", "Cheddar block", { "sub": "Bought 2 times", "right": "$4.60" }],
-              ["row", "Olive oil 500ml", { "sub": "Bought 2 times", "right": "$6.90" }],
-              ["row", "Bananas 6", { "sub": "Bought 5 times", "right": "$2.20" }],
-              ["row", "Rice 2kg", { "sub": "Bought once", "right": "$3.80" }],
-              ["gap"],
-              ["cta", "Add 5 to basket", { "ghost": true }],
-              ["tabs", "", { "on": 0 }]
-            ] }
-          ]
-        },
-        {
-          "app": "tangelo",
-          "flow": "Home is browse-first, Orders holds reorder",
-          "source": "Schematic, drawn 18 Nov 2026",
-          "screens": [
-            { "step": "Opens the app on Home", "blocks": [
-              ["bar", "Good evening, Maya", { "sub": "Deliver to 14 Linden Road" }],
-              ["search", "Search groceries"],
-              ["chips", "All|Fruit|Dairy|Bakery", { "on": 0 }],
-              ["banner", "Free delivery over $40", { "sub": "Applied at checkout" }],
-              ["title", "Popular this week"],
-              ["grid", "", { "n": 3 }],
-              ["grid", "", { "n": 3 }],
-              ["tabs", "", { "on": 0 }]
-            ] },
-            { "step": "Finds Orders, the only way to repeat", "blocks": [
-              ["title", "Orders"],
-              ["card", "Sun 15 Nov", { "sub": "23 items · $61.20", "action": "Reorder" }],
-              ["card", "Sun 8 Nov", { "sub": "26 items · $64.10", "action": "Reorder" }],
-              ["card", "Sun 1 Nov", { "sub": "21 items · $55.90", "action": "Reorder" }],
-              ["tabs", "", { "on": 2 }]
-            ] }
-          ]
-        }
-      ]
+     "app": "pippin",
+     "flow": "Home leads with a one-tap reorder",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the app on Home",
+       "blocks": [
+        [
+         "bar",
+         "Good evening, Sam",
+         {
+          "sub": "Delivering to Flat 2"
+         }
+        ],
+        [
+         "card",
+         "Reorder last shop",
+         {
+          "sub": "26 items · $64.10",
+          "action": "Reorder",
+          "accent": true
+         }
+        ],
+        [
+         "text",
+         "Last shop: Sunday 8 Nov"
+        ],
+        [
+         "title",
+         "Fresh this week"
+        ],
+        [
+         "grid",
+         "",
+         {
+          "n": 3
+         }
+        ],
+        [
+         "row",
+         "Weekly deals",
+         {
+          "right": "See all"
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 0
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Taps Reorder, basket opens filled",
+       "blocks": [
+        [
+         "title",
+         "Your basket"
+        ],
+        [
+         "text",
+         "26 items filled from last shop"
+        ],
+        [
+         "row",
+         "Bananas 6",
+         {
+          "right": "$2.20"
+         }
+        ],
+        [
+         "row",
+         "Greek yogurt 1kg",
+         {
+          "right": "$4.60"
+         }
+        ],
+        [
+         "row",
+         "Pasta 500g",
+         {
+          "right": "$1.30"
+         }
+        ],
+        [
+         "row",
+         "Cheddar block",
+         {
+          "right": "$4.25"
+         }
+        ],
+        [
+         "row",
+         "Chicken thighs",
+         {
+          "right": "$7.80"
+         }
+        ],
+        [
+         "row",
+         "Spinach bag",
+         {
+          "right": "$2.50"
+         }
+        ],
+        [
+         "text",
+         "+ 20 more items"
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Continue"
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 1
+         }
+        ]
+       ]
+      }
+     ]
     },
     {
-      "id": "S2",
-      "name": "Build the basket",
-      "lanes": [
-        {
-          "app": "pippin",
-          "flow": "Stock check up front, swap or remove",
-          "source": "Schematic, drawn 18 Nov 2026",
-          "screens": [
-            { "step": "Basket opens with a stock check", "blocks": [
-              ["title", "Basket check"],
-              ["banner", "2 items out of stock", { "sub": "Swap or remove before checkout", "accent": true }],
-              ["row", "Greek yogurt 1kg", { "sub": "Swap or remove", "right": "Out", "warn": true }],
-              ["row", "Chicken thighs", { "sub": "Swap or remove", "right": "Out", "warn": true }],
-              ["row", "Bananas 6", { "right": "$2.20" }],
-              ["row", "Pasta 500g", { "right": "$1.30" }],
-              ["gap"],
-              ["cta", "Review swaps", { "ghost": true }],
-              ["cta", "Continue"]
-            ] },
-            { "step": "Looks at a swap suggestion", "blocks": [
-              ["title", "Basket check", { "dim": true }],
-              ["row", "Greek yogurt 1kg", { "right": "Out", "warn": true, "dim": true }],
-              ["row", "Chicken thighs", { "right": "Out", "warn": true, "dim": true }],
-              ["row", "Bananas 6", { "right": "$2.20", "dim": true }],
-              ["sheet", "Swap Greek yogurt 1kg", { "items": ["Skyr 900g · $4.90", "Greek yogurt 500g · $2.50", "Remove from basket"], "on": 0 }]
-            ] }
-          ]
-        },
-        {
-          "app": "marrow",
-          "flow": "Every line carries a swap preference",
-          "source": "Schematic, drawn 18 Nov 2026",
-          "screens": [
-            { "step": "Reads the basket lines", "blocks": [
-              ["title", "Your basket"],
-              ["text", "Tap a line to change its rule"],
-              ["row", "Oat milk 1L", { "sub": "If out: Swap for similar", "right": "$1.90" }],
-              ["row", "Porridge oats 1kg", { "sub": "If out: Do not swap", "right": "$2.80" }],
-              ["row", "Butter 250g", { "sub": "If out: Let me choose", "right": "$2.60" }],
-              ["row", "Bananas 6", { "sub": "If out: Swap for similar", "right": "$2.10" }],
-              ["gap"],
-              ["cta", "Continue"],
-              ["tabs", "", { "on": 1 }]
-            ] },
-            { "step": "Sets the rule for one line", "blocks": [
-              ["title", "Your basket", { "dim": true }],
-              ["row", "Oat milk 1L", { "right": "$1.90", "dim": true }],
-              ["row", "Porridge oats 1kg", { "right": "$2.80", "dim": true }],
-              ["row", "Butter 250g", { "right": "$2.60", "dim": true }],
-              ["sheet", "If this is out of stock", { "items": ["Swap for similar", "Let me choose a swap", "Do not swap"], "on": 0 }]
-            ] }
-          ]
-        },
-        {
-          "app": "sorrel",
-          "flow": "Basket flags price changes, not stock",
-          "source": "Schematic, drawn 18 Nov 2026",
-          "screens": [
-            { "step": "Opens the basket", "blocks": [
-              ["title", "Basket"],
-              ["banner", "3 prices changed", { "sub": "Since your last order", "accent": true }],
-              ["row", "Pasta 500g", { "sub": "was $1.20", "right": "$1.45" }],
-              ["row", "Cheddar block", { "sub": "was $4.25", "right": "$4.60" }],
-              ["row", "Olive oil 500ml", { "sub": "was $6.40", "right": "$6.90" }],
-              ["row", "Bananas 6", { "right": "$2.20" }],
-              ["row", "Rice 2kg", { "right": "$3.80" }],
-              ["tabs", "", { "on": 1 }]
-            ] },
-            { "step": "Scrolls to the totals", "blocks": [
-              ["text", "+ 12 more items"],
-              ["row", "Subtotal (18 items)", { "right": "$52.35" }],
-              ["row", "Delivery", { "right": "$3.50" }],
-              ["row", "Promo SPRING20", { "right": "-$5.00" }],
-              ["row", "Total", { "right": "$50.85" }],
-              ["gap"],
-              ["cta", "Checkout"],
-              ["tabs", "", { "on": 1 }]
-            ] }
-          ]
-        },
-        {
-          "app": "tangelo",
-          "flow": "A plain list with prices and a total",
-          "source": "Schematic, drawn 18 Nov 2026",
-          "screens": [
-            { "step": "Opens the basket", "blocks": [
-              ["title", "Basket"],
-              ["row", "Whole milk 2L", { "right": "$2.10" }],
-              ["row", "Oat milk 1L", { "right": "$1.85" }],
-              ["row", "Sourdough loaf", { "right": "$3.40" }],
-              ["row", "Free range eggs 12", { "right": "$3.95" }],
-              ["row", "Bananas 6", { "right": "$2.20" }],
-              ["row", "Pasta 500g", { "right": "$1.30" }],
-              ["text", "+ 17 more items"],
-              ["tabs", "", { "on": 1 }]
-            ] },
-            { "step": "Reaches the bottom, taps Checkout", "blocks": [
-              ["text", "+ 17 more items"],
-              ["row", "Subtotal (23 items)", { "right": "$56.70" }],
-              ["row", "Delivery", { "right": "$4.50" }],
-              ["row", "Total", { "right": "$61.20" }],
-              ["gap"],
-              ["cta", "Checkout"],
-              ["tabs", "", { "on": 1 }]
-            ] }
-          ]
-        }
-      ]
+     "app": "marrow",
+     "flow": "Home asks for the slot, then shows usuals",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the app on Home",
+       "blocks": [
+        [
+         "bar",
+         "Hi Priya",
+         {
+          "sub": "Delivering to 9 Alder Court"
+         }
+        ],
+        [
+         "title",
+         "Pick your slot"
+        ],
+        [
+         "slots",
+         "Today 6pm|Tmrw 8am|Tmrw 6pm",
+         {
+          "on": 0
+         }
+        ],
+        [
+         "text",
+         "Held for 15 minutes"
+        ],
+        [
+         "title",
+         "Your usuals"
+        ],
+        [
+         "row",
+         "Oat milk 1L",
+         {
+          "sub": "Every 7 days",
+          "right": "Due"
+         }
+        ],
+        [
+         "row",
+         "Porridge oats 1kg",
+         {
+          "sub": "Every 14 days",
+          "right": "Due"
+         }
+        ],
+        [
+         "row",
+         "Butter 250g",
+         {
+          "sub": "Every 14 days",
+          "right": "In 3 days"
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 0
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Opens usuals, adds what is due",
+       "blocks": [
+        [
+         "title",
+         "Your usuals"
+        ],
+        [
+         "text",
+         "7 items · 2 are due"
+        ],
+        [
+         "row",
+         "Oat milk 1L",
+         {
+          "right": "Due"
+         }
+        ],
+        [
+         "row",
+         "Porridge oats 1kg",
+         {
+          "right": "Due"
+         }
+        ],
+        [
+         "row",
+         "Butter 250g",
+         {
+          "right": "In 3 days"
+         }
+        ],
+        [
+         "row",
+         "Bananas 6",
+         {
+          "right": "In 4 days"
+         }
+        ],
+        [
+         "row",
+         "Rice 2kg",
+         {
+          "right": "In 9 days"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Add the 2 that are due"
+        ],
+        [
+         "cta",
+         "Add all 7",
+         {
+          "ghost": true
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 0
+         }
+        ]
+       ]
+      }
+     ]
     },
     {
-      "id": "S3",
-      "name": "Slot and checkout",
-      "lanes": [
-        {
-          "app": "pippin",
-          "flow": "Slot chosen at checkout, then one-page pay",
-          "source": "Schematic, drawn 18 Nov 2026",
-          "screens": [
-            { "step": "Picks a slot at checkout", "blocks": [
-              ["title", "Checkout"],
-              ["text", "Choose a delivery slot", { "bold": true }],
-              ["slots", "Today 6pm|Tmrw 8am|Tmrw 6pm", { "on": -1 }],
-              ["text", "Today 6pm is full", { "warn": true }],
-              ["row", "Deliver to", { "right": "Flat 2" }],
-              ["row", "Payment", { "right": "Card 4242" }],
-              ["gap"],
-              ["cta", "Continue"]
-            ] },
-            { "step": "Reviews the payment summary", "blocks": [
-              ["title", "Pay"],
-              ["row", "Items (25)", { "right": "$56.60" }],
-              ["row", "Delivery", { "right": "$3.00" }],
-              ["row", "Slot", { "right": "Tmrw 8am" }],
-              ["row", "Total", { "right": "$59.60" }],
-              ["gap"],
-              ["cta", "Pay $59.60"]
-            ] }
-          ]
-        },
-        {
-          "app": "marrow",
-          "flow": "Held slot, one Pay button, confirmation",
-          "source": "Schematic, drawn 18 Nov 2026",
-          "screens": [
-            { "step": "Checks out with the slot held", "blocks": [
-              ["title", "Checkout"],
-              ["card", "Your held slot", { "sub": "Tmrw 8am · 11 min left" }],
-              ["row", "Deliver to", { "right": "9 Alder Court" }],
-              ["row", "Items (9)", { "right": "$24.30" }],
-              ["row", "Delivery", { "right": "$2.50" }],
-              ["row", "Total", { "right": "$26.80" }],
-              ["gap"],
-              ["cta", "Pay $26.80"]
-            ] },
-            { "step": "Sees the order confirmed", "blocks": [
-              ["title", "Order confirmed"],
-              ["banner", "Thank you, Priya", { "sub": "Arrives Tmrw 8am", "accent": true }],
-              ["row", "Order 40817", { "right": "$26.80" }],
-              ["row", "Items", { "right": "9" }],
-              ["gap"],
-              ["cta", "Track order", { "ghost": true }],
-              ["tabs", "", { "on": 2 }]
-            ] }
-          ]
-        },
-        {
-          "app": "sorrel",
-          "flow": "Late error, then back to slot and totals",
-          "source": "Schematic, drawn 18 Nov 2026",
-          "screens": [
-            { "step": "Places the order, hits an error", "blocks": [
-              ["title", "Review order"],
-              ["card", "Cannot place order", { "sub": "2 items are no longer available", "action": "Back" }],
-              ["row", "Slot", { "right": "Tmrw 6pm" }],
-              ["row", "Payment", { "right": "Card 1180" }],
-              ["row", "Total", { "right": "$50.85" }],
-              ["gap"],
-              ["cta", "Place order"]
-            ] },
-            { "step": "Goes back to the slot and totals", "blocks": [
-              ["title", "Pick a slot"],
-              ["slots", "Today 6pm|Tmrw 8am|Tmrw 6pm", { "on": 2 }],
-              ["row", "Subtotal (16 items)", { "right": "$46.70" }],
-              ["row", "Delivery", { "right": "$3.50" }],
-              ["row", "Total", { "right": "$50.20" }],
-              ["gap"],
-              ["cta", "Place order"]
-            ] }
-          ]
-        },
-        {
-          "app": "tangelo",
-          "flow": "Slot at checkout, then Place order fails",
-          "source": "Schematic, drawn 18 Nov 2026",
-          "screens": [
-            { "step": "Picks a slot at checkout", "blocks": [
-              ["title", "Checkout"],
-              ["text", "Deliver to 14 Linden Road"],
-              ["text", "Choose a slot", { "bold": true }],
-              ["slots", "Today 6pm|Tmrw 8am|Tmrw 6pm", { "on": -1 }],
-              ["text", "Today 6pm is full", { "warn": true }],
-              ["row", "Payment", { "right": "Card 4242" }],
-              ["row", "Total", { "right": "$61.20" }],
-              ["gap"],
-              ["cta", "Place order"]
-            ] },
-            { "step": "Place order fails, total is higher", "blocks": [
-              ["title", "Checkout"],
-              ["card", "Cannot place order", { "sub": "2 items are no longer available", "action": "OK" }],
-              ["row", "Slot", { "right": "Tmrw 8am" }],
-              ["row", "Payment", { "right": "Card 4242" }],
-              ["row", "Total", { "right": "$66.85" }],
-              ["gap"],
-              ["cta", "Place order"]
-            ] }
-          ]
-        }
-      ]
+     "app": "sorrel",
+     "flow": "Promo-led Home, Buy again sits low",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the app on Home",
+       "blocks": [
+        [
+         "bar",
+         "Welcome back",
+         {
+          "sub": "Deals picked for you"
+         }
+        ],
+        [
+         "banner",
+         "Spring sale: 20% off",
+         {
+          "sub": "Fresh produce, ends Sunday",
+          "accent": true
+         }
+        ],
+        [
+         "banner",
+         "Free delivery weekend",
+         {
+          "sub": "On orders over $35"
+         }
+        ],
+        [
+         "grid",
+         "",
+         {
+          "n": 2
+         }
+        ],
+        [
+         "banner",
+         "Meal deal $12",
+         {
+          "sub": "Main, side and a drink"
+         }
+        ],
+        [
+         "row",
+         "Buy again",
+         {
+          "right": "See all"
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 0
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Scrolls down and opens Buy again",
+       "blocks": [
+        [
+         "title",
+         "Buy again"
+        ],
+        [
+         "row",
+         "Pasta 500g",
+         {
+          "sub": "Bought 3 times",
+          "right": "$1.45"
+         }
+        ],
+        [
+         "row",
+         "Cheddar block",
+         {
+          "sub": "Bought 2 times",
+          "right": "$4.60"
+         }
+        ],
+        [
+         "row",
+         "Olive oil 500ml",
+         {
+          "sub": "Bought 2 times",
+          "right": "$6.90"
+         }
+        ],
+        [
+         "row",
+         "Bananas 6",
+         {
+          "sub": "Bought 5 times",
+          "right": "$2.20"
+         }
+        ],
+        [
+         "row",
+         "Rice 2kg",
+         {
+          "sub": "Bought once",
+          "right": "$3.80"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Add 5 to basket",
+         {
+          "ghost": true
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 0
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "tangelo",
+     "flow": "Home is browse-first, Orders holds reorder",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the app on Home",
+       "blocks": [
+        [
+         "bar",
+         "Good evening, Maya",
+         {
+          "sub": "Deliver to 14 Linden Road"
+         }
+        ],
+        [
+         "search",
+         "Search groceries"
+        ],
+        [
+         "chips",
+         "All|Fruit|Dairy|Bakery",
+         {
+          "on": 0
+         }
+        ],
+        [
+         "banner",
+         "Free delivery over $40",
+         {
+          "sub": "Applied at checkout"
+         }
+        ],
+        [
+         "title",
+         "Popular this week"
+        ],
+        [
+         "grid",
+         "",
+         {
+          "n": 3
+         }
+        ],
+        [
+         "grid",
+         "",
+         {
+          "n": 3
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 0
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Finds Orders, the only way to repeat",
+       "blocks": [
+        [
+         "title",
+         "Orders"
+        ],
+        [
+         "card",
+         "Sun 15 Nov",
+         {
+          "sub": "23 items · $59.80",
+          "action": "Reorder"
+         }
+        ],
+        [
+         "card",
+         "Sun 8 Nov",
+         {
+          "sub": "26 items · $64.10",
+          "action": "Reorder"
+         }
+        ],
+        [
+         "card",
+         "Sun 1 Nov",
+         {
+          "sub": "21 items · $55.90",
+          "action": "Reorder"
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 2
+         }
+        ]
+       ]
+      }
+     ]
     }
-  ]
+   ]
+  },
+  {
+   "id": "S2",
+   "name": "Build the basket",
+   "lanes": [
+    {
+     "app": "pippin",
+     "flow": "Stock check up front, swap or remove",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Basket opens with a stock check",
+       "blocks": [
+        [
+         "title",
+         "Basket check"
+        ],
+        [
+         "banner",
+         "2 items out of stock",
+         {
+          "sub": "Swap or remove before checkout",
+          "accent": true
+         }
+        ],
+        [
+         "row",
+         "Greek yogurt 1kg",
+         {
+          "sub": "Swap or remove",
+          "right": "Out",
+          "warn": true
+         }
+        ],
+        [
+         "row",
+         "Chicken thighs",
+         {
+          "sub": "Swap or remove",
+          "right": "Out",
+          "warn": true
+         }
+        ],
+        [
+         "row",
+         "Bananas 6",
+         {
+          "right": "$2.20"
+         }
+        ],
+        [
+         "row",
+         "Pasta 500g",
+         {
+          "right": "$1.30"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Review swaps",
+         {
+          "ghost": true
+         }
+        ],
+        [
+         "cta",
+         "Continue"
+        ]
+       ]
+      },
+      {
+       "step": "Looks at a swap suggestion",
+       "blocks": [
+        [
+         "title",
+         "Basket check",
+         {
+          "dim": true
+         }
+        ],
+        [
+         "row",
+         "Greek yogurt 1kg",
+         {
+          "right": "Out",
+          "warn": true,
+          "dim": true
+         }
+        ],
+        [
+         "row",
+         "Chicken thighs",
+         {
+          "right": "Out",
+          "warn": true,
+          "dim": true
+         }
+        ],
+        [
+         "row",
+         "Bananas 6",
+         {
+          "right": "$2.20",
+          "dim": true
+         }
+        ],
+        [
+         "sheet",
+         "Swap Greek yogurt 1kg",
+         {
+          "items": [
+           "Skyr 900g · $4.90",
+           "Greek yogurt 500g · $2.50",
+           "Remove from basket"
+          ],
+          "on": 0
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "marrow",
+     "flow": "Every line carries a swap preference",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads the basket lines",
+       "blocks": [
+        [
+         "title",
+         "Your basket"
+        ],
+        [
+         "text",
+         "Tap a line to change its rule"
+        ],
+        [
+         "row",
+         "Oat milk 1L",
+         {
+          "sub": "If out: Swap for similar",
+          "right": "$1.90"
+         }
+        ],
+        [
+         "row",
+         "Porridge oats 1kg",
+         {
+          "sub": "If out: Do not swap",
+          "right": "$2.80"
+         }
+        ],
+        [
+         "row",
+         "Butter 250g",
+         {
+          "sub": "If out: Let me choose",
+          "right": "$2.60"
+         }
+        ],
+        [
+         "row",
+         "Bananas 6",
+         {
+          "sub": "If out: Swap for similar",
+          "right": "$2.10"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Continue"
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 1
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Sets the rule for one line",
+       "blocks": [
+        [
+         "title",
+         "Your basket",
+         {
+          "dim": true
+         }
+        ],
+        [
+         "row",
+         "Oat milk 1L",
+         {
+          "right": "$1.90",
+          "dim": true
+         }
+        ],
+        [
+         "row",
+         "Porridge oats 1kg",
+         {
+          "right": "$2.80",
+          "dim": true
+         }
+        ],
+        [
+         "row",
+         "Butter 250g",
+         {
+          "right": "$2.60",
+          "dim": true
+         }
+        ],
+        [
+         "sheet",
+         "If this is out of stock",
+         {
+          "items": [
+           "Swap for similar",
+           "Let me choose a swap",
+           "Do not swap"
+          ],
+          "on": 0
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "sorrel",
+     "flow": "Basket flags price changes, not stock",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the basket",
+       "blocks": [
+        [
+         "title",
+         "Basket"
+        ],
+        [
+         "banner",
+         "3 prices changed",
+         {
+          "sub": "Since your last order",
+          "accent": true
+         }
+        ],
+        [
+         "row",
+         "Pasta 500g",
+         {
+          "sub": "was $1.20",
+          "right": "$1.45"
+         }
+        ],
+        [
+         "row",
+         "Cheddar block",
+         {
+          "sub": "was $4.25",
+          "right": "$4.60"
+         }
+        ],
+        [
+         "row",
+         "Olive oil 500ml",
+         {
+          "sub": "was $6.40",
+          "right": "$6.90"
+         }
+        ],
+        [
+         "row",
+         "Bananas 6",
+         {
+          "right": "$2.20"
+         }
+        ],
+        [
+         "row",
+         "Rice 2kg",
+         {
+          "right": "$3.80"
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 1
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Scrolls to the totals",
+       "blocks": [
+        [
+         "text",
+         "+ 12 more items"
+        ],
+        [
+         "row",
+         "Subtotal (18 items)",
+         {
+          "right": "$52.35"
+         }
+        ],
+        [
+         "row",
+         "Delivery",
+         {
+          "right": "$3.50"
+         }
+        ],
+        [
+         "row",
+         "Promo SPRING20",
+         {
+          "right": "-$5.00"
+         }
+        ],
+        [
+         "row",
+         "Total",
+         {
+          "right": "$50.85"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Checkout"
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 1
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "tangelo",
+     "flow": "A plain list with prices and a total",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the basket",
+       "blocks": [
+        [
+         "title",
+         "Basket"
+        ],
+        [
+         "row",
+         "Whole milk 2L",
+         {
+          "right": "$2.10"
+         }
+        ],
+        [
+         "row",
+         "Oat milk 1L",
+         {
+          "right": "$1.85"
+         }
+        ],
+        [
+         "row",
+         "Sourdough loaf",
+         {
+          "right": "$3.40"
+         }
+        ],
+        [
+         "row",
+         "Free range eggs 12",
+         {
+          "right": "$3.95"
+         }
+        ],
+        [
+         "row",
+         "Bananas 6",
+         {
+          "right": "$2.20"
+         }
+        ],
+        [
+         "row",
+         "Pasta 500g",
+         {
+          "right": "$1.30"
+         }
+        ],
+        [
+         "text",
+         "+ 17 more items"
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 1
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Reaches the bottom, taps Checkout",
+       "blocks": [
+        [
+         "text",
+         "+ 17 more items"
+        ],
+        [
+         "row",
+         "Subtotal (23 items)",
+         {
+          "right": "$56.70"
+         }
+        ],
+        [
+         "row",
+         "Delivery",
+         {
+          "right": "$4.50"
+         }
+        ],
+        [
+         "row",
+         "Total",
+         {
+          "right": "$61.20"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Checkout"
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 1
+         }
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S3",
+   "name": "Slot and checkout",
+   "lanes": [
+    {
+     "app": "pippin",
+     "flow": "Slot chosen at checkout, then one-page pay",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Picks a slot at checkout",
+       "blocks": [
+        [
+         "title",
+         "Checkout"
+        ],
+        [
+         "text",
+         "Choose a delivery slot",
+         {
+          "bold": true
+         }
+        ],
+        [
+         "slots",
+         "Today 6pm|Tmrw 8am|Tmrw 6pm",
+         {
+          "on": -1
+         }
+        ],
+        [
+         "text",
+         "Today 6pm is full",
+         {
+          "warn": true
+         }
+        ],
+        [
+         "row",
+         "Deliver to",
+         {
+          "right": "Flat 2"
+         }
+        ],
+        [
+         "row",
+         "Payment",
+         {
+          "right": "Card 4242"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Continue"
+        ]
+       ]
+      },
+      {
+       "step": "Reviews the payment summary",
+       "blocks": [
+        [
+         "title",
+         "Pay"
+        ],
+        [
+         "row",
+         "Items (25)",
+         {
+          "right": "$56.60"
+         }
+        ],
+        [
+         "row",
+         "Delivery",
+         {
+          "right": "$3.00"
+         }
+        ],
+        [
+         "row",
+         "Slot",
+         {
+          "right": "Tmrw 8am"
+         }
+        ],
+        [
+         "row",
+         "Total",
+         {
+          "right": "$59.60"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Pay $59.60"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "marrow",
+     "flow": "Held slot, one Pay button, confirmation",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Checks out with the slot held",
+       "blocks": [
+        [
+         "title",
+         "Checkout"
+        ],
+        [
+         "card",
+         "Your held slot",
+         {
+          "sub": "Tmrw 8am · 11 min left"
+         }
+        ],
+        [
+         "row",
+         "Deliver to",
+         {
+          "right": "9 Alder Court"
+         }
+        ],
+        [
+         "row",
+         "Items (9)",
+         {
+          "right": "$24.30"
+         }
+        ],
+        [
+         "row",
+         "Delivery",
+         {
+          "right": "$2.50"
+         }
+        ],
+        [
+         "row",
+         "Total",
+         {
+          "right": "$26.80"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Pay $26.80"
+        ]
+       ]
+      },
+      {
+       "step": "Sees the order confirmed",
+       "blocks": [
+        [
+         "title",
+         "Order confirmed"
+        ],
+        [
+         "banner",
+         "Thank you, Priya",
+         {
+          "sub": "Arrives Tmrw 8am",
+          "accent": true
+         }
+        ],
+        [
+         "row",
+         "Order 40817",
+         {
+          "right": "$26.80"
+         }
+        ],
+        [
+         "row",
+         "Items",
+         {
+          "right": "9"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Track order",
+         {
+          "ghost": true
+         }
+        ],
+        [
+         "tabs",
+         "",
+         {
+          "on": 2
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "sorrel",
+     "flow": "Late error, then back to slot and totals",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Places the order, hits an error",
+       "blocks": [
+        [
+         "title",
+         "Review order"
+        ],
+        [
+         "card",
+         "Cannot place order",
+         {
+          "sub": "2 items are no longer available",
+          "action": "Back"
+         }
+        ],
+        [
+         "row",
+         "Slot",
+         {
+          "right": "Tmrw 6pm"
+         }
+        ],
+        [
+         "row",
+         "Payment",
+         {
+          "right": "Card 1180"
+         }
+        ],
+        [
+         "row",
+         "Total",
+         {
+          "right": "$50.85"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Place order"
+        ]
+       ]
+      },
+      {
+       "step": "Goes back to the slot and totals",
+       "blocks": [
+        [
+         "title",
+         "Pick a slot"
+        ],
+        [
+         "slots",
+         "Today 6pm|Tmrw 8am|Tmrw 6pm",
+         {
+          "on": 2
+         }
+        ],
+        [
+         "row",
+         "Subtotal (16 items)",
+         {
+          "right": "$46.70"
+         }
+        ],
+        [
+         "row",
+         "Delivery",
+         {
+          "right": "$3.50"
+         }
+        ],
+        [
+         "row",
+         "Total",
+         {
+          "right": "$50.20"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Place order"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "tangelo",
+     "flow": "Slot at checkout, then Place order fails",
+     "source": "Schematic, drawn 18 Nov 2026",
+     "screens": [
+      {
+       "step": "Picks a slot at checkout",
+       "blocks": [
+        [
+         "title",
+         "Checkout"
+        ],
+        [
+         "text",
+         "Deliver to 14 Linden Road"
+        ],
+        [
+         "text",
+         "Choose a slot",
+         {
+          "bold": true
+         }
+        ],
+        [
+         "slots",
+         "Today 6pm|Tmrw 8am|Tmrw 6pm",
+         {
+          "on": -1
+         }
+        ],
+        [
+         "text",
+         "Today 6pm is full",
+         {
+          "warn": true
+         }
+        ],
+        [
+         "row",
+         "Payment",
+         {
+          "right": "Card 4242"
+         }
+        ],
+        [
+         "row",
+         "Total",
+         {
+          "right": "$61.20"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Place order"
+        ]
+       ]
+      },
+      {
+       "step": "Place order fails at the last step",
+       "blocks": [
+        [
+         "title",
+         "Checkout"
+        ],
+        [
+         "card",
+         "Cannot place order",
+         {
+          "sub": "2 items are no longer available",
+          "action": "OK"
+         }
+        ],
+        [
+         "row",
+         "Slot",
+         {
+          "right": "Tmrw 8am"
+         }
+        ],
+        [
+         "row",
+         "Payment",
+         {
+          "right": "Card 4242"
+         }
+        ],
+        [
+         "row",
+         "Total",
+         {
+          "right": "$61.20"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Place order"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
 }

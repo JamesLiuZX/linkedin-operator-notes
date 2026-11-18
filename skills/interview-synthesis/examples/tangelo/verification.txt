@@ -1,0 +1,49 @@
+8 participants, 6 themes, 36 quotes found, 1 rejected
+  PASS  Every quote exists in a transcript (after removing 1 that could not be found)
+  PASS  Counts are people
+  PASS  No percentages from small samples
+  PASS  Every theme has a counter-voice, or says none was found
+  PASS  Every participant is accounted for
+  ----  The themes answer the research question (yours to judge)
+Rejected quotes (removed from the synthesis):
+  - P2: "It takes me longer to order the food than to cook it." (not found in any transcript)
+5 of 5 scripted checks passed
+1 quote(s) were rejected and removed. Tell the user each one, word for word.
+
+Every quote, in order:
+FOUND     P1 line  16  T1  "I buy the same twenty things every week, and every week I type them all in again."
+FOUND     P2 line  17  T1  "Rebuilding it. It's almost the same each week. Same cereal, same chicken thighs, same eggs, same coffee beans."
+FOUND     P3 line  21  T1  "Search for each thing and add it. Which is a faff. I think it takes me twenty minutes."
+FOUND     P4 line  21  T1  "One by one. I type, I click add, I type again. It's slow going."
+FOUND     P7 line  23  T1  "Adding the same things again. I think, I've done this. I know I've done this. Why are you asking me."
+FOUND     P8 line  21  T1  "It's like data entry. I rebuild the same basket. Anything but the actual shopping."
+FOUND     P6 line  19  T1  "Not really. I know where everything is. I click the same ones."
+FOUND     P1 line  38  T2  "Annoyed, honestly. I'd chosen it. Someone just decided for me."
+FOUND     P3 line  37  T2  "It was. Well, I caught it. But I stood there in the kitchen thinking, I never agreed to this."
+FOUND     P4 line  39  T2  "I trust the app a bit less. I check everything. Which is exactly the opposite of what I want."
+FOUND     P5 line  33  T2  "Cross. It's a small thing, but it was my one specialist ingredient, and they decided it for me."
+FOUND     P8 line  52  T2  "I now say no substitutions on everything. Which means gaps. Which is also bad."
+FOUND     P6 line  25  T2  "Last time they sent a different brand of beans. Fine. Beans are beans."
+FOUND     P2 line  35  T3  "I want Friday afternoon. I get to the end of the basket, nearly an hour in, and Friday afternoon is full."
+FOUND     P3 line  45  T3  "Oh, don't. Okay. I build the basket, twenty minutes, and then the Sunday late-morning slot is gone."
+FOUND     P7 line  37  T3  "Because I only have a gap in the afternoon. Four to six. Before I leave for the shift. And by the time I finish the basket it's all gone."
+FOUND     P8 line  28  T3  "By the time I've found everything, the evening slot has gone and I'm stuck with Thursday morning."
+FOUND     P1 line  58  T3  "Yes. Sunday night for Monday morning, that's always been open. I've never had trouble."
+FOUND     P1 line  46  T4  "Wednesday I place a tiny order. Five items, maybe six. And pay the delivery fee on a nine dollar order, which is silly."
+FOUND     P4 line  51  T4  "I do a small top-up on Thursday. Four things. Delivery charge and all. It's annoying."
+FOUND     P5 line  43  T4  "Most weeks, I'd say. It's a pain, the delivery fee on a tiny basket."
+FOUND     P7 line  51  T4  "A little top-up order on the weekend. Five items. Pay the delivery on it."
+FOUND     P3 line  63  T4  "No, I'm quite organised on that front. My mum keeps a list on the fridge."
+FOUND     P2 line  49  T5  "Same shop. Same forty items. Last week it was ninety-eight dollars. This week a hundred and six. I can't see why."
+FOUND     P4 line  45  T5  "Nothing. Same items. I went through it. There's no reason shown. A person at a till would explain."
+FOUND     P6 line  39  T5  "No idea. Prices are up generally, sure, but the app doesn't tell you what went up. You only see the total."
+FOUND     P1 line  60  T5  "I look at the total and go, fine. I don't scrutinise it."
+FOUND     P1 line  74  T6  "I'd never have looked in there, no. Orders sounds like receipts."
+FOUND     P3 line  31  T6  "Well, there you go. Three years and nobody told me. Brilliant."
+FOUND     P4 line  27  T6  "Why would I look there? That's where I check the bills."
+FOUND     P7 line  31  T6  "Oh my gosh. I've been screenshotting my basket for two years."
+FOUND     P8 line  25  T6  "I think there was something under Orders. I've never used it. I wouldn't know what it does, to be honest."
+FOUND     P2 line  27  T6  "It built a basket. Great. Then I got to checkout and four things were unavailable. Out of stock."
+FOUND     P3 line  67  Praise for drivers and produce  "I'm on a roll. I'll say that I do like the drivers. They're nice."
+FOUND     P5 line  63  Praise for drivers and produce  "I'd say the produce is good. The herbs are always fresh."
+FOUND     P4 line  37  Wanting a person to explain  "They sent a canned reply. Sorry for any inconvenience. I wanted a human."

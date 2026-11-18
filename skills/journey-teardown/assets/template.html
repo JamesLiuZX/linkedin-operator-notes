@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Journey teardown</title>
+<!-- Made with the AI Workflow Handbook skill "journey-teardown". Free, MIT licensed: https://jamesliuzx.github.io/linkedin-operator-notes/skills/ -->
+<style>*,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0;background:#f3f3ef;color:#0b0c0c;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}img,svg{max-width:100%}.adoc,.proto{--a-bg: #f3f3ef;--a-card: #ffffff;--a-ink: #0b0c0c;--a-ink2: #3a3d3b;--a-muted: #70756f;--a-faint: #a7aca6;--a-line: #e3e4de;--a-line2: #eeefea;--a-hi: #dcff4a;--a-hi-soft: #f3ffc4;--a-hi-ink: #131a00;--a-ok: #12804b;--a-ok-bg: #e2f6ea;--a-warn: #8f5500;--a-warn-bg: #fff3d9;--a-bad: #bf3327;--a-bad-bg: #fdeae7;--a-info: #2447d6;--a-info-bg: #e9eeff;--a-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;--a-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace}.aid{display:inline-flex;align-items:center;justify-content:center;min-width:2.1em;height:1.55em;padding:0 .42em;border-radius:.5em;background:var(--a-hi);color:var(--a-hi-ink);font-family:var(--a-mono);font-size:.78em;font-weight:600;letter-spacing:-.01em;white-space:nowrap;text-decoration:none}.aid.ink{background:var(--a-ink);color:var(--a-hi)}.atag{display:inline-flex;align-items:center;height:1.6em;padding:0 .55em;border-radius:.45em;font-family:var(--a-mono);font-size:.68em;font-weight:600;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;background:#eceee9;color:var(--a-ink2)}.atag.ok{background:var(--a-ok-bg);color:var(--a-ok)}.atag.warn{background:var(--a-warn-bg);color:var(--a-warn)}.atag.bad{background:var(--a-bad-bg);color:var(--a-bad)}.atag.info{background:var(--a-info-bg);color:var(--a-info)}.atag.hi{background:var(--a-hi);color:var(--a-hi-ink)}.scr{display:block;width:100%;height:auto}.board{position:relative;width:100%;height:100%;min-height:0;overflow:hidden;background-color:#e9eae5;background-image:radial-gradient(rgba(11,12,12,.11) 1px,transparent 1px);background-size:22px 22px;font-family:var(--a-sans, ui-sans-serif, system-ui, sans-serif)}.stage .board{background-color:var(--stage);background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px)}.board-view{position:absolute;inset:0;overflow:hidden;touch-action:none}.board.is-interactive .board-view{cursor:grab}.board.is-interactive .board-view.dragging{cursor:grabbing}.board-world{position:absolute;left:0;top:0;display:grid;grid-template-columns:var(--col-a, 1500px) 760px;gap:56px;width:calc(var(--col-a, 1500px) + 760px + 56px + 112px);padding:56px;transform-origin:0 0;will-change:transform;color:var(--a-ink);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased}.board-world :where(h1,h2,h3,p,ul,ol,dl,dd,table){margin:0;padding:0;max-width:none;letter-spacing:normal;font-size:inherit;font-weight:inherit;line-height:inherit;text-wrap:wrap}.bf{align-self:start;padding:32px;border-radius:28px;background:#fbfbf9;box-shadow:0 0 0 1px #0b0c0c14,0 24px 60px -30px #0b0c0c59}.bf-syn{background:#fff}.bf-ideal{grid-column:1 / -1}.bf-ey{font-family:var(--a-mono);font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--a-muted)}.bf h1{margin-top:10px;font-size:54px;font-weight:640;letter-spacing:-.045em;line-height:1.02}.bf h2{margin-top:8px;font-size:40px;font-weight:640;letter-spacing:-.04em;line-height:1.05}.bf h3{margin-bottom:10px;font-family:var(--a-mono);font-size:12px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--a-muted)}.start-q{margin-top:12px;max-width:44em;font-size:20px;line-height:1.4;color:var(--a-ink2)}.start-grid{display:grid;grid-template-columns:1fr 1.05fr 1.25fr 1fr;gap:28px;margin-top:28px;padding-top:24px;border-top:1px solid var(--a-line)}.start-grid ol{padding-left:18px;display:grid;gap:6px;color:var(--a-ink2)}.start-grid .bnote{margin-bottom:7px}.start-dims{display:grid;gap:6px}.start-dims div{display:grid;grid-template-columns:104px 1fr;gap:10px}.start-dims dt{font-weight:600}.start-dims dd{color:var(--a-ink2)}.start-small{margin-top:12px;font-size:12.5px;color:var(--a-muted)}.start-apps{list-style:none;display:grid;gap:7px}.start-apps li{display:grid;grid-template-columns:12px auto 1fr;gap:9px;align-items:center}.start-apps i,.lane-app i{width:12px;height:12px;border-radius:4px;background:var(--accent)}.start-apps span{font-size:12.5px;color:var(--a-muted)}.heat{width:100%;margin-top:22px;border-collapse:separate;border-spacing:6px;font-size:15px}.heat th{padding:0 4px 6px;text-align:left;font-family:var(--a-mono);font-size:12px;font-weight:600;vertical-align:bottom}.heat th span{display:block;font-family:var(--a-sans);font-weight:400;color:var(--a-muted)}.heat td:first-child{padding-right:10px;font-weight:600;white-space:nowrap}.heat tr.us td:first-child{color:var(--a-info)}.cell{display:grid;place-items:center;height:52px;border-radius:12px;font-size:19px;font-weight:620;font-variant-numeric:tabular-nums}.t-hi{background:#9be7b5}.t-mid{background:#d9f5e1}.t-low{background:#eceee9;color:var(--a-ink2)}.t-none{background:transparent;box-shadow:inset 0 0 0 1px var(--a-line)}.lanes{display:grid;gap:16px;margin-top:22px}.lane{display:grid;grid-template-columns:236px minmax(0,1fr) 320px;gap:26px;padding:22px;border-radius:22px;background:#f0f1ed}.lane.us{background:#e9eeff;box-shadow:inset 0 0 0 2px #c5d1ff}.lane-app{display:flex;align-items:center;gap:9px;font-size:26px;font-weight:640;letter-spacing:-.03em}.lane-app .atag{font-size:10px}.lane-flow{margin-top:6px;font-size:14.5px;font-weight:550;line-height:1.3}.lane-src{margin-top:5px;font-size:12px;color:var(--a-muted)}.lane-overall{display:flex;align-items:baseline;gap:8px;margin-top:16px}.lane-overall b{font-size:46px;font-weight:640;letter-spacing:-.045em;line-height:1;font-variant-numeric:tabular-nums}.lane-overall span{font-size:12.5px;color:var(--a-muted)}.lane-bars{display:grid;gap:6px;margin-top:12px}.bar{display:grid;grid-template-columns:96px 1fr 14px;gap:8px;align-items:center;font-size:12.5px}.bar i{height:9px;border-radius:5px;background:#0b0c0c17;overflow:hidden}.bar em{display:block;width:calc(var(--n) * 20% * var(--grow, 1));height:100%;border-radius:5px;background:var(--a-ink)}.bar b{font-weight:620;font-variant-numeric:tabular-nums}.lane-shots{display:flex;align-items:flex-start;gap:10px;min-width:0}.lane-arrow{flex:none;width:24px;margin-top:170px;color:var(--a-faint)}.shot{flex:none;width:388px}.shot-step{display:flex;gap:8px;align-items:baseline;min-height:2.6em;margin-bottom:8px;font-size:13.5px;font-weight:600;line-height:1.3}.shot-step b{flex:none;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--a-ink);color:#fff;font-family:var(--a-mono);font-size:11px}.shot-row{display:grid;grid-template-columns:168px minmax(0,1fr);gap:12px;align-items:start}.shot-pic{border-radius:21px;box-shadow:0 1px 2px #0b0c0c12,0 16px 30px -18px #0b0c0c73}.shot-pic img{display:block;width:100%;height:auto;border-radius:20px;border:1px solid var(--a-line)}.shot-notes{display:grid;gap:8px}.bnote{padding:9px 11px;border-radius:12px;background:#f4f4f1;font-size:12.5px;line-height:1.4;transition:opacity .2s ease}.bnote b{display:block;margin-bottom:2px;font-family:var(--a-mono);font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase}.bnote.good{background:#bdf2d0}.bnote.friction{background:#ffcfc9}.bnote.note{background:#fff;box-shadow:inset 0 0 0 1px var(--a-line)}.bnote.idea{background:#cfe0ff}.hide-good .bnote.good[data-note],.hide-friction .bnote.friction[data-note],.hide-note .bnote.note[data-note],.hide-idea .bnote.idea[data-note]{opacity:.12}.lane-verdict{display:grid;gap:8px;align-content:start}.vd-line{padding:12px 14px;border-radius:14px;background:#fff;font-size:15px;font-weight:600;line-height:1.35}.vd{padding:10px 14px 11px;border-radius:14px;font-size:12.5px}.vd b{display:block;margin-bottom:3px;font-family:var(--a-mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase}.vd ul{padding-left:15px}.vd li+li{margin-top:2px}.vd.good{background:#bdf2d0}.vd.bad{background:#ffcfc9}.vd.idea{background:#cfe0ff}.syn-finding{margin-top:14px;font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1.3}.syn-block{margin-top:26px}.syn-scores{width:100%;border-collapse:separate;border-spacing:4px;font-size:13px}.syn-scores th{padding-bottom:4px;font-size:11px;font-weight:500;color:var(--a-muted);text-align:center}.syn-scores td{height:34px;border-radius:8px;text-align:center;font-variant-numeric:tabular-nums}.syn-scores td:first-child{padding-right:8px;background:none;text-align:left;font-weight:600;white-space:nowrap}.syn-scores tr.us td:first-child{color:var(--a-info)}.syn-card{margin-bottom:8px;padding:12px 14px;border-radius:14px;background:#f4f4f1;font-size:13.5px;line-height:1.45}.syn-card b{display:block;margin-bottom:2px;font-size:14.5px;font-weight:620}.syn-card em{display:block;margin-top:5px;font-size:12px;color:#0b0c0c99}.syn-card.good{background:#bdf2d0}.syn-card.bad{background:#ffcfc9}.syn-card.gap{background:#fff;box-shadow:inset 0 0 0 1.5px #ffb5ac}.gap-top{display:flex;align-items:baseline;gap:8px;margin-bottom:4px}.gap-top b{margin:0}.syn-card.gap p+p{margin-top:2px}.syn-card.gap i{margin-right:4px;font-style:normal;font-weight:620}.syn-ideal{list-style:none;display:grid;gap:6px}.syn-ideal li{display:grid;grid-template-columns:26px 1fr;gap:10px;padding:11px 14px;border-radius:14px;background:#cfe0ff;font-size:13.5px}.syn-ideal span{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--a-ink);color:#fff;font-family:var(--a-mono);font-size:11.5px}.syn-ideal b{display:block;font-weight:620}.ideal-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:22px}.ideal-grid .syn-card{margin:0;background:#fff;box-shadow:inset 0 0 0 1px var(--a-line)}.board-bar{position:absolute;left:12px;right:12px;bottom:12px;z-index:5;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;pointer-events:none}.board-bar>div{display:flex;gap:2px;padding:4px;border-radius:12px;background:#0b0c0ce0;box-shadow:0 8px 24px -8px #00000080;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);pointer-events:auto}.board-bar button{height:28px;min-width:28px;padding:0 10px;border:0;border-radius:8px;background:transparent;color:#c9cfc7;font:inherit;font-size:12.5px;font-weight:500;cursor:pointer}.board-bar button:hover{background:#ffffff1f;color:#fff}.board-filter button{opacity:.45}.board-filter button.on{opacity:1;color:#0b0c0c}.board-filter button.on.good{background:#9be7b5}.board-filter button.on.friction{background:#ffb5ac}.board-filter button.on.note{background:#f1f1ee}.board-filter button.on.idea{background:#b9d0ff}.board-zoom button{padding:0;font-size:17px}.stage:not(.is-live) .board-bar{display:none}html,body{height:100%;overflow:hidden}#root{height:100%}</style>
+</head>
+<body>
+<div id="root"></div>
+<!-- DATA: replace the JSON inside this element with your own. -->
+<script id="teardown-data" type="application/json">
+{
+ "title": "Replace this JSON with your teardown.json",
+ "question": "This board is drawn from the JSON in the element with id teardown-data. The format is in references/format.md.",
+ "us": "ours",
+ "captured": "",
+ "note": "",
+ "apps": [
+  {
+   "id": "one",
+   "name": "App one",
+   "accent": "#5b3df5",
+   "role": "Competitor"
+  },
+  {
+   "id": "two",
+   "name": "App two",
+   "accent": "#c2410c",
+   "role": "Competitor"
+  },
+  {
+   "id": "ours",
+   "name": "Our product",
+   "accent": "#14532d",
+   "role": "Our product"
+  }
+ ],
+ "dimensions": [
+  {
+   "id": "clarity",
+   "name": "Clarity",
+   "means": "You can tell what to do next without reading twice."
+  },
+  {
+   "id": "speed",
+   "name": "Speed",
+   "means": "Few steps and little typing to finish the stage."
+  },
+  {
+   "id": "transparency",
+   "name": "Transparency",
+   "means": "Costs, limits and consequences are shown before they bite."
+  },
+  {
+   "id": "trust",
+   "name": "Trust",
+   "means": "Nothing surprises the user later."
+  },
+  {
+   "id": "engagement",
+   "name": "Engagement",
+   "means": "It gives a reason to come back or go further."
+  }
+ ],
+ "stages": [
+  {
+   "id": "S1",
+   "name": "First stage",
+   "finding": "One sentence: the thing to remember about this stage.",
+   "lanes": [
+    {
+     "app": "one",
+     "flow": "What this lane shows",
+     "source": "Where the screens came from, and when",
+     "coverage": "One screen only, as a placeholder.",
+     "screens": [
+      {
+       "step": "What the user is doing",
+       "blocks": [
+        [
+         "bar",
+         "Home"
+        ],
+        [
+         "search",
+         "Search"
+        ],
+        [
+         "card",
+         "A card",
+         {
+          "sub": "With a second line"
+         }
+        ],
+        [
+         "grid",
+         "",
+         {
+          "n": 2
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "note",
+         "t": "Replace this JSON with your teardown.json."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "Replace with a one line reason."
+      },
+      "speed": {
+       "n": 4,
+       "why": "Replace with a one line reason."
+      },
+      "transparency": {
+       "n": 4,
+       "why": "Replace with a one line reason."
+      },
+      "trust": {
+       "n": 4,
+       "why": "Replace with a one line reason."
+      },
+      "engagement": {
+       "n": 4,
+       "why": "Replace with a one line reason."
+      }
+     },
+     "verdict": "A strength, but a weakness.",
+     "well": [
+      "One thing it does well."
+     ],
+     "wrong": [
+      "One thing it does wrong."
+     ],
+     "steal": [
+      "One thing worth stealing."
+     ]
+    },
+    {
+     "app": "two",
+     "flow": "What this lane shows",
+     "source": "Where the screens came from, and when",
+     "coverage": "One screen only, as a placeholder.",
+     "screens": [
+      {
+       "step": "What the user is doing",
+       "blocks": [
+        [
+         "bar",
+         "Home"
+        ],
+        [
+         "search",
+         "Search"
+        ],
+        [
+         "card",
+         "A card",
+         {
+          "sub": "With a second line"
+         }
+        ],
+        [
+         "grid",
+         "",
+         {
+          "n": 2
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "note",
+         "t": "Replace this JSON with your teardown.json."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 3,
+       "why": "Replace with a one line reason."
+      },
+      "speed": {
+       "n": 3,
+       "why": "Replace with a one line reason."
+      },
+      "transparency": {
+       "n": 3,
+       "why": "Replace with a one line reason."
+      },
+      "trust": {
+       "n": 3,
+       "why": "Replace with a one line reason."
+      },
+      "engagement": {
+       "n": 3,
+       "why": "Replace with a one line reason."
+      }
+     },
+     "verdict": "A strength, but a weakness.",
+     "well": [
+      "One thing it does well."
+     ],
+     "wrong": [
+      "One thing it does wrong."
+     ],
+     "steal": [
+      "One thing worth stealing."
+     ]
+    },
+    {
+     "app": "ours",
+     "flow": "What this lane shows",
+     "source": "Where the screens came from, and when",
+     "coverage": "One screen only, as a placeholder.",
+     "screens": [
+      {
+       "step": "What the user is doing",
+       "blocks": [
+        [
+         "bar",
+         "Home"
+        ],
+        [
+         "search",
+         "Search"
+        ],
+        [
+         "card",
+         "A card",
+         {
+          "sub": "With a second line"
+         }
+        ],
+        [
+         "grid",
+         "",
+         {
+          "n": 2
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "note",
+         "t": "Replace this JSON with your teardown.json."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 2,
+       "why": "Replace with a one line reason."
+      },
+      "speed": {
+       "n": 2,
+       "why": "Replace with a one line reason."
+      },
+      "transparency": {
+       "n": 2,
+       "why": "Replace with a one line reason."
+      },
+      "trust": {
+       "n": 2,
+       "why": "Replace with a one line reason."
+      },
+      "engagement": {
+       "n": 2,
+       "why": "Replace with a one line reason."
+      }
+     },
+     "verdict": "A strength, but a weakness.",
+     "well": [
+      "One thing it does well."
+     ],
+     "wrong": [
+      "One thing it does wrong."
+     ]
+    }
+   ],
+   "synthesis": {
+    "best": [
+     {
+      "app": "one",
+      "why": "Why it is the best here."
+     }
+    ],
+    "patterns": [
+     {
+      "name": "A pattern",
+      "text": "What it is.",
+      "seen": [
+       "one",
+       "two"
+      ]
+     }
+    ],
+    "anti": [
+     {
+      "name": "An anti-pattern",
+      "text": "What to avoid.",
+      "seen": [
+       "ours"
+      ]
+     }
+    ],
+    "ideal": [
+     {
+      "name": "First step",
+      "text": "What happens."
+     },
+     {
+      "name": "Second step",
+      "text": "What happens next."
+     }
+    ],
+    "gaps": [
+     {
+      "p": "P0",
+      "title": "A gap",
+      "today": "What happens today.",
+      "fix": "The fix.",
+      "benchmark": "one"
+     }
+    ]
+   }
+  }
+ ],
+ "principles": [
+  {
+   "name": "First principle",
+   "text": "What the best versions have in common.",
+   "evidence": [
+    "S1"
+   ]
+  },
+  {
+   "name": "Second principle",
+   "text": "Another thing they share.",
+   "evidence": [
+    "S1"
+   ]
+  },
+  {
+   "name": "Third principle",
+   "text": "And a third.",
+   "evidence": [
+    "S1"
+   ]
+  }
+ ]
+}
+</script>
+<script>(()=>{var I=c=>String(c??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;"),R=(c,z)=>String(c??"").length>z?String(c).slice(0,z-1).trimEnd()+"\u2026":String(c??""),X={bar:30,title:26,search:24,chips:20,banner:40,card:46,row:24,grid:62,slots:26,text:16,gap:8,cta:28,tabs:30,sheet:0};function q(c={},{idPrefix:z=""}={}){let b=c.accent||"#0b0c0c",k=(c.blocks||[]).map(t=>Array.isArray(t)?{t:t[0],l:t[1],...t[2]||{}}:t),v="#101311",f="#8a908b",y="#e3e5e0",m="#f1f2ee",d=26,w=[],E=[],W=k.find(t=>t.t==="tabs"),M=[...k].reverse().find(t=>t.t==="cta"&&t.fixed!==!1),P=368-(W?34:6)-0,s=(t,o,p,{size:e=8,weight:i=500,fill:r=v,anchor:n="start",max:$=30}={})=>`<text x="${t}" y="${o}" font-size="${e}" font-weight="${i}" fill="${r}" text-anchor="${n}">${I(R(p,$))}</text>`;for(let t of k){if(t.t==="tabs"||t.t==="sheet")continue;let o=t.h||X[t.t]||20;if(d+o>P)break;let p=10,e=160,i=t.accent?b:"#ffffff",r=t.accent?"#ffffff":v,n=[];switch(t.t){case"bar":n.push(s(p,d+13,t.l,{size:10.5,weight:700,max:24})),t.sub&&n.push(s(p,d+24,t.sub,{size:7,fill:f,max:34})),n.push(`<circle cx="162" cy="${d+11}" r="8" fill="${m}"/>`);break;case"title":n.push(s(p,d+17,t.l,{size:13,weight:700,max:22}));break;case"search":n.push(`<rect x="${p}" y="${d}" width="${e}" height="${o-4}" rx="10" fill="${m}"/>`),n.push(`<circle cx="${p+11}" cy="${d+10}" r="3.2" fill="none" stroke="${f}" stroke-width="1.2"/>`),n.push(s(p+20,d+13,t.l||"Search",{size:7.5,fill:f}));break;case"chips":{let h=t.items||String(t.l||"").split("|"),g=p;h.forEach((x,j)=>{let H=Math.min(64,12+String(x).length*4.1);if(g+H>170)return;let A=j===(t.on??0);n.push(`<rect x="${g}" y="${d}" width="${H}" height="15" rx="7.5" fill="${A?v:"#fff"}" stroke="${A?v:y}"/>`),n.push(s(g+H/2,d+10.4,x,{size:6.8,fill:A?"#fff":v,anchor:"middle",max:14})),g+=H+4});break}case"banner":n.push(`<rect x="${p}" y="${d}" width="${e}" height="${o-6}" rx="9" fill="${t.accent?b:m}"/>`),n.push(s(p+9,d+15,t.l,{size:8.5,weight:700,fill:t.accent?"#fff":v,max:30})),t.sub&&n.push(s(p+9,d+26,t.sub,{size:7,fill:t.accent?"rgba(255,255,255,.8)":f,max:36}));break;case"card":if(n.push(`<rect x="${p}" y="${d}" width="${e}" height="${o-6}" rx="9" fill="${i}" stroke="${t.accent?b:y}"/>`),n.push(s(p+9,d+15,t.l,{size:8.6,weight:700,fill:r,max:t.action?22:30})),t.sub&&n.push(s(p+9,d+27,t.sub,{size:7,fill:t.accent?"rgba(255,255,255,.82)":f,max:t.action?26:36})),t.action){let h=14+String(t.action).length*3.9;n.push(`<rect x="${p+e-h-7}" y="${d+11}" width="${h}" height="16" rx="8" fill="${t.accent?"#fff":v}"/>`),n.push(s(p+e-h/2-7,d+22,t.action,{size:6.8,weight:600,fill:t.accent?b:"#fff",anchor:"middle",max:12}))}break;case"row":n.push(`<rect x="${p}" y="${d+3}" width="14" height="14" rx="4" fill="${m}"/>`),n.push(s(p+20,d+13.5,t.l,{size:8,max:t.right?22:30,fill:t.warn?"#c9362b":v})),t.sub&&n.push(s(p+20,d+21,t.sub,{size:6.2,fill:f,max:34})),t.right&&n.push(s(170,d+13.5,t.right,{size:7.6,fill:t.warn?"#c9362b":f,anchor:"end",max:16})),n.push(`<path d="M${p} ${d+o-1}H170" stroke="${y}" stroke-width=".7"/>`);break;case"grid":{let h=t.n||3,g=(e-(h-1)*6)/h;for(let x=0;x<h;x++){let j=p+x*(g+6);n.push(`<rect x="${j}" y="${d}" width="${g}" height="${o-20}" rx="8" fill="${m}"/>`),n.push(`<rect x="${j}" y="${d+o-16}" width="${g*.75}" height="4" rx="2" fill="${y}"/>`),n.push(`<rect x="${j}" y="${d+o-9}" width="${g*.4}" height="4" rx="2" fill="${y}"/>`)}break}case"slots":{let h=t.items||String(t.l||"").split("|"),g=(e-(h.length-1)*5)/h.length;h.forEach((x,j)=>{let H=p+j*(g+5),A=j===(t.on??-1);n.push(`<rect x="${H}" y="${d}" width="${g}" height="${o-6}" rx="7" fill="${A?b:"#fff"}" stroke="${A?b:y}"/>`),n.push(s(H+g/2,d+13,x,{size:6.6,weight:600,fill:A?"#fff":v,anchor:"middle",max:12}))});break}case"text":n.push(s(p,d+10,t.l,{size:t.size||7.4,fill:t.warn?"#c9362b":f,weight:t.bold?700:500,max:42}));break;case"cta":n.push(`<rect x="${p}" y="${d}" width="${e}" height="${o-6}" rx="11" fill="${t.ghost?"#fff":b}" stroke="${b}"/>`),n.push(s(180/2,d+14.5,t.l,{size:8.4,weight:700,fill:t.ghost?b:"#fff",anchor:"middle",max:28}));break;default:break}let $=n.join("");w.push(t.dim?`<g opacity=".35">${$}</g>`:$),t.hi&&w.push(`<rect x="${p-3.5}" y="${d-3.5}" width="${e+7}" height="${o+1}" rx="11" fill="none" stroke="#b6e000" stroke-width="2"/>`),t.pin&&E.push({id:t.pin,x:168,y:d-1}),d+=o}if(W){let t=W.items||["Home","Search","Orders","You"],o=180/t.length;w.push(`<rect x="0" y="336" width="180" height="32" fill="#fff"/><path d="M0 336H180" stroke="${y}"/>`),t.forEach((p,e)=>{let i=e===(W.on??0);w.push(`<circle cx="${o*e+o/2}" cy="347" r="4" fill="${i?b:y}"/>`),w.push(s(o*e+o/2,360,p,{size:6.2,fill:i?v:f,anchor:"middle",max:10}))})}let l=k.find(t=>t.t==="sheet");if(l){let t=l.h||150;w.push('<rect x="0" y="0" width="180" height="368" fill="rgba(16,19,17,.38)"/>'),w.push(`<rect x="0" y="${368-t}" width="180" height="${t+20}" rx="16" fill="#fff"/>`),w.push(`<rect x="${180/2-14}" y="${368-t+7}" width="28" height="3.5" rx="2" fill="${y}"/>`),w.push(s(12,368-t+28,l.l,{size:10,weight:700,max:26})),(l.items||[]).forEach((o,p)=>{let e=368-t+40+p*26,i=p===(l.on??0);w.push(`<rect x="10" y="${e}" width="160" height="21" rx="8" fill="${i?"#f3ffc9":"#fff"}" stroke="${i?"#b6e000":y}"/>`),w.push(s(19,e+13.5,o,{size:7.6,max:34}))}),l.pin&&E.push({id:l.pin,x:168,y:368-t+14})}let u=E.map(t=>{let o=9+String(t.id).length*4.6;return`<g><rect x="${t.x-o}" y="${t.y-7}" width="${o}" height="14" rx="7" fill="#dcff4a" stroke="#0b0c0c" stroke-width="1"/><text x="${t.x-o/2}" y="${t.y+3.1}" font-size="7.4" font-weight="700" text-anchor="middle" fill="#0b0c0c" font-family="ui-monospace,Menlo,monospace">${I(t.id)}</text></g>`}).join(""),S=`${z}sc${Math.abs(G(JSON.stringify(c)))}`;return`<svg class="scr" viewBox="0 0 180 368" xmlns="http://www.w3.org/2000/svg" font-family="Geist,Inter,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" role="img" aria-label="${I(c.alt||"Schematic screen")}">
+<defs><clipPath id="${S}"><rect width="180" height="368" rx="22"/></clipPath></defs>
+<g clip-path="url(#${S})">
+<rect width="180" height="368" fill="${c.bg||"#fbfbf9"}"/>
+<text x="14" y="16" font-size="7.4" font-weight="700" fill="${v}">9:41</text>
+<rect x="146" y="9" width="20" height="8" rx="2.5" fill="none" stroke="${v}" stroke-width=".9"/><rect x="${180-32.4}" y="10.6" width="13" height="4.8" rx="1.2" fill="${v}"/>
+${w.join(`
+`)}
+</g>
+<rect x=".6" y=".6" width="${180-1.2}" height="${368-1.2}" rx="21.4" fill="none" stroke="rgba(16,19,17,.16)" stroke-width="1.2"/>
+${u}
+</svg>`}function G(c){let z=0;for(let b=0;b<c.length;b++)z=Math.imul(31,z)+c.charCodeAt(b)|0;return z}var a=c=>String(c??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;"),L={good:"Good",friction:"Friction",note:"Note",idea:"Idea"},J={good:"Something the screen does well that others should copy.",friction:"Confusion, a missing disclosure, an extra step or a dark pattern.",note:"A neutral observation worth recording.",idea:"A concrete improvement."},K=[{id:"clarity",name:"Clarity",means:"You can tell what to do next without reading twice."},{id:"speed",name:"Speed",means:"Few steps and little typing to finish the stage."},{id:"transparency",name:"Transparency",means:"Costs, limits and consequences are shown before they bite."},{id:"trust",name:"Trust",means:"Nothing surprises the user later."},{id:"engagement",name:"Engagement",means:"It gives a reason to come back or go further."}],U=c=>c.length?c.reduce((z,b)=>z+b,0)/c.length:null,C=c=>c==null?"none":c>=4.5?"hi":c>=3.5?"mid":"low",B=c=>c==null?"":c.toFixed(1);function D(c,z){return U(z.map(b=>c.scores?.[b.id]?.n).filter(b=>typeof b=="number"))}function Z(c){let z=c.apps||[],b=s=>z.find(l=>l.id===s)||{id:s,name:s,accent:"#0b0c0c"},k=c.dimensions?.length?c.dimensions:K,v=c.stages||[],f=c.us,y=b(f).name,m=Math.max(1,...v.flatMap(s=>(s.lanes||[]).map(l=>(l.screens||[]).length))),d=s=>(s||[]).map(l=>a(b(l).name)).join(", "),w=0,E=(s,l)=>{let u=b(l.app),S=D(l,k),t=l.app===f;return`
+    <div class="lane${t?" us":""}" data-lane="${a(s.id)}-${a(l.app)}" style="--accent:${a(u.accent||"#0b0c0c")}">
+      <div class="lane-meta">
+        <div class="lane-app"><i></i>${a(u.name)}${t?'<span class="atag hi">Ours</span>':""}</div>
+        <div class="lane-flow">${a(l.flow||"")}</div>
+        <div class="lane-src">${a(l.source||"")}${l.coverage?`<br><b>Thin coverage:</b> ${a(l.coverage)}`:""}</div>
+        <div class="lane-overall" data-overall><b>${B(S)}</b><span>out of 5</span></div>
+        <div class="lane-bars">
+          ${k.map(o=>{let p=l.scores?.[o.id];return`<div class="bar" data-bar title="${a(p?.why||"")}"><span>${a(o.name)}</span><i><em style="--n:${p?.n||0}"></em></i><b>${p?.n??""}</b></div>`}).join("")}
+        </div>
+      </div>
+      <div class="lane-shots">
+        ${(l.screens||[]).map((o,p)=>{let e=o.img?`<img src="${a(o.img)}" alt="${a(o.step||"")}" loading="lazy">`:q({accent:u.accent,blocks:o.blocks||[]},{idPrefix:`b${w++}`});return`${p?'<div class="lane-arrow" aria-hidden="true"><svg viewBox="0 0 24 12"><path d="M0 6h21M16 1.500 21 6l-5 4.500" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>':""}
+          <div class="shot" data-shot>
+            <div class="shot-step"><b>${p+1}</b>${a(o.step||"")}</div>
+            <div class="shot-row">
+              <div class="shot-pic">${e}</div>
+              <div class="shot-notes">
+                ${(o.notes||[]).map(i=>`<div class="bnote ${a(i.k)}" data-note data-k="${a(i.k)}"><b>${L[i.k]||a(i.k)}</b>${a(i.t)}</div>`).join("")}
+              </div>
+            </div>
+          </div>`}).join("")}
+      </div>
+      <div class="lane-verdict" data-verdict>
+        ${l.verdict?`<div class="vd-line">${a(l.verdict)}</div>`:""}
+        ${(l.well||[]).length?`<div class="vd good"><b>Does well</b><ul>${l.well.map(o=>`<li>${a(o)}</li>`).join("")}</ul></div>`:""}
+        ${(l.wrong||[]).length?`<div class="vd bad"><b>Does wrong</b><ul>${l.wrong.map(o=>`<li>${a(o)}</li>`).join("")}</ul></div>`:""}
+        ${(l.steal||[]).length?`<div class="vd idea"><b>Steal for ${a(y)}</b><ul>${l.steal.map(o=>`<li>${a(o)}</li>`).join("")}</ul></div>`:""}
+      </div>
+    </div>`},W=(s,l)=>{let u=s.synthesis||{},S=s.lanes||[];return`
+    <section class="bf bf-syn" data-frame="${a(s.id)}-syn">
+      <div class="bf-ey">Stage ${l} synthesis</div>
+      <h2>${a(s.name)}</h2>
+      ${s.finding?`<p class="syn-finding" data-syn>${a(s.finding)}</p>`:""}
+      <div class="syn-block" data-syn>
+        <h3>Scores in this stage</h3>
+        <table class="syn-scores"><thead><tr><th></th>${k.map(t=>`<th>${a(t.name)}</th>`).join("")}<th>Overall</th></tr></thead>
+        <tbody>${S.map(t=>`<tr class="${t.app===f?"us":""}"><td>${a(b(t.app).name)}</td>${k.map(o=>`<td class="t-${C(t.scores?.[o.id]?.n)}">${t.scores?.[o.id]?.n??""}</td>`).join("")}<td class="t-${C(D(t,k))}"><b>${B(D(t,k))}</b></td></tr>`).join("")}</tbody></table>
+      </div>
+      ${(u.best||[]).length?`<div class="syn-block" data-syn><h3>Best in class</h3>${u.best.map((t,o)=>`<div class="syn-card"><b>${o+1}. ${a(b(t.app).name)}</b>${a(t.why)}</div>`).join("")}</div>`:""}
+      ${(u.patterns||[]).length?`<div class="syn-block" data-syn><h3>Patterns to adopt</h3>${u.patterns.map(t=>`<div class="syn-card good"><b>${a(t.name)}</b>${a(t.text)}<em>Seen in ${d(t.seen)}</em></div>`).join("")}</div>`:""}
+      ${(u.anti||[]).length?`<div class="syn-block" data-syn><h3>Anti-patterns to avoid</h3>${u.anti.map(t=>`<div class="syn-card bad"><b>${a(t.name)}</b>${a(t.text)}<em>Seen in ${d(t.seen)}</em></div>`).join("")}</div>`:""}
+      ${(u.ideal||[]).length?`<div class="syn-block" data-syn><h3>The ideal flow</h3><ol class="syn-ideal">${u.ideal.map((t,o)=>`<li><span>${o+1}</span><div><b>${a(t.name)}</b>${a(t.text)}</div></li>`).join("")}</ol></div>`:""}
+      ${(u.gaps||[]).length?`<div class="syn-block" data-syn><h3>${a(y)} gaps</h3>${u.gaps.map(t=>`<div class="syn-card gap"><div class="gap-top"><span class="atag ${t.p==="P0"?"bad":t.p==="P1"?"warn":""}">${a(t.p)}</span><b>${a(t.title)}</b></div><p><i>Today</i> ${a(t.today)}</p><p><i>Fix</i> ${a(t.fix)}</p><em>${t.benchmark?`Benchmark: ${a(b(t.benchmark).name)}`:a(t.benchmarkNote||"No app on the board does this.")}</em></div>`).join("")}</div>`:""}
+    </section>`},M={lanes:v.reduce((s,l)=>s+(l.lanes||[]).length,0),screens:v.reduce((s,l)=>s+(l.lanes||[]).reduce((u,S)=>u+(S.screens||[]).length,0),0),notes:v.reduce((s,l)=>s+(l.lanes||[]).reduce((u,S)=>u+(S.screens||[]).reduce((t,o)=>t+(o.notes||[]).length,0),0),0)};return{html:`
+  <section class="bf bf-start" data-frame="start">
+    <div class="bf-ey">Start here</div>
+    <h1>${a(c.title||"Journey teardown")}</h1>
+    <p class="start-q">${a(c.question||"")}</p>
+    <div class="start-grid">
+      <div data-start>
+        <h3>How to read this board</h3>
+        <ol>
+          <li>One frame per stage of the journey, top to bottom.</li>
+          <li>Inside a stage, one row per app. Read it left to right.</li>
+          <li>Up to three notes beside every screen.</li>
+          <li>${a(y)} is always the last row, under the best examples.</li>
+          <li>The synthesis sits to the right of each stage.</li>
+        </ol>
+      </div>
+      <div data-start>
+        <h3>The four notes</h3>
+        ${Object.keys(L).map(s=>`<div class="bnote ${s}" data-k="${s}"><b>${L[s]}</b>${J[s]}</div>`).join("")}
+      </div>
+      <div data-start>
+        <h3>Scores, 1 to 5</h3>
+        <dl class="start-dims">${k.map(s=>`<div><dt>${a(s.name)}</dt><dd>${a(s.means||"")}</dd></div>`).join("")}</dl>
+        <p class="start-small">Relative to the best example seen for the stage. One reader scored every lane, so the numbers rank screens. They are not measurements.</p>
+      </div>
+      <div data-start>
+        <h3>Apps compared</h3>
+        <ul class="start-apps">${z.map(s=>`<li style="--accent:${a(s.accent||"#0b0c0c")}"><i></i><b>${a(s.name)}</b><span>${a(s.role||"")}</span></li>`).join("")}</ul>
+        <p class="start-small">${M.lanes} lanes \xB7 ${M.screens} screens \xB7 ${M.notes} notes${c.captured?` \xB7 captured ${a(c.captured)}`:""}</p>
+        ${c.note?`<p class="start-small">${a(c.note)}</p>`:""}
+      </div>
+    </div>
+  </section>
+
+  <section class="bf bf-score" data-frame="score">
+    <div class="bf-ey">Scorecard</div>
+    <h2>Who is strongest where</h2>
+    <table class="heat">
+      <thead><tr><th></th>${v.map(s=>`<th>${a(s.id)}<span>${a(s.name)}</span></th>`).join("")}</tr></thead>
+      <tbody>${z.map(s=>`<tr class="${s.id===f?"us":""}"><td>${a(s.name)}</td>${v.map(l=>{let u=(l.lanes||[]).find(t=>t.app===s.id),S=u?D(u,k):null;return`<td><span class="cell t-${C(S)}" data-cell>${B(S)}</span></td>`}).join("")}</tr>`).join("")}</tbody>
+    </table>
+    <p class="start-small">Each cell is the mean of the five scores for that app's lane. A blank cell means no screens were captured.</p>
+  </section>
+
+  ${v.map((s,l)=>`
+  <section class="bf bf-stage" data-frame="${a(s.id)}">
+    <div class="bf-ey">Stage ${l+1}</div>
+    <h2>${a(s.name)}</h2>
+    ${Object.keys(s.missing||{}).length?`<p class="start-small">Not covered: ${Object.entries(s.missing).map(([u,S])=>`${a(b(u).name)} (${a(S)})`).join("; ")}</p>`:""}
+    <div class="lanes">${(s.lanes||[]).map(u=>E(s,u)).join("")}</div>
+  </section>
+  ${W(s,l+1)}`).join("")}
+
+  ${(c.principles||[]).length?`<section class="bf bf-ideal" data-frame="ideal">
+    <div class="bf-ey">Across every stage</div>
+    <h2>What the best versions have in common</h2>
+    <div class="ideal-grid">${c.principles.map(s=>`<div class="syn-card" data-principle><b>${a(s.name)}</b>${a(s.text)}<em>Evidence: ${(s.evidence||[]).map(a).join(", ")}</em></div>`).join("")}</div>
+  </section>`:""}`,maxShots:m,stages:v.map(s=>({id:s.id,name:s.name})),counts:M}}function N(c,z,b={}){let k=Z(z),v=300+k.maxShots*430+380;c.classList.add("board"),c.innerHTML=`
+    <div class="board-view" data-view>
+      <div class="board-world adoc" data-world style="--col-a:${v}px">${k.html}</div>
+    </div>
+    ${b.toolbar===!1?"":`<div class="board-bar" data-bar>
+      <div class="board-jump">
+        <button type="button" data-jump="start">Start</button>
+        ${k.stages.map(e=>`<button type="button" data-jump="${a(e.id)}">${a(e.id)}</button>`).join("")}
+        <button type="button" data-jump="score">Scores</button>
+        <button type="button" data-jump="all">All</button>
+      </div>
+      <div class="board-filter" role="group" aria-label="Show notes">
+        ${Object.keys(L).map(e=>`<button type="button" class="on ${e}" data-filter="${e}" aria-pressed="true">${L[e]}</button>`).join("")}
+      </div>
+      <div class="board-zoom">
+        <button type="button" data-zoom="-1" aria-label="Zoom out">\u2212</button>
+        <button type="button" data-zoom="1" aria-label="Zoom in">+</button>
+      </div>
+    </div>`}`;let f=c.querySelector("[data-view]"),y=c.querySelector("[data-world]"),m={x:0,y:0,z:.4},d=b.interactive!==!1,w=0,E=()=>{y.style.transform=`translate3d(${m.x.toFixed(2)}px,${m.y.toFixed(2)}px,0) scale(${m.z.toFixed(5)})`};function W(e){let i=0,r=0,n=e;for(;n&&n!==y;)i+=n.offsetLeft,r+=n.offsetTop,n=n.offsetParent;return{x:i,y:r,w:e.offsetWidth,h:e.offsetHeight}}let M=e=>e==="all"?y:y.querySelector(`[data-frame="${CSS.escape(e)}"]`)||y.querySelector(`[data-lane="${CSS.escape(e)}"]`);function P(e,{mode:i="fit",pad:r=24,zoom:n=null}={}){let $=typeof e=="string"?M(e):e,h=$===y?{x:0,y:0,w:y.offsetWidth,h:y.offsetHeight}:W($),g=f.clientWidth,x=f.clientHeight,j=(g-r*2)/h.w,H=(x-r*2)/h.h,A=n||(i==="top"?j:Math.min(j,H)),T=(g-h.w*A)/2-h.x*A,Y=i==="top"||h.h*A>x-r*2?r-h.y*A:(x-h.h*A)/2-h.y*A;return{x:T,y:Y,z:A}}function s(e){m.x=e.x,m.y=e.y,m.z=e.z,E()}function l(e,i,r){let n=f.clientWidth,$=f.clientHeight,h={cx:(n/2-e.x)/e.z,cy:($/2-e.y)/e.z},g={cx:(n/2-i.x)/i.z,cy:($/2-i.y)/i.z},x=e.z*Math.pow(i.z/e.z,r),j=h.cx+(g.cx-h.cx)*r,H=h.cy+(g.cy-h.cy)*r;return{x:n/2-j*x,y:$/2-H*x,z:x}}function u(e,i=480){cancelAnimationFrame(w);let r={...m},n=performance.now(),$=h=>{let g=Math.min(1,(h-n)/i),x=g<.5?4*g*g*g:1-Math.pow(-2*g+2,3)/2;s(l(r,e,x)),g<1&&(w=requestAnimationFrame($))};w=requestAnimationFrame($)}function S(e,i,r){let n=Math.max(.08,Math.min(2.2,m.z*e)),$=(i-m.x)/m.z,h=(r-m.y)/m.z;s({x:i-$*n,y:r-h*n,z:n})}let t=new Map,o=0;f.addEventListener("pointerdown",e=>{!d||e.target.closest("a, button")||(cancelAnimationFrame(w),f.setPointerCapture(e.pointerId),t.set(e.pointerId,{x:e.clientX,y:e.clientY}),f.classList.add("dragging"))}),f.addEventListener("pointermove",e=>{let i=t.get(e.pointerId);if(i){if(t.size===1)s({x:m.x+e.clientX-i.x,y:m.y+e.clientY-i.y,z:m.z});else if(t.size===2){let r=[...t.entries()].find(([h])=>h!==e.pointerId)[1],n=Math.hypot(e.clientX-r.x,e.clientY-r.y),$=f.getBoundingClientRect();o&&S(n/o,(e.clientX+r.x)/2-$.left,(e.clientY+r.y)/2-$.top),o=n}i.x=e.clientX,i.y=e.clientY}});let p=e=>{t.delete(e.pointerId),o=0,t.size||f.classList.remove("dragging")};return f.addEventListener("pointerup",p),f.addEventListener("pointercancel",p),f.addEventListener("wheel",e=>{if(!d||!(e.ctrlKey||e.metaKey))return;e.preventDefault();let i=f.getBoundingClientRect();S(Math.exp(-e.deltaY*.0022),e.clientX-i.left,e.clientY-i.top)},{passive:!1}),f.addEventListener("dblclick",e=>{if(!d)return;let i=f.getBoundingClientRect(),r=(e.clientX-i.left-m.x)/m.z,n=(e.clientY-i.top-m.y)/m.z,$=Math.min(1.2,m.z*1.9);u({x:f.clientWidth/2-r*$,y:f.clientHeight/2-n*$,z:$},380)}),c.addEventListener("click",e=>{let i=e.target.closest("[data-jump],[data-filter],[data-zoom]");if(i){if(i.dataset.jump){let r=i.dataset.jump;u(P(r,{mode:r==="all"||r==="start"||r==="score"?"fit":"top"}))}else if(i.dataset.filter){let r=i.classList.toggle("on");i.setAttribute("aria-pressed",String(r)),y.classList.toggle(`hide-${i.dataset.filter}`,!r)}else if(i.dataset.zoom){let r=Math.max(.08,Math.min(2.2,m.z*(i.dataset.zoom==="1"?1.35:.7407407407407407))),n=f.clientWidth/2,$=f.clientHeight/2;u({x:n-(n-m.x)/m.z*r,y:$-($-m.y)/m.z*r,z:r},240)}}}),s(P("start")),{root:c,view:f,world:y,counts:k.counts,rectOf:W,cameraFor:P,set:s,glide:u,frame:M,setInteractive(e){d=e,c.classList.toggle("is-interactive",e)},follow(e,i){let r=[...i].sort(($,h)=>$.at-h.at),n=$=>P(typeof $.to=="function"?$.to():$.to,$);e.each($=>{if(d)return;let h=0;for(;h+1<r.length&&$>=r[h+1].at;)h++;let g=r[h];if(h===0)return s(n(g));let x=Math.max(0,Math.min(1,($-g.at)/(g.dur??1))),j=x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;s(l(n(r[h-1]),n(g),j))});for(let $ of r)e.end($.at+($.dur??1))}}}var F=JSON.parse(document.getElementById("teardown-data").textContent),O=N(document.getElementById("root"),F);O.setInteractive(!0);F.title&&(document.title=F.title);addEventListener("resize",()=>O.set(O.cameraFor("start")));})();</script>
+</body>
+</html>

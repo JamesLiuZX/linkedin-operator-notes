@@ -22,7 +22,8 @@ const ICON = {
 };
 
 const thumb = (k) => `<span class="p-thumb" style="--tint:${TINT[k] || "#f1f2ee"}"><svg viewBox="0 0 24 24" aria-hidden="true">${ICON[k] || ""}</svg></span>`;
-const money = (n) => `$${n.toFixed(2)}`;
+const money = (n) => `${n.toFixed(2)}`;
+const DELIVERY = 4.5;
 
 const SLOTS = [
   { id: "today-6", day: "Today", time: "6 to 7pm" },
@@ -50,7 +51,7 @@ function basket() {
   ];
 }
 
-const REST = { n: 13, total: 30.05 }; // the part of the shop below the fold, unchanged from last week
+const REST = { n: 13, total: 28.35 }; // the part of the shop below the fold, unchanged from last week
 const kept = (d) => d.items.filter((i) => !i.removed);
 const count = (d) => REST.n + kept(d).reduce((n, i) => n + i.qty, 0);
 const subtotal = (d) => REST.total + kept(d).reduce((n, i) => n + (i.price + (i.swapped ? SWAP[i.id].diff : 0)) * i.qty, 0);
@@ -103,7 +104,7 @@ function home(ctx) {
         ? `<div class="p-card brand has-pin" ${ctx.flag("1.1")}>
         ${ctx.pin("1.1")}
         <div class="p-card-row">
-          <div><h3>Your usual shop</h3><p>${count(d)} items, about $${Math.round(subtotal(d) + 2.8)}. Last ordered Tuesday.</p></div>
+          <div><h3>Your usual shop</h3><p>${count(d)} items, about $${Math.round(subtotal(d) + DELIVERY)}. Last ordered Sunday.</p></div>
           <button class="p-btn light" data-act="reorder" data-cta="reorder">Reorder</button>
         </div>
       </div>`
@@ -155,9 +156,9 @@ function orders() {
     <div class="p-top"><span class="p-addr"><b>Orders</b></span><span class="p-avatar">M</span></div>
     <h1 class="p-h1">Past orders</h1>
     ${[
-      ["Tuesday 10 Nov", "23 items", "$61.20"],
-      ["Tuesday 3 Nov", "21 items", "$57.85"],
-      ["Wednesday 28 Oct", "26 items", "$68.10"],
+      ["Sunday 15 Nov", "23 items", "$59.80"],
+      ["Sunday 8 Nov", "26 items", "$64.10"],
+      ["Sunday 1 Nov", "21 items", "$55.90"],
     ]
       .map(
         ([day, n, t], i) => `
@@ -237,11 +238,11 @@ function basketScreen(ctx) {
 
     <div style="margin-top:12px">
       <div class="p-kv"><span>Items</span><span>${money(subtotal(d))}</span></div>
-      <div class="p-kv"><span>Delivery</span><span>$2.80</span></div>
-      <div class="p-kv total"><span>Total</span><span>${money(subtotal(d) + 2.8)}</span></div>
+      <div class="p-kv"><span>Delivery</span><span>${money(DELIVERY)}</span></div>
+      <div class="p-kv total"><span>Total</span><span>${money(subtotal(d) + DELIVERY)}</span></div>
     </div>
   </div>
-  <div class="p-bar"><button class="p-btn wide" data-go="checkout" data-cta="checkout">Go to checkout · ${money(subtotal(d) + 2.8)}</button></div>`;
+  <div class="p-bar"><button class="p-btn wide" data-go="checkout" data-cta="checkout">Go to checkout · ${money(subtotal(d) + DELIVERY)}</button></div>`;
 }
 
 function checkout(ctx) {
@@ -275,8 +276,8 @@ function checkout(ctx) {
     <div style="margin-top:14px">
       <div class="p-kv"><span>Items</span><span>${money(subtotal(d))}</span></div>
       ${ctx.on("3.2") && rises(d).length ? `<div class="p-kv up has-pin" ${ctx.flag("3.2")}><span>Price changes since last week</span><span>+${money(riseTotal(d))}</span></div>` : ""}
-      <div class="p-kv"><span>Delivery</span><span>$2.80</span></div>
-      <div class="p-kv total"><span>Total</span><span>${money(subtotal(d) + 2.8)}</span></div>
+      <div class="p-kv"><span>Delivery</span><span>${money(DELIVERY)}</span></div>
+      <div class="p-kv total"><span>Total</span><span>${money(subtotal(d) + DELIVERY)}</span></div>
     </div>
   </div>
   <div class="p-bar"><button class="p-btn wide" ${blocked ? 'data-toast-text="Remove the unavailable items first." style="opacity:.45"' : 'data-go="done"'}>Place order</button></div>`;

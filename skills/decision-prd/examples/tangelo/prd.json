@@ -6,13 +6,31 @@
     "author": "Noor Haddad, Product",
     "date": "2026-11-18",
     "summary": "Three parts of the repeat order, each with the problem, the change and the evidence. Six points in all, shipped in three steps.",
-    "prototype": { "href": "flagged-prototype.html", "label": "Open the clickable prototype" },
+    "prototype": {
+      "href": "flagged-prototype.html",
+      "label": "Open the clickable prototype"
+    },
     "fictional": true
   },
   "sources": [
-    { "id": "T", "label": "Journey teardown", "detail": "4 apps, 3 stages", "href": "journey-teardown.html" },
-    { "id": "S", "label": "Interview synthesis", "detail": "8 weekly shoppers", "href": "interview-synthesis.html" },
-    { "id": "R", "label": "Pre-mortem", "detail": "9 risks, 4 tripwires", "href": "premortem.html" }
+    {
+      "id": "T",
+      "label": "Journey teardown",
+      "detail": "4 apps, 3 stages",
+      "href": "journey-teardown.html"
+    },
+    {
+      "id": "S",
+      "label": "Interview synthesis",
+      "detail": "8 weekly shoppers",
+      "href": "interview-synthesis.html"
+    },
+    {
+      "id": "R",
+      "label": "Pre-mortem",
+      "detail": "9 risks, 4 tripwires",
+      "href": "premortem.html"
+    }
   ],
   "sourceNote": "Screens marked Today and Proposed are schematic drawings of Tangelo. Reference screens are drawings of the fictional apps in the teardown.",
   "sections": [
@@ -30,13 +48,186 @@
           "problem": "Repeating a shop means opening Orders, opening the order, then tapping Reorder. Seven of eight customers we spoke to buy mostly the same things each week, and none of them had found that route.",
           "change": "Put a card at the top of Home: \"Your usual shop, 23 items, about $61\". One tap opens last week's basket, ready to edit.",
           "why": "The card opens a basket, never a checkout. A repeat order still needs a look before it is paid for.",
-          "constraint": { "label": "Risk from the pre-mortem", "text": "A one-tap repeat can shrink baskets, because people stop browsing (R3). Items per order is a guardrail on the test, with a stop line at a 3% fall." },
+          "constraint": {
+            "label": "Risk from the pre-mortem",
+            "text": "A one-tap repeat can shrink baskets, because people stop browsing (R3). Items per order is a guardrail on the test, with a stop line at a 3% fall."
+          },
           "evidence": [
-            { "tag": "today", "label": "Tangelo today", "caption": "Home. Reorder is under Orders, three taps away.", "screen": { "accent": "#14532d", "blocks": [["bar", "Good evening, Maya", { "sub": "Deliver to 14 Linden Road" }], ["search", "Search 4,000 items"], ["chips", "For you|Fruit|Bakery|Dairy"], ["banner", "Free delivery over $40", { "sub": "On every order this week" }], ["text", "Popular this week", { "bold": true }], ["grid", "", { "n": 2 }], ["tabs", "", { "on": 0 }]] } },
-            { "tag": "reference", "label": "Pippin", "caption": "Last week's shop comes first, with its total.", "screen": { "accent": "#5b3df5", "blocks": [["bar", "Hi Sam", { "sub": "Delivering to Flat 2" }], ["card", "Reorder last shop", { "sub": "26 items · $64.10", "action": "Reorder", "accent": true, "hi": true }], ["search", "Search"], ["text", "Offers for you", { "bold": true }], ["grid", "", { "n": 3 }], ["grid", "", { "n": 3 }], ["tabs", "", { "on": 0 }]] } },
-            { "tag": "proposed", "label": "Proposed", "caption": "The reorder card, above everything else.", "screen": { "accent": "#14532d", "blocks": [["bar", "Good evening, Maya", { "sub": "Deliver to 14 Linden Road" }], ["search", "Search 4,000 items"], ["card", "Your usual shop", { "sub": "23 items, about $61", "action": "Reorder", "accent": true, "hi": true, "pin": "1.1" }], ["chips", "For you|Fruit|Bakery|Dairy"], ["text", "Popular this week", { "bold": true }], ["grid", "", { "n": 2 }], ["tabs", "", { "on": 0 }]] } }
+            {
+              "tag": "today",
+              "label": "Tangelo today",
+              "caption": "Home. Reorder is under Orders, three taps away.",
+              "screen": {
+                "accent": "#14532d",
+                "blocks": [
+                  [
+                    "bar",
+                    "Good evening, Maya",
+                    {
+                      "sub": "Deliver to 14 Linden Road"
+                    }
+                  ],
+                  [
+                    "search",
+                    "Search 4,000 items"
+                  ],
+                  [
+                    "chips",
+                    "For you|Fruit|Bakery|Dairy"
+                  ],
+                  [
+                    "banner",
+                    "Free delivery over $40",
+                    {
+                      "sub": "On every order this week"
+                    }
+                  ],
+                  [
+                    "text",
+                    "Popular this week",
+                    {
+                      "bold": true
+                    }
+                  ],
+                  [
+                    "grid",
+                    "",
+                    {
+                      "n": 2
+                    }
+                  ],
+                  [
+                    "tabs",
+                    "",
+                    {
+                      "on": 0
+                    }
+                  ]
+                ]
+              }
+            },
+            {
+              "tag": "reference",
+              "label": "Pippin",
+              "caption": "Last week's shop comes first, with its total.",
+              "screen": {
+                "accent": "#5b3df5",
+                "blocks": [
+                  [
+                    "bar",
+                    "Hi Sam",
+                    {
+                      "sub": "Delivering to Flat 2"
+                    }
+                  ],
+                  [
+                    "card",
+                    "Reorder last shop",
+                    {
+                      "sub": "26 items · $64.10",
+                      "action": "Reorder",
+                      "accent": true,
+                      "hi": true
+                    }
+                  ],
+                  [
+                    "search",
+                    "Search"
+                  ],
+                  [
+                    "text",
+                    "Offers for you",
+                    {
+                      "bold": true
+                    }
+                  ],
+                  [
+                    "grid",
+                    "",
+                    {
+                      "n": 3
+                    }
+                  ],
+                  [
+                    "grid",
+                    "",
+                    {
+                      "n": 3
+                    }
+                  ],
+                  [
+                    "tabs",
+                    "",
+                    {
+                      "on": 0
+                    }
+                  ]
+                ]
+              }
+            },
+            {
+              "tag": "proposed",
+              "label": "Proposed",
+              "caption": "The reorder card, above everything else.",
+              "screen": {
+                "accent": "#14532d",
+                "blocks": [
+                  [
+                    "bar",
+                    "Good evening, Maya",
+                    {
+                      "sub": "Deliver to 14 Linden Road"
+                    }
+                  ],
+                  [
+                    "search",
+                    "Search 4,000 items"
+                  ],
+                  [
+                    "card",
+                    "Your usual shop",
+                    {
+                      "sub": "23 items, about $61",
+                      "action": "Reorder",
+                      "accent": true,
+                      "hi": true,
+                      "pin": "1.1"
+                    }
+                  ],
+                  [
+                    "chips",
+                    "For you|Fruit|Bakery|Dairy"
+                  ],
+                  [
+                    "text",
+                    "Popular this week",
+                    {
+                      "bold": true
+                    }
+                  ],
+                  [
+                    "grid",
+                    "",
+                    {
+                      "n": 2
+                    }
+                  ],
+                  [
+                    "tabs",
+                    "",
+                    {
+                      "on": 0
+                    }
+                  ]
+                ]
+              }
+            }
           ],
-          "sources": ["T:stage 1", "S:theme 1, 7 of 8", "R:R3"],
+          "sources": [
+            "T:stage 1",
+            "S:theme 1, 7 of 8",
+            "R:R3"
+          ],
           "know": {
             "baseline": "Median time from opening the app to placing a repeat order. Not measured yet.",
             "expect": "More returning customers order within 7 days, and they get there faster.",
@@ -49,13 +240,178 @@
           "title": "Staples run out between shops",
           "problem": "Four of eight customers described a second, smaller order midweek for something they forgot. Nothing on Home knows what a customer is about to run out of.",
           "change": "Add a \"Running low?\" row with up to three items, chosen from how often this customer buys each one: \"Whole milk, every 6 days\".",
-          "constraint": { "label": "Risk from the pre-mortem", "text": "A wrong guess reads as nagging (R7). The row needs at least four past orders of an item before it will show it, and it never shows more than three." },
+          "constraint": {
+            "label": "Risk from the pre-mortem",
+            "text": "A wrong guess reads as nagging (R7). The row needs at least four past orders of an item before it will show it, and it never shows more than three."
+          },
           "evidence": [
-            { "tag": "today", "label": "Tangelo today", "caption": "Home shows what is popular, not what this customer needs.", "screen": { "accent": "#14532d", "blocks": [["bar", "Good evening, Maya", { "sub": "Deliver to 14 Linden Road" }], ["search", "Search 4,000 items"], ["chips", "For you|Fruit|Bakery|Dairy"], ["text", "Popular this week", { "bold": true }], ["grid", "", { "n": 2 }], ["grid", "", { "n": 2 }], ["tabs", "", { "on": 0 }]] } },
-            { "tag": "reference", "label": "Marrow", "caption": "A list of the items that are due, from past orders.", "screen": { "accent": "#c2410c", "blocks": [["bar", "Morning, Jo"], ["title", "Your usuals"], ["row", "Semi-skimmed milk", { "right": "Due", "sub": "Usually every 5 days" }], ["row", "Eggs, 6", { "right": "Due", "sub": "Usually every 8 days" }], ["row", "Wholemeal loaf", { "right": "2 days", "sub": "Usually weekly" }], ["cta", "Add the 2 that are due"], ["tabs", "", { "on": 0 }]] } },
-            { "tag": "proposed", "label": "Proposed", "caption": "Three staples at most, shown only when they are due.", "screen": { "accent": "#14532d", "blocks": [["bar", "Good evening, Maya", { "sub": "Deliver to 14 Linden Road" }], ["search", "Search 4,000 items"], ["text", "Running low?", { "bold": true }], ["grid", "", { "n": 3, "hi": true, "pin": "1.2" }], ["chips", "For you|Fruit|Bakery|Dairy"], ["grid", "", { "n": 2 }], ["tabs", "", { "on": 0 }]] } }
+            {
+              "tag": "today",
+              "label": "Tangelo today",
+              "caption": "Home shows what is popular, not what this customer needs.",
+              "screen": {
+                "accent": "#14532d",
+                "blocks": [
+                  [
+                    "bar",
+                    "Good evening, Maya",
+                    {
+                      "sub": "Deliver to 14 Linden Road"
+                    }
+                  ],
+                  [
+                    "search",
+                    "Search 4,000 items"
+                  ],
+                  [
+                    "chips",
+                    "For you|Fruit|Bakery|Dairy"
+                  ],
+                  [
+                    "text",
+                    "Popular this week",
+                    {
+                      "bold": true
+                    }
+                  ],
+                  [
+                    "grid",
+                    "",
+                    {
+                      "n": 2
+                    }
+                  ],
+                  [
+                    "grid",
+                    "",
+                    {
+                      "n": 2
+                    }
+                  ],
+                  [
+                    "tabs",
+                    "",
+                    {
+                      "on": 0
+                    }
+                  ]
+                ]
+              }
+            },
+            {
+              "tag": "reference",
+              "label": "Marrow",
+              "caption": "A list of the items that are due, from past orders.",
+              "screen": {
+                "accent": "#c2410c",
+                "blocks": [
+                  [
+                    "bar",
+                    "Morning, Jo"
+                  ],
+                  [
+                    "title",
+                    "Your usuals"
+                  ],
+                  [
+                    "row",
+                    "Semi-skimmed milk",
+                    {
+                      "right": "Due",
+                      "sub": "Usually every 5 days"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Eggs, 6",
+                    {
+                      "right": "Due",
+                      "sub": "Usually every 8 days"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Wholemeal loaf",
+                    {
+                      "right": "2 days",
+                      "sub": "Usually weekly"
+                    }
+                  ],
+                  [
+                    "cta",
+                    "Add the 2 that are due"
+                  ],
+                  [
+                    "tabs",
+                    "",
+                    {
+                      "on": 0
+                    }
+                  ]
+                ]
+              }
+            },
+            {
+              "tag": "proposed",
+              "label": "Proposed",
+              "caption": "Three staples at most, shown only when they are due.",
+              "screen": {
+                "accent": "#14532d",
+                "blocks": [
+                  [
+                    "bar",
+                    "Good evening, Maya",
+                    {
+                      "sub": "Deliver to 14 Linden Road"
+                    }
+                  ],
+                  [
+                    "search",
+                    "Search 4,000 items"
+                  ],
+                  [
+                    "text",
+                    "Running low?",
+                    {
+                      "bold": true
+                    }
+                  ],
+                  [
+                    "grid",
+                    "",
+                    {
+                      "n": 3,
+                      "hi": true,
+                      "pin": "1.2"
+                    }
+                  ],
+                  [
+                    "chips",
+                    "For you|Fruit|Bakery|Dairy"
+                  ],
+                  [
+                    "grid",
+                    "",
+                    {
+                      "n": 2
+                    }
+                  ],
+                  [
+                    "tabs",
+                    "",
+                    {
+                      "on": 0
+                    }
+                  ]
+                ]
+              }
+            }
           ],
-          "sources": ["T:stage 1", "S:unprompted, 4 of 8", "R:R7"],
+          "sources": [
+            "T:stage 1",
+            "S:unprompted, 4 of 8",
+            "R:R7"
+          ],
           "know": {
             "baseline": "Share of orders followed by a smaller order within 3 days.",
             "expect": "Fewer top-up orders, and slightly larger weekly baskets.",
@@ -77,13 +433,172 @@
           "title": "Out-of-stock items surface at the last step",
           "problem": "Stock is checked when the customer taps Place order. A repeated basket with two missing items fails there, and the customer is sent back to find and remove them.",
           "change": "Check stock when the basket opens. List what is missing at the top, with one suggested swap each and a Remove button.",
-          "constraint": { "label": "Dependency", "text": "The stock service has to answer inside one second, or the basket opens without the check and says so (R8). Engineering to confirm the current response time." },
+          "constraint": {
+            "label": "Dependency",
+            "text": "The stock service has to answer inside one second, or the basket opens without the check and says so (R8). Engineering to confirm the current response time."
+          },
           "evidence": [
-            { "tag": "today", "label": "Tangelo today", "caption": "Checkout. The customer finds out at the last step.", "screen": { "accent": "#14532d", "blocks": [["title", "Checkout"], ["banner", "2 items are no longer available", { "sub": "Go back to your basket to remove them" }], ["slots", "Today 6pm|Tmrw 8am|Tmrw 6pm", { "on": 1 }], ["row", "Visa ending 4242", { "right": "Change" }], ["row", "Total", { "right": "$61.20" }], ["cta", "Place order", { "dim": true }]] } },
-            { "tag": "reference", "label": "Pippin", "caption": "Stock is checked the moment the basket opens.", "screen": { "accent": "#5b3df5", "blocks": [["title", "Basket"], ["card", "2 items out of stock", { "sub": "Swap or remove them here", "hi": true }], ["row", "Oat drink 1L", { "right": "Swap", "warn": true }], ["row", "Rye loaf", { "right": "Swap", "warn": true }], ["row", "Milk 2L", { "right": "$2.05" }], ["row", "Eggs, 10", { "right": "$3.60" }], ["cta", "Checkout · $64.10"]] } },
-            { "tag": "proposed", "label": "Proposed", "caption": "One suggested swap per missing item, in the basket.", "screen": { "accent": "#14532d", "blocks": [["title", "Your basket"], ["card", "2 items are out of stock today", { "sub": "Pick a swap now", "hi": true, "pin": "2.1" }], ["row", "Oat milk 1L", { "right": "Swap", "sub": "Oat milk barista, $0.30 more" }], ["row", "Sourdough loaf", { "right": "Swap", "sub": "Seeded loaf, same price" }], ["row", "Whole milk 2L", { "right": "$4.20" }], ["cta", "Go to checkout · $61.20"]] } }
+            {
+              "tag": "today",
+              "label": "Tangelo today",
+              "caption": "Checkout. The customer finds out at the last step.",
+              "screen": {
+                "accent": "#14532d",
+                "blocks": [
+                  [
+                    "title",
+                    "Checkout"
+                  ],
+                  [
+                    "banner",
+                    "2 items are no longer available",
+                    {
+                      "sub": "Go back to your basket to remove them"
+                    }
+                  ],
+                  [
+                    "slots",
+                    "Today 6pm|Tmrw 8am|Tmrw 6pm",
+                    {
+                      "on": 1
+                    }
+                  ],
+                  [
+                    "row",
+                    "Visa ending 4242",
+                    {
+                      "right": "Change"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Total",
+                    {
+                      "right": "$61.20"
+                    }
+                  ],
+                  [
+                    "cta",
+                    "Place order",
+                    {
+                      "dim": true
+                    }
+                  ]
+                ]
+              }
+            },
+            {
+              "tag": "reference",
+              "label": "Pippin",
+              "caption": "Stock is checked the moment the basket opens.",
+              "screen": {
+                "accent": "#5b3df5",
+                "blocks": [
+                  [
+                    "title",
+                    "Basket"
+                  ],
+                  [
+                    "card",
+                    "2 items out of stock",
+                    {
+                      "sub": "Swap or remove them here",
+                      "hi": true
+                    }
+                  ],
+                  [
+                    "row",
+                    "Oat drink 1L",
+                    {
+                      "right": "Swap",
+                      "warn": true
+                    }
+                  ],
+                  [
+                    "row",
+                    "Rye loaf",
+                    {
+                      "right": "Swap",
+                      "warn": true
+                    }
+                  ],
+                  [
+                    "row",
+                    "Milk 2L",
+                    {
+                      "right": "$2.05"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Eggs, 10",
+                    {
+                      "right": "$3.60"
+                    }
+                  ],
+                  [
+                    "cta",
+                    "Checkout · $64.10"
+                  ]
+                ]
+              }
+            },
+            {
+              "tag": "proposed",
+              "label": "Proposed",
+              "caption": "One suggested swap per missing item, in the basket.",
+              "screen": {
+                "accent": "#14532d",
+                "blocks": [
+                  [
+                    "title",
+                    "Your basket"
+                  ],
+                  [
+                    "card",
+                    "2 items are out of stock today",
+                    {
+                      "sub": "Pick a swap now",
+                      "hi": true,
+                      "pin": "2.1"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Oat milk 1L",
+                    {
+                      "right": "Swap",
+                      "sub": "Oat milk barista, $0.30 more"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Sourdough loaf",
+                    {
+                      "right": "Swap",
+                      "sub": "Seeded loaf, same price"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Whole milk 2L",
+                    {
+                      "right": "$4.20"
+                    }
+                  ],
+                  [
+                    "cta",
+                    "Go to checkout · $61.20"
+                  ]
+                ]
+              }
+            }
           ],
-          "sources": ["T:stage 2", "S:theme 3, 5 of 8", "R:R2, R8"],
+          "sources": [
+            "T:stage 2",
+            "S:theme 3, 5 of 8",
+            "R:R2, R8"
+          ],
           "know": {
             "baseline": "Share of checkouts that hit an out-of-stock error.",
             "expect": "Out-of-stock errors at checkout fall close to zero.",
@@ -97,13 +612,165 @@
           "problem": "When an item runs out after the order is placed, the picker chooses a replacement. Five of eight customers had received a swap they did not want, and learned of it when the bags arrived.",
           "change": "Give every basket line a rule, set once and remembered: swap for something similar, swap for a named item, or do not swap.",
           "why": "One customer wanted the opposite: \"I'd rather get something than nothing.\" The default stays at similar item, so nobody loses what they have today.",
-          "constraint": { "label": "Dependency", "text": "Rules add a step for pickers. Operations to estimate the effect on picking time before this is scheduled (R5)." },
+          "constraint": {
+            "label": "Dependency",
+            "text": "Rules add a step for pickers. Operations to estimate the effect on picking time before this is scheduled (R5)."
+          },
           "evidence": [
-            { "tag": "today", "label": "Tangelo today", "caption": "Substitutions are reported after delivery.", "screen": { "accent": "#14532d", "blocks": [["title", "Your order"], ["banner", "2 substitutions were made", { "sub": "Tell us within 1 hour for a refund" }], ["row", "Oat milk to soya milk", { "warn": true }], ["row", "Sourdough to white loaf", { "warn": true }], ["row", "21 other items", { "right": "As ordered" }], ["cta", "Report a problem", { "ghost": true }]] } },
-            { "tag": "reference", "label": "Marrow", "caption": "Asked once per item, then remembered.", "screen": { "accent": "#c2410c", "blocks": [["title", "Basket"], ["row", "Semi-skimmed milk", { "right": "$1.95" }], ["row", "Eggs, 6", { "right": "$2.10" }], ["row", "Wholemeal loaf", { "right": "$1.60" }], ["sheet", "If this is out of stock", { "items": ["Swap for similar", "Let me choose a swap", "Do not swap"], "on": 0 }]] } },
-            { "tag": "proposed", "label": "Proposed", "caption": "A rule on every line. Tap to change it.", "screen": { "accent": "#14532d", "blocks": [["title", "Your basket"], ["row", "Whole milk 2L", { "right": "$4.20", "sub": "If out: similar item", "hi": true, "pin": "2.2" }], ["row", "Free range eggs, 12", { "right": "$3.95", "sub": "If out: do not swap" }], ["row", "Ground coffee 250g", { "right": "$5.20", "sub": "If out: a named swap" }], ["row", "Pink Lady apples, 6", { "right": "$2.80", "sub": "If out: similar item" }], ["cta", "Go to checkout · $61.20"]] } }
+            {
+              "tag": "today",
+              "label": "Tangelo today",
+              "caption": "Substitutions are reported after delivery.",
+              "screen": {
+                "accent": "#14532d",
+                "blocks": [
+                  [
+                    "title",
+                    "Your order"
+                  ],
+                  [
+                    "banner",
+                    "2 substitutions were made",
+                    {
+                      "sub": "Tell us within 1 hour for a refund"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Oat milk to soya milk",
+                    {
+                      "warn": true
+                    }
+                  ],
+                  [
+                    "row",
+                    "Sourdough to white loaf",
+                    {
+                      "warn": true
+                    }
+                  ],
+                  [
+                    "row",
+                    "21 other items",
+                    {
+                      "right": "As ordered"
+                    }
+                  ],
+                  [
+                    "cta",
+                    "Report a problem",
+                    {
+                      "ghost": true
+                    }
+                  ]
+                ]
+              }
+            },
+            {
+              "tag": "reference",
+              "label": "Marrow",
+              "caption": "Asked once per item, then remembered.",
+              "screen": {
+                "accent": "#c2410c",
+                "blocks": [
+                  [
+                    "title",
+                    "Basket"
+                  ],
+                  [
+                    "row",
+                    "Semi-skimmed milk",
+                    {
+                      "right": "$1.95"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Eggs, 6",
+                    {
+                      "right": "$2.10"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Wholemeal loaf",
+                    {
+                      "right": "$1.60"
+                    }
+                  ],
+                  [
+                    "sheet",
+                    "If this is out of stock",
+                    {
+                      "items": [
+                        "Swap for similar",
+                        "Let me choose a swap",
+                        "Do not swap"
+                      ],
+                      "on": 0
+                    }
+                  ]
+                ]
+              }
+            },
+            {
+              "tag": "proposed",
+              "label": "Proposed",
+              "caption": "A rule on every line. Tap to change it.",
+              "screen": {
+                "accent": "#14532d",
+                "blocks": [
+                  [
+                    "title",
+                    "Your basket"
+                  ],
+                  [
+                    "row",
+                    "Whole milk 2L",
+                    {
+                      "right": "$4.20",
+                      "sub": "If out: similar item",
+                      "hi": true,
+                      "pin": "2.2"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Free range eggs, 12",
+                    {
+                      "right": "$3.95",
+                      "sub": "If out: do not swap"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Ground coffee 250g",
+                    {
+                      "right": "$5.20",
+                      "sub": "If out: a named swap"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Pink Lady apples, 6",
+                    {
+                      "right": "$2.80",
+                      "sub": "If out: similar item"
+                    }
+                  ],
+                  [
+                    "cta",
+                    "Go to checkout · $61.20"
+                  ]
+                ]
+              }
+            }
           ],
-          "sources": ["T:stage 2", "S:theme 3, 5 of 8", "R:R5"],
+          "sources": [
+            "T:stage 2",
+            "S:theme 3, 5 of 8",
+            "R:R5"
+          ],
           "know": {
             "baseline": "Substitution complaints per 100 orders.",
             "expect": "Fewer complaints, and fewer refunds for swaps nobody asked for.",
@@ -125,13 +792,185 @@
           "title": "The delivery slot is chosen last, after the work is done",
           "problem": "Slots are offered at checkout. Four of eight customers had finished a basket and found the slot they wanted was full.",
           "change": "Show the next three slots on Home. Picking one holds it for 20 minutes, and the basket and checkout both show the held slot.",
-          "constraint": { "label": "Risk from the pre-mortem", "text": "Held slots that are never used cost capacity (R4). A hold lasts 20 minutes, one per customer, and slot utilisation is a tripwire at 85%." },
+          "constraint": {
+            "label": "Risk from the pre-mortem",
+            "text": "Held slots that are never used cost capacity (R4). A hold lasts 20 minutes, one per customer, and slot utilisation is a tripwire at 85%."
+          },
           "evidence": [
-            { "tag": "today", "label": "Tangelo today", "caption": "Checkout. The best slot has already gone.", "screen": { "accent": "#14532d", "blocks": [["title", "Checkout"], ["text", "Choose a delivery slot", { "bold": true }], ["slots", "Today · full|Tmrw 8am|Tmrw 6pm", { "on": -1 }], ["row", "Visa ending 4242", { "right": "Change" }], ["row", "Total", { "right": "$61.20" }], ["cta", "Place order"]] } },
-            { "tag": "reference", "label": "Marrow", "caption": "The slot is asked for first, and held.", "screen": { "accent": "#c2410c", "blocks": [["bar", "Morning, Jo"], ["text", "When should we deliver?", { "bold": true }], ["slots", "Today 6pm|Tmrw 8am|Tmrw 6pm", { "on": 0, "hi": true }], ["text", "Held for 15 minutes"], ["title", "Your usuals"], ["row", "Semi-skimmed milk", { "right": "Due" }], ["row", "Eggs, 6", { "right": "Due" }], ["tabs", "", { "on": 0 }]] } },
-            { "tag": "proposed", "label": "Proposed", "caption": "Three slots on Home. Picking one holds it.", "screen": { "accent": "#14532d", "blocks": [["bar", "Good evening, Maya", { "sub": "Deliver to 14 Linden Road" }], ["search", "Search 4,000 items"], ["text", "Next delivery slots", { "bold": true }], ["slots", "Today 6pm|Tmrw 8am|Tmrw 6pm", { "on": 0, "hi": true, "pin": "3.1" }], ["text", "Held for 20 minutes once you start"], ["card", "Your usual shop", { "sub": "23 items, about $61", "action": "Reorder", "accent": true }], ["grid", "", { "n": 2 }], ["tabs", "", { "on": 0 }]] } }
+            {
+              "tag": "today",
+              "label": "Tangelo today",
+              "caption": "Checkout. The best slot has already gone.",
+              "screen": {
+                "accent": "#14532d",
+                "blocks": [
+                  [
+                    "title",
+                    "Checkout"
+                  ],
+                  [
+                    "text",
+                    "Choose a delivery slot",
+                    {
+                      "bold": true
+                    }
+                  ],
+                  [
+                    "slots",
+                    "Today · full|Tmrw 8am|Tmrw 6pm",
+                    {
+                      "on": -1
+                    }
+                  ],
+                  [
+                    "row",
+                    "Visa ending 4242",
+                    {
+                      "right": "Change"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Total",
+                    {
+                      "right": "$61.20"
+                    }
+                  ],
+                  [
+                    "cta",
+                    "Place order"
+                  ]
+                ]
+              }
+            },
+            {
+              "tag": "reference",
+              "label": "Marrow",
+              "caption": "The slot is asked for first, and held.",
+              "screen": {
+                "accent": "#c2410c",
+                "blocks": [
+                  [
+                    "bar",
+                    "Morning, Jo"
+                  ],
+                  [
+                    "text",
+                    "When should we deliver?",
+                    {
+                      "bold": true
+                    }
+                  ],
+                  [
+                    "slots",
+                    "Today 6pm|Tmrw 8am|Tmrw 6pm",
+                    {
+                      "on": 0,
+                      "hi": true
+                    }
+                  ],
+                  [
+                    "text",
+                    "Held for 15 minutes"
+                  ],
+                  [
+                    "title",
+                    "Your usuals"
+                  ],
+                  [
+                    "row",
+                    "Semi-skimmed milk",
+                    {
+                      "right": "Due"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Eggs, 6",
+                    {
+                      "right": "Due"
+                    }
+                  ],
+                  [
+                    "tabs",
+                    "",
+                    {
+                      "on": 0
+                    }
+                  ]
+                ]
+              }
+            },
+            {
+              "tag": "proposed",
+              "label": "Proposed",
+              "caption": "Three slots on Home. Picking one holds it.",
+              "screen": {
+                "accent": "#14532d",
+                "blocks": [
+                  [
+                    "bar",
+                    "Good evening, Maya",
+                    {
+                      "sub": "Deliver to 14 Linden Road"
+                    }
+                  ],
+                  [
+                    "search",
+                    "Search 4,000 items"
+                  ],
+                  [
+                    "text",
+                    "Next delivery slots",
+                    {
+                      "bold": true
+                    }
+                  ],
+                  [
+                    "slots",
+                    "Today 6pm|Tmrw 8am|Tmrw 6pm",
+                    {
+                      "on": 0,
+                      "hi": true,
+                      "pin": "3.1"
+                    }
+                  ],
+                  [
+                    "text",
+                    "Held for 20 minutes once you start"
+                  ],
+                  [
+                    "card",
+                    "Your usual shop",
+                    {
+                      "sub": "23 items, about $61",
+                      "action": "Reorder",
+                      "accent": true
+                    }
+                  ],
+                  [
+                    "grid",
+                    "",
+                    {
+                      "n": 2
+                    }
+                  ],
+                  [
+                    "tabs",
+                    "",
+                    {
+                      "on": 0
+                    }
+                  ]
+                ]
+              }
+            }
           ],
-          "sources": ["T:stage 3", "S:theme 4, 4 of 8", "R:R4"],
+          "sources": [
+            "T:stage 3",
+            "S:theme 4, 4 of 8",
+            "R:R4"
+          ],
           "know": {
             "baseline": "Share of checkouts where the first slot shown was full.",
             "expect": "Fewer checkouts abandoned at the slot step.",
@@ -142,15 +981,176 @@
           "id": "3.2",
           "screen": "basket",
           "title": "The total creeps up with no explanation",
-          "problem": "A repeated basket can cost more than it did last week, and the only sign is a larger total. Three of eight customers said they notice and do not know why.",
+          "problem": "The same 23 items cost $61.20 this week and $59.80 last week, and the only sign is a larger total. Three of eight customers said they notice and cannot tell why.",
           "change": "Mark each line that costs more than last time with its old price, and add one line to the basket: \"3 items cost more than last week. That adds $1.40.\"",
-          "constraint": { "label": "Needs legal review", "text": "A was-price is a pricing claim in most markets. Legal to confirm the wording and how long a previous price may be shown (R9). Nothing ships until they have." },
+          "constraint": {
+            "label": "Needs legal review",
+            "text": "A was-price is a pricing claim in most markets. Legal to confirm the wording and how long a previous price may be shown (R9). Nothing ships until they have."
+          },
           "evidence": [
-            { "tag": "today", "label": "Tangelo today", "caption": "Checkout shows a total and nothing else.", "screen": { "accent": "#14532d", "blocks": [["title", "Checkout"], ["row", "Items", { "right": "$58.40" }], ["row", "Delivery", { "right": "$2.80" }], ["row", "Total", { "right": "$61.20" }], ["gap"], ["row", "Visa ending 4242", { "right": "Change" }], ["cta", "Place order"]] } },
-            { "tag": "reference", "label": "Sorrel", "caption": "Every price that moved is marked.", "screen": { "accent": "#0e7490", "blocks": [["title", "Basket"], ["banner", "3 prices changed", { "sub": "Since your last order", "hi": true }], ["row", "Milk 2L", { "right": "$2.15", "sub": "was $1.95" }], ["row", "Eggs, 12", { "right": "$3.90", "sub": "was $3.50" }], ["row", "Coffee 250g", { "right": "$5.10", "sub": "was $4.60" }], ["row", "Apples, 6", { "right": "$2.75" }], ["cta", "Checkout · $59.90"]] } },
-            { "tag": "proposed", "label": "Proposed", "caption": "The difference, in the basket, before checkout.", "screen": { "accent": "#14532d", "blocks": [["title", "Your basket"], ["row", "Whole milk 2L", { "right": "$4.20", "sub": "was $3.80" }], ["row", "Free range eggs, 12", { "right": "$3.95", "sub": "was $3.45" }], ["row", "Ground coffee 250g", { "right": "$5.20", "sub": "was $4.70" }], ["card", "3 items cost more than last week", { "sub": "That adds $1.40 to this shop", "hi": true, "pin": "3.2" }], ["cta", "Go to checkout · $61.20"]] } }
+            {
+              "tag": "today",
+              "label": "Tangelo today",
+              "caption": "Checkout shows a total and nothing else.",
+              "screen": {
+                "accent": "#14532d",
+                "blocks": [
+                  [
+                    "title",
+                    "Checkout"
+                  ],
+                  [
+                    "row",
+                    "Items",
+                    {
+                      "right": "$56.70"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Delivery",
+                    {
+                      "right": "$4.50"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Total",
+                    {
+                      "right": "$61.20"
+                    }
+                  ],
+                  [
+                    "gap"
+                  ],
+                  [
+                    "row",
+                    "Visa ending 4242",
+                    {
+                      "right": "Change"
+                    }
+                  ],
+                  [
+                    "cta",
+                    "Place order"
+                  ]
+                ]
+              }
+            },
+            {
+              "tag": "reference",
+              "label": "Sorrel",
+              "caption": "Every price that moved is marked.",
+              "screen": {
+                "accent": "#0e7490",
+                "blocks": [
+                  [
+                    "title",
+                    "Basket"
+                  ],
+                  [
+                    "banner",
+                    "3 prices changed",
+                    {
+                      "sub": "Since your last order",
+                      "hi": true
+                    }
+                  ],
+                  [
+                    "row",
+                    "Milk 2L",
+                    {
+                      "right": "$2.15",
+                      "sub": "was $1.95"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Eggs, 12",
+                    {
+                      "right": "$3.90",
+                      "sub": "was $3.50"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Coffee 250g",
+                    {
+                      "right": "$5.10",
+                      "sub": "was $4.60"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Apples, 6",
+                    {
+                      "right": "$2.75"
+                    }
+                  ],
+                  [
+                    "cta",
+                    "Checkout · $59.90"
+                  ]
+                ]
+              }
+            },
+            {
+              "tag": "proposed",
+              "label": "Proposed",
+              "caption": "The difference, in the basket, before checkout.",
+              "screen": {
+                "accent": "#14532d",
+                "blocks": [
+                  [
+                    "title",
+                    "Your basket"
+                  ],
+                  [
+                    "row",
+                    "Whole milk 2L",
+                    {
+                      "right": "$4.20",
+                      "sub": "was $3.80"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Free range eggs, 12",
+                    {
+                      "right": "$3.95",
+                      "sub": "was $3.45"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Ground coffee 250g",
+                    {
+                      "right": "$5.20",
+                      "sub": "was $4.70"
+                    }
+                  ],
+                  [
+                    "card",
+                    "3 items cost more than last week",
+                    {
+                      "sub": "That adds $1.40 to this shop",
+                      "hi": true,
+                      "pin": "3.2"
+                    }
+                  ],
+                  [
+                    "cta",
+                    "Go to checkout · $61.20"
+                  ]
+                ]
+              }
+            }
           ],
-          "sources": ["T:stage 3", "S:theme 5, 3 of 8", "R:R6, R9"],
+          "sources": [
+            "T:stage 3",
+            "S:theme 5, 3 of 8",
+            "R:R6, R9"
+          ],
           "know": {
             "baseline": "Contacts about a total that was higher than expected.",
             "expect": "Fewer price contacts, with no change in checkout completion.",
@@ -162,24 +1162,106 @@
   ],
   "priorityLead": "What each point is meant to move, what it costs, and what could hold it up.",
   "priority": [
-    { "id": "1.1", "change": "Reorder card on Home", "moves": "Time to order, repeat orders", "effort": "S", "status": { "level": "ok", "text": "Nothing" }, "first": "Ship behind a switch to half of returning customers for 14 days" },
-    { "id": "2.1", "change": "Stock check when the basket opens", "moves": "Checkout errors", "effort": "M", "status": { "level": "amb", "text": "Stock service speed" }, "first": "Measure the stock service's response time on a full basket" },
-    { "id": "3.1", "change": "Slot first, and held", "moves": "Checkout completion", "effort": "M", "status": { "level": "amb", "text": "Operations sign-off" }, "first": "Agree the hold length and the cap with operations" },
-    { "id": "2.2", "change": "A substitution rule per item", "moves": "Complaints, refunds", "effort": "L", "status": { "level": "amb", "text": "Picking time" }, "first": "Time ten picks with rules on paper" },
-    { "id": "3.2", "change": "Price changes shown early", "moves": "Price contacts, trust", "effort": "S", "status": { "level": "no", "text": "Legal review" }, "first": "Send the wording to legal" },
-    { "id": "1.2", "change": "Running low row", "moves": "Top-up orders", "effort": "M", "status": { "level": "ok", "text": "Four weeks of history" }, "first": "Check how many customers have four orders of the same item" }
+    {
+      "id": "1.1",
+      "change": "Reorder card on Home",
+      "moves": "Time to order, repeat orders",
+      "effort": "S",
+      "status": {
+        "level": "ok",
+        "text": "Nothing"
+      },
+      "first": "Ship behind a switch to half of returning customers for 14 days"
+    },
+    {
+      "id": "2.1",
+      "change": "Stock check when the basket opens",
+      "moves": "Checkout errors",
+      "effort": "M",
+      "status": {
+        "level": "amb",
+        "text": "Stock service speed"
+      },
+      "first": "Measure the stock service's response time on a full basket"
+    },
+    {
+      "id": "3.1",
+      "change": "Slot first, and held",
+      "moves": "Checkout completion",
+      "effort": "M",
+      "status": {
+        "level": "amb",
+        "text": "Operations sign-off"
+      },
+      "first": "Agree the hold length and the cap with operations"
+    },
+    {
+      "id": "2.2",
+      "change": "A substitution rule per item",
+      "moves": "Complaints, refunds",
+      "effort": "L",
+      "status": {
+        "level": "amb",
+        "text": "Picking time"
+      },
+      "first": "Time ten picks with rules on paper"
+    },
+    {
+      "id": "3.2",
+      "change": "Price changes shown early",
+      "moves": "Price contacts, trust",
+      "effort": "S",
+      "status": {
+        "level": "no",
+        "text": "Legal review"
+      },
+      "first": "Send the wording to legal"
+    },
+    {
+      "id": "1.2",
+      "change": "Running low row",
+      "moves": "Top-up orders",
+      "effort": "M",
+      "status": {
+        "level": "ok",
+        "text": "Four weeks of history"
+      },
+      "first": "Check how many customers have four orders of the same item"
+    }
   ],
   "rolloutLead": "Three steps. Each one is only worth shipping if the step before it worked.",
   "rollout": [
-    { "when": "First release", "points": ["1.1", "2.1", "3.1"], "why": "The reorder card is only as good as the basket it opens. If that basket has missing items, or the slot has gone, the card makes the experience worse." },
-    { "when": "Second release", "points": ["2.2", "3.2"], "why": "Both depend on other teams, picking and legal, and neither blocks the first release." },
-    { "when": "Later", "points": ["1.2"], "why": "It needs weeks of order history per customer to be right, and it is the easiest of the six to get wrong." }
+    {
+      "when": "First release",
+      "points": [
+        "1.1",
+        "2.1",
+        "3.1"
+      ],
+      "why": "The reorder card is only as good as the basket it opens. If that basket has missing items, or the slot has gone, the card makes the experience worse."
+    },
+    {
+      "when": "Second release",
+      "points": [
+        "2.2",
+        "3.2"
+      ],
+      "why": "Both depend on other teams, picking and legal, and neither blocks the first release."
+    },
+    {
+      "when": "Later",
+      "points": [
+        "1.2"
+      ],
+      "why": "It needs weeks of order history per customer to be right, and it is the easiest of the six to get wrong."
+    }
   ],
   "next": [
     "Measure the three baselines for the first release (`1.1`, `2.1`, `3.1`) before the test starts.",
     "Operations to sign off the 20 minute hold and the cap of one held slot per customer (`3.1`).",
     "Engineering to confirm the stock service answers inside one second for a 25 item basket (`2.1`).",
-    "Legal to review the was-price wording (`3.2`) before any design time is spent on it."
+    "Legal to review the was-price wording (`3.2`) before any design time is spent on it.",
+    "The teardown also found that Home promises free delivery over $40 while checkout charges $4.50. That is a bug, not a proposal. It has been raised separately and is not in this document."
   ],
   "caveats": "Tangelo is a fictional company, and Pippin, Marrow and Sorrel are fictional apps. Every screen here is a schematic drawing and no figure is a real measurement. The counts of customers come from eight fictional interviews."
 }

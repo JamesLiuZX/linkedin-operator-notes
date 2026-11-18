@@ -20,3 +20,5 @@ site/.vite/
 
 # Generated from the content by scripts/gate-scores.mjs before every build
 site/src/gate-scores.json
+__pycache__/
+*.pyc

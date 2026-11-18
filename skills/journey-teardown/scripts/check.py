@@ -69,7 +69,7 @@ def check(data):
             if a not in order and not str(missing.get(a, "")).strip():
                 errors["coverage"].append(f"{sid}: {a} has no lane and is not listed under missing")
         if not str(st.get("finding", "")).strip():
-            warnings.append(f"{sid}: no finding")
+            errors["patterns"].append(f"{sid}: the stage has no finding")
 
         for lane in lanes:
             app = str(lane.get("app"))
@@ -121,17 +121,23 @@ def check(data):
                 warnings.append(f"{where}: all five scores are {values[0]}. Check they were scored one by one.")
 
             if not str(lane.get("verdict", "")).strip():
-                warnings.append(f"{where}: no verdict")
+                errors["scores"].append(f"{where}: no verdict")
             if not lane.get("well") or not lane.get("wrong"):
                 warnings.append(f"{where}: needs both does well and does wrong")
             if app != us and not lane.get("steal"):
                 warnings.append(f"{where}: nothing listed to steal")
+            if app == us and lane.get("steal"):
+                errors["order"].append(f"{where}: your own lane has a steal list. Steal is for competitors.")
 
         syn = st.get("synthesis") or {}
         for p in syn.get("patterns") or []:
             seen = [str(x) for x in p.get("seen") or []]
             if len(set(seen)) < 2:
                 errors["patterns"].append(f"{sid}: pattern {p.get('name')!r} names {len(set(seen))} app(s), needs 2")
+            if seen and all(a == us for a in seen):
+                errors["patterns"].append(f"{sid}: pattern {p.get('name')!r} was seen only in your own product")
+            elif seen and not any(a != us for a in seen):
+                errors["patterns"].append(f"{sid}: pattern {p.get('name')!r} needs at least one competitor")
             for a in seen:
                 if a not in apps:
                     errors["patterns"].append(f"{sid}: pattern {p.get('name')!r} names {a!r}, which is not an app")
@@ -147,7 +153,9 @@ def check(data):
         if not syn.get("patterns"):
             errors["patterns"].append(f"{sid}: the synthesis has no patterns")
         if not 2 <= len(syn.get("ideal") or []) <= 5:
-            warnings.append(f"{sid}: the ideal flow has {len(syn.get('ideal') or [])} steps, expected 2 to 5")
+            errors["patterns"].append(f"{sid}: the ideal flow has {len(syn.get('ideal') or [])} steps, expected 2 to 5")
+        if not 1 <= len(syn.get("best") or []) <= 2:
+            warnings.append(f"{sid}: best in class has {len(syn.get('best') or [])} entries, expected 1 or 2")
         for b in syn.get("best") or []:
             if str(b.get("app")) not in apps:
                 errors["patterns"].append(f"{sid}: best in class names {b.get('app')!r}, which is not an app")
@@ -162,10 +170,14 @@ def check(data):
             for field in ("title", "today", "fix"):
                 if not str(g.get(field, "")).strip():
                     errors["gaps"].append(f"{sid}: gap {title!r} has no {field}")
-            bench = str(g.get("benchmark", ""))
-            if bench not in apps:
+            bench = g.get("benchmark")
+            if bench is None:
+                # No app shows the fix working. That is allowed, but it has to be said.
+                if not str(g.get("benchmarkNote", "")).strip():
+                    errors["gaps"].append(f"{sid}: gap {title!r} has no benchmark and no benchmarkNote saying why")
+            elif str(bench) not in apps:
                 errors["gaps"].append(f"{sid}: gap {title!r} names benchmark {bench!r}, which is not an app")
-            elif bench == us:
+            elif str(bench) == us:
                 errors["gaps"].append(f"{sid}: gap {title!r} uses your own product as its benchmark")
 
     means = {a: sum(v) / len(v) for a, v in overall.items() if v}

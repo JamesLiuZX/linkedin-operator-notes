@@ -1,0 +1,1412 @@
+{
+ "title": "Weekly shoppers: what gets in the way of a repeat order",
+ "question": "Why does a repeat weekly shop take so long, and what would make it a two-minute job?",
+ "date": "2026-11-18",
+ "participants": [
+  {
+   "id": "P1",
+   "name": "Ruth",
+   "profile": "Couple with two kids (8 and 5), 14 months with Tangelo, orders every Sunday night",
+   "file": "P1.txt"
+  },
+  {
+   "id": "P2",
+   "name": "Dev",
+   "profile": "Couple, no kids, one large dog, 2 years with Tangelo, orders every Thursday evening",
+   "file": "P2.txt"
+  },
+  {
+   "id": "P3",
+   "name": "Annika",
+   "profile": "Household of three (with her mother and a teenage son), 3 years with Tangelo, orders most Sundays",
+   "file": "P3.txt"
+  },
+  {
+   "id": "P4",
+   "name": "Tom",
+   "profile": "Retired couple, 19 months with Tangelo, orders every Tuesday",
+   "file": "P4.txt"
+  },
+  {
+   "id": "P5",
+   "name": "Lucia",
+   "profile": "Two flatmates, 8 months with Tangelo, orders about once a week, cooks new recipes",
+   "file": "P5.txt"
+  },
+  {
+   "id": "P6",
+   "name": "Greg",
+   "profile": "Couple plus her father three days a week, 5 years with Tangelo, orders every Friday",
+   "file": "P6.txt"
+  },
+  {
+   "id": "P7",
+   "name": "Hannah",
+   "profile": "Nurse on nights, lone parent of a 4-year-old, 2 years with Tangelo, orders weekly",
+   "file": "P7.txt"
+  },
+  {
+   "id": "P8",
+   "name": "Sam",
+   "profile": "Three flatmates in their late twenties, 11 months with Tangelo, orders every Wednesday evening",
+   "file": "P8.txt"
+  }
+ ],
+ "themes": [
+  {
+   "id": "T1",
+   "name": "Rebuilding the same basket by hand feels like admin",
+   "summary": "Six people buy nearly the same items each week and still search for and add every item one at a time. They put it at ten to twenty minutes and compared it to forms, expenses or data entry.",
+   "support": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P7",
+    "P8"
+   ],
+   "quotes": [
+    {
+     "p": "P1",
+     "text": "I buy the same twenty things every week, and every week I type them all in again.",
+     "line": 16,
+     "ctx": [
+      {
+       "n": 14,
+       "who": "Interviewer",
+       "text": "What's in the notes app?"
+      },
+      {
+       "n": 15,
+       "who": "P1",
+       "text": "A list. Well, it's less a list than a thing I keep in my head and sometimes write down."
+      },
+      {
+       "n": 16,
+       "who": "P1",
+       "text": "I buy the same twenty things every week, and every week I type them all in again."
+      },
+      {
+       "n": 17,
+       "who": "Interviewer",
+       "text": "Say more about the typing in."
+      },
+      {
+       "n": 18,
+       "who": "P1",
+       "text": "You search milk. Scroll. Find the right milk, the semi-skimmed, the two litre one. Then bread. Then the yoghurts the kids actually eat."
+      }
+     ]
+    },
+    {
+     "p": "P2",
+     "text": "Rebuilding it. It's almost the same each week. Same cereal, same chicken thighs, same eggs, same coffee beans.",
+     "line": 17,
+     "ctx": [
+      {
+       "n": 15,
+       "who": "P2",
+       "text": "I sat down at about seven. Finished at about quarter to eight. That's normal."
+      },
+      {
+       "n": 16,
+       "who": "Interviewer",
+       "text": "What takes the time?"
+      },
+      {
+       "n": 17,
+       "who": "P2",
+       "text": "Rebuilding it. It's almost the same each week. Same cereal, same chicken thighs, same eggs, same coffee beans."
+      },
+      {
+       "n": 18,
+       "who": "Interviewer",
+       "text": "And you rebuild it from scratch?"
+      },
+      {
+       "n": 19,
+       "who": "P2",
+       "text": "Search, add, search, add. Forty-odd items. It's ten, fifteen minutes before I'm even near the end."
+      }
+     ]
+    },
+    {
+     "p": "P3",
+     "text": "Search for each thing and add it. Which is a faff. I think it takes me twenty minutes.",
+     "line": 21,
+     "ctx": [
+      {
+       "n": 19,
+       "who": "P3",
+       "text": "Pretty much. There's the odd treat. But the spine of it never changes."
+      },
+      {
+       "n": 20,
+       "who": "Interviewer",
+       "text": "So how do you build it?"
+      },
+      {
+       "n": 21,
+       "who": "P3",
+       "text": "Search for each thing and add it. Which is a faff. I think it takes me twenty minutes. I've timed it once, annoyed."
+      },
+      {
+       "n": 22,
+       "who": "Interviewer",
+       "text": "What's the annoying part?"
+      },
+      {
+       "n": 23,
+       "who": "P3",
+       "text": "The finding. I type chicken and get forty chickens. Then I have to remember which one I buy."
+      }
+     ]
+    },
+    {
+     "p": "P4",
+     "text": "One by one. I type, I click add, I type again. It's slow going.",
+     "line": 21,
+     "ctx": [
+      {
+       "n": 19,
+       "who": "P4",
+       "text": "Near enough. You get set in your ways. The Tuesday list barely moves."
+      },
+      {
+       "n": 20,
+       "who": "Interviewer",
+       "text": "How do you build it?"
+      },
+      {
+       "n": 21,
+       "who": "P4",
+       "text": "One by one. I type, I click add, I type again. It's slow going. It takes me a good twelve minutes, maybe more. And I'm a fast typist."
+      },
+      {
+       "n": 22,
+       "who": "Interviewer",
+       "text": "How does that feel?"
+      },
+      {
+       "n": 23,
+       "who": "P4",
+       "text": "Like doing the same sums again. I'd rather the computer remembered."
+      }
+     ]
+    },
+    {
+     "p": "P7",
+     "text": "Adding the same things again. I think, I've done this. I know I've done this. Why are you asking me.",
+     "line": 23,
+     "ctx": [
+      {
+       "n": 21,
+       "who": "P7",
+       "text": "Longer than it should. Fifteen minutes, sometimes twenty on a phone. Because I'm searching for each one and the keyboard jumps about."
+      },
+      {
+       "n": 22,
+       "who": "Interviewer",
+       "text": "What's the worst part?"
+      },
+      {
+       "n": 23,
+       "who": "P7",
+       "text": "Adding the same things again. I think, I've done this. I know I've done this. Why are you asking me."
+      },
+      {
+       "n": 24,
+       "who": "Interviewer",
+       "text": "How does it make you feel?"
+      },
+      {
+       "n": 25,
+       "who": "P7",
+       "text": "Tired. It's one more thing. Like a form."
+      }
+     ]
+    },
+    {
+     "p": "P8",
+     "text": "It's like data entry. I rebuild the same basket. Anything but the actual shopping.",
+     "line": 21,
+     "ctx": [
+      {
+       "n": 19,
+       "who": "P8",
+       "text": "Fifteen, twenty minutes. Because I'm searching and adding the same stuff. It's dull."
+      },
+      {
+       "n": 20,
+       "who": "Interviewer",
+       "text": "Dull how?"
+      },
+      {
+       "n": 21,
+       "who": "P8",
+       "text": "It's like data entry. I rebuild the same basket. Anything but the actual shopping."
+      },
+      {
+       "n": 22,
+       "who": "Interviewer",
+       "text": "Do you try anything else?"
+      },
+      {
+       "n": 23,
+       "who": "P8",
+       "text": "I tried favouriting stuff. Doesn't help much, the heart thing is separate and I forget."
+      }
+     ]
+    }
+   ],
+   "counter": {
+    "p": "P6",
+    "text": "Not really. I know where everything is. I click the same ones.",
+    "line": 19,
+    "ctx": [
+     {
+      "n": 17,
+      "who": "P6",
+      "text": "Largely. Staple stuff. Pasta, mince, the cereal my father-in-law likes, tins, a couple of chickens."
+     },
+     {
+      "n": 18,
+      "who": "Interviewer",
+      "text": "Do you find that part a bother?"
+     },
+     {
+      "n": 19,
+      "who": "P6",
+      "text": "Not really. I know where everything is. I click the same ones."
+     },
+     {
+      "n": 20,
+      "who": "Interviewer",
+      "text": "Okay. What do you do about the changes, things being out of stock?"
+     },
+     {
+      "n": 21,
+      "who": "P6",
+      "text": "I let them swap. I have it switched on."
+     }
+    ]
+   },
+   "counterNote": "P5 is a second counter case: she cooks new recipes each week, does not repeat her basket and enjoys choosing ingredients.",
+   "so": "The time goes on re-entering a list the app already holds, so starting from the usual basket is the change most likely to shorten the job."
+  },
+  {
+   "id": "T2",
+   "name": "Unannounced substitutions make people check every bag",
+   "summary": "Five people received a swap they had not agreed to and found out only when unpacking or cooking. Each now checks bags, avoids ordering key items, or blocks all substitutions.",
+   "support": [
+    "P1",
+    "P3",
+    "P4",
+    "P5",
+    "P8"
+   ],
+   "quotes": [
+    {
+     "p": "P1",
+     "text": "Annoyed, honestly. I'd chosen it. Someone just decided for me.",
+     "line": 38,
+     "ctx": [
+      {
+       "n": 36,
+       "who": "P1",
+       "text": "And I got spirals. At the door I didn't check. I only saw when I was unpacking, and my eight year old said that's not the right one."
+      },
+      {
+       "n": 37,
+       "who": "Interviewer",
+       "text": "How did that feel?"
+      },
+      {
+       "n": 38,
+       "who": "P1",
+       "text": "Annoyed, honestly. I'd chosen it. Someone just decided for me."
+      },
+      {
+       "n": 39,
+       "who": "Interviewer",
+       "text": "Did the app tell you beforehand?"
+      },
+      {
+       "n": 40,
+       "who": "P1",
+       "text": "There was probably an email. I don't read those. I found out with the bag in my hand."
+      }
+     ]
+    },
+    {
+     "p": "P3",
+     "text": "It was. Well, I caught it. But I stood there in the kitchen thinking, I never agreed to this.",
+     "line": 37,
+     "ctx": [
+      {
+       "n": 35,
+       "who": "P3",
+       "text": "Something else turned up in the bag. Almond. I only noticed when I opened it. My son would have been ill."
+      },
+      {
+       "n": 36,
+       "who": "Interviewer",
+       "text": "That sounds frightening."
+      },
+      {
+       "n": 37,
+       "who": "P3",
+       "text": "It was. Well, I caught it. But I stood there in the kitchen thinking, I never agreed to this."
+      },
+      {
+       "n": 38,
+       "who": "Interviewer",
+       "text": "Did the app show you the swap?"
+      },
+      {
+       "n": 39,
+       "who": "P3",
+       "text": "Not before. There's a little line on the receipt, afterwards. I read it after."
+      }
+     ]
+    },
+    {
+     "p": "P4",
+     "text": "I trust the app a bit less. I check everything. Which is exactly the opposite of what I want.",
+     "line": 39,
+     "ctx": [
+      {
+       "n": 37,
+       "who": "P4",
+       "text": "They sent a canned reply. Sorry for any inconvenience. I wanted a human."
+      },
+      {
+       "n": 38,
+       "who": "Interviewer",
+       "text": "How did that change how you feel?"
+      },
+      {
+       "n": 39,
+       "who": "P4",
+       "text": "I trust the app a bit less. I check everything. Which is exactly the opposite of what I want."
+      },
+      {
+       "n": 40,
+       "who": "Interviewer",
+       "text": "Now the price. Do you watch it?"
+      },
+      {
+       "n": 41,
+       "who": "P4",
+       "text": "Closely. I keep every receipt in a folder."
+      }
+     ]
+    },
+    {
+     "p": "P5",
+     "text": "Cross. It's a small thing, but it was my one specialist ingredient, and they decided it for me.",
+     "line": 33,
+     "ctx": [
+      {
+       "n": 31,
+       "who": "P5",
+       "text": "Diluted it, panicked, put in too much honey. It was edible. Just wrong."
+      },
+      {
+       "n": 32,
+       "who": "Interviewer",
+       "text": "How did that sit with you?"
+      },
+      {
+       "n": 33,
+       "who": "P5",
+       "text": "Cross. It's a small thing, but it was my one specialist ingredient, and they decided it for me."
+      },
+      {
+       "n": 34,
+       "who": "Interviewer",
+       "text": "Did the app give you a heads up?"
+      },
+      {
+       "n": 35,
+       "who": "P5",
+       "text": "There was a note on the order I think, but only on the app, not at the door. The driver just handed me bags."
+      }
+     ]
+    },
+    {
+     "p": "P8",
+     "text": "I now say no substitutions on everything. Which means gaps. Which is also bad.",
+     "line": 52,
+     "ctx": [
+      {
+       "n": 50,
+       "who": "P8",
+       "text": "There was a line in the app, after it'd arrived. By then I was at the stove."
+      },
+      {
+       "n": 51,
+       "who": "Interviewer",
+       "text": "Does that change what you order?"
+      },
+      {
+       "n": 52,
+       "who": "P8",
+       "text": "I now say no substitutions on everything. Which means gaps. Which is also bad."
+      },
+      {
+       "n": 53,
+       "who": "Interviewer",
+       "text": "Mm. What about price?"
+      },
+      {
+       "n": 54,
+       "who": "P8",
+       "text": "I haven't noticed anything. It's around fifty, sixty a week."
+      }
+     ]
+    }
+   ],
+   "counter": {
+    "p": "P6",
+    "text": "Last time they sent a different brand of beans. Fine. Beans are beans.",
+    "line": 25,
+    "ctx": [
+     {
+      "n": 23,
+      "who": "P6",
+      "text": "Because I'd rather get something than nothing."
+     },
+     {
+      "n": 24,
+      "who": "Interviewer",
+      "text": "Tell me more."
+     },
+     {
+      "n": 25,
+      "who": "P6",
+      "text": "Last time they sent a different brand of beans. Fine. Beans are beans. And once I got a bigger pack of rice. Tripled my rice."
+     },
+     {
+      "n": 26,
+      "who": "Interviewer",
+      "text": "Did that bother you?"
+     },
+     {
+      "n": 27,
+      "who": "P6",
+      "text": "Ha. No. We ate rice for a month. It was cheap, actually."
+     }
+    ]
+   },
+   "counterNote": "P7 also said swaps had not been a problem for her, or that she had not noticed them.",
+   "so": "A two-minute repeat order only works if people trust what arrives, so swaps need to be agreed before picking rather than reported after delivery."
+  },
+  {
+   "id": "T3",
+   "name": "The delivery slot is gone once the basket is built",
+   "summary": "Four people pick the slot at the end and often find the slot they wanted has gone, which leaves deliveries arriving when nobody is home. None of the four knew a slot could be held first.",
+   "support": [
+    "P2",
+    "P3",
+    "P7",
+    "P8"
+   ],
+   "quotes": [
+    {
+     "p": "P2",
+     "text": "I want Friday afternoon. I get to the end of the basket, nearly an hour in, and Friday afternoon is full.",
+     "line": 35,
+     "ctx": [
+      {
+       "n": 33,
+       "who": "P2",
+       "text": "Ah. That's the other bit."
+      },
+      {
+       "n": 34,
+       "who": "Interviewer",
+       "text": "Go on."
+      },
+      {
+       "n": 35,
+       "who": "P2",
+       "text": "I want Friday afternoon. I get to the end of the basket, nearly an hour in, and Friday afternoon is full."
+      },
+      {
+       "n": 36,
+       "who": "Interviewer",
+       "text": "Every week?"
+      },
+      {
+       "n": 37,
+       "who": "P2",
+       "text": "Maybe half the time. I'll go earlier next time, I tell myself. I never do."
+      }
+     ]
+    },
+    {
+     "p": "P3",
+     "text": "Oh, don't. Okay. I build the basket, twenty minutes, and then the Sunday late-morning slot is gone.",
+     "line": 45,
+     "ctx": [
+      {
+       "n": 43,
+       "who": "P3",
+       "text": "Yes. I read every bag now. At the door, with the driver standing there, which is awkward."
+      },
+      {
+       "n": 44,
+       "who": "Interviewer",
+       "text": "Mm. Let's go to slots. How does it go with the slot?"
+      },
+      {
+       "n": 45,
+       "who": "P3",
+       "text": "Oh, don't. Okay. I build the basket, twenty minutes, and then the Sunday late-morning slot is gone."
+      },
+      {
+       "n": 46,
+       "who": "Interviewer",
+       "text": "Every week?"
+      },
+      {
+       "n": 47,
+       "who": "P3",
+       "text": "Often enough. Maybe every third week. Then I have to pick Monday evening and my son's got training so there's no one in."
+      }
+     ]
+    },
+    {
+     "p": "P7",
+     "text": "Because I only have a gap in the afternoon. Four to six. Before I leave for the shift. And by the time I finish the basket it's all gone.",
+     "line": 37,
+     "ctx": [
+      {
+       "n": 35,
+       "who": "P7",
+       "text": "End of the basket. And that's the real killer."
+      },
+      {
+       "n": 36,
+       "who": "Interviewer",
+       "text": "Why?"
+      },
+      {
+       "n": 37,
+       "who": "P7",
+       "text": "Because I only have a gap in the afternoon. Four to six. Before I leave for the shift. And by the time I finish the basket it's all gone."
+      },
+      {
+       "n": 38,
+       "who": "Interviewer",
+       "text": "What do you do?"
+      },
+      {
+       "n": 39,
+       "who": "P7",
+       "text": "Take whatever. Sometimes ten at night when I'm not even there. My mum has to take it in."
+      }
+     ]
+    },
+    {
+     "p": "P8",
+     "text": "By the time I've found everything, the evening slot has gone and I'm stuck with Thursday morning.",
+     "line": 28,
+     "ctx": [
+      {
+       "n": 26,
+       "who": "Interviewer",
+       "text": "Okay. Tell me about slots."
+      },
+      {
+       "n": 27,
+       "who": "P8",
+       "text": "Oh, this."
+      },
+      {
+       "n": 28,
+       "who": "P8",
+       "text": "By the time I've found everything, the evening slot has gone and I'm stuck with Thursday morning."
+      },
+      {
+       "n": 29,
+       "who": "Interviewer",
+       "text": "How often?"
+      },
+      {
+       "n": 30,
+       "who": "P8",
+       "text": "Most weeks. I'd say three in four."
+      }
+     ]
+    }
+   ],
+   "counter": {
+    "p": "P1",
+    "text": "Yes. Sunday night for Monday morning, that's always been open. I've never had trouble.",
+    "line": 58,
+    "ctx": [
+     {
+      "n": 56,
+      "who": "P1",
+      "text": "At the end. I just take what's there."
+     },
+     {
+      "n": 57,
+      "who": "Interviewer",
+      "text": "And is it usually okay?"
+     },
+     {
+      "n": 58,
+      "who": "P1",
+      "text": "Yes. Sunday night for Monday morning, that's always been open. I've never had trouble."
+     },
+     {
+      "n": 59,
+      "who": "Interviewer",
+      "text": "Good. How about the price at checkout?"
+     },
+     {
+      "n": 60,
+      "who": "P1",
+      "text": "I look at the total and go, fine. I don't scrutinise it."
+     }
+    ]
+   },
+   "counterNote": "P5 and P6 also had no slot trouble; both described themselves as flexible.",
+   "so": "The slot problem is partly caused by the slow basket, so a faster basket and a visible way to hold a slot first would each reduce it."
+  },
+  {
+   "id": "T4",
+   "name": "Forgotten staples lead to a paid midweek top-up",
+   "summary": "Four people regularly forget small staples and place a second small order, paying a delivery fee on a few items. They described it as unplanned.",
+   "support": [
+    "P1",
+    "P4",
+    "P5",
+    "P7"
+   ],
+   "quotes": [
+    {
+     "p": "P1",
+     "text": "Wednesday I place a tiny order. Five items, maybe six. And pay the delivery fee on a nine dollar order, which is silly.",
+     "line": 46,
+     "ctx": [
+      {
+       "n": 44,
+       "who": "P1",
+       "text": "Oh, yes. I forget things. Always the bin bags, or butter. Something small."
+      },
+      {
+       "n": 45,
+       "who": "Interviewer",
+       "text": "What do you do then?"
+      },
+      {
+       "n": 46,
+       "who": "P1",
+       "text": "Wednesday I place a tiny order. Five items, maybe six. And pay the delivery fee on a nine dollar order, which is silly."
+      },
+      {
+       "n": 47,
+       "who": "Interviewer",
+       "text": "Do you plan to do that?"
+      },
+      {
+       "n": 48,
+       "who": "P1",
+       "text": "No! It just happens. I open the fridge on Tuesday night and think, we have no butter."
+      }
+     ]
+    },
+    {
+     "p": "P4",
+     "text": "I do a small top-up on Thursday. Four things. Delivery charge and all. It's annoying.",
+     "line": 51,
+     "ctx": [
+      {
+       "n": 49,
+       "who": "P4",
+       "text": "Mostly. But I tell you, there's always something I forget. Last week it was washing-up liquid."
+      },
+      {
+       "n": 50,
+       "who": "Interviewer",
+       "text": "What happens then?"
+      },
+      {
+       "n": 51,
+       "who": "P4",
+       "text": "I do a small top-up on Thursday. Four things. Delivery charge and all. It's annoying."
+      },
+      {
+       "n": 52,
+       "who": "Interviewer",
+       "text": "How often?"
+      },
+      {
+       "n": 53,
+       "who": "P4",
+       "text": "Every other week, say."
+      }
+     ]
+    },
+    {
+     "p": "P5",
+     "text": "Most weeks, I'd say. It's a pain, the delivery fee on a tiny basket.",
+     "line": 43,
+     "ctx": [
+      {
+       "n": 41,
+       "who": "P5",
+       "text": "A little order on Wednesday. Or I run to the corner shop, depending on my mood."
+      },
+      {
+       "n": 42,
+       "who": "Interviewer",
+       "text": "How often is the Wednesday order?"
+      },
+      {
+       "n": 43,
+       "who": "P5",
+       "text": "Most weeks, I'd say. It's a pain, the delivery fee on a tiny basket."
+      },
+      {
+       "n": 44,
+       "who": "Interviewer",
+       "text": "Do you plan ahead for it?"
+      },
+      {
+       "n": 45,
+       "who": "P5",
+       "text": "I tell myself I will. I never do. I run out of onions at the worst time."
+      }
+     ]
+    },
+    {
+     "p": "P7",
+     "text": "A little top-up order on the weekend. Five items. Pay the delivery on it.",
+     "line": 51,
+     "ctx": [
+      {
+       "n": 49,
+       "who": "P7",
+       "text": "Milk. Her yoghurts. Bin bags once. Something small and then I'm out."
+      },
+      {
+       "n": 50,
+       "who": "Interviewer",
+       "text": "So what do you do?"
+      },
+      {
+       "n": 51,
+       "who": "P7",
+       "text": "A little top-up order on the weekend. Five items. Pay the delivery on it."
+      },
+      {
+       "n": 52,
+       "who": "Interviewer",
+       "text": "How often?"
+      },
+      {
+       "n": 53,
+       "who": "P7",
+       "text": "Probably two weeks out of three."
+      }
+     ]
+    }
+   ],
+   "counter": {
+    "p": "P3",
+    "text": "No, I'm quite organised on that front. My mum keeps a list on the fridge.",
+    "line": 63,
+    "ctx": [
+     {
+      "n": 61,
+      "who": "P3",
+      "text": "Last week's basket. Waiting. And I tweak it, like, ooh, no bananas this week, we've got too many."
+     },
+     {
+      "n": 62,
+      "who": "Interviewer",
+      "text": "Do you ever top up midweek?"
+     },
+     {
+      "n": 63,
+      "who": "P3",
+      "text": "No, I'm quite organised on that front. My mum keeps a list on the fridge."
+     },
+     {
+      "n": 64,
+      "who": "Interviewer",
+      "text": "Good system. Is there anyone else in the house who uses the app?"
+     },
+     {
+      "n": 65,
+      "who": "P3",
+      "text": "My son tried once. He ordered eleven packets of crisps. I put a stop to that."
+     }
+    ]
+   },
+   "counterNote": "",
+   "so": "The weekly order is not complete for these people, so a repeat basket that prompts for the usual staples could remove a second order, not only shorten the first."
+  },
+  {
+   "id": "T5",
+   "name": "The same basket costs more and nobody says why",
+   "summary": "Three people who watch the total saw it rise for what they believe is the same basket and could not find which items changed. Two tried going line by line and gave up.",
+   "support": [
+    "P2",
+    "P4",
+    "P6"
+   ],
+   "quotes": [
+    {
+     "p": "P2",
+     "text": "Same shop. Same forty items. Last week it was ninety-eight dollars. This week a hundred and six. I can't see why.",
+     "line": 49,
+     "ctx": [
+      {
+       "n": 47,
+       "who": "P2",
+       "text": "Yes. Yes, that's a thing."
+      },
+      {
+       "n": 48,
+       "who": "Interviewer",
+       "text": "Say more."
+      },
+      {
+       "n": 49,
+       "who": "P2",
+       "text": "Same shop. Same forty items. Last week it was ninety-eight dollars. This week a hundred and six. I can't see why."
+      },
+      {
+       "n": 50,
+       "who": "Interviewer",
+       "text": "Did anything in the basket change?"
+      },
+      {
+       "n": 51,
+       "who": "P2",
+       "text": "I don't think so. That's the point. There's no list of what moved. Only the total."
+      }
+     ]
+    },
+    {
+     "p": "P4",
+     "text": "Nothing. Same items. I went through it. There's no reason shown. A person at a till would explain.",
+     "line": 45,
+     "ctx": [
+      {
+       "n": 43,
+       "who": "P4",
+       "text": "The total goes up. Same basket. Sixty-one dollars two weeks ago, sixty-six dollars last week."
+      },
+      {
+       "n": 44,
+       "who": "Interviewer",
+       "text": "Did you change anything?"
+      },
+      {
+       "n": 45,
+       "who": "P4",
+       "text": "Nothing. Same items. I went through it. There's no reason shown. A person at a till would explain."
+      },
+      {
+       "n": 46,
+       "who": "Interviewer",
+       "text": "Did you contact them?"
+      },
+      {
+       "n": 47,
+       "who": "P4",
+       "text": "I thought about it. Then I thought, life's short."
+      }
+     ]
+    },
+    {
+     "p": "P6",
+     "text": "No idea. Prices are up generally, sure, but the app doesn't tell you what went up. You only see the total.",
+     "line": 39,
+     "ctx": [
+      {
+       "n": 37,
+       "who": "P6",
+       "text": "The same shopping, same everything. It used to be around eighty dollars. Lately it's ninety-five, a hundred."
+      },
+      {
+       "n": 38,
+       "who": "Interviewer",
+       "text": "Do you know why?"
+      },
+      {
+       "n": 39,
+       "who": "P6",
+       "text": "No idea. Prices are up generally, sure, but the app doesn't tell you what went up. You only see the total."
+      },
+      {
+       "n": 40,
+       "who": "Interviewer",
+       "text": "Have you looked into it?"
+      },
+      {
+       "n": 41,
+       "who": "P6",
+       "text": "I scrolled through once. Gave up after the dairy section."
+      }
+     ]
+    }
+   ],
+   "counter": {
+    "p": "P1",
+    "text": "I look at the total and go, fine. I don't scrutinise it.",
+    "line": 60,
+    "ctx": [
+     {
+      "n": 58,
+      "who": "P1",
+      "text": "Yes. Sunday night for Monday morning, that's always been open. I've never had trouble."
+     },
+     {
+      "n": 59,
+      "who": "Interviewer",
+      "text": "Good. How about the price at checkout?"
+     },
+     {
+      "n": 60,
+      "who": "P1",
+      "text": "I look at the total and go, fine. I don't scrutinise it."
+     },
+     {
+      "n": 61,
+      "who": "Interviewer",
+      "text": "So no surprises there?"
+     },
+     {
+      "n": 62,
+      "who": "P1",
+      "text": "Not that I've noticed. I'm not a spreadsheet person."
+     }
+    ]
+   },
+   "counterNote": "P3, P5, P7 and P8 also did not track the total. P7 said she avoids looking.",
+   "so": "A quick confirm step needs to show what differs from last week, prices included, or the people who watch the total will keep checking it by hand."
+  },
+  {
+   "id": "T6",
+   "name": "Past orders read as receipts, so Reorder goes unfound",
+   "summary": "Five people had not used the Reorder button and most did not know it existed. They think of Orders as the place for bills and receipts, not as a place to start a basket. The interviewer named the button in each case, so this was prompted.",
+   "support": [
+    "P1",
+    "P3",
+    "P4",
+    "P7",
+    "P8"
+   ],
+   "quotes": [
+    {
+     "p": "P1",
+     "text": "I'd never have looked in there, no. Orders sounds like receipts.",
+     "line": 74,
+     "ctx": [
+      {
+       "n": 72,
+       "who": "P1",
+       "text": "Under Orders. At the bottom. Wow. Nobody told me."
+      },
+      {
+       "n": 73,
+       "who": "Interviewer",
+       "text": "Is that somewhere you'd have looked?"
+      },
+      {
+       "n": 74,
+       "who": "P1",
+       "text": "I'd never have looked in there, no. Orders sounds like receipts."
+      },
+      {
+       "n": 75,
+       "who": "Interviewer",
+       "text": "Okay. Anything else you wish I had asked?"
+      },
+      {
+       "n": 76,
+       "who": "Interviewer",
+       "text": "Not at all, it's been really useful."
+      }
+     ]
+    },
+    {
+     "p": "P3",
+     "text": "Well, there you go. Three years and nobody told me. Brilliant.",
+     "line": 31,
+     "ctx": [
+      {
+       "n": 29,
+       "who": "P3",
+       "text": "A what? No. Is that a thing?"
+      },
+      {
+       "n": 30,
+       "who": "Interviewer",
+       "text": "It's on a past order."
+      },
+      {
+       "n": 31,
+       "who": "P3",
+       "text": "Well, there you go. Three years and nobody told me. Brilliant."
+      },
+      {
+       "n": 32,
+       "who": "Interviewer",
+       "text": "Okay. Tell me about the last time something went wrong."
+      },
+      {
+       "n": 33,
+       "who": "P3",
+       "text": "Last month. The oat milk. I buy a particular one for my son, he's allergic to a lot of things."
+      }
+     ]
+    },
+    {
+     "p": "P4",
+     "text": "Why would I look there? That's where I check the bills.",
+     "line": 27,
+     "ctx": [
+      {
+       "n": 25,
+       "who": "P4",
+       "text": "I thought about the favourites. I don't think I ever found where they are."
+      },
+      {
+       "n": 26,
+       "who": "Interviewer",
+       "text": "Have you looked under Orders?"
+      },
+      {
+       "n": 27,
+       "who": "P4",
+       "text": "Why would I look there? That's where I check the bills."
+      },
+      {
+       "n": 28,
+       "who": "Interviewer",
+       "text": "Right. I'll come back to it. Tell me about something that went wrong."
+      },
+      {
+       "n": 29,
+       "who": "P4",
+       "text": "The sausages. I got the wrong ones. I buy the plain pork ones, the ones my wife can eat."
+      }
+     ]
+    },
+    {
+     "p": "P7",
+     "text": "Oh my gosh. I've been screenshotting my basket for two years.",
+     "line": 31,
+     "ctx": [
+      {
+       "n": 29,
+       "who": "P7",
+       "text": "There's a Reorder button?"
+      },
+      {
+       "n": 30,
+       "who": "Interviewer",
+       "text": "Under Orders."
+      },
+      {
+       "n": 31,
+       "who": "P7",
+       "text": "Oh my gosh. I've been screenshotting my basket for two years."
+      },
+      {
+       "n": 32,
+       "who": "Interviewer",
+       "text": "Should we be worried?"
+      },
+      {
+       "n": 33,
+       "who": "P7",
+       "text": "Ha! No. That's a find. Okay."
+      }
+     ]
+    },
+    {
+     "p": "P8",
+     "text": "I think there was something under Orders. I've never used it. I wouldn't know what it does, to be honest.",
+     "line": 25,
+     "ctx": [
+      {
+       "n": 23,
+       "who": "P8",
+       "text": "I tried favouriting stuff. Doesn't help much, the heart thing is separate and I forget."
+      },
+      {
+       "n": 24,
+       "who": "Interviewer",
+       "text": "Do you know about the Reorder button?"
+      },
+      {
+       "n": 25,
+       "who": "P8",
+       "text": "I think there was something under Orders. I've never used it. I wouldn't know what it does, to be honest."
+      },
+      {
+       "n": 26,
+       "who": "Interviewer",
+       "text": "Okay. Tell me about slots."
+      },
+      {
+       "n": 27,
+       "who": "P8",
+       "text": "Oh, this."
+      }
+     ]
+    }
+   ],
+   "counter": {
+    "p": "P2",
+    "text": "It built a basket. Great. Then I got to checkout and four things were unavailable. Out of stock.",
+    "line": 27,
+    "ctx": [
+     {
+      "n": 25,
+      "who": "P2",
+      "text": "Once. I found the Reorder thing by accident, scrolling through Orders."
+     },
+     {
+      "n": 26,
+      "who": "Interviewer",
+      "text": "What happened?"
+     },
+     {
+      "n": 27,
+      "who": "P2",
+      "text": "It built a basket. Great. Then I got to checkout and four things were unavailable. Out of stock. The coffee, the chicken, two others."
+     },
+     {
+      "n": 28,
+      "who": "Interviewer",
+      "text": "So what did you do?"
+     },
+     {
+      "n": 29,
+      "who": "P2",
+      "text": "Ripped it up and started again. Honestly I haven't touched it since."
+     }
+    ]
+   },
+   "counterNote": "P2 did find Reorder, by accident, and stopped using it after out-of-stock items surfaced at checkout. P6 knew of it and did not bother.",
+   "so": "The repeat-order feature exists but is hidden and, for the one person who used it, broke on stock, so moving it is not enough without showing what is unavailable up front."
+  }
+ ],
+ "unprompted": [
+  {
+   "name": "Praise for drivers and produce",
+   "summary": "Asked only whether they had anything else to add, two people volunteered praise for the drivers or the produce.",
+   "support": [
+    "P3",
+    "P5"
+   ],
+   "quotes": [
+    {
+     "p": "P3",
+     "text": "I'm on a roll. I'll say that I do like the drivers. They're nice.",
+     "line": 67,
+     "ctx": [
+      {
+       "n": 65,
+       "who": "P3",
+       "text": "My son tried once. He ordered eleven packets of crisps. I put a stop to that."
+      },
+      {
+       "n": 66,
+       "who": "Interviewer",
+       "text": "Ha. Anything else?"
+      },
+      {
+       "n": 67,
+       "who": "P3",
+       "text": "I'm on a roll. I'll say that I do like the drivers. They're nice."
+      },
+      {
+       "n": 68,
+       "who": "Interviewer",
+       "text": "That's good to hear."
+      },
+      {
+       "n": 69,
+       "who": "P3",
+       "text": "Yes. Well. That's me."
+      }
+     ]
+    },
+    {
+     "p": "P5",
+     "text": "I'd say the produce is good. The herbs are always fresh.",
+     "line": 63,
+     "ctx": [
+      {
+       "n": 61,
+       "who": "P5",
+       "text": "Sometimes. He's the one who burns the rice."
+      },
+      {
+       "n": 62,
+       "who": "Interviewer",
+       "text": "Anything else you want us to know?"
+      },
+      {
+       "n": 63,
+       "who": "P5",
+       "text": "I'd say the produce is good. The herbs are always fresh."
+      },
+      {
+       "n": 64,
+       "who": "Interviewer",
+       "text": "That's nice to hear."
+      },
+      {
+       "n": 65,
+       "who": "P5",
+       "text": "I'd tell anyone that."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Wanting a person to explain",
+   "summary": "One person, without being asked, said he wanted a human rather than a canned reply after a bad swap.",
+   "support": [
+    "P4"
+   ],
+   "quotes": [
+    {
+     "p": "P4",
+     "text": "They sent a canned reply. Sorry for any inconvenience. I wanted a human.",
+     "line": 37,
+     "ctx": [
+      {
+       "n": 35,
+       "who": "P4",
+       "text": "Binned them. I mean, I gave them to the neighbour's lad. And I wrote to them."
+      },
+      {
+       "n": 36,
+       "who": "Interviewer",
+       "text": "Did they reply?"
+      },
+      {
+       "n": 37,
+       "who": "P4",
+       "text": "They sent a canned reply. Sorry for any inconvenience. I wanted a human."
+      },
+      {
+       "n": 38,
+       "who": "Interviewer",
+       "text": "How did that change how you feel?"
+      },
+      {
+       "n": 39,
+       "who": "P4",
+       "text": "I trust the app a bit less. I check everything. Which is exactly the opposite of what I want."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "requests": [
+  {
+   "text": "Open the app to the usual basket already filled, then remove or tweak items",
+   "p": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P7",
+    "P8"
+   ]
+  },
+  {
+   "text": "Ask before substituting, item by item",
+   "p": [
+    "P4",
+    "P5"
+   ]
+  },
+  {
+   "text": "Show what changed since last time, including which prices moved",
+   "p": [
+    "P2",
+    "P6"
+   ]
+  },
+  {
+   "text": "Book the slot before building the basket",
+   "p": [
+    "P3",
+    "P7"
+   ]
+  },
+  {
+   "text": "Paste a recipe and get a basket",
+   "p": [
+    "P5"
+   ]
+  }
+ ],
+ "quiet": [
+  {
+   "p": "P6",
+   "note": "Supports one theme (price). Finds the weekly shop quick, knows where everything is and is happy with swaps, so he is the counter-voice for two themes."
+  },
+  {
+   "p": "P5",
+   "note": "Supports two themes but is the main exception to the repeat-shop premise: she cooks new recipes weekly and enjoys building the basket."
+  }
+ ],
+ "unknowns": [
+  {
+   "q": "How often does a repeated basket contain an item that is out of stock?",
+   "ask": "Order data: share of Reorder baskets with an unavailable line at checkout."
+  },
+  {
+   "q": "How many weekly shoppers repeat most of their basket, and how many shop like P5?",
+   "ask": "Order data: week to week basket overlap per customer."
+  },
+  {
+   "q": "Do people who hold a slot first get the slot they want more often?",
+   "ask": "Slot booking data, split by whether the hold banner was used."
+  },
+  {
+   "q": "Is the price rise item prices, fees, or a basket that has quietly changed?",
+   "ask": "Pricing data for the same baskets P2, P4 and P6 described, line by line."
+  },
+  {
+   "q": "Would people approve swaps in advance if asked, or ignore the prompt?",
+   "ask": "A prototype test with weekly shoppers, including people who currently block all swaps like P8."
+  },
+  {
+   "q": "Would a prefilled basket reduce midweek top-ups or leave them unchanged?",
+   "ask": "Order data on top-up frequency before and after a prefilled basket test."
+  }
+ ],
+ "rejected": [
+  {
+   "p": "P2",
+   "text": "It takes me longer to order the food than to cook it.",
+   "from": "T1",
+   "reason": "not found in any transcript"
+  }
+ ],
+ "checked": {
+  "found": 36,
+  "rejected": 1,
+  "participants": 8
+ }
+}

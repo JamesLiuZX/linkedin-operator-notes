@@ -27,6 +27,8 @@ The board is organised **by journey stage, not by competitor**. Inside a stage, 
 
 If screens are missing, ask for them once. Then work with what you have and record the gaps as coverage. Never describe a screen you have not been given. A lane built from a help page or a store listing says so in its `source`.
 
+When the input already has lanes, flows, sources or step captions, keep them as given and add your own work around them. If a caption claims something the screen does not show, do not repeat the claim in a note. If the input carries its own question and the user asked a different one, the user's question wins. Write the `title` yourself. Honour any house style the user gives.
+
 ## Stop instead of writing when
 
 - **There are fewer than three apps, or no screens.** A teardown of one competitor is an opinion.
@@ -42,16 +44,15 @@ If screens are missing, ask for them once. Then work with what you have and reco
    - **Friction:** confusion, a missing disclosure, an extra step, or a dark pattern.
    - **Note:** a neutral observation worth recording.
    - **Idea:** a concrete improvement.
-   Quote the on-screen words when they are the point. If you have nothing specific to say about a screen, give it no notes.
-4. **Score each lane on the five dimensions,** 1 to 5, whole numbers, relative to the best example seen for that stage. Every score carries a reason of one line. No reason, no score. Score the user's product last and by the same rubric.
+   Quote the on-screen words when they are the point. If you have nothing specific to say about a screen, give it no notes. A note may compare two screens of the same lane when both facts are on those screens, such as a total that changed. Say which screens.
+4. **Score each lane on the five dimensions,** 1 to 5, whole numbers, relative to the best example seen for that stage. A 5 means you would not change it, so the best lane in a stage does not get a 5 by default. Score only what the screens show. When a dimension depends on something the lane's screens do not show, score what is visible and say so in the reason. Every score carries a reason of one line. No reason, no score. Score the user's product last and by the same rubric.
 5. **Write the lane's verdict.** One sentence in the shape "strength, but weakness". Then two or three things it does well, one to three it does wrong, and for competitors one or two things worth stealing.
-6. **Synthesise each stage,** after all its lanes are done:
-   - `finding`: one sentence, the thing to remember.
+6. **Synthesise each stage,** after all its lanes are done. Give the stage a `finding`: one sentence, the thing to remember. Then fill its `synthesis`:
    - `best`: the best one or two apps for this stage and why.
-   - `patterns`: what to adopt. Each names the apps it was seen in, at least two.
+   - `patterns`: what to adopt. Each names the apps it was seen in, at least two, and at least one of them a competitor.
    - `anti`: what to avoid, with the apps it was seen in.
    - `ideal`: the ideal flow for this stage as two to five numbered steps.
-   - `gaps`: where the user's product falls short. Each has a priority (P0, P1 or P2), what it does today, the fix, and the app that shows the fix working.
+   - `gaps`: where the user's product falls short. Each has a priority (P0, P1 or P2), what it does today, the fix, and the competitor that shows the fix working. If no app on the board shows it working, set `benchmark` to `null` and say so in `benchmarkNote`. Never force a benchmark that does not fit.
 7. **Write the principles.** Three to six, across all stages, each with the stages it draws on.
 8. **State the coverage.** Any lane with fewer than two screens gets a `coverage` line saying why. Any app missing from a stage is listed in that stage's `missing`.
 9. **Check.** Run `python3 scripts/check.py teardown.json`. Fix every failure.

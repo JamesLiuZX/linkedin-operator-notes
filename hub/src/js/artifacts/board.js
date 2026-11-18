@@ -116,7 +116,7 @@ export function renderBoard(data) {
       ${(s.patterns || []).length ? `<div class="syn-block" data-syn><h3>Patterns to adopt</h3>${s.patterns.map((p) => `<div class="syn-card good"><b>${esc(p.name)}</b>${esc(p.text)}<em>Seen in ${names(p.seen)}</em></div>`).join("")}</div>` : ""}
       ${(s.anti || []).length ? `<div class="syn-block" data-syn><h3>Anti-patterns to avoid</h3>${s.anti.map((p) => `<div class="syn-card bad"><b>${esc(p.name)}</b>${esc(p.text)}<em>Seen in ${names(p.seen)}</em></div>`).join("")}</div>` : ""}
       ${(s.ideal || []).length ? `<div class="syn-block" data-syn><h3>The ideal flow</h3><ol class="syn-ideal">${s.ideal.map((x, i) => `<li><span>${i + 1}</span><div><b>${esc(x.name)}</b>${esc(x.text)}</div></li>`).join("")}</ol></div>` : ""}
-      ${(s.gaps || []).length ? `<div class="syn-block" data-syn><h3>${esc(usName)} gaps</h3>${s.gaps.map((g) => `<div class="syn-card gap"><div class="gap-top"><span class="atag ${g.p === "P0" ? "bad" : g.p === "P1" ? "warn" : ""}">${esc(g.p)}</span><b>${esc(g.title)}</b></div><p><i>Today</i> ${esc(g.today)}</p><p><i>Fix</i> ${esc(g.fix)}</p><em>Benchmark: ${esc(appOf(g.benchmark).name)}</em></div>`).join("")}</div>` : ""}
+      ${(s.gaps || []).length ? `<div class="syn-block" data-syn><h3>${esc(usName)} gaps</h3>${s.gaps.map((g) => `<div class="syn-card gap"><div class="gap-top"><span class="atag ${g.p === "P0" ? "bad" : g.p === "P1" ? "warn" : ""}">${esc(g.p)}</span><b>${esc(g.title)}</b></div><p><i>Today</i> ${esc(g.today)}</p><p><i>Fix</i> ${esc(g.fix)}</p><em>${g.benchmark ? `Benchmark: ${esc(appOf(g.benchmark).name)}` : esc(g.benchmarkNote || "No app on the board does this.")}</em></div>`).join("")}</div>` : ""}
     </section>`;
   };
 

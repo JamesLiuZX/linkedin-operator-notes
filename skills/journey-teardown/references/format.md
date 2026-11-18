@@ -105,9 +105,32 @@ Stage IDs are `S1`, `S2` and so on. `missing` is optional and lists apps that ha
 }
 ```
 
-- A screen has either `img` (a path, a link or a data URI) or `blocks` (a schematic, described in the PRD skill's format reference and drawn the same way).
+- A screen has either `img` (a path, a link or a data URI) or `blocks` (a schematic, described below).
 - At most three notes. Each is one sentence, under 30 words, and names something on the screen.
-- When a screen arrives as `blocks`, keep the blocks as given. You may add `"hi": true` to the options of the one block a note is about.
+- When a screen arrives as `blocks`, keep the blocks as given. You may highlight at most one block per screen, the one its most important note is about, by adding `"hi": true` to that block's options. If the block has no options object, add one as its third element. Highlighting is optional.
+
+### Schematic blocks
+
+A schematic screen is a list of blocks drawn top to bottom on a 180 by 368 screen. Each block is `[type, label, options]`. The labels are what is written on the screen.
+
+| Type | Label | Options |
+|---|---|---|
+| `bar` | Greeting or screen name | `sub` (a second line) |
+| `title` | Large heading | |
+| `search` | Placeholder text | |
+| `chips` | `"One|Two|Three"` | `on` (index of the selected chip) |
+| `banner` | Headline | `sub`, `accent` (filled with the app colour) |
+| `card` | Headline | `sub`, `action` (text of a small button), `accent` |
+| `row` | A line of a list | `right` (right-aligned text), `sub`, `warn` (shown in red) |
+| `grid` | (none) | `n` (2 or 3 product tiles) |
+| `slots` | `"A|B|C"` | `on` (index of the selected choice, or -1 for none) |
+| `text` | A line of small text | `bold`, `warn` |
+| `gap` | (none) | |
+| `cta` | Button text | `ghost` (outlined, not filled) |
+| `tabs` | (none, the tab bar) | `on` (index of the current tab) |
+| `sheet` | Title of a bottom sheet over the screen | `items` (up to 3 choices), `on` |
+
+Any block may also carry `dim: true` (faded) or `hi: true` (highlighted).
 
 ## A synthesis
 
@@ -124,9 +147,10 @@ Stage IDs are `S1`, `S2` and so on. `missing` is optional and lists apps that ha
 }
 ```
 
-- `patterns[].seen` names at least two apps. `anti[].seen` names at least one. Use app IDs.
+- `best` has one or two entries.
+- `patterns[].seen` names at least two apps, at least one of them a competitor. `anti[].seen` names at least one. Use app IDs.
 - `ideal` has two to five steps.
-- `gaps[].p` is `P0` (fix first), `P1` or `P2`. `benchmark` is a competitor's ID, never the user's product.
+- `gaps[].p` is `P0` (fix first), `P1` or `P2`. `benchmark` is a competitor's ID, never the user's product. When no app on the board shows the fix working, use `"benchmark": null` and add `"benchmarkNote": "No app on the board does this."`
 
 ## Principles
 
