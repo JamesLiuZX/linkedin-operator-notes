@@ -6,14 +6,14 @@
 
 import { ease } from "./timeline.js";
 
-export function createPaper(host, { width = 1000, className = "" } = {}) {
+export function createPaper(host, { width = 1000, className = "", maxZoom = 1 } = {}) {
   host.innerHTML = `<div class="paper"><div class="paper-scroll" data-scroll><div class="paper-doc ${className}" data-doc style="width:${width}px"></div></div></div>`;
   const scroll = host.querySelector("[data-scroll]");
   const doc = host.querySelector("[data-doc]");
 
   const fit = () => {
     const w = scroll.clientWidth;
-    if (w) doc.style.zoom = String(Math.min(1, w / width).toFixed(4));
+    if (w) doc.style.zoom = String(Math.min(maxZoom, w / width).toFixed(4));
   };
   fit();
   new ResizeObserver(fit).observe(scroll);

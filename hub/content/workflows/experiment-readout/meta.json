@@ -176,5 +176,32 @@
     "total": 6,
     "note": "Run twice. Both passed on the first run of the checker. The first run found that a win whose interval dips below the agreed minimum effect went unremarked, so the script now flags it. The readout shown here is from the second run, unedited.",
     "log": "examples/tangelo/RUN.md"
-  }
+  },
+  "carousel": [
+    {
+      "at": 7.6,
+      "title": "The test is checked *before the result*",
+      "body": "Was the split as planned? Did it run its course? Could it have seen the effect? No decision until then."
+    },
+    {
+      "at": 10.8,
+      "title": "Up 1.7 points, *and how sure*",
+      "body": "A script computes the difference and its interval. The model does not do arithmetic."
+    },
+    {
+      "at": 14.5,
+      "title": "One guardrail *did not hold*",
+      "body": "The share of large orders may have fallen further than the team said it would accept."
+    },
+    {
+      "at": 16.6,
+      "title": "The decision is *a fixed rule*",
+      "body": "Better on the main metric, unclear on a guardrail. Rule 6 says extend."
+    },
+    {
+      "at": 19.5,
+      "title": "Extend, *not ship*",
+      "body": "A green headline number was not enough. The page shows every figure and how it was reached."
+    }
+  ]
 }

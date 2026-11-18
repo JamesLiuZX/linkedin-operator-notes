@@ -18,7 +18,7 @@ export function mount(body, { stage } = {}) {
     </div>`;
   const tl = createTimeline();
   const width = stage?.closest(".clip") ? 700 : (stage?.clientWidth || 1200) < 760 ? 460 : 980;
-  const paper = createPaper(body.querySelector("[data-art]"), { width });
+  const paper = createPaper(body.querySelector("[data-art]"), { width, maxZoom: stage?.closest(".clip") ? 2 : 1 });
 
   // Two copies: one the timeline animates, one the reader edits afterwards.
   const replay = document.createElement("div");

@@ -171,5 +171,38 @@
     "total": 6,
     "note": "Run twice. The first run passed and listed 15 gaps in the instructions. They were fixed, the checker was made stricter, and the second run produced the board shown here.",
     "log": "examples/tangelo/RUN.md"
-  }
+  },
+  "posterAt": 9.3,
+  "carousel": [
+    {
+      "at": 13.15,
+      "title": "One lane per app, *per stage*",
+      "body": "Four apps across three stages of the same journey. Here is the first stage: four lanes, read left to right."
+    },
+    {
+      "at": 7,
+      "title": "Up to three notes *on every screen*",
+      "body": "Good, friction, note or idea. Each note names what is on the screen and why it matters."
+    },
+    {
+      "at": 9.4,
+      "title": "Your product is *always last*",
+      "body": "It sits under the best examples in every stage, so the contrast is in the same place every time."
+    },
+    {
+      "at": 12,
+      "title": "Five scores, *each with a reason*",
+      "body": "No reason, no score. The scores rank the lanes. They do not pretend to measure them."
+    },
+    {
+      "at": 16.6,
+      "title": "Every stage ends in *gaps to fix*",
+      "body": "Patterns to adopt, patterns to avoid, the ideal flow, and your gaps by priority."
+    },
+    {
+      "at": 21.2,
+      "title": "The whole board, *yours to open*",
+      "body": "Drag it, zoom it, filter the notes. It is one HTML file you can send to anyone."
+    }
+  ]
 }

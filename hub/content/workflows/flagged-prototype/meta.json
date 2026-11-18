@@ -168,5 +168,32 @@
     "href": "/examples/kerb/flagged-prototype.html",
     "label": "Open what it built",
     "log": "examples/kerb/RUN.md"
-  }
+  },
+  "carousel": [
+    {
+      "at": 5.9,
+      "title": "Everything off is *the product today*",
+      "body": "The agent draws the app as it ships now. Nothing new is on the screen yet."
+    },
+    {
+      "at": 7.8,
+      "title": "One switch is *one PRD point*",
+      "body": "Turn on 1.1 and the reorder card appears on Home, with its number pinned to it."
+    },
+    {
+      "at": 11.6,
+      "title": "Judge each change *on its own*",
+      "body": "Three points are on. A reviewer can approve 1.1 and hold 3.1 without arguing about the whole design."
+    },
+    {
+      "at": 18.5,
+      "title": "The numbers *follow you*",
+      "body": "Tap through to the basket. The same IDs run from the PRD to the screen."
+    },
+    {
+      "at": 21.2,
+      "title": "Checked *before* you see it",
+      "body": "A script confirms every switch changes a screen you can reach, and that nothing new shows while it is off."
+    }
+  ]
 }

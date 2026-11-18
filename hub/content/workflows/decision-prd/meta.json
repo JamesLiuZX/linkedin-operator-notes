@@ -171,5 +171,32 @@
     "passed": 6,
     "total": 6,
     "note": "This is the one example here that was not produced by a fresh agent session. The checker found one fault in the first draft, a figure not marked as an estimate, which is fixed."
-  }
+  },
+  "carousel": [
+    {
+      "at": 6.8,
+      "title": "Three pieces of research *in*",
+      "body": "A teardown, an interview synthesis and a pre-mortem. The PRD cites all three by name."
+    },
+    {
+      "at": 9.6,
+      "title": "The problem first, *evidence beside it*",
+      "body": "Every point states what happens today, the change, and the screen or quote that supports it."
+    },
+    {
+      "at": 14.6,
+      "title": "One number *per point*",
+      "body": "Point 2.1 is 2.1 in the tables, in the rollout plan and in the prototype."
+    },
+    {
+      "at": 18.1,
+      "title": "A table you can *argue with*",
+      "body": "What each point moves, how big it is, and what it is waiting on."
+    },
+    {
+      "at": 19.8,
+      "title": "What ships first, *and why*",
+      "body": "A rollout in three steps. Each step says why it goes where it does."
+    }
+  ]
 }

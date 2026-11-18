@@ -14,6 +14,13 @@ const HI = "#dcff4a";
 const FONT = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
 const MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,monospace";
 
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+/** "2026-11-18" as "18 Nov 2026". */
+const day = (issue) => {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(issue.date || "");
+  return issue.dateLabel || (m ? `${Number(m[3])} ${MONTHS[Number(m[2]) - 1]} ${m[1]}` : issue.date || "");
+};
+
 const label = (n, text) =>
   `<p style="margin:0 0 10px;font:600 11px/1.4 ${MONO};letter-spacing:.08em;text-transform:uppercase;color:${MUTED}"><span style="background:${HI};color:${INK};padding:2px 6px;border-radius:4px">${n}</span>&nbsp;&nbsp;${esc(text)}</p>`;
 const h = (text) => `<h2 style="margin:0 0 10px;font:600 22px/1.25 ${FONT};letter-spacing:-.02em;color:${INK}">${esc(text)}</h2>`;
@@ -37,7 +44,7 @@ export function emailHtml(ctx, issue, { fragment = false } = {}) {
 
   rows.push(
     block(`
-      <p style="margin:0 0 14px;font:600 11px/1.4 ${MONO};letter-spacing:.08em;text-transform:uppercase;color:${MUTED}">${esc(SITE.weekly.name)} · Issue ${esc(String(issue.n))} · ${esc(issue.dateLabel || issue.date)}</p>
+      <p style="margin:0 0 14px;font:600 11px/1.4 ${MONO};letter-spacing:.08em;text-transform:uppercase;color:${MUTED}">${esc(SITE.weekly.name)} · Issue ${esc(String(issue.n))} · ${esc(day(issue))}</p>
       <h1 style="margin:0 0 14px;font:600 30px/1.15 ${FONT};letter-spacing:-.03em;color:${INK}">${esc(issue.title)}</h1>
       ${p(esc(issue.hook))}
       <p style="margin:14px 0 6px;font:600 13px/1.4 ${FONT};color:${INK}">In this issue</p>
@@ -60,6 +67,11 @@ export function emailHtml(ctx, issue, { fragment = false } = {}) {
       block(`
       ${label("02", "Try it")}
       ${p(esc(issue.demo?.line || "The demo plays in the page. No install and no sign-up."))}
+      ${
+        ctx.exists && ctx.exists(`hub/static/hub/posters/${w.slug}.png`)
+          ? `<a href="${esc(link(`/workflows/${w.slug}/`))}" style="display:block;margin:4px 0 16px"><img src="${esc(link(`/hub/posters/${w.slug}.png`))}" width="562" alt="The finished output of ${esc(w.title)}" style="display:block;width:100%;max-width:562px;height:auto;border:0;border-radius:12px"></a>`
+          : ""
+      }
       <p style="margin:6px 0 0">${button(link(`/workflows/${w.slug}/`), "Watch the run and open the output")}</p>`)
     );
   }
@@ -133,7 +145,7 @@ ${table}
 export function issueText(ctx, issue) {
   const w = ctx.workflow(issue.workflow?.slug);
   const L = [];
-  L.push(`${SITE.weekly.name} · Issue ${issue.n} · ${issue.dateLabel || issue.date}`, "", issue.title.toUpperCase(), "", issue.hook, "");
+  L.push(`${SITE.weekly.name} · Issue ${issue.n} · ${day(issue)}`, "", issue.title.toUpperCase(), "", issue.hook, "");
   if (w) {
     L.push("01 THE WORKFLOW", w.title, issue.workflow.why || w.promise, "");
     (issue.workflow.steps || []).forEach((s, i) => L.push(`${i + 1}. ${String(s).replace(/[*`]/g, "")}`));

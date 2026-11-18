@@ -95,6 +95,22 @@ Rules for every session:
   in `content/courses.json` and publish to `/courses`. `scripts/digest-check.mjs`
   is the gate.
 
+- `NEWSLETTER.md`: the weekly issue runbook (James, 2026-11-18, "the automated
+  weekly newsletter"), run by a cloud scheduled task on Tuesdays. It belongs to
+  the AI Workflow Handbook, which is now the site's front page:
+  - `skills/`: the installable pack (six skills, each with a checker, a page
+    template, a worked example and the record of its test run).
+  - `hub/content/`: workflow pages, guides and weekly issues, as data.
+    `hub/src/`: the demos and renderers. `hub/static/hub/`: rendered posters,
+    link cards, carousels and clips.
+  - `scripts/hub-build.mjs` builds it, chained from `scripts/build-seo.mjs`, so
+    `npm run site:build` and both deploy targets include it.
+    `scripts/hub-check.mjs` is its gate and is part of `npm run check`.
+    `scripts/hub-media.mjs` renders the media. `scripts/weekly-send.mjs` hands
+    an issue to the email service.
+  - The older notes app is still served. Its home moved to `/archive`.
+  - Launch posts are `posts/hb-*.md`, with rows on the schedule.
+
 ## Daily commands
 
 ```bash

@@ -20,7 +20,7 @@ export function mount(body, { stage } = {}) {
   const art = body.querySelector("[data-art]");
   const tl = createTimeline();
   const width = stage?.closest(".clip") ? 660 : (stage?.clientWidth || 1200) < 760 ? 440 : 940;
-  const paper = createPaper(art, { width });
+  const paper = createPaper(art, { width, maxZoom: stage?.closest(".clip") ? 2 : 1 });
   const page = mountSynthesis(paper.doc, data);
   paper.wireLinks("");
   const $ = (sel, root = paper.doc) => root.querySelector(sel);

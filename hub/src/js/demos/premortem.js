@@ -18,7 +18,7 @@ export function mount(body, { stage } = {}) {
     </div>`;
   const tl = createTimeline();
   const width = stage?.closest(".clip") ? 680 : (stage?.clientWidth || 1200) < 760 ? 450 : 960;
-  const paper = createPaper(body.querySelector("[data-art]"), { width });
+  const paper = createPaper(body.querySelector("[data-art]"), { width, maxZoom: stage?.closest(".clip") ? 2 : 1 });
   mountPremortem(paper.doc, data);
   paper.wireLinks("");
   const $ = (sel, root = paper.doc) => root.querySelector(sel);

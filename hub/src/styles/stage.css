@@ -629,3 +629,158 @@
   color: var(--signal);
   white-space: nowrap;
 }
+
+/* --------------------------------- carousel cover, closing slide, link card */
+
+.clip-sub {
+  margin-top: 26px;
+  max-width: 24em;
+  font-size: 34px;
+  line-height: 1.24;
+  letter-spacing: -0.015em;
+  color: var(--stage-ink-2);
+}
+
+.clip-cover .clip-head h1 {
+  font-size: 92px;
+}
+
+.clip-shot {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 30px;
+  background: var(--stage-2);
+}
+
+.clip-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.clip-end {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.clip-end .clip-head h1 {
+  font-size: 88px;
+}
+
+.clip-steps {
+  display: grid;
+  align-content: center;
+  gap: 22px;
+}
+
+.clip-steps > div {
+  display: grid;
+  gap: 14px;
+  padding: 34px 36px 36px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 26px;
+  background: var(--stage-2);
+}
+
+.clip-steps .label {
+  font-size: 18px;
+  color: var(--stage-muted);
+}
+
+.clip-steps b,
+.clip-steps code {
+  font-family: var(--font-mono);
+  font-size: 27px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--signal);
+  overflow-wrap: anywhere;
+  background: none;
+  padding: 0;
+}
+
+.og {
+  display: grid;
+  grid-template-columns: 560px minmax(0, 1fr);
+  width: 1200px;
+  height: 630px;
+  overflow: hidden;
+  background: var(--stage);
+  color: var(--stage-ink);
+}
+
+.og-copy {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 18px;
+  padding: 52px 20px 52px 56px;
+}
+
+.og-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.og-brand .mark {
+  width: 34px;
+  height: 34px;
+}
+
+.og h1 {
+  align-self: center;
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.og p {
+  font-size: 23px;
+  line-height: 1.3;
+  color: var(--stage-ink-2);
+  text-wrap: balance;
+}
+
+.og-shot {
+  margin: 52px 0 0 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-right: 0;
+  border-bottom: 0;
+  border-radius: 22px 0 0 0;
+  background: var(--stage-2);
+}
+
+.og-shot img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: none;
+}
+
+/* Skip most of the run log, so the card shows the output. */
+.og-shot img {
+  transform: translateX(-21%);
+}
+
+/* A carousel step: the clip frame with the step's headline above and its sentence below. */
+.clip-slide .clip-head h1 {
+  font-size: 66px;
+}
+
+.clip-slide .clip-foot {
+  font-size: 29px;
+  line-height: 1.3;
+  color: var(--stage-ink);
+}
+
+.clip-slide .clip-foot b {
+  display: none;
+}

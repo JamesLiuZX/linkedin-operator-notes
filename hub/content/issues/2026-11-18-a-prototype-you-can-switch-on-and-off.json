@@ -1,0 +1,74 @@
+{
+  "n": 1,
+  "date": "2026-11-18",
+  "title": "A prototype you can switch on and off",
+  "preheader": "Six AI workflows you can watch, open and install. Plus agent checkout, Claude Sheets and cost per task.",
+  "hook": "This is the first issue. The handbook opened today with six workflows, and each one shows you its output before it asks you to install anything. We start with the one product people ask for most.",
+  "minutes": 4,
+  "workflow": {
+    "slug": "flagged-prototype",
+    "why": "A PRD says what will change. A prototype shows it. This workflow does both at once: every numbered point in the PRD becomes a switch, and with every switch off you are looking at the product as it is today. A reviewer turns on one change, sees what it does, and can say yes to 1.1 and not yet to 2.2.",
+    "steps": [
+      "Give the agent a PRD with numbered points, or three changes described in a paragraph.",
+      "It draws the product as it is today, then wires one switch for each point.",
+      "A script checks that every switch changes a screen you can reach, and that nothing new shows while it is off.",
+      "You get one HTML file. The link carries the switches, so \"look at 1.1 with 2.1\" is something you can send."
+    ],
+    "prompt": "Build a flagged prototype for this PRD. One switch per point, all off by default.",
+    "matters": "A review goes faster when the argument is about one switch and not about the whole design."
+  },
+  "demo": {
+    "line": "Watch it build the prototype for a grocery app, then flip the six switches yourself."
+  },
+  "things": [
+    {
+      "title": "ChatGPT's agents can now pay at checkout",
+      "what": "ChatGPT Wallet opened on 13 November to some US Pro subscribers. The agent pays with a card token, and each purchase needs Face ID or a fingerprint.",
+      "why": "If you own a checkout, some of your customers are about to be agents. OpenAI is asking merchants to recognise its browser so that fraud rules do not block it.",
+      "catch": "There are no spending limits yet, and nobody has said who carries the loss when an agent buys the wrong thing.",
+      "source": {
+        "label": "TechCrunch, 13 Nov",
+        "url": "https://techcrunch.com/2026/11/13/chatgpts-new-wallet-lets-ai-agents-shop-and-check-out-for-you/"
+      }
+    },
+    {
+      "title": "Claude now makes spreadsheets and whiteboards",
+      "what": "Sheets and Whiteboards are in beta on all paid plans and export to .xlsx, CSV, docs or decks. Claude Data, the dashboard product, is generally available.",
+      "why": "What comes out of an AI session is turning into a working document your team edits. Admins can scope each connector, for example read Slack and never send.",
+      "catch": "Claude Data turns on by default for Enterprise on 19 November. Decide your setting before then.",
+      "source": {
+        "label": "claude.com, 10 Nov",
+        "url": "https://claude.com/resources/articles/sheets-whiteboards-data"
+      }
+    },
+    {
+      "title": "Same price per token, a third of the bill",
+      "what": "Meta's small model, Muse Ember, lists at the same token price as Claude Haiku 5.5. On Artificial Analysis's index it cost $0.14 a task against $0.41.",
+      "why": "The bill follows the tokens a model spends to finish, so the sticker price tells you little. Compare models on the cost of a finished task.",
+      "catch": "On the coding benchmark in the same post, Muse Ember scored 27.2% and Haiku 5.5 scored 34.9%. Cheaper per task is not the same as good at your task.",
+      "source": {
+        "label": "Meta, 9 Nov",
+        "url": "https://research.meta.ai/blog/muse-ember"
+      }
+    }
+  ],
+  "tip": {
+    "title": "Ask what was left out",
+    "body": "Before you read an AI document, ask it what it did not cover. The stage with no screens. The two interviewees who said almost nothing. The risk nobody can measure. Good work states its edges. If the answer is \"nothing\", read it twice as carefully."
+  },
+  "number": {
+    "value": "44.4%",
+    "label": "of product managers want AI to help them build prototypes. 19.8% use it for that today. It is the most wanted use in the survey.",
+    "source": {
+      "label": "Lenny Rachitsky and Noam Segal, 1,750 respondents, December 2025",
+      "url": "https://lennysnewsletter.com/p/ai-tools-are-overdelivering-results"
+    }
+  },
+  "changelog": [
+    {
+      "skill": "handbook",
+      "version": "1.0.0",
+      "note": "First release. Six skills, each with a checker script, a page template, a worked example and the record of its test run."
+    }
+  ]
+}

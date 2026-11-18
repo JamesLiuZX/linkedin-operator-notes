@@ -18,7 +18,7 @@ export function mount(body, { base = "/", stage } = {}) {
   const tl = createTimeline();
   // Drawn narrower where the stage is small, so the text stays readable.
   const width = stage?.closest(".clip") ? 640 : (stage?.clientWidth || 1200) < 760 ? 440 : 1000;
-  const paper = createPaper(body.querySelector("[data-art]"), { width });
+  const paper = createPaper(body.querySelector("[data-art]"), { width, maxZoom: stage?.closest(".clip") ? 2 : 1 });
   mountPrd(paper.doc, data);
   paper.wireLinks(`${base}examples/tangelo/`);
   const $ = (sel) => paper.doc.querySelector(sel);

@@ -172,5 +172,38 @@
     "total": 5,
     "note": "The script rejected the remembered quote. That left one count short, the agent went back to the transcript for the real words, and the second run passed.",
     "log": "examples/tangelo/RUN.md"
-  }
+  },
+  "posterAt": 12.3,
+  "carousel": [
+    {
+      "at": 4,
+      "title": "Eight interviews *in*",
+      "body": "Transcripts as plain text. The agent reads every line of every one."
+    },
+    {
+      "at": 6.2,
+      "title": "Counted by person, *not by mention*",
+      "body": "Six of eight. The tiles show who, and who is the exception."
+    },
+    {
+      "at": 9,
+      "title": "Every theme carries *its exception*",
+      "body": "The person who saw it differently is on the page, with their own words."
+    },
+    {
+      "at": 12.3,
+      "title": "Every quote opens *in its transcript*",
+      "body": "A script finds each quote word for word and records the line. Click one to read around it."
+    },
+    {
+      "at": 15.7,
+      "title": "The quote that was *never said*",
+      "body": "The request asked for a line someone remembered from the calls. It is in no transcript, so the script removed it."
+    },
+    {
+      "at": 18.4,
+      "title": "36 checked, *1 removed*",
+      "body": "The receipt sits at the top of the page, before any finding."
+    }
+  ]
 }

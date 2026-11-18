@@ -420,3 +420,19 @@ claims say so in the Fact column.
 | SWE-2 Flash FrontierCode 2.0 (Cognition's own benchmark) | 3.2% base to 24.0% | same | same |
 | CMU 11-768 AI Agents term | 25 Aug to 3 Dec 2026 | Fall 2026 | [cmu-agents.com](https://cmu-agents.com), [course breakdown](https://www.heyuan110.com/posts/ai/2026-09-08-cmu-11-768-ai-agents-course/) |
 | Complete Claude Code Course rating | 4.6 from 165 ratings | updated Oct 2026 | [Udemy](https://www.udemy.com/course/complete-claude-code-course-beginner-to-advanced/) |
+
+## AI Workflow Handbook receipts
+
+Figures quoted in the handbook's weekly issues (`hub/content/issues/`) and its launch posts. News items in an issue's "three things" come from the AI digest and are sourced in the digest receipts above. Every company, customer and number inside the handbook's worked examples (Tangelo, Kerb and the rest) is invented and is labelled as such where it appears.
+
+### 2026-11-18: issue 1 and the launch posts
+
+| Fact | Number | Window | Source |
+|---|---|---|---|
+| Product managers who use AI for mockups or prototypes today | 19.8% | survey of 1,750 tech workers, published Dec 2025 | [Lenny Rachitsky and Noam Segal](https://lennysnewsletter.com/p/ai-tools-are-overdelivering-results) |
+| Product managers who want AI to help with prototyping | 44.4%, the most wanted future use | same | same |
+| Product managers who use AI to write PRDs today | 21.5%, the top current use | same | same |
+| Product managers who use AI for user research today | 4.7% | same | same |
+| Checks run by a script across the six skills | 34 (6 + 5 + 5 + 6 + 6 + 6), counted from the skills' own checkers | 18 Nov 2026 | `npm run hub:check` in this repository |
+| Tests on the experiment readout's statistics | 42 | 18 Nov 2026 | `skills/experiment-readout/scripts/test_ab_stats.py` |
+| Quotes matched and rejected in the fictional interview synthesis example | 36 matched, 1 rejected, 8 invented transcripts | 18 Nov 2026 | `skills/interview-synthesis/examples/tangelo/RUN.md` |

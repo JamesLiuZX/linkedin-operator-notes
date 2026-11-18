@@ -515,6 +515,76 @@
       "hook": "ChatGPT's agents can now pay at checkout. They use a card token, never the card number, and every purchase waits for Face ID or a fingerprint.",
       "status": "ready",
       "notes": "AI digest (DIGEST.md). Attach cover.png to tweet 1. Tweets come from the post's X thread section."
+    },
+    {
+      "id": "hb-launch-li",
+      "week": 16, "date": "2026-11-19", "time": "09:00", "channel": "linkedin",
+      "kind": "atom", "pillar": "growth", "asset": "posts/hb-launch.md",
+      "title": "Handbook: I published 6 AI workflows, and every one checks itself",
+      "hook": "I published 6 AI workflows today, and every one checks itself.",
+      "status": "ready",
+      "linkInComment": "/",
+      "notes": "AI Workflow Handbook launch series (NEWSLETTER.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment. clip.mp4 is the same demo as a 4:5 video, for a repost or for X."
+    },
+    {
+      "id": "hb-interview-synthesis-li",
+      "week": 17, "date": "2026-11-24", "time": "09:00", "channel": "linkedin",
+      "kind": "atom", "pillar": "growth", "asset": "posts/hb-interview-synthesis.md",
+      "title": "Handbook: I planted a fake customer quote. The script removed it",
+      "hook": "I planted a fake customer quote. The script removed it.",
+      "status": "ready",
+      "linkInComment": "/workflows/interview-synthesis/",
+      "notes": "AI Workflow Handbook launch series (NEWSLETTER.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment. clip.mp4 is the same demo as a 4:5 video, for a repost or for X."
+    },
+    {
+      "id": "hb-experiment-readout-li",
+      "week": 17, "date": "2026-11-26", "time": "09:00", "channel": "linkedin",
+      "kind": "atom", "pillar": "growth", "asset": "posts/hb-experiment-readout.md",
+      "title": "Handbook: The test won by 1.7 points. The verdict was extend, not ship",
+      "hook": "The test won by 1.7 points. The verdict was extend, not ship.",
+      "status": "ready",
+      "linkInComment": "/workflows/experiment-readout/",
+      "notes": "AI Workflow Handbook launch series (NEWSLETTER.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment. clip.mp4 is the same demo as a 4:5 video, for a repost or for X."
+    },
+    {
+      "id": "hb-journey-teardown-li",
+      "week": 18, "date": "2026-12-01", "time": "09:00", "channel": "linkedin",
+      "kind": "atom", "pillar": "growth", "asset": "posts/hb-journey-teardown.md",
+      "title": "Handbook: My teardown skill passed all 6 checks. It still had 15 faults",
+      "hook": "My teardown skill passed all 6 checks. It still had 15 faults.",
+      "status": "ready",
+      "linkInComment": "/workflows/journey-teardown/",
+      "notes": "AI Workflow Handbook launch series (NEWSLETTER.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment. clip.mp4 is the same demo as a 4:5 video, for a repost or for X."
+    },
+    {
+      "id": "hb-premortem-li",
+      "week": 18, "date": "2026-12-03", "time": "09:00", "channel": "linkedin",
+      "kind": "atom", "pillar": "growth", "asset": "posts/hb-premortem.md",
+      "title": "Handbook: A pre-mortem with no dates is a list of worries",
+      "hook": "A pre-mortem with no dates is a list of worries.",
+      "status": "ready",
+      "linkInComment": "/workflows/premortem/",
+      "notes": "AI Workflow Handbook launch series (NEWSLETTER.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment. clip.mp4 is the same demo as a 4:5 video, for a repost or for X."
+    },
+    {
+      "id": "hb-decision-prd-li",
+      "week": 19, "date": "2026-12-08", "time": "09:00", "channel": "linkedin",
+      "kind": "atom", "pillar": "growth", "asset": "posts/hb-decision-prd.md",
+      "title": "Handbook: Every point in this PRD has a number, and the number goes everywhere",
+      "hook": "Every point in this PRD has a number. The number goes everywhere.",
+      "status": "ready",
+      "linkInComment": "/workflows/decision-prd/",
+      "notes": "AI Workflow Handbook launch series (NEWSLETTER.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment. clip.mp4 is the same demo as a 4:5 video, for a repost or for X."
+    },
+    {
+      "id": "hb-flagged-prototype-li",
+      "week": 19, "date": "2026-12-10", "time": "09:00", "channel": "linkedin",
+      "kind": "atom", "pillar": "growth", "asset": "posts/hb-flagged-prototype.md",
+      "title": "Handbook: 44.4% of PMs want AI for prototypes. 19.8% use it that way",
+      "hook": "44.4% of PMs want AI for prototypes. 19.8% use it that way.",
+      "status": "ready",
+      "linkInComment": "/workflows/flagged-prototype/",
+      "notes": "AI Workflow Handbook launch series (NEWSLETTER.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment. clip.mp4 is the same demo as a 4:5 video, for a repost or for X."
     }
   ]
 }

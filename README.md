@@ -1,4 +1,59 @@
-# LinkedIn Operator Notes — James Liu
+# AI Workflow Handbook
+
+Practical AI workflows for product people. Six agent skills, each with a live demo, a worked example you can open, and a script that checks the output before it reaches you.
+
+**The handbook:** https://jamesliuzx.github.io/linkedin-operator-notes/
+
+| Workflow | What you get | Skill |
+|---|---|---|
+| [Journey teardown](https://jamesliuzx.github.io/linkedin-operator-notes/workflows/journey-teardown/) | A board comparing how several products handle one journey, ending in prioritised gaps | [skills/journey-teardown](skills/journey-teardown/) |
+| [Interview synthesis](https://jamesliuzx.github.io/linkedin-operator-notes/workflows/interview-synthesis/) | Themes counted by person, with every quote matched to its line in the transcript | [skills/interview-synthesis](skills/interview-synthesis/) |
+| [Pre-mortem](https://jamesliuzx.github.io/linkedin-operator-notes/workflows/premortem/) | A ranked risk list where the top risks each carry a tripwire | [skills/premortem](skills/premortem/) |
+| [Decision-ready PRD](https://jamesliuzx.github.io/linkedin-operator-notes/workflows/decision-prd/) | Numbered points, each with its problem, change, evidence and how you would know | [skills/decision-prd](skills/decision-prd/) |
+| [Flagged prototype](https://jamesliuzx.github.io/linkedin-operator-notes/workflows/flagged-prototype/) | A clickable prototype with one switch per PRD point | [skills/flagged-prototype](skills/flagged-prototype/) |
+| [Experiment readout](https://jamesliuzx.github.io/linkedin-operator-notes/workflows/experiment-readout/) | One decision on an A/B test, with a script doing the arithmetic | [skills/experiment-readout](skills/experiment-readout/) |
+
+## Install
+
+Claude Code:
+
+```
+/plugin install handbook --marketplace JamesLiuZX/linkedin-operator-notes
+```
+
+Claude on the web, the desktop app or Cowork: Customize, Plugins, Add, Add marketplace, then paste `JamesLiuZX/linkedin-operator-notes`.
+
+Cursor, Codex, Gemini CLI and other agents:
+
+```
+npx skills add JamesLiuZX/linkedin-operator-notes
+```
+
+More, including what is in a skill folder and how each one was tested: [skills/README.md](skills/README.md).
+
+## Where the handbook lives in this repository
+
+| Path | What it is |
+|---|---|
+| [skills/](skills/) | The pack. Each skill has its instructions, a checker script, a page template, a worked example and the record of its test run |
+| [hub/content/](hub/content/) | The handbook's pages, guides and weekly issues, as data |
+| [hub/src/](hub/src/) | The demos and the renderers. A skill's page template is built from the same code as its demo |
+| [scripts/hub-build.mjs](scripts/hub-build.mjs) | Builds the site as real pages. Chained from `npm run site:build` |
+| [scripts/hub-check.mjs](scripts/hub-check.mjs) | The gate: every checker on every example, the statistics tests, versions and house style |
+| [scripts/hub-media.mjs](scripts/hub-media.mjs) | Renders posters, link cards, carousels and clips from the demos |
+| [NEWSLETTER.md](NEWSLETTER.md) | The weekly issue: what one run produces, and the one-time email setup |
+
+```bash
+npm run site:install   # once
+npm run hub:dev        # build and serve on http://localhost:4173
+npm run check          # the whole gate
+```
+
+The skills are MIT licensed ([skills/LICENSE](skills/LICENSE)). The worked examples are fictional.
+
+---
+
+## Also in this repository: LinkedIn Operator Notes
 
 A content system, four working demos, and a posting dashboard, in one repo.
 
