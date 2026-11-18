@@ -98,7 +98,7 @@ export function installTabs(ctx, skill, idPrefix = "install") {
 export function stage(ctx, w, { autoplay = true, hero = false, layout = "" } = {}) {
   const poster = `/hub/posters/${w.slug}.png`;
   return `
-  <div class="stage${hero ? " stage-hero" : ""}" data-stage data-demo="${esc(w.demo || w.slug)}"${autoplay ? " data-autoplay" : ""}${layout ? ` data-layout="${layout}"` : ""} aria-label="Demo: ${esc(w.title)}">
+  <div class="stage${hero ? " stage-hero" : ""}" data-stage data-demo="${esc(w.demo || w.slug)}"${autoplay ? " data-autoplay" : ""}${hero ? ` data-start="${Number(w.heroStart ?? 3)}"` : ""}${layout ? ` data-layout="${layout}"` : ""} aria-label="Demo: ${esc(w.title)}">
     <div class="stage-bar">
       <span class="stage-dots" aria-hidden="true"><i></i><i></i><i></i></span>
       <span class="stage-title"><b>${esc(w.skill || w.slug)}</b><span>${esc(w.example?.label || "")}</span></span>

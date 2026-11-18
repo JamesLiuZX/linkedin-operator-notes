@@ -203,7 +203,8 @@ export function createPlayer(stage, demo) {
     return;
   }
 
-  seek(0);
+  // A stage may open part of the way in, so the first thing a visitor sees is the output arriving.
+  seek(Math.min(Number(stage.dataset.start) || 0, tl.duration));
   pause();
   new IntersectionObserver(
     ([entry]) => {
