@@ -1,0 +1,6 @@
+@import "../artifacts/kit.css";
+@import "../artifacts/prd.css";
+
+#root {
+  min-height: 100vh;
+}

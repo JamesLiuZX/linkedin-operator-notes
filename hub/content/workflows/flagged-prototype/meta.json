@@ -5,7 +5,10 @@
   "promise": "A clickable prototype where every PRD point is a switch, so a reviewer can turn each change on and off and see exactly what it does.",
   "gives": "One HTML file: a phone, a panel of switches numbered like the PRD, and a pin on every change.",
   "stage": "specify",
-  "roles": ["product", "research"],
+  "roles": [
+    "product",
+    "research"
+  ],
   "runtime": "10 min",
   "review": "15 min",
   "needs": "A PRD with numbered points",
@@ -21,9 +24,18 @@
     "file": "flagged-prototype.html",
     "label": "Tangelo: the weekly shop",
     "note": "Five screens and six switches. Start with everything off, then turn on 1.1.",
-    "inputs": ["spec.js"]
+    "inputs": [
+      "spec.js"
+    ]
   },
-  "chain": { "before": ["decision-prd"], "after": ["experiment-readout"] },
+  "chain": {
+    "before": [
+      "decision-prd"
+    ],
+    "after": [
+      "experiment-readout"
+    ]
+  },
   "when": [
     "A review keeps stalling on what a change would actually look like.",
     "You want a yes or no on each change separately, not on the bundle.",
@@ -35,37 +47,126 @@
     "You have not written the points down yet. Run the PRD skill first."
   ],
   "inputs": [
-    { "name": "The PRD", "note": "`prd.json` from the PRD skill, or any list of numbered changes." },
-    { "name": "The screens today", "note": "Screenshots or a description of the current flow." },
-    { "name": "Brand basics", "note": "One colour and the product name are enough." }
+    {
+      "name": "The PRD",
+      "note": "`prd.json` from the PRD skill, or any list of numbered changes."
+    },
+    {
+      "name": "The screens today",
+      "note": "Screenshots or a description of the current flow."
+    },
+    {
+      "name": "Brand basics",
+      "note": "One colour and the product name are enough."
+    }
   ],
   "outputs": [
-    { "name": "prototype.html", "note": "A single file that runs anywhere. No build step and no account." },
-    { "name": "A link per state", "note": "The address carries the screen and the switches, so you can send someone the exact comparison." }
+    {
+      "name": "prototype.html",
+      "note": "A single file that runs anywhere. No build step and no account."
+    },
+    {
+      "name": "A link per state",
+      "note": "The address carries the screen and the switches, so you can send someone the exact comparison."
+    }
   ],
   "steps": [
-    { "title": "Draw today first", "body": "Every screen is built in its current state before anything is added, so off always means the product as it is." },
-    { "title": "Add one switch per point", "body": "Each switch carries its PRD number and a note that says what changes and why." },
-    { "title": "Pin every change", "body": "Anything a switch adds gets a numbered pin on the screen. Tap a pin to read its note." },
-    { "title": "Make the path work", "body": "The journey can be finished with any combination of switches. Controls outside the journey answer with a line that says what they would do." },
-    { "title": "Add presets", "body": "Today, the first release, and everything on, so a room can compare in one tap." },
-    { "title": "Label what is made up", "body": "Fictional data is marked on the first screen and in the panel." }
+    {
+      "title": "Draw today first",
+      "body": "Every screen is built in its current state before anything is added, so off always means the product as it is."
+    },
+    {
+      "title": "Add one switch per point",
+      "body": "Each switch carries its PRD number and a note that says what changes and why."
+    },
+    {
+      "title": "Pin every change",
+      "body": "Anything a switch adds gets a numbered pin on the screen. Tap a pin to read its note."
+    },
+    {
+      "title": "Make the path work",
+      "body": "The journey can be finished with any combination of switches. Controls outside the journey answer with a line that says what they would do."
+    },
+    {
+      "title": "Add presets",
+      "body": "Today, the first release, and everything on, so a room can compare in one tap."
+    },
+    {
+      "title": "Label what is made up",
+      "body": "Fictional data is marked on the first screen and in the panel."
+    }
   ],
   "checks": [
-    { "name": "Every PRD point has a switch", "how": "script", "note": "The checker compares the IDs in `prd.json` with the switches in the prototype." },
-    { "name": "Every switch changes at least one screen", "how": "script", "note": "Each screen is rendered with the switch off and on. Identical output fails." },
-    { "name": "Every pin has a switch behind it", "how": "script", "note": "A pin whose ID has no switch is an error, so pins and notes cannot drift apart." },
-    { "name": "No dead taps", "how": "script", "note": "Every control either navigates, acts or says what it would do." },
-    { "name": "Any preset can finish the journey", "how": "script", "note": "The checker walks the main path under each preset." },
-    { "name": "Made-up data is labelled", "how": "script", "note": "A disclosure has to appear in the panel." },
-    { "name": "All switches off is the product today", "how": "review", "note": "Compare the off state with your real screens before the review." }
+    {
+      "name": "Every PRD point has a switch",
+      "how": "script",
+      "note": "The checker compares the IDs in `prd.json` with the switches in the prototype."
+    },
+    {
+      "name": "Every switch changes at least one screen",
+      "how": "script",
+      "note": "Each screen is rendered with the switch off and on. Identical output fails."
+    },
+    {
+      "name": "Every pin has a switch behind it",
+      "how": "script",
+      "note": "A pin whose ID has no switch is an error, so pins and notes cannot drift apart."
+    },
+    {
+      "name": "No dead taps",
+      "how": "script",
+      "note": "Every control either navigates, acts or says what it would do."
+    },
+    {
+      "name": "Any preset can finish the journey",
+      "how": "script",
+      "note": "The checker walks the main path under each preset."
+    },
+    {
+      "name": "Made-up data is labelled",
+      "how": "script",
+      "note": "A disclosure has to appear in the panel."
+    },
+    {
+      "name": "All switches off is the product today",
+      "how": "review",
+      "note": "Compare the off state with your real screens before the review."
+    }
   ],
   "failures": [
-    { "title": "It looks more finished than it is", "body": "A phone frame makes anything look shippable, and reviewers start commenting on spacing.", "catch": "Open the review by saying it is a sketch for deciding scope. The line at the bottom of the panel says the same." },
-    { "title": "Switches interact", "body": "Two changes can each be fine alone and crowded together.", "catch": "Use the Everything preset early. If a screen breaks with all switches on, that is a finding for the PRD." },
-    { "title": "Today drifts from the real product", "body": "The off state is drawn from what you gave it. If your screenshots were old, so is the baseline.", "catch": "Check the off state against the live app before anyone else sees it." }
+    {
+      "title": "It looks more finished than it is",
+      "body": "A phone frame makes anything look shippable, and reviewers start commenting on spacing.",
+      "catch": "Open the review by saying it is a sketch for deciding scope. The line at the bottom of the panel says the same."
+    },
+    {
+      "title": "Switches interact",
+      "body": "Two changes can each be fine alone and crowded together.",
+      "catch": "Use the Everything preset early. If a screen breaks with all switches on, that is a finding for the PRD."
+    },
+    {
+      "title": "Today drifts from the real product",
+      "body": "The off state is drawn from what you gave it. If your screenshots were old, so is the baseline.",
+      "catch": "Check the off state against the live app before anyone else sees it."
+    }
   ],
   "version": "1.0.0",
   "verified": "2026-11-18",
-  "changelog": [{ "version": "1.0.0", "date": "2026-11-18", "note": "First release." }]
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-11-18",
+      "note": "First release."
+    }
+  ],
+  "run": {
+    "date": "2026-11-18",
+    "by": "A fresh agent session, given only the skill folder and a three-change brief for a different app (Kerb, a fictional parking app). Nobody answered its questions.",
+    "passed": 5,
+    "total": 6,
+    "note": "The sixth check compares switch IDs with a PRD, and this brief had none, so it ran in part. The run also found a bug in the checker and four gaps in the instructions. All are fixed in this version.",
+    "href": "/examples/kerb/flagged-prototype.html",
+    "label": "Open what it built",
+    "log": "examples/kerb/RUN.md"
+  }
 }

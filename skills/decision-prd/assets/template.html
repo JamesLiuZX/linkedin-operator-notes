@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PRD</title>
+<!-- Made with the AI Workflow Handbook skill "decision-prd". Free, MIT licensed: https://jamesliuzx.github.io/linkedin-operator-notes/skills/ -->
+<style>*,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0;background:#f3f3ef;color:#0b0c0c;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}img,svg{max-width:100%}.adoc,.proto{--a-bg: #f3f3ef;--a-card: #ffffff;--a-ink: #0b0c0c;--a-ink2: #3a3d3b;--a-muted: #70756f;--a-faint: #a7aca6;--a-line: #e3e4de;--a-line2: #eeefea;--a-hi: #dcff4a;--a-hi-soft: #f3ffc4;--a-hi-ink: #131a00;--a-ok: #12804b;--a-ok-bg: #e2f6ea;--a-warn: #8f5500;--a-warn-bg: #fff3d9;--a-bad: #bf3327;--a-bad-bg: #fdeae7;--a-info: #2447d6;--a-info-bg: #e9eeff;--a-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;--a-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace}.aid{display:inline-flex;align-items:center;justify-content:center;min-width:2.1em;height:1.55em;padding:0 .42em;border-radius:.5em;background:var(--a-hi);color:var(--a-hi-ink);font-family:var(--a-mono);font-size:.78em;font-weight:600;letter-spacing:-.01em;white-space:nowrap;text-decoration:none}.aid.ink{background:var(--a-ink);color:var(--a-hi)}.atag{display:inline-flex;align-items:center;height:1.6em;padding:0 .55em;border-radius:.45em;font-family:var(--a-mono);font-size:.68em;font-weight:600;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;background:#eceee9;color:var(--a-ink2)}.atag.ok{background:var(--a-ok-bg);color:var(--a-ok)}.atag.warn{background:var(--a-warn-bg);color:var(--a-warn)}.atag.bad{background:var(--a-bad-bg);color:var(--a-bad)}.atag.info{background:var(--a-info-bg);color:var(--a-info)}.atag.hi{background:var(--a-hi);color:var(--a-hi-ink)}.scr{display:block;width:100%;height:auto}.prd{container:prd / inline-size;position:relative;background:var(--a-bg);color:var(--a-ink);font-family:var(--a-sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}.prd :where(h1,h2,h3,p,ul,dl,dd,figure,table){margin:0;padding:0;max-width:none;letter-spacing:normal;font-size:inherit;font-weight:inherit;line-height:inherit;text-wrap:wrap}.prd a{color:inherit}.prd code{padding:.1em .35em;border-radius:5px;background:#eceee9;font-family:var(--a-mono);font-size:.88em}.prd mark{padding:0 .15em;border-radius:.15em;background:var(--a-hi);color:var(--a-hi-ink)}.prd-bar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--a-bg) 90%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--a-line)}.prd-bar-in{display:flex;align-items:center;gap:4px;max-width:1000px;margin:0 auto;padding:9px 24px;overflow-x:auto;scrollbar-width:none}.prd-bar-in::-webkit-scrollbar{display:none}.prd-bar a{flex:none;padding:5px 11px;border-radius:999px;font-size:13.5px;font-weight:500;color:var(--a-ink2);text-decoration:none}.prd-bar a:hover{background:#fff}.prd-bar .prd-brand{margin-right:8px;padding-left:0;font-weight:650;color:var(--a-ink)}.prd-wrap{max-width:1000px;margin:0 auto;padding:26px 24px 60px}.prd-hero{padding:34px 36px 30px;border-radius:26px;background:var(--a-ink);color:#f3f5ee}.prd-ey{font-family:var(--a-mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:#9aa19a}.prd-hero h1{margin-top:14px;max-width:18em;font-size:38px;font-weight:620;letter-spacing:-.035em;line-height:1.08;text-wrap:balance}.prd-hero p{margin-top:12px;max-width:44em;font-size:17px;color:#c6ccc4}.prd-hero-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:22px;font-size:13.5px;color:#9aa19a}.prd-cta{display:inline-flex;align-items:center;height:40px;padding:0 17px;border-radius:999px;background:var(--a-hi);color:var(--a-hi-ink)!important;font-size:14.5px;font-weight:600;text-decoration:none}.prd-sum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}.prd-sum a{display:block;padding:15px 16px;border:1px solid var(--a-line);border-radius:18px;background:var(--a-card);text-decoration:none;transition:border-color .15s ease}.prd-sum a:hover{border-color:var(--a-ink)}.prd-sum i{font-family:var(--a-mono);font-size:12px;font-style:normal;font-weight:600;color:var(--a-muted)}.prd-sum b{display:block;margin:6px 0 3px;font-size:16px;font-weight:620;letter-spacing:-.02em}.prd-sum span{font-size:13.5px;line-height:1.45;color:var(--a-ink2)}.prd-k{margin-right:8px;font-family:var(--a-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--a-muted)}.prd-src{margin-top:16px;font-size:13.5px;color:var(--a-ink2)}.prd-src span:not(.prd-k){color:var(--a-muted)}.prd-sec{margin-top:46px;scroll-margin-top:60px}.prd-sec-head h2{font-size:27px;font-weight:620;letter-spacing:-.035em;line-height:1.15}.prd-sec-head p{margin-top:6px;max-width:46em;color:var(--a-ink2)}.prd-pt{margin-top:14px;padding:22px 24px 18px;border:1px solid var(--a-line);border-radius:22px;background:var(--a-card);scroll-margin-top:64px}.prd-pt:target{border-color:var(--a-ink);box-shadow:0 0 0 3px var(--a-hi)}.prd-pt h3{display:flex;align-items:baseline;gap:11px;margin-bottom:11px;font-size:20px;font-weight:620;letter-spacing:-.025em;line-height:1.25}.prd-pt h3 .aid{position:relative;top:-2px;flex:none;font-size:13px}.prd-pt>p{max-width:48em;margin-bottom:9px}.prd-pt>p b{font-weight:650}.prd-why{color:var(--a-ink2)}.prd-note{max-width:52em;margin:6px 0 4px;padding:10px 14px;border-radius:14px;background:var(--a-warn-bg);color:#5d3900;font-size:14.5px;line-height:1.5}.prd-note b{font-weight:650}.prd-figs{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px}.prd-fig{width:150px;flex:none}.prd-fig button{all:unset;display:block;width:100%;border-radius:20px;cursor:zoom-in;box-shadow:0 1px 2px #0b0c0c0f,0 14px 26px -18px #0b0c0c66;transition:transform .2s ease}.prd-fig button:hover{transform:translateY(-2px)}.prd-fig img{display:block;width:100%;height:auto;border-radius:18px;border:1px solid var(--a-line)}.prd-fig figcaption{margin-top:9px;font-size:12.5px;line-height:1.4;color:var(--a-ink2)}.prd-fig figcaption .atag{display:flex;width:fit-content;margin-bottom:5px;font-size:10px}.prd-know{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:18px;border:1px solid var(--a-line);border-radius:14px;overflow:hidden}.prd-know div{padding:11px 14px 12px}.prd-know div+div{border-left:1px solid var(--a-line)}.prd-know dt{font-family:var(--a-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--a-muted)}.prd-know dd{margin-top:4px;font-size:13.5px;line-height:1.45;color:var(--a-ink2)}.prd-pt-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;margin-top:14px;padding-top:12px;border-top:1px solid var(--a-line2);font-size:13px}.prd-cites{display:flex;flex-wrap:wrap;align-items:center;gap:5px}.prd-cite{padding:2px 9px;border-radius:999px;background:#eff0ec;color:var(--a-ink2)!important;font-size:12.5px;text-decoration:none}a.prd-cite:hover{background:var(--a-hi-soft)}.prd-proto{font-weight:550;text-decoration:none;white-space:nowrap}.prd-proto:hover{text-decoration:underline}.prd-tw{margin-top:14px;border:1px solid var(--a-line);border-radius:18px;background:var(--a-card);overflow-x:auto}.prd-table{width:100%;min-width:720px;border-collapse:collapse;font-size:14.5px}.prd-table th,.prd-table td{padding:12px 14px;text-align:left;vertical-align:top;border-top:1px solid var(--a-line2)}.prd-table th{border-top:0;background:#f0f1ed;font-family:var(--a-mono);font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--a-muted);white-space:nowrap}.prd-table b{font-weight:600}.prd-table .aid{font-size:12.5px}.prd-ids{display:flex;flex-wrap:wrap;gap:4px}.prd-effort{display:inline-grid;place-items:center;min-width:26px;height:22px;padding:0 6px;border:1px solid var(--a-line);border-radius:6px;font-family:var(--a-mono);font-size:12px;font-weight:600}.prd-next h3{margin-bottom:8px}.prd-next ul{padding-left:20px;max-width:50em}.prd-next li{margin:5px 0}.prd-foot{margin-top:36px;font-size:13px;color:var(--a-muted)}.prd-lb{position:fixed;inset:0;z-index:60;display:grid;place-items:center;align-content:center;gap:14px;padding:24px;background:#0b0c0cd1;cursor:zoom-out}.prd-lb[hidden]{display:none}.prd-lb>div{width:min(360px,78vw)}.prd-lb img,.prd-lb svg{display:block;width:100%;height:auto;border-radius:22px}.prd-lb p{color:#fff;font-size:14.5px;text-align:center}@container prd (max-width: 780px){.prd-sum,.prd-know{grid-template-columns:minmax(0,1fr)}.prd-know div+div{border-left:0;border-top:1px solid var(--a-line)}.prd-hero{padding:26px 22px}.prd-hero h1{font-size:29px}.prd-pt{padding:18px 16px 14px}.prd-pt h3{font-size:18px}}@media print{.prd-bar,.prd-lb{display:none!important}.prd{background:#fff}.prd-pt{break-inside:avoid}}#root{min-height:100vh}</style>
+</head>
+<body>
+<div id="root"></div>
+<!-- DATA: replace the JSON inside this element with your own. -->
+<script id="prd-data" type="application/json">
+{
+ "doc": {
+  "title": "Replace this JSON with your prd.json",
+  "short": "PRD",
+  "eyebrow": "Template",
+  "date": "",
+  "summary": "This page is drawn from the JSON in the element with id prd-data. The format is in references/format.md."
+ },
+ "sources": [
+  {
+   "id": "N",
+   "label": "Your notes",
+   "detail": "replace me"
+  }
+ ],
+ "sections": [
+  {
+   "n": 1,
+   "id": "area",
+   "title": "First area",
+   "summary": "One line on what changes here.",
+   "points": [
+    {
+     "id": "1.1",
+     "title": "The problem, as the user meets it",
+     "problem": "What happens today, and what it costs the user.",
+     "change": "The concrete move on the screen.",
+     "evidence": [
+      {
+       "tag": "today",
+       "label": "Today",
+       "caption": "What the screen shows now.",
+       "screen": {
+        "blocks": [
+         [
+          "bar",
+          "Home"
+         ],
+         [
+          "search",
+          "Search"
+         ],
+         [
+          "grid",
+          "",
+          {
+           "n": 2
+          }
+         ]
+        ]
+       }
+      }
+     ],
+     "sources": [
+      "N"
+     ],
+     "know": {
+      "baseline": "What to measure first.",
+      "expect": "What should move.",
+      "stop": "The signal that means stop."
+     }
+    }
+   ]
+  }
+ ],
+ "priority": [
+  {
+   "id": "1.1",
+   "change": "The change",
+   "moves": "The metric",
+   "effort": "S",
+   "status": {
+    "level": "ok",
+    "text": "Nothing"
+   },
+   "first": "The smallest next step"
+  }
+ ],
+ "rollout": [
+  {
+   "when": "First release",
+   "points": [
+    "1.1"
+   ],
+   "why": "Why this goes first."
+  }
+ ],
+ "next": [],
+ "caveats": ""
+}
+</script>
+<script>(()=>{var E=e=>String(e??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;"),B=(e,r)=>String(e??"").length>r?String(e).slice(0,r-1).trimEnd()+"\u2026":String(e??""),I={bar:30,title:26,search:24,chips:20,banner:40,card:46,row:24,grid:62,slots:26,text:16,gap:8,cta:28,tabs:30,sheet:0};function L(e={},{idPrefix:r=""}={}){let c=e.accent||"#0b0c0c",u=(e.blocks||[]).map(t=>Array.isArray(t)?{t:t[0],l:t[1],...t[2]||{}}:t),d="#101311",b="#8a908b",f="#e3e5e0",i="#f1f2ee",s=26,g=[],W=[],z=u.find(t=>t.t==="tabs"),N=[...u].reverse().find(t=>t.t==="cta"&&t.fixed!==!1),R=368-(z?34:6)-0,p=(t,l,n,{size:$=8,weight:w=500,fill:D=d,anchor:a="start",max:H=30}={})=>`<text x="${t}" y="${l}" font-size="${$}" font-weight="${w}" fill="${D}" text-anchor="${a}">${E(B(n,H))}</text>`;for(let t of u){if(t.t==="tabs"||t.t==="sheet")continue;let l=t.h||I[t.t]||20;if(s+l>R)break;let n=10,$=160,w=t.accent?c:"#ffffff",D=t.accent?"#ffffff":d,a=[];switch(t.t){case"bar":a.push(p(n,s+13,t.l,{size:10.5,weight:700,max:24})),t.sub&&a.push(p(n,s+24,t.sub,{size:7,fill:b,max:34})),a.push(`<circle cx="162" cy="${s+11}" r="8" fill="${i}"/>`);break;case"title":a.push(p(n,s+17,t.l,{size:13,weight:700,max:22}));break;case"search":a.push(`<rect x="${n}" y="${s}" width="${$}" height="${l-4}" rx="10" fill="${i}"/>`),a.push(`<circle cx="${n+11}" cy="${s+10}" r="3.2" fill="none" stroke="${b}" stroke-width="1.2"/>`),a.push(p(n+20,s+13,t.l||"Search",{size:7.5,fill:b}));break;case"chips":{let m=t.items||String(t.l||"").split("|"),x=n;m.forEach((y,v)=>{let S=Math.min(64,12+String(y).length*4.1);if(x+S>170)return;let A=v===(t.on??0);a.push(`<rect x="${x}" y="${s}" width="${S}" height="15" rx="7.5" fill="${A?d:"#fff"}" stroke="${A?d:f}"/>`),a.push(p(x+S/2,s+10.4,y,{size:6.8,fill:A?"#fff":d,anchor:"middle",max:14})),x+=S+4});break}case"banner":a.push(`<rect x="${n}" y="${s}" width="${$}" height="${l-6}" rx="9" fill="${t.accent?c:i}"/>`),a.push(p(n+9,s+15,t.l,{size:8.5,weight:700,fill:t.accent?"#fff":d,max:30})),t.sub&&a.push(p(n+9,s+26,t.sub,{size:7,fill:t.accent?"rgba(255,255,255,.8)":b,max:36}));break;case"card":if(a.push(`<rect x="${n}" y="${s}" width="${$}" height="${l-6}" rx="9" fill="${w}" stroke="${t.accent?c:f}"/>`),a.push(p(n+9,s+15,t.l,{size:8.6,weight:700,fill:D,max:t.action?22:30})),t.sub&&a.push(p(n+9,s+27,t.sub,{size:7,fill:t.accent?"rgba(255,255,255,.82)":b,max:t.action?26:36})),t.action){let m=14+String(t.action).length*3.9;a.push(`<rect x="${n+$-m-7}" y="${s+11}" width="${m}" height="16" rx="8" fill="${t.accent?"#fff":d}"/>`),a.push(p(n+$-m/2-7,s+22,t.action,{size:6.8,weight:600,fill:t.accent?c:"#fff",anchor:"middle",max:12}))}break;case"row":a.push(`<rect x="${n}" y="${s+3}" width="14" height="14" rx="4" fill="${i}"/>`),a.push(p(n+20,s+13.5,t.l,{size:8,max:t.right?22:30,fill:t.warn?"#c9362b":d})),t.sub&&a.push(p(n+20,s+21,t.sub,{size:6.2,fill:b,max:34})),t.right&&a.push(p(170,s+13.5,t.right,{size:7.6,fill:t.warn?"#c9362b":b,anchor:"end",max:16})),a.push(`<path d="M${n} ${s+l-1}H170" stroke="${f}" stroke-width=".7"/>`);break;case"grid":{let m=t.n||3,x=($-(m-1)*6)/m;for(let y=0;y<m;y++){let v=n+y*(x+6);a.push(`<rect x="${v}" y="${s}" width="${x}" height="${l-20}" rx="8" fill="${i}"/>`),a.push(`<rect x="${v}" y="${s+l-16}" width="${x*.75}" height="4" rx="2" fill="${f}"/>`),a.push(`<rect x="${v}" y="${s+l-9}" width="${x*.4}" height="4" rx="2" fill="${f}"/>`)}break}case"slots":{let m=t.items||String(t.l||"").split("|"),x=($-(m.length-1)*5)/m.length;m.forEach((y,v)=>{let S=n+v*(x+5),A=v===(t.on??-1);a.push(`<rect x="${S}" y="${s}" width="${x}" height="${l-6}" rx="7" fill="${A?c:"#fff"}" stroke="${A?c:f}"/>`),a.push(p(S+x/2,s+13,y,{size:6.6,weight:600,fill:A?"#fff":d,anchor:"middle",max:12}))});break}case"text":a.push(p(n,s+10,t.l,{size:t.size||7.4,fill:t.warn?"#c9362b":b,weight:t.bold?700:500,max:42}));break;case"cta":a.push(`<rect x="${n}" y="${s}" width="${$}" height="${l-6}" rx="11" fill="${t.ghost?"#fff":c}" stroke="${c}"/>`),a.push(p(180/2,s+14.5,t.l,{size:8.4,weight:700,fill:t.ghost?c:"#fff",anchor:"middle",max:28}));break;default:break}let H=a.join("");g.push(t.dim?`<g opacity=".35">${H}</g>`:H),t.hi&&g.push(`<rect x="${n-3.5}" y="${s-3.5}" width="${$+7}" height="${l+1}" rx="11" fill="none" stroke="#b6e000" stroke-width="2"/>`),t.pin&&W.push({id:t.pin,x:168,y:s-1}),s+=l}if(z){let t=z.items||["Home","Search","Orders","You"],l=180/t.length;g.push(`<rect x="0" y="336" width="180" height="32" fill="#fff"/><path d="M0 336H180" stroke="${f}"/>`),t.forEach((n,$)=>{let w=$===(z.on??0);g.push(`<circle cx="${l*$+l/2}" cy="347" r="4" fill="${w?c:f}"/>`),g.push(p(l*$+l/2,360,n,{size:6.2,fill:w?d:b,anchor:"middle",max:10}))})}let k=u.find(t=>t.t==="sheet");if(k){let t=k.h||150;g.push('<rect x="0" y="0" width="180" height="368" fill="rgba(16,19,17,.38)"/>'),g.push(`<rect x="0" y="${368-t}" width="180" height="${t+20}" rx="16" fill="#fff"/>`),g.push(`<rect x="${180/2-14}" y="${368-t+7}" width="28" height="3.5" rx="2" fill="${f}"/>`),g.push(p(12,368-t+28,k.l,{size:10,weight:700,max:26})),(k.items||[]).forEach((l,n)=>{let $=368-t+40+n*26,w=n===(k.on??0);g.push(`<rect x="10" y="${$}" width="160" height="21" rx="8" fill="${w?"#f3ffc9":"#fff"}" stroke="${w?"#b6e000":f}"/>`),g.push(p(19,$+13.5,l,{size:7.6,max:34}))}),k.pin&&W.push({id:k.pin,x:168,y:368-t+14})}let q=W.map(t=>{let l=9+String(t.id).length*4.6;return`<g><rect x="${t.x-l}" y="${t.y-7}" width="${l}" height="14" rx="7" fill="#dcff4a" stroke="#0b0c0c" stroke-width="1"/><text x="${t.x-l/2}" y="${t.y+3.1}" font-size="7.4" font-weight="700" text-anchor="middle" fill="#0b0c0c" font-family="ui-monospace,Menlo,monospace">${E(t.id)}</text></g>`}).join(""),j=`${r}sc${Math.abs(G(JSON.stringify(e)))}`;return`<svg class="scr" viewBox="0 0 180 368" xmlns="http://www.w3.org/2000/svg" font-family="Geist,Inter,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" role="img" aria-label="${E(e.alt||"Schematic screen")}">
+<defs><clipPath id="${j}"><rect width="180" height="368" rx="22"/></clipPath></defs>
+<g clip-path="url(#${j})">
+<rect width="180" height="368" fill="${e.bg||"#fbfbf9"}"/>
+<text x="14" y="16" font-size="7.4" font-weight="700" fill="${d}">9:41</text>
+<rect x="146" y="9" width="20" height="8" rx="2.5" fill="none" stroke="${d}" stroke-width=".9"/><rect x="${180-32.4}" y="10.6" width="13" height="4.8" rx="1.2" fill="${d}"/>
+${g.join(`
+`)}
+</g>
+<rect x=".6" y=".6" width="${180-1.2}" height="${368-1.2}" rx="21.4" fill="none" stroke="rgba(16,19,17,.16)" stroke-width="1.2"/>
+${q}
+</svg>`}function G(e){let r=0;for(let c=0;c<e.length;c++)r=Math.imul(31,r)+e.charCodeAt(c)|0;return r}var o=e=>String(e??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;"),h=e=>o(e).replace(/`([^`]+)`/g,"<code>$1</code>").replace(/\*([^*]+)\*/g,"<mark>$1</mark>"),O=e=>{let r=new Date(`${String(e).slice(0,10)}T00:00:00Z`);return Number.isNaN(r.getTime())?String(e||""):r.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric",timeZone:"UTC"})},M={today:"Today",reference:"Reference",proposed:"Proposed"},C=e=>`p${String(e).replace(/\./g,"-")}`;function J(e,r){let c=e.screen?.img?`<img src="${o(e.screen.img)}" alt="${o(e.caption||e.label||"")}" loading="lazy">`:L(e.screen||{},{idPrefix:`e${r}`});return`
+  <figure class="prd-fig" data-fig>
+    <button type="button" data-zoom data-cap="${o(`${e.label||M[e.tag]||""}: ${e.caption||""}`)}" aria-label="Enlarge: ${o(e.caption||e.label||"")}">${c}</button>
+    <figcaption><span class="atag ${e.tag==="proposed"?"hi":e.tag==="reference"?"info":""}">${o(e.label||M[e.tag]||e.tag)}</span>${o(e.caption||"")}</figcaption>
+  </figure>`}function U(e,r,c,u){let d=f=>{let[i,s]=String(f).split(":"),g=c.find(z=>z.id===i),W=g?`${g.label}${s?`, ${s}`:""}`:f;return g?.href?`<a class="prd-cite" href="${o(g.href)}">${o(W)}</a>`:`<span class="prd-cite">${o(W)}</span>`},b=r.prototype?.href?`${r.prototype.href}#${e.screen||"home"}?on=${e.id}`:"";return`
+  <article class="prd-pt" id="${C(e.id)}" data-point="${o(e.id)}">
+    <h3><span class="aid">${o(e.id)}</span><span>${h(e.title)}</span></h3>
+    <p><b>Problem.</b> ${h(e.problem)}</p>
+    <p><b>Change.</b> ${h(e.change)}</p>
+    ${e.why?`<p class="prd-why">${h(e.why)}</p>`:""}
+    ${e.constraint?`<div class="prd-note"><b>${o(e.constraint.label||"Constraint")}.</b> ${h(e.constraint.text)}</div>`:""}
+    ${(e.evidence||[]).length?`<div class="prd-figs">${e.evidence.map((f,i)=>J(f,`${u}-${i}`)).join("")}</div>`:""}
+    ${e.know?`<dl class="prd-know">
+      <div><dt>Baseline to measure</dt><dd>${h(e.know.baseline)}</dd></div>
+      <div><dt>What should move</dt><dd>${h(e.know.expect)}</dd></div>
+      <div><dt>Stop if</dt><dd>${h(e.know.stop)}</dd></div>
+    </dl>`:""}
+    <footer class="prd-pt-foot">
+      <span class="prd-cites"><span class="prd-k">Rests on</span>${(e.sources||[]).map(d).join("")}</span>
+      ${b?`<a class="prd-proto" href="${o(b)}">See ${o(e.id)} in the prototype \u203A</a>`:""}
+    </footer>
+  </article>`}function Z(e){let r=e.doc||{},c=e.sections||[],u=e.sources||[],d=c.flatMap(i=>i.points||[]),b=i=>`<a class="aid" href="#${C(i)}">${o(i)}</a>`,f=0;return`
+  <nav class="prd-bar" data-prd-bar><div class="prd-bar-in">
+    <a class="prd-brand" href="#prd-top">${o(r.short||r.title||"PRD")}</a>
+    ${c.map(i=>`<a href="#prd-s${i.n}">${i.n}. ${o(i.title)}</a>`).join("")}
+    ${(e.priority||[]).length?'<a href="#prd-priority">Priorities</a>':""}
+    ${(e.rollout||[]).length?'<a href="#prd-rollout">Rollout</a>':""}
+  </div></nav>
+
+  <div class="prd-wrap" id="prd-top">
+    <header class="prd-hero" data-part="hero">
+      <div class="prd-ey">${[r.eyebrow||"Draft for review",r.author,O(r.date)].filter(Boolean).map(o).join(" \xB7 ")}</div>
+      <h1>${h(r.title)}</h1>
+      <p>${h(r.summary)}</p>
+      <div class="prd-hero-foot">
+        ${r.prototype?.href?`<a class="prd-cta" href="${o(r.prototype.href)}">${o(r.prototype.label||"Open the clickable prototype")} \u203A</a>`:""}
+        <span>${d.length} points \xB7 ${c.length} sections${r.fictional?" \xB7 fictional example":""}</span>
+      </div>
+    </header>
+
+    <div class="prd-sum" data-part="sum">
+      ${c.map(i=>`<a href="#prd-s${i.n}" data-sum><i>${i.n}</i><b>${o(i.title)}</b><span>${h(i.summary||"")}</span></a>`).join("")}
+    </div>
+
+    ${u.length?`<p class="prd-src" data-part="src"><span class="prd-k">Evidence comes from</span>${u.map(i=>`${i.href?`<a href="${o(i.href)}">${o(i.label)}</a>`:`<b>${o(i.label)}</b>`} <span>(${o(i.detail||"")})</span>`).join(" \xB7 ")}. ${o(e.sourceNote||"")}</p>`:""}
+
+    ${c.map(i=>`
+    <section class="prd-sec" id="prd-s${i.n}">
+      <div class="prd-sec-head" data-part="sec-${i.n}"><h2>${i.n}. ${o(i.title)}</h2>${i.lead?`<p>${h(i.lead)}</p>`:""}</div>
+      ${(i.points||[]).map(s=>U(s,r,u,f++)).join("")}
+    </section>`).join("")}
+
+    ${(e.priority||[]).length?`<section class="prd-sec" id="prd-priority" data-part="priority">
+      <div class="prd-sec-head"><h2>Priorities at a glance</h2><p>${h(e.priorityLead||"What each point moves, what it costs, and what could hold it up.")}</p></div>
+      <div class="prd-tw"><table class="prd-table">
+        <thead><tr><th>#</th><th>Change</th><th>Moves</th><th>Effort</th><th>Depends on</th><th>First step</th></tr></thead>
+        <tbody>${e.priority.map(i=>`<tr data-row><td>${b(i.id)}</td><td><b>${h(i.change)}</b></td><td>${h(i.moves)}</td><td><span class="prd-effort">${o(i.effort)}</span></td>
+            <td><span class="atag ${i.status?.level==="ok"?"ok":i.status?.level==="no"?"bad":"warn"}">${o(i.status?.text||"")}</span></td><td>${h(i.first)}</td></tr>`).join("")}</tbody>
+      </table></div>
+    </section>`:""}
+
+    ${(e.rollout||[]).length?`<section class="prd-sec" id="prd-rollout" data-part="rollout">
+      <div class="prd-sec-head"><h2>Rollout</h2><p>${h(e.rolloutLead||"What ships when, and why then.")}</p></div>
+      <div class="prd-tw"><table class="prd-table">
+        <thead><tr><th>When</th><th>Points</th><th>Why then</th></tr></thead>
+        <tbody>${e.rollout.map(i=>`<tr data-row><td><b>${o(i.when)}</b></td><td class="prd-ids">${(i.points||[]).map(b).join("")}</td><td>${h(i.why)}</td></tr>`).join("")}</tbody>
+      </table></div>
+      ${(e.next||[]).length?`<div class="prd-pt prd-next"><h3><span>Next steps</span></h3><ul>${e.next.map(i=>`<li>${h(i)}</li>`).join("")}</ul></div>`:""}
+    </section>`:""}
+
+    <footer class="prd-foot">${h(e.caveats||"")}</footer>
+  </div>
+
+  <div class="prd-lb" data-lb hidden><div data-lb-pic></div><p data-lb-cap></p></div>`}function T(e,r){e.classList.add("adoc","prd"),e.innerHTML=Z(r);let c=e.querySelector("[data-lb]");return e.addEventListener("click",u=>{let d=u.target.closest("[data-zoom]");if(d){c.querySelector("[data-lb-pic]").innerHTML=d.innerHTML,c.querySelector("[data-lb-cap]").textContent=d.dataset.cap||"",c.hidden=!1;return}u.target.closest("[data-lb]")&&(c.hidden=!0)}),e.addEventListener("keydown",u=>{u.key==="Escape"&&(c.hidden=!0)}),{root:e,points:()=>[...e.querySelectorAll("[data-point]")]}}var P=JSON.parse(document.getElementById("prd-data").textContent);T(document.getElementById("root"),P);P.doc&&P.doc.title&&(document.title=P.doc.title);})();</script>
+</body>
+</html>

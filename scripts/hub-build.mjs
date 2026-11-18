@@ -32,6 +32,7 @@ import { page } from "../hub/lib/html.mjs";
 import { loadWorkflows, loadGuides, loadIssues, loadSkills, loadDigests } from "../hub/lib/content.mjs";
 import { zip } from "../hub/lib/zip.mjs";
 import * as pages from "../hub/lib/pages.mjs";
+import { examples } from "./hub-templates.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "site", "dist");
@@ -161,6 +162,10 @@ async function main() {
   // Machine-readable twins and downloads.
   for (const f of await pages.files(ctx)) await write(f.path, f.contents);
 
+  // Every worked example as a finished page, built from the skill's own template.
+  const built = await examples(ROOT);
+  for (const e of built) await write(e.path, e.contents);
+
   for (const s of skills) {
     const files = await Promise.all(
       s.files.map(async (f) => ({ name: `${s.name}/${f.path}`, data: await readFile(f.full) }))
@@ -171,7 +176,7 @@ async function main() {
   await write("/hub/routes.json", JSON.stringify(routes, null, 1));
 
   console.log(
-    `hub: ${routes.length} pages, ${workflows.length} workflows, ${skills.length} skills, ${issues.length} issues` +
+    `hub: ${routes.length} pages, ${workflows.length} workflows, ${skills.length} skills, ${built.length} examples, ${issues.length} issues` +
       ` at base ${BASE}${legacy ? " (old app kept at its routes)" : " (no old app in dist)"}`
   );
 }

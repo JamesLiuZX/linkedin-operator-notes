@@ -1,0 +1,69 @@
+Participant: P4
+Name: Tom
+Profile: Retired couple, 19 months with Tangelo, orders every Tuesday
+Date: 2026-11-06
+
+[00:09] Interviewer: Tom, thanks for joining. Who are you shopping for?
+[00:31] P4: Me and my wife. Retired, both of us. Grown kids, they visit.
+[01:07] Interviewer: How long on Tangelo?
+[01:22] P4: Since the spring of last year. Nineteen months, let's say.
+[01:41] Interviewer: How often?
+[01:49] P4: Every Tuesday. Without fail.
+[02:07] Interviewer: Why Tuesday?
+[02:17] P4: Because that's when the bins go out and I'm up early anyway.
+[03:01] Interviewer: Ha. Tell me about last Tuesday.
+[03:13] P4: I sat at the desk in the spare room. Desktop, not a phone. I can't see anything on a phone.
+[03:57] Interviewer: What did you order?
+[04:10] P4: Oh, the same. Porridge oats, eggs, the sliced ham, tinned tomatoes. My wife's yoghurts. Tea bags, the big box.
+[05:14] Interviewer: Is that every week?
+[05:31] P4: Near enough. You get set in your ways. The Tuesday list barely moves.
+[05:58] Interviewer: How do you build it?
+[06:17] P4: One by one. I type, I click add, I type again. It's slow going. It takes me a good twelve minutes, maybe more. And I'm a fast typist.
+[06:50] Interviewer: How does that feel?
+[07:05] P4: Like doing the same sums again. I'd rather the computer remembered.
+[07:32] Interviewer: Have you tried anything to speed it up?
+[07:50] P4: I thought about the favourites. I don't think I ever found where they are.
+[08:15] Interviewer: Have you looked under Orders?
+[08:30] P4: Why would I look there? That's where I check the bills.
+[09:08] Interviewer: Right. I'll come back to it. Tell me about something that went wrong.
+[09:56] P4: The sausages. I got the wrong ones. I buy the plain pork ones, the ones my wife can eat.
+[10:52] Interviewer: What did you get?
+[11:04] P4: Spicy chilli ones. They were meant to be a substitute. Chilli! For a woman who can't take pepper.
+[12:04] Interviewer: How did you find out?
+[12:17] P4: Unpacked the bags. It's on the packing slip, tiny writing. I don't wear my glasses at the door.
+[12:57] Interviewer: What did you do?
+[13:08] P4: Binned them. I mean, I gave them to the neighbour's lad. And I wrote to them.
+[13:37] Interviewer: Did they reply?
+[13:48] P4: They sent a canned reply. Sorry for any inconvenience. I wanted a human.
+[14:37] Interviewer: How did that change how you feel?
+[15:02] P4: I trust the app a bit less. I check everything. Which is exactly the opposite of what I want.
+[16:04] Interviewer: Now the price. Do you watch it?
+[16:28] P4: Closely. I keep every receipt in a folder.
+[16:42] Interviewer: And what do you see?
+[16:54] P4: The total goes up. Same basket. Sixty-one dollars two weeks ago, sixty-six dollars last week.
+[17:46] Interviewer: Did you change anything?
+[18:00] P4: Nothing. Same items. I went through it. There's no reason shown. A person at a till would explain.
+[18:58] Interviewer: Did you contact them?
+[19:09] P4: I thought about it. Then I thought, life's short.
+[19:34] Interviewer: Fair. Do you place just one order a week?
+[19:53] P4: Mostly. But I tell you, there's always something I forget. Last week it was washing-up liquid.
+[20:35] Interviewer: What happens then?
+[20:47] P4: I do a small top-up on Thursday. Four things. Delivery charge and all. It's annoying.
+[21:18] Interviewer: How often?
+[21:31] P4: Every other week, say.
+[21:41] Interviewer: What's the plan to avoid it?
+[21:59] P4: There isn't one. I don't write a list. That's rather the problem.
+[22:46] Interviewer: Your wife, does she use it?
+[23:03] P4: Heavens, no. She says it's my department.
+[23:29] Interviewer: Anything you like about it?
+[23:49] P4: The delivery chaps are cheerful. And I don't have to carry anything. My back's not what it was.
+[24:19] Interviewer: Have you tried other apps?
+[24:38] P4: Sorrel. A friend recommended. I didn't get on with the font size.
+[24:58] Interviewer: Okay. If this job could be much faster, what would it look like?
+[25:42] P4: Let me open it and it says, here's your usual Tuesday. Yes or no. I say yes. Done.
+[26:26] Interviewer: And the swaps?
+[26:38] P4: Ask me before. Not after. That's all I'd ask.
+[26:56] Interviewer: Anything you'd like to add?
+[27:13] P4: Only that I've enjoyed this. Nobody asks me anything.
+[27:43] Interviewer: Thank you, Tom.
+[27:56] P4: Right you are. Goodbye.

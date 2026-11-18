@@ -149,7 +149,7 @@ function home(ctx) {
   ${tabbar("home")}`;
 }
 
-function orders(ctx) {
+function orders() {
   return `
   <div class="p-scroll">
     <div class="p-top"><span class="p-addr"><b>Orders</b></span><span class="p-avatar">M</span></div>
@@ -167,7 +167,7 @@ function orders(ctx) {
       </div>`
       )
       .join("")}
-    <p class="p-fine">${ctx.on("1.1") ? "With the reorder card on Home, this screen is the long way round." : "Today this is the only way to repeat a shop: Orders, the order, Reorder."}</p>
+    <p class="p-fine">Today this is the only way to repeat a shop: Orders, the order, Reorder.</p>
   </div>
   ${tabbar("orders")}`;
 }
@@ -256,7 +256,7 @@ function checkout(ctx) {
 
     ${
       blocked
-        ? `<div class="p-note bad"><b>${gone.length} items are no longer available</b>Oat milk 1L and Sourdough loaf are out of stock. Go back to your basket to remove them.</div>`
+        ? `<div class="p-note bad"><b>${gone.length} items are no longer available</b>${gone.map((i) => i.name).join(" and ")} went out of stock while you were shopping.<br><button class="p-btn sm ghost" style="margin-top:8px" data-act="dropMissing">Remove them and carry on</button></div>`
         : ""
     }
 
@@ -301,6 +301,8 @@ export default {
   legal: "Concept for review, not a live product. Tangelo is fictional, and every item, price and slot is illustrative.",
   theme: { brand: "#14532d", brandInk: "#ffffff", brandSoft: "#e7f0e6", bg: "#f6f5f0" },
   start: "home",
+  // The main path a reviewer walks. The checker confirms it can be finished under every preset.
+  journey: ["home", "orders", "basket", "checkout", "done"],
   paths: { home: ["home"], orders: ["home", "orders"], basket: ["home", "basket"], checkout: ["home", "basket", "checkout"], done: ["home", "basket", "checkout", "done"] },
   sections: [
     { n: 1, title: "Home" },
@@ -363,6 +365,10 @@ export default {
     remove(ctx, k) {
       const item = ctx.data.items.find((i) => i.id === k);
       if (item) item.removed = true;
+    },
+    dropMissing(ctx) {
+      for (const item of ctx.data.items) if (item.oos && !item.swapped) item.removed = true;
+      return { toast: "Removed. Your total has been updated." };
     },
     rule(ctx, k) {
       const [id, v] = k.split(":");

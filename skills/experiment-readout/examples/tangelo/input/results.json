@@ -1,0 +1,24 @@
+{
+  "test": {
+    "name": "Reorder card on Home",
+    "hypothesis": "Putting last week's shop on Home gets more returning customers to order within 7 days.",
+    "unit": "returning customers",
+    "planned_split": [0.5, 0.5],
+    "planned_days": 14,
+    "ran_days": 14,
+    "start": "2026-10-26",
+    "end": "2026-11-08",
+    "mde_set": 0.01,
+    "alpha": 0.05
+  },
+  "arms": [
+    { "name": "Control", "users": 20912 },
+    { "name": "Reorder card", "users": 20958 }
+  ],
+  "primary": { "name": "Ordered within 7 days", "direction": "up", "counts": [6984, 7357] },
+  "guardrails": [
+    { "name": "Orders with 15 or more items", "harm": "down", "counts": [4120, 4267], "denominators": [6984, 7357], "tolerance": 0.01 },
+    { "name": "Orders with a substitution complaint", "harm": "up", "counts": [301, 268], "denominators": [6984, 7357], "tolerance": 0.005 },
+    { "name": "Orders cancelled before delivery", "harm": "up", "counts": [154, 158], "denominators": [6984, 7357], "tolerance": 0.005 }
+  ]
+}

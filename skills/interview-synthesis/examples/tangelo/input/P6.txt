@@ -1,0 +1,65 @@
+Participant: P6
+Name: Greg
+Profile: Couple plus her father three days a week, 5 years with Tangelo, orders every Friday
+Date: 2026-11-10
+
+[00:12] Interviewer: Greg, thanks. Tell me about your household.
+[00:45] P6: Me, my wife, and her dad stays with us three days a week. So two and a bit.
+[01:15] Interviewer: How long on Tangelo?
+[01:37] P6: Five years. Since it was just a few dozen shops in my area.
+[02:01] Interviewer: How often do you order?
+[02:17] P6: Fortnightly was the start of it. Now it's weekly.
+[02:53] Interviewer: What day?
+[03:10] P6: Friday, lunchtime. I work from home so I just slot it in.
+[03:56] Interviewer: Walk me through it.
+[04:13] P6: Open it up, add what we need, check out. Ten minutes, maybe less.
+[04:38] Interviewer: Is it the same stuff each week?
+[05:02] P6: Largely. Staple stuff. Pasta, mince, the cereal my father-in-law likes, tins, a couple of chickens.
+[05:46] Interviewer: Do you find that part a bother?
+[06:18] P6: Not really. I know where everything is. I click the same ones.
+[07:14] Interviewer: Okay. What do you do about the changes, things being out of stock?
+[07:59] P6: I let them swap. I have it switched on.
+[08:19] Interviewer: Why?
+[08:30] P6: Because I'd rather get something than nothing.
+[09:08] Interviewer: Tell me more.
+[09:25] P6: Last time they sent a different brand of beans. Fine. Beans are beans. And once I got a bigger pack of rice. Tripled my rice.
+[10:52] Interviewer: Did that bother you?
+[11:12] P6: Ha. No. We ate rice for a month. It was cheap, actually.
+[11:37] Interviewer: Have you ever been annoyed by a swap?
+[12:03] P6: Not that I can think of. If it's wrong I just put it aside.
+[13:00] Interviewer: What about your wife?
+[13:18] P6: She grumbles sometimes about the washing powder. But it's me who does the order, so she can lump it.
+[14:14] Interviewer: Fair. Anything about the delivery slot?
+[14:37] P6: Never had any problem. I'm flexible. Friday afternoon, they turn up, I hand over the keys. Joke.
+[15:48] Interviewer: Okay. And the cost?
+[16:09] P6: Now this I have noticed.
+[16:34] Interviewer: Go on.
+[16:47] P6: The same shopping, same everything. It used to be around eighty dollars. Lately it's ninety-five, a hundred.
+[17:28] Interviewer: Do you know why?
+[17:40] P6: No idea. Prices are up generally, sure, but the app doesn't tell you what went up. You only see the total.
+[19:09] Interviewer: Have you looked into it?
+[19:35] P6: I scrolled through once. Gave up after the dairy section.
+[20:27] Interviewer: Did you consider it a problem?
+[20:52] P6: It niggles. I can't prove it's wrong. I just can't see it.
+[21:42] Interviewer: Does that change what you buy?
+[22:01] P6: A bit. I swapped to the cheaper tea, and I couldn't tell you if I saved anything.
+[22:56] Interviewer: Mm. Have you used the Reorder button?
+[23:34] P6: I've seen it mentioned but I never bothered. I just click what I click.
+[24:36] Interviewer: Okay. Have you tried other apps?
+[25:02] P6: I tried Marrow when it was doing a free delivery offer. Two weeks. Came back.
+[26:10] Interviewer: Why come back?
+[26:27] P6: My list was sitting here. Funny enough.
+[26:50] Interviewer: Your list, where is it?
+[27:10] P6: In my head, mostly. And in my past orders, probably.
+[27:41] Interviewer: Okay. How do you feel about it overall?
+[28:02] P6: Content. It's a tool. It does a job.
+[28:29] Interviewer: What would be better?
+[28:51] P6: Show me why the price moved. A little line. That's it.
+[29:19] Interviewer: Anything else?
+[29:36] P6: Not really. The fishmonger's van near us is cheaper, but I don't have time.
+[30:14] Interviewer: Understood. Do you shop in person ever?
+[30:48] P6: Once a month, to check I'm not being fleeced. Which, I suppose, is the same thing.
+[31:35] Interviewer: Does it help?
+[31:47] P6: Not much. Everything's up.
+[32:11] Interviewer: Thank you for your time, Greg.
+[32:42] P6: Pleasure.

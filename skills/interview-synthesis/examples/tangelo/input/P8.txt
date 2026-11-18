@@ -1,0 +1,66 @@
+Participant: P8
+Name: Sam
+Profile: Three flatmates in their late twenties, 11 months with Tangelo, orders every Wednesday evening
+Date: 2026-11-12
+
+[00:12] Interviewer: Sam, thanks for joining. Can you tell me about your household?
+[00:43] P8: Three flatmates, all of us in our late twenties. I'm the one who does the shop, somehow.
+[01:25] Interviewer: How long have you been using Tangelo?
+[01:44] P8: Nearly a year. I started in January.
+[01:59] Interviewer: How often?
+[02:09] P8: Every week, Wednesday evening. Sometimes Thursday.
+[02:47] Interviewer: How do you do it?
+[03:02] P8: Phone mostly, on the train home. Then the laptop when I'm in.
+[03:34] Interviewer: What's in a typical order?
+[03:47] P8: Oat milk, eggs, pasta, rice, cans of chickpeas, tofu, frozen peas, a lot of tea. The flat is a creature of habit.
+[04:45] Interviewer: So the same each week?
+[05:01] P8: Basically. We're not adventurous. It's like a loop.
+[05:34] Interviewer: How long does it take?
+[05:56] P8: Fifteen, twenty minutes. Because I'm searching and adding the same stuff. It's dull.
+[06:38] Interviewer: Dull how?
+[06:49] P8: It's like data entry. I rebuild the same basket. Anything but the actual shopping.
+[07:44] Interviewer: Do you try anything else?
+[08:06] P8: I tried favouriting stuff. Doesn't help much, the heart thing is separate and I forget.
+[08:54] Interviewer: Do you know about the Reorder button?
+[09:17] P8: I think there was something under Orders. I've never used it. I wouldn't know what it does, to be honest.
+[10:34] Interviewer: Okay. Tell me about slots.
+[10:57] P8: Oh, this.
+[11:09] P8: By the time I've found everything, the evening slot has gone and I'm stuck with Thursday morning.
+[11:41] Interviewer: How often?
+[11:55] P8: Most weeks. I'd say three in four.
+[12:16] Interviewer: What happens on Thursday morning?
+[12:44] P8: Nobody's in. We all work. So we get a text about the neighbour taking it. Or it sits on the step.
+[13:17] Interviewer: Has anything been left?
+[13:29] P8: Once. The frozen peas. Melted. Just a bag of green liquid.
+[13:55] Interviewer: Ha. Did you get a refund?
+[14:09] P8: Yes, eventually. That's not the point.
+[14:41] Interviewer: What is the point?
+[14:57] P8: The point is I did the work, and then lost the slot. It's like losing your progress in a game.
+[15:34] Interviewer: Have you tried getting there earlier?
+[16:04] P8: Tried ordering on Tuesday. Same story. Just the earlier slots went.
+[16:45] Interviewer: Okay. Did anything go wrong with an order recently?
+[17:17] P8: Yes. The tofu.
+[17:27] Interviewer: Go on.
+[17:38] P8: I buy the firm one. Specific brand. We got silken. Which is a drink, practically.
+[18:08] Interviewer: When did you find out?
+[18:30] P8: Thursday night. I'd started a stir-fry, my flatmate was waiting. It fell apart in the pan.
+[19:17] Interviewer: How did that feel?
+[19:33] P8: Wound up. It's a tiny thing. But it's the one meal I'd promised everyone.
+[20:12] Interviewer: Did you get notified?
+[20:29] P8: There was a line in the app, after it'd arrived. By then I was at the stove.
+[21:25] Interviewer: Does that change what you order?
+[21:46] P8: I now say no substitutions on everything. Which means gaps. Which is also bad.
+[22:15] Interviewer: Mm. What about price?
+[22:33] P8: I haven't noticed anything. It's around fifty, sixty a week.
+[23:09] Interviewer: Okay. Anything you'd change?
+[23:26] P8: A way to say, give me last week. Then I just remove things.
+[23:57] Interviewer: Would you want to check it?
+[24:18] P8: Sure. I'd check it on the train. Two minutes. That would be fine.
+[24:55] Interviewer: What about the flatmates?
+[25:16] P8: They pay me back on a spreadsheet, so I keep every receipt. They've never once been late.
+[25:55] Interviewer: That's rare.
+[26:07] P8: I'm joking. They're always late.
+[26:25] Interviewer: Anything else you want to tell us?
+[26:51] P8: No, I think that covers it. I've got a train in a minute.
+[27:33] Interviewer: Thanks a lot, Sam.
+[27:52] P8: No worries.

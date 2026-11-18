@@ -659,7 +659,8 @@
 .p-tabbar {
   flex: none;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
   height: 58px;
   padding-bottom: 8px;
   border-top: 1px solid var(--a-line);

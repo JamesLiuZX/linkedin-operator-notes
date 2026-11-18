@@ -1,0 +1,49 @@
+{
+  "title": "Tangelo: making the weekly shop a two-minute job",
+  "intro": "Tangelo is a grocery delivery app. Most of its returning customers buy nearly the same basket every week, and it still takes them about as long as the first time. This is one piece of work followed from the first question to the test result, with every document open to read.",
+  "company": {
+    "name": "Tangelo",
+    "what": "A fictional grocery delivery app",
+    "competitors": ["Pippin", "Marrow", "Sorrel"],
+    "customer": "Maya, a returning customer who shops once a week",
+    "question": "Why does a repeat shop take so long, and what would make it a two-minute job?"
+  },
+  "steps": [
+    {
+      "workflow": "journey-teardown",
+      "question": "How do other grocery apps handle a repeat shop?",
+      "found": "Four apps, three stages, twenty-four screens. Two of the three competitors put last week's shop on the first screen. Two check stock when the basket opens. One asks for the delivery slot before anything else. Tangelo does none of these.",
+      "changed": "Six patterns went into the PRD as reference screens, each with the apps it was seen in."
+    },
+    {
+      "workflow": "interview-synthesis",
+      "question": "What do weekly shoppers say gets in the way?",
+      "found": "Eight interviews. Seven of eight buy mostly the same things each week. Five of eight had received a substitution they did not want. One quote that sounded right was not in any transcript, so the checker removed it.",
+      "changed": "Every Problem line in the PRD carries a count from this synthesis, such as 5 of 8."
+    },
+    {
+      "workflow": "premortem",
+      "question": "If one-tap reorder failed, why would it have failed?",
+      "found": "Nine failure stories. The four most likely each got a tripwire: smaller baskets, missing items at checkout, held slots nobody uses, and stale baskets.",
+      "changed": "The PRD's reorder card opens an editable basket, never a checkout, and items per order became a guardrail on the test."
+    },
+    {
+      "workflow": "decision-prd",
+      "question": "What exactly are we proposing, and in what order?",
+      "found": "Six numbered points in three sections. Each states the problem, the change, the evidence and how we would know. Three ship first, two wait on other teams, one waits for data.",
+      "changed": "The six IDs became the six switches of the prototype."
+    },
+    {
+      "workflow": "flagged-prototype",
+      "question": "What does each change actually look like?",
+      "found": "Five screens and six switches. With everything off it is the app today. Turn on 1.1 and the reorder card appears on Home. The review approved the first release and asked for 2.2 to wait.",
+      "changed": "The first release went to test: the reorder card, for half of returning customers, for 14 days."
+    },
+    {
+      "workflow": "experiment-readout",
+      "question": "Did the reorder card work?",
+      "found": "The split was as planned, so the result can be trusted. More customers ordered within a week. The basket-size guardrail did not clearly hold, which is the risk the pre-mortem named.",
+      "changed": "The verdict was to extend the test until the guardrail is settled, not to ship on a green headline number."
+    }
+  ]
+}

@@ -20,3 +20,29 @@
   text-transform: uppercase;
   font-size: 0.64rem;
 }
+
+/* A document inside the stage: a sheet rising from the bottom edge. */
+.paper {
+  position: absolute;
+  inset: var(--s-pad) var(--s-pad) 0 var(--s-pad);
+  border-radius: 14px 14px 0 0;
+  background: #f3f3ef;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 30px 60px -20px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+
+.paper-scroll {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.stage.is-live .paper-scroll {
+  overflow-y: auto;
+}
+
+.paper-doc {
+  transform-origin: 0 0;
+}

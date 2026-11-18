@@ -361,10 +361,11 @@ function workflowPage(ctx, w) {
             ${
               w.run
                 ? `<dl class="runlog">
-              <div><dt>Run</dt><dd>${esc(fmtDate(w.run.date))}</dd></div>
+              <div><dt>Test run</dt><dd>${esc(fmtDate(w.run.date))}</dd></div>
               <div><dt>How</dt><dd>${esc(w.run.by)}</dd></div>
               <div><dt>Checks</dt><dd>${esc(String(w.run.passed))} of ${esc(String(w.run.total))} passed</dd></div>
               ${w.run.note ? `<div><dt>Note</dt><dd>${ctx.mdInline(w.run.note)}</dd></div>` : ""}
+              ${w.run.href || w.run.log ? `<div><dt>Open</dt><dd>${w.run.href ? `<a href="${u(w.run.href)}" target="_blank" rel="noopener">${esc(w.run.label || "The output")}</a>` : ""}${w.run.href && w.run.log ? " · " : ""}${w.run.log ? `<a href="${repoUrl(`${SITE.repo.skillsDir}/${w.skill}/${w.run.log}`)}" target="_blank" rel="noopener">The run notes</a>` : ""}</dd></div>` : ""}
             </dl>`
                 : ""
             }

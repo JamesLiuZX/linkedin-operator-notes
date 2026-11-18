@@ -1,0 +1,79 @@
+Participant: P1
+Name: Ruth
+Profile: Couple with two kids (8 and 5), 14 months with Tangelo, orders every Sunday night
+Date: 2026-11-03
+
+[00:13] Interviewer: Thanks for making time. Could you start by telling me who you shop for?
+[00:40] P1: Sure. It's me, my husband and the two kids, eight and five. So a lot of lunchboxes.
+[01:19] Interviewer: And how long have you used Tangelo?
+[01:29] P1: About fourteen months. Since my youngest started school, I think. Maybe fifteen.
+[01:48] Interviewer: How often do you order?
+[02:02] P1: Every Sunday night. After bedtime, because that's the only time I have both hands free.
+[02:32] Interviewer: Take me through last Sunday.
+[02:44] P1: Okay. Laptop on my knees, phone beside me for the notes app. Tea, usually going cold.
+[03:07] Interviewer: What's in the notes app?
+[03:19] P1: A list. Well, it's less a list than a thing I keep in my head and sometimes write down.
+[04:01] P1: I buy the same twenty things every week, and every week I type them all in again.
+[04:27] Interviewer: Say more about the typing in.
+[04:42] P1: You search milk. Scroll. Find the right milk, the semi-skimmed, the two litre one. Then bread. Then the yoghurts the kids actually eat.
+[05:39] Interviewer: How long does that bit take?
+[05:55] P1: Twelve minutes? Fifteen if the five year old comes down for water.
+[06:14] Interviewer: Ha. Does that happen a lot?
+[06:30] P1: Every week. He's got a radar for when I'm on the laptop.
+[06:54] Interviewer: Okay, back to the shop. Do you ever look at past orders?
+[07:08] P1: Not really. Why would I?
+[07:19] Interviewer: Some people use them to start a new basket.
+[07:30] P1: Huh. Is there a way to do that?
+[07:45] Interviewer: Have you seen a Reorder button anywhere?
+[07:56] P1: No. No, I haven't. Where is it?
+[08:14] Interviewer: I'll hold that thought and come back. What happens after you've added everything?
+[08:48] P1: Checkout, pick a slot, pay. That part's fine. It's the middle that's boring.
+[09:28] Interviewer: Boring how?
+[09:37] P1: Like filling in a form you've filled in fifty times. It's not hard. It's just admin.
+[10:08] Interviewer: Did anything go wrong with an order recently?
+[10:30] P1: Oh, the pasta. Hold on. Yes. I ordered the little shell pasta for the kids.
+[11:09] Interviewer: And?
+[11:15] P1: And I got spirals. At the door I didn't check. I only saw when I was unpacking, and my eight year old said that's not the right one.
+[11:53] Interviewer: How did that feel?
+[12:05] P1: Annoyed, honestly. I'd chosen it. Someone just decided for me.
+[12:34] Interviewer: Did the app tell you beforehand?
+[12:53] P1: There was probably an email. I don't read those. I found out with the bag in my hand.
+[13:36] Interviewer: Did it change what you do?
+[13:47] P1: A bit. Now I check every bag. Which defeats the point of delivery, a bit.
+[14:24] Interviewer: Right. Anything you do outside of the Sunday order?
+[14:52] P1: Oh, yes. I forget things. Always the bin bags, or butter. Something small.
+[15:09] Interviewer: What do you do then?
+[15:21] P1: Wednesday I place a tiny order. Five items, maybe six. And pay the delivery fee on a nine dollar order, which is silly.
+[16:11] Interviewer: Do you plan to do that?
+[16:21] P1: No! It just happens. I open the fridge on Tuesday night and think, we have no butter.
+[16:58] Interviewer: Has it been every week?
+[17:13] P1: Most weeks. Maybe three weeks out of four.
+[17:37] Interviewer: What about your neighbour, does she order too?
+[17:56] P1: Mina next door? She's on Pippin. She says it's the same, though. She hates it too.
+[18:38] Interviewer: Hates what?
+[18:47] P1: Oh, I don't know. I'm making that up. She just always complains about something.
+[19:26] Interviewer: Fair enough. Back to your Sunday session. When do you decide on the slot?
+[19:46] P1: At the end. I just take what's there.
+[19:59] Interviewer: And is it usually okay?
+[20:15] P1: Yes. Sunday night for Monday morning, that's always been open. I've never had trouble.
+[20:46] Interviewer: Good. How about the price at checkout?
+[21:08] P1: I look at the total and go, fine. I don't scrutinise it.
+[21:28] Interviewer: So no surprises there?
+[21:42] P1: Not that I've noticed. I'm not a spreadsheet person.
+[22:02] Interviewer: What does a good week look like?
+[22:19] P1: Where I don't have to think. Where I click once and it's all there.
+[22:42] Interviewer: If you could wave a wand?
+[22:56] P1: Honestly? Open the app and my usual stuff is already sitting there. I take things off. That's it.
+[23:26] Interviewer: Would you want to check it?
+[23:43] P1: Yes, a quick look. But I don't want to build it.
+[24:07] Interviewer: Mm. Let's go back to that Reorder button. I can show you where it lives.
+[24:39] P1: Please.
+[24:45] Interviewer: It's under Orders, then you pick a past order, and it's at the bottom.
+[25:14] P1: Under Orders. At the bottom. Wow. Nobody told me.
+[25:28] Interviewer: Is that somewhere you'd have looked?
+[25:39] P1: I'd never have looked in there, no. Orders sounds like receipts.
+[26:11] Interviewer: Okay. Anything else you wish I had asked?
+[26:26] Interviewer: Not at all, it's been really useful.
+[26:45] P1: Good. I need to go and collect somebody from football.
+[27:05] Interviewer: Thank you, Ruth.
+[27:14] P1: Bye.
