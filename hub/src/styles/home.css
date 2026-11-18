@@ -124,14 +124,14 @@
 
 @media (max-width: 900px) {
   .how {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
   }
 }
 
 @media (max-width: 640px) {
   .how-steps {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .how-steps li,
@@ -296,7 +296,7 @@
 
 @media (max-width: 900px) {
   .spine-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.25rem;
   }
 
@@ -311,7 +311,7 @@
 
 @media (max-width: 600px) {
   .spine-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -397,7 +397,7 @@
 
 @media (max-width: 900px) {
   .case-band {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -481,7 +481,7 @@
 
 @media (max-width: 820px) {
   .bar-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .bar-stat {
@@ -561,7 +561,7 @@
 
 @media (max-width: 900px) {
   .install-band {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -631,7 +631,7 @@
 
 @media (max-width: 820px) {
   .sub {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     align-items: start;
   }
 }
@@ -685,6 +685,6 @@
 
 @media (max-width: 900px) {
   .issue-teaser {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }

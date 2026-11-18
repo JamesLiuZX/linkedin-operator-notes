@@ -520,7 +520,7 @@ kbd {
 
 @media (max-width: 760px) {
   .footer-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
   .footer-about {
@@ -668,7 +668,7 @@ kbd {
 
 @media (max-width: 700px) {
   .section-head {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     align-items: start;
   }
 }
