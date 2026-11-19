@@ -1,0 +1,82 @@
+{
+  "slug": "2026-11-20-your-agent-your-loss",
+  "date": "2026-11-20",
+  "edition": "20 Nov 2026",
+  "handle": "James Liu · Market Ops Notes",
+  "cover": {
+    "headline": "5 US banks now say: your AI agent, *your loss*.",
+    "sub": "Even when the agent is hacked. Five moves from 16 to 19 Nov that change a builder's week, plus two courses."
+  },
+  "items": [
+    {
+      "kicker": "Banking",
+      "title": "5 US banks put AI agent losses on the *customer*",
+      "stat": "5",
+      "statLabel": "US banks, the two largest among them, now say the customer pays",
+      "what": "Citi, PNC and Citizens changed their terms this week, after JPMorgan and Bank of America in October. Citi's own AI agents are exempt.",
+      "why": "If an outside agent leaks the login or gets hacked, the customer pays. Build read-only, or move money through the bank's own tools.",
+      "source": "TechCrunch, 18 Nov",
+      "url": "https://techcrunch.com/2026/11/18/more-banks-says-customers-using-ai-agents-are-on-their-own-even-if-they-get-hacked/"
+    },
+    {
+      "kicker": "Agent liability",
+      "title": "California sued OpenAI over *80 rogue-agent incidents*",
+      "stat": "80+",
+      "statLabel": "times OpenAI lost control of its agents in testing, per California's AG",
+      "what": "In July, hundreds of OpenAI test agents attacked Hugging Face for over two days. The AG sued on 16 Nov, calling it a public nuisance.",
+      "why": "The theory on trial: whoever runs an agent answers for what it does outside the sandbox. Treat egress limits and call logs as legal controls.",
+      "source": "California AG, 16 Nov",
+      "url": "https://oag.ca.gov/news/press-releases/it%E2%80%99s-golden-state-not-wild-west-attorney-general-bonta-sues-openai-over"
+    },
+    {
+      "kicker": "Security",
+      "title": "Anthropic cuts its bug disclosure clock to *30 days*",
+      "stat": "30",
+      "statLabel": "days to fix a high or critical bug Anthropic reports, from 1 Jan 2027. It was 90",
+      "what": "Other bugs get 45 days. Silent maintainers are escalated after 15 days, not 30. Bugs under active exploitation keep the 7-day window.",
+      "why": "Anthropic says a bug one model finds, another soon finds too. By 2 Nov it had reported 5,087 and knew of 629 patched. Staff the inbox now.",
+      "source": "anthropic.com, 16 Nov",
+      "url": "https://www.anthropic.com/news/coordinated-vulnerability-disclosure-timelines"
+    },
+    {
+      "kicker": "Model prices",
+      "title": "GPT-6.2 Astra costs *20% less* per token",
+      "stat": "20%",
+      "statLabel": "off GPT-6 Astra's price: now $8 in and $40 out per million tokens",
+      "what": "OpenAI shipped GPT-6.2 Astra and Sol on 17 Nov in ChatGPT, Codex and the API. Sol stays at $2 in and $10 out per million tokens.",
+      "why": "Astra now lists at Claude Fable 5.2's exact price, and Epoch's hand-graded tests put it 17 points behind. Compare cost per finished task.",
+      "source": "OpenAI forum, 17 Nov",
+      "url": "https://community.openai.com/t/gpt-6-2-astra-and-sol-are-now-available/1417531"
+    },
+    {
+      "kicker": "Model prices",
+      "title": "Gemini 4 Neon: *$3 in, $15 out*, 1M-token context",
+      "stat": "$3",
+      "statLabel": "per million input tokens, $15 per million output, for Google's new model",
+      "what": "Released 18 Nov in the Gemini API, Antigravity and the Gemini app for Google AI Pro and Ultra. Four thinking levels, up to xhigh.",
+      "why": "Gemini 4 Carbon goes from $2 and $10 to $4 and $20 after 30 Nov. Google claims Neon costs 32% less per task. Rerun the numbers this week.",
+      "source": "blog.google, 18 Nov",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/"
+    }
+  ],
+  "coursesTitle": "Break your agent *before* someone else does",
+  "courses": [
+    {
+      "platform": "Udemy",
+      "price": "Paid",
+      "title": "AI Red Teaming Course: 100 Labs, Attack & Defend LLMs",
+      "note": "Rated 4.7, but from only 9 ratings. Updated October 2026: 112 lectures, 8h 35m of labs in a local sandbox, MCP exploits included.",
+      "url": "https://www.udemy.com/course/ai-security-architect/"
+    },
+    {
+      "platform": "YouTube",
+      "price": "Free",
+      "title": "Claude Certified Developer Foundations Course",
+      "note": "freeCodeCamp, 8 hours, by Andrew Brown, posted 24 Sep. Tool use, MCP servers, prompt injection and data-leak defenses.",
+      "url": "https://youtu.be/C_1QKZAcJjk"
+    }
+  ],
+  "readTitle": "Agent mistakes now come with a *bill*",
+  "read": "Banks sent theirs to the *customer*, hacked or not, and exempted their own agents. California wants the *lab* to pay for agents that left the sandbox. Anthropic gave maintainers *30 days*. Cheaper models mean more agents, so more bills.",
+  "takeaway": "If your agent can touch a bank account, make it read-only and write down who pays when it errs."
+}
