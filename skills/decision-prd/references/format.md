@@ -90,30 +90,49 @@ Use two to five sections. `n` starts at 1 and has no gaps.
 - `label` is the product's name with "today" for the current state, the competitor's name for a reference, and "Proposed" for the proposal.
 - `screen` is one of:
   - `{ "img": "path-or-data-uri" }` for a real screenshot. Use a data URI when the page has to be one self-contained file.
-  - `{ "accent": "#14532d", "blocks": [...] }` for a schematic. Use it when there is no screenshot, or when the structure matters more than the pixels.
+  - `{ "accent": "#14532d", "blocks": [...] }` for a schematic. Use it when there is no screenshot, or when the structure matters more than the pixels. Add `"frame": "desktop"` for a desktop product.
 
 ### Schematic blocks
 
-A schematic is a list of blocks drawn top to bottom on a 180 by 368 screen. Each block is `[type, label, options]`.
+A schematic screen is a list of blocks drawn top to bottom. Each block is `[type, label, options]`. The labels are what is written on the screen.
+
+A screen is a phone, 180 by 368, unless it says otherwise. For a desktop product, give the screen `"frame": "desktop"`. It is then a browser window, 372 by 248, and takes two more optional fields: `"url"` (shown in the window bar) and `"nav"`, a sidebar: `{ "title": "Larkspur", "items": ["Home", "Projects", "People"], "on": 1 }`.
 
 | Type | Height | Label | Options |
 |---|---|---|---|
-| `bar` | 30 | Greeting or screen name | `sub` |
+| `bar` | 30 | Greeting or page name | `sub` (a second line), `action` (text of a button on the right) |
 | `title` | 26 | Large heading | |
 | `search` | 24 | Placeholder text | |
-| `chips` | 20 | `"One|Two|Three"` | `on` (index) |
-| `banner` | 40 | Headline | `sub`, `accent` |
-| `card` | 46 | Headline | `sub`, `action` (button text), `accent` |
-| `row` | 24 | Line of a list | `right`, `sub`, `warn` |
+| `chips` | 20 | `"One|Two|Three"` | `on` (index of the selected chip) |
+| `banner` | 40 | Headline | `sub`, `accent` (filled with the app colour), `warn` |
+| `card` | 46 | Headline | `sub`, `sub2` (a third line, height 58), `action` (text of a small button), `badge`, `accent`, `warn` |
+| `row` | 24 | A line of a list | `right` (right-aligned text), `sub`, `avatar` (a name, drawn as initials), `badge`, `warn` |
 | `grid` | 62 | (none) | `n` (2 or 3 tiles) |
-| `slots` | 26 | `"A|B|C"` | `on` (index, or -1 for none) |
-| `text` | 16 | A line of small text | `bold`, `warn` |
+| `slots` | 26 | `"A|B|C"` | `on` (index of the selected choice, or -1 for none) |
+| `text` | 16 | One line of small text | `bold`, `ink` (dark, for a subheading), `warn` |
+| `para` | by length | A paragraph, wrapped | `lines` (most lines to show, default 4), `cite` (a small source chip after it, such as `"12:04"`), `warn` |
 | `gap` | 8 | (none) | |
-| `cta` | 28 | Button text | `ghost` |
-| `tabs` | 34 | (none, drawn at the bottom) | `on` |
-| `sheet` | over the screen | Sheet title | `items` (up to 3), `on` |
+| `cta` | 28 | Button text | `ghost` (outlined), `wide` (full width on desktop), `align: "right"` |
+| `field` | 36 | Label above an input | `value` (what is typed), `hint` (placeholder), `warn` |
+| `toggle` | 26 | A setting with a switch | `on`, `sub` |
+| `people` | 26 | Text beside a row of avatars | `items` (names, or `"+3"`) |
+| `table` | by rows | (none) | `cols` (headings), `rows` (lists of cells), `on` (index of the selected row) |
+| `kpi` | 40 | (none) | `items`: `[["22%", "second seat in week one"], ...]` |
+| `chat` | by length | What was said | `from` (`"me"` on the right, anything else on the left), `cite`, `lines` |
+| `check` | 22 | A task or checklist item | `done`, `sub`, `badge`, `warn` |
+| `media` | 64 | Caption on a video or image | `h` (height) |
+| `progress` | 26 | Label | `value`, `total` |
+| `cols` | tallest side | (none) | `left` and `right` (each a list of blocks), `split` (share of the width for the left, default 0.5), `rule` (a line between) |
+| `tabs` | 34 | (none, a phone tab bar at the bottom) | `items`, `on` |
+| `sheet` | over the screen | Title of a bottom sheet | `items` (up to 3 choices), `on` |
+| `modal` | over the screen | Title of a dialog | `sub`, `field` (placeholder of an input), `items`, `on`, `cta` |
+| `toast` | over the screen | A short message at the bottom | |
 
-Options any block accepts: `hi: true` draws a highlight around it, `pin: "1.1"` adds a numbered marker, `dim: true` fades it. On a proposed screen, highlight and pin the one block the point changes. Keep the heights within 300 when there are tabs and 330 when there are not. Labels over about 30 characters are cut.
+Any block may also carry `hi: true` (a highlight around it), `pin: "1.1"` (a numbered marker) or `dim: true` (faded).
+
+Blocks that do not fit are left out, so keep the heights within 300 on a phone with tabs, 330 without, and 215 on a desktop. A label that is too long for its width is cut with an ellipsis.
+
+On a proposed screen in a PRD, highlight and pin the one block the point changes.
 
 ## The tables
 

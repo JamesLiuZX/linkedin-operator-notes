@@ -1,0 +1,1285 @@
+{
+ "question": "Why do people not trust a recap enough to send it on, and what would make one sendable?",
+ "us": "vireo",
+ "captured": "2026-11-19",
+ "note": "Vireo, Castell, Ondine and Parley are fictional. Every screen is a schematic drawing made for this example, not a screenshot. One meeting runs through all of them: Pricing review with Northgate, Thursday 12 November 2026, 42 minutes.",
+ "apps": [
+  {
+   "id": "castell",
+   "name": "Castell",
+   "accent": "#4338ca",
+   "role": "Competitor"
+  },
+  {
+   "id": "ondine",
+   "name": "Ondine",
+   "accent": "#be185d",
+   "role": "Competitor"
+  },
+  {
+   "id": "parley",
+   "name": "Parley",
+   "accent": "#b45309",
+   "role": "Competitor"
+  },
+  {
+   "id": "vireo",
+   "name": "Vireo",
+   "accent": "#0e7c66",
+   "role": "Our product"
+  }
+ ],
+ "stages": [
+  {
+   "id": "S1",
+   "name": "The recap arrives",
+   "lanes": [
+    {
+     "app": "castell",
+     "flow": "A notification, then a recap only the host can see",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Gets a notification after the call",
+       "frame": "desktop",
+       "url": "castell.example/home",
+       "nav": {
+        "title": "Castell",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Home",
+         {
+          "sub": "Thursday 12 November"
+         }
+        ],
+        [
+         "row",
+         "Pricing review with Northgate",
+         {
+          "right": "10:42",
+          "sub": "Ended, 42 min"
+         }
+        ],
+        [
+         "row",
+         "Weekly sync",
+         {
+          "right": "Wed",
+          "sub": "Ended, 25 min"
+         }
+        ],
+        [
+         "row",
+         "Renewal prep",
+         {
+          "right": "Tue",
+          "sub": "Ended, 30 min"
+         }
+        ],
+        [
+         "toast",
+         "Recap ready. Only you can see it"
+        ]
+       ]
+      },
+      {
+       "step": "Opens the recap page",
+       "frame": "desktop",
+       "url": "castell.example/recap/3317",
+       "nav": {
+        "title": "Castell",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min",
+          "action": "Share"
+         }
+        ],
+        [
+         "banner",
+         "Only you can see this",
+         {
+          "sub": "Share it when you are ready"
+         }
+        ],
+        [
+         "text",
+         "Summary",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Northgate wants three price tiers. We will send a revised quote by Tuesday.",
+         {
+          "lines": 3,
+          "cite": "03:18"
+         }
+        ],
+        [
+         "para",
+         "The pilot starts on 4 January if the quote is accepted.",
+         {
+          "lines": 3,
+          "cite": "31:40"
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "ondine",
+     "flow": "An email to everyone, then a page marked Delivered",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads the email in the inbox",
+       "frame": "desktop",
+       "url": "mail.example/inbox/ondine-9920",
+       "blocks": [
+        [
+         "bar",
+         "Recap: Pricing review",
+         {
+          "sub": "From Ondine, Thu 12 Nov 10:43"
+         }
+        ],
+        [
+         "text",
+         "Sent to all 14 invitees",
+         {
+          "bold": true
+         }
+        ],
+        [
+         "gap",
+         ""
+        ],
+        [
+         "para",
+         "Great meeting! Here is what we covered. Pricing is settled and the pilot is on track.",
+         {
+          "lines": 3
+         }
+        ],
+        [
+         "para",
+         "Next steps are assigned and the team has been notified.",
+         {
+          "lines": 3
+         }
+        ],
+        [
+         "cta",
+         "Open recap"
+        ]
+       ]
+      },
+      {
+       "step": "Opens the recap page",
+       "frame": "desktop",
+       "url": "ondine.example/recap/9920",
+       "blocks": [
+        [
+         "bar",
+         "Recap: Pricing review",
+         {
+          "sub": "Thu 12 Nov, 42 min"
+         }
+        ],
+        [
+         "banner",
+         "Delivered",
+         {
+          "sub": "14 invitees received this at 10:43",
+          "accent": true
+         }
+        ],
+        [
+         "people",
+         "Delivered to",
+         {
+          "items": [
+           "Priya",
+           "Sam",
+           "Dana",
+           "Marcus",
+           "+10"
+          ]
+         }
+        ],
+        [
+         "text",
+         "Summary",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Pricing is settled and the pilot is on track for January.",
+         {
+          "lines": 3
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "parley",
+     "flow": "An email to the host only, then a draft nobody else has",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads the email in the inbox",
+       "frame": "desktop",
+       "url": "mail.example/inbox/parley-5502",
+       "blocks": [
+        [
+         "bar",
+         "Your draft recap is ready to review",
+         {
+          "sub": "From Parley, Thu 12 Nov 10:44"
+         }
+        ],
+        [
+         "text",
+         "Sent to you only"
+        ],
+        [
+         "gap",
+         ""
+        ],
+        [
+         "para",
+         "Pricing review with Northgate (42 min). We drafted a recap from the recording. Nothing has been shared.",
+         {
+          "lines": 4
+         }
+        ],
+        [
+         "cta",
+         "Review draft"
+        ]
+       ]
+      },
+      {
+       "step": "Opens the draft page",
+       "frame": "desktop",
+       "url": "parley.example/draft/5502",
+       "blocks": [
+        [
+         "bar",
+         "Draft recap",
+         {
+          "sub": "Pricing review with Northgate",
+          "action": "Send recap"
+         }
+        ],
+        [
+         "banner",
+         "Draft. Nobody else has this yet",
+         {
+          "warn": true
+         }
+        ],
+        [
+         "text",
+         "Summary",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Northgate asked for three price tiers. A revised quote goes out by Tuesday.",
+         {
+          "lines": 3
+         }
+        ],
+        [
+         "row",
+         "3 lines to check",
+         {
+          "right": "See them",
+          "badge": "Check this"
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "vireo",
+     "flow": "An email with the whole recap, already sent to everyone",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads the email in the inbox",
+       "frame": "desktop",
+       "url": "mail.example/inbox/vireo-8841",
+       "blocks": [
+        [
+         "bar",
+         "Recap: Pricing review with Northgate",
+         {
+          "sub": "From Vireo Recap, Thu 12 Nov 10:47"
+         }
+        ],
+        [
+         "text",
+         "Sent to all 9 invitees at 10:47",
+         {
+          "bold": true
+         }
+        ],
+        [
+         "gap",
+         ""
+        ],
+        [
+         "para",
+         "Summary. Northgate wants three price tiers. We will send a revised quote by Tuesday.",
+         {
+          "lines": 3
+         }
+        ],
+        [
+         "para",
+         "Decisions. Annual billing stays the default. Offer a two-year term. Pilot starts 4 January.",
+         {
+          "lines": 3
+         }
+        ],
+        [
+         "cta",
+         "Open recap"
+        ]
+       ]
+      },
+      {
+       "step": "Opens the recap page",
+       "frame": "desktop",
+       "url": "vireo.example/recap/8841",
+       "nav": {
+        "title": "Vireo",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min, 9 invitees",
+          "action": "Share recap"
+         }
+        ],
+        [
+         "text",
+         "Summary",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Northgate wants three price tiers. We will send a revised quote by Tuesday. The pilot starts on 4 January.",
+         {
+          "lines": 4
+         }
+        ],
+        [
+         "text",
+         "Decisions",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Annual billing stays the default.",
+         {
+          "lines": 2
+         }
+        ],
+        [
+         "para",
+         "Offer a two-year term.",
+         {
+          "lines": 2
+         }
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S2",
+   "name": "Check what it says",
+   "lanes": [
+    {
+     "app": "castell",
+     "flow": "Every line ends in a time, and the time opens the clip",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads a line and sees its time",
+       "frame": "desktop",
+       "url": "castell.example/recap/3317",
+       "nav": {
+        "title": "Castell",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min"
+         }
+        ],
+        [
+         "text",
+         "Decisions",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Annual billing stays the default.",
+         {
+          "lines": 2,
+          "cite": "12:04"
+         }
+        ],
+        [
+         "para",
+         "The pilot starts on 4 January.",
+         {
+          "lines": 2,
+          "cite": "31:40"
+         }
+        ],
+        [
+         "text",
+         "Raised, not decided",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "A two-year term, if Northgate wants a lower rate.",
+         {
+          "lines": 2,
+          "cite": "24:15"
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Clicks 12:04 and the clip plays",
+       "frame": "desktop",
+       "url": "castell.example/recap/3317?t=12:04",
+       "nav": {
+        "title": "Castell",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "cols",
+         "",
+         {
+          "split": 0.45,
+          "rule": true,
+          "left": [
+           [
+            "para",
+            "Annual billing stays the default.",
+            {
+             "lines": 3,
+             "cite": "12:04"
+            }
+           ],
+           [
+            "para",
+            "The pilot starts on 4 January.",
+            {
+             "lines": 3,
+             "cite": "31:40"
+            }
+           ]
+          ],
+          "right": [
+           [
+            "media",
+            "Recording, 12:04",
+            {
+             "h": 60
+            }
+           ],
+           [
+            "chat",
+            "Marcus: So we keep annual billing as the default?",
+            {
+             "from": "Marcus",
+             "lines": 2
+            }
+           ],
+           [
+            "chat",
+            "Priya: Yes, annual stays the default.",
+            {
+             "from": "me",
+             "lines": 2
+            }
+           ]
+          ]
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "ondine",
+     "flow": "Five bullets, and the recording is the only way to check",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads the five bullets",
+       "frame": "desktop",
+       "url": "ondine.example/recap/9920",
+       "blocks": [
+        [
+         "bar",
+         "Recap: Pricing review",
+         {
+          "sub": "Thu 12 Nov, 42 min"
+         }
+        ],
+        [
+         "row",
+         "Pricing is settled for all tiers"
+        ],
+        [
+         "row",
+         "Annual billing is the default"
+        ],
+        [
+         "row",
+         "Two-year term agreed"
+        ],
+        [
+         "row",
+         "Pilot begins in January"
+        ],
+        [
+         "row",
+         "Sam owns the revised quote"
+        ]
+       ]
+      },
+      {
+       "step": "Looks for where a bullet came from",
+       "frame": "desktop",
+       "url": "ondine.example/recap/9920",
+       "blocks": [
+        [
+         "bar",
+         "Recap: Pricing review",
+         {
+          "sub": "Thu 12 Nov, 42 min"
+         }
+        ],
+        [
+         "row",
+         "Two-year term agreed"
+        ],
+        [
+         "text",
+         "No source for this line",
+         {
+          "warn": true
+         }
+        ],
+        [
+         "gap",
+         ""
+        ],
+        [
+         "cta",
+         "Watch recording (42 min)",
+         {
+          "wide": true
+         }
+        ],
+        [
+         "media",
+         "Recording, 00:00",
+         {
+          "h": 60
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "parley",
+     "flow": "Decided and Discussed, not decided, with doubtful lines marked",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads the two headings",
+       "frame": "desktop",
+       "url": "parley.example/draft/5502",
+       "blocks": [
+        [
+         "bar",
+         "Draft recap",
+         {
+          "sub": "Pricing review with Northgate"
+         }
+        ],
+        [
+         "text",
+         "Decided",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Annual billing stays the default.",
+         {
+          "lines": 2
+         }
+        ],
+        [
+         "para",
+         "The pilot starts on 4 January.",
+         {
+          "lines": 2
+         }
+        ],
+        [
+         "text",
+         "Discussed, not decided",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "A two-year term at a lower rate.",
+         {
+          "lines": 2
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Edits a marked line in place",
+       "frame": "desktop",
+       "url": "parley.example/draft/5502",
+       "blocks": [
+        [
+         "bar",
+         "Draft recap",
+         {
+          "sub": "Pricing review with Northgate"
+         }
+        ],
+        [
+         "check",
+         "Check this: pilot start date",
+         {
+          "badge": "Check this",
+          "warn": true,
+          "sub": "Heard as 4 January and 11 January"
+         }
+        ],
+        [
+         "field",
+         "Edit line",
+         {
+          "value": "The pilot starts on 4 January."
+         }
+        ],
+        [
+         "cta",
+         "Save line",
+         {
+          "align": "right"
+         }
+        ],
+        [
+         "text",
+         "Edits are saved in the draft only"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "vireo",
+     "flow": "A Decisions list that mixes decided and raised, no sources",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads the recap",
+       "frame": "desktop",
+       "url": "vireo.example/recap/8841",
+       "nav": {
+        "title": "Vireo",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min, 9 invitees"
+         }
+        ],
+        [
+         "text",
+         "Decisions",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Annual billing stays the default.",
+         {
+          "lines": 2
+         }
+        ],
+        [
+         "para",
+         "Offer a two-year term.",
+         {
+          "lines": 2
+         }
+        ],
+        [
+         "para",
+         "The pilot starts on 4 January.",
+         {
+          "lines": 2
+         }
+        ],
+        [
+         "para",
+         "Move the kickoff call to Friday.",
+         {
+          "lines": 2
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Looks for a way to check a line",
+       "frame": "desktop",
+       "url": "vireo.example/recap/8841",
+       "nav": {
+        "title": "Vireo",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min, 9 invitees"
+         }
+        ],
+        [
+         "text",
+         "Action items",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Sam to send the revised quote to Northgate.",
+         {
+          "lines": 2
+         }
+        ],
+        [
+         "gap",
+         ""
+        ],
+        [
+         "row",
+         "Watch recording",
+         {
+          "right": "42 min"
+         }
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S3",
+   "name": "Send it on",
+   "lanes": [
+    {
+     "app": "castell",
+     "flow": "A share link, and action items as a plain list",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the share dialog",
+       "frame": "desktop",
+       "url": "castell.example/recap/3317",
+       "nav": {
+        "title": "Castell",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min"
+         }
+        ],
+        [
+         "text",
+         "Summary",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Northgate wants three price tiers.",
+         {
+          "lines": 2,
+          "cite": "03:18"
+         }
+        ],
+        [
+         "modal",
+         "Share recap",
+         {
+          "sub": "Anyone with the link can read it",
+          "field": "castell.example/r/3317",
+          "cta": "Copy link"
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Reads the action items",
+       "frame": "desktop",
+       "url": "castell.example/recap/3317",
+       "nav": {
+        "title": "Castell",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min"
+         }
+        ],
+        [
+         "text",
+         "Action items",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "check",
+         "Send the revised quote by Tuesday"
+        ],
+        [
+         "check",
+         "Check seat counts"
+        ],
+        [
+         "check",
+         "Book the kickoff call"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "ondine",
+     "flow": "Action items already assigned and emailed",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Sees the action items",
+       "frame": "desktop",
+       "url": "ondine.example/recap/9920",
+       "blocks": [
+        [
+         "bar",
+         "Recap: Pricing review",
+         {
+          "sub": "Thu 12 Nov, 42 min"
+         }
+        ],
+        [
+         "text",
+         "Next steps",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "check",
+         "Revised quote",
+         {
+          "sub": "Assigned to Sam. Task created",
+          "badge": "Sam"
+         }
+        ],
+        [
+         "check",
+         "Seat counts",
+         {
+          "sub": "Assigned to Dana. Task created",
+          "badge": "Dana"
+         }
+        ],
+        [
+         "row",
+         "Assigned by the recap",
+         {
+          "right": "Undo"
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Finds the email already sent",
+       "frame": "desktop",
+       "url": "mail.example/inbox/ondine-9921",
+       "blocks": [
+        [
+         "bar",
+         "New task for you: Revised quote",
+         {
+          "sub": "From Ondine, Thu 12 Nov 10:43"
+         }
+        ],
+        [
+         "text",
+         "Sam, you were assigned this by Ondine."
+        ],
+        [
+         "check",
+         "Revised quote",
+         {
+          "sub": "Due Tue 17 Nov"
+         }
+        ],
+        [
+         "toast",
+         "Task created. Undo"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "parley",
+     "flow": "Host ticks recipients, owners confirm their own items",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Ticks who gets the recap",
+       "frame": "desktop",
+       "url": "parley.example/draft/5502/send",
+       "blocks": [
+        [
+         "bar",
+         "Send recap",
+         {
+          "sub": "Pricing review with Northgate"
+         }
+        ],
+        [
+         "check",
+         "Priya Raman, host",
+         {
+          "done": true
+         }
+        ],
+        [
+         "check",
+         "Sam Ortiz",
+         {
+          "done": true
+         }
+        ],
+        [
+         "check",
+         "Dana Whitlock",
+         {
+          "done": true
+         }
+        ],
+        [
+         "check",
+         "Marcus Webb, Northgate",
+         {
+          "done": false,
+          "badge": "External",
+          "sub": "Not ticked"
+         }
+        ],
+        [
+         "cta",
+         "Send to 3 people",
+         {
+          "align": "right"
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Sees action items waiting",
+       "frame": "desktop",
+       "url": "parley.example/draft/5502/actions",
+       "blocks": [
+        [
+         "bar",
+         "Action items",
+         {
+          "sub": "Pricing review with Northgate"
+         }
+        ],
+        [
+         "check",
+         "Send the revised quote",
+         {
+          "sub": "Waiting for Sam to confirm"
+         }
+        ],
+        [
+         "check",
+         "Check seat counts",
+         {
+          "sub": "Waiting for Dana to confirm"
+         }
+        ],
+        [
+         "check",
+         "Book the kickoff call",
+         {
+          "done": true,
+          "sub": "Confirmed by Priya"
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "vireo",
+     "flow": "A Share recap dialog after the recap has gone, owners with no reply",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens Share recap",
+       "frame": "desktop",
+       "url": "vireo.example/recap/8841",
+       "nav": {
+        "title": "Vireo",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min, 9 invitees",
+          "action": "Share recap"
+         }
+        ],
+        [
+         "text",
+         "Summary",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "modal",
+         "Share recap",
+         {
+          "sub": "Choose who gets this recap",
+          "items": [
+           "All 9 invitees",
+           "Only the people I pick",
+           "Just me"
+          ],
+          "on": 0,
+          "cta": "Share"
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Reads the action items",
+       "frame": "desktop",
+       "url": "vireo.example/recap/8841",
+       "nav": {
+        "title": "Vireo",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min, 9 invitees"
+         }
+        ],
+        [
+         "text",
+         "Action items",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "check",
+         "Send the revised quote to Northgate",
+         {
+          "sub": "Owner: Sam"
+         }
+        ],
+        [
+         "check",
+         "Check seat counts",
+         {
+          "sub": "Owner: Dana"
+         }
+        ],
+        [
+         "check",
+         "Book the kickoff call",
+         {
+          "sub": "Owner: Marcus"
+         }
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

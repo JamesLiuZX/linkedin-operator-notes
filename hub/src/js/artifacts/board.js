@@ -74,9 +74,9 @@ export function renderBoard(data) {
           .map((sc, i) => {
             const pic = sc.img
               ? `<img src="${esc(sc.img)}" alt="${esc(sc.step || "")}" loading="lazy">`
-              : screenSvg({ accent: app.accent, blocks: sc.blocks || [] }, { idPrefix: `b${shotN++}` });
+              : screenSvg({ accent: app.accent, blocks: sc.blocks || [], frame: sc.frame, url: sc.url, nav: sc.nav, bg: sc.bg }, { idPrefix: `b${shotN++}` });
             return `${i ? '<div class="lane-arrow" aria-hidden="true"><svg viewBox="0 0 24 12"><path d="M0 6h21M16 1.500 21 6l-5 4.500" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>' : ""}
-          <div class="shot" data-shot>
+          <div class="shot${sc.frame === "desktop" ? " desktop" : ""}" data-shot>
             <div class="shot-step"><b>${i + 1}</b>${esc(sc.step || "")}</div>
             <div class="shot-row">
               <div class="shot-pic">${pic}</div>
@@ -203,7 +203,8 @@ export function renderBoard(data) {
       : ""
   }`;
 
-  return { html, maxShots, stages: stages.map((s) => ({ id: s.id, name: s.name })), counts };
+  const desktop = stages.some((s) => (s.lanes || []).some((l) => (l.screens || []).some((sc) => sc.frame === "desktop")));
+  return { html, maxShots, desktop, stages: stages.map((s) => ({ id: s.id, name: s.name })), counts };
 }
 
 /**
@@ -212,7 +213,7 @@ export function renderBoard(data) {
  */
 export function mountBoard(root, data, opts = {}) {
   const r = renderBoard(data);
-  const colA = 300 + r.maxShots * 430 + 380;
+  const colA = 300 + r.maxShots * (r.desktop ? 640 : 430) + 380;
   root.classList.add("board");
   root.innerHTML = `
     <div class="board-view" data-view>

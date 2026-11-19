@@ -1,0 +1,1308 @@
+{
+ "question": "Why do most trial workspaces never get a second active person in the first week, and what would get one in?",
+ "us": "larkspur",
+ "captured": "2026-11-19",
+ "note": "Larkspur, Thistle, Corbel and Halyard are fictional. Every screen is a schematic drawing made for this example, not a screenshot.",
+ "apps": [
+  {
+   "id": "thistle",
+   "name": "Thistle",
+   "accent": "#9333ea",
+   "role": "Competitor"
+  },
+  {
+   "id": "corbel",
+   "name": "Corbel",
+   "accent": "#c2410c",
+   "role": "Competitor"
+  },
+  {
+   "id": "halyard",
+   "name": "Halyard",
+   "accent": "#0f766e",
+   "role": "Competitor"
+  },
+  {
+   "id": "larkspur",
+   "name": "Larkspur",
+   "accent": "#3157d5",
+   "role": "Our product"
+  }
+ ],
+ "stages": [
+  {
+   "id": "S1",
+   "name": "Create the workspace",
+   "lanes": [
+    {
+     "app": "thistle",
+     "flow": "Signup step 3 asks for teammates, then an empty Home",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reaches step 3 of signup",
+       "frame": "desktop",
+       "url": "app.thistle.example/signup/3",
+       "blocks": [
+        [
+         "progress",
+         "Step 3 of 5",
+         {
+          "value": 3,
+          "total": 5
+         }
+        ],
+        [
+         "title",
+         "Invite your team"
+        ],
+        [
+         "text",
+         "Invite your whole team, free"
+        ],
+        [
+         "field",
+         "Teammate email",
+         {
+          "hint": "name@company.example"
+         }
+        ],
+        [
+         "field",
+         "Teammate email",
+         {
+          "hint": "name@company.example"
+         }
+        ],
+        [
+         "field",
+         "Teammate email",
+         {
+          "hint": "name@company.example"
+         }
+        ],
+        [
+         "cols",
+         "",
+         {
+          "left": [
+           [
+            "cta",
+            "Send invites"
+           ]
+          ],
+          "right": [
+           [
+            "text",
+            "Skip for now"
+           ]
+          ],
+          "split": 0.5
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Lands on an empty Home",
+       "frame": "desktop",
+       "url": "app.thistle.example/home",
+       "nav": {
+        "title": "Thistle",
+        "items": [
+         "Home",
+         "Projects",
+         "People",
+         "Settings"
+        ],
+        "on": 0
+       },
+       "blocks": [
+        [
+         "bar",
+         "Welcome, Dana",
+         {
+          "sub": "Your workspace is ready"
+         }
+        ],
+        [
+         "progress",
+         "Getting started",
+         {
+          "value": 1,
+          "total": 4
+         }
+        ],
+        [
+         "check",
+         "Create your workspace",
+         {
+          "done": true
+         }
+        ],
+        [
+         "check",
+         "Add your first project"
+        ],
+        [
+         "check",
+         "Invite your team"
+        ],
+        [
+         "check",
+         "Connect a calendar"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "corbel",
+     "flow": "Signup ends on a filled sample project with Share",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Finishes signup with two fields",
+       "frame": "desktop",
+       "url": "app.corbel.example/welcome",
+       "blocks": [
+        [
+         "title",
+         "Welcome to Corbel"
+        ],
+        [
+         "field",
+         "Your name",
+         {
+          "value": "Dana Whitlock"
+         }
+        ],
+        [
+         "field",
+         "Workspace name",
+         {
+          "value": "Whitlock Q3"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Start with a sample",
+         {
+          "align": "right"
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Opens the ready-made sample project",
+       "frame": "desktop",
+       "url": "app.corbel.example/p/sample-plan",
+       "nav": {
+        "title": "Corbel",
+        "items": [
+         "Pages",
+         "Sample plan",
+         "Search"
+        ],
+        "on": 0
+       },
+       "blocks": [
+        [
+         "bar",
+         "Sample plan: Spring launch",
+         {
+          "sub": "Edited just now",
+          "action": "Share"
+         }
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Item",
+           "Status",
+           "Due"
+          ],
+          "rows": [
+           [
+            "Write launch brief",
+            "Done",
+            "3 Mar"
+           ],
+           [
+            "Book design review",
+            "In progress",
+            "10 Mar"
+           ],
+           [
+            "Draft customer email",
+            "To do",
+            "17 Mar"
+           ]
+          ]
+         }
+        ],
+        [
+         "check",
+         "Replace the sample with your own",
+         {
+          "sub": "Takes about two minutes"
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "halyard",
+     "flow": "Signup connects the chat tool and lists who is there",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Is asked to connect the chat tool",
+       "frame": "desktop",
+       "url": "app.halyard.example/setup/chat",
+       "blocks": [
+        [
+         "title",
+         "Find your team"
+        ],
+        [
+         "text",
+         "Connect Parley to see who is already there."
+        ],
+        [
+         "card",
+         "Connect Parley",
+         {
+          "sub": "We read names and photos only",
+          "action": "Connect"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "text",
+         "You can add people later",
+         {}
+        ]
+       ]
+      },
+      {
+       "step": "Sees 12 people, none ticked",
+       "frame": "desktop",
+       "url": "app.halyard.example/setup/people",
+       "blocks": [
+        [
+         "title",
+         "12 people found. Choose who to add"
+        ],
+        [
+         "check",
+         "Jordan Reyes",
+         {
+          "sub": "Design"
+         }
+        ],
+        [
+         "check",
+         "Priya Nair",
+         {
+          "sub": "Product"
+         }
+        ],
+        [
+         "check",
+         "Tomas Eklund",
+         {
+          "sub": "Engineering"
+         }
+        ],
+        [
+         "check",
+         "Mei Tanaka",
+         {
+          "sub": "Operations"
+         }
+        ],
+        [
+         "text",
+         "+ 8 more. None selected."
+        ],
+        [
+         "cols",
+         "",
+         {
+          "left": [
+           [
+            "cta",
+            "Add 0 people"
+           ]
+          ],
+          "right": [
+           [
+            "cta",
+            "Skip",
+            {
+             "ghost": true
+            }
+           ]
+          ],
+          "split": 0.5
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "larkspur",
+     "flow": "Signup promises a free trial, then an empty Home",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads the signup page",
+       "frame": "desktop",
+       "url": "app.larkspur.example/signup",
+       "blocks": [
+        [
+         "title",
+         "Start your trial"
+        ],
+        [
+         "banner",
+         "Free for 14 days. No card needed.",
+         {
+          "accent": true
+         }
+        ],
+        [
+         "field",
+         "Work email",
+         {
+          "value": "dana@whitlock-logistics.example"
+         }
+        ],
+        [
+         "field",
+         "Workspace name",
+         {
+          "value": "Whitlock Planning"
+         }
+        ],
+        [
+         "cta",
+         "Create workspace",
+         {
+          "wide": true
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Lands on an empty Home",
+       "frame": "desktop",
+       "url": "app.larkspur.example/home",
+       "nav": {
+        "title": "Larkspur",
+        "items": [
+         "Home",
+         "Projects",
+         "Docs",
+         "Settings"
+        ],
+        "on": 0
+       },
+       "blocks": [
+        [
+         "bar",
+         "Home"
+        ],
+        [
+         "card",
+         "Nothing here yet",
+         {
+          "sub": "Start with a project",
+          "action": "New project"
+         }
+        ],
+        [
+         "text",
+         "Setup checklist",
+         {
+          "bold": true,
+          "ink": true
+         }
+        ],
+        [
+         "check",
+         "Name your workspace",
+         {
+          "done": true
+         }
+        ],
+        [
+         "check",
+         "Create a project"
+        ],
+        [
+         "check",
+         "Add three items"
+        ],
+        [
+         "check",
+         "Set a due date"
+        ],
+        [
+         "check",
+         "Invite your team"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S2",
+   "name": "Make the first project",
+   "lanes": [
+    {
+     "app": "thistle",
+     "flow": "A project table that only lists You, plus a nudge",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Builds the first project table",
+       "frame": "desktop",
+       "url": "app.thistle.example/projects/q3",
+       "nav": {
+        "title": "Thistle",
+        "items": [
+         "Home",
+         "Projects",
+         "People",
+         "Settings"
+        ],
+        "on": 1
+       },
+       "blocks": [
+        [
+         "bar",
+         "Q3 roadmap"
+        ],
+        [
+         "banner",
+         "Projects are better with a team.",
+         {
+          "sub": "Invite",
+          "warn": false
+         }
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Task",
+           "Assign",
+           "Due"
+          ],
+          "rows": [
+           [
+            "Customer interviews",
+            "You",
+            "12 Jun"
+           ],
+           [
+            "Scope review",
+            "You",
+            "19 Jun"
+           ],
+           [
+            "Draft plan",
+            "You",
+            "26 Jun"
+           ]
+          ]
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Opens the Assign menu on a task",
+       "frame": "desktop",
+       "url": "app.thistle.example/projects/q3",
+       "nav": {
+        "title": "Thistle",
+        "items": [
+         "Home",
+         "Projects",
+         "People",
+         "Settings"
+        ],
+        "on": 1
+       },
+       "blocks": [
+        [
+         "bar",
+         "Q3 roadmap"
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Task",
+           "Assign"
+          ],
+          "rows": [
+           [
+            "Customer interviews",
+            "You"
+           ]
+          ]
+         }
+        ],
+        [
+         "modal",
+         "Assign to",
+         {
+          "sub": "Only you are in this workspace",
+          "items": [
+           "You"
+          ],
+          "on": 0,
+          "cta": "Invite teammates"
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "corbel",
+     "flow": "Every page says Only you, Share stays top right",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Writes the first page",
+       "frame": "desktop",
+       "url": "app.corbel.example/p/q3-roadmap",
+       "nav": {
+        "title": "Corbel",
+        "items": [
+         "Pages",
+         "Sample plan",
+         "Search"
+        ],
+        "on": 0
+       },
+       "blocks": [
+        [
+         "bar",
+         "Q3 roadmap",
+         {
+          "sub": "Draft",
+          "action": "Share"
+         }
+        ],
+        [
+         "people",
+         "Only you",
+         {
+          "items": [
+           "Dana"
+          ]
+         }
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Item",
+           "Status"
+          ],
+          "rows": [
+           [
+            "Customer interviews",
+            "In progress"
+           ],
+           [
+            "Scope review",
+            "To do"
+           ],
+           [
+            "Draft plan",
+            "To do"
+           ]
+          ]
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Opens a second page",
+       "frame": "desktop",
+       "url": "app.corbel.example/p/launch-notes",
+       "nav": {
+        "title": "Corbel",
+        "items": [
+         "Pages",
+         "Sample plan",
+         "Search"
+        ],
+        "on": 0
+       },
+       "blocks": [
+        [
+         "bar",
+         "Launch notes",
+         {
+          "sub": "Draft",
+          "action": "Share"
+         }
+        ],
+        [
+         "people",
+         "Only you",
+         {
+          "items": [
+           "Dana"
+          ]
+         }
+        ],
+        [
+         "check",
+         "Confirm owners",
+         {}
+        ],
+        [
+         "check",
+         "Write the risks",
+         {}
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "halyard",
+     "flow": "A prompt appears after the third item",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Adds the third item to a plan",
+       "frame": "desktop",
+       "url": "app.halyard.example/plans/q3",
+       "nav": {
+        "title": "Halyard",
+        "items": [
+         "Home",
+         "Plans",
+         "People"
+        ],
+        "on": 1
+       },
+       "blocks": [
+        [
+         "bar",
+         "Q3 roadmap",
+         {
+          "sub": "3 items"
+         }
+        ],
+        [
+         "row",
+         "Customer interviews",
+         {
+          "right": "12 Jun"
+         }
+        ],
+        [
+         "row",
+         "Scope review",
+         {
+          "right": "19 Jun"
+         }
+        ],
+        [
+         "row",
+         "Draft plan",
+         {
+          "right": "26 Jun"
+         }
+        ],
+        [
+         "card",
+         "Ready to show someone?",
+         {
+          "sub": "Preview what they will see.",
+          "action": "Preview"
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Taps Preview",
+       "frame": "desktop",
+       "url": "app.halyard.example/plans/q3/preview",
+       "nav": {
+        "title": "Halyard",
+        "items": [
+         "Home",
+         "Plans",
+         "People"
+        ],
+        "on": 1
+       },
+       "blocks": [
+        [
+         "banner",
+         "Choose a person to preview as",
+         {
+          "accent": true
+         }
+        ],
+        [
+         "row",
+         "Jordan Reyes",
+         {
+          "sub": "Design",
+          "avatar": "Jordan Reyes"
+         }
+        ],
+        [
+         "row",
+         "Priya Nair",
+         {
+          "sub": "Product",
+          "avatar": "Priya Nair"
+         }
+        ],
+        [
+         "row",
+         "Mei Tanaka",
+         {
+          "sub": "Operations",
+          "avatar": "Mei Tanaka"
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "larkspur",
+     "flow": "A project table, Owner is You, no mention of others",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Creates the first project",
+       "frame": "desktop",
+       "url": "app.larkspur.example/projects",
+       "nav": {
+        "title": "Larkspur",
+        "items": [
+         "Home",
+         "Projects",
+         "Docs",
+         "Settings"
+        ],
+        "on": 1
+       },
+       "blocks": [
+        [
+         "bar",
+         "Projects",
+         {
+          "action": "New project"
+         }
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Project",
+           "Owner",
+           "Status"
+          ],
+          "rows": [
+           [
+            "Q3 roadmap",
+            "You",
+            "Draft"
+           ]
+          ]
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Adds items, checklist reads 2 of 5",
+       "frame": "desktop",
+       "url": "app.larkspur.example/projects/q3-roadmap",
+       "nav": {
+        "title": "Larkspur",
+        "items": [
+         "Home",
+         "Projects",
+         "Docs",
+         "Settings"
+        ],
+        "on": 1
+       },
+       "blocks": [
+        [
+         "bar",
+         "Q3 roadmap"
+        ],
+        [
+         "progress",
+         "Setup checklist",
+         {
+          "value": 2,
+          "total": 5
+         }
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Item",
+           "Owner",
+           "Due"
+          ],
+          "rows": [
+           [
+            "Customer interviews",
+            "You",
+            "12 Jun"
+           ],
+           [
+            "Scope review",
+            "You",
+            "19 Jun"
+           ],
+           [
+            "Draft plan",
+            "You",
+            "26 Jun"
+           ]
+          ]
+         }
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S3",
+   "name": "Bring someone in",
+   "lanes": [
+    {
+     "app": "thistle",
+     "flow": "An invite dialog with a seat line in small text",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the invite dialog",
+       "frame": "desktop",
+       "url": "app.thistle.example/people",
+       "nav": {
+        "title": "Thistle",
+        "items": [
+         "Home",
+         "Projects",
+         "People",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "People"
+        ],
+        [
+         "row",
+         "Dana Whitlock",
+         {
+          "right": "Admin"
+         }
+        ],
+        [
+         "modal",
+         "Invite teammates",
+         {
+          "sub": "3 seats included, then $9 per member",
+          "field": "name@company.example",
+          "cta": "Send invite"
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Sends the invite and sees it pending",
+       "frame": "desktop",
+       "url": "app.thistle.example/people",
+       "nav": {
+        "title": "Thistle",
+        "items": [
+         "Home",
+         "Projects",
+         "People",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "People",
+         {
+          "action": "Invite"
+         }
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Name",
+           "Role",
+           "Status"
+          ],
+          "rows": [
+           [
+            "Dana Whitlock",
+            "Admin",
+            "Active"
+           ],
+           [
+            "jordan@whitlock-logistics.example",
+            "Member",
+            "Pending"
+           ]
+          ]
+         }
+        ],
+        [
+         "toast",
+         "Invite sent"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "corbel",
+     "flow": "A share dialog with a link, then a guest viewing",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the share dialog",
+       "frame": "desktop",
+       "url": "app.corbel.example/p/q3-roadmap",
+       "nav": {
+        "title": "Corbel",
+        "items": [
+         "Pages",
+         "Sample plan",
+         "Search"
+        ],
+        "on": 0
+       },
+       "blocks": [
+        [
+         "bar",
+         "Q3 roadmap",
+         {
+          "action": "Share"
+         }
+        ],
+        [
+         "modal",
+         "Share this page",
+         {
+          "sub": "Anyone with the link can view. Guests are free, forever",
+          "field": "app.corbel.example/g/q3-roadmap",
+          "cta": "Copy link"
+         }
+        ],
+        [
+         "toggle",
+         "Can comment",
+         {
+          "on": false
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Copies the link, a guest opens it",
+       "frame": "desktop",
+       "url": "app.corbel.example/p/q3-roadmap",
+       "nav": {
+        "title": "Corbel",
+        "items": [
+         "Pages",
+         "Sample plan",
+         "Search"
+        ],
+        "on": 0
+       },
+       "blocks": [
+        [
+         "bar",
+         "Q3 roadmap",
+         {
+          "action": "Share"
+         }
+        ],
+        [
+         "people",
+         "1 guest viewing",
+         {
+          "items": [
+           "Dana",
+           "+1"
+          ]
+         }
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Item",
+           "Status"
+          ],
+          "rows": [
+           [
+            "Customer interviews",
+            "In progress"
+           ],
+           [
+            "Scope review",
+            "To do"
+           ]
+          ]
+         }
+        ],
+        [
+         "toast",
+         "Link copied"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "halyard",
+     "flow": "Preview as the guest, then an invite that names the price",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Previews the plan as Jordan",
+       "frame": "desktop",
+       "url": "app.halyard.example/plans/q3/preview/jordan",
+       "nav": {
+        "title": "Halyard",
+        "items": [
+         "Home",
+         "Plans",
+         "People"
+        ],
+        "on": 1
+       },
+       "blocks": [
+        [
+         "banner",
+         "Previewing as Jordan",
+         {
+          "sub": "This is what Jordan will see",
+          "accent": true
+         }
+        ],
+        [
+         "row",
+         "Customer interviews",
+         {
+          "right": "12 Jun"
+         }
+        ],
+        [
+         "row",
+         "Scope review",
+         {
+          "right": "19 Jun"
+         }
+        ],
+        [
+         "row",
+         "Salary band notes",
+         {
+          "badge": "Hidden from guests",
+          "dim": true
+         }
+        ],
+        [
+         "row",
+         "Draft plan",
+         {
+          "badge": "Hidden from guests",
+          "dim": true
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Invites Jordan",
+       "frame": "desktop",
+       "url": "app.halyard.example/plans/q3",
+       "nav": {
+        "title": "Halyard",
+        "items": [
+         "Home",
+         "Plans",
+         "People"
+        ],
+        "on": 1
+       },
+       "blocks": [
+        [
+         "bar",
+         "Q3 roadmap"
+        ],
+        [
+         "row",
+         "Customer interviews",
+         {
+          "right": "12 Jun"
+         }
+        ],
+        [
+         "modal",
+         "Invite Jordan Reyes",
+         {
+          "sub": "Jordan joins as a member: $10 per month, billed from the end of your trial",
+          "cta": "Send invite"
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "app": "larkspur",
+     "flow": "Settings, Members, then an Add member dialog",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Finds Members under Settings",
+       "frame": "desktop",
+       "url": "app.larkspur.example/settings/members",
+       "nav": {
+        "title": "Larkspur",
+        "items": [
+         "Home",
+         "Projects",
+         "Docs",
+         "Settings"
+        ],
+        "on": 3
+       },
+       "blocks": [
+        [
+         "bar",
+         "Members",
+         {
+          "action": "Add member"
+         }
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Name",
+           "Role",
+           "Seat"
+          ],
+          "rows": [
+           [
+            "Dana Whitlock",
+            "Admin",
+            "Paid"
+           ]
+          ]
+         }
+        ]
+       ]
+      },
+      {
+       "step": "Opens the Add member dialog",
+       "frame": "desktop",
+       "url": "app.larkspur.example/settings/members",
+       "nav": {
+        "title": "Larkspur",
+        "items": [
+         "Home",
+         "Projects",
+         "Docs",
+         "Settings"
+        ],
+        "on": 3
+       },
+       "blocks": [
+        [
+         "bar",
+         "Members"
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Name",
+           "Role"
+          ],
+          "rows": [
+           [
+            "Dana Whitlock",
+            "Admin"
+           ]
+          ]
+         }
+        ],
+        [
+         "modal",
+         "Add member",
+         {
+          "sub": "Adding a member starts billing today: $12 per month",
+          "field": "Email address",
+          "items": [
+           "Member"
+          ],
+          "on": 0,
+          "cta": "Add member"
+         }
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

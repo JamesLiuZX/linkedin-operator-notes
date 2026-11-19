@@ -378,6 +378,18 @@
   width: 388px;
 }
 
+.shot.desktop {
+  width: 598px;
+}
+
+.shot.desktop .shot-row {
+  grid-template-columns: 372px minmax(0, 1fr);
+}
+
+.shot.desktop .shot-pic {
+  border-radius: 10px;
+}
+
 .shot-step {
   display: flex;
   gap: 8px;
