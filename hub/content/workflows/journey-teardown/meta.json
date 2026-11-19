@@ -2,6 +2,7 @@
   "order": 1,
   "title": "Journey teardown on a canvas",
   "short": "Journey teardown",
+  "tab": "Teardown",
   "promise": "Compare how several products handle the same journey, laid out stage by stage on a board, ending in the gaps worth fixing first.",
   "gives": "A board with one lane per app per stage, scored and annotated, and a synthesis for each stage.",
   "stage": "understand",

@@ -26,7 +26,7 @@
 
 import { readFile, writeFile, mkdir, copyFile, readdir, rm, cp } from "node:fs/promises";
 import { existsSync } from "node:fs";
-import { join, dirname, extname } from "node:path";
+import { join, dirname, extname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 import { createServer } from "node:http";
@@ -39,7 +39,8 @@ import * as pages from "../hub/lib/pages.mjs";
 import { examples } from "./hub-templates.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const DIST = join(ROOT, "site", "dist");
+// HUB_DIST builds into another folder, so two people (or agents) can preview at once.
+const DIST = process.env.HUB_DIST ? resolve(process.env.HUB_DIST) : join(ROOT, "site", "dist");
 const require = createRequire(join(ROOT, "site", "package.json"));
 const esbuild = require("esbuild");
 const { marked } = require("marked");
@@ -67,6 +68,39 @@ async function keepLegacyApp() {
   await writeFile(join(DIST, "404.html"), html);
   await writeFile(join(DIST, "spa.html"), html);
   return true;
+}
+
+/** The file that holds each skill's output, inside an example folder. */
+const EXAMPLE_FILE = {
+  "journey-teardown": "teardown.json",
+  "interview-synthesis": "synthesis.json",
+  premortem: "premortem.json",
+  "decision-prd": "prd.json",
+  "flagged-prototype": "spec.js",
+  "experiment-readout": "readout.json",
+};
+
+/**
+ * "hub:examples": every worked example on disk, as a module the demos load
+ * on demand. A new example folder is picked up by the next build with no
+ * change to the site's code.
+ */
+function examplesPlugin() {
+  const order = CASES.map((c) => c.id);
+  const lines = [];
+  for (const [skill, file] of Object.entries(EXAMPLE_FILE)) {
+    const dir = join(ROOT, "skills", skill, "examples");
+    const cases = order.filter((id) => existsSync(join(dir, id, file)));
+    lines.push(`  ${JSON.stringify(skill)}: {\n${cases.map((id) => `    ${JSON.stringify(id)}: () => import(${JSON.stringify(join(dir, id, file))}),`).join("\n")}\n  },`);
+  }
+  const contents = `export const EXAMPLES = {\n${lines.join("\n")}\n};\n`;
+  return {
+    name: "hub-examples",
+    setup(build) {
+      build.onResolve({ filter: /^hub:examples$/ }, () => ({ path: "hub:examples", namespace: "hub-examples" }));
+      build.onLoad({ filter: /.*/, namespace: "hub-examples" }, () => ({ contents, loader: "js", resolveDir: ROOT }));
+    },
+  };
 }
 
 async function bundle() {
@@ -98,6 +132,7 @@ async function bundle() {
     entryNames: "[name].[hash]",
     chunkNames: "chunks/[name].[hash]",
     loader: { ".json": "json", ".md": "text", ".svg": "text" },
+    plugins: [examplesPlugin()],
   });
   const css = await esbuild.build({
     ...common,

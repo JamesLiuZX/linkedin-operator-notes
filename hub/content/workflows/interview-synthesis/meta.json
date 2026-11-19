@@ -2,6 +2,7 @@
   "order": 2,
   "title": "Interview synthesis with receipts",
   "short": "Interview synthesis",
+  "tab": "Synthesis",
   "promise": "Turn a stack of interview transcripts into themes where every claim shows how many people said it and links to their exact words.",
   "gives": "A synthesis page: themes with counts, verified quotes, the disagreements, and what you still do not know.",
   "stage": "understand",

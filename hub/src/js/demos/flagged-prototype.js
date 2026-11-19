@@ -4,13 +4,12 @@
 // as it is today, wires one switch per PRD point, and then a hand turns the
 // switches on one by one. When it ends, the switches are yours.
 
-import spec from "../../../../skills/flagged-prototype/examples/tangelo/spec.js";
 import { createTimeline } from "../stage/timeline.js";
 import { createCursor } from "../stage/cursor.js";
 import { buildRun } from "../stage/run.js";
 import { createPrototype } from "../artifacts/prototype.js";
 
-export function mount(body, { stage } = {}) {
+export function mount(body, { stage, data: spec, ask } = {}) {
   body.innerHTML = `
     <div class="demo demo-proto">
       <div class="run" data-run></div>
@@ -23,7 +22,7 @@ export function mount(body, { stage } = {}) {
   const proto = createPrototype(host, spec, { follow: false, instant: true, maxScale: stage?.closest(".clip") ? 1.9 : 1.25 });
 
   buildRun(tl, body.querySelector("[data-run]"), {
-    ask: "Build the prototype for the Tangelo PRD. One switch per point, off by default.",
+    ask: ask || "Build the prototype for this PRD. One switch per point, off by default.",
     steps: [
       { title: "Read the PRD", detail: "prd.json · 6 points in 3 sections", at: 2.7, dur: 0.7 },
       { title: "Drew the app as it is today", detail: "5 screens, nothing new on them yet", at: 3.5, dur: 0.8 },

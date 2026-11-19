@@ -3,13 +3,12 @@
 // The replay for the decision-ready PRD: three pieces of research are read,
 // then the document assembles point by point with its evidence beside it.
 
-import data from "../../../../skills/decision-prd/examples/tangelo/prd.json";
 import { createTimeline, ease } from "../stage/timeline.js";
 import { buildRun } from "../stage/run.js";
 import { createPaper } from "../stage/paper.js";
 import { mountPrd } from "../artifacts/prd.js";
 
-export function mount(body, { base = "/", stage } = {}) {
+export function mount(body, { base = "/", stage, data, ask, caseId = "tangelo" } = {}) {
   body.innerHTML = `
     <div class="demo demo-doc">
       <div class="run" data-run></div>
@@ -20,18 +19,17 @@ export function mount(body, { base = "/", stage } = {}) {
   const width = stage?.closest(".clip") ? 640 : (stage?.clientWidth || 1200) < 760 ? 440 : 1000;
   const paper = createPaper(body.querySelector("[data-art]"), { width, maxZoom: stage?.closest(".clip") ? 2 : 1 });
   mountPrd(paper.doc, data);
-  paper.wireLinks(`${base}examples/tangelo/`);
+  paper.wireLinks(`${base}examples/${caseId}/`);
   const $ = (sel) => paper.doc.querySelector(sel);
   const $$ = (sel, root = paper.doc) => [...root.querySelectorAll(sel)];
 
   const points = $$("[data-point]");
+  const sources = (data.sources || []).slice(0, 3);
 
   buildRun(tl, body.querySelector("[data-run]"), {
-    ask: "Write the PRD for the weekly shop from the teardown, the synthesis and the pre-mortem.",
+    ask: ask || "Write the PRD from the teardown, the synthesis and the pre-mortem.",
     steps: [
-      { title: "Read the teardown", detail: "4 apps · 3 stages · 8 patterns", at: 3.0, dur: 0.55 },
-      { title: "Read the synthesis", detail: "8 interviews · 6 themes", at: 3.65, dur: 0.55 },
-      { title: "Read the pre-mortem", detail: "11 risks · 5 tripwires", at: 4.3, dur: 0.55 },
+      ...sources.map((src, i) => ({ title: `Read the ${src.label.split(" on ")[0].toLowerCase()}`, detail: src.detail || "", at: 3.0 + i * 0.65, dur: 0.55 })),
       { title: `Wrote ${points.length} points`, detail: "Problem first, evidence beside it", at: 5.1, dur: 11.6 },
       { title: "Ordered the rollout", detail: "3 steps, each with a reason", at: 16.9, dur: 2.0 },
       { title: "Checked its own work", detail: "6 of 6 checks passed", at: 19.2, dur: 0.9 },

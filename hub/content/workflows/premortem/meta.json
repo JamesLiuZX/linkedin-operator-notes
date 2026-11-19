@@ -2,6 +2,7 @@
   "order": 3,
   "title": "The pre-mortem with tripwires",
   "short": "Pre-mortem",
+  "tab": "Pre-mortem",
   "promise": "Stress a plan before you commit to it: the ways it fails, the evidence for each, and the number that tells you to stop.",
   "gives": "A one-page risk register: ranked failure stories, each top one with a tripwire, an owner and a date.",
   "stage": "decide",

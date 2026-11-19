@@ -159,9 +159,21 @@ const HEADLINE = {
   "do-not-trust": "Do not trust this result. The users were not split as planned.",
 };
 
+/**
+ * The scenarios a reader can switch between. The first is always the example's
+ * own counts. The teaching variants were worked out for the Tangelo test, so
+ * they are offered only when that is the example on the page.
+ */
+function scenariosFor(data) {
+  const own = { id: "own", label: "As it ran", blurb: "The counts this test produced.", input: data.numbers.input };
+  const isTangelo = data.numbers.input.test?.name === SCENARIOS[0].input.test?.name;
+  return isTangelo ? [{ ...SCENARIOS[0], id: "own", label: "As it ran" }, ...SCENARIOS.slice(1)] : [own];
+}
+
 export function mountReadout(root, data, { interactive = false } = {}) {
   root.classList.add("adoc", "readout");
   let current = data;
+  const scenarios = scenariosFor(data);
   const draw = () => {
     root.querySelector("[data-ro-body]").innerHTML = renderReadout(current);
   };
@@ -169,7 +181,7 @@ export function mountReadout(root, data, { interactive = false } = {}) {
   root.innerHTML = `${
     interactive
       ? `<div class="ro-controls" data-ro-controls>
-      <div class="ro-scenarios" role="group" aria-label="Scenarios">${SCENARIOS.map((s, i) => `<button type="button" data-scenario="${esc(s.id)}" class="${i === 0 ? "on" : ""}" title="${esc(s.blurb)}">${esc(s.label)}</button>`).join("")}</div>
+      <div class="ro-scenarios" role="group" aria-label="Scenarios">${scenarios.map((s, i) => `<button type="button" data-scenario="${esc(s.id)}" class="${i === 0 ? "on" : ""}" title="${esc(s.blurb)}">${esc(s.label)}</button>`).join("")}</div>
       <div class="ro-inputs" data-ro-inputs></div>
     </div>`
       : ""
@@ -213,7 +225,7 @@ export function mountReadout(root, data, { interactive = false } = {}) {
     root,
     /** Show a named scenario. The example's own scenario keeps its written headline and summary. */
     scenario(id) {
-      const s = SCENARIOS.find((x) => x.id === id);
+      const s = scenarios.find((x) => x.id === id);
       if (!s) return;
       root.querySelectorAll("[data-scenario]").forEach((b) => b.classList.toggle("on", b.dataset.scenario === id));
       recompute(JSON.parse(JSON.stringify(s.input)), data);

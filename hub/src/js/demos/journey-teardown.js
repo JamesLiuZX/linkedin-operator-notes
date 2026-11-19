@@ -5,12 +5,11 @@
 // the scores, crosses to the synthesis and ends on the whole board. When it
 // ends, the board is yours to drag, zoom and filter.
 
-import data from "../../../../skills/journey-teardown/examples/tangelo/teardown.json";
 import { createTimeline, ease } from "../stage/timeline.js";
 import { buildRun } from "../stage/run.js";
 import { mountBoard } from "../artifacts/board.js";
 
-export function mount(body) {
+export function mount(body, { data, ask } = {}) {
   body.innerHTML = `
     <div class="demo demo-board">
       <div class="run" data-run></div>
@@ -31,7 +30,7 @@ export function mount(body) {
   const { lanes, screens, notes } = board.counts;
 
   buildRun(tl, body.querySelector("[data-run]"), {
-    ask: "Tear down how these four apps handle the weekly shop.",
+    ask: ask || "Tear down how these apps handle this journey.",
     steps: [
       { title: "Laid out the lanes", detail: `${data.apps.length} apps × ${stages.length} stages = ${lanes} lanes`, at: 2.4, dur: 2.0 },
       { title: "Annotated every screen", detail: `${screens} screens · ${notes} notes`, at: 4.6, dur: 5.2 },

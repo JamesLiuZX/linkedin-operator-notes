@@ -4,13 +4,12 @@
 // itself is checked before anyone looks at the result, and the decision is the
 // last thing to appear. When it ends, the counts are yours to change.
 
-import data from "../../../../skills/experiment-readout/examples/tangelo/readout.json";
 import { createTimeline, ease } from "../stage/timeline.js";
 import { buildRun } from "../stage/run.js";
 import { createPaper } from "../stage/paper.js";
 import { mountReadout } from "../artifacts/readout.js";
 
-export function mount(body, { stage } = {}) {
+export function mount(body, { stage, data, ask, caseId = "tangelo" } = {}) {
   body.innerHTML = `
     <div class="demo demo-doc demo-readout">
       <div class="run" data-run></div>
@@ -34,14 +33,15 @@ export function mount(body, { stage } = {}) {
   const users = n.input.arms[0].users + n.input.arms[1].users;
   const guards = n.guardrails;
   const unclear = guards.filter((g) => g.verdict !== "held").length;
+  const pts = (v) => `${v >= 0 ? "+" : "\u2212"}${Math.abs(v * 100).toFixed(1)}`;
 
   buildRun(tl, body.querySelector("[data-run]"), {
-    ask: "Read out the reorder card test. Should we ship?",
+    ask: ask || "Read out this test. Should we ship?",
     steps: [
-      { title: "Wrote the counts down", detail: `results.json · ${users.toLocaleString("en-US")} customers`, at: 2.5, dur: 0.6 },
+      { title: "Wrote the counts down", detail: `results.json · ${users.toLocaleString("en-US")} ${n.input.test.unit || "users"}`, at: 2.5, dur: 0.6 },
       { title: "Ran the script", detail: "ab_stats.py does the arithmetic", at: 3.2, dur: 0.7 },
       { title: "Checked the test first", detail: "The split, the duration, the power", at: 4.1, dur: 3.5 },
-      { title: "Read the result", detail: "+1.7 points, interval 0.8 to 2.6", at: 7.8, dur: 3.0 },
+      { title: "Read the result", detail: `${pts(n.primary.diff)} points, interval ${(n.primary.ci[0] * 100).toFixed(1)} to ${(n.primary.ci[1] * 100).toFixed(1)}`, at: 7.8, dur: 3.0 },
       { title: "Read the guardrails", detail: `${guards.length - unclear} held · ${unclear} not settled`, at: 11.0, dur: 3.6, bad: unclear > 0 },
       { title: "Applied the fixed rule", detail: n.verdict.rule.split(":")[0], at: 14.8, dur: 1.5 },
       { title: "Checked its own work", detail: "6 of 6 checks passed", at: 16.8, dur: 0.9 },
@@ -123,7 +123,7 @@ export function mount(body, { stage } = {}) {
       paper.scroll.scrollTop = 0;
     },
     unlive() {
-      editable.scenario("tangelo");
+      editable.scenario("own");
       live.hidden = true;
       replay.hidden = false;
       tl.invalidate();

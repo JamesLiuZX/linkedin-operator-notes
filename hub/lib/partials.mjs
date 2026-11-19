@@ -1,6 +1,6 @@
 // hub/lib/partials.mjs : the pieces more than one page uses.
 
-import { SITE, STAGES, ROLES, repoSlug, repoUrl } from "../site.config.mjs";
+import { SITE, STAGES, ROLES, CASES, repoSlug, repoUrl } from "../site.config.mjs";
 import { esc, hl, ICON } from "./html.mjs";
 
 export const stageOf = (id) => STAGES.find((s) => s.id === id) || STAGES[0];
@@ -94,126 +94,103 @@ export function installTabs(ctx, skill, idPrefix = "install") {
   </div>`;
 }
 
-/** The dark viewport a workflow runs in. app.js mounts the demo module named in data-demo. */
-export function stage(ctx, w, { autoplay = true, hero = false, layout = "" } = {}) {
-  const poster = `/hub/posters/${w.slug}.png`;
+export const caseOf = (id) => CASES.find((c) => c.id === id) || CASES[0];
+
+/** The example a workflow has for a case, or its first one. */
+export const exampleOf = (w, caseId) => (w.cases || []).find((c) => c.id === caseId) || (w.cases || [])[0] || null;
+
+export const exampleHref = (w, caseId) => {
+  const c = exampleOf(w, caseId);
+  return c ? `/examples/${c.id}/${c.file}` : "#";
+};
+
+/** The picture of a finished output, rendered by scripts/hub-media.mjs. */
+export const artSrc = (w, caseId) => {
+  const c = exampleOf(w, caseId);
+  return `/hub/art/${c ? c.id : "tangelo"}/${w.slug}.webp`;
+};
+
+/**
+ * The white window a workflow runs in. app.js mounts the demo named in
+ * data-demo with the example named in data-case, and swaps both when a
+ * reader picks another case or another workflow.
+ */
+export function stage(ctx, w, { autoplay = true, caseId = "", start = null, layout = "", id = "" } = {}) {
+  const c = exampleOf(w, caseId);
   return `
-  <div class="stage${hero ? " stage-hero" : ""}" data-stage data-demo="${esc(w.demo || w.slug)}"${autoplay ? " data-autoplay" : ""}${hero ? ` data-start="${Number(w.heroStart ?? 3)}"` : ""}${layout ? ` data-layout="${layout}"` : ""} aria-label="Demo: ${esc(w.title)}">
-    <div class="stage-bar">
-      <span class="stage-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span class="stage-title"><b>${esc(w.skill || w.slug)}</b><span>${esc(w.example?.label || "")}</span></span>
-      <span class="stage-chapters" data-stage-chapters></span>
+  <div class="stage"${id ? ` id="${esc(id)}"` : ""} data-stage data-wf="${esc(w.slug)}" data-demo="${esc(w.demo || w.slug)}" data-case="${esc(c?.id || "")}"${autoplay ? " data-autoplay" : ""}${start != null ? ` data-start="${Number(start)}"` : ""}${layout ? ` data-layout="${layout}"` : ""} aria-label="Demo: ${esc(w.title)}">
+    <div class="stage-top">
+      <span class="stage-id"><i></i><b data-stage-skill>${esc(w.skill || w.slug)}</b></span>
+      <span class="stage-case" data-stage-label>${esc(c?.label || "")}</span>
+      <span class="stage-end">
+        <span class="stage-live" data-stage-hint>Yours to try</span>
+        <a class="stage-open" data-stage-open href="${ctx.url(exampleHref(w, c?.id))}" target="_blank" rel="noopener"><span>Open the output</span>${ICON.arrowUpRight}</a>
+      </span>
     </div>
     <div class="stage-body" data-stage-body>
-      <noscript><a href="${ctx.url(exampleHref(w))}"><img src="${ctx.url(poster)}" alt="The output of ${esc(w.title)}" loading="lazy"></a></noscript>
+      <noscript><a href="${ctx.url(exampleHref(w, c?.id))}"><img src="${ctx.url(artSrc(w, c?.id))}" alt="The output of ${esc(w.title)}" loading="lazy"></a></noscript>
     </div>
     <div class="stage-ctl" data-stage-ctl hidden>
       <button type="button" class="stage-btn" data-stage-toggle aria-label="Pause">${ICON.pause}</button>
-      <div class="stage-scrub" data-stage-scrub role="slider" tabindex="0" aria-label="Demo position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i data-stage-fill></i></div>
+      <span class="stage-now" data-stage-now></span>
+      <div class="stage-scrub" data-stage-scrub role="slider" tabindex="0" aria-label="Demo position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
       <span class="stage-time" data-stage-time></span>
-      <button type="button" class="stage-btn" data-stage-replay aria-label="Replay">${ICON.replay}</button>
+      <button type="button" class="stage-btn quiet" data-stage-replay aria-label="Replay">${ICON.replay}</button>
     </div>
   </div>`;
 }
 
-export const exampleHref = (w) => (w.example ? `/examples/${w.example.case}/${w.example.file}` : "#");
-
-export function workflowCard(ctx, w, i = 0) {
-  const st = stageOf(w.stage);
+/** The three cases as a tab control. app.js keeps every control on the page in step. */
+export function caseTabs(ctx, { label = "Pick the case closest to your work", small = false } = {}) {
   return `
-  <a class="wf-card rise" style="--i:${i}" href="${ctx.url(`/workflows/${w.slug}/`)}" data-roles="${esc((w.roles || []).join(" "))}">
-    <div class="wf-thumb" data-thumb="${esc(w.slug)}" aria-hidden="true">${thumb(w.slug)}</div>
-    <div class="wf-copy">
-      <div class="wf-meta"><span class="label">${st.n} ${esc(st.title)}</span><span class="label">${esc(w.runtime || "")} run</span></div>
-      <h3>${esc(w.title)}</h3>
-      <p>${esc(w.promise)}</p>
-      <div class="chips">${(w.roles || []).map((r) => `<span class="chip">${esc(roleTitle(r))}</span>`).join("")}</div>
-    </div>
-  </a>`;
+  <div class="cases${small ? " sm" : ""}" data-cases role="group" aria-label="${esc(label)}">
+    ${ctx.cases
+      .map((c, i) => `<button type="button" data-case="${esc(c.id)}" aria-pressed="${i === 0}"><b>${esc(c.domain)}</b><span>${esc(c.company)}, ${esc(c.what)}</span></button>`)
+      .join("")}
+  </div>`;
 }
 
 /**
- * A small drawing of each workflow's output, used on cards. Pure SVG in the
- * site's own vocabulary, so the grid reads as one family and loads instantly.
+ * What the page's scripts need to know about the workflows and their
+ * examples: enough to swap a stage to another case without a page load.
  */
-export function thumb(slug) {
-  const frame = (inner) =>
-    `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
-  const P = "var(--thumb-paper)";
-  const L = "var(--thumb-line)";
-  const I = "var(--thumb-ink)";
-  const H = "var(--hi)";
-  switch (slug) {
-    case "journey-teardown": {
-      let cells = "";
-      for (let r = 0; r < 3; r++)
-        for (let c = 0; c < 5; c++) {
-          const x = 46 + c * 52;
-          const y = 26 + r * 52;
-          const own = r === 2;
-          cells += `<rect x="${x}" y="${y}" width="26" height="42" rx="4" fill="${own ? "var(--thumb-own)" : P}" stroke="${L}"/>`;
-          if ((r * 5 + c) % 3 === 0) cells += `<rect x="${x + 30}" y="${y + 4}" width="16" height="9" rx="2" fill="${H}"/>`;
-          if ((r * 5 + c) % 4 === 1) cells += `<rect x="${x + 30}" y="${y + 17}" width="16" height="9" rx="2" fill="var(--thumb-bad)"/>`;
-        }
-      return frame(`<rect x="16" y="26" width="22" height="146" rx="4" fill="${L}"/>${cells}`);
-    }
-    case "interview-synthesis":
-      return frame(`
-        <rect x="24" y="28" width="118" height="144" rx="8" fill="${P}" stroke="${L}"/>
-        ${[0, 1, 2, 3, 4, 5, 6].map((i) => `<rect x="36" y="${44 + i * 17}" width="${[88, 70, 94, 60, 82, 74, 50][i]}" height="5" rx="2.5" fill="${i === 2 || i === 5 ? H : L}"/>`).join("")}
-        <path d="M142 81 C170 81 162 62 190 62" fill="none" stroke="${I}" stroke-width="1.2" stroke-dasharray="3 3"/>
-        <path d="M142 132 C170 132 162 124 190 124" fill="none" stroke="${I}" stroke-width="1.2" stroke-dasharray="3 3"/>
-        <rect x="190" y="40" width="106" height="46" rx="8" fill="${P}" stroke="${L}"/>
-        <rect x="202" y="52" width="60" height="6" rx="3" fill="${I}"/><rect x="202" y="66" width="34" height="9" rx="4.5" fill="${H}"/>
-        <rect x="190" y="102" width="106" height="46" rx="8" fill="${P}" stroke="${L}"/>
-        <rect x="202" y="114" width="72" height="6" rx="3" fill="${I}"/><rect x="202" y="128" width="34" height="9" rx="4.5" fill="${H}"/>`);
-    case "premortem": {
-      let dots = "";
-      [[86, 62, 9, 1], [130, 96, 6, 0], [184, 70, 12, 1], [218, 128, 7, 0], [108, 138, 5, 0], [246, 54, 8, 1]].forEach(([x, y, r, hot]) => {
-        dots += `<circle cx="${x}" cy="${y}" r="${r}" fill="${hot ? H : P}" stroke="${hot ? "none" : I}" stroke-width="1.2"/>`;
-      });
-      return frame(`
-        <rect x="48" y="26" width="232" height="140" rx="8" fill="${P}" stroke="${L}"/>
-        <path d="M164 26v140M48 96h232" stroke="${L}"/>
-        <rect x="164" y="26" width="116" height="70" fill="var(--thumb-hot)" opacity=".55"/>
-        ${dots}
-        <path d="M36 160V34M36 34l-4 7M36 34l4 7M54 178h220M274 178l-7-4M274 178l-7 4" fill="none" stroke="${I}" stroke-width="1.2"/>`);
-    }
-    case "decision-prd":
-      return frame(`
-        <rect x="64" y="16" width="192" height="184" rx="10" fill="${P}" stroke="${L}"/>
-        <rect x="80" y="32" width="96" height="9" rx="4.5" fill="${I}"/>
-        ${[0, 1, 2].map((i) => `
-          <rect x="80" y="${58 + i * 46}" width="160" height="36" rx="7" fill="none" stroke="${L}"/>
-          <rect x="88" y="${66 + i * 46}" width="24" height="12" rx="4" fill="${H}"/>
-          <rect x="120" y="${68 + i * 46}" width="${[84, 66, 96][i]}" height="5" rx="2.5" fill="${I}"/>
-          <rect x="120" y="${79 + i * 46}" width="${[104, 110, 72][i]}" height="4" rx="2" fill="${L}"/>`).join("")}`);
-    case "flagged-prototype":
-      return frame(`
-        <rect x="52" y="14" width="96" height="190" rx="18" fill="${I}"/>
-        <rect x="58" y="20" width="84" height="178" rx="13" fill="${P}"/>
-        <rect x="68" y="36" width="44" height="7" rx="3.5" fill="${I}"/>
-        <rect x="68" y="54" width="64" height="34" rx="7" fill="${H}"/>
-        <rect x="68" y="96" width="64" height="20" rx="6" fill="none" stroke="${L}"/>
-        <rect x="68" y="122" width="64" height="20" rx="6" fill="none" stroke="${L}"/>
-        <circle cx="134" cy="54" r="8" fill="${I}"/><text x="134" y="57" font-size="8" font-family="monospace" text-anchor="middle" fill="${H}">1.1</text>
-        ${[0, 1, 2].map((i) => `
-          <rect x="176" y="${48 + i * 38}" width="96" height="26" rx="8" fill="${P}" stroke="${L}"/>
-          <rect x="186" y="${58 + i * 38}" width="40" height="5" rx="2.5" fill="${I}"/>
-          <rect x="238" y="${54 + i * 38}" width="26" height="14" rx="7" fill="${i === 1 ? L : I}"/>
-          <circle cx="${i === 1 ? 245 : 257}" cy="${61 + i * 38}" r="5" fill="${i === 1 ? P : H}"/>`).join("")}`);
-    case "experiment-readout":
-      return frame(`
-        <rect x="28" y="26" width="264" height="148" rx="10" fill="${P}" stroke="${L}"/>
-        <path d="M60 60v88M60 148h204" stroke="${L}"/>
-        <path d="M160 52v104" stroke="${I}" stroke-width="1.2" stroke-dasharray="3 3"/>
-        <rect x="176" y="78" width="74" height="10" rx="5" fill="${H}"/><circle cx="212" cy="83" r="6" fill="${I}"/>
-        <rect x="138" y="106" width="58" height="10" rx="5" fill="${L}"/><circle cx="168" cy="111" r="6" fill="${I}"/>
-        <rect x="118" y="134" width="36" height="10" rx="5" fill="var(--thumb-bad)"/><circle cx="136" cy="139" r="6" fill="${I}"/>
-        <rect x="44" y="36" width="54" height="12" rx="6" fill="${I}"/>`);
-    default:
-      return frame(`<rect x="40" y="30" width="240" height="140" rx="10" fill="${P}" stroke="${L}"/>`);
+export function clientData(ctx) {
+  const workflows = {};
+  for (const w of ctx.workflows.filter((x) => x.status !== "planned")) {
+    workflows[w.slug] = {
+      title: w.title,
+      short: w.short || w.title,
+      skill: w.skill,
+      demo: w.demo || w.slug,
+      cases: Object.fromEntries(
+        (w.cases || []).map((c) => [c.id, { label: c.label, ask: c.ask || "", href: ctx.url(exampleHref(w, c.id)) }])
+      ),
+    };
   }
+  const json = JSON.stringify({ workflows, cases: ctx.cases.map((c) => ({ id: c.id, domain: c.domain, company: c.company })) }).replaceAll("<", "\\u003c");
+  return `<script type="application/json" id="hub-data">${json}</script>`;
+}
+
+/** A sheet of real output, tipped back: the picture on tiles and example cards. */
+export function sheet(ctx, w, caseId, { alt = "", eager = false } = {}) {
+  return `<span class="sheet"><img src="${ctx.url(artSrc(w, caseId))}" alt="${esc(alt)}" width="1200" height="900" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"></span>`;
+}
+
+/** One workflow as a block of its own colour. */
+export function tile(ctx, w, i = 0, { wide = false } = {}) {
+  const st = stageOf(w.stage);
+  const scripted = (w.checks || []).filter((c) => c.how === "script").length;
+  return `
+  <a class="tile${wide ? " wide" : ""} rise" style="--i:${i % 3}" data-wf="${esc(w.slug)}" href="${ctx.url(`/workflows/${w.slug}/`)}" data-roles="${esc((w.roles || []).join(" "))}">
+    <span class="tile-copy">
+      <span class="tile-n">${String(w.order || i + 1).padStart(2, "0")}<small>${esc(st.title)}</small></span>
+      <span class="tile-t">${esc(w.title)}</span>
+      <span class="tile-p">${esc(w.promise)}</span>
+      <span class="tile-meta"><span>${esc(w.runtime || "")} run</span><span>${scripted} scripted ${scripted === 1 ? "check" : "checks"}</span><span>${(w.cases || []).length} worked ${(w.cases || []).length === 1 ? "example" : "examples"}</span></span>
+    </span>
+    <span class="tile-art" aria-hidden="true">${sheet(ctx, w)}</span>
+    <span class="tile-go" aria-hidden="true">${ICON.arrow}</span>
+  </a>`;
 }
 
 export function subscribe(ctx, { compact = false } = {}) {
@@ -242,5 +219,8 @@ export function subscribe(ctx, { compact = false } = {}) {
     <div class="sub-action">${form}</div>
   </section>`;
 }
+
+/** Kept so older templates build. New templates use sheet(). */
+export const thumb = () => "";
 
 export { esc, hl, ICON };

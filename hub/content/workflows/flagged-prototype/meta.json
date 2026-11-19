@@ -2,6 +2,7 @@
   "order": 5,
   "title": "The flagged prototype",
   "short": "Flagged prototype",
+  "tab": "Prototype",
   "promise": "A clickable prototype where every PRD point is a switch, so a reviewer can turn each change on and off and see exactly what it does.",
   "gives": "One HTML file: a phone, a panel of switches numbered like the PRD, and a pin on every change.",
   "stage": "specify",

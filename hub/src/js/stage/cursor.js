@@ -7,7 +7,7 @@
 import { ease } from "./timeline.js";
 
 const ARROW =
-  '<svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4 2.5 17.5 10l-6 1.6L9 17.5 4 2.5Z" fill="#ffffff" stroke="#0b0c0c" stroke-width="1.4" stroke-linejoin="round"/></svg>';
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.500 2.800 19.500 11l-6.700 1.800-2.900 6.400L4.500 2.800Z" fill="#0c0c0b" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round"/></svg><i></i>';
 
 export function createCursor(tl, host) {
   const el = document.createElement("div");
@@ -50,7 +50,7 @@ export function createCursor(tl, host) {
     el.style.opacity = String(Math.min(fadeIn, fadeOut).toFixed(2));
     const tapAt = m.at + m.dur;
     el.classList.toggle("tap", m.tap && t >= tapAt && t < tapAt + 0.45);
-  });
+  }, 2);
 
   return {
     el,

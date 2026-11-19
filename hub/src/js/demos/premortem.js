@@ -4,13 +4,12 @@
 // failure stories land on a likelihood and impact map, each is weighed against
 // the research, and the worst five get a tripwire with a date.
 
-import data from "../../../../skills/premortem/examples/tangelo/premortem.json";
 import { createTimeline, ease } from "../stage/timeline.js";
 import { buildRun } from "../stage/run.js";
 import { createPaper } from "../stage/paper.js";
 import { mountPremortem } from "../artifacts/premortem.js";
 
-export function mount(body, { stage } = {}) {
+export function mount(body, { stage, data, ask } = {}) {
   body.innerHTML = `
     <div class="demo demo-doc demo-premortem">
       <div class="run" data-run></div>
@@ -30,9 +29,9 @@ export function mount(body, { stage } = {}) {
   const areas = new Set(risks.map((r) => r.area)).size;
 
   buildRun(tl, body.querySelector("[data-run]"), {
-    ask: "Run a pre-mortem on the one-tap reorder plan.",
+    ask: ask || "Run a pre-mortem on this plan before we commit to it.",
     steps: [
-      { title: "Read the plan", detail: "plan.md · ships in January", at: 2.3, dur: 0.7 },
+      { title: "Read the plan", detail: "plan.md, and the research it cites", at: 2.3, dur: 0.7 },
       { title: "Assumed it failed", detail: "Six months after launch", at: 3.1, dur: 1.0 },
       { title: "Wrote the failure stories", detail: `${risks.length} stories across ${areas} areas`, at: 4.3, dur: 4.3 },
       { title: "Weighed each against the research", detail: `${risks.length - guesses} with evidence · ${guesses} guesses`, at: 8.8, dur: 2.6 },

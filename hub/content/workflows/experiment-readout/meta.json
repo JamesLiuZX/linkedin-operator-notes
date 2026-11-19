@@ -2,6 +2,7 @@
   "order": 6,
   "title": "The honest experiment readout",
   "short": "Experiment readout",
+  "tab": "Readout",
   "promise": "Turn the raw numbers of an A/B test into a ship, extend or stop decision, with the checks that catch a broken test before it fools you.",
   "gives": "A one-page readout: the verdict, the checks behind it, the effect with its interval, and what to do next.",
   "stage": "measure",

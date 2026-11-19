@@ -2,6 +2,7 @@
   "order": 4,
   "title": "The decision-ready PRD",
   "short": "Decision-ready PRD",
+  "tab": "PRD",
   "promise": "A PRD a reviewer can approve point by point: every change is numbered, stated as a problem, tied to evidence and linked to a switch in the prototype.",
   "gives": "One HTML page: numbered points with the evidence beside each, a priority table and a rollout plan.",
   "stage": "specify",

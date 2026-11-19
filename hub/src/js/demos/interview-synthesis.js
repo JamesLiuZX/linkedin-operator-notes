@@ -4,14 +4,13 @@
 // its quotes are pulled, and then a script looks for every quote in the
 // transcripts. One is not there. When the replay ends, open any quote yourself.
 
-import data from "../../../../skills/interview-synthesis/examples/tangelo/synthesis.json";
 import { createTimeline, ease } from "../stage/timeline.js";
 import { createCursor } from "../stage/cursor.js";
 import { buildRun } from "../stage/run.js";
 import { createPaper } from "../stage/paper.js";
 import { mountSynthesis } from "../artifacts/synthesis.js";
 
-export function mount(body, { stage } = {}) {
+export function mount(body, { stage, data, ask } = {}) {
   body.innerHTML = `
     <div class="demo demo-doc demo-synthesis">
       <div class="run" data-run></div>
@@ -33,13 +32,13 @@ export function mount(body, { stage } = {}) {
   const first = data.themes[0];
 
   buildRun(tl, body.querySelector("[data-run]"), {
-    ask: "Synthesise these eight interviews. Verify every quote.",
+    ask: ask || "Synthesise these interviews. Verify every quote.",
     steps: [
-      { title: `Read ${people} transcripts`, detail: "P1.txt to P8.txt, line by line", at: 2.4, dur: 1.5 },
+      { title: `Read ${people} transcripts`, detail: `P1.txt to P${people}.txt, line by line`, at: 2.4, dur: 1.5 },
       { title: "Named the themes", detail: `${themes} themes, each counted by person`, at: 4.1, dur: 2.1 },
       { title: "Pulled the quotes", detail: `${found + rejected} quotes, one or more per supporter`, at: 6.4, dur: 2.6 },
       { title: "Ran the quote check", detail: "verify_quotes.py looks for every line", at: 9.2, dur: 5.0 },
-      { title: `Removed ${rejected} quote`, detail: "It is not in any transcript", at: 14.4, dur: 1.3, bad: true },
+      { title: rejected ? `Removed ${rejected} ${rejected === 1 ? "quote" : "quotes"}` : "Every quote was found", detail: rejected ? "Not in any transcript" : "Nothing had to be removed", at: 14.4, dur: 1.3, bad: rejected > 0 },
       { title: "Checked its own work", detail: "5 of 5 checks passed", at: 17.6, dur: 0.9 },
     ],
     foot: `<b>${found} quotes, ${found} line numbers.</b> Open any of them to read it in place.`,

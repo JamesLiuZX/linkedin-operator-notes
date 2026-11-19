@@ -1,10 +1,12 @@
 // hub/src/js/stage/player.js
 //
-// The chrome around a demo: play and pause, a scrubber with chapters, replay,
-// keyboard control, and autoplay only while the stage is on screen. When the
-// replay ends the stage goes "live": the output becomes something you click.
+// The chrome around a demo: play and pause, a scrubber cut into chapters,
+// replay, keyboard control, and autoplay only while the stage is on screen.
+// When the replay ends the stage goes "live": the output becomes something
+// you click.
 //
-// A demo module exports mount(body, api) and returns { timeline, live?() }.
+// A demo module exports mount(body, api) and returns
+// { timeline, live?(), unlive?(), destroy?(), hint? }.
 
 const fmt = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
 
@@ -13,19 +15,26 @@ const PLAY =
 const PAUSE =
   '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3.5" y="2.5" width="3.2" height="11" rx="1"/><rect x="9.3" y="2.5" width="3.2" height="11" rx="1"/></svg>';
 
-export function createPlayer(stage, demo) {
+/**
+ * @param stage  the [data-stage] element
+ * @param demo   what the demo's mount() returned
+ * @param opts   { onProgress(p, live), onEnd() }
+ */
+export function createPlayer(stage, demo, opts = {}) {
   const tl = demo.timeline;
   const body = stage.querySelector("[data-stage-body]");
   const ctl = stage.querySelector("[data-stage-ctl]");
   const toggle = stage.querySelector("[data-stage-toggle]");
   const replay = stage.querySelector("[data-stage-replay]");
   const scrub = stage.querySelector("[data-stage-scrub]");
-  const fill = stage.querySelector("[data-stage-fill]");
   const time = stage.querySelector("[data-stage-time]");
-  const chapWrap = stage.querySelector("[data-stage-chapters]");
+  const now = stage.querySelector("[data-stage-now]");
+  const hint = stage.querySelector("[data-stage-hint]");
 
   const capture = new URLSearchParams(location.search).has("capture");
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const off = new AbortController();
+  const on = (target, type, fn, o = {}) => target?.addEventListener(type, fn, { ...o, signal: off.signal });
 
   let t = 0;
   let playing = false;
@@ -34,46 +43,57 @@ export function createPlayer(stage, demo) {
   let last = 0;
   let visible = false;
   let userPaused = false;
+  let dead = false;
+  let watch = null;
 
   if (ctl) ctl.hidden = false;
+  if (hint) hint.textContent = demo.hint || "";
 
-  const chapButtons = tl.chapters.map((c, i) => {
-    const b = document.createElement("button");
-    b.type = "button";
-    b.textContent = c.title;
-    b.addEventListener("click", () => {
-      seek(c.at + 0.001);
-      play();
+  // The scrubber is one segment per chapter, each as wide as the chapter is long.
+  const chapters = tl.chapters.length ? tl.chapters : [{ title: "", at: 0 }];
+  const segs = [];
+  if (scrub) {
+    scrub.innerHTML = "";
+    chapters.forEach((c, i) => {
+      const end = i + 1 < chapters.length ? chapters[i + 1].at : tl.duration;
+      const seg = document.createElement("span");
+      seg.className = "stage-seg";
+      seg.style.flexGrow = String(Math.max(0.2, end - c.at));
+      seg.title = c.title;
+      seg.innerHTML = "<i></i>";
+      scrub.appendChild(seg);
+      segs.push({ el: seg, fill: seg.firstChild, from: c.at, to: end });
     });
-    chapWrap?.appendChild(b);
-    // A tick on the scrubber for each chapter after the first.
-    if (i > 0 && scrub) {
-      const tick = document.createElement("span");
-      tick.className = "stage-tick";
-      tick.style.left = `${(c.at / tl.duration) * 100}%`;
-      scrub.appendChild(tick);
-    }
-    return b;
-  });
+  }
 
   function paint() {
     const p = tl.duration ? t / tl.duration : 0;
-    if (fill) fill.style.width = `${(p * 100).toFixed(2)}%`;
-    if (time) time.textContent = `${fmt(t)} / ${fmt(tl.duration)}`;
-    scrub?.setAttribute("aria-valuenow", String(Math.round(p * 100)));
     let cur = 0;
-    tl.chapters.forEach((c, i) => {
+    chapters.forEach((c, i) => {
       if (t >= c.at) cur = i;
     });
-    chapButtons.forEach((b, i) => b.classList.toggle("on", i === cur));
+    for (const s of segs) {
+      const span = Math.max(0.001, s.to - s.from);
+      s.fill.style.transform = `scaleX(${Math.max(0, Math.min(1, (t - s.from) / span)).toFixed(4)})`;
+    }
+    if (time) time.textContent = `${fmt(t)} / ${fmt(tl.duration)}`;
+    if (now) {
+      const title = live ? "Yours to try" : chapters[cur].title;
+      if (now.textContent !== title) now.textContent = title;
+    }
+    scrub?.setAttribute("aria-valuenow", String(Math.round(p * 100)));
+    stage.style.setProperty("--p", p.toFixed(4));
+    opts.onProgress?.(p, live);
   }
 
-  function setLive(on) {
-    if (live === on) return;
-    live = on;
-    stage.classList.toggle("is-live", on);
-    if (on) demo.live?.();
-    else demo.unlive?.();
+  function setLive(next) {
+    if (live === next) return;
+    live = next;
+    stage.classList.toggle("is-live", next);
+    if (next) {
+      demo.live?.();
+      opts.onEnd?.();
+    } else demo.unlive?.();
   }
 
   function seek(next) {
@@ -85,17 +105,17 @@ export function createPlayer(stage, demo) {
     paint();
   }
 
-  function frame(now) {
-    if (!playing) return;
-    const dt = Math.min(0.1, (now - last) / 1000);
-    last = now;
+  function frame(time) {
+    if (!playing || dead) return;
+    const dt = Math.min(0.1, (time - last) / 1000);
+    last = time;
     seek(t + dt);
     if (t >= tl.duration) return pause(true);
     raf = requestAnimationFrame(frame);
   }
 
   function play() {
-    if (playing) return;
+    if (playing || dead) return;
     if (t >= tl.duration) seek(0);
     playing = true;
     userPaused = false;
@@ -118,14 +138,14 @@ export function createPlayer(stage, demo) {
     }
   }
 
-  toggle?.addEventListener("click", () => {
+  on(toggle, "click", () => {
     if (playing) {
       userPaused = true;
       pause();
     } else play();
   });
 
-  replay?.addEventListener("click", () => {
+  on(replay, "click", () => {
     seek(0);
     play();
   });
@@ -134,14 +154,25 @@ export function createPlayer(stage, demo) {
   if (scrub) {
     const at = (ev) => {
       const r = scrub.getBoundingClientRect();
-      return Math.max(0, Math.min(1, (ev.clientX - r.left) / r.width)) * tl.duration;
+      return Math.max(0, Math.min(1, (ev.clientX - r.left) / r.width));
     };
-    scrub.addEventListener("pointerdown", (ev) => {
+    // The bar is cut by chapter, so a position on it maps through the segments.
+    const timeAt = (ev) => {
+      for (const s of segs) {
+        const r = s.el.getBoundingClientRect();
+        if (ev.clientX <= r.right || s === segs[segs.length - 1]) {
+          const p = Math.max(0, Math.min(1, (ev.clientX - r.left) / Math.max(1, r.width)));
+          return s.from + (s.to - s.from) * p;
+        }
+      }
+      return at(ev) * tl.duration;
+    };
+    on(scrub, "pointerdown", (ev) => {
       scrub.setPointerCapture(ev.pointerId);
       userPaused = true;
       pause();
-      seek(at(ev));
-      const move = (e) => seek(at(e));
+      seek(timeAt(ev));
+      const move = (e) => seek(timeAt(e));
       const up = () => {
         scrub.removeEventListener("pointermove", move);
         scrub.removeEventListener("pointerup", up);
@@ -149,7 +180,7 @@ export function createPlayer(stage, demo) {
       scrub.addEventListener("pointermove", move);
       scrub.addEventListener("pointerup", up);
     });
-    scrub.addEventListener("keydown", (ev) => {
+    on(scrub, "keydown", (ev) => {
       if (ev.key === "ArrowRight" || ev.key === "ArrowLeft") {
         ev.preventDefault();
         userPaused = true;
@@ -159,7 +190,7 @@ export function createPlayer(stage, demo) {
     });
   }
 
-  stage.addEventListener("keydown", (ev) => {
+  on(stage, "keydown", (ev) => {
     if (ev.target.closest("input, textarea, select, [data-stage-scrub]")) return;
     if (ev.key === " " && ev.target === stage) {
       ev.preventDefault();
@@ -168,7 +199,8 @@ export function createPlayer(stage, demo) {
   });
 
   // Touching the output while it is still assembling skips to the finished thing.
-  body.addEventListener(
+  on(
+    body,
     "pointerdown",
     () => {
       if (!live && !capture) {
@@ -179,6 +211,26 @@ export function createPlayer(stage, demo) {
     },
     { capture: true }
   );
+
+  const api = {
+    get time() {
+      return t;
+    },
+    get live() {
+      return live;
+    },
+    play,
+    pause,
+    seek,
+    destroy() {
+      dead = true;
+      cancelAnimationFrame(raf);
+      watch?.disconnect();
+      off.abort();
+      stage.classList.remove("is-playing", "is-live", "is-capture");
+      demo.destroy?.();
+    },
+  };
 
   if (capture) {
     stage.classList.add("is-capture");
@@ -192,7 +244,7 @@ export function createPlayer(stage, demo) {
       },
     };
     document.documentElement.dataset.stageReady = "1";
-    return;
+    return api;
   }
 
   if (reduced || !stage.hasAttribute("data-autoplay")) {
@@ -200,23 +252,26 @@ export function createPlayer(stage, demo) {
     seek(reduced ? tl.duration : 0);
     pause(reduced);
     if (!reduced) paint();
-    return;
+    return api;
   }
 
   // A stage may open part of the way in, so the first thing a visitor sees is the output arriving.
   seek(Math.min(Number(stage.dataset.start) || 0, tl.duration));
   pause();
-  new IntersectionObserver(
+  watch = new IntersectionObserver(
     ([entry]) => {
       visible = entry.isIntersecting;
       if (visible && !playing && !userPaused && !live) play();
       else if (!visible && playing) pause();
     },
-    { threshold: 0.35 }
-  ).observe(stage);
+    { threshold: 0.3 }
+  );
+  watch.observe(stage);
 
-  document.addEventListener("visibilitychange", () => {
+  on(document, "visibilitychange", () => {
     if (document.hidden && playing) pause();
     else if (!document.hidden && visible && !userPaused && !live) play();
   });
+
+  return api;
 }

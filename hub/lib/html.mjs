@@ -32,20 +32,17 @@ export const ICON = {
   linkedin: '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.6 0H2.4A2.4 2.4 0 0 0 0 2.4v11.2A2.4 2.4 0 0 0 2.4 16h11.2a2.4 2.4 0 0 0 2.4-2.4V2.4A2.4 2.4 0 0 0 13.6 0ZM5 13H2.9V6.2H5V13ZM3.9 5.3a1.2 1.2 0 1 1 0-2.4 1.2 1.2 0 0 1 0 2.4ZM13.1 13H11V9.6c0-.9-.3-1.5-1.1-1.5-.6 0-1 .4-1.1.8-.1.2-.1.4-.1.6V13H6.6V6.2h2.1v.9c.3-.5.9-1.1 2-1.1 1.5 0 2.4 1 2.4 3V13Z"/></svg>',
 };
 
-/** The mark: a page with one highlighted line. Fixed colours so it survives both themes. */
-export const MARK =
-  '<svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><rect x=".5" y=".5" width="23" height="23" rx="6.5" fill="#0b0c0c" stroke="rgba(255,255,255,.16)"/><rect x="6" y="6.4" width="10" height="1.8" rx=".9" fill="#fbfbf9" opacity=".5"/><rect x="5" y="10.3" width="14" height="3.4" rx="1" fill="#dcff4a"/><rect x="6" y="15.8" width="7" height="1.8" rx=".9" fill="#fbfbf9" opacity=".5"/></svg>';
+/** The mark: a page with one highlighted line. */
+const MARK_BODY =
+  '<rect width="24" height="24" rx="7" fill="#0c0c0b"/><rect x="6" y="6.300" width="9.500" height="2" rx="1" fill="#ffffff" opacity=".42"/><rect x="4.800" y="10.200" width="14.400" height="3.800" rx="1.200" fill="#d8ff3f"/><rect x="6" y="15.900" width="6.500" height="2" rx="1" fill="#ffffff" opacity=".42"/>';
+export const MARK = `<svg class="mark" viewBox="0 0 24 24" aria-hidden="true">${MARK_BODY}</svg>`;
 
-const FAVICON =
-  "data:image/svg+xml," +
-  encodeURIComponent(
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect width="24" height="24" rx="6.5" fill="#0b0c0c"/><rect x="6" y="6.4" width="10" height="1.8" rx=".9" fill="#fbfbf9" opacity=".5"/><rect x="5" y="10.3" width="14" height="3.4" rx="1" fill="#dcff4a"/><rect x="6" y="15.8" width="7" height="1.8" rx=".9" fill="#fbfbf9" opacity=".5"/></svg>'
-  );
+const FAVICON = "data:image/svg+xml," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">${MARK_BODY}</svg>`);
 
 const NAV = [
   ["/workflows/", "Workflows"],
+  ["/cases/", "Cases"],
   ["/skills/", "Skills"],
-  ["/case/", "The case"],
   ["/weekly/", "Weekly"],
   ["/about/", "About"],
 ];
@@ -80,17 +77,17 @@ ${p.noindex ? '<meta name="robots" content="noindex">' : ""}
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="author" content="${esc(SITE.author.name)}">
-<meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#fbfbf9" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0b0c0c" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="${esc(p.themeColor || "#ffffff")}">
 <link rel="icon" href="${FAVICON}">
 <link rel="alternate" type="application/rss+xml" title="${esc(SITE.weekly.name)}" href="${ctx.url("/feed.xml")}">
 <link rel="preload" href="${ctx.url("/hub/fonts/geist-latin-wght-normal.woff2")}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${ctx.url("/hub/fonts/bricolage-grotesque-latin-opsz-normal.woff2")}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${ctx.url(ctx.assets.css)}">
-<script>document.documentElement.className="js";try{var t=localStorage.getItem("hub-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script>document.documentElement.className="js"</script>
 ${p.head || ""}
 </head>
-<body class="${esc(p.bodyClass || "")}" data-base="${esc(ctx.url("/"))}">
+<body class="${esc(p.bodyClass || "")}" data-base="${esc(ctx.url("/"))}"${p.wf ? ` data-wf="${esc(p.wf)}"` : ""}>
 <a class="sr" href="#main">Skip to content</a>
 <header class="nav" data-nav>
   <div class="wrap nav-in">
@@ -114,20 +111,20 @@ ${p.body}
     <div class="footer-grid">
       <div class="footer-about">
         <a class="brand" href="${ctx.url("/")}">${MARK}<span>${esc(SITE.name)}</span></a>
-        <p>Working AI workflows for product people. Free, and every example has passed its skill's own checks.</p>
+        <p>Working AI workflows for product, research, data and strategy people. Free. Every example on this site has passed its skill's own checks.</p>
       </div>
       <div>
-        <h4>Handbook</h4>
+        <h4 class="label">Handbook</h4>
         <ul>
           <li><a href="${ctx.url("/workflows/")}">All workflows</a></li>
-          <li><a href="${ctx.url("/case/")}">The running case</a></li>
+          <li><a href="${ctx.url("/cases/")}">The three cases</a></li>
           <li><a href="${ctx.url("/guides/start/")}">Start here</a></li>
           <li><a href="${ctx.url("/guides/checking-ai-output/")}">Checking AI output</a></li>
           <li><a href="${ctx.url("/guides/write-your-own/")}">Write your own skill</a></li>
         </ul>
       </div>
       <div>
-        <h4>Skills</h4>
+        <h4 class="label">Skills</h4>
         <ul>
           <li><a href="${ctx.url("/skills/")}">Install the pack</a></li>
           <li><a href="${repoUrl(SITE.repo.skillsDir)}" target="_blank" rel="noopener">Read the source</a></li>
@@ -136,19 +133,21 @@ ${p.body}
         </ul>
       </div>
       <div>
-        <h4>Follow</h4>
+        <h4 class="label">Follow</h4>
         <ul>
           <li><a href="${ctx.url("/weekly/")}">${esc(SITE.weekly.name)}</a></li>
           <li><a href="${ctx.url("/feed.xml")}">RSS</a></li>
           <li><a href="${esc(SITE.author.linkedin)}" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="${ctx.url("/about/")}">About</a></li>
           <li><a href="${ctx.url("/archive/")}">Earlier notes and digest</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-base">
-      <span>Made by <a href="${esc(SITE.author.url)}" target="_blank" rel="noopener">${esc(SITE.author.name)}</a>. Examples use a fictional company and fictional data.</span>
+      <span>Made by <a href="${esc(SITE.author.url)}" target="_blank" rel="noopener">${esc(SITE.author.name)}</a>. Every company, person and number in the examples is invented.</span>
       <span>Skills are MIT licensed.</span>
     </div>
+    <p class="footer-word" aria-hidden="true">Show your work.</p>
   </div>
 </footer>
 <div data-cmdk hidden></div>

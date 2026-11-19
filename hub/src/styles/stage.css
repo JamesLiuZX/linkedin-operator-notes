@@ -1,122 +1,155 @@
 /* hub/src/styles/stage.css
  *
- * The stage: the dark viewport a workflow runs in, and the vocabulary every
- * demo shares (the run log on the left, the output on the right, the cursor).
- * Sizes inside the stage use container units, so the same demo fills the
- * hero, a workflow page, a phone and the 4:5 clip frame without media queries
- * on the viewport.
+ * The stage: the white window a workflow runs in. On the left, what was asked
+ * and what the agent did. On the right, the output being made. It is an object
+ * on the page, so it sits on the workflow's colour and casts a shadow.
  */
 
 .stage {
-  --s-pad: clamp(10px, 1.6cqw, 18px);
+  --s-pad: clamp(14px, 2.4cqw, 28px);
+  container: stage / inline-size;
   position: relative;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
-  container: stage / inline-size;
-  aspect-ratio: 16 / 9.6;
+  height: clamp(560px, 56vw, 720px);
   border-radius: var(--r-xl);
-  background: var(--stage);
-  color: var(--stage-ink);
-  border: 1px solid var(--stage-line);
-  box-shadow: var(--shadow-3);
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: 0 0 0 1px rgba(12, 12, 11, 0.07), var(--shadow-float);
   overflow: hidden;
   isolation: isolate;
-  font-size: 14px;
-  line-height: 1.45;
-  outline-offset: 4px;
+  text-align: left;
 }
 
 @media (max-width: 760px) {
   .stage {
-    aspect-ratio: 4 / 5.4;
+    height: min(82svh, 640px);
     border-radius: var(--r-lg);
   }
 }
 
-/* ------------------------------------------------------------------- bar */
+/* ------------------------------------------------------------------ top */
 
-.stage-bar {
+.stage-top {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
-  height: 42px;
-  padding: 0 14px;
-  border-bottom: 1px solid var(--stage-line);
-  background: var(--stage-2);
-  font-family: var(--font-mono);
-  font-size: 0.8em;
-}
-
-.stage-dots {
-  display: flex;
-  gap: 6px;
-}
-
-.stage-dots i {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--stage-4);
-}
-
-.stage-title {
-  display: flex;
-  align-items: baseline;
-  gap: 0.6rem;
+  gap: 0.75rem;
   min-width: 0;
+  height: 52px;
+  padding: 0 0.75rem 0 1.1rem;
+  border-bottom: 1px solid var(--line-2);
+  font-size: 0.82rem;
+}
+
+.stage-id {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
   white-space: nowrap;
 }
 
-.stage-title b {
-  font-weight: 500;
-  color: var(--stage-ink);
+.stage-id i {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 0 0 3px var(--c-soft);
 }
 
-.stage-title span {
-  color: var(--stage-muted);
+.stage-case {
+  min-width: 0;
   overflow: hidden;
+  color: var(--muted);
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.stage-chapters {
+.stage-case::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 0.9em;
+  margin-right: 0.75rem;
+  background: var(--line);
+  vertical-align: -0.1em;
+}
+
+.stage-end {
   display: flex;
-  gap: 2px;
+  align-items: center;
+  gap: 0.5rem;
   margin-left: auto;
 }
 
-.stage-chapters button {
-  height: 24px;
-  padding: 0 0.6rem;
-  border: 0;
-  border-radius: 6px;
-  background: transparent;
-  color: var(--stage-muted);
-  font: inherit;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  transition: color 0.15s ease, background-color 0.15s ease;
+.stage-live {
+  display: none;
+  align-items: center;
+  gap: 0.45rem;
+  height: 30px;
+  padding: 0 0.75rem 0 0.6rem;
+  border-radius: 999px;
+  background: var(--hi);
+  color: var(--hi-ink);
+  font-weight: 600;
+  white-space: nowrap;
 }
 
-.stage-chapters button:hover {
-  color: var(--stage-ink);
+.stage-live::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: stage-pulse 1.6s ease-in-out infinite;
 }
 
-.stage-chapters button.on {
-  background: var(--stage-3);
-  color: var(--signal);
-}
-
-@container stage (max-width: 620px) {
-  .stage-chapters button:not(.on) {
-    display: none;
-  }
-
-  .stage-title span {
-    display: none;
+@keyframes stage-pulse {
+  50% {
+    opacity: 0.25;
   }
 }
 
-/* ------------------------------------------------------------------ body */
+.stage.is-live .stage-live {
+  display: inline-flex;
+}
+
+.stage-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: 30px;
+  padding: 0 0.7rem;
+  border-radius: 999px;
+  color: var(--ink);
+  font-weight: 550;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.stage-open:hover {
+  background: var(--paper-2);
+}
+
+.stage-open svg {
+  width: 13px;
+  height: 13px;
+}
+
+@container stage (max-width: 640px) {
+  .stage-case,
+  .stage-open span {
+    display: none;
+  }
+}
+
+/* ----------------------------------------------------------------- body */
 
 .stage-body {
   position: relative;
@@ -133,32 +166,46 @@
 .stage:not(.is-ready) .stage-body::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.04) 50%, transparent 70%);
-  background-size: 200% 100%;
-  animation: stage-wait 1.6s linear infinite;
+  top: 50%;
+  left: 50%;
+  width: 34px;
+  height: 34px;
+  margin: -17px;
+  border: 3px solid var(--line);
+  border-top-color: var(--c);
+  border-radius: 50%;
+  animation: stage-spin 0.8s linear infinite;
 }
 
-@keyframes stage-wait {
+@keyframes stage-spin {
   to {
-    background-position: -200% 0;
+    transform: rotate(360deg);
   }
 }
 
 .stage.is-error .stage-body::after {
+  content: "This demo did not load. The finished output is one click away, top right.";
+  inset: auto 1.5rem 1.5rem;
+  width: auto;
+  height: auto;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
   animation: none;
 }
 
-/* -------------------------------------------------------------- controls */
+/* ------------------------------------------------------------- controls */
 
 .stage-ctl {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  height: 42px;
-  padding: 0 10px;
-  border-top: 1px solid var(--stage-line);
-  background: var(--stage-2);
+  gap: 0.7rem;
+  height: 60px;
+  padding: 0 0.85rem;
+  border-top: 1px solid var(--line-2);
+  background: #ffffff;
 }
 
 .stage-ctl[hidden] {
@@ -166,338 +213,447 @@
 }
 
 .stage-btn {
-  display: grid;
+  display: inline-grid;
   place-items: center;
-  width: 28px;
-  height: 28px;
   flex: none;
+  width: 36px;
+  height: 36px;
   border: 0;
-  border-radius: 7px;
-  background: transparent;
-  color: var(--stage-ink-2);
-  cursor: pointer;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #ffffff;
+  transition: transform 0.15s var(--ease-out), background 0.15s;
 }
 
 .stage-btn:hover {
-  background: var(--stage-3);
-  color: var(--stage-ink);
+  transform: scale(1.06);
+}
+
+.stage-btn.quiet {
+  background: transparent;
+  color: var(--ink);
+}
+
+.stage-btn.quiet:hover {
+  background: var(--paper-2);
 }
 
 .stage-btn svg {
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
 }
 
 .stage-scrub {
-  position: relative;
+  display: flex;
   flex: 1;
-  height: 28px;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 0;
+  height: 36px;
+  padding-top: 9px;
   cursor: pointer;
   touch-action: none;
 }
 
-.stage-scrub::before {
-  content: "";
+.stage-scrub:focus-visible {
+  outline-offset: 4px;
+}
+
+.stage-seg {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 10px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--paper-3);
+}
+
+.stage-seg i {
   position: absolute;
-  inset: 12px 0;
-  border-radius: 2px;
-  background: var(--stage-4);
+  inset: 0;
+  border-radius: inherit;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left center;
 }
 
-.stage-scrub i {
-  position: absolute;
-  left: 0;
-  top: 12px;
-  height: 4px;
-  border-radius: 2px;
-  background: var(--signal);
-}
-
-.stage-scrub i::after {
-  content: "";
-  position: absolute;
-  right: -5px;
-  top: -3px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--signal);
-  opacity: 0;
-  transition: opacity 0.15s ease;
-}
-
-.stage-scrub:hover i::after,
-.stage-scrub:focus-visible i::after {
-  opacity: 1;
-}
-
-.stage-tick {
+/* The chapter's name sits under its part of the bar. */
+.stage-seg::after {
+  content: attr(title);
   position: absolute;
   top: 11px;
-  width: 2px;
-  height: 6px;
-  background: var(--stage);
-  pointer-events: none;
+  left: 1px;
+  overflow: hidden;
+  max-width: 100%;
+  color: var(--faint);
+  font-size: 0.7rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .stage-time {
   flex: none;
-  min-width: 5.6rem;
-  text-align: right;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--stage-muted);
+  min-width: 5.6em;
+  color: var(--muted);
+  font-size: 0.78rem;
   font-variant-numeric: tabular-nums;
+  text-align: right;
 }
 
-@container stage (max-width: 520px) {
-  .stage-time {
-    display: none;
-  }
-}
-
-.stage.is-capture .stage-ctl,
-.stage.is-capture .stage-chapters {
+.stage-now {
   display: none;
 }
 
-/* ------------------------------------------------- the shared demo layout */
+@container stage (max-width: 560px) {
+  .stage-seg::after {
+    display: none;
+  }
+
+  .stage-scrub {
+    align-items: center;
+    padding-top: 0;
+  }
+
+  .stage-time {
+    display: none;
+  }
+
+  .stage-now {
+    display: block;
+    flex: none;
+    max-width: 8.5em;
+    overflow: hidden;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.stage.is-capture .stage-live {
+  display: none;
+}
+
+/* ----------------------------------------------------------------- demo */
 
 .demo {
   position: absolute;
   inset: 0;
   display: grid;
-  grid-template-columns: minmax(200px, 25cqw) minmax(0, 1fr);
+  grid-template-columns: minmax(248px, 300px) minmax(0, 1fr);
 }
 
-/* The run log: what the agent was asked and what it did, in order. */
 .run {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 1.15rem;
   min-width: 0;
-  padding: var(--s-pad);
-  border-right: 1px solid var(--stage-line);
-  background: var(--stage-2);
+  padding: 1.25rem 1.15rem 1.1rem 1.25rem;
+  border-right: 1px solid var(--line-2);
+  background: #ffffff;
   overflow: hidden;
-}
-
-.run-ask {
-  padding: 0.7rem 0.8rem;
-  border: 1px solid var(--stage-line);
-  border-radius: 10px;
-  background: var(--stage-3);
-  font-size: 0.93em;
-  color: var(--stage-ink);
 }
 
 .run-ask small {
   display: block;
-  margin-bottom: 0.3rem;
-  font-family: var(--font-mono);
-  font-size: 0.72em;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--stage-muted);
+  margin-bottom: 0.4rem;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 500;
 }
 
-.run-ask span {
-  display: block;
-  min-height: 2.9em;
+.run-ask p {
+  min-height: 3.1em;
+  padding: 0.7rem 0.85rem;
+  border-radius: 16px 16px 16px 5px;
+  background: var(--ink);
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.005em;
 }
 
-.run-ask .typing::after {
-  content: "";
+.run-caret {
   display: inline-block;
-  width: 0.5em;
-  height: 1.05em;
-  margin-left: 1px;
-  vertical-align: text-bottom;
-  background: var(--signal);
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  border-radius: 1px;
+  background: var(--hi);
+  vertical-align: -0.14em;
+  opacity: 0;
+}
+
+.run-ask .typing + .run-caret {
+  opacity: 1;
 }
 
 .run-steps {
+  --rail: 0;
+  position: relative;
   display: grid;
-  gap: 0.15rem;
+  gap: 0.85rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+.run-steps::before,
+.run-steps::after {
+  content: "";
+  position: absolute;
+  top: 11px;
+  bottom: 11px;
+  left: 10px;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--line-2);
+}
+
+.run-steps::after {
+  background: var(--ink);
+  transform: scaleY(var(--rail));
+  transform-origin: top;
+}
+
 .run-step {
-  display: grid;
-  grid-template-columns: 1.15em minmax(0, 1fr);
-  gap: 0.6em;
-  padding: 0.36em 0;
-  font-size: 0.9em;
-  color: var(--stage-ink-2);
-}
-
-.run-step i {
-  width: 16px;
-  height: 16px;
-  margin-top: 0.12em;
-  border-radius: 50%;
-  border: 1.5px solid var(--stage-4);
   position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
 }
 
-.run-step.doing i {
-  border-color: var(--signal);
-  border-right-color: transparent;
-  animation: run-spin 0.8s linear infinite;
+.run-mark {
+  position: relative;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: inset 0 0 0 2px var(--line);
 }
 
-.run-step.done i {
-  border-color: var(--signal);
-  background: var(--signal);
-}
-
-.run-step.done i::after {
-  content: "";
+.run-spin {
   position: absolute;
-  left: 4.5px;
-  top: 2px;
-  width: 3.5px;
-  height: 7px;
-  border: solid var(--hi-ink);
-  border-width: 0 1.6px 1.6px 0;
-  transform: rotate(42deg);
+  inset: 0;
+  border: 2px solid transparent;
+  border-top-color: var(--ink);
+  border-right-color: var(--ink);
+  border-radius: 50%;
+  opacity: 0;
 }
 
-.run-step.bad i {
-  border-color: #ff7a66;
-  background: #ff7a66;
+.run-step.doing .run-spin {
+  opacity: 1;
+  animation: stage-spin 0.7s linear infinite;
 }
 
-.run-step.bad i::after {
-  content: "";
+.stage.is-capture .run-step.doing .run-spin {
+  animation: none;
+}
+
+.run-tick {
   position: absolute;
-  left: 3px;
-  top: 6px;
-  width: 7px;
-  height: 1.6px;
-  background: #2a0a05;
-  border: 0;
-  transform: none;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--hi);
+  color: var(--hi-ink);
+  opacity: 0;
 }
 
-@keyframes run-spin {
-  to {
-    transform: rotate(360deg);
-  }
+.run-step.is-bad .run-tick {
+  background: var(--bad);
+  color: #ffffff;
+}
+
+.run-tick svg {
+  width: 12px;
+  height: 12px;
 }
 
 .run-step b {
   display: block;
-  font-weight: 500;
-  color: var(--stage-ink);
+  color: var(--faint);
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  transition: color 0.2s;
+}
+
+.run-step.doing b,
+.run-step.done b {
+  color: var(--ink);
 }
 
 .run-step small {
   display: block;
-  font-family: var(--font-mono);
-  font-size: 0.78em;
-  color: var(--stage-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin-top: 0.1rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.run-receipt {
+  align-self: flex-start;
+  margin: 0.15rem 0 0 0.1rem;
+  padding: 0.45rem 0.8rem 0.45rem 0.7rem;
+  border: 2px solid var(--hi-ink);
+  border-radius: 10px;
+  background: var(--hi);
+  color: var(--hi-ink);
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  transform-origin: 30% 60%;
+  box-shadow: 3px 3px 0 var(--hi-ink);
+}
+
+.run-receipt span::before {
+  content: "";
+  display: inline-block;
+  width: 0.72em;
+  height: 0.38em;
+  margin-right: 0.45em;
+  border-bottom: 2.5px solid currentColor;
+  border-left: 2.5px solid currentColor;
+  transform: translateY(-0.22em) rotate(-45deg);
 }
 
 .run-foot {
   margin-top: auto;
-  padding-top: 0.8rem;
-  border-top: 1px solid var(--stage-line);
-  font-family: var(--font-mono);
-  font-size: 0.78em;
-  line-height: 1.5;
-  color: var(--stage-muted);
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
 }
 
 .run-foot b {
-  color: var(--signal);
-  font-weight: 500;
-}
-
-/* The live panel replaces the run log once the replay ends. */
-.live {
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: minmax(200px, 25cqw);
-  display: none;
-}
-
-.pill-live {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  height: 20px;
-  padding: 0 0.5rem;
-  border-radius: 999px;
-  background: var(--signal);
-  color: var(--hi-ink);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
+  color: var(--ink);
   font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
 }
 
-.pill-live::before {
-  content: "";
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: currentColor;
-}
-
-/* The output area: a faint dot grid, the artifact floating on it. */
 .art {
   position: relative;
   min-width: 0;
-  min-height: 0;
+  background: var(--c-soft);
   overflow: hidden;
-  background-color: var(--stage);
-  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-  background-size: 22px 22px;
+  perspective: 1700px;
+  perspective-origin: 50% 40%;
 }
 
-/* A hand cursor the replay moves around. Hidden once the stage is live. */
+/* A sheet of the output, rising from the bottom edge of the art area. */
+.paper {
+  position: absolute;
+  inset: var(--s-pad) var(--s-pad) 0 var(--s-pad);
+  border-radius: 16px 16px 0 0;
+  background: #f3f3ef;
+  box-shadow: 0 0 0 1px rgba(12, 12, 11, 0.06), 0 30px 70px -30px color-mix(in srgb, var(--c-deep) 70%, #000 20%), 0 10px 24px -14px rgba(12, 12, 11, 0.3);
+  overflow: hidden;
+  transform-origin: 50% 100%;
+  backface-visibility: hidden;
+}
+
+.paper-scroll {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.stage.is-live .paper-scroll {
+  overflow-y: auto;
+}
+
+.paper-cam {
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.paper-doc {
+  transform-origin: 0 0;
+}
+
+/* Flights are drawn above both columns and never take a click. */
+.fly-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fly {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 8px;
+  background: var(--hi);
+  box-shadow: 0 10px 24px -10px rgba(12, 12, 11, 0.45);
+  will-change: transform, opacity;
+}
+
+.fly.ink {
+  background: var(--ink);
+}
+
+.fly.c {
+  background: var(--c);
+}
+
+.fly.card {
+  border: 1px solid rgba(12, 12, 11, 0.1);
+  background: #ffffff;
+}
+
+.fly.bad {
+  background: var(--bad);
+}
+
+/* The pointer the replay moves. */
 .cursor {
   position: absolute;
-  left: 0;
   top: 0;
-  z-index: 40;
-  width: 22px;
-  height: 22px;
+  left: 0;
+  z-index: 8;
+  width: 24px;
+  height: 24px;
+  margin: -3px 0 0 -4px;
   pointer-events: none;
+  filter: drop-shadow(0 3px 5px rgba(12, 12, 11, 0.35));
   will-change: transform, opacity;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
 }
 
-.cursor::after {
-  content: "";
+.cursor i {
   position: absolute;
-  left: -9px;
-  top: -9px;
-  width: 26px;
-  height: 26px;
+  top: -11px;
+  left: -10px;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--ink);
   border-radius: 50%;
-  border: 2px solid var(--signal);
   opacity: 0;
-  transform: scale(0.4);
 }
 
-.cursor.tap::after {
+.cursor.tap i {
   animation: cursor-tap 0.45s var(--ease-out);
 }
 
 @keyframes cursor-tap {
-  0% {
+  from {
     opacity: 0.9;
-    transform: scale(0.4);
+    transform: scale(0.3);
   }
-  100% {
+  to {
     opacity: 0;
     transform: scale(1.5);
   }
@@ -507,280 +663,63 @@
   display: none;
 }
 
-.stage.is-capture .cursor.tap::after {
+.stage.is-capture .cursor.tap i {
   animation: none;
-  opacity: 0.8;
-  transform: scale(1);
+  opacity: 0.5;
 }
 
-/* Narrow stages (phones, the clip frame): the run log becomes a strip on top. */
-.stage:is([data-layout="narrow"], [data-layout="strip"]) {
-  .demo {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto minmax(0, 1fr);
-  }
+/* --------------------------------------------- narrow stages and clips */
 
-  .run {
-    flex-direction: column;
-    gap: 0.5rem;
-    border-right: 0;
-    border-bottom: 1px solid var(--stage-line);
-    padding: 10px 12px;
-  }
-
-  .run-ask span {
-    min-height: 2.6em;
-  }
-
-  .run-steps {
-    display: flex;
-    gap: 0.9rem;
-    overflow: hidden;
-  }
-
-  .run-step {
-    flex: none;
-    grid-template-columns: 14px auto;
-    gap: 0.4rem;
-    padding: 0;
-  }
-
-  .run-step small,
-  .run-foot {
-    display: none;
-  }
-
-  .run-step:not(.doing):not(.done):not(.bad) {
-    display: none;
-  }
-
-  .run-step.done:not(:nth-last-child(-n + 1)) b {
-    display: none;
-  }
+.stage:is([data-layout="narrow"], [data-layout="strip"]) .demo {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
 }
 
-/* -------------------------------------------------------------- clip page */
-
-.clip-page {
-  background: var(--stage);
+.stage:is([data-layout="narrow"], [data-layout="strip"]) .run {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0.85rem;
+  border-right: 0;
+  border-bottom: 1px solid var(--line-2);
 }
 
-.clip-page .nav,
-.clip-page .footer {
+.stage:is([data-layout="narrow"], [data-layout="strip"]) :is(.run-ask, .run-foot, .run-steps::before, .run-steps::after) {
   display: none;
 }
 
-.clip {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  gap: 28px;
-  width: 1080px;
-  height: 1350px;
-  padding: 56px 48px 44px;
-  background: var(--stage);
-  color: var(--stage-ink);
+.stage:is([data-layout="narrow"], [data-layout="strip"]) .run-steps {
+  flex: 1;
+  min-width: 0;
 }
 
-.clip-head .label {
-  color: var(--stage-muted);
-  font-size: 18px;
+.stage:is([data-layout="narrow"], [data-layout="strip"]) .run-steps::before,
+.stage:is([data-layout="narrow"], [data-layout="strip"]) .run-steps::after {
+  display: none;
 }
 
-.clip-head h1 {
-  margin-top: 14px;
-  font-size: 68px;
-  letter-spacing: -0.045em;
-  line-height: 1;
+/* One line: the step being done, or the last one finished. */
+.stage:is([data-layout="narrow"], [data-layout="strip"]) .run-step {
+  display: none;
 }
 
-.clip .stage {
-  aspect-ratio: auto;
-  height: 100%;
-  font-size: 19px;
-  border-radius: 30px;
-  box-shadow: none;
-  border-color: rgba(255, 255, 255, 0.14);
-}
-
-.clip .stage-bar {
-  height: 56px;
-  font-size: 17px;
-  padding: 0 22px;
-}
-
-.clip .stage-dots i {
-  width: 12px;
-  height: 12px;
-}
-
-.clip-foot {
+.stage:is([data-layout="narrow"], [data-layout="strip"]) .run-step.doing,
+.stage:is([data-layout="narrow"], [data-layout="strip"]) .run-step.done:not(:has(~ .run-step.done, ~ .run-step.doing)) {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 24px;
-  font-size: 24px;
-  color: var(--stage-ink-2);
 }
 
-.clip-foot b {
-  font-family: var(--font-mono);
-  font-size: 20px;
-  font-weight: 500;
-  color: var(--signal);
+.stage:is([data-layout="narrow"], [data-layout="strip"]) .run-step small {
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* --------------------------------- carousel cover, closing slide, link card */
-
-.clip-sub {
-  margin-top: 26px;
-  max-width: 24em;
-  font-size: 34px;
-  line-height: 1.24;
-  letter-spacing: -0.015em;
-  color: var(--stage-ink-2);
+.stage:is([data-layout="narrow"], [data-layout="strip"]) .run-step > div {
+  min-width: 0;
 }
 
-.clip-cover .clip-head h1 {
-  font-size: 92px;
-}
-
-.clip-shot {
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 30px;
-  background: var(--stage-2);
-}
-
-.clip-shot img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-}
-
-.clip-end {
-  grid-template-rows: auto minmax(0, 1fr) auto;
-}
-
-.clip-end .clip-head h1 {
-  font-size: 88px;
-}
-
-.clip-steps {
-  display: grid;
-  align-content: center;
-  gap: 22px;
-}
-
-.clip-steps > div {
-  display: grid;
-  gap: 14px;
-  padding: 34px 36px 36px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 26px;
-  background: var(--stage-2);
-}
-
-.clip-steps .label {
-  font-size: 18px;
-  color: var(--stage-muted);
-}
-
-.clip-steps b,
-.clip-steps code {
-  font-family: var(--font-mono);
-  font-size: 27px;
-  font-weight: 500;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-  color: var(--signal);
-  overflow-wrap: anywhere;
-  background: none;
-  padding: 0;
-}
-
-.og {
-  display: grid;
-  grid-template-columns: 560px minmax(0, 1fr);
-  width: 1200px;
-  height: 630px;
-  overflow: hidden;
-  background: var(--stage);
-  color: var(--stage-ink);
-}
-
-.og-copy {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  gap: 18px;
-  padding: 52px 20px 52px 56px;
-}
-
-.og-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 21px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.og-brand .mark {
-  width: 34px;
-  height: 34px;
-}
-
-.og h1 {
-  align-self: center;
-  font-size: 60px;
-  font-weight: 600;
-  line-height: 1.02;
-  letter-spacing: -0.045em;
-  text-wrap: balance;
-}
-
-.og p {
-  font-size: 23px;
-  line-height: 1.3;
-  color: var(--stage-ink-2);
-  text-wrap: balance;
-}
-
-.og-shot {
-  margin: 52px 0 0 12px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-right: 0;
-  border-bottom: 0;
-  border-radius: 22px 0 0 0;
-  background: var(--stage-2);
-}
-
-.og-shot img {
-  display: block;
-  height: 100%;
-  width: auto;
-  max-width: none;
-}
-
-/* Skip most of the run log, so the card shows the output. */
-.og-shot img {
-  transform: translateX(-21%);
-}
-
-/* A carousel step: the clip frame with the step's headline above and its sentence below. */
-.clip-slide .clip-head h1 {
-  font-size: 66px;
-}
-
-.clip-slide .clip-foot {
-  font-size: 29px;
-  line-height: 1.3;
-  color: var(--stage-ink);
-}
-
-.clip-slide .clip-foot b {
-  display: none;
+.stage:is([data-layout="narrow"], [data-layout="strip"]) .run-receipt {
+  flex: none;
+  margin: 0;
+  font-size: 0.82rem;
 }
