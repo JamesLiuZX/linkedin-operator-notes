@@ -1,0 +1,1499 @@
+{
+ "title": "Recap: why hosts do not send it on",
+ "question": "Why do people not trust a recap enough to send it on, and what would make one sendable?",
+ "date": "2026-11-19",
+ "participants": [
+  {
+   "id": "P1",
+   "name": "Priya",
+   "profile": "Account lead, four or five customer calls a day",
+   "file": "P1.txt"
+  },
+  {
+   "id": "P2",
+   "name": "Jonah",
+   "profile": "Engineering lead, runs sprint planning and incident reviews",
+   "file": "P2.txt"
+  },
+  {
+   "id": "P3",
+   "name": "Mireille",
+   "profile": "Executive assistant to a chief operating officer, sends minutes for board prep calls",
+   "file": "P3.txt"
+  },
+  {
+   "id": "P4",
+   "name": "Dele",
+   "profile": "Customer success manager, a recap with a wrong commitment in it went to a customer",
+   "file": "P4.txt"
+  },
+  {
+   "id": "P5",
+   "name": "Hana",
+   "profile": "Product designer, runs design critiques",
+   "file": "P5.txt"
+  },
+  {
+   "id": "P6",
+   "name": "Curtis",
+   "profile": "Founder of a 30-person company",
+   "file": "P6.txt"
+  },
+  {
+   "id": "P7",
+   "name": "Bea",
+   "profile": "Finance analyst",
+   "file": "P7.txt"
+  },
+  {
+   "id": "P8",
+   "name": "Arjun",
+   "profile": "Product manager",
+   "file": "P8.txt"
+  }
+ ],
+ "themes": [
+  {
+   "id": "T1",
+   "name": "Checking a recap line means hunting through the recording",
+   "summary": "Six hosts cannot see where a line in the recap came from. They check it by scrubbing or replaying the recording, which takes from ten minutes to an hour. P2 does it only for incident reviews and P8 only when he will forward the recap.",
+   "support": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "P8"
+   ],
+   "quotes": [
+    {
+     "p": "P1",
+     "text": "I can never tell where a line came from, so I scrub through the recording to find the bit where it was said.",
+     "line": 31,
+     "ctx": [
+      {
+       "n": 29,
+       "who": "P1",
+       "text": "Mostly. The term was right. The start date was a month out."
+      },
+      {
+       "n": 30,
+       "who": "Interviewer",
+       "text": "Right, so a line needs checking and the checking is slow."
+      },
+      {
+       "n": 31,
+       "who": "P1",
+       "text": "I can never tell where a line came from, so I scrub through the recording to find the bit where it was said."
+      },
+      {
+       "n": 32,
+       "who": "Interviewer",
+       "text": "Let me ask about the action items. How are those?"
+      },
+      {
+       "n": 33,
+       "who": "P1",
+       "text": "Hmm. They are the part I trust least."
+      }
+     ]
+    },
+    {
+     "p": "P2",
+     "text": "I could not tell who had said the rollback was safe, and the recap does not say, so I go and find it in the recording.",
+     "line": 21,
+     "ctx": [
+      {
+       "n": 19,
+       "who": "P2",
+       "text": "It was meant to be. I opened the recap first because I wanted the timeline."
+      },
+      {
+       "n": 20,
+       "who": "Interviewer",
+       "text": "What did you do next?"
+      },
+      {
+       "n": 21,
+       "who": "P2",
+       "text": "I could not tell who had said the rollback was safe, and the recap does not say, so I go and find it in the recording."
+      },
+      {
+       "n": 22,
+       "who": "Interviewer",
+       "text": "That seems important in an incident."
+      },
+      {
+       "n": 23,
+       "who": "P2",
+       "text": "It is the whole point of an incident review. Who knew what, when. A summary with no names on the claims is almost useless to me."
+      }
+     ]
+    },
+    {
+     "p": "P3",
+     "text": "I have to check every line against what the COO actually said, and it has no sources, so I listen to the recording at double speed.",
+     "line": 21,
+     "ctx": [
+      {
+       "n": 19,
+       "who": "P3",
+       "text": "It writes its own version five minutes after we finish. I read it as a cross-check, not as the minutes."
+      },
+      {
+       "n": 20,
+       "who": "Interviewer",
+       "text": "How do you cross-check it?"
+      },
+      {
+       "n": 21,
+       "who": "P3",
+       "text": "I have to check every line against what the COO actually said, and it has no sources, so I listen to the recording at double speed."
+      },
+      {
+       "n": 22,
+       "who": "Interviewer",
+       "text": "Double speed. How long does that take?"
+      },
+      {
+       "n": 23,
+       "who": "P3",
+       "text": "Half the length of the call, plus pausing. A one hour call is forty minutes of my afternoon."
+      }
+     ]
+    },
+    {
+     "p": "P4",
+     "text": "I could not find where the December claim came from, so I spent an hour in the recording.",
+     "line": 29,
+     "ctx": [
+      {
+       "n": 27,
+       "who": "P4",
+       "text": "Yes. I spent the rest of the week undoing it. Callum was furious, and I do not blame him."
+      },
+      {
+       "n": 28,
+       "who": "Interviewer",
+       "text": "Did you look at the recording after?"
+      },
+      {
+       "n": 29,
+       "who": "P4",
+       "text": "I did. I could not find where the December claim came from, so I spent an hour in the recording."
+      },
+      {
+       "n": 30,
+       "who": "Interviewer",
+       "text": "And you found it?"
+      },
+      {
+       "n": 31,
+       "who": "P4",
+       "text": "I found the maybe. I never found a December. So it made it up, as far as I can tell."
+      }
+     ]
+    },
+    {
+     "p": "P5",
+     "text": "I can't tell which comment a line came from, so I jump around the recording trying to find the one critique.",
+     "line": 27,
+     "ctx": [
+      {
+       "n": 25,
+       "who": "P5",
+       "text": "Last week's critique of the address form. The recap said we should drop the postcode lookup."
+      },
+      {
+       "n": 26,
+       "who": "Interviewer",
+       "text": "And?"
+      },
+      {
+       "n": 27,
+       "who": "P5",
+       "text": "I can't tell which comment a line came from, so I jump around the recording trying to find the one critique."
+      },
+      {
+       "n": 28,
+       "who": "Interviewer",
+       "text": "How long did that take?"
+      },
+      {
+       "n": 29,
+       "who": "P5",
+       "text": "Fifteen minutes. And I found it. It was Noor, nine minutes in, saying, \"I wonder what happens if we drop the lookup.\" A question."
+      }
+     ]
+    },
+    {
+     "p": "P8",
+     "text": "I cannot tell where a line came from, so I rewatch the bit of the recording I think it is from. Which is a guessing game.",
+     "line": 19,
+     "ctx": [
+      {
+       "n": 17,
+       "who": "P8",
+       "text": "Because I know it is wrong somewhere. I just have to find where."
+      },
+      {
+       "n": 18,
+       "who": "Interviewer",
+       "text": "How do you find it?"
+      },
+      {
+       "n": 19,
+       "who": "P8",
+       "text": "I cannot tell where a line came from, so I rewatch the bit of the recording I think it is from. Which is a guessing game."
+      },
+      {
+       "n": 20,
+       "who": "Interviewer",
+       "text": "Do you do that every time?"
+      },
+      {
+       "n": 21,
+       "who": "P8",
+       "text": "Every time I will forward it. If I am only reading it myself I skip the check."
+      }
+     ]
+    }
+   ],
+   "counter": {
+    "p": "P6",
+    "text": "No. I do not check it, life is short.",
+    "line": 19,
+    "ctx": [
+     {
+      "n": 17,
+      "who": "P6",
+      "text": "Sometimes, on my phone, on the train. The first paragraph."
+     },
+     {
+      "n": 18,
+      "who": "Interviewer",
+      "text": "Do you check them against the call?"
+     },
+     {
+      "n": 19,
+      "who": "P6",
+      "text": "No. I do not check it, life is short."
+     },
+     {
+      "n": 20,
+      "who": "Interviewer",
+      "text": "Has that worked for you?"
+     },
+     {
+      "n": 21,
+      "who": "P6",
+      "text": "So far, yes. I assume it is right, and if it is wrong, someone will tell me."
+     }
+    ]
+   },
+   "counterNote": "P7 does not read the recap at all, so the problem never reached her. P6 said he assumes it is right.",
+   "led": false,
+   "so": "A sendable recap has to show, line by line, where in the call each claim came from, so the host does not have to search."
+  },
+  {
+   "id": "T2",
+   "name": "Half-said ideas appear as decisions",
+   "summary": "Five hosts saw a passing idea, a question or a joke listed under Decisions. Two of them said that once a thing is in writing, other people treat it as settled. The interviewer asked P2, P3 and P6 about decisions directly. P4, P5 and P8 raised their examples themselves.",
+   "support": [
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "P8"
+   ],
+   "quotes": [
+    {
+     "p": "P2",
+     "text": "Someone said, maybe we should freeze deploys on Fridays, and the recap listed it under Decisions, and now people quote it as policy.",
+     "line": 43,
+     "ctx": [
+      {
+       "n": 41,
+       "who": "P2",
+       "text": "There is a heading called Decisions. I like that it exists. It is just not always right."
+      },
+      {
+       "n": 42,
+       "who": "Interviewer",
+       "text": "Tell me about a time it was wrong."
+      },
+      {
+       "n": 43,
+       "who": "P2",
+       "text": "Someone said, maybe we should freeze deploys on Fridays, and the recap listed it under Decisions, and now people quote it as policy."
+      },
+      {
+       "n": 44,
+       "who": "Interviewer",
+       "text": "Who quoted it?"
+      },
+      {
+       "n": 45,
+       "who": "P2",
+       "text": "A designer on another team. She said, \"I read in the recap that you freeze Fridays.\" We do not. We were just thinking aloud."
+      }
+     ]
+    },
+    {
+     "p": "P3",
+     "text": "It listed the idea of moving the board date as a decision, when he only wondered out loud, and I almost put it in the minutes.",
+     "line": 29,
+     "ctx": [
+      {
+       "n": 27,
+       "who": "P3",
+       "text": "Mostly. But there is one I will never forget."
+      },
+      {
+       "n": 28,
+       "who": "Interviewer",
+       "text": "Go on."
+      },
+      {
+       "n": 29,
+       "who": "P3",
+       "text": "It listed the idea of moving the board date as a decision, when he only wondered out loud, and I almost put it in the minutes."
+      },
+      {
+       "n": 30,
+       "who": "Interviewer",
+       "text": "How did you catch it?"
+      },
+      {
+       "n": 31,
+       "who": "P3",
+       "text": "I did not trust it, so I checked, and the COO had said, \"I wonder if we should push it a week?\" and then the call moved on."
+      }
+     ]
+    },
+    {
+     "p": "P4",
+     "text": "It wrote it as a commitment. \"Vireo will deliver the integration in December.\" Never said that. Never.",
+     "line": 21,
+     "ctx": [
+      {
+       "n": 19,
+       "who": "P4",
+       "text": "Callum said we could maybe look at it next quarter. Which, to be clear, means no promises."
+      },
+      {
+       "n": 20,
+       "who": "Interviewer",
+       "text": "What did the recap say?"
+      },
+      {
+       "n": 21,
+       "who": "P4",
+       "text": "It wrote it as a commitment. \"Vireo will deliver the integration in December.\" Never said that. Never."
+      },
+      {
+       "n": 22,
+       "who": "Interviewer",
+       "text": "Where was that in the recap?"
+      },
+      {
+       "n": 23,
+       "who": "P4",
+       "text": "Under Decisions. It said \"Decided: the integration will be built for Brightwell by December.\""
+      }
+     ]
+    },
+    {
+     "p": "P5",
+     "text": "Jules said, \"what if we tried a twelve column grid\", and the recap listed it under Decisions.",
+     "line": 33,
+     "ctx": [
+      {
+       "n": 31,
+       "who": "P5",
+       "text": "Well. Yes, that is the next thing. Somebody floated using a different grid and it showed up as decided, and the team started redoing layouts."
+      },
+      {
+       "n": 32,
+       "who": "Interviewer",
+       "text": "Wait, a different grid?"
+      },
+      {
+       "n": 33,
+       "who": "P5",
+       "text": "Different thing, same pattern. Jules said, \"what if we tried a twelve column grid\", and the recap listed it under Decisions."
+      },
+      {
+       "n": 34,
+       "who": "Interviewer",
+       "text": "What happened?"
+      },
+      {
+       "n": 35,
+       "who": "P5",
+       "text": "Two people spent the afternoon moving boxes. Then I said, \"wait, we did not decide this,\" and everyone looked at me like I was a killjoy."
+      }
+     ]
+    },
+    {
+     "p": "P8",
+     "text": "It listed it as a decision, because someone said it and nobody objected. Silence is not agreement, but the recap thinks it is.",
+     "line": 27,
+     "ctx": [
+      {
+       "n": 25,
+       "who": "P8",
+       "text": "We had said, \"what if we cut export,\" and Dina said, \"hmm,\" and we moved on. That is not a decision."
+      },
+      {
+       "n": 26,
+       "who": "Interviewer",
+       "text": "That is quite subtle."
+      },
+      {
+       "n": 27,
+       "who": "P8",
+       "text": "It listed it as a decision, because someone said it and nobody objected. Silence is not agreement, but the recap thinks it is."
+      },
+      {
+       "n": 28,
+       "who": "Interviewer",
+       "text": "So what did you do?"
+      },
+      {
+       "n": 29,
+       "who": "P8",
+       "text": "I moved it to a section called Open questions, in my own email. I always do that."
+      }
+     ]
+    }
+   ],
+   "counter": {
+    "p": "P6",
+    "text": "If it was said, it counts. That is how I run things. If you say it in a meeting, you own it.",
+    "line": 27,
+    "ctx": [
+     {
+      "n": 25,
+      "who": "P6",
+      "text": "Good. It writes them down, and that is what matters."
+     },
+     {
+      "n": 26,
+      "who": "Interviewer",
+      "text": "Have you ever seen it list something as decided that was only an idea?"
+     },
+     {
+      "n": 27,
+      "who": "P6",
+      "text": "If it was said, it counts. That is how I run things. If you say it in a meeting, you own it."
+     },
+     {
+      "n": 28,
+      "who": "Interviewer",
+      "text": "Interesting. Even in passing?"
+     },
+     {
+      "n": 29,
+      "who": "P6",
+      "text": "Even in passing. People should be careful what they say."
+     }
+    ]
+   },
+   "counterNote": "Only P6 held this view. P1 and P7 did not describe it either way.",
+   "led": false,
+   "so": "The recap has to tell a decision apart from a thought said aloud, or mark the uncertain ones, before anyone can send it."
+  },
+  {
+   "id": "T3",
+   "name": "Action items go to whoever spoke last",
+   "summary": "Five hosts saw an action given to the person who said the last words, not the person who owned the work. The interviewer asked about action items in every call, but the speaking-last pattern was raised by the hosts.",
+   "support": [
+    "P1",
+    "P2",
+    "P4",
+    "P5",
+    "P8"
+   ],
+   "quotes": [
+    {
+     "p": "P1",
+     "text": "It gave the contract to Tomasz because he was the last one talking, but the contract was always mine.",
+     "line": 35,
+     "ctx": [
+      {
+       "n": 33,
+       "who": "P1",
+       "text": "Hmm. They are the part I trust least."
+      },
+      {
+       "n": 34,
+       "who": "Interviewer",
+       "text": "Why?"
+      },
+      {
+       "n": 35,
+       "who": "P1",
+       "text": "It gave the contract to Tomasz because he was the last one talking, but the contract was always mine."
+      },
+      {
+       "n": 36,
+       "who": "Interviewer",
+       "text": "Tomasz is who?"
+      },
+      {
+       "n": 37,
+       "who": "P1",
+       "text": "Our sales engineer. Lovely guy. He had said, I can look at the technical annex, and the recap turned that into him sending the whole thing."
+      }
+     ]
+    },
+    {
+     "p": "P2",
+     "text": "It put the follow-up on Kofi for the alerting fix just because he spoke last, but Ines owns that service.",
+     "line": 29,
+     "ctx": [
+      {
+       "n": 27,
+       "who": "P2",
+       "text": "Ha. That is where it gets funny."
+      },
+      {
+       "n": 28,
+       "who": "Interviewer",
+       "text": "Funny how?"
+      },
+      {
+       "n": 29,
+       "who": "P2",
+       "text": "It put the follow-up on Kofi for the alerting fix just because he spoke last, but Ines owns that service."
+      },
+      {
+       "n": 30,
+       "who": "Interviewer",
+       "text": "How did you notice?"
+      },
+      {
+       "n": 31,
+       "who": "P2",
+       "text": "Kofi pinged me, \"I think I got assigned something I cannot do?\" He is quite new. He would have just tried."
+      }
+     ]
+    },
+    {
+     "p": "P4",
+     "text": "Often. Whoever says the last words seems to get the job. People say okay, sure, thanks, and that is a promise now.",
+     "line": 41,
+     "ctx": [
+      {
+       "n": 39,
+       "who": "P4",
+       "text": "She got a notification, I think, and she thought she was in trouble. She came to my desk, very serious."
+      },
+      {
+       "n": 40,
+       "who": "Interviewer",
+       "text": "Have you seen that more than once?"
+      },
+      {
+       "n": 41,
+       "who": "P4",
+       "text": "Often. Whoever says the last words seems to get the job. People say okay, sure, thanks, and that is a promise now."
+      },
+      {
+       "n": 42,
+       "who": "Interviewer",
+       "text": "What would help?"
+      },
+      {
+       "n": 43,
+       "who": "P4",
+       "text": "The owner should be able to say, yes, I take that, or no, that is not mine. Right now it is just assigned. Done."
+      }
+     ]
+    },
+    {
+     "p": "P5",
+     "text": "It credited the action to the person who happened to speak last, Marek, when the action was clearly Noor's.",
+     "line": 39,
+     "ctx": [
+      {
+       "n": 37,
+       "who": "P5",
+       "text": "It happens, maybe one critique in three. I do not have the number, it is a feeling."
+      },
+      {
+       "n": 38,
+       "who": "Interviewer",
+       "text": "Now action items. How do those go?"
+      },
+      {
+       "n": 39,
+       "who": "P5",
+       "text": "It credited the action to the person who happened to speak last, Marek, when the action was clearly Noor's."
+      },
+      {
+       "n": 40,
+       "who": "Interviewer",
+       "text": "What did Marek do?"
+      },
+      {
+       "n": 41,
+       "who": "P5",
+       "text": "He said, \"I will take it,\" because he is nice. And then Noor said, \"that was mine,\" a day later. Slight friction."
+      }
+     ]
+    },
+    {
+     "p": "P8",
+     "text": "It gets the owner wrong a fair bit. Whoever spoke last is the usual suspect.",
+     "line": 47,
+     "ctx": [
+      {
+       "n": 45,
+       "who": "P8",
+       "text": "It resolved. But I think she now reads the automatic recaps with a bit less faith. Or reads mine with a bit more."
+      },
+      {
+       "n": 46,
+       "who": "Interviewer",
+       "text": "That is an interesting side effect. What about the action items?"
+      },
+      {
+       "n": 47,
+       "who": "P8",
+       "text": "It gets the owner wrong a fair bit. Whoever spoke last is the usual suspect."
+      },
+      {
+       "n": 48,
+       "who": "Interviewer",
+       "text": "Can you be more specific?"
+      },
+      {
+       "n": 49,
+       "who": "P8",
+       "text": "It gave the migration task to Soo-jin because she said \"sounds good\" at the end, but Pavel had been running the migration for months."
+      }
+     ]
+    }
+   ],
+   "counter": {
+    "p": "P3",
+    "text": "I do not use its owners. I decide who owns what, and I ignore the recap's.",
+    "line": 37,
+    "ctx": [
+     {
+      "n": 35,
+      "who": "P3",
+      "text": "Constantly. I read the Decisions heading with suspicion."
+     },
+     {
+      "n": 36,
+      "who": "Interviewer",
+      "text": "What about who owns the actions?"
+     },
+     {
+      "n": 37,
+      "who": "P3",
+      "text": "I do not use its owners. I decide who owns what, and I ignore the recap's."
+     },
+     {
+      "n": 38,
+      "who": "Interviewer",
+      "text": "Why?"
+     },
+     {
+      "n": 39,
+      "who": "P3",
+      "text": "Because I know the people. I know the finance director would never take a legal action, whatever a machine thinks."
+     }
+    ]
+   },
+   "counterNote": "P3 ignores the owners, so the error never reaches her. P6 said he mostly lets people sort out action items. P7 does not read the recap.",
+   "led": false,
+   "so": "Owners cannot be sent as facts. The named person needs a way to say \"mine\" or \"not mine\" first."
+  },
+  {
+   "id": "T4",
+   "name": "The recap goes out before the host reads it",
+   "summary": "Five hosts had a recap reach other people before they had looked at it. In three cases the readers were outside the company: two customers and a job candidate. This came up in most calls because the interviewer asked who receives the recap. Treat the count with care.",
+   "support": [
+    "P1",
+    "P3",
+    "P4",
+    "P6",
+    "P8"
+   ],
+   "quotes": [
+    {
+     "p": "P1",
+     "text": "It went to the customer before I had even closed the laptop, and the renewal date in it was wrong.",
+     "line": 46,
+     "ctx": [
+      {
+       "n": 44,
+       "who": "Interviewer",
+       "text": "Tell me about that."
+      },
+      {
+       "n": 45,
+       "who": "P1",
+       "text": "A couple of weeks ago, a Thursday, I finished a call with a distributor and went to grab a coffee."
+      },
+      {
+       "n": 46,
+       "who": "P1",
+       "text": "It went to the customer before I had even closed the laptop, and the renewal date in it was wrong."
+      },
+      {
+       "n": 47,
+       "who": "Interviewer",
+       "text": "How did you find out?"
+      },
+      {
+       "n": 48,
+       "who": "P1",
+       "text": "Their ops manager replied all, very politely, \"just checking, we thought it was the first of March?\" And it said the first of February."
+      }
+     ]
+    },
+    {
+     "p": "P1",
+     "text": "The customer got a line that said I planned to push back on their discount, which was only for our side.",
+     "line": 55,
+     "ctx": [
+      {
+       "n": 53,
+       "who": "Interviewer",
+       "text": "Does anything else in the recap travel to them that you would rather keep back?"
+      },
+      {
+       "n": 54,
+       "who": "P1",
+       "text": "Yes, and this one made me properly cross."
+      },
+      {
+       "n": 55,
+       "who": "P1",
+       "text": "The customer got a line that said I planned to push back on their discount, which was only for our side."
+      },
+      {
+       "n": 56,
+       "who": "Interviewer",
+       "text": "How did that get in?"
+      },
+      {
+       "n": 57,
+       "who": "P1",
+       "text": "We had a quick chat on the call, me and Tomasz, with the customer muted. Or I thought they were muted. The transcript caught it."
+      }
+     ]
+    },
+    {
+     "p": "P3",
+     "text": "It reached two directors before I had read it, and it said the vendor was approved when we had only discussed it.",
+     "line": 49,
+     "ctx": [
+      {
+       "n": 47,
+       "who": "P3",
+       "text": "Yes. Once, and it was a nasty one."
+      },
+      {
+       "n": 48,
+       "who": "Interviewer",
+       "text": "Tell me."
+      },
+      {
+       "n": 49,
+       "who": "P3",
+       "text": "It reached two directors before I had read it, and it said the vendor was approved when we had only discussed it."
+      },
+      {
+       "n": 50,
+       "who": "Interviewer",
+       "text": "Which vendor?"
+      },
+      {
+       "n": 51,
+       "who": "P3",
+       "text": "A security vendor. I will not say the name, but it was a proper contract, and one of the directors replied, \"great, congratulations.\""
+      }
+     ]
+    },
+    {
+     "p": "P4",
+     "text": "It was in their inbox in five minutes. Their head of product replied, \"Great news, we will tell our board.\"",
+     "line": 25,
+     "ctx": [
+      {
+       "n": 23,
+       "who": "P4",
+       "text": "Under Decisions. It said \"Decided: the integration will be built for Brightwell by December.\""
+      },
+      {
+       "n": 24,
+       "who": "Interviewer",
+       "text": "That is quite different from maybe."
+      },
+      {
+       "n": 25,
+       "who": "P4",
+       "text": "It was in their inbox in five minutes. Their head of product replied, \"Great news, we will tell our board.\""
+      },
+      {
+       "n": 26,
+       "who": "Interviewer",
+       "text": "Oh no."
+      },
+      {
+       "n": 27,
+       "who": "P4",
+       "text": "Yes. I spent the rest of the week undoing it. Callum was furious, and I do not blame him."
+      }
+     ]
+    },
+    {
+     "p": "P6",
+     "text": "A candidate got the recap of our debrief about her interview, with our honest comments in it, and I had to call her and apologise.",
+     "line": 45,
+     "ctx": [
+      {
+       "n": 43,
+       "who": "P6",
+       "text": "She was on the invite for the whole thing, the same link. I thought she had left."
+      },
+      {
+       "n": 44,
+       "who": "Interviewer",
+       "text": "And?"
+      },
+      {
+       "n": 45,
+       "who": "P6",
+       "text": "A candidate got the recap of our debrief about her interview, with our honest comments in it, and I had to call her and apologise."
+      },
+      {
+       "n": 46,
+       "who": "Interviewer",
+       "text": "What was in it?"
+      },
+      {
+       "n": 47,
+       "who": "P6",
+       "text": "What we really thought. That she was strong on the technical side and a bit stiff, and that we were unsure about the salary."
+      }
+     ]
+    },
+    {
+     "p": "P8",
+     "text": "It went to my director before I read it, with a decision in it that we had not made.",
+     "line": 39,
+     "ctx": [
+      {
+       "n": 37,
+       "who": "P8",
+       "text": "It does. Before I have touched it. That is the problem."
+      },
+      {
+       "n": 38,
+       "who": "Interviewer",
+       "text": "Say more."
+      },
+      {
+       "n": 39,
+       "who": "P8",
+       "text": "It went to my director before I read it, with a decision in it that we had not made."
+      },
+      {
+       "n": 40,
+       "who": "Interviewer",
+       "text": "What happened?"
+      },
+      {
+       "n": 41,
+       "who": "P8",
+       "text": "She replied within a minute. \"Great, glad we are cutting export. Let me tell the VP.\" I almost fell off my chair."
+      }
+     ]
+    }
+   ],
+   "counter": {
+    "p": "P2",
+    "text": "Nobody. All my meetings are internal, so no guests ever.",
+    "line": 51,
+    "ctx": [
+     {
+      "n": 49,
+      "who": "P2",
+      "text": "Less than the owners thing, but when it does it sticks harder. A decision in writing feels official."
+     },
+     {
+      "n": 50,
+      "who": "Interviewer",
+      "text": "I want to ask something. Who gets the recap besides your team?"
+     },
+     {
+      "n": 51,
+      "who": "P2",
+      "text": "Nobody. All my meetings are internal, so no guests ever."
+     },
+     {
+      "n": 52,
+      "who": "Interviewer",
+      "text": "Not even a vendor call?"
+     },
+     {
+      "n": 53,
+      "who": "P2",
+      "text": "Not on my side. Procurement does the vendors. I do not think I have ever had an external person in a meeting I host."
+     }
+    ]
+   },
+   "counterNote": "P5 and P7 also knew of no outside guest getting a recap. P6 sides with the theme but wants the automatic send kept: he said it is the feature, and he would not want approvals to do.",
+   "led": true,
+   "so": "A recap is only sendable if the host can see it first, and the version for outside guests has to leave out the team's own talk."
+  },
+  {
+   "id": "T5",
+   "name": "Hosts rewrite the recap or stop sending it",
+   "summary": "Five hosts do not send the recap as it comes. Four rewrite it by hand, for ten to forty minutes. P4 stopped using it on customer calls. This is where the lack of trust turns into work.",
+   "support": [
+    "P1",
+    "P3",
+    "P4",
+    "P5",
+    "P8"
+   ],
+   "quotes": [
+    {
+     "p": "P1",
+     "text": "I take the summary, cut it by half, fix the dates, take out anything that sounds like our internal view, and put my own greeting on it.",
+     "line": 63,
+     "ctx": [
+      {
+       "n": 61,
+       "who": "P1",
+       "text": "I paste it into my own email and rewrite most of it, because I would not send it as it is."
+      },
+      {
+       "n": 62,
+       "who": "Interviewer",
+       "text": "Walk me through the rewrite."
+      },
+      {
+       "n": 63,
+       "who": "P1",
+       "text": "I take the summary, cut it by half, fix the dates, take out anything that sounds like our internal view, and put my own greeting on it."
+      },
+      {
+       "n": 64,
+       "who": "Interviewer",
+       "text": "How long does that take?"
+      },
+      {
+       "n": 65,
+       "who": "P1",
+       "text": "Ten minutes, maybe? Which on a day with five calls is most of an hour."
+      }
+     ]
+    },
+    {
+     "p": "P3",
+     "text": "Never. I retype it into the minutes format the board expects, and I change nearly everything.",
+     "line": 59,
+     "ctx": [
+      {
+       "n": 57,
+       "who": "P3",
+       "text": "Yes, but mostly I want it to wait."
+      },
+      {
+       "n": 58,
+       "who": "Interviewer",
+       "text": "Do you ever forward a recap on, as it is?"
+      },
+      {
+       "n": 59,
+       "who": "P3",
+       "text": "Never. I retype it into the minutes format the board expects, and I change nearly everything."
+      },
+      {
+       "n": 60,
+       "who": "Interviewer",
+       "text": "What do you change?"
+      },
+      {
+       "n": 61,
+       "who": "P3",
+       "text": "The tone, mainly. It says \"the team felt that\". Minutes do not say that. And I take out any name that should not be in writing."
+      }
+     ]
+    },
+    {
+     "p": "P4",
+     "text": "No, I stopped forwarding altogether. I turned it off on customer calls.",
+     "line": 59,
+     "ctx": [
+      {
+       "n": 57,
+       "who": "P4",
+       "text": "Yes. A chance to look. It does not need to be long. Ten seconds. If I could press a button that says send, I would be happy."
+      },
+      {
+       "n": 58,
+       "who": "Interviewer",
+       "text": "Do you rewrite recaps before you forward them?"
+      },
+      {
+       "n": 59,
+       "who": "P4",
+       "text": "No, I stopped forwarding altogether. I turned it off on customer calls."
+      },
+      {
+       "n": 60,
+       "who": "Interviewer",
+       "text": "And internal ones?"
+      },
+      {
+       "n": 61,
+       "who": "P4",
+       "text": "Those I leave on. They go to the team and nobody gets hurt."
+      }
+     ]
+    },
+    {
+     "p": "P5",
+     "text": "I copy it into our design channel post and rewrite it, because the wording is stiff and it misses the reasoning.",
+     "line": 45,
+     "ctx": [
+      {
+       "n": 43,
+       "who": "P5",
+       "text": "No, but I hate that it made a thing out of it."
+      },
+      {
+       "n": 44,
+       "who": "Interviewer",
+       "text": "What do you do with the recap afterwards?"
+      },
+      {
+       "n": 45,
+       "who": "P5",
+       "text": "I copy it into our design channel post and rewrite it, because the wording is stiff and it misses the reasoning."
+      },
+      {
+       "n": 46,
+       "who": "Interviewer",
+       "text": "Say more about the reasoning."
+      },
+      {
+       "n": 47,
+       "who": "P5",
+       "text": "Design feedback is why, not what. \"Make the button bigger\" is useless without \"because the thumb misses it\"."
+      }
+     ]
+    },
+    {
+     "p": "P8",
+     "text": "I rewrite every recap before I forward it. Every single one. It has become a ritual.",
+     "line": 31,
+     "ctx": [
+      {
+       "n": 29,
+       "who": "P8",
+       "text": "I moved it to a section called Open questions, in my own email. I always do that."
+      },
+      {
+       "n": 30,
+       "who": "Interviewer",
+       "text": "Always?"
+      },
+      {
+       "n": 31,
+       "who": "P8",
+       "text": "I rewrite every recap before I forward it. Every single one. It has become a ritual."
+      },
+      {
+       "n": 32,
+       "who": "Interviewer",
+       "text": "Walk me through the rewrite."
+      },
+      {
+       "n": 33,
+       "who": "P8",
+       "text": "I copy it, paste it into an email, delete the fluff, fix the decisions, fix the owners, add the context for the people who were not there."
+      }
+     ]
+    }
+   ],
+   "counter": {
+    "p": "P6",
+    "text": "I say, turn it on and forget about it. It writes the minutes you never write.",
+    "line": 77,
+    "ctx": [
+     {
+      "n": 75,
+      "who": "P6",
+      "text": "All the time. I did at a dinner last week."
+     },
+     {
+      "n": 76,
+      "who": "Interviewer",
+      "text": "What do you say?"
+     },
+     {
+      "n": 77,
+      "who": "P6",
+      "text": "I say, turn it on and forget about it. It writes the minutes you never write."
+     },
+     {
+      "n": 78,
+      "who": "Interviewer",
+      "text": "Last thing. Have you got a favourite recap?"
+     },
+     {
+      "n": 79,
+      "who": "P6",
+      "text": "The all hands. It captures the jokes, the numbers, the lot. I send the link to people who missed it."
+     }
+    ]
+   },
+   "counterNote": "P6 sends nothing himself and had not known the recap could be edited. P2 and P7 forward nothing, so the question did not arise for them.",
+   "led": false,
+   "so": "The target is a recap the host can send with little or no rewriting. The rewrite time is the cost to beat."
+  }
+ ],
+ "unprompted": [
+  {
+   "id": "U1",
+   "name": "Clean audio and captions are a strength",
+   "summary": "P5 praised the captions and audio when asked what else was good. P7 said much the same, but only after the interviewer asked about the recording and captions, so she is not counted here.",
+   "support": [
+    "P5"
+   ],
+   "quotes": [
+    {
+     "p": "P5",
+     "text": "The captions. They are really, really good, even with my accent and Marek's, and he mumbles.",
+     "line": 19,
+     "ctx": [
+      {
+       "n": 17,
+       "who": "P5",
+       "text": "Oh, honestly, the quality is great. I did not expect to say that. It is crisp even when someone is on a train."
+      },
+      {
+       "n": 18,
+       "who": "Interviewer",
+       "text": "Anything else good?"
+      },
+      {
+       "n": 19,
+       "who": "P5",
+       "text": "The captions. They are really, really good, even with my accent and Marek's, and he mumbles."
+      },
+      {
+       "n": 20,
+       "who": "Interviewer",
+       "text": "That is good to hear. Let us talk about Recap."
+      },
+      {
+       "n": 21,
+       "who": "P5",
+       "text": "Sure. It is a mixed thing for me."
+      }
+     ]
+    },
+    {
+     "p": "P5",
+     "text": "The audio comes through very clean for the transcript, I think that is why it mostly works.",
+     "line": 77,
+     "ctx": [
+      {
+       "n": 75,
+       "who": "P5",
+       "text": "I read it like a first draft from an intern. Useful, but I fix it."
+      },
+      {
+       "n": 76,
+       "who": "Interviewer",
+       "text": "That is quite similar to what others have said. Is there anything else?"
+      },
+      {
+       "n": 77,
+       "who": "P5",
+       "text": "The audio comes through very clean for the transcript, I think that is why it mostly works."
+      },
+      {
+       "n": 78,
+       "who": "Interviewer",
+       "text": "Do you think your team would stop taking notes?"
+      },
+      {
+       "n": 79,
+       "who": "P5",
+       "text": "A couple of people have. I find that a bit scary, to be honest."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "U2",
+   "name": "Email is the wrong place for a recap",
+   "summary": "P2 wants the recap posted in the team channel. P7 sees it as one more email and filters it away unread.",
+   "support": [
+    "P2",
+    "P7"
+   ],
+   "quotes": [
+    {
+     "p": "P2",
+     "text": "I want it in the channel. Our team chat. It should post itself after the meeting, in the team room, where the people are.",
+     "line": 59,
+     "ctx": [
+      {
+       "n": 57,
+       "who": "P2",
+       "text": "In email, and honestly I do not love that."
+      },
+      {
+       "n": 58,
+       "who": "Interviewer",
+       "text": "Why not?"
+      },
+      {
+       "n": 59,
+       "who": "P2",
+       "text": "I want it in the channel. Our team chat. It should post itself after the meeting, in the team room, where the people are."
+      },
+      {
+       "n": 60,
+       "who": "Interviewer",
+       "text": "Instead of email?"
+      },
+      {
+       "n": 61,
+       "who": "P2",
+       "text": "Instead of, or as well as. Email gets buried. Nobody in my team reads the inbox until noon."
+      }
+     ]
+    },
+    {
+     "p": "P7",
+     "text": "It is like a newsletter I did not sign up for.",
+     "line": 71,
+     "ctx": [
+      {
+       "n": 69,
+       "who": "P7",
+       "text": "Honestly, a way to turn off the email and keep the recording. That would do it."
+      },
+      {
+       "n": 70,
+       "who": "Interviewer",
+       "text": "Is the email noisy?"
+      },
+      {
+       "n": 71,
+       "who": "P7",
+       "text": "It is like a newsletter I did not sign up for."
+      },
+      {
+       "n": 72,
+       "who": "Interviewer",
+       "text": "Do you think anything would get you to open it?"
+      },
+      {
+       "n": 73,
+       "who": "P7",
+       "text": "If it was one line. Decisions, numbers, done."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "U3",
+   "name": "More automation means more checking",
+   "summary": "P4 and P8 both said that each thing the recap does by itself is one more thing they have to check.",
+   "support": [
+    "P4",
+    "P8"
+   ],
+   "quotes": [
+    {
+     "p": "P4",
+     "text": "Please do not make it do more by itself. I know that sounds funny. But the more it does, the more I have to check.",
+     "line": 71,
+     "ctx": [
+      {
+       "n": 69,
+       "who": "P4",
+       "text": "It is fast. That I will give it. Five minutes is quick."
+      },
+      {
+       "n": 70,
+       "who": "Interviewer",
+       "text": "Is there anything you would like to say to the team who builds it?"
+      },
+      {
+       "n": 71,
+       "who": "P4",
+       "text": "Please do not make it do more by itself. I know that sounds funny. But the more it does, the more I have to check."
+      },
+      {
+       "n": 72,
+       "who": "Interviewer",
+       "text": "That is useful to hear. Thank you, Dele."
+      },
+      {
+       "n": 73,
+       "who": "P4",
+       "text": "My pleasure. Let me know how it goes."
+      }
+     ]
+    },
+    {
+     "p": "P8",
+     "text": "The idea is great. I want it to work. I just do not want to be the human quality check.",
+     "line": 69,
+     "ctx": [
+      {
+       "n": 67,
+       "who": "P8",
+       "text": "I would like everyone to read the corrected one. Which is mine. Which is a bit vain, I realise."
+      },
+      {
+       "n": 68,
+       "who": "Interviewer",
+       "text": "A bit. But understandable. Anything else?"
+      },
+      {
+       "n": 69,
+       "who": "P8",
+       "text": "The idea is great. I want it to work. I just do not want to be the human quality check."
+      },
+      {
+       "n": 70,
+       "who": "Interviewer",
+       "text": "That is a good summary of a lot of calls. Thank you, Arjun."
+      },
+      {
+       "n": 71,
+       "who": "P8",
+       "text": "Thank you. I will go and rescue the keyboard."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "requests": [
+  {
+   "text": "Link each recap line to the moment in the recording",
+   "p": [
+    "P1",
+    "P2",
+    "P5",
+    "P8"
+   ]
+  },
+  {
+   "text": "Hold the recap until the host has looked at it",
+   "p": [
+    "P3",
+    "P4",
+    "P8"
+   ]
+  },
+  {
+   "text": "Let the named owner accept an action or say it is not theirs",
+   "p": [
+    "P2",
+    "P4"
+   ]
+  },
+  {
+   "text": "A shorter version for customers with only decisions and next steps",
+   "p": [
+    "P1",
+    "P4"
+   ]
+  },
+  {
+   "text": "Post the recap in the team channel",
+   "p": [
+    "P2"
+   ]
+  },
+  {
+   "text": "Turn off the recap email and keep the recording",
+   "p": [
+    "P7"
+   ]
+  },
+  {
+   "text": "Show numbers in a table, or decisions and numbers in one line",
+   "p": [
+    "P7"
+   ]
+  },
+  {
+   "text": "A timeline with times for incident reviews",
+   "p": [
+    "P2"
+   ]
+  }
+ ],
+ "quiet": [
+  {
+   "p": "P6",
+   "note": "Supports one theme. He loves the automatic send, sends nothing himself and does not check. He is the clearest voice against holding the recap back."
+  },
+  {
+   "p": "P7",
+   "note": "Supports no theme. She does not read the recap, keeps her own notes in a spreadsheet and files the email in a folder. Her silence is data: for some hosts the recap is not read at all."
+  }
+ ],
+ "unknowns": [
+  {
+   "q": "How often is a recap line actually wrong?",
+   "ask": "Check a sample of recaps against their recordings. P4 and P7 both said they do not know."
+  },
+  {
+   "q": "Would a held draft cost the speed that some hosts value?",
+   "ask": "Test a held draft with hosts who like the automatic send, as P6 does."
+  },
+  {
+   "q": "How often does a recap reach someone outside the host's company?",
+   "ask": "Send logs for Recap: recipients outside the host's company over the last quarter."
+  },
+  {
+   "q": "Would named owners use an accept button?",
+   "ask": "Prototype test with newer team members. P2 thinks they would be shy about saying it is not theirs."
+  },
+  {
+   "q": "Would a link on each line cut the rewriting?",
+   "ask": "A prototype with hosts like P8, who said he would rewrite less."
+  },
+  {
+   "q": "What would hosts who do not read the recap read?",
+   "ask": "Interview more hosts like P7, who has never opened one since the first week."
+  }
+ ],
+ "rejected": [
+  {
+   "p": "P1",
+   "text": "If it showed me the exact moment, I would stop re-watching the call",
+   "from": "T1",
+   "reason": "not found in any transcript"
+  }
+ ],
+ "checked": {
+  "found": 38,
+  "rejected": 1,
+  "participants": 8
+ }
+}

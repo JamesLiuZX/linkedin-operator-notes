@@ -1,0 +1,81 @@
+Participant: P1
+Name: Dana
+Profile: Product manager at a 60-person logistics software company. Started the trial to plan a Q3 roadmap.
+Date: 2026-11-09
+
+[00:14] Interviewer: Hi Dana, thanks for making time. Can you hear me okay?
+[00:35] P1: Yes, loud and clear. Sorry, I'm in a meeting room because my desk is next to the printer. Someone is feeding it paper like it's a hobby.
+[01:04] Interviewer: Ha, no problem. Before we start, is it all right if I record this?
+[01:32] P1: Sure, go ahead.
+[01:44] Interviewer: Great. Could you tell me a bit about your role and where you work?
+[02:10] P1: I'm a product manager at a logistics software company. Sixty people, so it's small, everyone knows everyone's coffee order.
+[02:37] Interviewer: And what made you try Larkspur?
+[02:51] P1: I had to plan the Q3 roadmap and our old spreadsheet had become, I don't know, a crime scene. Rhea said try something with a roadmap view. So I signed up on a Tuesday night.
+[03:31] Interviewer: By yourself?
+[03:42] P1: Yes, just me. It said free for fourteen days, no card, so I figured nothing to lose.
+[04:09] Interviewer: What did you do first?
+[04:22] P1: Made a project called Q3 roadmap. Then I started typing in the things we already know we're doing. Customer interviews, the scope review, a draft plan. Honestly it took me longer than I thought because I kept moving things around.
+[04:59] Interviewer: Did you see the checklist on the home screen?
+[05:20] P1: The little list? I saw it. Invite your team was at the bottom so I thought, later, later.
+[05:53] Interviewer: Why later?
+[06:05] P1: Because it was empty. Who sends a link to an empty room?
+[06:25] Interviewer: Say more about that.
+[06:46] P1: I mean, if I had asked Kemal to look at it on day one, he'd have seen three rows and a blank doc. And then that's his impression.
+[07:27] Interviewer: Kemal is?
+[07:46] P1: My boss. Head of product. Very kind, very busy, remembers everything you ever sent him.
+[08:11] Interviewer: So what were you waiting for?
+[08:38] P1: For it to look like a plan. I wasn't going to send Kemal a half-empty roadmap, because the first thing he sees is the thing he remembers.
+[09:06] Interviewer: Did it ever get there?
+[09:31] P1: Almost. Two weekends in I had maybe seventy percent. And then the trial ran out. Well, the trial was still running, but I got busy, and by the time I came back it was day twelve.
+[10:08] Interviewer: What did you want from Kemal?
+[10:23] P1: Just for him to look. He is never going to edit it. He has opinions, but he types them in a meeting, not in a tool.
+[10:51] Interviewer: So he'd need an account?
+[11:08] P1: That's the thing. I looked for something like send him a link. And I couldn't find it.
+[11:40] Interviewer: What did you find?
+[11:54] P1: Settings, then Members, then Add member. I had to go hunting. I only found it because I was in Settings to change my workspace name.
+[12:28] Interviewer: And what happened when you clicked?
+[12:50] P1: A box popped up. It said adding a member starts billing today, twelve dollars a month.
+[13:15] Interviewer: How did you read that?
+[13:35] P1: That's the question I kept asking myself. Is it twelve for him? Is it twelve for everyone? Does it start right now even though I'm in a trial? I couldn't tell, so I closed the box.
+[14:09] Interviewer: Did you try to find out?
+[14:23] P1: I looked on the pricing page. It said per member but not what counts as a member. A person who just looks at it?
+[14:51] Interviewer: What would have helped?
+[15:13] P1: If it told me before I clicked, honestly. I'd like to see the seat price when I'm about to invite someone, not after I've typed an email.
+[15:46] Interviewer: Okay. And did you think about anyone else, besides Kemal?
+[16:06] P1: Rhea, our engineering lead, maybe. But she's in the doc tool all day, she would have joined.
+[16:35] Interviewer: So she wasn't the worry.
+[16:54] P1: No. Kemal was the worry. He's the one who only needs to see it, not join it.
+[17:19] Interviewer: If you could have sent him something, what would it be?
+[17:47] P1: A link that opens a page, read only. Like a Google doc you share but without anyone asking for an invite. I'd have sent that in a second.
+[18:25] Interviewer: Anything you'd worry about with a link like that?
+[18:44] P1: Yes. What he'd see.
+[19:04] Interviewer: Meaning?
+[19:21] P1: I keep my notes in the same doc. There's a section I called things I'm not saying out loud. It has stuff about two people on the team and a vendor we're probably dropping.
+[20:05] Interviewer: Right.
+[20:25] P1: So I'd need to know exactly what Kemal sees. Does he see the whole page? The comments? I don't want to find out by him asking about the vendor.
+[20:57] Interviewer: How would you want to find out?
+[21:25] P1: See it as him, I suppose. Like preview as someone else. Maybe I'm asking for a lot.
+[21:47] Interviewer: Not at all, that's useful. Let's step back. Did anyone else at your company know you'd started the trial?
+[22:15] P1: Rhea, because she suggested it. Nobody else.
+[22:40] Interviewer: Did you need anyone's permission to try it?
+[22:56] P1: Permission? No. It's thirty seconds with a work email. Nobody here approves tools, we're sixty people. If I asked IT I'd be asking Arjun, who would say whatever, it's fine.
+[23:32] Interviewer: Okay. So nothing stopped you there.
+[23:46] P1: No, not at all.
+[24:07] Interviewer: What does the roadmap view look like once it's filled in?
+[24:34] P1: Quite nice, actually. I liked that the quarters were laid out and I could drag. I spent an evening just dragging.
+[25:05] Interviewer: Is there anything you didn't like?
+[25:31] P1: Finding my way back to projects was slightly annoying. There's a Home, a Projects, a Docs. I got lost twice.
+[25:58] Interviewer: Did the checklist help?
+[26:20] P1: It said two of five. I stayed on two of five for nine days.
+[26:47] Interviewer: What would have moved it?
+[27:08] P1: Someone nudging me, probably. Or the thing I wanted to do being obvious.
+[27:32] Interviewer: Where are you with it now?
+[27:57] P1: I opened it again on Sunday. I added the last quarter's items. It looks better now. I'd show it now, probably.
+[28:34] Interviewer: Would you go through Settings now?
+[28:54] P1: I'd probably try. But I'm still not sure what happens when I click Add member. I'd have to just take the bet.
+[29:27] Interviewer: That makes sense. One thing I'd like to check. If a free link existed, what would you do with it day one?
+[29:51] P1: Honestly? I'd still wait. I'd wait until it looked like something. The link doesn't change that.
+[30:21] Interviewer: Okay. Anything else?
+[30:41] P1: I don't think so. Oh, one thing. The roadmap view is quite pretty, I'd love to put it on a wall.
+[31:18] Interviewer: Noted. Thank you, Dana, this was really useful.
+[31:44] P1: Anytime. Good luck with it. Tell Larkspur to fix the Add member thing.

@@ -1,0 +1,51 @@
+8 participants, 5 themes, 38 quotes found, 1 rejected
+  PASS  Every quote exists in a transcript (after removing 1 that could not be found)
+  PASS  Counts are people
+  PASS  No percentages from small samples
+  PASS  Every theme has a counter-voice, or says none was found
+  PASS  Every participant is accounted for
+  ----  The themes answer the research question (yours to judge)
+Rejected quotes (removed from the synthesis):
+  - P1: "If it showed me the exact moment, I would stop re-watching the call" (not found in any transcript)
+5 of 5 scripted checks passed
+1 quote(s) were rejected and removed. Tell the user each one, word for word.
+
+Every quote, in order:
+FOUND     P1 line  31  T1  "I can never tell where a line came from, so I scrub through the recording to find the bit where it was said."
+FOUND     P2 line  21  T1  "I could not tell who had said the rollback was safe, and the recap does not say, so I go and find it in the recording."
+FOUND     P3 line  21  T1  "I have to check every line against what the COO actually said, and it has no sources, so I listen to the recording at double speed."
+FOUND     P4 line  29  T1  "I could not find where the December claim came from, so I spent an hour in the recording."
+FOUND     P5 line  27  T1  "I can't tell which comment a line came from, so I jump around the recording trying to find the one critique."
+FOUND     P8 line  19  T1  "I cannot tell where a line came from, so I rewatch the bit of the recording I think it is from. Which is a guessing game."
+FOUND     P6 line  19  T1  "No. I do not check it, life is short."
+FOUND     P2 line  43  T2  "Someone said, maybe we should freeze deploys on Fridays, and the recap listed it under Decisions, and now people quote it as policy."
+FOUND     P3 line  29  T2  "It listed the idea of moving the board date as a decision, when he only wondered out loud, and I almost put it in the minutes."
+FOUND     P4 line  21  T2  "It wrote it as a commitment. "Vireo will deliver the integration in December." Never said that. Never."
+FOUND     P5 line  33  T2  "Jules said, "what if we tried a twelve column grid", and the recap listed it under Decisions."
+FOUND     P8 line  27  T2  "It listed it as a decision, because someone said it and nobody objected. Silence is not agreement, but the recap thinks it is."
+FOUND     P6 line  27  T2  "If it was said, it counts. That is how I run things. If you say it in a meeting, you own it."
+FOUND     P1 line  35  T3  "It gave the contract to Tomasz because he was the last one talking, but the contract was always mine."
+FOUND     P2 line  29  T3  "It put the follow-up on Kofi for the alerting fix just because he spoke last, but Ines owns that service."
+FOUND     P4 line  41  T3  "Often. Whoever says the last words seems to get the job. People say okay, sure, thanks, and that is a promise now."
+FOUND     P5 line  39  T3  "It credited the action to the person who happened to speak last, Marek, when the action was clearly Noor's."
+FOUND     P8 line  47  T3  "It gets the owner wrong a fair bit. Whoever spoke last is the usual suspect."
+FOUND     P3 line  37  T3  "I do not use its owners. I decide who owns what, and I ignore the recap's."
+FOUND     P1 line  46  T4  "It went to the customer before I had even closed the laptop, and the renewal date in it was wrong."
+FOUND     P1 line  55  T4  "The customer got a line that said I planned to push back on their discount, which was only for our side."
+FOUND     P3 line  49  T4  "It reached two directors before I had read it, and it said the vendor was approved when we had only discussed it."
+FOUND     P4 line  25  T4  "It was in their inbox in five minutes. Their head of product replied, "Great news, we will tell our board.""
+FOUND     P6 line  45  T4  "A candidate got the recap of our debrief about her interview, with our honest comments in it, and I had to call her and apologise."
+FOUND     P8 line  39  T4  "It went to my director before I read it, with a decision in it that we had not made."
+FOUND     P2 line  51  T4  "Nobody. All my meetings are internal, so no guests ever."
+FOUND     P1 line  63  T5  "I take the summary, cut it by half, fix the dates, take out anything that sounds like our internal view, and put my own greeting on it."
+FOUND     P3 line  59  T5  "Never. I retype it into the minutes format the board expects, and I change nearly everything."
+FOUND     P4 line  59  T5  "No, I stopped forwarding altogether. I turned it off on customer calls."
+FOUND     P5 line  45  T5  "I copy it into our design channel post and rewrite it, because the wording is stiff and it misses the reasoning."
+FOUND     P8 line  31  T5  "I rewrite every recap before I forward it. Every single one. It has become a ritual."
+FOUND     P6 line  77  T5  "I say, turn it on and forget about it. It writes the minutes you never write."
+FOUND     P5 line  19  U1  "The captions. They are really, really good, even with my accent and Marek's, and he mumbles."
+FOUND     P5 line  77  U1  "The audio comes through very clean for the transcript, I think that is why it mostly works."
+FOUND     P2 line  59  U2  "I want it in the channel. Our team chat. It should post itself after the meeting, in the team room, where the people are."
+FOUND     P7 line  71  U2  "It is like a newsletter I did not sign up for."
+FOUND     P4 line  71  U3  "Please do not make it do more by itself. I know that sounds funny. But the more it does, the more I have to check."
+FOUND     P8 line  69  U3  "The idea is great. I want it to work. I just do not want to be the human quality check."

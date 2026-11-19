@@ -1,0 +1,71 @@
+Participant: P8
+Name: Wen
+Profile: Chief of staff at a 90-person company. Tried to invite two directors and neither joined.
+Date: 2026-11-18
+
+[00:19] Interviewer: Hi Wen. Thanks for making time. How's it going?
+[00:58] P8: Good, thanks. A bit frazzled, it's board prep week. I'm chief of staff so everything lands on my desk on the way somewhere else.
+[01:42] Interviewer: Ha. What's the company?
+[02:07] P8: Ninety people, a payments company, mostly engineers and ops. I work for the CEO. My job is making things happen that don't have an owner.
+[02:51] Interviewer: What brought you to Larkspur?
+[03:23] P8: We had no good place to hold the company priorities for next year. Everyone's got a version. I wanted one page everybody could trust, and I'd heard of this one from someone on the finance team.
+[04:26] Interviewer: Did you start on your own?
+[04:52] P8: Yes. A Monday evening. I made a workspace, wrote the priorities, and added the programmes under each.
+[05:24] Interviewer: How long did that take?
+[05:48] P8: Four evenings, spread over a week and a half. It's a lot of content. I kept finding gaps.
+[06:17] Interviewer: Did you enjoy it?
+[06:45] P8: I did, weirdly. It's the nearest I get to making something. Most of my job is emails.
+[07:32] Interviewer: Did you share it?
+[07:52] P8: Not for a while. I didn't want to show anyone until it was in decent shape. The CEO has a habit of reading everything the moment it's sent, and judging it.
+[08:46] Interviewer: So you waited.
+[09:05] P8: I waited for what I'd call presentable. There's no polite way to send someone a mess.
+[09:49] Interviewer: When did you try?
+[10:16] P8: Day eleven. I wanted two directors to look at it: Odile, who runs operations, and Hamid in engineering.
+[10:52] Interviewer: What did you want from them?
+[11:10] P8: To look. That's all. They'd say yes or no, maybe a comment on the Slack thread. Nobody was going to edit.
+[11:44] Interviewer: Did you see a way to do that?
+[12:21] P8: No. I looked for a view link. Share, publish, anything like that. Nothing. So I went to Settings, Members, Add member.
+[12:55] Interviewer: What did you see?
+[13:23] P8: The box that says billing starts today. Twelve a month. And I wasn't sure whether that was one person or two or what. And it said today, and we were at the end of a trial.
+[14:18] Interviewer: What did you do?
+[14:42] P8: I hesitated, and then I did it for both of them. I wasn't sure what I'd done. I wasn't sure if I'd just signed up my company for something.
+[15:34] Interviewer: Did you find out afterwards?
+[15:53] P8: Not really. I looked on the billing page and it said trial. I still don't know whether it started billing.
+[16:36] Interviewer: Does your company have a process for approving new tools like this?
+[17:00] P8: It does, and I'd say it comes up with every tool. It's a form, then a review by the security team, then procurement.
+[17:37] Interviewer: Okay. And what happened with the two directors?
+[18:09] P8: Nothing. Neither of them joined. That's the headline. Neither of them.
+[18:35] Interviewer: What happened with Hamid?
+[18:53] P8: I messaged him a week later, did you see my invite? He said what invite. I found it in his promotions tab. He said he'd thought it was an advert.
+[19:41] Interviewer: And Odile?
+[20:07] P8: Odile did see it. She replied to me, actually. She said, I'll need to run this past IT before I make an account on anything that has our data in it.
+[20:47] Interviewer: How did you react?
+[21:16] P8: I wasn't surprised. We have a policy. Anything with company data in it goes through a review, which takes a couple of weeks, and the review needs an actual use case.
+[22:07] Interviewer: Did the review apply to a roadmap?
+[22:25] P8: To a roadmap with our priorities in it? Yes. That's the most sensitive thing there is, in a way.
+[23:05] Interviewer: So she didn't join.
+[23:21] P8: She didn't join. And I couldn't give her a link, because there isn't one, so she couldn't even look.
+[24:01] Interviewer: Did that affect you?
+[24:29] P8: Yes. It changed my plan. I printed the priorities as a PDF and sent that. They read it, and they were fine.
+[25:08] Interviewer: How did the directors take the PDF?
+[25:33] P8: Hamid said thanks, very clear. Odile asked if it was the final version. I said it's a draft. She said then call me when it isn't.
+[26:24] Interviewer: What did you think about the whole thing?
+[26:47] P8: Honestly, the invite was the weak part. Everything else was good. I'd just want a way to say, please look at this, you don't need to do anything.
+[27:33] Interviewer: Is there anything about the content you'd worry about them seeing?
+[28:05] P8: Not really. It was priorities, they knew most of it already. I wasn't worried about that.
+[28:32] Interviewer: What would you want instead?
+[29:06] P8: A link. That someone can open in a browser, no account, and it says here's the plan. Anyone with the link, ideally, or at least by email. That's it.
+[29:47] Interviewer: Did you consider telling them in person?
+[30:21] P8: I did, for Odile. She's two doors away. I said it's fine, you don't need to join anything. But policy is policy.
+[31:02] Interviewer: Okay. When you think of the cost, did that come up?
+[31:24] P8: It did. I wasn't sure what seats were. If a director only looks, are they a seat? I would've liked the dialog to say what counts.
+[32:05] Interviewer: What would you tell Larkspur?
+[32:33] P8: Tell me what it costs before I click. And tell me what I'm sending, what the email looks like, who it comes from.
+[33:14] Interviewer: Anything you liked?
+[33:47] P8: The priorities view is very nice. I'd been looking for something like that.
+[34:11] Interviewer: Anything about the first few minutes?
+[34:45] P8: The signup said free for fourteen days. I assumed that meant free. That's all I'll say.
+[35:28] Interviewer: Do you think you'll continue?
+[35:48] P8: I'll keep the workspace until the trial ends. I don't know after that. If I could show the priorities with a link I'd say yes straight away.
+[36:33] Interviewer: Okay. Thank you, Wen.
+[36:50] P8: Thank you. Good luck.

@@ -1,0 +1,172 @@
+{
+  "input": {
+    "test": {
+      "name": "Share by link",
+      "hypothesis": "Letting the trial admin share a page by link, with viewers who are free, gets more workspaces a second active person within 7 days.",
+      "unit": "new trial workspaces",
+      "planned_split": [
+        0.5,
+        0.5
+      ],
+      "planned_days": 21,
+      "ran_days": 21,
+      "start": "2026-09-07",
+      "end": "2026-09-27",
+      "counted_on": "2026-10-28",
+      "mde_set": 0.02,
+      "alpha": 0.05
+    },
+    "arms": [
+      {
+        "name": "Control",
+        "users": 9836
+      },
+      {
+        "name": "Share by link",
+        "users": 9902
+      }
+    ],
+    "primary": {
+      "name": "Second active person within 7 days",
+      "direction": "up",
+      "counts": [
+        2164,
+        2575
+      ]
+    },
+    "guardrails": [
+      {
+        "name": "Converted to paid within 30 days",
+        "harm": "down",
+        "counts": [
+          1082,
+          1099
+        ],
+        "tolerance": 0.01
+      },
+      {
+        "name": "Reported an unwanted invite",
+        "harm": "up",
+        "counts": [
+          59,
+          64
+        ],
+        "tolerance": 0.005
+      },
+      {
+        "name": "Turned sharing off",
+        "harm": "up",
+        "counts": [
+          118,
+          131
+        ],
+        "tolerance": 0.005
+      }
+    ]
+  },
+  "checks": {
+    "srm": {
+      "expected": [
+        9869.0,
+        9869.0
+      ],
+      "observed": [
+        9836,
+        9902
+      ],
+      "chi2": 0.22069105279156956,
+      "p": 0.6385138745732668,
+      "threshold": 0.001,
+      "pass": true
+    },
+    "duration": {
+      "planned_days": 21,
+      "ran_days": 21,
+      "stopped_early": false,
+      "full_weeks": true
+    },
+    "power": {
+      "baseline": 0.22000813338755593,
+      "mde_abs": 0.01652148550984052,
+      "mde_rel": 0.0750948851547095,
+      "mde_set": 0.02,
+      "adequate": true
+    }
+  },
+  "primary": {
+    "name": "Second active person within 7 days",
+    "rates": [
+      0.22000813338755593,
+      0.26004847505554435
+    ],
+    "diff": 0.04004034166798842,
+    "lift": 0.18199482469793626,
+    "se": 0.00607283682110131,
+    "ci": [
+      0.02813780021464114,
+      0.0519428831213357
+    ],
+    "z": 6.58484506871126,
+    "p": 4.5535997512127e-11,
+    "result": "positive"
+  },
+  "guardrails": [
+    {
+      "name": "Converted to paid within 30 days",
+      "rates": [
+        0.11000406669377796,
+        0.11098767925671582
+      ],
+      "diff": 0.0009836125629378578,
+      "se": 0.004462975461226109,
+      "ci": [
+        -0.007763658604951354,
+        0.00973088373082707
+      ],
+      "harm": "down",
+      "tolerance": 0.01,
+      "verdict": "held"
+    },
+    {
+      "name": "Reported an unwanted invite",
+      "rates": [
+        0.0059983733224888165,
+        0.006463340739244597
+      ],
+      "diff": 0.0004649674167557802,
+      "se": 0.0011201306445746083,
+      "ci": [
+        -0.0017304483045900887,
+        0.002660383138101649
+      ],
+      "harm": "up",
+      "tolerance": 0.005,
+      "verdict": "held"
+    },
+    {
+      "name": "Turned sharing off",
+      "rates": [
+        0.011996746644977633,
+        0.013229650575641285
+      ],
+      "diff": 0.0012329039306636525,
+      "se": 0.0015885301561457054,
+      "ci": [
+        -0.0018805579637377196,
+        0.004346365825065025
+      ],
+      "harm": "up",
+      "tolerance": 0.005,
+      "verdict": "held"
+    }
+  ],
+  "verdict": {
+    "decision": "ship",
+    "rule": "Rule 5: positive and every guardrail held, so ship",
+    "reasons": [
+      "Second active person within 7 days rose 4.0 points, from 22.0% to 26.0%, with a 95% interval of 2.8 to 5.2.",
+      "Every guardrail held: each interval rules out harm beyond its tolerance."
+    ]
+  },
+  "flags": []
+}

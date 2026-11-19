@@ -1,0 +1,77 @@
+Participant: P2
+Name: Marcus
+Profile: Engineering manager, 9 reports, at a 200-person company. IT approves every new tool.
+Date: 2026-11-10
+
+[00:08] Interviewer: Hi Marcus, thanks for joining. Can you see and hear me?
+[00:29] P2: I can hear you. Video is frozen on my side, give it a second. There. Hello.
+[01:04] Interviewer: Hello. Thanks for doing this at lunchtime.
+[01:31] P2: It's fine. I'm eating a sandwich, so if I go quiet that's why.
+[02:08] Interviewer: Go ahead, I'll talk slowly. Could you tell me about your job?
+[02:33] P2: Engineering manager. Nine reports, two squads really, at a company of about two hundred. We make fleet tracking software for delivery companies.
+[03:05] Interviewer: And how did you come to Larkspur?
+[03:34] P2: Someone on my team shared a screenshot of a roadmap view. I thought, that's what I need for planning, we've been doing it in slides, and slides are where plans go to die.
+[04:21] Interviewer: So you signed up alone.
+[04:41] P2: Yes, on a Sunday afternoon. Free trial, no big commitment.
+[05:11] Interviewer: What did you do with it?
+[05:33] P2: Built next half's roadmap. Platform migration, the on-call rework, a thing about our alerting. Took me a couple of evenings.
+[06:12] Interviewer: Anything you particularly liked?
+[06:28] P2: The keyboard shortcuts in the roadmap view. I can move an item a week left or right without touching the mouse. That sounds small. It isn't. I did the whole thing in about forty minutes.
+[07:10] Interviewer: Did you tell anyone about it?
+[07:41] P2: Not for a while. I wanted it to look right first.
+[08:06] Interviewer: What does right look like?
+[08:25] P2: Not embarrassing. If my director opens it and the first thing she sees is half my rows with no dates, I've lost her. I would rather send nothing than send that.
+[09:13] Interviewer: So when did you consider sending it?
+[09:40] P2: Maybe day nine. By then I'd got the dates in and I thought, okay. But then I realised I'd have to do something about getting her in.
+[10:14] Interviewer: Her being?
+[10:36] P2: Ngozi. VP of engineering. She'd need to see it, that's all. She'd never touch it. She has a rule: she doesn't edit anyone's plan, she comments in the review.
+[11:20] Interviewer: What did you look for?
+[11:37] P2: A way to just let her look. I thought there'd be a view link. There wasn't. So the only way was to add her as a member.
+[12:20] Interviewer: How did you feel about that?
+[12:37] P2: Wrong, honestly. Making her a member of a tool she'll open once.
+[13:03] Interviewer: Can you say more?
+[13:18] P2: She doesn't need an account. She needs a page. A VP is not going to create a login just to read my plan.
+[13:50] Interviewer: Okay. And where did you land?
+[14:22] P2: I exported it to a PDF. Which defeats the purpose.
+[14:47] Interviewer: Right. Let me ask about something different. At your company, if you want to start using a new tool with the team, what has to happen?
+[15:35] P2: Oh, a lot. IT approves every new tool. All of them. There's a form, a vendor security questionnaire, and then someone looks at where the data lives.
+[16:14] Interviewer: How long does that take?
+[16:39] P2: For something small, three weeks. Last time we added a diagramming tool it was six.
+[17:16] Interviewer: Did that apply to Larkspur?
+[17:42] P2: For the team, yes. For me on my own, in a trial, I figured I'm just testing. But the moment I want my nine reports in, I'm in the review.
+[18:18] Interviewer: So did you think about that while you were building?
+[18:46] P2: Constantly. It was in the back of my head the whole time. I could build the nicest roadmap in the world and I still can't roll it out to the team until Priyanka in IT signs off.
+[19:36] Interviewer: Did you ask Priyanka?
+[19:53] P2: Not yet. I didn't want to open a ticket for a tool I wasn't sure about. And it would probably expire before they got to it.
+[20:25] Interviewer: Expire, the trial?
+[20:53] P2: Yes. Fourteen days isn't long. If they take three weeks, I'm dead before they start.
+[21:24] Interviewer: That's useful. Did you ever add anyone?
+[21:43] P2: One person. Bartek, my tech lead. A test, really. He's the one who'd help me figure out whether it works.
+[22:17] Interviewer: How did that go?
+[22:34] P2: Fine, actually. I added him, he got the email, he was in within the hour. I remember because I was still on a call with him and he said, oh, it's here.
+[23:23] Interviewer: So the email arrived.
+[23:45] P2: Immediately. Straight to his inbox. He clicked, set a password, done.
+[24:06] Interviewer: Great. Anything about adding him that was confusing?
+[24:37] P2: It took me a bit to find where. Settings, then Members. I guessed. It's not where I'd look.
+[25:03] Interviewer: Where would you look?
+[25:22] P2: On the page itself. A button that says share or invite, top right.
+[25:43] Interviewer: Okay. If you could change one thing about how people get in, what would it be?
+[26:19] P2: Two things, really. First, import from our chat tool. We have everyone in Parley, with their teams. I'd rather pick people from there than type nine email addresses.
+[26:53] Interviewer: And second?
+[27:14] P2: The view link. A link that opens the page for someone who's not a member.
+[27:38] Interviewer: Would that get around IT?
+[28:01] P2: Probably not, honestly. IT would still want to know. But at least Ngozi could look at it.
+[28:37] Interviewer: Mm. Let me go back. When you finally had the plan at the stage you liked, did you feel ready?
+[29:12] P2: Almost. There was one more row I wanted to rename. It's always one more row.
+[29:42] Interviewer: So how long did it sit there?
+[30:06] P2: Three days. Then the trial was about to end and I did the PDF.
+[30:35] Interviewer: And what happened with the PDF?
+[31:00] P2: Ngozi read it. She said looks good. Nobody asked me about Larkspur.
+[31:22] Interviewer: Do you think you'll continue?
+[31:45] P2: I'd like to. But I'd have to go through IT first, and then a purchasing request. Realistically, March.
+[32:14] Interviewer: Did Bartek keep using it?
+[32:43] P2: He poked at it for a week. He liked the timeline. Then he got pulled onto an incident and that was that.
+[33:27] Interviewer: Is there anything else you want to tell us?
+[33:46] P2: The shortcuts, again. Whoever wrote those, give them a raise.
+[34:07] Interviewer: I'll pass it on. Thank you, Marcus.
+[34:35] P2: Thanks. Enjoy the rest of your day.

@@ -1,0 +1,69 @@
+Participant: P3
+Name: Ines
+Profile: Founder of a 6-person studio. Invited everyone on day one.
+Date: 2026-11-11
+
+[00:15] Interviewer: Hi Ines. Thanks for making time, I know you're busy.
+[00:35] P3: No, no, I said yes before I thought. I've got a client call at the end of this, so we might be done fast.
+[01:14] Interviewer: We'll see. I'll watch the clock. Can you tell me about your studio?
+[01:44] P3: We're six people. Design and a bit of development, mostly for small hospitality brands. Restaurants, a hotel in Lisbon. I'm the founder, so I'm also the person who orders the toner.
+[02:25] Interviewer: And you started a Larkspur trial?
+[02:43] P3: About five weeks ago. I wanted one place for projects and docs, instead of one thing for notes and a board for tasks and a pile of emails.
+[03:27] Interviewer: Did you start alone?
+[03:53] P3: Technically, yes. I signed up on a Monday morning at the kitchen table. I'm the one who signs up for everything.
+[04:27] Interviewer: What did you do next?
+[04:49] P3: I added the team. All five of them, same day. I just sat there and typed in their addresses.
+[05:17] Interviewer: Why straight away?
+[05:29] P3: Because that's how I work. If I'm in, they're in. What's the point of a project tool if I'm the only one looking at it?
+[06:04] Interviewer: Where did you find the invite?
+[06:28] P3: Somewhere in Settings. I clicked around. Members, I think. It took me a minute.
+[06:50] Interviewer: What did the screen say when you added them?
+[07:20] P3: There was a line. Something about billing. I read it as the usual fine print.
+[07:45] Interviewer: What did you take it to mean?
+[08:04] P3: I didn't really take it to mean anything. I thought it was a trial, so it'd sort itself out.
+[08:29] Interviewer: And then?
+[08:57] P3: And then two days later I got an email with an invoice. Sixty dollars. I was like, what is this?
+[09:34] Interviewer: What did you think it was?
+[10:03] P3: A mistake. I'd signed up for a free trial. I didn't understand that adding the team had started the clock on the money.
+[10:40] Interviewer: How did that feel?
+[10:54] P3: Annoyed, mostly at myself. It wasn't hidden, it was just not in my face. I'd have liked to know it was going to be sixty before I pressed the button.
+[11:32] Interviewer: Did you keep going?
+[11:53] P3: Yes, because it was only sixty. But I did think, if I'd known, I might have added two people first and seen how it went.
+[12:24] Interviewer: Okay. Let's talk about how it went with the team. Did they all join?
+[13:00] P3: Three did, straight away. Two didn't. Lotte and Cormac.
+[13:23] Interviewer: What happened?
+[13:37] P3: Lotte told me on the Thursday that she'd never got it. I said I sent it Monday. She went and looked in her junk folder. It was there, between a newsletter and something from a shoe shop.
+[14:28] Interviewer: Did she think it looked like marketing?
+[14:45] P3: She said it looked like marketing. A big blue button and a tiny unsubscribe line at the bottom. She nearly didn't open it even when she found it.
+[15:31] Interviewer: And Cormac?
+[15:50] P3: Cormac I had to stand behind at his desk and say click here. It never reached him at all, as far as I can tell. I know I typed the address right, because I copied it from his email signature.
+[16:39] Interviewer: Did you resend?
+[16:57] P3: Twice. Nothing. In the end I added him again with a different address of his and that worked.
+[17:29] Interviewer: That's quite a lot of effort.
+[17:47] P3: It was ten minutes. It's fine. But it made me think the invite emails are not great.
+[18:10] Interviewer: Did you consider something other than email?
+[18:40] P3: Not really. It's six people, I could just shout across the room.
+[19:03] Interviewer: Let me ask about a different thing. In your studio, if you start using a tool, does anyone have to approve it?
+[19:42] P3: Approve? I'm IT. I'm the person who approves it. I'm also the person who forgets the password.
+[20:08] Interviewer: Ha. So nothing blocks you.
+[20:38] P3: Nothing blocks me. I've got a credit card and no boss.
+[21:11] Interviewer: Would you ever bring in a client?
+[21:39] P3: Sometimes. Not to a project, usually. To a doc.
+[22:08] Interviewer: Would you want them to just be able to see it?
+[22:36] P3: If they're in, they're in. I wouldn't want a half-way. If a client has an account, they can comment, they can edit, whatever. If you are in, you are in.
+[23:21] Interviewer: Does a view-only option sound useful?
+[23:38] P3: It sounds like something I'd have to explain to clients. I'd rather give them a seat and be done.
+[24:10] Interviewer: Okay. What's it like now?
+[24:38] P3: Four of us use it every day. Cormac pretends he does.
+[25:00] Interviewer: Has anyone asked for anything?
+[25:29] P3: Elif wanted colour coding on rows. She goes on about it. I told her she can.
+[26:06] Interviewer: What do you think about the pricing?
+[26:28] P3: It's fine, once I understood it. Twelve per person is normal.
+[26:52] Interviewer: Is there anything you'd tell a friend who's starting?
+[27:16] P3: Read the box before you press the button. And check your junk folder.
+[27:42] Interviewer: Good advice. Do you think you'll stay?
+[28:14] P3: Yes, probably. The invoice stung, but the product does what I need.
+[28:39] Interviewer: Okay. Anything else I should have asked?
+[28:55] P3: I don't think so. Good luck.
+[29:11] Interviewer: Thanks, Ines. Good luck with the client call.
+[29:39] P3: Cheers, bye.

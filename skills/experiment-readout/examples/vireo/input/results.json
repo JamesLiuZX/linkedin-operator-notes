@@ -1,0 +1,23 @@
+{
+  "test": {
+    "name": "Draft-first recap",
+    "hypothesis": "Showing the host a draft with a source on every line, instead of emailing the recap automatically, gets more hosts to share a recap within 24 hours.",
+    "unit": "meeting hosts",
+    "planned_split": [0.5, 0.5],
+    "planned_days": 14,
+    "ran_days": 14,
+    "start": "2026-10-05",
+    "end": "2026-10-18",
+    "mde_set": 0.02,
+    "alpha": 0.05
+  },
+  "arms": [
+    { "name": "Control (auto-send)", "users": 31204 },
+    { "name": "Draft first", "users": 28975 }
+  ],
+  "primary": { "name": "Shared a recap within 24 hours", "direction": "up", "counts": [5929, 7823] },
+  "guardrails": [
+    { "name": "Turned Recap off", "harm": "up", "counts": [936, 580], "tolerance": 0.005 },
+    { "name": "Recap reported as wrong", "harm": "up", "counts": [1248, 811], "tolerance": 0.005 }
+  ]
+}

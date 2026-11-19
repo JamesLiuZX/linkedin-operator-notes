@@ -14,20 +14,9 @@
   "needs": "A PRD with numbered points",
   "skill": "flagged-prototype",
   "demo": "flagged-prototype",
-  "ask": "Build the prototype for this PRD. One switch per point.",
   "outputName": "prototype",
-  "demoNote": "The agent reads the PRD, draws the app as it is today and wires one switch per point. Then the switches are turned on one at a time. When the replay ends, they are yours.",
   "clipTitle": "A prototype you can *switch on and off*",
   "clipLine": "Every PRD point is a switch. Off is the product today.",
-  "example": {
-    "case": "tangelo",
-    "file": "flagged-prototype.html",
-    "label": "Tangelo: the weekly shop",
-    "note": "Five screens and six switches. Start with everything off, then turn on 1.1.",
-    "inputs": [
-      "spec.js"
-    ]
-  },
   "chain": {
     "before": [
       "decision-prd"
@@ -159,41 +148,53 @@
       "note": "First release."
     }
   ],
-  "run": {
-    "date": "2026-11-18",
-    "by": "A fresh agent session, given only the skill folder and a three-change brief for a different app (Kerb, a fictional parking app). Nobody answered its questions.",
-    "passed": 5,
-    "total": 6,
-    "note": "The sixth check compares switch IDs with a PRD, and this brief had none, so it ran in part. The run also found a bug in the checker and four gaps in the instructions. All are fixed in this version.",
-    "href": "/examples/kerb/flagged-prototype.html",
-    "label": "Open what it built",
-    "log": "examples/kerb/RUN.md"
-  },
-  "carousel": [
-    {
-      "at": 5.9,
-      "title": "Everything off is *the product today*",
-      "body": "The agent draws the app as it ships now. Nothing new is on the screen yet."
-    },
-    {
-      "at": 7.8,
-      "title": "One switch is *one PRD point*",
-      "body": "Turn on 1.1 and the reorder card appears on Home, with its number pinned to it."
-    },
-    {
-      "at": 11.6,
-      "title": "Judge each change *on its own*",
-      "body": "Three points are on. A reviewer can approve 1.1 and hold 3.1 without arguing about the whole design."
-    },
-    {
-      "at": 18.5,
-      "title": "The numbers *follow you*",
-      "body": "Tap through to the basket. The same IDs run from the PRD to the screen."
-    },
-    {
-      "at": 21.2,
-      "title": "Checked *before* you see it",
-      "body": "A script confirms every switch changes a screen you can reach, and that nothing new shows while it is off."
+  "cases": {
+    "tangelo": {
+      "label": "Tangelo: the weekly shop",
+      "note": "Five screens and six switches. Start with everything off, then turn on 1.1.",
+      "inputs": [
+        "spec.js"
+      ],
+      "ask": "Build the prototype for this PRD. One switch per point.",
+      "demoNote": "The agent reads the PRD, draws the app as it is today and wires one switch per point. Then the switches are turned on one at a time. When the replay ends, they are yours.",
+      "run": {
+        "date": "2026-11-18",
+        "by": "A fresh agent session, given only the skill folder and a three-change brief for a different app (Kerb, a fictional parking app). Nobody answered its questions.",
+        "passed": 5,
+        "total": 6,
+        "note": "The sixth check compares switch IDs with a PRD, and this brief had none, so it ran in part. The run also found a bug in the checker and four gaps in the instructions. All are fixed in this version.",
+        "href": "/examples/kerb/flagged-prototype.html",
+        "label": "Open what it built",
+        "log": "examples/kerb/RUN.md"
+      },
+      "carousel": [
+        {
+          "at": 5.9,
+          "title": "Everything off is *the product today*",
+          "body": "The agent draws the app as it ships now. Nothing new is on the screen yet."
+        },
+        {
+          "at": 7.8,
+          "title": "One switch is *one PRD point*",
+          "body": "Turn on 1.1 and the reorder card appears on Home, with its number pinned to it."
+        },
+        {
+          "at": 11.6,
+          "title": "Judge each change *on its own*",
+          "body": "Three points are on. A reviewer can approve 1.1 and hold 3.1 without arguing about the whole design."
+        },
+        {
+          "at": 18.5,
+          "title": "The numbers *follow you*",
+          "body": "Tap through to the basket. The same IDs run from the PRD to the screen."
+        },
+        {
+          "at": 21.2,
+          "title": "Checked *before* you see it",
+          "body": "A script confirms every switch changes a screen you can reach, and that nothing new shows while it is off."
+        }
+      ],
+      "kind": "reference"
     }
-  ]
+  }
 }

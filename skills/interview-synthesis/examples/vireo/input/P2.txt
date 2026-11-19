@@ -1,0 +1,81 @@
+Participant: P2
+Name: Jonah
+Profile: Engineering lead, runs sprint planning and incident reviews, nine hosted meetings a week
+Date: 2026-11-04
+
+[00:08] Interviewer: Hi Jonah, thanks for joining. Is this an okay time?
+[00:27] P2: Yes, I stepped out of a standup for this, so I have got my coffee and about half an hour.
+[01:12] Interviewer: Brilliant. Tell me what you do.
+[01:21] P2: I lead an engineering team of nine. Platform, mostly. I run sprint planning on Mondays and every incident review when something breaks.
+[01:42] Interviewer: How many Vireo meetings a week do you host?
+[02:00] P2: Maybe eight or nine. Planning, the retro, the incident reviews, a few one to ones I do not count.
+[02:39] Interviewer: And Recap, is that on for all of them?
+[02:55] P2: It is on by default. I have not turned it off, although I have thought about it.
+[03:22] Interviewer: What made you think about it?
+[03:37] P2: Let me think of an example. Last month we had an incident with the billing queue backing up.
+[04:13] Interviewer: Go on.
+[04:28] P2: It was a long one. Forty minutes, six people, a lot of overlapping talk. I ran the review the next day.
+[04:51] Interviewer: And the recap was part of that?
+[05:04] P2: It was meant to be. I opened the recap first because I wanted the timeline.
+[05:33] Interviewer: What did you do next?
+[05:50] P2: I could not tell who had said the rollback was safe, and the recap does not say, so I go and find it in the recording.
+[06:36] Interviewer: That seems important in an incident.
+[06:56] P2: It is the whole point of an incident review. Who knew what, when. A summary with no names on the claims is almost useless to me.
+[07:29] Interviewer: Do you check the others the same way?
+[07:43] P2: Sprint planning I mostly do not. Incidents, always.
+[08:09] Interviewer: Okay. What about action items?
+[08:17] P2: Ha. That is where it gets funny.
+[08:37] Interviewer: Funny how?
+[08:50] P2: It put the follow-up on Kofi for the alerting fix just because he spoke last, but Ines owns that service.
+[09:18] Interviewer: How did you notice?
+[09:30] P2: Kofi pinged me, "I think I got assigned something I cannot do?" He is quite new. He would have just tried.
+[10:14] Interviewer: And Ines?
+[10:28] P2: Ines never saw it. She was not even mentioned. That one nearly slipped through.
+[11:02] Interviewer: So you correct it by hand?
+[11:13] P2: I do. I say it out loud in the room, "Ines, that is yours," and write it in our tracker myself.
+[11:32] Interviewer: And is there anything you wish the recap did for that?
+[11:44] P2: The person named should be able to say yes that is mine or no it is not. A little button. Accept, or this is not me.
+[12:06] Interviewer: Interesting. Does the recap send tasks anywhere today?
+[12:21] P2: No. It is just text in an email. Which is actually fine for me.
+[13:07] Interviewer: Let me move to decisions. How does it handle those?
+[13:23] P2: There is a heading called Decisions. I like that it exists. It is just not always right.
+[13:47] Interviewer: Tell me about a time it was wrong.
+[14:06] P2: Someone said, maybe we should freeze deploys on Fridays, and the recap listed it under Decisions, and now people quote it as policy.
+[14:46] Interviewer: Who quoted it?
+[15:03] P2: A designer on another team. She said, "I read in the recap that you freeze Fridays." We do not. We were just thinking aloud.
+[15:47] Interviewer: What did you do?
+[16:04] P2: I had to go and un-decide it. In writing. It took longer than the original conversation.
+[16:44] Interviewer: Does that happen a lot?
+[16:57] P2: Less than the owners thing, but when it does it sticks harder. A decision in writing feels official.
+[17:42] Interviewer: I want to ask something. Who gets the recap besides your team?
+[18:02] P2: Nobody. All my meetings are internal, so no guests ever.
+[18:25] Interviewer: Not even a vendor call?
+[18:42] P2: Not on my side. Procurement does the vendors. I do not think I have ever had an external person in a meeting I host.
+[19:21] Interviewer: So that is not a worry for you.
+[19:34] P2: It is not a worry. If I had customers in there I would care a lot more, I imagine.
+[20:08] Interviewer: Fair. Where do you read the recap now?
+[20:22] P2: In email, and honestly I do not love that.
+[21:06] Interviewer: Why not?
+[21:20] P2: I want it in the channel. Our team chat. It should post itself after the meeting, in the team room, where the people are.
+[22:01] Interviewer: Instead of email?
+[22:14] P2: Instead of, or as well as. Email gets buried. Nobody in my team reads the inbox until noon.
+[22:57] Interviewer: Okay. Do you forward the recaps to anyone?
+[23:16] P2: Not much. If it matters, I link people to the tracker instead.
+[23:47] Interviewer: So the recap is a private reference.
+[24:02] P2: Basically. A reference for me, mostly, and for the people who missed the meeting.
+[24:46] Interviewer: Is there something about the recap you would keep exactly as it is?
+[25:03] P2: The length. It is short enough to read in the lift. That is good.
+[25:35] Interviewer: What would be the one thing you would change first?
+[25:46] P2: Each line should link back to the clip so I can hear who said it.
+[26:13] Interviewer: And the second?
+[26:30] P2: The accept button. Those two. Everything else I can live with.
+[26:53] Interviewer: Do you think your team would use the accept button?
+[27:12] P2: The seniors would. The new people, maybe not at first. They are shy about saying that is not mine.
+[27:38] Interviewer: That is a useful thing to know. Have you talked to your team about the recaps?
+[27:57] P2: Briefly. Ines said she does not read them at all, which hurt a bit.
+[28:24] Interviewer: Is that surprising?
+[28:44] P2: Not really. People read what is addressed to them.
+[29:22] Interviewer: Anything else we have not covered?
+[29:36] P2: I would like the timeline for incidents, with times. That might be asking for a different product.
+[30:09] Interviewer: It might. We will write it down anyway. Thank you, Jonah.
+[30:25] P2: No problem. I have got to get back to a retro, but ask me anything else by email.

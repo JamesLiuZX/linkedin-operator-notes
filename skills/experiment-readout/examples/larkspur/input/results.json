@@ -1,0 +1,25 @@
+{
+  "test": {
+    "name": "Share by link",
+    "hypothesis": "Letting the trial admin share a page by link, with viewers who are free, gets more workspaces a second active person within 7 days.",
+    "unit": "new trial workspaces",
+    "planned_split": [0.5, 0.5],
+    "planned_days": 21,
+    "ran_days": 21,
+    "start": "2026-09-07",
+    "end": "2026-09-27",
+    "counted_on": "2026-10-28",
+    "mde_set": 0.02,
+    "alpha": 0.05
+  },
+  "arms": [
+    { "name": "Control", "users": 9836 },
+    { "name": "Share by link", "users": 9902 }
+  ],
+  "primary": { "name": "Second active person within 7 days", "direction": "up", "counts": [2164, 2575] },
+  "guardrails": [
+    { "name": "Converted to paid within 30 days", "harm": "down", "counts": [1082, 1099], "tolerance": 0.01 },
+    { "name": "Reported an unwanted invite", "harm": "up", "counts": [59, 64], "tolerance": 0.005 },
+    { "name": "Turned sharing off", "harm": "up", "counts": [118, 131], "tolerance": 0.005 }
+  ]
+}

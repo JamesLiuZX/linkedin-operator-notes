@@ -1,0 +1,2335 @@
+{
+ "title": "Getting a second person in: four planning tools, sign-up to the invite",
+ "question": "How do these four planning tools get a second person into a new workspace, from sign-up to the invite, and what do the others do that Larkspur does not?",
+ "us": "larkspur",
+ "captured": "2026-11-19",
+ "note": "Larkspur, Thistle, Corbel and Halyard are fictional. Every screen is a schematic drawing made for this example, not a screenshot. Notes and scores are one reader's, from one sitting. Nothing was timed: Speed counts steps and typing.",
+ "apps": [
+  {
+   "id": "thistle",
+   "name": "Thistle",
+   "accent": "#9333ea",
+   "role": "Competitor"
+  },
+  {
+   "id": "corbel",
+   "name": "Corbel",
+   "accent": "#c2410c",
+   "role": "Competitor"
+  },
+  {
+   "id": "halyard",
+   "name": "Halyard",
+   "accent": "#0f766e",
+   "role": "Competitor"
+  },
+  {
+   "id": "larkspur",
+   "name": "Larkspur",
+   "accent": "#3157d5",
+   "role": "Our product"
+  }
+ ],
+ "dimensions": [
+  {
+   "id": "clarity",
+   "name": "Clarity",
+   "means": "You can tell what to do next without reading twice."
+  },
+  {
+   "id": "speed",
+   "name": "Speed",
+   "means": "Few steps and little typing to finish the stage."
+  },
+  {
+   "id": "transparency",
+   "name": "Transparency",
+   "means": "Costs, limits and consequences are shown before they bite."
+  },
+  {
+   "id": "trust",
+   "name": "Trust",
+   "means": "Nothing surprises the user later."
+  },
+  {
+   "id": "engagement",
+   "name": "Engagement",
+   "means": "It gives a reason to come back or go further."
+  }
+ ],
+ "stages": [
+  {
+   "id": "S1",
+   "name": "Create the workspace",
+   "lanes": [
+    {
+     "app": "thistle",
+     "flow": "Signup step 3 asks for teammates, then an empty Home",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reaches step 3 of signup",
+       "frame": "desktop",
+       "url": "app.thistle.example/signup/3",
+       "blocks": [
+        [
+         "progress",
+         "Step 3 of 5",
+         {
+          "value": 3,
+          "total": 5
+         }
+        ],
+        [
+         "title",
+         "Invite your team",
+         {
+          "hi": true
+         }
+        ],
+        [
+         "text",
+         "Invite your whole team, free"
+        ],
+        [
+         "field",
+         "Teammate email",
+         {
+          "hint": "name@company.example"
+         }
+        ],
+        [
+         "field",
+         "Teammate email",
+         {
+          "hint": "name@company.example"
+         }
+        ],
+        [
+         "field",
+         "Teammate email",
+         {
+          "hint": "name@company.example"
+         }
+        ],
+        [
+         "cols",
+         "",
+         {
+          "left": [
+           [
+            "cta",
+            "Send invites"
+           ]
+          ],
+          "right": [
+           [
+            "text",
+            "Skip for now"
+           ]
+          ],
+          "split": 0.5
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "Step 3 of 5 is \"Invite your team\", before the user has built anything, with three email fields and \"Send invites\"."
+        },
+        {
+         "k": "friction",
+         "t": "\"Skip for now\" is plain text on the right, while \"Send invites\" is a button, so skipping is easy and the ask is easy to miss."
+        },
+        {
+         "k": "note",
+         "t": "\"Invite your whole team, free\" gives no limit. The three fields match the \"3 seats included\" line the S3 invite dialog shows later."
+        }
+       ]
+      },
+      {
+       "step": "Lands on an empty Home",
+       "frame": "desktop",
+       "url": "app.thistle.example/home",
+       "nav": {
+        "title": "Thistle",
+        "items": [
+         "Home",
+         "Projects",
+         "People",
+         "Settings"
+        ],
+        "on": 0
+       },
+       "blocks": [
+        [
+         "bar",
+         "Welcome, Dana",
+         {
+          "sub": "Your workspace is ready"
+         }
+        ],
+        [
+         "progress",
+         "Getting started",
+         {
+          "value": 1,
+          "total": 4
+         }
+        ],
+        [
+         "check",
+         "Create your workspace",
+         {
+          "done": true
+         }
+        ],
+        [
+         "check",
+         "Add your first project"
+        ],
+        [
+         "check",
+         "Invite your team",
+         {
+          "hi": true
+         }
+        ],
+        [
+         "check",
+         "Connect a calendar"
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "Home says \"Your workspace is ready\" but shows only a 1 of 4 checklist. \"Invite your team\" is third and has no button."
+        },
+        {
+         "k": "good",
+         "t": "The checklist keeps \"Invite your team\" in view, so a skipped invite is not lost."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "One title, three fields and two clear exits on step 3; the skip link is plain text."
+      },
+      "speed": {
+       "n": 3,
+       "why": "Three emails to type, and the invite step adds a page to signup."
+      },
+      "transparency": {
+       "n": 3,
+       "why": "\"Free\" is claimed with no limit, and no price is on the page."
+      },
+      "trust": {
+       "n": 3,
+       "why": "Skipping is quiet, but the invite stays on the Home checklist."
+      },
+      "engagement": {
+       "n": 4,
+       "why": "Asks for teammates before the first project and keeps the ask visible after."
+      }
+     },
+     "verdict": "Asks for teammates during signup, but leaves the limit on 'free' unsaid.",
+     "well": [
+      "Puts the teammate ask in signup, before the first project.",
+      "Keeps 'Invite your team' on the Home checklist after a skip."
+     ],
+     "wrong": [
+      "'Invite your whole team, free' hides the three seat limit.",
+      "Skip is plain text and the checklist row has no button."
+     ],
+     "steal": [
+      "A teammate step inside signup with three fields and a clear skip."
+     ]
+    },
+    {
+     "app": "corbel",
+     "flow": "Signup ends on a filled sample project with Share",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Finishes signup with two fields",
+       "frame": "desktop",
+       "url": "app.corbel.example/welcome",
+       "blocks": [
+        [
+         "title",
+         "Welcome to Corbel"
+        ],
+        [
+         "field",
+         "Your name",
+         {
+          "value": "Dana Whitlock"
+         }
+        ],
+        [
+         "field",
+         "Workspace name",
+         {
+          "value": "Whitlock Q3"
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "cta",
+         "Start with a sample",
+         {
+          "align": "right",
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "Two fields and one button, \"Start with a sample\". Nothing else stands between signup and the product."
+        },
+        {
+         "k": "friction",
+         "t": "There is no teammate ask and no cost line, so a second person is not mentioned until the user finds Share."
+        }
+       ]
+      },
+      {
+       "step": "Opens the ready-made sample project",
+       "frame": "desktop",
+       "url": "app.corbel.example/p/sample-plan",
+       "nav": {
+        "title": "Corbel",
+        "items": [
+         "Pages",
+         "Sample plan",
+         "Search"
+        ],
+        "on": 0
+       },
+       "blocks": [
+        [
+         "bar",
+         "Sample plan: Spring launch",
+         {
+          "sub": "Edited just now",
+          "action": "Share"
+         }
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Item",
+           "Status",
+           "Due"
+          ],
+          "rows": [
+           [
+            "Write launch brief",
+            "Done",
+            "3 Mar"
+           ],
+           [
+            "Book design review",
+            "In progress",
+            "10 Mar"
+           ],
+           [
+            "Draft customer email",
+            "To do",
+            "17 Mar"
+           ]
+          ]
+         }
+        ],
+        [
+         "check",
+         "Replace the sample with your own",
+         {
+          "sub": "Takes about two minutes",
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "\"Replace the sample with your own\" is the next job, with \"Takes about two minutes\" beside it."
+        },
+        {
+         "k": "note",
+         "t": "Share sits top right on a sample page, before there is any real work to share."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 5,
+       "why": "Two fields and one button; the user always knows the next click."
+      },
+      "speed": {
+       "n": 5,
+       "why": "Signup ends in the product after two fields."
+      },
+      "transparency": {
+       "n": 3,
+       "why": "No cost or visibility line appears, but nothing is promised either."
+      },
+      "trust": {
+       "n": 4,
+       "why": "The sample is named as a sample and offers its own replacement."
+      },
+      "engagement": {
+       "n": 3,
+       "why": "A ready project gives something to do, but no second person is mentioned."
+      }
+     },
+     "verdict": "The shortest route into a working page, but it never asks about a second person.",
+     "well": [
+      "Two fields and one button.",
+      "A filled sample with a timed next step."
+     ],
+     "wrong": [
+      "No teammate ask in signup.",
+      "Share appears on a sample page with nothing to share."
+     ],
+     "steal": [
+      "Land on a filled sample so the first page is never empty."
+     ]
+    },
+    {
+     "app": "halyard",
+     "flow": "Signup connects the chat tool and lists who is there",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Is asked to connect the chat tool",
+       "frame": "desktop",
+       "url": "app.halyard.example/setup/chat",
+       "blocks": [
+        [
+         "title",
+         "Find your team"
+        ],
+        [
+         "text",
+         "Connect Parley to see who is already there."
+        ],
+        [
+         "card",
+         "Connect Parley",
+         {
+          "sub": "We read names and photos only",
+          "action": "Connect",
+          "hi": true
+         }
+        ],
+        [
+         "gap"
+        ],
+        [
+         "text",
+         "You can add people later",
+         {}
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "\"We read names and photos only\" says what connecting Parley takes, right beside the Connect button."
+        },
+        {
+         "k": "friction",
+         "t": "Nothing says whether the people found here will cost anything once added. The S3 invite dialog shows $10 per month."
+        }
+       ]
+      },
+      {
+       "step": "Sees 12 people, none ticked",
+       "frame": "desktop",
+       "url": "app.halyard.example/setup/people",
+       "blocks": [
+        [
+         "title",
+         "12 people found. Choose who to add"
+        ],
+        [
+         "check",
+         "Jordan Reyes",
+         {
+          "sub": "Design"
+         }
+        ],
+        [
+         "check",
+         "Priya Nair",
+         {
+          "sub": "Product"
+         }
+        ],
+        [
+         "check",
+         "Tomas Eklund",
+         {
+          "sub": "Engineering"
+         }
+        ],
+        [
+         "check",
+         "Mei Tanaka",
+         {
+          "sub": "Operations"
+         }
+        ],
+        [
+         "text",
+         "+ 8 more. None selected."
+        ],
+        [
+         "cols",
+         "",
+         {
+          "left": [
+           [
+            "cta",
+            "Add 0 people"
+           ]
+          ],
+          "right": [
+           [
+            "cta",
+            "Skip",
+            {
+             "ghost": true
+            }
+           ]
+          ],
+          "split": 0.5,
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "\"12 people found\" lists real colleagues with team names, so the user picks names instead of typing emails."
+        },
+        {
+         "k": "friction",
+         "t": "Nobody is ticked and the button reads \"Add 0 people\", so the default is to add nobody."
+        },
+        {
+         "k": "idea",
+         "t": "Offer one tick for \"Add my team\", and show the price on this screen."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "\"12 people found. Choose who to add\" says the job; the button count is honest."
+      },
+      "speed": {
+       "n": 4,
+       "why": "Connect, tick names, add. No typing, but three taps and a connection."
+      },
+      "transparency": {
+       "n": 3,
+       "why": "Says what the connection reads, but not what adding people costs."
+      },
+      "trust": {
+       "n": 4,
+       "why": "Nobody is ticked and the button reads 'Add 0 people', so nothing happens by default."
+      },
+      "engagement": {
+       "n": 4,
+       "why": "Shows real colleagues by name, which gives a reason to go on."
+      }
+     },
+     "verdict": "Turns the invite into picking from real colleagues, but shows no price at that point.",
+     "well": [
+      "Lists named colleagues with teams.",
+      "States what connecting reads: names and photos only.",
+      "Defaults to adding nobody."
+     ],
+     "wrong": [
+      "No price shown when people are added.",
+      "'You can add people later' is small text."
+     ],
+     "steal": [
+      "A picker of real colleagues from the chat tool, with the count on the button."
+     ]
+    },
+    {
+     "app": "larkspur",
+     "flow": "Signup promises a free trial, then an empty Home",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads the signup page",
+       "frame": "desktop",
+       "url": "app.larkspur.example/signup",
+       "blocks": [
+        [
+         "title",
+         "Start your trial"
+        ],
+        [
+         "banner",
+         "Free for 14 days. No card needed.",
+         {
+          "accent": true,
+          "hi": true
+         }
+        ],
+        [
+         "field",
+         "Work email",
+         {
+          "value": "dana@whitlock-logistics.example"
+         }
+        ],
+        [
+         "field",
+         "Workspace name",
+         {
+          "value": "Whitlock Planning"
+         }
+        ],
+        [
+         "cta",
+         "Create workspace",
+         {
+          "wide": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "\"Free for 14 days. No card needed.\" is the first thing on the page, in an accent banner."
+        },
+        {
+         "k": "friction",
+         "t": "Signup asks for no teammate. It is two fields and \"Create workspace\", then Home."
+        }
+       ]
+      },
+      {
+       "step": "Lands on an empty Home",
+       "frame": "desktop",
+       "url": "app.larkspur.example/home",
+       "nav": {
+        "title": "Larkspur",
+        "items": [
+         "Home",
+         "Projects",
+         "Docs",
+         "Settings"
+        ],
+        "on": 0
+       },
+       "blocks": [
+        [
+         "bar",
+         "Home"
+        ],
+        [
+         "card",
+         "Nothing here yet",
+         {
+          "sub": "Start with a project",
+          "action": "New project"
+         }
+        ],
+        [
+         "text",
+         "Setup checklist",
+         {
+          "bold": true,
+          "ink": true
+         }
+        ],
+        [
+         "check",
+         "Name your workspace",
+         {
+          "done": true
+         }
+        ],
+        [
+         "check",
+         "Create a project"
+        ],
+        [
+         "check",
+         "Add three items"
+        ],
+        [
+         "check",
+         "Set a due date"
+        ],
+        [
+         "check",
+         "Invite your team",
+         {
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "Home shows \"Nothing here yet\" and a five item checklist. \"Invite your team\" is last and has no button."
+        },
+        {
+         "k": "friction",
+         "t": "Two starts compete: the \"New project\" card and a checklist whose first open step is also a project."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 3,
+       "why": "Home has a project card and a five task checklist that both start with a project."
+      },
+      "speed": {
+       "n": 3,
+       "why": "Two fields in signup, but the invite is the last of five tasks."
+      },
+      "transparency": {
+       "n": 4,
+       "why": "\"Free for 14 days. No card needed.\" is plain and first. Billing on S3 undercuts it."
+      },
+      "trust": {
+       "n": 3,
+       "why": "The free promise is clear here and is broken on the S3 Add member dialog."
+      },
+      "engagement": {
+       "n": 2,
+       "why": "Empty Home and no teammate ask; nothing pulls a second person in."
+      }
+     },
+     "verdict": "A plain, clear trial promise, but an empty Home that puts the invite last.",
+     "well": [
+      "States the trial terms first.",
+      "Two fields only."
+     ],
+     "wrong": [
+      "No teammate ask in signup.",
+      "'Invite your team' is the last task and has no button."
+     ]
+    }
+   ],
+   "finding": "Thistle and Halyard ask for teammates in signup; Corbel and Larkspur do not, and Larkspur then puts the invite last on an empty Home.",
+   "synthesis": {
+    "best": [
+     {
+      "app": "halyard",
+      "why": "The user picks named colleagues and the button says 'Add 0 people', so nothing is added by accident."
+     },
+     {
+      "app": "thistle",
+      "why": "The invite is step 3 of 5 and stays on the Home checklist after a skip."
+     }
+    ],
+    "patterns": [
+     {
+      "name": "Ask for teammates before the first project",
+      "text": "A signup step names or collects teammates while the user is still setting up, with a clear way to skip.",
+      "seen": [
+       "thistle",
+       "halyard"
+      ]
+     }
+    ],
+    "anti": [
+     {
+      "name": "The invite is a checklist row, not a button",
+      "text": "'Invite your team' is listed with no action beside it, and sits last or third.",
+      "seen": [
+       "larkspur",
+       "thistle"
+      ]
+     },
+     {
+      "name": "A sample page with Share before any real work",
+      "text": "Share is offered on a page with nothing of the user's own to share.",
+      "seen": [
+       "corbel"
+      ]
+     }
+    ],
+    "ideal": [
+     {
+      "name": "Ask in signup",
+      "text": "After the workspace name, show one step to add teammates, with a skip."
+     },
+     {
+      "name": "Name real people",
+      "text": "Offer colleagues from a connected tool, or three email fields. Show the count on the button."
+     },
+     {
+      "name": "Say the cost here",
+      "text": "State the price and when billing starts, on the same screen."
+     },
+     {
+      "name": "Keep the ask on Home",
+      "text": "If skipped, leave 'Invite your team' with a button on the checklist."
+     }
+    ],
+    "gaps": [
+     {
+      "p": "P0",
+      "title": "Signup never asks for a teammate",
+      "today": "Two fields and 'Create workspace', then an empty Home.",
+      "fix": "Add a teammate step to signup with a skip, like Thistle's step 3.",
+      "benchmark": "thistle"
+     },
+     {
+      "p": "P1",
+      "title": "The invite is the last task and has no button",
+      "today": "'Invite your team' is the fifth checklist row on an empty Home.",
+      "fix": "Move it up and give it a button.",
+      "benchmark": "thistle"
+     },
+     {
+      "p": "P2",
+      "title": "No real colleagues to pick from",
+      "today": "The user types every email.",
+      "fix": "Offer a connected chat tool and list people by name, as Halyard does.",
+      "benchmark": "halyard"
+     }
+    ]
+   }
+  },
+  {
+   "id": "S2",
+   "name": "Make the first project",
+   "lanes": [
+    {
+     "app": "thistle",
+     "flow": "A project table that only lists You, plus a nudge",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Builds the first project table",
+       "frame": "desktop",
+       "url": "app.thistle.example/projects/q3",
+       "nav": {
+        "title": "Thistle",
+        "items": [
+         "Home",
+         "Projects",
+         "People",
+         "Settings"
+        ],
+        "on": 1
+       },
+       "blocks": [
+        [
+         "bar",
+         "Q3 roadmap"
+        ],
+        [
+         "banner",
+         "Projects are better with a team.",
+         {
+          "sub": "Invite",
+          "warn": false,
+          "hi": true
+         }
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Task",
+           "Assign",
+           "Due"
+          ],
+          "rows": [
+           [
+            "Customer interviews",
+            "You",
+            "12 Jun"
+           ],
+           [
+            "Scope review",
+            "You",
+            "19 Jun"
+           ],
+           [
+            "Draft plan",
+            "You",
+            "26 Jun"
+           ]
+          ]
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "The banner \"Projects are better with a team.\" appears on the project page itself."
+        },
+        {
+         "k": "friction",
+         "t": "\"Invite\" is a second line of text, not a button, and the banner copy is generic."
+        },
+        {
+         "k": "friction",
+         "t": "Every row in the Assign column says \"You\", so the table shows a one person plan."
+        }
+       ]
+      },
+      {
+       "step": "Opens the Assign menu on a task",
+       "frame": "desktop",
+       "url": "app.thistle.example/projects/q3",
+       "nav": {
+        "title": "Thistle",
+        "items": [
+         "Home",
+         "Projects",
+         "People",
+         "Settings"
+        ],
+        "on": 1
+       },
+       "blocks": [
+        [
+         "bar",
+         "Q3 roadmap"
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Task",
+           "Assign"
+          ],
+          "rows": [
+           [
+            "Customer interviews",
+            "You"
+           ]
+          ]
+         }
+        ],
+        [
+         "modal",
+         "Assign to",
+         {
+          "sub": "Only you are in this workspace",
+          "items": [
+           "You"
+          ],
+          "on": 0,
+          "cta": "Invite teammates",
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "The Assign menu offers only \"You\", says \"Only you are in this workspace\" and ends with \"Invite teammates\"."
+        },
+        {
+         "k": "note",
+         "t": "The same ask as the banner on the previous screen, so the user meets it twice in one project."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "The banner and the Assign menu say what to do and where."
+      },
+      "speed": {
+       "n": 4,
+       "why": "One click from the banner or the menu to the invite."
+      },
+      "transparency": {
+       "n": 3,
+       "why": "Says 'Only you are in this workspace', but gives no cost at the nudge."
+      },
+      "trust": {
+       "n": 4,
+       "why": "The menu offers only 'You' and says why, so nothing is hidden."
+      },
+      "engagement": {
+       "n": 4,
+       "why": "Two nudges inside the work, one at the point of assigning."
+      }
+     },
+     "verdict": "Raises the invite where work is assigned, but the banner copy is generic.",
+     "well": [
+      "The Assign menu says 'Only you are in this workspace' and offers 'Invite teammates'.",
+      "Nudges twice inside the project."
+     ],
+     "wrong": [
+      "'Invite' is text on the banner, not a button.",
+      "The table still shows only 'You'."
+     ],
+     "steal": [
+      "An Assign menu that ends in an Invite button."
+     ]
+    },
+    {
+     "app": "corbel",
+     "flow": "Every page says Only you, Share stays top right",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Writes the first page",
+       "frame": "desktop",
+       "url": "app.corbel.example/p/q3-roadmap",
+       "nav": {
+        "title": "Corbel",
+        "items": [
+         "Pages",
+         "Sample plan",
+         "Search"
+        ],
+        "on": 0
+       },
+       "blocks": [
+        [
+         "bar",
+         "Q3 roadmap",
+         {
+          "sub": "Draft",
+          "action": "Share"
+         }
+        ],
+        [
+         "people",
+         "Only you",
+         {
+          "items": [
+           "Dana"
+          ],
+          "hi": true
+         }
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Item",
+           "Status"
+          ],
+          "rows": [
+           [
+            "Customer interviews",
+            "In progress"
+           ],
+           [
+            "Scope review",
+            "To do"
+           ],
+           [
+            "Draft plan",
+            "To do"
+           ]
+          ]
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "\"Only you\" with Dana's avatar sits under the page title and tells the user who can see this page."
+        },
+        {
+         "k": "friction",
+         "t": "It is a status line only. Nothing invites anyone, and \"Share\" is the only way out."
+        }
+       ]
+      },
+      {
+       "step": "Opens a second page",
+       "frame": "desktop",
+       "url": "app.corbel.example/p/launch-notes",
+       "nav": {
+        "title": "Corbel",
+        "items": [
+         "Pages",
+         "Sample plan",
+         "Search"
+        ],
+        "on": 0
+       },
+       "blocks": [
+        [
+         "bar",
+         "Launch notes",
+         {
+          "sub": "Draft",
+          "action": "Share"
+         }
+        ],
+        [
+         "people",
+         "Only you",
+         {
+          "items": [
+           "Dana"
+          ],
+          "hi": true
+         }
+        ],
+        [
+         "check",
+         "Confirm owners",
+         {}
+        ],
+        [
+         "check",
+         "Write the risks",
+         {}
+        ]
+       ],
+       "notes": [
+        {
+         "k": "note",
+         "t": "The second page repeats \"Only you\" and \"Share\" unchanged. The cue is steady but does not escalate."
+        },
+        {
+         "k": "idea",
+         "t": "Change the line once there are two pages, for example \"Only you. Share this page.\""
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "'Only you' under the title is easy to read."
+      },
+      "speed": {
+       "n": 4,
+       "why": "Share is always top right, one click away."
+      },
+      "transparency": {
+       "n": 3,
+       "why": "Shows who can see the page, but not what sharing costs."
+      },
+      "trust": {
+       "n": 4,
+       "why": "The visibility line is steady on both pages."
+      },
+      "engagement": {
+       "n": 3,
+       "why": "The cue is a status, not a prompt, and does not change on page two."
+      }
+     },
+     "verdict": "Always shows who can see a page, but only as a status that never asks.",
+     "well": [
+      "'Only you' is on both pages.",
+      "Share has a fixed place."
+     ],
+     "wrong": [
+      "No text invites anyone.",
+      "The cue does not escalate."
+     ],
+     "steal": [
+      "A visibility line under every page title."
+     ]
+    },
+    {
+     "app": "halyard",
+     "flow": "A prompt appears after the third item",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Adds the third item to a plan",
+       "frame": "desktop",
+       "url": "app.halyard.example/plans/q3",
+       "nav": {
+        "title": "Halyard",
+        "items": [
+         "Home",
+         "Plans",
+         "People"
+        ],
+        "on": 1
+       },
+       "blocks": [
+        [
+         "bar",
+         "Q3 roadmap",
+         {
+          "sub": "3 items"
+         }
+        ],
+        [
+         "row",
+         "Customer interviews",
+         {
+          "right": "12 Jun"
+         }
+        ],
+        [
+         "row",
+         "Scope review",
+         {
+          "right": "19 Jun"
+         }
+        ],
+        [
+         "row",
+         "Draft plan",
+         {
+          "right": "26 Jun"
+         }
+        ],
+        [
+         "card",
+         "Ready to show someone?",
+         {
+          "sub": "Preview what they will see.",
+          "action": "Preview",
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "\"Ready to show someone?\" appears right after the third row, when the plan has something to show."
+        },
+        {
+         "k": "friction",
+         "t": "The card offers \"Preview\", not \"Invite\", so the first ask is one step short of an invite."
+        }
+       ]
+      },
+      {
+       "step": "Taps Preview",
+       "frame": "desktop",
+       "url": "app.halyard.example/plans/q3/preview",
+       "nav": {
+        "title": "Halyard",
+        "items": [
+         "Home",
+         "Plans",
+         "People"
+        ],
+        "on": 1
+       },
+       "blocks": [
+        [
+         "banner",
+         "Choose a person to preview as",
+         {
+          "accent": true
+         }
+        ],
+        [
+         "row",
+         "Jordan Reyes",
+         {
+          "sub": "Design",
+          "avatar": "Jordan Reyes",
+          "hi": true
+         }
+        ],
+        [
+         "row",
+         "Priya Nair",
+         {
+          "sub": "Product",
+          "avatar": "Priya Nair"
+         }
+        ],
+        [
+         "row",
+         "Mei Tanaka",
+         {
+          "sub": "Operations",
+          "avatar": "Mei Tanaka"
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "The user picks from three named colleagues with team names. Jordan, Priya and Mei came from the 12 listed in S1."
+        },
+        {
+         "k": "friction",
+         "t": "No invite button on this screen. The user previews and must find the invite elsewhere."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "'Ready to show someone?' says why the card is there; Preview is one step off Invite."
+      },
+      "speed": {
+       "n": 4,
+       "why": "The prompt arrives on its own after item three and picks from named people."
+      },
+      "transparency": {
+       "n": 3,
+       "why": "Says what the preview shows, not what an invite costs; price appears on S3."
+      },
+      "trust": {
+       "n": 4,
+       "why": "Preview sends nothing, so the user can look without committing."
+      },
+      "engagement": {
+       "n": 4,
+       "why": "Times the ask to when there is something to show, and uses people from S1."
+      }
+     },
+     "verdict": "Asks at the moment there is something to show, but offers Preview, not Invite.",
+     "well": [
+      "Prompt after the third item.",
+      "Names three colleagues from the S1 list."
+     ],
+     "wrong": [
+      "No invite button on the preview screen."
+     ],
+     "steal": [
+      "A prompt that appears once the plan has three items."
+     ]
+    },
+    {
+     "app": "larkspur",
+     "flow": "A project table, Owner is You, no mention of others",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Creates the first project",
+       "frame": "desktop",
+       "url": "app.larkspur.example/projects",
+       "nav": {
+        "title": "Larkspur",
+        "items": [
+         "Home",
+         "Projects",
+         "Docs",
+         "Settings"
+        ],
+        "on": 1
+       },
+       "blocks": [
+        [
+         "bar",
+         "Projects",
+         {
+          "action": "New project"
+         }
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Project",
+           "Owner",
+           "Status"
+          ],
+          "rows": [
+           [
+            "Q3 roadmap",
+            "You",
+            "Draft"
+           ]
+          ],
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "The table has an Owner column and its only value is \"You\". Nothing on the screen mentions another person."
+        },
+        {
+         "k": "idea",
+         "t": "Put \"Only you\" and an \"Invite\" button next to the project name."
+        }
+       ]
+      },
+      {
+       "step": "Adds items, checklist reads 2 of 5",
+       "frame": "desktop",
+       "url": "app.larkspur.example/projects/q3-roadmap",
+       "nav": {
+        "title": "Larkspur",
+        "items": [
+         "Home",
+         "Projects",
+         "Docs",
+         "Settings"
+        ],
+        "on": 1
+       },
+       "blocks": [
+        [
+         "bar",
+         "Q3 roadmap"
+        ],
+        [
+         "progress",
+         "Setup checklist",
+         {
+          "value": 2,
+          "total": 5,
+          "hi": true
+         }
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Item",
+           "Owner",
+           "Due"
+          ],
+          "rows": [
+           [
+            "Customer interviews",
+            "You",
+            "12 Jun"
+           ],
+           [
+            "Scope review",
+            "You",
+            "19 Jun"
+           ],
+           [
+            "Draft plan",
+            "You",
+            "26 Jun"
+           ]
+          ]
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "The checklist reads 2 of 5, but the table holds three items with due dates. Compare the S1 Home tasks \"Add three items\" and \"Set a due date\"."
+        },
+        {
+         "k": "friction",
+         "t": "Nothing here leads to \"Invite your team\", the fifth task counted in the 2 of 5."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 3,
+       "why": "The table is readable, but the checklist count does not match the work."
+      },
+      "speed": {
+       "n": 3,
+       "why": "Items go in easily, but nothing points to the next step."
+      },
+      "transparency": {
+       "n": 2,
+       "why": "The checklist reads 2 of 5 with the first four tasks done by the screen."
+      },
+      "trust": {
+       "n": 2,
+       "why": "A progress count that does not move teaches the user to ignore it."
+      },
+      "engagement": {
+       "n": 1,
+       "why": "No mention of other people on either screen."
+      }
+     },
+     "verdict": "A tidy project table, but it never mentions anyone else.",
+     "well": [
+      "Items and due dates are quick to add.",
+      "The checklist is shown on the project page."
+     ],
+     "wrong": [
+      "The count says 2 of 5 with three items and dates entered.",
+      "No cue that others can join."
+     ]
+    }
+   ],
+   "finding": "Thistle and Halyard raise the invite while the user works; Corbel only says 'Only you'; Larkspur does not mention other people on either screen.",
+   "synthesis": {
+    "best": [
+     {
+      "app": "halyard",
+      "why": "The prompt arrives after the third item, when there is something to show, and lists named people."
+     },
+     {
+      "app": "thistle",
+      "why": "The Assign menu says 'Only you are in this workspace' and offers 'Invite teammates'."
+     }
+    ],
+    "patterns": [
+     {
+      "name": "Ask at the point of need",
+      "text": "The invite is raised inside the work, on a prompt or a menu, not only in settings.",
+      "seen": [
+       "thistle",
+       "halyard"
+      ]
+     },
+     {
+      "name": "Say who is in the workspace",
+      "text": "The page says 'Only you' or 'Only you are in this workspace' next to the work.",
+      "seen": [
+       "thistle",
+       "corbel"
+      ]
+     }
+    ],
+    "anti": [
+     {
+      "name": "A table of one person",
+      "text": "Owner or Assign columns that only ever say 'You', with no cue that others can join.",
+      "seen": [
+       "larkspur",
+       "thistle"
+      ]
+     },
+     {
+      "name": "A progress count that does not move",
+      "text": "The checklist reads 2 of 5 with the first four tasks done by the screen.",
+      "seen": [
+       "larkspur"
+      ]
+     }
+    ],
+    "ideal": [
+     {
+      "name": "Say who is here",
+      "text": "Put 'Only you' next to the project name."
+     },
+     {
+      "name": "Prompt when there is something to show",
+      "text": "After the third item, ask 'Ready to show someone?'."
+     },
+     {
+      "name": "Offer invite, not only preview",
+      "text": "Put an Invite button beside the people listed."
+     }
+    ],
+    "gaps": [
+     {
+      "p": "P0",
+      "title": "No prompt to invite while the user works",
+      "today": "The project page never mentions another person.",
+      "fix": "Show a prompt after the third item, as Halyard does.",
+      "benchmark": "halyard"
+     },
+     {
+      "p": "P0",
+      "title": "The Assign step has no invite",
+      "today": "Owner is 'You' on every row and nothing offers anyone else.",
+      "fix": "Make the owner cell open a menu that ends in 'Invite teammates', as Thistle does.",
+      "benchmark": "thistle"
+     },
+     {
+      "p": "P1",
+      "title": "The checklist count is wrong",
+      "today": "It reads 2 of 5 with items and due dates already in.",
+      "fix": "Count each task as the work is done.",
+      "benchmark": null,
+      "benchmarkNote": "No app on the board shows a checklist count moving, so there is no benchmark."
+     }
+    ]
+   }
+  },
+  {
+   "id": "S3",
+   "name": "Bring someone in",
+   "lanes": [
+    {
+     "app": "thistle",
+     "flow": "An invite dialog with a seat line in small text",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the invite dialog",
+       "frame": "desktop",
+       "url": "app.thistle.example/people",
+       "nav": {
+        "title": "Thistle",
+        "items": [
+         "Home",
+         "Projects",
+         "People",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "People"
+        ],
+        [
+         "row",
+         "Dana Whitlock",
+         {
+          "right": "Admin"
+         }
+        ],
+        [
+         "modal",
+         "Invite teammates",
+         {
+          "sub": "3 seats included, then $9 per member",
+          "field": "name@company.example",
+          "cta": "Send invite",
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "The invite dialog sits on People, a top level nav item, with one field and \"Send invite\"."
+        },
+        {
+         "k": "friction",
+         "t": "\"3 seats included, then $9 per member\" does not say how many seats are used."
+        },
+        {
+         "k": "note",
+         "t": "S1 said \"Invite your whole team, free\". Here the fourth person costs $9, and signup never said so."
+        }
+       ]
+      },
+      {
+       "step": "Sends the invite and sees it pending",
+       "frame": "desktop",
+       "url": "app.thistle.example/people",
+       "nav": {
+        "title": "Thistle",
+        "items": [
+         "Home",
+         "Projects",
+         "People",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "People",
+         {
+          "action": "Invite"
+         }
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Name",
+           "Role",
+           "Status"
+          ],
+          "rows": [
+           [
+            "Dana Whitlock",
+            "Admin",
+            "Active"
+           ],
+           [
+            "jordan@whitlock-logistics.example",
+            "Member",
+            "Pending"
+           ]
+          ],
+          "hi": true
+         }
+        ],
+        [
+         "toast",
+         "Invite sent"
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "The table shows jordan@ as \"Pending\" with a \"Member\" role, and a toast says \"Invite sent\"."
+        },
+        {
+         "k": "friction",
+         "t": "Nothing shows what Jordan will see or which project they land in."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "The invite is one dialog with one field, on a nav item named People."
+      },
+      "speed": {
+       "n": 4,
+       "why": "Open People, type one email, send. Two steps."
+      },
+      "transparency": {
+       "n": 4,
+       "why": "The seat line shows the price before sending, but not how many seats are used."
+      },
+      "trust": {
+       "n": 3,
+       "why": "Pending is shown, but S1 said 'free' with no limit."
+      },
+      "engagement": {
+       "n": 3,
+       "why": "Confirms the invite, but not what Jordan will see."
+      }
+     },
+     "verdict": "A quick, honest invite dialog, but the pending row says nothing of what happens next.",
+     "well": [
+      "People is a top level item.",
+      "Price is in the dialog.",
+      "A toast and a pending row confirm the send."
+     ],
+     "wrong": [
+      "No view of what the invitee will see.",
+      "'Free' on S1 and $9 here are not tied together."
+     ],
+     "steal": [
+      "A People item in the main nav with the invite dialog on it."
+     ]
+    },
+    {
+     "app": "corbel",
+     "flow": "A share dialog with a link, then a guest viewing",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the share dialog",
+       "frame": "desktop",
+       "url": "app.corbel.example/p/q3-roadmap",
+       "nav": {
+        "title": "Corbel",
+        "items": [
+         "Pages",
+         "Sample plan",
+         "Search"
+        ],
+        "on": 0
+       },
+       "blocks": [
+        [
+         "bar",
+         "Q3 roadmap",
+         {
+          "action": "Share"
+         }
+        ],
+        [
+         "modal",
+         "Share this page",
+         {
+          "sub": "Anyone with the link can view. Guests are free, forever",
+          "field": "app.corbel.example/g/q3-roadmap",
+          "cta": "Copy link",
+          "hi": true
+         }
+        ],
+        [
+         "toggle",
+         "Can comment",
+         {
+          "on": false
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "\"Anyone with the link can view. Guests are free, forever\" states the cost and the reach in one line."
+        },
+        {
+         "k": "friction",
+         "t": "\"Can comment\" is off, so a guest can read but not take part."
+        }
+       ]
+      },
+      {
+       "step": "Copies the link, a guest opens it",
+       "frame": "desktop",
+       "url": "app.corbel.example/p/q3-roadmap",
+       "nav": {
+        "title": "Corbel",
+        "items": [
+         "Pages",
+         "Sample plan",
+         "Search"
+        ],
+        "on": 0
+       },
+       "blocks": [
+        [
+         "bar",
+         "Q3 roadmap",
+         {
+          "action": "Share"
+         }
+        ],
+        [
+         "people",
+         "1 guest viewing",
+         {
+          "items": [
+           "Dana",
+           "+1"
+          ],
+          "hi": true
+         }
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Item",
+           "Status"
+          ],
+          "rows": [
+           [
+            "Customer interviews",
+            "In progress"
+           ],
+           [
+            "Scope review",
+            "To do"
+           ]
+          ]
+         }
+        ],
+        [
+         "toast",
+         "Link copied"
+        ]
+       ],
+       "notes": [
+        {
+         "k": "note",
+         "t": "\"1 guest viewing\" with \"Dana\" and \"+1\": a second person is on the page in two actions, with no typing."
+        },
+        {
+         "k": "friction",
+         "t": "A viewing guest is not an active member. No Corbel screen gives a member price or a way to upgrade a guest."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "Share dialog, link and one button; the guest view is shown next."
+      },
+      "speed": {
+       "n": 5,
+       "why": "Copy a link and a guest is in. No typing."
+      },
+      "transparency": {
+       "n": 4,
+       "why": "Says who can view and that guests are free, but no member price on any screen."
+      },
+      "trust": {
+       "n": 4,
+       "why": "The link scope is disclosed, with comments off by default."
+      },
+      "engagement": {
+       "n": 3,
+       "why": "A guest arrives fast, but can only look and nothing offers an upgrade."
+      }
+     },
+     "verdict": "The fastest way to get a second person on the page, but a guest only looks.",
+     "well": [
+      "A link, no typing.",
+      "'Guests are free, forever' is plain."
+     ],
+     "wrong": [
+      "Comments are off by default.",
+      "No path from guest to member."
+     ],
+     "steal": [
+      "A view link that makes a second person appear with no typing."
+     ]
+    },
+    {
+     "app": "halyard",
+     "flow": "Preview as the guest, then an invite that names the price",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Previews the plan as Jordan",
+       "frame": "desktop",
+       "url": "app.halyard.example/plans/q3/preview/jordan",
+       "nav": {
+        "title": "Halyard",
+        "items": [
+         "Home",
+         "Plans",
+         "People"
+        ],
+        "on": 1
+       },
+       "blocks": [
+        [
+         "banner",
+         "Previewing as Jordan",
+         {
+          "sub": "This is what Jordan will see",
+          "accent": true
+         }
+        ],
+        [
+         "row",
+         "Customer interviews",
+         {
+          "right": "12 Jun"
+         }
+        ],
+        [
+         "row",
+         "Scope review",
+         {
+          "right": "19 Jun"
+         }
+        ],
+        [
+         "row",
+         "Salary band notes",
+         {
+          "badge": "Hidden from guests",
+          "dim": true,
+          "hi": true
+         }
+        ],
+        [
+         "row",
+         "Draft plan",
+         {
+          "badge": "Hidden from guests",
+          "dim": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "\"Previewing as Jordan\" and two rows tagged \"Hidden from guests\" show the invitee's view before anything is sent."
+        },
+        {
+         "k": "friction",
+         "t": "This is a guest view. The next screen invites Jordan as a member, so the preview may not match what they get."
+        },
+        {
+         "k": "note",
+         "t": "\"Salary band notes\" is not among the three items on the S2 plan, so the preview shows a row the plan did not."
+        }
+       ]
+      },
+      {
+       "step": "Invites Jordan",
+       "frame": "desktop",
+       "url": "app.halyard.example/plans/q3",
+       "nav": {
+        "title": "Halyard",
+        "items": [
+         "Home",
+         "Plans",
+         "People"
+        ],
+        "on": 1
+       },
+       "blocks": [
+        [
+         "bar",
+         "Q3 roadmap"
+        ],
+        [
+         "row",
+         "Customer interviews",
+         {
+          "right": "12 Jun"
+         }
+        ],
+        [
+         "modal",
+         "Invite Jordan Reyes",
+         {
+          "sub": "Jordan joins as a member: $10 per month, billed from the end of your trial",
+          "cta": "Send invite",
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "\"Jordan joins as a member: $10 per month, billed from the end of your trial\" gives price and date before \"Send invite\"."
+        },
+        {
+         "k": "friction",
+         "t": "The S1 list let the user add people with no price shown. The price appears only here."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "Preview, then a named invite. Each screen has one job."
+      },
+      "speed": {
+       "n": 4,
+       "why": "Two taps and no typing, because the name is already known."
+      },
+      "transparency": {
+       "n": 5,
+       "why": "The dialog gives the price and the billing start before 'Send invite'."
+      },
+      "trust": {
+       "n": 3,
+       "why": "The preview is a guest view, but the invite makes a member, so the match is unclear."
+      },
+      "engagement": {
+       "n": 4,
+       "why": "The user sees the invitee's view first, which gives a reason to go ahead."
+      }
+     },
+     "verdict": "Shows both the invitee's view and the price, but the preview is a guest view for a member invite.",
+     "well": [
+      "Preview as the invitee.",
+      "Price and billing date in the dialog.",
+      "Named person, no typing."
+     ],
+     "wrong": [
+      "Preview and invite roles differ.",
+      "A 'Salary band notes' row is not on the S2 plan."
+     ],
+     "steal": [
+      "Show the invite's price and billing start in the dialog.",
+      "Preview as the invitee before sending."
+     ]
+    },
+    {
+     "app": "larkspur",
+     "flow": "Settings, Members, then an Add member dialog",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Finds Members under Settings",
+       "frame": "desktop",
+       "url": "app.larkspur.example/settings/members",
+       "nav": {
+        "title": "Larkspur",
+        "items": [
+         "Home",
+         "Projects",
+         "Docs",
+         "Settings"
+        ],
+        "on": 3
+       },
+       "blocks": [
+        [
+         "bar",
+         "Members",
+         {
+          "action": "Add member",
+          "hi": true
+         }
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Name",
+           "Role",
+           "Seat"
+          ],
+          "rows": [
+           [
+            "Dana Whitlock",
+            "Admin",
+            "Paid"
+           ]
+          ]
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "The invite lives under Settings, then Members. The nav has no People or Share item."
+        },
+        {
+         "k": "friction",
+         "t": "The Members table shows Dana as \"Paid\" during a trial that signup called free for 14 days."
+        }
+       ]
+      },
+      {
+       "step": "Opens the Add member dialog",
+       "frame": "desktop",
+       "url": "app.larkspur.example/settings/members",
+       "nav": {
+        "title": "Larkspur",
+        "items": [
+         "Home",
+         "Projects",
+         "Docs",
+         "Settings"
+        ],
+        "on": 3
+       },
+       "blocks": [
+        [
+         "bar",
+         "Members"
+        ],
+        [
+         "table",
+         "",
+         {
+          "cols": [
+           "Name",
+           "Role"
+          ],
+          "rows": [
+           [
+            "Dana Whitlock",
+            "Admin"
+           ]
+          ]
+         }
+        ],
+        [
+         "modal",
+         "Add member",
+         {
+          "sub": "Adding a member starts billing today: $12 per month",
+          "field": "Email address",
+          "items": [
+           "Member"
+          ],
+          "on": 0,
+          "cta": "Add member",
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "\"Adding a member starts billing today: $12 per month\" contradicts \"Free for 14 days. No card needed.\" on S1 signup."
+        },
+        {
+         "k": "good",
+         "t": "The price is on the dialog before the click, as Thistle and Halyard also do."
+        },
+        {
+         "k": "idea",
+         "t": "Use Halyard's wording: billed from the end of the trial."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 3,
+       "why": "Add member is clear once found, but the path is Settings then Members."
+      },
+      "speed": {
+       "n": 2,
+       "why": "Home, Settings, Members, Add member, type an email: four steps."
+      },
+      "transparency": {
+       "n": 4,
+       "why": "The $12 and 'billing today' are on the dialog before the click."
+      },
+      "trust": {
+       "n": 2,
+       "why": "'Billing today' contradicts the S1 'No card needed', and Dana is 'Paid' in a trial."
+      },
+      "engagement": {
+       "n": 2,
+       "why": "No preview, no project link, nothing for the invitee."
+      }
+     },
+     "verdict": "States the price before the click, but hides the invite and contradicts the trial promise.",
+     "well": [
+      "The price is in the dialog.",
+      "One field and one role."
+     ],
+     "wrong": [
+      "The invite is under Settings.",
+      "'Starts billing today' contradicts the signup.",
+      "Nothing shows what the invitee sees."
+     ]
+    }
+   ],
+   "finding": "Halyard shows the invitee's view and the price before sending; Larkspur hides the invite in Settings and says billing starts today after promising no card.",
+   "synthesis": {
+    "best": [
+     {
+      "app": "halyard",
+      "why": "The dialog gives price and billing start, and the invitee's view is previewed first."
+     },
+     {
+      "app": "corbel",
+      "why": "A shared link gets a second person on the page with no typing."
+     }
+    ],
+    "patterns": [
+     {
+      "name": "Price in the invite dialog",
+      "text": "The invite dialog states what the new person costs before the button.",
+      "seen": [
+       "thistle",
+       "halyard",
+       "larkspur"
+      ]
+     },
+     {
+      "name": "The invite is one click from the work",
+      "text": "A People item or a Share button sits in the main view.",
+      "seen": [
+       "thistle",
+       "corbel"
+      ]
+     }
+    ],
+    "anti": [
+     {
+      "name": "Billing that starts at the invite",
+      "text": "'Starts billing today' after a trial that promised no card.",
+      "seen": [
+       "larkspur"
+      ]
+     },
+     {
+      "name": "A guest who can only look",
+      "text": "Comments are off and no upgrade path appears.",
+      "seen": [
+       "corbel"
+      ]
+     }
+    ],
+    "ideal": [
+     {
+      "name": "Find it in one click",
+      "text": "A People item or a Share button, never Settings."
+     },
+     {
+      "name": "Show what they see",
+      "text": "Preview the invitee's view, in the role they will get."
+     },
+     {
+      "name": "Say the price and the date",
+      "text": "'$X per month, billed from the end of your trial'."
+     },
+     {
+      "name": "Confirm and attach",
+      "text": "Show the pending row, and say which project they land in."
+     }
+    ],
+    "gaps": [
+     {
+      "p": "P0",
+      "title": "'Billing starts today' contradicts the trial promise",
+      "today": "S1 says 'No card needed'; the Add member dialog says billing starts today at $12.",
+      "fix": "Word it as billed from the end of the trial.",
+      "benchmark": "halyard"
+     },
+     {
+      "p": "P1",
+      "title": "The invite is under Settings, then Members",
+      "today": "Four steps from Home and no People item.",
+      "fix": "Add People to the main nav, as Thistle does.",
+      "benchmark": "thistle"
+     },
+     {
+      "p": "P1",
+      "title": "No view of what the invitee will see",
+      "today": "The dialog has an email field and a role.",
+      "fix": "Add a preview as the invitee, in the role they get.",
+      "benchmark": "halyard"
+     },
+     {
+      "p": "P2",
+      "title": "No zero cost way to bring someone in",
+      "today": "Every second person is a paid seat.",
+      "fix": "Offer a view link for guests.",
+      "benchmark": "corbel"
+     }
+    ]
+   }
+  }
+ ],
+ "principles": [
+  {
+   "name": "Ask before the page is empty",
+   "text": "Thistle and Halyard raise teammates in signup. Larkspur lists the invite last on an empty Home.",
+   "evidence": [
+    "S1"
+   ]
+  },
+  {
+   "name": "Raise the invite where the work is",
+   "text": "The strongest cues are the Assign menu and the prompt after item three, not a setting.",
+   "evidence": [
+    "S2"
+   ]
+  },
+  {
+   "name": "Say who is here, on every page",
+   "text": "'Only you' tells the user the workspace is solo. Larkspur never says it.",
+   "evidence": [
+    "S2"
+   ]
+  },
+  {
+   "name": "Say the price when you ask",
+   "text": "Halyard and Thistle price the seat in the dialog. Larkspur does, but contradicts its own trial.",
+   "evidence": [
+    "S1",
+    "S3"
+   ]
+  },
+  {
+   "name": "Let the invitee be seen before it is sent",
+   "text": "Halyard previews the invitee's view. Nobody else does, and Larkspur has nothing.",
+   "evidence": [
+    "S2",
+    "S3"
+   ]
+  }
+ ]
+}

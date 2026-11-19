@@ -31,7 +31,7 @@ import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 import { createServer } from "node:http";
 
-import { SITE, STAGES, ROLES } from "../hub/site.config.mjs";
+import { SITE, STAGES, ROLES, CASES } from "../hub/site.config.mjs";
 import { page } from "../hub/lib/html.mjs";
 import { loadWorkflows, loadGuides, loadIssues, loadSkills, loadDigests } from "../hub/lib/content.mjs";
 import { zip } from "../hub/lib/zip.mjs";
@@ -77,6 +77,7 @@ async function bundle() {
   const fonts = [
     ["@fontsource-variable/geist/files/geist-latin-wght-normal.woff2", "geist-latin-wght-normal.woff2"],
     ["@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2", "geist-mono-latin-wght-normal.woff2"],
+    ["@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-opsz-normal.woff2", "bricolage-grotesque-latin-opsz-normal.woff2"],
   ];
   for (const [from, to] of fonts) await copyFile(require.resolve(from), join(out, "fonts", to));
 
@@ -156,7 +157,7 @@ async function main() {
   await copyStatic();
 
   const [workflows, guides, issues, skills, digests] = await Promise.all([
-    loadWorkflows(ROOT),
+    loadWorkflows(ROOT, CASES.map((c) => c.id)),
     loadGuides(ROOT),
     loadIssues(ROOT),
     loadSkills(ROOT, SITE.repo.skillsDir),
@@ -173,6 +174,7 @@ async function main() {
     site: SITE,
     stages: STAGES,
     roles: ROLES,
+    cases: CASES,
     workflows,
     guides,
     issues,

@@ -1,0 +1,1452 @@
+{
+ "title": "Larkspur trials: why a second person does not arrive in week one",
+ "question": "Why do most trial workspaces never get a second active person in the first week, and what would get one in?",
+ "date": "2026-11-19",
+ "participants": [
+  {
+   "id": "P1",
+   "name": "Dana",
+   "profile": "Product manager at a 60-person logistics software company. Started the trial to plan a Q3 roadmap.",
+   "file": "P1.txt"
+  },
+  {
+   "id": "P2",
+   "name": "Marcus",
+   "profile": "Engineering manager, 9 reports, at a 200-person company. IT approves every new tool.",
+   "file": "P2.txt"
+  },
+  {
+   "id": "P3",
+   "name": "Ines",
+   "profile": "Founder of a 6-person studio. Invited everyone on day one.",
+   "file": "P3.txt"
+  },
+  {
+   "id": "P4",
+   "name": "Tobias",
+   "profile": "Senior designer at an agency. Wanted the client to look at a plan, not edit it.",
+   "file": "P4.txt"
+  },
+  {
+   "id": "P5",
+   "name": "Aiko",
+   "profile": "Operations lead at a 40-person nonprofit. Watches every subscription cost.",
+   "file": "P5.txt"
+  },
+  {
+   "id": "P6",
+   "name": "Reggie",
+   "profile": "Product manager at a 1,200-person company with single sign-on for everything.",
+   "file": "P6.txt"
+  },
+  {
+   "id": "P7",
+   "name": "Soledad",
+   "profile": "Team lead of 5 engineers at a startup. Likes building things with the team from an empty page.",
+   "file": "P7.txt"
+  },
+  {
+   "id": "P8",
+   "name": "Wen",
+   "profile": "Chief of staff at a 90-person company. Tried to invite two directors and neither joined.",
+   "file": "P8.txt"
+  }
+ ],
+ "themes": [
+  {
+   "id": "T1",
+   "name": "Waiting until the plan looks presentable before showing anyone",
+   "summary": "Six people held the workspace back from the one person they wanted to show until it looked finished. Several said the first thing a boss or client sees is what they remember. For several of them the 14-day trial ran out, or was nearly out, before they felt ready. Dana said a share link would not change this: she would still wait.",
+   "support": [
+    "P1",
+    "P2",
+    "P4",
+    "P5",
+    "P6",
+    "P8"
+   ],
+   "quotes": [
+    {
+     "p": "P1",
+     "text": "I wasn't going to send Kemal a half-empty roadmap, because the first thing he sees is the thing he remembers.",
+     "line": 27,
+     "ctx": [
+      {
+       "n": 25,
+       "who": "P1",
+       "text": "My boss. Head of product. Very kind, very busy, remembers everything you ever sent him."
+      },
+      {
+       "n": 26,
+       "who": "Interviewer",
+       "text": "So what were you waiting for?"
+      },
+      {
+       "n": 27,
+       "who": "P1",
+       "text": "For it to look like a plan. I wasn't going to send Kemal a half-empty roadmap, because the first thing he sees is the thing he remembers."
+      },
+      {
+       "n": 28,
+       "who": "Interviewer",
+       "text": "Did it ever get there?"
+      },
+      {
+       "n": 29,
+       "who": "P1",
+       "text": "Almost. Two weekends in I had maybe seventy percent. And then the trial ran out. Well, the trial was still running, but I got busy, and by the time I came back it was day twelve."
+      }
+     ]
+    },
+    {
+     "p": "P2",
+     "text": "I would rather send nothing than send that.",
+     "line": 23,
+     "ctx": [
+      {
+       "n": 21,
+       "who": "P2",
+       "text": "Not for a while. I wanted it to look right first."
+      },
+      {
+       "n": 22,
+       "who": "Interviewer",
+       "text": "What does right look like?"
+      },
+      {
+       "n": 23,
+       "who": "P2",
+       "text": "Not embarrassing. If my director opens it and the first thing she sees is half my rows with no dates, I've lost her. I would rather send nothing than send that."
+      },
+      {
+       "n": 24,
+       "who": "Interviewer",
+       "text": "So when did you consider sending it?"
+      },
+      {
+       "n": 25,
+       "who": "P2",
+       "text": "Maybe day nine. By then I'd got the dates in and I thought, okay. But then I realised I'd have to do something about getting her in."
+      }
+     ]
+    },
+    {
+     "p": "P4",
+     "text": "I wasn't going to show Verena a plan with two phases empty and a placeholder that says TBD.",
+     "line": 37,
+     "ctx": [
+      {
+       "n": 35,
+       "who": "P4",
+       "text": "I took screenshots. Which is embarrassing for a tool that's supposed to replace decks."
+      },
+      {
+       "n": 36,
+       "who": "Interviewer",
+       "text": "When were you going to share it, if not then?"
+      },
+      {
+       "n": 37,
+       "who": "P4",
+       "text": "When it was ready. I mean, I wasn't going to show Verena a plan with two phases empty and a placeholder that says TBD."
+      },
+      {
+       "n": 38,
+       "who": "Interviewer",
+       "text": "What would ready have looked like?"
+      },
+      {
+       "n": 39,
+       "who": "P4",
+       "text": "All five phases with real dates, the doc cleaned up, my comments gone. Probably a week of evenings."
+      }
+     ]
+    },
+    {
+     "p": "P5",
+     "text": "I did not want her to see how messy my thinking was.",
+     "line": 25,
+     "ctx": [
+      {
+       "n": 23,
+       "who": "P5",
+       "text": "Eventually. Grace, who coordinates the volunteers, would be the main one. I wanted her to see the calendar."
+      },
+      {
+       "n": 24,
+       "who": "Interviewer",
+       "text": "When?"
+      },
+      {
+       "n": 25,
+       "who": "P5",
+       "text": "When I'd tidied it. I had drafts all over it. Three versions of the school holiday plan, half the rows with question marks. I did not want her to see how messy my thinking was."
+      },
+      {
+       "n": 26,
+       "who": "Interviewer",
+       "text": "Did you think about adding her earlier?"
+      },
+      {
+       "n": 27,
+       "who": "P5",
+       "text": "I think I'm someone who waits. If it's not presentable, I don't hand it round."
+      }
+     ]
+    },
+    {
+     "p": "P6",
+     "text": "I'd done the themes but the items had no dates. I'd have been embarrassed.",
+     "line": 35,
+     "ctx": [
+      {
+       "n": 33,
+       "who": "P6",
+       "text": "I saw it. It said billing starts today, twelve dollars a month. But that was the first moment I knew. I couldn't plan around it. I'd have wanted that on a page before I got to the invite."
+      },
+      {
+       "n": 34,
+       "who": "Interviewer",
+       "text": "Okay. When you thought about showing it to Samir, what were you waiting for?"
+      },
+      {
+       "n": 35,
+       "who": "P6",
+       "text": "For it to look like something he'd want to read. I'd done the themes but the items had no dates. I'd have been embarrassed."
+      },
+      {
+       "n": 36,
+       "who": "Interviewer",
+       "text": "So it sat."
+      },
+      {
+       "n": 37,
+       "who": "P6",
+       "text": "It sat. I told myself I'd tidy it on the weekend, and then the weekend was a quarterly planning offsite."
+      }
+     ]
+    },
+    {
+     "p": "P8",
+     "text": "I waited for what I'd call presentable. There's no polite way to send someone a mess.",
+     "line": 21,
+     "ctx": [
+      {
+       "n": 19,
+       "who": "P8",
+       "text": "Not for a while. I didn't want to show anyone until it was in decent shape. The CEO has a habit of reading everything the moment it's sent, and judging it."
+      },
+      {
+       "n": 20,
+       "who": "Interviewer",
+       "text": "So you waited."
+      },
+      {
+       "n": 21,
+       "who": "P8",
+       "text": "I waited for what I'd call presentable. There's no polite way to send someone a mess."
+      },
+      {
+       "n": 22,
+       "who": "Interviewer",
+       "text": "When did you try?"
+      },
+      {
+       "n": 23,
+       "who": "P8",
+       "text": "Day eleven. I wanted two directors to look at it: Odile, who runs operations, and Hamid in engineering."
+      }
+     ]
+    }
+   ],
+   "counter": {
+    "p": "P7",
+    "text": "I'd rather start with a blank page and have the team put things on it.",
+    "line": 19,
+    "ctx": [
+     {
+      "n": 17,
+      "who": "P7",
+      "text": "I made a project, called it Q1, and then I looked at the empty page and thought, right, this is better with five people typing."
+     },
+     {
+      "n": 18,
+      "who": "Interviewer",
+      "text": "You didn't want to fill it first?"
+     },
+     {
+      "n": 19,
+      "who": "P7",
+      "text": "No, no. The fun is filling it together. We do our planning on a call, I share my screen, we shout things. So the tool should be open before the call. I'd rather start with a blank page and have the team put things on it."
+     },
+     {
+      "n": 20,
+      "who": "Interviewer",
+      "text": "And what was the call like?"
+     },
+     {
+      "n": 21,
+      "who": "P7",
+      "text": "Brilliant. Chaotic. We had forty items in half an hour. Danil, he's the quiet one, he suddenly had opinions about the data migration. It was nice."
+     }
+    ]
+   },
+   "counterNote": "P3 also did not wait. She added her whole team on day one.",
+   "led": false,
+   "so": "Any fix that only helps at the moment of inviting misses people who have not yet decided the page is good enough to show."
+  },
+  {
+   "id": "T2",
+   "name": "The people they want to reach only need to look, and there is no way to let them",
+   "summary": "Five people wanted a boss, client or director to read the plan, not work in it. They looked for a read-only link and found only Add member. Three of them fell back to a PDF or screenshots, or did nothing.",
+   "support": [
+    "P1",
+    "P2",
+    "P4",
+    "P6",
+    "P8"
+   ],
+   "quotes": [
+    {
+     "p": "P1",
+     "text": "A link that opens a page, read only. Like a Google doc you share but without anyone asking for an invite.",
+     "line": 49,
+     "ctx": [
+      {
+       "n": 47,
+       "who": "P1",
+       "text": "No. Kemal was the worry. He's the one who only needs to see it, not join it."
+      },
+      {
+       "n": 48,
+       "who": "Interviewer",
+       "text": "If you could have sent him something, what would it be?"
+      },
+      {
+       "n": 49,
+       "who": "P1",
+       "text": "A link that opens a page, read only. Like a Google doc you share but without anyone asking for an invite. I'd have sent that in a second."
+      },
+      {
+       "n": 50,
+       "who": "Interviewer",
+       "text": "Anything you'd worry about with a link like that?"
+      },
+      {
+       "n": 51,
+       "who": "P1",
+       "text": "Yes. What he'd see."
+      }
+     ]
+    },
+    {
+     "p": "P2",
+     "text": "She doesn't need an account. She needs a page.",
+     "line": 33,
+     "ctx": [
+      {
+       "n": 31,
+       "who": "P2",
+       "text": "Wrong, honestly. Making her a member of a tool she'll open once."
+      },
+      {
+       "n": 32,
+       "who": "Interviewer",
+       "text": "Can you say more?"
+      },
+      {
+       "n": 33,
+       "who": "P2",
+       "text": "She doesn't need an account. She needs a page. A VP is not going to create a login just to read my plan."
+      },
+      {
+       "n": 34,
+       "who": "Interviewer",
+       "text": "Okay. And where did you land?"
+      },
+      {
+       "n": 35,
+       "who": "P2",
+       "text": "I exported it to a PDF. Which defeats the purpose."
+      }
+     ]
+    },
+    {
+     "p": "P4",
+     "text": "I wanted her to look at it, not edit it.",
+     "line": 23,
+     "ctx": [
+      {
+       "n": 21,
+       "who": "P4",
+       "text": "No. Absolutely not. She would look at it and ask questions. If she moved a phase by accident, I'd have a heart attack."
+      },
+      {
+       "n": 22,
+       "who": "Interviewer",
+       "text": "So you didn't want her to edit."
+      },
+      {
+       "n": 23,
+       "who": "P4",
+       "text": "I wanted her to look at it, not edit it. That's the sentence I'd put on the door."
+      },
+      {
+       "n": 24,
+       "who": "Interviewer",
+       "text": "What did you do about that in Larkspur?"
+      },
+      {
+       "n": 25,
+       "who": "P4",
+       "text": "I looked for a way to share it read only. I couldn't find one. I found where to add a member, which is under Settings, and I stopped there."
+      }
+     ]
+    },
+    {
+     "p": "P6",
+     "text": "I don't want the director of sales operations to become a seat in somebody's billing.",
+     "line": 29,
+     "ctx": [
+      {
+       "n": 27,
+       "who": "P6",
+       "text": "Add member. In Settings. Which is a bit buried. And that's not what I wanted."
+      },
+      {
+       "n": 28,
+       "who": "Interviewer",
+       "text": "Why not?"
+      },
+      {
+       "n": 29,
+       "who": "P6",
+       "text": "Because he doesn't need to be a member. I don't want the director of sales operations to become a seat in somebody's billing."
+      },
+      {
+       "n": 30,
+       "who": "Interviewer",
+       "text": "Okay. And what about the price?"
+      },
+      {
+       "n": 31,
+       "who": "P6",
+       "text": "That's the other thing. I couldn't tell what a seat costs before I pressed the button, and finance wants to know. If I'm asking for budget, I need a number per person and a start date."
+      }
+     ]
+    },
+    {
+     "p": "P8",
+     "text": "I looked for a view link. Share, publish, anything like that. Nothing.",
+     "line": 27,
+     "ctx": [
+      {
+       "n": 25,
+       "who": "P8",
+       "text": "To look. That's all. They'd say yes or no, maybe a comment on the Slack thread. Nobody was going to edit."
+      },
+      {
+       "n": 26,
+       "who": "Interviewer",
+       "text": "Did you see a way to do that?"
+      },
+      {
+       "n": 27,
+       "who": "P8",
+       "text": "No. I looked for a view link. Share, publish, anything like that. Nothing. So I went to Settings, Members, Add member."
+      },
+      {
+       "n": 28,
+       "who": "Interviewer",
+       "text": "What did you see?"
+      },
+      {
+       "n": 29,
+       "who": "P8",
+       "text": "The box that says billing starts today. Twelve a month. And I wasn't sure whether that was one person or two or what. And it said today, and we were at the end of a trial."
+      }
+     ]
+    }
+   ],
+   "counter": {
+    "p": "P3",
+    "text": "I'd rather give them a seat and be done.",
+    "line": 55,
+    "ctx": [
+     {
+      "n": 53,
+      "who": "P3",
+      "text": "If they're in, they're in. I wouldn't want a half-way. If a client has an account, they can comment, they can edit, whatever. If you are in, you are in."
+     },
+     {
+      "n": 54,
+      "who": "Interviewer",
+      "text": "Does a view-only option sound useful?"
+     },
+     {
+      "n": 55,
+      "who": "P3",
+      "text": "It sounds like something I'd have to explain to clients. I'd rather give them a seat and be done."
+     },
+     {
+      "n": 56,
+      "who": "Interviewer",
+      "text": "Okay. What's it like now?"
+     },
+     {
+      "n": 57,
+      "who": "P3",
+      "text": "Four of us use it every day. Cormac pretends he does."
+     }
+    ]
+   },
+   "counterNote": "P7 also said everyone he would show it to is someone he would happily just put in. P2, P6 and P8 doubted that a view link would pass their company's review.",
+   "led": false,
+   "so": "A look-only way in would remove the main reason these five stopped, but it would only help once the plan feels ready (see T1)."
+  },
+  {
+   "id": "T3",
+   "name": "Not knowing what an invite costs or when billing starts",
+   "summary": "Five people met the cost at the moment of inviting, or after it, and could not tell who would be charged or whether billing had already started in a trial. Some closed the box. Others went ahead unsure and one was surprised by an invoice. P6 was asked about price directly, the others raised it themselves.",
+   "support": [
+    "P1",
+    "P3",
+    "P5",
+    "P6",
+    "P8"
+   ],
+   "quotes": [
+    {
+     "p": "P1",
+     "text": "I'd like to see the seat price when I'm about to invite someone, not after I've typed an email.",
+     "line": 43,
+     "ctx": [
+      {
+       "n": 41,
+       "who": "P1",
+       "text": "I looked on the pricing page. It said per member but not what counts as a member. A person who just looks at it?"
+      },
+      {
+       "n": 42,
+       "who": "Interviewer",
+       "text": "What would have helped?"
+      },
+      {
+       "n": 43,
+       "who": "P1",
+       "text": "If it told me before I clicked, honestly. I'd like to see the seat price when I'm about to invite someone, not after I've typed an email."
+      },
+      {
+       "n": 44,
+       "who": "Interviewer",
+       "text": "Okay. And did you think about anyone else, besides Kemal?"
+      },
+      {
+       "n": 45,
+       "who": "P1",
+       "text": "Rhea, our engineering lead, maybe. But she's in the doc tool all day, she would have joined."
+      }
+     ]
+    },
+    {
+     "p": "P3",
+     "text": "I'd have liked to know it was going to be sixty before I pressed the button.",
+     "line": 29,
+     "ctx": [
+      {
+       "n": 27,
+       "who": "P3",
+       "text": "A mistake. I'd signed up for a free trial. I didn't understand that adding the team had started the clock on the money."
+      },
+      {
+       "n": 28,
+       "who": "Interviewer",
+       "text": "How did that feel?"
+      },
+      {
+       "n": 29,
+       "who": "P3",
+       "text": "Annoyed, mostly at myself. It wasn't hidden, it was just not in my face. I'd have liked to know it was going to be sixty before I pressed the button."
+      },
+      {
+       "n": 30,
+       "who": "Interviewer",
+       "text": "Did you keep going?"
+      },
+      {
+       "n": 31,
+       "who": "P3",
+       "text": "Yes, because it was only sixty. But I did think, if I'd known, I might have added two people first and seen how it went."
+      }
+     ]
+    },
+    {
+     "p": "P5",
+     "text": "Honestly, I did not know whether another person would cost me anything, so I did not ask anyone else.",
+     "line": 61,
+     "ctx": [
+      {
+       "n": 59,
+       "who": "P5",
+       "text": "If I knew the number. When we were deciding on the app for the food bank I knew exactly what each person cost. With this, I only found out by clicking."
+      },
+      {
+       "n": 60,
+       "who": "Interviewer",
+       "text": "Is there something that would have made you invite more people?"
+      },
+      {
+       "n": 61,
+       "who": "P5",
+       "text": "Honestly, I did not know whether another person would cost me anything, so I did not ask anyone else. It was easier to do nothing."
+      },
+      {
+       "n": 62,
+       "who": "Interviewer",
+       "text": "Okay. Is there anything you want to tell Larkspur about?"
+      },
+      {
+       "n": 63,
+       "who": "P5",
+       "text": "We're a charity. Do you have a nonprofit discount? Nobody mentions it. If there was one on the page I would have signed up sooner."
+      }
+     ]
+    },
+    {
+     "p": "P6",
+     "text": "I couldn't tell what a seat costs before I pressed the button, and finance wants to know.",
+     "line": 31,
+     "ctx": [
+      {
+       "n": 29,
+       "who": "P6",
+       "text": "Because he doesn't need to be a member. I don't want the director of sales operations to become a seat in somebody's billing."
+      },
+      {
+       "n": 30,
+       "who": "Interviewer",
+       "text": "Okay. And what about the price?"
+      },
+      {
+       "n": 31,
+       "who": "P6",
+       "text": "That's the other thing. I couldn't tell what a seat costs before I pressed the button, and finance wants to know. If I'm asking for budget, I need a number per person and a start date."
+      },
+      {
+       "n": 32,
+       "who": "Interviewer",
+       "text": "Did you see the dialog?"
+      },
+      {
+       "n": 33,
+       "who": "P6",
+       "text": "I saw it. It said billing starts today, twelve dollars a month. But that was the first moment I knew. I couldn't plan around it. I'd have wanted that on a page before I got to the invite."
+      }
+     ]
+    },
+    {
+     "p": "P8",
+     "text": "I wasn't sure whether that was one person or two or what.",
+     "line": 29,
+     "ctx": [
+      {
+       "n": 27,
+       "who": "P8",
+       "text": "No. I looked for a view link. Share, publish, anything like that. Nothing. So I went to Settings, Members, Add member."
+      },
+      {
+       "n": 28,
+       "who": "Interviewer",
+       "text": "What did you see?"
+      },
+      {
+       "n": 29,
+       "who": "P8",
+       "text": "The box that says billing starts today. Twelve a month. And I wasn't sure whether that was one person or two or what. And it said today, and we were at the end of a trial."
+      },
+      {
+       "n": 30,
+       "who": "Interviewer",
+       "text": "What did you do?"
+      },
+      {
+       "n": 31,
+       "who": "P8",
+       "text": "I hesitated, and then I did it for both of them. I wasn't sure what I'd done. I wasn't sure if I'd just signed up my company for something."
+      }
+     ]
+    }
+   ],
+   "counter": {
+    "p": "P7",
+    "text": "It's twelve dollars. I didn't think about it. It's a rounding error against a team of engineers.",
+    "line": 27,
+    "ctx": [
+     {
+      "n": 25,
+      "who": "P7",
+      "text": "Settings, Members. It took a minute but I figured it out. I added all five in one go."
+     },
+     {
+      "n": 26,
+      "who": "Interviewer",
+      "text": "Did you notice the billing note?"
+     },
+     {
+      "n": 27,
+      "who": "P7",
+      "text": "I did see a line, yes. Twelve dollars a month each. It's twelve dollars. I didn't think about it. It's a rounding error against a team of engineers."
+     },
+     {
+      "n": 28,
+      "who": "Interviewer",
+      "text": "And your boss?"
+     },
+     {
+      "n": 29,
+      "who": "P7",
+      "text": "He's the founder, he knows I'm trying a tool. He said as long as it's not a hundred a seat, fine."
+     }
+    ]
+   },
+   "counterNote": "Nobody else said the price was no issue. P3 said twelve per person is normal once she understood it, but she is counted as support because the invoice surprised her.",
+   "led": false,
+   "so": "Showing the price per person and the start date on the invite page, before the click, is a small change that answers a worry five people had."
+  },
+  {
+   "id": "T4",
+   "name": "Fear of what the invited person will see",
+   "summary": "Four people kept private notes, rough comments or drafts in the same workspace and could not tell what an invitee would see. They had no way to preview it. Three of the four were asked about this directly, so the weight is lower than the count suggests.",
+   "support": [
+    "P1",
+    "P4",
+    "P5",
+    "P6"
+   ],
+   "quotes": [
+    {
+     "p": "P1",
+     "text": "So I'd need to know exactly what Kemal sees.",
+     "line": 55,
+     "ctx": [
+      {
+       "n": 53,
+       "who": "P1",
+       "text": "I keep my notes in the same doc. There's a section I called things I'm not saying out loud. It has stuff about two people on the team and a vendor we're probably dropping."
+      },
+      {
+       "n": 54,
+       "who": "Interviewer",
+       "text": "Right."
+      },
+      {
+       "n": 55,
+       "who": "P1",
+       "text": "So I'd need to know exactly what Kemal sees. Does he see the whole page? The comments? I don't want to find out by him asking about the vendor."
+      },
+      {
+       "n": 56,
+       "who": "Interviewer",
+       "text": "How would you want to find out?"
+      },
+      {
+       "n": 57,
+       "who": "P1",
+       "text": "See it as him, I suppose. Like preview as someone else. Maybe I'm asking for a lot."
+      }
+     ]
+    },
+    {
+     "p": "P4",
+     "text": "So the worry was, if I invite her, what does she see?",
+     "line": 31,
+     "ctx": [
+      {
+       "n": 29,
+       "who": "P4",
+       "text": "I had a comment thread in the margin about her budget. It said something like, she'll never agree to this number. I didn't write it for her."
+      },
+      {
+       "n": 30,
+       "who": "Interviewer",
+       "text": "Right."
+      },
+      {
+       "n": 31,
+       "who": "P4",
+       "text": "So the worry was, if I invite her, what does she see? Is it the pretty page, or the page with my notes in it? I couldn't tell, and I didn't want to find out in front of a client."
+      },
+      {
+       "n": 32,
+       "who": "Interviewer",
+       "text": "How would you want to find out?"
+      },
+      {
+       "n": 33,
+       "who": "P4",
+       "text": "Let me look at it as her. Like a preview, I click and I see exactly what she sees, then I decide."
+      }
+     ]
+    },
+    {
+     "p": "P5",
+     "text": "I didn't know what she'd see when she opened it.",
+     "line": 55,
+     "ctx": [
+      {
+       "n": 53,
+       "who": "P5",
+       "text": "My deputy, Osei. He said don't spend money on it before the board meets. Which was fair."
+      },
+      {
+       "n": 54,
+       "who": "Interviewer",
+       "text": "Hmm. One more thing about what Grace sees. Did you think about it?"
+      },
+      {
+       "n": 55,
+       "who": "P5",
+       "text": "Yes, I did. Before I invited her, I was nervous about the drafts. I didn't know what she'd see when she opened it. Would she see my half-written budget scenarios? The notes about the funders? I couldn't tell."
+      },
+      {
+       "n": 56,
+       "who": "Interviewer",
+       "text": "And did you find out?"
+      },
+      {
+       "n": 57,
+       "who": "P5",
+       "text": "After she joined, yes. She saw everything. Which was fine, she's lovely, but it could have been the director of the funding body."
+      }
+     ]
+    },
+    {
+     "p": "P6",
+     "text": "I had no idea. There's no way to look as someone else.",
+     "line": 43,
+     "ctx": [
+      {
+       "n": 41,
+       "who": "P6",
+       "text": "What he'd see. I wrote some rough notes in the doc. Things like, team in Leeds is overstretched, and a comment on a feature that is basically my pet project. I didn't want that visible."
+      },
+      {
+       "n": 42,
+       "who": "Interviewer",
+       "text": "And did you know what he would see?"
+      },
+      {
+       "n": 43,
+       "who": "P6",
+       "text": "I had no idea. There's no way to look as someone else. I could make a second account and test it, but that's a lot of effort for an invitation."
+      },
+      {
+       "n": 44,
+       "who": "Interviewer",
+       "text": "What would help?"
+      },
+      {
+       "n": 45,
+       "who": "P6",
+       "text": "A preview. Click, see what Samir sees. If it's clean, send. If it's not, I fix it. Simple."
+      }
+     ]
+    }
+   ],
+   "counter": {
+    "p": "P7",
+    "text": "What would they see? Everything. It's our plan. I have nothing to hide from my own team.",
+    "line": 45,
+    "ctx": [
+     {
+      "n": 43,
+      "who": "P7",
+      "text": "Maybe. I haven't needed it. Everyone I'd show it to is someone I'd happily just put in."
+     },
+     {
+      "n": 44,
+      "who": "Interviewer",
+      "text": "Okay. Did you ever worry about what they'd see?"
+     },
+     {
+      "n": 45,
+      "who": "P7",
+      "text": "What would they see? Everything. It's our plan. I have nothing to hide from my own team. If someone doesn't like a card I wrote, they can say so."
+     },
+     {
+      "n": 46,
+      "who": "Interviewer",
+      "text": "Fair. What else did you like?"
+     },
+     {
+      "n": 47,
+      "who": "P7",
+      "text": "The keyboard shortcuts in the roadmap view. Shift and the arrows to move an item a week at a time. I use it constantly. Danil timed himself. He's faster than me."
+     }
+    ]
+   },
+   "counterNote": "P8 was not worried either: the page held priorities the readers already knew.",
+   "led": true,
+   "so": "A way to see the page as the invitee would lower the bar for sharing early, but it is a second-order fix next to T2 and T3."
+  },
+  {
+   "id": "T5",
+   "name": "The invitation email goes unseen or looks like marketing",
+   "summary": "Three people sent invitations that never got opened. They ended up in spam, a promotions tab or a junk folder, or looked like an advert. In each case the inviter had to find the person and explain.",
+   "support": [
+    "P3",
+    "P5",
+    "P8"
+   ],
+   "quotes": [
+    {
+     "p": "P3",
+     "text": "She said it looked like marketing. A big blue button and a tiny unsubscribe line at the bottom.",
+     "line": 37,
+     "ctx": [
+      {
+       "n": 35,
+       "who": "P3",
+       "text": "Lotte told me on the Thursday that she'd never got it. I said I sent it Monday. She went and looked in her junk folder. It was there, between a newsletter and something from a shoe shop."
+      },
+      {
+       "n": 36,
+       "who": "Interviewer",
+       "text": "Did she think it looked like marketing?"
+      },
+      {
+       "n": 37,
+       "who": "P3",
+       "text": "She said it looked like marketing. A big blue button and a tiny unsubscribe line at the bottom. She nearly didn't open it even when she found it."
+      },
+      {
+       "n": 38,
+       "who": "Interviewer",
+       "text": "And Cormac?"
+      },
+      {
+       "n": 39,
+       "who": "P3",
+       "text": "Cormac I had to stand behind at his desk and say click here. It never reached him at all, as far as I can tell. I know I typed the address right, because I copied it from his email signature."
+      }
+     ]
+    },
+    {
+     "p": "P5",
+     "text": "She'd been ignoring it for four days. She thought it was marketing.",
+     "line": 47,
+     "ctx": [
+      {
+       "n": 45,
+       "who": "P5",
+       "text": "Her spam. It was in there. It had a name I didn't recognise as the sender and a subject like you have been added to a workspace. It looked like those emails about a prize."
+      },
+      {
+       "n": 46,
+       "who": "Interviewer",
+       "text": "So she ignored it."
+      },
+      {
+       "n": 47,
+       "who": "P5",
+       "text": "She'd been ignoring it for four days. She thought it was marketing."
+      },
+      {
+       "n": 48,
+       "who": "Interviewer",
+       "text": "What did you do?"
+      },
+      {
+       "n": 49,
+       "who": "P5",
+       "text": "I walked over and read it out to her. Which tells you how well it works."
+      }
+     ]
+    },
+    {
+     "p": "P8",
+     "text": "I found it in his promotions tab. He said he'd thought it was an advert.",
+     "line": 39,
+     "ctx": [
+      {
+       "n": 37,
+       "who": "P8",
+       "text": "Nothing. Neither of them joined. That's the headline. Neither of them."
+      },
+      {
+       "n": 38,
+       "who": "Interviewer",
+       "text": "What happened with Hamid?"
+      },
+      {
+       "n": 39,
+       "who": "P8",
+       "text": "I messaged him a week later, did you see my invite? He said what invite. I found it in his promotions tab. He said he'd thought it was an advert."
+      },
+      {
+       "n": 40,
+       "who": "Interviewer",
+       "text": "And Odile?"
+      },
+      {
+       "n": 41,
+       "who": "P8",
+       "text": "Odile did see it. She replied to me, actually. She said, I'll need to run this past IT before I make an account on anything that has our data in it."
+      }
+     ]
+    }
+   ],
+   "counter": {
+    "p": "P2",
+    "text": "Immediately. Straight to his inbox. He clicked, set a password, done.",
+    "line": 53,
+    "ctx": [
+     {
+      "n": 51,
+      "who": "P2",
+      "text": "Fine, actually. I added him, he got the email, he was in within the hour. I remember because I was still on a call with him and he said, oh, it's here."
+     },
+     {
+      "n": 52,
+      "who": "Interviewer",
+      "text": "So the email arrived."
+     },
+     {
+      "n": 53,
+      "who": "P2",
+      "text": "Immediately. Straight to his inbox. He clicked, set a password, done."
+     },
+     {
+      "n": 54,
+      "who": "Interviewer",
+      "text": "Great. Anything about adding him that was confusing?"
+     },
+     {
+      "n": 55,
+      "who": "P2",
+      "text": "It took me a bit to find where. Settings, then Members. I guessed. It's not where I'd look."
+     }
+    ]
+   },
+   "counterNote": "P7 also said all five invitees joined the same afternoon.",
+   "led": false,
+   "so": "Even when someone is invited, the email may not reach them, so a second person can be lost after the inviter has done everything right."
+  },
+  {
+   "id": "T6",
+   "name": "Company approval or security review stops the team joining",
+   "summary": "Three people work where a new tool needs IT or security review, which takes weeks, so they would not bring colleagues in during a 14-day trial. This was asked of almost everyone in the interviews, so it is partly led.",
+   "support": [
+    "P2",
+    "P6",
+    "P8"
+   ],
+   "quotes": [
+    {
+     "p": "P2",
+     "text": "I could build the nicest roadmap in the world and I still can't roll it out to the team until Priyanka in IT signs off.",
+     "line": 43,
+     "ctx": [
+      {
+       "n": 41,
+       "who": "P2",
+       "text": "For the team, yes. For me on my own, in a trial, I figured I'm just testing. But the moment I want my nine reports in, I'm in the review."
+      },
+      {
+       "n": 42,
+       "who": "Interviewer",
+       "text": "So did you think about that while you were building?"
+      },
+      {
+       "n": 43,
+       "who": "P2",
+       "text": "Constantly. It was in the back of my head the whole time. I could build the nicest roadmap in the world and I still can't roll it out to the team until Priyanka in IT signs off."
+      },
+      {
+       "n": 44,
+       "who": "Interviewer",
+       "text": "Did you ask Priyanka?"
+      },
+      {
+       "n": 45,
+       "who": "P2",
+       "text": "Not yet. I didn't want to open a ticket for a tool I wasn't sure about. And it would probably expire before they got to it."
+      }
+     ]
+    },
+    {
+     "p": "P6",
+     "text": "Nobody is joining until security signs off.",
+     "line": 59,
+     "ctx": [
+      {
+       "n": 57,
+       "who": "P6",
+       "text": "Absolutely not. I can't put other people's work data into a tool that hasn't been through review. I'd get a call."
+      },
+      {
+       "n": 58,
+       "who": "Interviewer",
+       "text": "So that stops it."
+      },
+      {
+       "n": 59,
+       "who": "P6",
+       "text": "Yes. It wouldn't matter how nice the button is. Nobody is joining until security signs off."
+      },
+      {
+       "n": 60,
+       "who": "Interviewer",
+       "text": "Okay. Is there anything that surprised you?"
+      },
+      {
+       "n": 61,
+       "who": "P6",
+       "text": "How good the roadmap view is. It's the best of anything I tried. I'd put money on that."
+      }
+     ]
+    },
+    {
+     "p": "P8",
+     "text": "Anything with company data in it goes through a review, which takes a couple of weeks, and the review needs an actual use case.",
+     "line": 43,
+     "ctx": [
+      {
+       "n": 41,
+       "who": "P8",
+       "text": "Odile did see it. She replied to me, actually. She said, I'll need to run this past IT before I make an account on anything that has our data in it."
+      },
+      {
+       "n": 42,
+       "who": "Interviewer",
+       "text": "How did you react?"
+      },
+      {
+       "n": 43,
+       "who": "P8",
+       "text": "I wasn't surprised. We have a policy. Anything with company data in it goes through a review, which takes a couple of weeks, and the review needs an actual use case."
+      },
+      {
+       "n": 44,
+       "who": "Interviewer",
+       "text": "Did the review apply to a roadmap?"
+      },
+      {
+       "n": 45,
+       "who": "P8",
+       "text": "To a roadmap with our priorities in it? Yes. That's the most sensitive thing there is, in a way."
+      }
+     ]
+    }
+   ],
+   "counter": {
+    "p": "P3",
+    "text": "Nothing blocks me. I've got a credit card and no boss.",
+    "line": 49,
+    "ctx": [
+     {
+      "n": 47,
+      "who": "P3",
+      "text": "Approve? I'm IT. I'm the person who approves it. I'm also the person who forgets the password."
+     },
+     {
+      "n": 48,
+      "who": "Interviewer",
+      "text": "Ha. So nothing blocks you."
+     },
+     {
+      "n": 49,
+      "who": "P3",
+      "text": "Nothing blocks me. I've got a credit card and no boss."
+     },
+     {
+      "n": 50,
+      "who": "Interviewer",
+      "text": "Would you ever bring in a client?"
+     },
+     {
+      "n": 51,
+      "who": "P3",
+      "text": "Sometimes. Not to a project, usually. To a doc."
+     }
+    ]
+   },
+   "counterNote": "P1, P4 and P7 also said nobody has to approve a tool where they work.",
+   "led": true,
+   "so": "No change to the invite flow gets a second person in for these three. They need something that survives a review, or a trial long enough to outlast one."
+  }
+ ],
+ "unprompted": [
+  {
+   "id": "U1",
+   "name": "The invite is hard to find under Settings",
+   "summary": "Three people said, without being asked about it, that they had to hunt for the invite and that Settings was not where they expected sharing to be. P2 and P3 said similar things when asked how they found it.",
+   "support": [
+    "P1",
+    "P4",
+    "P6"
+   ],
+   "quotes": [
+    {
+     "p": "P1",
+     "text": "Settings, then Members, then Add member. I had to go hunting.",
+     "line": 35,
+     "ctx": [
+      {
+       "n": 33,
+       "who": "P1",
+       "text": "That's the thing. I looked for something like send him a link. And I couldn't find it."
+      },
+      {
+       "n": 34,
+       "who": "Interviewer",
+       "text": "What did you find?"
+      },
+      {
+       "n": 35,
+       "who": "P1",
+       "text": "Settings, then Members, then Add member. I had to go hunting. I only found it because I was in Settings to change my workspace name."
+      },
+      {
+       "n": 36,
+       "who": "Interviewer",
+       "text": "And what happened when you clicked?"
+      },
+      {
+       "n": 37,
+       "who": "P1",
+       "text": "A box popped up. It said adding a member starts billing today, twelve dollars a month."
+      }
+     ]
+    },
+    {
+     "p": "P4",
+     "text": "I went to Settings looking for sharing, and found members, and that's a different thing.",
+     "line": 57,
+     "ctx": [
+      {
+       "n": 55,
+       "who": "P4",
+       "text": "The doc editor is very clean. And I like that the timeline looks decent without me fiddling."
+      },
+      {
+       "n": 56,
+       "who": "Interviewer",
+       "text": "Anything that annoyed you?"
+      },
+      {
+       "n": 57,
+       "who": "P4",
+       "text": "Finding my way around Settings. I went to Settings looking for sharing, and found members, and that's a different thing."
+      },
+      {
+       "n": 58,
+       "who": "Interviewer",
+       "text": "Different how?"
+      },
+      {
+       "n": 59,
+       "who": "P4",
+       "text": "Sharing is I want you to look. Members is you work here now. Those are not the same sentence."
+      }
+     ]
+    },
+    {
+     "p": "P6",
+     "text": "Add member. In Settings. Which is a bit buried. And that's not what I wanted.",
+     "line": 27,
+     "ctx": [
+      {
+       "n": 25,
+       "who": "P6",
+       "text": "A link. Send Samir a link, he reads it. Done. I looked for that for a long while."
+      },
+      {
+       "n": 26,
+       "who": "Interviewer",
+       "text": "And what did you find?"
+      },
+      {
+       "n": 27,
+       "who": "P6",
+       "text": "Add member. In Settings. Which is a bit buried. And that's not what I wanted."
+      },
+      {
+       "n": 28,
+       "who": "Interviewer",
+       "text": "Why not?"
+      },
+      {
+       "n": 29,
+       "who": "P6",
+       "text": "Because he doesn't need to be a member. I don't want the director of sales operations to become a seat in somebody's billing."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "U2",
+   "name": "A nonprofit discount would have changed when they signed up",
+   "summary": "One person, at a charity, said a visible nonprofit discount would have made her sign up sooner. Nobody else raised it.",
+   "support": [
+    "P5"
+   ],
+   "quotes": [
+    {
+     "p": "P5",
+     "text": "We're a charity. Do you have a nonprofit discount? Nobody mentions it.",
+     "line": 63,
+     "ctx": [
+      {
+       "n": 61,
+       "who": "P5",
+       "text": "Honestly, I did not know whether another person would cost me anything, so I did not ask anyone else. It was easier to do nothing."
+      },
+      {
+       "n": 62,
+       "who": "Interviewer",
+       "text": "Okay. Is there anything you want to tell Larkspur about?"
+      },
+      {
+       "n": 63,
+       "who": "P5",
+       "text": "We're a charity. Do you have a nonprofit discount? Nobody mentions it. If there was one on the page I would have signed up sooner."
+      },
+      {
+       "n": 64,
+       "who": "Interviewer",
+       "text": "I'll pass that on."
+      },
+      {
+       "n": 65,
+       "who": "P5",
+       "text": "Please. Even ten percent. Even a line that says ask us."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "requests": [
+  {
+   "text": "A read-only link that opens the plan with no account",
+   "p": [
+    "P1",
+    "P2",
+    "P4",
+    "P6",
+    "P8"
+   ]
+  },
+  {
+   "text": "Show the price per person and the billing start date on the invite page, before clicking",
+   "p": [
+    "P1",
+    "P3",
+    "P5",
+    "P6",
+    "P8"
+   ]
+  },
+  {
+   "text": "Preview the page as the invited person will see it",
+   "p": [
+    "P1",
+    "P4",
+    "P6"
+   ]
+  },
+  {
+   "text": "Show what the invitation email looks like and who it comes from",
+   "p": [
+    "P8"
+   ]
+  },
+  {
+   "text": "A share or invite button on the page itself, top right",
+   "p": [
+    "P2"
+   ]
+  },
+  {
+   "text": "Pick people from the company chat tool instead of typing emails",
+   "p": [
+    "P2"
+   ]
+  },
+  {
+   "text": "Let a client comment on chosen parts only",
+   "p": [
+    "P4"
+   ]
+  },
+  {
+   "text": "A nonprofit discount, or a line on the page that says to ask",
+   "p": [
+    "P5"
+   ]
+  },
+  {
+   "text": "A swimlane for people on the roadmap",
+   "p": [
+    "P7"
+   ]
+  },
+  {
+   "text": "Colour coding on rows (asked for by a colleague of P3)",
+   "p": [
+    "P3"
+   ]
+  }
+ ],
+ "quiet": [
+  {
+   "p": "P7",
+   "note": "Supports no theme. Added the whole team about twenty minutes after signing up, needed no approval, and the team has planned on it for four Mondays running. P7 is the case that went the other way, and is the counter-voice on T1, T3 and T4."
+  }
+ ],
+ "unknowns": [
+  {
+   "q": "Would a read-only link pass a security or IT review at a company with single sign-on?",
+   "ask": "A security reviewer at one of the companies of P2, P6 or P8, or a conversation with Larkspur's own security lead."
+  },
+  {
+   "q": "Does adding a member during a trial really start billing today?",
+   "ask": "Larkspur's billing records, or the product owner for billing. P1 and P8 still do not know."
+  },
+  {
+   "q": "Do people who only look count as a paid seat?",
+   "ask": "The pricing owner. P1, P5 and P8 asked, and the pricing page does not say."
+  },
+  {
+   "q": "How often do invitation emails land in spam or promotions?",
+   "ask": "Delivery and bounce data for invite emails, plus a test send to the main mail providers."
+  },
+  {
+   "q": "Would the people who were meant to look (a boss, a client, a director) open a link if they got one?",
+   "ask": "Short interviews with Kemal, Ngozi, Verena, Samir, Odile or people in the same roles."
+  },
+  {
+   "q": "How many trial workspaces stall before anyone is invited at all, and on which day?",
+   "ask": "Trial event data: day of first invite attempt against day of sign-up."
+  },
+  {
+   "q": "What do teams that join on day one have in common?",
+   "ask": "More interviews with people like P3 and P7, who went team-first, which this set barely covers."
+  }
+ ],
+ "rejected": [
+  {
+   "p": "P5",
+   "text": "I would invite my whole team tomorrow if it did not charge me for it",
+   "from": "T3",
+   "reason": "not found in any transcript"
+  }
+ ],
+ "checked": {
+  "found": 36,
+  "rejected": 1,
+  "participants": 8
+ }
+}

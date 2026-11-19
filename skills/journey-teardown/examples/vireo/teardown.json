@@ -1,0 +1,2406 @@
+{
+ "title": "From recap to sent: four AI meeting recaps",
+ "question": "Why do people not trust Vireo's recap enough to send it on, and what do the other three do that Vireo does not?",
+ "us": "vireo",
+ "captured": "2026-11-19",
+ "note": "Vireo, Castell, Ondine and Parley are fictional. Every screen is a schematic drawing made for this example, not a screenshot. One meeting runs through all of them: Pricing review with Northgate, Thursday 12 November 2026, 42 minutes. Scores rank the four products against each other on these schematic screens, from one reader in one sitting. Nothing was timed: Speed counts steps and clicks.",
+ "apps": [
+  {
+   "id": "castell",
+   "name": "Castell",
+   "accent": "#4338ca",
+   "role": "Competitor"
+  },
+  {
+   "id": "ondine",
+   "name": "Ondine",
+   "accent": "#be185d",
+   "role": "Competitor"
+  },
+  {
+   "id": "parley",
+   "name": "Parley",
+   "accent": "#b45309",
+   "role": "Competitor"
+  },
+  {
+   "id": "vireo",
+   "name": "Vireo",
+   "accent": "#0e7c66",
+   "role": "Our product"
+  }
+ ],
+ "dimensions": [
+  {
+   "id": "clarity",
+   "name": "Clarity",
+   "means": "You can tell what to do next without reading twice."
+  },
+  {
+   "id": "speed",
+   "name": "Speed",
+   "means": "Few steps and little typing to finish the stage."
+  },
+  {
+   "id": "transparency",
+   "name": "Transparency",
+   "means": "Costs, limits and consequences are shown before they bite."
+  },
+  {
+   "id": "trust",
+   "name": "Trust",
+   "means": "Nothing surprises the user later."
+  },
+  {
+   "id": "engagement",
+   "name": "Engagement",
+   "means": "It gives a reason to come back or go further."
+  }
+ ],
+ "stages": [
+  {
+   "id": "S1",
+   "name": "The recap arrives",
+   "finding": "Castell and Parley hold the recap for the host and say so on the page, while Ondine and Vireo send it to everyone before the host is shown looking.",
+   "lanes": [
+    {
+     "app": "castell",
+     "flow": "A notification, then a recap only the host can see",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Gets a notification after the call",
+       "frame": "desktop",
+       "url": "castell.example/home",
+       "nav": {
+        "title": "Castell",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Home",
+         {
+          "sub": "Thursday 12 November"
+         }
+        ],
+        [
+         "row",
+         "Pricing review with Northgate",
+         {
+          "right": "10:42",
+          "sub": "Ended, 42 min"
+         }
+        ],
+        [
+         "row",
+         "Weekly sync",
+         {
+          "right": "Wed",
+          "sub": "Ended, 25 min"
+         }
+        ],
+        [
+         "row",
+         "Renewal prep",
+         {
+          "right": "Tue",
+          "sub": "Ended, 30 min"
+         }
+        ],
+        [
+         "toast",
+         "Recap ready. Only you can see it",
+         {
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "The toast \"Recap ready. Only you can see it\" tells the host the recap exists and who can see it."
+        },
+        {
+         "k": "friction",
+         "t": "The \"Pricing review with Northgate\" row shows only \"Ended, 42 min\", so once the toast fades nothing on Home says a recap is waiting."
+        }
+       ]
+      },
+      {
+       "step": "Opens the recap page",
+       "frame": "desktop",
+       "url": "castell.example/recap/3317",
+       "nav": {
+        "title": "Castell",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min",
+          "action": "Share"
+         }
+        ],
+        [
+         "banner",
+         "Only you can see this",
+         {
+          "sub": "Share it when you are ready",
+          "hi": true
+         }
+        ],
+        [
+         "text",
+         "Summary",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Northgate wants three price tiers. We will send a revised quote by Tuesday.",
+         {
+          "lines": 3,
+          "cite": "03:18"
+         }
+        ],
+        [
+         "para",
+         "The pilot starts on 4 January if the quote is accepted.",
+         {
+          "lines": 3,
+          "cite": "31:40"
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "The banner \"Only you can see this\" with \"Share it when you are ready\" leaves the send in the host's hands."
+        },
+        {
+         "k": "good",
+         "t": "Each summary line ends in a time chip, 03:18 and 31:40, so a line can be traced before anyone sees it."
+        },
+        {
+         "k": "idea",
+         "t": "Say on the page that the recap was drafted by software, so the host reads it as a draft."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "Toast and banner both say \"Only you can see\" the recap."
+      },
+      "speed": {
+       "n": 3,
+       "why": "Only a toast on Home; the host must find Recaps and open the page."
+      },
+      "transparency": {
+       "n": 4,
+       "why": "Says who can see it, but not how it was made."
+      },
+      "trust": {
+       "n": 4,
+       "why": "Private by default and the send is the host's choice."
+      },
+      "engagement": {
+       "n": 3,
+       "why": "The toast fades and the Home row shows no recap status."
+      }
+     },
+     "verdict": "Keeps the recap private until the host shares it, but the only alert is a toast the Home list does not back up.",
+     "well": [
+      "Says \"Only you can see it\" on the toast and again on the page.",
+      "Puts a time chip on every summary line.",
+      "Hands the send to the host with a Share button."
+     ],
+     "wrong": [
+      "The Home row shows no sign that a recap is waiting.",
+      "No screen here says the text was drafted by software."
+     ],
+     "steal": [
+      "A banner that says who can see the recap and when to share it."
+     ]
+    },
+    {
+     "app": "ondine",
+     "flow": "An email to everyone, then a page marked Delivered",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads the email in the inbox",
+       "frame": "desktop",
+       "url": "mail.example/inbox/ondine-9920",
+       "blocks": [
+        [
+         "bar",
+         "Recap: Pricing review",
+         {
+          "sub": "From Ondine, Thu 12 Nov 10:43"
+         }
+        ],
+        [
+         "text",
+         "Sent to all 14 invitees",
+         {
+          "bold": true,
+          "hi": true
+         }
+        ],
+        [
+         "gap",
+         ""
+        ],
+        [
+         "para",
+         "Great meeting! Here is what we covered. Pricing is settled and the pilot is on track.",
+         {
+          "lines": 3
+         }
+        ],
+        [
+         "para",
+         "Next steps are assigned and the team has been notified.",
+         {
+          "lines": 3
+         }
+        ],
+        [
+         "cta",
+         "Open recap"
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "The email is already \"Sent to all 14 invitees\", and nothing on it mentions a draft or a review."
+        },
+        {
+         "k": "friction",
+         "t": "\"Great meeting! ... Pricing is settled and the pilot is on track\" states outcomes as fact, in a cheerful tone, with no source."
+        },
+        {
+         "k": "friction",
+         "t": "\"Next steps are assigned and the team has been notified\" describes actions without listing them."
+        }
+       ]
+      },
+      {
+       "step": "Opens the recap page",
+       "frame": "desktop",
+       "url": "ondine.example/recap/9920",
+       "blocks": [
+        [
+         "bar",
+         "Recap: Pricing review",
+         {
+          "sub": "Thu 12 Nov, 42 min"
+         }
+        ],
+        [
+         "banner",
+         "Delivered",
+         {
+          "sub": "14 invitees received this at 10:43",
+          "accent": true,
+          "hi": true
+         }
+        ],
+        [
+         "people",
+         "Delivered to",
+         {
+          "items": [
+           "Priya",
+           "Sam",
+           "Dana",
+           "Marcus",
+           "+10"
+          ]
+         }
+        ],
+        [
+         "text",
+         "Summary",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Pricing is settled and the pilot is on track for January.",
+         {
+          "lines": 3
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "The \"Delivered\" banner and the \"Delivered to\" row name Priya, Sam, Dana, Marcus and 10 more, so the host can see what happened."
+        },
+        {
+         "k": "friction",
+         "t": "The page opens on \"Delivered\", a status for a send the host never chose, and offers no Send or Share action."
+        },
+        {
+         "k": "friction",
+         "t": "\"Pricing is settled and the pilot is on track for January\" is one line with no time chip or source."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 3,
+       "why": "Email and page agree, but \"Great meeting!\" and \"settled\" blur what was agreed."
+      },
+      "speed": {
+       "n": 4,
+       "why": "Nothing for the recipient to do; one click opens the page."
+      },
+      "transparency": {
+       "n": 3,
+       "why": "The page names who got it and when, but only after the send."
+      },
+      "trust": {
+       "n": 1,
+       "why": "Sent to 14 people with \"Pricing is settled\" and no host review shown."
+      },
+      "engagement": {
+       "n": 2,
+       "why": "\"Open recap\" is the only pull and the email text is filler."
+      }
+     },
+     "verdict": "Tells everyone at once and names who got it, but it sends first and states unchecked outcomes as fact.",
+     "well": [
+      "Lists who received the recap, by name, with the time.",
+      "One click from the email to the page."
+     ],
+     "wrong": [
+      "Sends to all 14 invitees with no host step shown.",
+      "\"Pricing is settled\" is stated as fact with no source.",
+      "The page has no Send or Share action."
+     ],
+     "steal": [
+      "A \"Delivered to\" row that names the recipients."
+     ],
+     "coverage": "The screens show the email and the page only. They show no step before the send, so a host review may exist and would not appear here."
+    },
+    {
+     "app": "parley",
+     "flow": "An email to the host only, then a draft nobody else has",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads the email in the inbox",
+       "frame": "desktop",
+       "url": "mail.example/inbox/parley-5502",
+       "blocks": [
+        [
+         "bar",
+         "Your draft recap is ready to review",
+         {
+          "sub": "From Parley, Thu 12 Nov 10:44"
+         }
+        ],
+        [
+         "text",
+         "Sent to you only",
+         {
+          "hi": true
+         }
+        ],
+        [
+         "gap",
+         ""
+        ],
+        [
+         "para",
+         "Pricing review with Northgate (42 min). We drafted a recap from the recording. Nothing has been shared.",
+         {
+          "lines": 4
+         }
+        ],
+        [
+         "cta",
+         "Review draft"
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "\"Sent to you only\" and \"Nothing has been shared\" tell the host the draft has not left their inbox."
+        },
+        {
+         "k": "good",
+         "t": "The email says \"We drafted a recap from the recording\", so the reader knows the text is a machine draft."
+        }
+       ]
+      },
+      {
+       "step": "Opens the draft page",
+       "frame": "desktop",
+       "url": "parley.example/draft/5502",
+       "blocks": [
+        [
+         "bar",
+         "Draft recap",
+         {
+          "sub": "Pricing review with Northgate",
+          "action": "Send recap"
+         }
+        ],
+        [
+         "banner",
+         "Draft. Nobody else has this yet",
+         {
+          "warn": true,
+          "hi": true
+         }
+        ],
+        [
+         "text",
+         "Summary",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Northgate asked for three price tiers. A revised quote goes out by Tuesday.",
+         {
+          "lines": 3
+         }
+        ],
+        [
+         "row",
+         "3 lines to check",
+         {
+          "right": "See them",
+          "badge": "Check this"
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "The amber banner \"Draft. Nobody else has this yet\" repeats the email's promise at the moment of review."
+        },
+        {
+         "k": "good",
+         "t": "The row \"3 lines to check\" with a \"Check this\" badge shows how much checking is left before \"Send recap\"."
+        },
+        {
+         "k": "friction",
+         "t": "The row says \"See them\", but the three lines are not on this screen, so the host cannot judge how weighty they are."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "Banner says \"Draft\", but the three doubtful lines are one click away."
+      },
+      "speed": {
+       "n": 4,
+       "why": "Email, then \"Review draft\", then \"Send recap\" at the top of the page."
+      },
+      "transparency": {
+       "n": 5,
+       "why": "Says what was drafted from, who has it and how many lines need a look."
+      },
+      "trust": {
+       "n": 5,
+       "why": "Nothing leaves until the host sends; the page says so twice."
+      },
+      "engagement": {
+       "n": 4,
+       "why": "\"Review draft\" and \"3 lines to check\" give the host a task."
+      }
+     },
+     "verdict": "Holds the recap back and says so twice, but the lines that need checking stay one click away.",
+     "well": [
+      "Sends to the host only, and says \"Nothing has been shared\".",
+      "Says the text is a draft made from the recording.",
+      "Counts the lines to check before the send."
+     ],
+     "wrong": [
+      "The three lines to check are not shown on the page itself."
+     ],
+     "steal": [
+      "An email that says to whom it went, that nothing is shared, and how the text was made.",
+      "A \"3 lines to check\" counter beside the send button."
+     ]
+    },
+    {
+     "app": "vireo",
+     "flow": "An email with the whole recap, already sent to everyone",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads the email in the inbox",
+       "frame": "desktop",
+       "url": "mail.example/inbox/vireo-8841",
+       "blocks": [
+        [
+         "bar",
+         "Recap: Pricing review with Northgate",
+         {
+          "sub": "From Vireo Recap, Thu 12 Nov 10:47"
+         }
+        ],
+        [
+         "text",
+         "Sent to all 9 invitees at 10:47",
+         {
+          "bold": true,
+          "hi": true
+         }
+        ],
+        [
+         "gap",
+         ""
+        ],
+        [
+         "para",
+         "Summary. Northgate wants three price tiers. We will send a revised quote by Tuesday.",
+         {
+          "lines": 3
+         }
+        ],
+        [
+         "para",
+         "Decisions. Annual billing stays the default. Offer a two-year term. Pilot starts 4 January.",
+         {
+          "lines": 3
+         }
+        ],
+        [
+         "cta",
+         "Open recap"
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "\"Sent to all 9 invitees at 10:47\" tells the host after the fact, and nothing on the email mentions a draft or a review."
+        },
+        {
+         "k": "good",
+         "t": "The email carries the whole recap in two labelled blocks, \"Summary\" and \"Decisions\", so a reader gets the substance without opening anything."
+        },
+        {
+         "k": "friction",
+         "t": "The email lists three decisions, but the page later lists four (S2 screen 1), so the email and the page already differ."
+        }
+       ]
+      },
+      {
+       "step": "Opens the recap page",
+       "frame": "desktop",
+       "url": "vireo.example/recap/8841",
+       "nav": {
+        "title": "Vireo",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min, 9 invitees",
+          "action": "Share recap",
+          "hi": true
+         }
+        ],
+        [
+         "text",
+         "Summary",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Northgate wants three price tiers. We will send a revised quote by Tuesday. The pilot starts on 4 January.",
+         {
+          "lines": 4
+         }
+        ],
+        [
+         "text",
+         "Decisions",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Annual billing stays the default.",
+         {
+          "lines": 2
+         }
+        ],
+        [
+         "para",
+         "Offer a two-year term.",
+         {
+          "lines": 2
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "The header offers \"Share recap\" although the email says it went to all 9 at 10:47, so the two screens disagree on whether it has been sent."
+        },
+        {
+         "k": "friction",
+         "t": "Nothing on the page says who the 9 invitees are, and no line carries a time chip or a source."
+        },
+        {
+         "k": "idea",
+         "t": "Replace \"Share recap\" with a status line naming who received the recap and when."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 3,
+       "why": "The email is clear, but the page still offers \"Share recap\" after the send."
+      },
+      "speed": {
+       "n": 4,
+       "why": "Nothing to do on arrival; one click to the page."
+      },
+      "transparency": {
+       "n": 2,
+       "why": "Says it was sent only in the email; the page names no recipients."
+      },
+      "trust": {
+       "n": 1,
+       "why": "Went to all 9 at 10:47 with no host review shown on any screen."
+      },
+      "engagement": {
+       "n": 3,
+       "why": "The full recap sits in the email, a reason to read, but little to return to."
+      }
+     },
+     "verdict": "Puts the whole recap in the inbox at once, but it has already gone to all 9 before the host has looked.",
+     "well": [
+      "The email holds a labelled Summary and Decisions.",
+      "One click from the email to the page."
+     ],
+     "wrong": [
+      "Sends to all 9 invitees before the host has seen it.",
+      "The page says \"Share recap\" after the email says it was sent.",
+      "The page does not name the recipients."
+     ],
+     "coverage": "The screens show the email and the page only. They show no step before the send, so a host review may exist and would not appear here."
+    }
+   ],
+   "synthesis": {
+    "best": [
+     {
+      "app": "parley",
+      "why": "The email and the page both say \"Nothing has been shared\" and count the lines still to check."
+     },
+     {
+      "app": "castell",
+      "why": "\"Only you can see this\" and \"Share it when you are ready\" hand the send to the host."
+     }
+    ],
+    "patterns": [
+     {
+      "name": "Hold it for the host",
+      "text": "The recap goes to the host alone and stays private until they share it, and the page says so.",
+      "seen": [
+       "castell",
+       "parley"
+      ]
+     },
+     {
+      "name": "A status line on the recap page",
+      "text": "The page says who has the recap: \"Only you can see this\", \"Draft. Nobody else has this yet\" or \"Delivered to\" with names.",
+      "seen": [
+       "castell",
+       "ondine",
+       "parley"
+      ]
+     }
+    ],
+    "anti": [
+     {
+      "name": "Send first, review never",
+      "text": "The recap reaches every invitee at once, within five minutes of the end, and the host reads it second.",
+      "seen": [
+       "ondine",
+       "vireo"
+      ]
+     },
+     {
+      "name": "A cheerful claim with no source",
+      "text": "\"Great meeting! ... Pricing is settled\" asserts an outcome in the tone of a person.",
+      "seen": [
+       "ondine"
+      ]
+     }
+    ],
+    "ideal": [
+     {
+      "name": "Tell the host first",
+      "text": "Email the host only, and say that nothing has been shared."
+     },
+     {
+      "name": "Say how it was made",
+      "text": "State that the text is a draft from the recording."
+     },
+     {
+      "name": "Say who can see it",
+      "text": "Put a status line on the page: draft, private or delivered, with names."
+     },
+     {
+      "name": "Count what needs a look",
+      "text": "Show how many lines to check beside the send button."
+     }
+    ],
+    "gaps": [
+     {
+      "p": "P0",
+      "title": "The recap goes to all 9 invitees before the host has seen it",
+      "today": "The email says \"Sent to all 9 invitees at 10:47\", and no screen shows a draft or a host step.",
+      "fix": "Send the recap to the host only, as a draft. Send to others when the host says so.",
+      "benchmark": "parley"
+     },
+     {
+      "p": "P1",
+      "title": "The page does not say who has the recap",
+      "today": "The header shows \"Share recap\" and no delivery line, so it contradicts the email that said it was sent.",
+      "fix": "Put a status line on the page, such as \"Only you can see this\", with names once it is sent.",
+      "benchmark": "castell"
+     },
+     {
+      "p": "P2",
+      "title": "Nothing says the recap is machine-made",
+      "today": "The email opens with \"Summary.\" and presents the text as fact.",
+      "fix": "Add one line, as Parley does: it was drafted from the recording, check before relying on it.",
+      "benchmark": "parley"
+     }
+    ]
+   }
+  },
+  {
+   "id": "S2",
+   "name": "Check what it says",
+   "finding": "The products a host could sign off are the ones that split decided from raised and let a line be checked at its moment, and Vireo does neither.",
+   "lanes": [
+    {
+     "app": "castell",
+     "flow": "Every line ends in a time, and the time opens the clip",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads a line and sees its time",
+       "frame": "desktop",
+       "url": "castell.example/recap/3317",
+       "nav": {
+        "title": "Castell",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min"
+         }
+        ],
+        [
+         "text",
+         "Decisions",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Annual billing stays the default.",
+         {
+          "lines": 2,
+          "cite": "12:04"
+         }
+        ],
+        [
+         "para",
+         "The pilot starts on 4 January.",
+         {
+          "lines": 2,
+          "cite": "31:40",
+          "hi": true
+         }
+        ],
+        [
+         "text",
+         "Raised, not decided",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "A two-year term, if Northgate wants a lower rate.",
+         {
+          "lines": 2,
+          "cite": "24:15"
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "Every line ends in a time chip, 12:04, 31:40 and 24:15, so each claim points at a moment in the recording."
+        },
+        {
+         "k": "good",
+         "t": "A separate \"Raised, not decided\" heading holds the two-year term, \"if Northgate wants a lower rate\", so a hope is not read as a deal."
+        },
+        {
+         "k": "friction",
+         "t": "The pilot line reads \"The pilot starts on 4 January\" with no condition, while S1 screen 2 gives the same 31:40 line as \"if the quote is accepted\"."
+        }
+       ]
+      },
+      {
+       "step": "Clicks 12:04 and the clip plays",
+       "frame": "desktop",
+       "url": "castell.example/recap/3317?t=12:04",
+       "nav": {
+        "title": "Castell",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "cols",
+         "",
+         {
+          "split": 0.45,
+          "rule": true,
+          "left": [
+           [
+            "para",
+            "Annual billing stays the default.",
+            {
+             "lines": 3,
+             "cite": "12:04"
+            }
+           ],
+           [
+            "para",
+            "The pilot starts on 4 January.",
+            {
+             "lines": 3,
+             "cite": "31:40"
+            }
+           ]
+          ],
+          "right": [
+           [
+            "media",
+            "Recording, 12:04",
+            {
+             "h": 60
+            }
+           ],
+           [
+            "chat",
+            "Marcus: So we keep annual billing as the default?",
+            {
+             "from": "Marcus",
+             "lines": 2
+            }
+           ],
+           [
+            "chat",
+            "Priya: Yes, annual stays the default.",
+            {
+             "from": "me",
+             "lines": 2
+            }
+           ]
+          ]
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "Clicking 12:04 opens the clip beside the line, with the question \"So we keep annual billing as the default?\" and the answer \"Yes, annual stays the default.\""
+        },
+        {
+         "k": "good",
+         "t": "Both lines stay in the left column while the clip plays, so the reader never loses the claim being checked."
+        },
+        {
+         "k": "friction",
+         "t": "Nothing on this screen lets the host correct a line that the clip contradicts."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "Decided and raised are split, but the time chips are small."
+      },
+      "speed": {
+       "n": 5,
+       "why": "One click from a line to the clip at that moment."
+      },
+      "transparency": {
+       "n": 4,
+       "why": "Every line shows its source time; the sources are not described."
+      },
+      "trust": {
+       "n": 3,
+       "why": "One click verifies a line, but the pilot condition was lost between screens."
+      },
+      "engagement": {
+       "n": 4,
+       "why": "Clicking a time pulls the reader into the evidence."
+      }
+     },
+     "verdict": "The easiest recap to check, one click from a line to its moment, but it lost the pilot's condition on the way to the Decisions list.",
+     "well": [
+      "Puts a time on every line that opens the clip.",
+      "Splits \"Decisions\" from \"Raised, not decided\".",
+      "Keeps the line and the clip side by side."
+     ],
+     "wrong": [
+      "The Decisions list drops \"if the quote is accepted\" from the pilot line.",
+      "No way on screen to correct a wrong line."
+     ],
+     "steal": [
+      "A time chip on every line that opens the recording at that moment.",
+      "A \"Raised, not decided\" heading."
+     ]
+    },
+    {
+     "app": "ondine",
+     "flow": "Five bullets, and the recording is the only way to check",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads the five bullets",
+       "frame": "desktop",
+       "url": "ondine.example/recap/9920",
+       "blocks": [
+        [
+         "bar",
+         "Recap: Pricing review",
+         {
+          "sub": "Thu 12 Nov, 42 min"
+         }
+        ],
+        [
+         "row",
+         "Pricing is settled for all tiers",
+         {
+          "hi": true
+         }
+        ],
+        [
+         "row",
+         "Annual billing is the default"
+        ],
+        [
+         "row",
+         "Two-year term agreed"
+        ],
+        [
+         "row",
+         "Pilot begins in January"
+        ],
+        [
+         "row",
+         "Sam owns the revised quote"
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "Five bullets sit under no headings, so \"Two-year term agreed\" and \"Annual billing is the default\" look equally settled."
+        },
+        {
+         "k": "friction",
+         "t": "\"Pricing is settled for all tiers\" sits above \"Sam owns the revised quote\", so the recap says pricing is closed while a quote is still to be written."
+        },
+        {
+         "k": "note",
+         "t": "No bullet carries a time, a name or a source mark."
+        }
+       ]
+      },
+      {
+       "step": "Looks for where a bullet came from",
+       "frame": "desktop",
+       "url": "ondine.example/recap/9920",
+       "blocks": [
+        [
+         "bar",
+         "Recap: Pricing review",
+         {
+          "sub": "Thu 12 Nov, 42 min"
+         }
+        ],
+        [
+         "row",
+         "Two-year term agreed"
+        ],
+        [
+         "text",
+         "No source for this line",
+         {
+          "warn": true,
+          "hi": true
+         }
+        ],
+        [
+         "gap",
+         ""
+        ],
+        [
+         "cta",
+         "Watch recording (42 min)",
+         {
+          "wide": true
+         }
+        ],
+        [
+         "media",
+         "Recording, 00:00",
+         {
+          "h": 60
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "\"No source for this line\", in warning colour under \"Two-year term agreed\", is an honest admission that the recap cannot back that line."
+        },
+        {
+         "k": "friction",
+         "t": "The only check is \"Watch recording (42 min)\", and the player sits at \"00:00\", so the reader must search the whole meeting."
+        },
+        {
+         "k": "idea",
+         "t": "Show this warning before the send, not after: S1 screen 2 already says \"Delivered\" to 14 people at 10:43."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 3,
+       "why": "Short bullets read fast, but no heading separates settled from raised."
+      },
+      "speed": {
+       "n": 1,
+       "why": "Checking one line means searching a 42-minute recording from 00:00."
+      },
+      "transparency": {
+       "n": 2,
+       "why": "Admits \"No source for this line\" once, and only after the reader goes looking."
+      },
+      "trust": {
+       "n": 1,
+       "why": "\"Pricing is settled\" sits above a quote still to be written."
+      },
+      "engagement": {
+       "n": 2,
+       "why": "The recording is the only way in, and it is long."
+      }
+     },
+     "verdict": "Admits when a line has no source, but offers a 42-minute recording as the only way to check anything.",
+     "well": [
+      "Says \"No source for this line\" in plain words.",
+      "Names an owner for the quote."
+     ],
+     "wrong": [
+      "Bullets have no headings, times or sources.",
+      "\"Pricing is settled for all tiers\" conflicts with its own fifth bullet.",
+      "The recording starts at 00:00 with no link to a moment."
+     ],
+     "steal": [
+      "A visible \"No source for this line\" warning, shown before the send."
+     ]
+    },
+    {
+     "app": "parley",
+     "flow": "Decided and Discussed, not decided, with doubtful lines marked",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads the two headings",
+       "frame": "desktop",
+       "url": "parley.example/draft/5502",
+       "blocks": [
+        [
+         "bar",
+         "Draft recap",
+         {
+          "sub": "Pricing review with Northgate"
+         }
+        ],
+        [
+         "text",
+         "Decided",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Annual billing stays the default.",
+         {
+          "lines": 2
+         }
+        ],
+        [
+         "para",
+         "The pilot starts on 4 January.",
+         {
+          "lines": 2
+         }
+        ],
+        [
+         "text",
+         "Discussed, not decided",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "A two-year term at a lower rate.",
+         {
+          "lines": 2,
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "The headings \"Decided\" and \"Discussed, not decided\" put the two-year term, \"at a lower rate\", away from the settled lines."
+        },
+        {
+         "k": "friction",
+         "t": "No line shows a time or a link to the recording, so a reader cannot check any line by ear from this screen."
+        },
+        {
+         "k": "idea",
+         "t": "Put the \"Check this\" badge on the line itself, here, and not only on a counter row in S1 screen 2."
+        }
+       ]
+      },
+      {
+       "step": "Edits a marked line in place",
+       "frame": "desktop",
+       "url": "parley.example/draft/5502",
+       "blocks": [
+        [
+         "bar",
+         "Draft recap",
+         {
+          "sub": "Pricing review with Northgate"
+         }
+        ],
+        [
+         "check",
+         "Check this: pilot start date",
+         {
+          "badge": "Check this",
+          "warn": true,
+          "sub": "Heard as 4 January and 11 January",
+          "hi": true
+         }
+        ],
+        [
+         "field",
+         "Edit line",
+         {
+          "value": "The pilot starts on 4 January."
+         }
+        ],
+        [
+         "cta",
+         "Save line",
+         {
+          "align": "right"
+         }
+        ],
+        [
+         "text",
+         "Edits are saved in the draft only"
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "The flag \"Check this: pilot start date\" gives its reason, \"Heard as 4 January and 11 January\", so the host knows what to listen for."
+        },
+        {
+         "k": "good",
+         "t": "\"Edit line\" shows the text in a field with \"Save line\", and \"Edits are saved in the draft only\" says nothing leaves."
+        },
+        {
+         "k": "friction",
+         "t": "Neither the flag nor the field links to the recording, and the field is filled with 4 January, one of the two dates heard."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "Two clear headings, but the doubtful lines are not marked on the list."
+      },
+      "speed": {
+       "n": 4,
+       "why": "Edit a flagged line in place and save it; no hunt for the line."
+      },
+      "transparency": {
+       "n": 4,
+       "why": "Gives the reason for a flag, but shows no source time for any line."
+      },
+      "trust": {
+       "n": 4,
+       "why": "Flags the pilot date and keeps edits in the draft, but gives no evidence to settle it."
+      },
+      "engagement": {
+       "n": 3,
+       "why": "The flags give the host a short job; nothing pulls beyond that."
+      }
+     },
+     "verdict": "Flags what it is unsure of and lets the host fix it in place, but it gives no recording or time to settle a flag.",
+     "well": [
+      "Splits \"Decided\" from \"Discussed, not decided\".",
+      "Gives the reason for a flag, \"Heard as 4 January and 11 January\".",
+      "Edits a line in place, saved in the draft only."
+     ],
+     "wrong": [
+      "No time or recording link on any line.",
+      "The edit field starts with one of the two dates heard."
+     ],
+     "steal": [
+      "A flag that says what was heard, in the words of the doubt.",
+      "Edit in place, with a line that says edits stay in the draft."
+     ]
+    },
+    {
+     "app": "vireo",
+     "flow": "A Decisions list that mixes decided and raised, no sources",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Reads the recap",
+       "frame": "desktop",
+       "url": "vireo.example/recap/8841",
+       "nav": {
+        "title": "Vireo",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min, 9 invitees"
+         }
+        ],
+        [
+         "text",
+         "Decisions",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Annual billing stays the default.",
+         {
+          "lines": 2
+         }
+        ],
+        [
+         "para",
+         "Offer a two-year term.",
+         {
+          "lines": 2,
+          "hi": true
+         }
+        ],
+        [
+         "para",
+         "The pilot starts on 4 January.",
+         {
+          "lines": 2
+         }
+        ],
+        [
+         "para",
+         "Move the kickoff call to Friday.",
+         {
+          "lines": 2
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "One \"Decisions\" heading holds \"Offer a two-year term\" beside \"Annual billing stays the default\", with nothing to show which was settled."
+        },
+        {
+         "k": "friction",
+         "t": "\"Move the kickoff call to Friday\" appears under Decisions here but not in the S1 email, which lists three decisions."
+        },
+        {
+         "k": "friction",
+         "t": "No line carries a time, a source or a flag."
+        }
+       ]
+      },
+      {
+       "step": "Looks for a way to check a line",
+       "frame": "desktop",
+       "url": "vireo.example/recap/8841",
+       "nav": {
+        "title": "Vireo",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min, 9 invitees"
+         }
+        ],
+        [
+         "text",
+         "Action items",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Sam to send the revised quote to Northgate.",
+         {
+          "lines": 2
+         }
+        ],
+        [
+         "gap",
+         ""
+        ],
+        [
+         "row",
+         "Watch recording",
+         {
+          "right": "42 min",
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "The only evidence on offer is a row, \"Watch recording\", with \"42 min\" on the right, and no line on the page links to a moment in it."
+        },
+        {
+         "k": "idea",
+         "t": "Give each line a time that opens the recording at that moment."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 2,
+       "why": "One Decisions list mixes a settled billing line with \"Offer a two-year term\"."
+      },
+      "speed": {
+       "n": 1,
+       "why": "To check a line the reader must find it in a 42-minute recording."
+      },
+      "transparency": {
+       "n": 1,
+       "why": "No source, flag or heading says how sure any line is."
+      },
+      "trust": {
+       "n": 1,
+       "why": "Two lines read as decisions with nothing to back them."
+      },
+      "engagement": {
+       "n": 2,
+       "why": "A \"Watch recording\" row is the only way in."
+      }
+     },
+     "verdict": "Lists everything as a decision in clean text, but gives the reader no way to tell a settled line from a raised one or to check either.",
+     "well": [
+      "Short lines in plain words.",
+      "A \"Watch recording\" row exists."
+     ],
+     "wrong": [
+      "One Decisions heading for settled and raised lines.",
+      "No time, source or flag on any line.",
+      "\"Move the kickoff call to Friday\" is on the page but not in the email."
+     ]
+    }
+   ],
+   "synthesis": {
+    "best": [
+     {
+      "app": "castell",
+      "why": "A time on every line opens the clip at that moment, and \"Raised, not decided\" is its own heading."
+     },
+     {
+      "app": "parley",
+      "why": "It flags the lines it doubts with the reason and lets the host edit them in place."
+     }
+    ],
+    "patterns": [
+     {
+      "name": "Split decided from raised",
+      "text": "Settled lines and lines still open sit under different headings.",
+      "seen": [
+       "castell",
+       "parley"
+      ]
+     },
+     {
+      "name": "Say on the line when it is weak",
+      "text": "A line carries a mark and a reason, such as \"Heard as 4 January and 11 January\" or \"No source for this line\". Ondine shows it only after the reader goes looking.",
+      "seen": [
+       "parley",
+       "ondine"
+      ]
+     }
+    ],
+    "anti": [
+     {
+      "name": "The whole recording is the only check",
+      "text": "A \"Watch recording\" row or button, 42 minutes from 00:00, is all the evidence offered.",
+      "seen": [
+       "ondine",
+       "vireo"
+      ]
+     },
+     {
+      "name": "One list for settled and raised",
+      "text": "Lines such as \"Two-year term agreed\" or \"Offer a two-year term\" sit among settled ones with no mark.",
+      "seen": [
+       "ondine",
+       "vireo"
+      ]
+     },
+     {
+      "name": "A condition lost between screens",
+      "text": "The pilot line is \"if the quote is accepted\" in the summary and unconditional under Decisions.",
+      "seen": [
+       "castell"
+      ]
+     }
+    ],
+    "ideal": [
+     {
+      "name": "Split the list",
+      "text": "Put \"Decided\" and \"Raised, not decided\" under separate headings."
+     },
+     {
+      "name": "Time every line",
+      "text": "End each line with a time that opens the recording at that moment."
+     },
+     {
+      "name": "Flag the doubtful ones",
+      "text": "Mark a weak line and say what was heard."
+     },
+     {
+      "name": "Edit in place",
+      "text": "Let the host fix a line where it stands, saved in the draft only."
+     }
+    ],
+    "gaps": [
+     {
+      "p": "P0",
+      "title": "The Decisions list mixes settled and raised lines",
+      "today": "One heading holds \"Annual billing stays the default\", \"Offer a two-year term\", \"The pilot starts on 4 January\" and \"Move the kickoff call to Friday\". Castell and Parley show the two-year term as raised, not decided.",
+      "fix": "Two headings, one for what was decided and one for what was only raised.",
+      "benchmark": "castell"
+     },
+     {
+      "p": "P0",
+      "title": "No way to check a line against the meeting",
+      "today": "The only evidence is a \"Watch recording\" row, \"42 min\", with no link from any line.",
+      "fix": "A time on every line that opens the recording at that moment, with the line kept in view.",
+      "benchmark": "castell"
+     },
+     {
+      "p": "P1",
+      "title": "Doubtful lines are not marked",
+      "today": "\"The pilot starts on 4 January\" is stated flat, and Parley's lane shows the same pilot date heard as 4 January and 11 January.",
+      "fix": "Flag a weak line with the reason, in the words of the doubt.",
+      "benchmark": "parley"
+     },
+     {
+      "p": "P1",
+      "title": "The host cannot correct a line on the page",
+      "today": "No screen in this lane shows an edit control on a line.",
+      "fix": "Edit in place with a save, and say that edits stay in the draft.",
+      "benchmark": "parley"
+     }
+    ]
+   }
+  },
+  {
+   "id": "S3",
+   "name": "Send it on",
+   "finding": "Parley lets the host pick named recipients before anything goes and makes owners confirm, while Vireo asks who should get the recap after it has gone to everyone.",
+   "lanes": [
+    {
+     "app": "castell",
+     "flow": "A share link, and action items as a plain list",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens the share dialog",
+       "frame": "desktop",
+       "url": "castell.example/recap/3317",
+       "nav": {
+        "title": "Castell",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min"
+         }
+        ],
+        [
+         "text",
+         "Summary",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "para",
+         "Northgate wants three price tiers.",
+         {
+          "lines": 2,
+          "cite": "03:18"
+         }
+        ],
+        [
+         "modal",
+         "Share recap",
+         {
+          "sub": "Anyone with the link can read it",
+          "field": "castell.example/r/3317",
+          "cta": "Copy link",
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "The dialog offers only \"Copy link\" with \"Anyone with the link can read it\", a jump from S1's \"Only you can see this\"."
+        },
+        {
+         "k": "good",
+         "t": "The warning sentence is plain and sits above the link, so the host knows the reach before copying."
+        }
+       ]
+      },
+      {
+       "step": "Reads the action items",
+       "frame": "desktop",
+       "url": "castell.example/recap/3317",
+       "nav": {
+        "title": "Castell",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min"
+         }
+        ],
+        [
+         "text",
+         "Action items",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "check",
+         "Send the revised quote by Tuesday",
+         {
+          "hi": true
+         }
+        ],
+        [
+         "check",
+         "Check seat counts"
+        ],
+        [
+         "check",
+         "Book the kickoff call"
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "The three action items are plain checkboxes with no owner or due date, though the Summary says \"We will send a revised quote by Tuesday\" (S1 screen 2)."
+        },
+        {
+         "k": "idea",
+         "t": "Name an owner on each item, so the list says who does what."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 3,
+       "why": "One link, one button, but the action items have no owners."
+      },
+      "speed": {
+       "n": 4,
+       "why": "Copy a link: one click."
+      },
+      "transparency": {
+       "n": 2,
+       "why": "Says \"Anyone with the link\", but names nobody and offers no narrower choice."
+      },
+      "trust": {
+       "n": 2,
+       "why": "Goes from \"Only you can see this\" to anyone with a link, with no step between."
+      },
+      "engagement": {
+       "n": 2,
+       "why": "Plain checkboxes with no owner give nobody a reason to act."
+      }
+     },
+     "verdict": "Sends in one click with a plain warning, but the only option is a link anyone can open and the action items have no owners.",
+     "well": [
+      "Warns \"Anyone with the link can read it\" before the copy.",
+      "One click to share."
+     ],
+     "wrong": [
+      "No choice of recipients, only a public link.",
+      "Action items have no owner or date."
+     ],
+     "steal": [
+      "A plain sentence in the share dialog about who can read the link."
+     ]
+    },
+    {
+     "app": "ondine",
+     "flow": "Action items already assigned and emailed",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Sees the action items",
+       "frame": "desktop",
+       "url": "ondine.example/recap/9920",
+       "blocks": [
+        [
+         "bar",
+         "Recap: Pricing review",
+         {
+          "sub": "Thu 12 Nov, 42 min"
+         }
+        ],
+        [
+         "text",
+         "Next steps",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "check",
+         "Revised quote",
+         {
+          "sub": "Assigned to Sam. Task created",
+          "badge": "Sam"
+         }
+        ],
+        [
+         "check",
+         "Seat counts",
+         {
+          "sub": "Assigned to Dana. Task created",
+          "badge": "Dana"
+         }
+        ],
+        [
+         "row",
+         "Assigned by the recap",
+         {
+          "right": "Undo",
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "Each item names an owner, \"Assigned to Sam. Task created\", with a badge, so nobody has to ask who does what."
+        },
+        {
+         "k": "friction",
+         "t": "The row \"Assigned by the recap\" with \"Undo\" shows that the software, not the host, handed out the work."
+        },
+        {
+         "k": "friction",
+         "t": "Nothing shows that Sam or Dana agreed to the task before it was created."
+        }
+       ]
+      },
+      {
+       "step": "Finds the email already sent",
+       "frame": "desktop",
+       "url": "mail.example/inbox/ondine-9921",
+       "blocks": [
+        [
+         "bar",
+         "New task for you: Revised quote",
+         {
+          "sub": "From Ondine, Thu 12 Nov 10:43",
+          "hi": true
+         }
+        ],
+        [
+         "text",
+         "Sam, you were assigned this by Ondine."
+        ],
+        [
+         "check",
+         "Revised quote",
+         {
+          "sub": "Due Tue 17 Nov"
+         }
+        ],
+        [
+         "toast",
+         "Task created. Undo"
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "The task email is dated 10:43, the same minute as the recap email in S1 screen 1, so no host could have reviewed it first."
+        },
+        {
+         "k": "good",
+         "t": "The task carries a due date, \"Due Tue 17 Nov\", so the recipient knows when."
+        },
+        {
+         "k": "note",
+         "t": "The toast \"Task created. Undo\" offers a way back for the task, while the email to Sam is already in the inbox."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 4,
+       "why": "Owner, badge and \"Assigned to Sam\" make each item plain."
+      },
+      "speed": {
+       "n": 5,
+       "why": "Nothing for the host to do; tasks and emails are made for them."
+      },
+      "transparency": {
+       "n": 3,
+       "why": "Says \"Assigned by the recap\" with an Undo, but after the fact."
+      },
+      "trust": {
+       "n": 1,
+       "why": "Tasks and emails went out at 10:43 before anyone confirmed."
+      },
+      "engagement": {
+       "n": 4,
+       "why": "Each owner gets a task, a due date and an email."
+      }
+     },
+     "verdict": "The most complete hand-off, with owners, dates and emails, but it hands out work before anyone has agreed to it.",
+     "well": [
+      "Names an owner and a due date on each task.",
+      "Creates the task and the email with no effort.",
+      "Offers an Undo on the assignment."
+     ],
+     "wrong": [
+      "Assigns tasks at 10:43, the minute of the recap, with no confirmation.",
+      "Undo covers the task, not the email already sent."
+     ],
+     "steal": [
+      "An owner badge and a due date on every action item."
+     ]
+    },
+    {
+     "app": "parley",
+     "flow": "Host ticks recipients, owners confirm their own items",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Ticks who gets the recap",
+       "frame": "desktop",
+       "url": "parley.example/draft/5502/send",
+       "blocks": [
+        [
+         "bar",
+         "Send recap",
+         {
+          "sub": "Pricing review with Northgate"
+         }
+        ],
+        [
+         "check",
+         "Priya Raman, host",
+         {
+          "done": true
+         }
+        ],
+        [
+         "check",
+         "Sam Ortiz",
+         {
+          "done": true
+         }
+        ],
+        [
+         "check",
+         "Dana Whitlock",
+         {
+          "done": true
+         }
+        ],
+        [
+         "check",
+         "Marcus Webb, Northgate",
+         {
+          "done": false,
+          "badge": "External",
+          "sub": "Not ticked",
+          "hi": true
+         }
+        ],
+        [
+         "cta",
+         "Send to 3 people",
+         {
+          "align": "right"
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "Every invitee is a tick row, and Marcus Webb carries an \"External\" badge and \"Not ticked\", so an outside guest is not sent the recap by default."
+        },
+        {
+         "k": "good",
+         "t": "The button \"Send to 3 people\" counts the audience, so the host sees what a click will do."
+        },
+        {
+         "k": "friction",
+         "t": "The list is four rows to set one by one, with no shortcut such as \"internal only\" shown."
+        }
+       ]
+      },
+      {
+       "step": "Sees action items waiting",
+       "frame": "desktop",
+       "url": "parley.example/draft/5502/actions",
+       "blocks": [
+        [
+         "bar",
+         "Action items",
+         {
+          "sub": "Pricing review with Northgate"
+         }
+        ],
+        [
+         "check",
+         "Send the revised quote",
+         {
+          "sub": "Waiting for Sam to confirm",
+          "hi": true
+         }
+        ],
+        [
+         "check",
+         "Check seat counts",
+         {
+          "sub": "Waiting for Dana to confirm"
+         }
+        ],
+        [
+         "check",
+         "Book the kickoff call",
+         {
+          "done": true,
+          "sub": "Confirmed by Priya"
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "good",
+         "t": "Each item says who has yet to confirm, \"Waiting for Sam to confirm\", so owners accept their own work."
+        },
+        {
+         "k": "friction",
+         "t": "\"Book the kickoff call\" is \"Confirmed by Priya\", the host, and no owner is named, so the one finished item has no clear owner."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 5,
+       "why": "Tick rows, an External badge and a count on the button."
+      },
+      "speed": {
+       "n": 3,
+       "why": "Tick, send, then wait for each owner to confirm."
+      },
+      "transparency": {
+       "n": 5,
+       "why": "Names every recipient, marks the outsider and counts the send."
+      },
+      "trust": {
+       "n": 4,
+       "why": "Outsider unticked by default and owners confirm their own items."
+      },
+      "engagement": {
+       "n": 4,
+       "why": "Pending confirmations give owners and host a reason to return."
+      }
+     },
+     "verdict": "The host chooses the audience by name and owners confirm their own work, but it takes more steps than a bare link.",
+     "well": [
+      "Names every recipient and marks the outsider.",
+      "Counts the audience on the send button.",
+      "Owners confirm their own items."
+     ],
+     "wrong": [
+      "Setting each tick by hand takes steps.",
+      "A confirmed item names no owner."
+     ],
+     "steal": [
+      "A tick list with an \"External\" badge and \"Send to 3 people\".",
+      "\"Waiting for Sam to confirm\" on each action item."
+     ]
+    },
+    {
+     "app": "vireo",
+     "flow": "A Share recap dialog after the recap has gone, owners with no reply",
+     "source": "Schematic, drawn 19 Nov 2026",
+     "screens": [
+      {
+       "step": "Opens Share recap",
+       "frame": "desktop",
+       "url": "vireo.example/recap/8841",
+       "nav": {
+        "title": "Vireo",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min, 9 invitees",
+          "action": "Share recap"
+         }
+        ],
+        [
+         "text",
+         "Summary",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "modal",
+         "Share recap",
+         {
+          "sub": "Choose who gets this recap",
+          "items": [
+           "All 9 invitees",
+           "Only the people I pick",
+           "Just me"
+          ],
+          "on": 0,
+          "cta": "Share",
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "The dialog asks \"Choose who gets this recap\" with \"All 9 invitees\" selected, but the S1 email says it already went to all 9 at 10:47."
+        },
+        {
+         "k": "friction",
+         "t": "The dialog names no one and marks no outsider; \"All 9 invitees\" is a count, not a list."
+        },
+        {
+         "k": "good",
+         "t": "\"Only the people I pick\" and \"Just me\" exist, so a careful send is possible, but only after the default has gone."
+        }
+       ]
+      },
+      {
+       "step": "Reads the action items",
+       "frame": "desktop",
+       "url": "vireo.example/recap/8841",
+       "nav": {
+        "title": "Vireo",
+        "items": [
+         "Home",
+         "Meetings",
+         "Recaps",
+         "Settings"
+        ],
+        "on": 2
+       },
+       "blocks": [
+        [
+         "bar",
+         "Pricing review with Northgate",
+         {
+          "sub": "Thu 12 Nov, 42 min, 9 invitees"
+         }
+        ],
+        [
+         "text",
+         "Action items",
+         {
+          "ink": true,
+          "bold": true
+         }
+        ],
+        [
+         "check",
+         "Send the revised quote to Northgate",
+         {
+          "sub": "Owner: Sam"
+         }
+        ],
+        [
+         "check",
+         "Check seat counts",
+         {
+          "sub": "Owner: Dana"
+         }
+        ],
+        [
+         "check",
+         "Book the kickoff call",
+         {
+          "sub": "Owner: Marcus",
+          "hi": true
+         }
+        ]
+       ],
+       "notes": [
+        {
+         "k": "friction",
+         "t": "The owner of \"Book the kickoff call\" is Marcus, yet the S2 Decisions list says \"Move the kickoff call to Friday\", a call not yet booked."
+        },
+        {
+         "k": "friction",
+         "t": "Each item shows \"Owner: Sam\", \"Owner: Dana\" or \"Owner: Marcus\", with nothing to accept, decline or reply to."
+        },
+        {
+         "k": "good",
+         "t": "Each item pairs a task with a named owner on two lines, which reads better than a bare checkbox list."
+        }
+       ]
+      }
+     ],
+     "scores": {
+      "clarity": {
+       "n": 2,
+       "why": "The dialog asks who gets the recap after the email said it went to all 9."
+      },
+      "speed": {
+       "n": 3,
+       "why": "One dialog, one click, but the default sends to everyone."
+      },
+      "transparency": {
+       "n": 2,
+       "why": "Gives a count, \"All 9 invitees\", and no names or outsider marks."
+      },
+      "trust": {
+       "n": 1,
+       "why": "Preselects everyone and gives a task to Marcus with no way to accept it."
+      },
+      "engagement": {
+       "n": 2,
+       "why": "Named owners, but nothing for an owner to answer."
+      }
+     },
+     "verdict": "Offers a choice of audience and named owners, but it asks too late, preselects everyone and gives owners nothing to confirm.",
+     "well": [
+      "Offers \"Only the people I pick\" and \"Just me\".",
+      "Names an owner on each action item."
+     ],
+     "wrong": [
+      "Asks who gets the recap after it has gone to all 9.",
+      "\"All 9 invitees\" is preselected and shows no names.",
+      "Owners cannot accept or reply."
+     ],
+     "coverage": "The sharing dialog is shown over the Summary, so the invitee list behind it is not on any screen."
+    }
+   ],
+   "synthesis": {
+    "best": [
+     {
+      "app": "parley",
+      "why": "Named recipients, an External badge, a counted send button and owners who confirm their own items."
+     }
+    ],
+    "patterns": [
+     {
+      "name": "Every action item has a named owner",
+      "text": "Each item says who does it: \"Assigned to Sam\", \"Waiting for Sam to confirm\" or \"Owner: Sam\".",
+      "seen": [
+       "ondine",
+       "parley",
+       "vireo"
+      ]
+     },
+     {
+      "name": "Choose the audience in the send step",
+      "text": "The host picks who gets the recap in a dialog or list. Parley names each person, Vireo gives only categories.",
+      "seen": [
+       "parley",
+       "vireo"
+      ]
+     }
+    ],
+    "anti": [
+     {
+      "name": "Anyone with the link",
+      "text": "The only way to send is a link anyone can open, with no recipients named.",
+      "seen": [
+       "castell"
+      ]
+     },
+     {
+      "name": "Work handed out before anyone agrees",
+      "text": "Tasks and emails are made at the moment of the recap, with an Undo as the only brake.",
+      "seen": [
+       "ondine"
+      ]
+     },
+     {
+      "name": "Everyone preselected after it has gone",
+      "text": "A dialog asks who gets the recap, with all invitees chosen, after the email said it was sent to all.",
+      "seen": [
+       "vireo"
+      ]
+     }
+    ],
+    "ideal": [
+     {
+      "name": "Pick people by name",
+      "text": "List every invitee as a tick row, with outsiders badged and unticked."
+     },
+     {
+      "name": "Count the send",
+      "text": "Put the audience on the button: \"Send to 3 people\"."
+     },
+     {
+      "name": "Let owners accept",
+      "text": "Show each item as waiting until its owner confirms."
+     },
+     {
+      "name": "Show the state",
+      "text": "Keep a list of who got it and who still owes a confirmation."
+     }
+    ],
+    "gaps": [
+     {
+      "p": "P0",
+      "title": "The Share dialog asks who gets the recap after it has gone",
+      "today": "It shows \"Choose who gets this recap\" with \"All 9 invitees\" selected, after the S1 email said it went to all 9 at 10:47.",
+      "fix": "Make this dialog the send step. Name each person, mark outsiders and leave them unticked.",
+      "benchmark": "parley"
+     },
+     {
+      "p": "P1",
+      "title": "An action item is given to a guest with nothing to accept",
+      "today": "\"Book the kickoff call\" has \"Owner: Marcus\". Parley's lane for the same meeting lists Marcus Webb as external, from Northgate.",
+      "fix": "Let owners confirm their items, and do not assign work to an outsider by default.",
+      "benchmark": "parley"
+     },
+     {
+      "p": "P1",
+      "title": "The dialog shows a count, not people",
+      "today": "\"All 9 invitees\" names no one and marks no outsider.",
+      "fix": "List the invitees, badge the ones outside the company and show the count on the button.",
+      "benchmark": "parley"
+     },
+     {
+      "p": "P2",
+      "title": "Nothing recalls a recap that has already gone",
+      "today": "No Vireo screen shows how to send a correction after a wrong send.",
+      "fix": "A \"Send a correction\" step on a recap that has been shared.",
+      "benchmark": null,
+      "benchmarkNote": "No app on the board does this. Ondine's Undo covers a task, not the email."
+     }
+    ]
+   }
+  }
+ ],
+ "principles": [
+  {
+   "name": "Hold it for the host",
+   "text": "A recap should reach the host first and stay private until they send it. Everything else about trust follows from that.",
+   "evidence": [
+    "S1",
+    "S3"
+   ]
+  },
+  {
+   "name": "Say who has it, on the page",
+   "text": "The recap page should always say who can see it, whether that is nobody, the host, named people or a link.",
+   "evidence": [
+    "S1",
+    "S3"
+   ]
+  },
+  {
+   "name": "Separate decided from raised",
+   "text": "A hope or an offer read as a decision is the line a host cannot sign. Give each its own heading.",
+   "evidence": [
+    "S2"
+   ]
+  },
+  {
+   "name": "Make a line checkable in one click",
+   "text": "A time that opens the recording at that moment is worth more than a 42-minute recording and a warning.",
+   "evidence": [
+    "S2"
+   ]
+  },
+  {
+   "name": "Choose the audience before the send, by name",
+   "text": "List the people, badge the outsiders and count the send. A category such as \"All 9 invitees\" hides who is in it.",
+   "evidence": [
+    "S1",
+    "S3"
+   ]
+  }
+ ]
+}

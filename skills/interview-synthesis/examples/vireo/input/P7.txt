@@ -1,0 +1,81 @@
+Participant: P7
+Name: Bea
+Profile: Finance analyst, hosts five or six meetings a week
+Date: 2026-11-11
+
+[00:08] Interviewer: Hi Bea, thanks for joining. Can you hear me?
+[00:20] P7: Yes, I can hear you. Sorry, my camera is off, I am eating.
+[00:44] Interviewer: No problem at all. Can you tell me what you do?
+[01:00] P7: I am a finance analyst. Forecasting, mostly, and month end close. Lots of spreadsheets.
+[01:21] Interviewer: How many meetings do you host on Vireo?
+[01:37] P7: Five or six a week. Forecast reviews, a couple of check ins with the controllers.
+[02:06] Interviewer: And Recap is on?
+[02:15] P7: I think so. It sends something after each one.
+[02:49] Interviewer: Do you read it?
+[02:58] P7: No.
+[03:30] Interviewer: Not at all?
+[03:39] P7: I tried the first week. I opened one and looked at it and closed it.
+[04:01] Interviewer: What made you close it?
+[04:15] P7: I had been in the meeting. I already knew what we said.
+[04:58] Interviewer: That is fair. Is there something you do instead?
+[05:08] P7: I keep my own notes in a spreadsheet tab. Date, topic, number, who. It is quicker.
+[05:33] Interviewer: What goes in the tab?
+[05:50] P7: Mainly numbers. Which version of the forecast, which assumptions changed, who signed off.
+[06:36] Interviewer: Does the recap have those?
+[06:52] P7: I do not know. Like I said, I do not read it.
+[07:22] Interviewer: Okay. Is there anything about it that bothers you?
+[07:43] P7: It lands in my inbox. That is it. It is one more email.
+[08:04] Interviewer: Do you filter it?
+[08:23] P7: I have a rule. It goes into a folder called Later.
+[08:50] Interviewer: How many are in Later?
+[09:01] P7: I have never counted. Probably a hundred.
+[09:23] Interviewer: Ha. Do you ever go back?
+[09:36] P7: No. If I need something, I ask someone.
+[10:18] Interviewer: You watch the recording?
+[10:29] P7: Rarely, if I need to hear a person say a number. Usually I just message them.
+[11:05] Interviewer: Okay. Do you forward recaps to anyone?
+[11:21] P7: Never. I do not forward anything. People ask me for the spreadsheet.
+[11:51] Interviewer: So the recap is not part of how you share.
+[12:07] P7: No. The spreadsheet is the record.
+[12:28] Interviewer: Have you had any recap that went out with something wrong in it?
+[12:37] P7: I would not know.
+[13:02] Interviewer: Fair. Do you have external people on your calls?
+[13:19] P7: The auditors, twice a year. The rest is internal.
+[13:50] Interviewer: And the auditors, do they get a recap?
+[14:03] P7: I do not know. Nobody has mentioned it.
+[14:39] Interviewer: Let me ask about the product itself. What do you think of the recording?
+[14:53] P7: The recording is really good. The picture is clear, and I can find things quickly.
+[15:21] Interviewer: Anything about captions?
+[15:39] P7: The captions are brilliant. I turn them on all the time because my open plan office is loud.
+[16:19] Interviewer: Is that why you use them?
+[16:30] P7: And I have a colleague who is hard of hearing, so she uses them for everything. She says it is the best she has tried.
+[17:06] Interviewer: That is lovely to hear. Do you think the recap could be useful to you, if it were different?
+[17:21] P7: Maybe. If it gave me the numbers, in a table. I would read that.
+[18:05] Interviewer: What else?
+[18:23] P7: I do not know. I am not really your user for that part.
+[18:50] Interviewer: You might be more of a user than you think. What do you do when you miss a meeting?
+[19:11] P7: I ask the person who ran it what happened. Usually over chat.
+[19:34] Interviewer: So you do not use the recap as a catch up.
+[19:47] P7: Not yet. Maybe I should.
+[20:28] Interviewer: Do you trust the transcript?
+[20:39] P7: The words, yes. It is good at the words. I do not know about the summaries.
+[21:12] Interviewer: Do your colleagues read recaps?
+[21:21] P7: Some do. My manager, Oliver, he reads everything. He would say it is useful.
+[21:59] Interviewer: Have you talked to him about it?
+[22:17] P7: Once. He said it was fine, then he said it was too wordy.
+[22:53] Interviewer: Is there anything you wish was different about how you are asked about it?
+[23:12] P7: No. It is just a little invisible to me.
+[23:41] Interviewer: That is an honest answer. If we gave you one thing, what would it be?
+[23:58] P7: Honestly, a way to turn off the email and keep the recording. That would do it.
+[24:34] Interviewer: Is the email noisy?
+[24:50] P7: It is like a newsletter I did not sign up for.
+[25:22] Interviewer: Do you think anything would get you to open it?
+[25:41] P7: If it was one line. Decisions, numbers, done.
+[26:28] Interviewer: Okay. And the recording, you said you liked it.
+[26:42] P7: Yes, I really do. It was a good choice to put that together with the captions.
+[27:20] Interviewer: Thank you, Bea. Is there anything you wanted to say that I did not ask?
+[27:30] P7: Not really. Sorry I am not more help.
+[28:09] Interviewer: You have been very helpful. The fact that you do not read them is itself useful.
+[28:26] P7: Ha, okay. Good.
+[29:13] Interviewer: Thank you for your time.
+[29:32] P7: Thanks. Back to my spreadsheets.

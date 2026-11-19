@@ -1,0 +1,83 @@
+Participant: P1
+Name: Priya
+Profile: Account lead, four or five customer calls a day, Recap on since April
+Date: 2026-11-03
+
+[00:08] Interviewer: Thanks for making time, I know you are between calls. Can you hear me okay?
+[00:18] P1: Yes, loud and clear. I have about forty minutes before my next one, so we are fine.
+[01:06] Interviewer: Great. Could you start by telling me what you do?
+[01:25] P1: I am an account lead. I look after about thirty customers, mostly mid-sized food distributors, and I am on four or five customer calls a day.
+[01:54] Interviewer: Four or five. Is that a normal week?
+[02:10] P1: That is a quiet week, honestly. Month end it can be seven.
+[02:45] Interviewer: And how many of those are on Vireo?
+[03:03] P1: All of them. Our customers are used to it by now, nobody asks for another link.
+[03:48] Interviewer: How long has Recap been on for you?
+[03:59] P1: Since spring, I think. April? My manager switched it on for the whole team and said, just try it.
+[04:21] Interviewer: What did you think at first?
+[04:41] P1: I loved it for about a week. I thought, finally, no more typing up notes in the car park.
+[05:15] Interviewer: And after the week?
+[05:35] P1: After the week I noticed I was doing the same work, just in a different order.
+[05:56] Interviewer: Say more about that.
+[06:11] P1: Okay, so a call ends. Five minutes later the recap lands in my inbox. I read it, and then I think, is that actually what we said?
+[06:54] Interviewer: How do you find out?
+[07:07] P1: I open the recording and drag the bar around until I find the bit. Which is the thing the recap was supposed to save me from.
+[07:57] Interviewer: Walk me through a recent one.
+[08:19] P1: Tuesday, the Halden Foods renewal. The recap said the contract started in February. I did not remember that.
+[08:40] Interviewer: What did you do?
+[08:50] P1: I went to the recording. Scrubbed from about the twenty minute mark. Ten minutes of listening to people say um, just to find one sentence.
+[09:28] Interviewer: And was it right?
+[09:49] P1: Mostly. The term was right. The start date was a month out.
+[10:22] Interviewer: Right, so a line needs checking and the checking is slow.
+[10:34] P1: I can never tell where a line came from, so I scrub through the recording to find the bit where it was said.
+[11:08] Interviewer: Let me ask about the action items. How are those?
+[11:18] P1: Hmm. They are the part I trust least.
+[11:46] Interviewer: Why?
+[12:01] P1: It gave the contract to Tomasz because he was the last one talking, but the contract was always mine.
+[12:37] Interviewer: Tomasz is who?
+[12:49] P1: Our sales engineer. Lovely guy. He had said, I can look at the technical annex, and the recap turned that into him sending the whole thing.
+[13:17] Interviewer: What happened with it?
+[13:29] P1: Nothing, luckily. He messaged me, "is this mine?" and I said no. But if he had gone quiet we would have dropped it.
+[14:05] Interviewer: Okay. Before we go further, can I ask about who actually receives the recap?
+[14:18] P1: Everybody who was invited. That is how it is set up. Me, Tomasz, the customer people, anyone who got the calendar invite.
+[14:39] Interviewer: Including the customer?
+[15:00] P1: Yes. That is the part that gets me.
+[15:38] Interviewer: Tell me about that.
+[15:56] P1: A couple of weeks ago, a Thursday, I finished a call with a distributor and went to grab a coffee.
+[16:23] P1: It went to the customer before I had even closed the laptop, and the renewal date in it was wrong.
+[17:14] Interviewer: How did you find out?
+[17:35] P1: Their ops manager replied all, very politely, "just checking, we thought it was the first of March?" And it said the first of February.
+[18:00] Interviewer: How did that feel?
+[18:14] P1: Awful. I looked like I did not know my own contract. I had to write back and say, sorry, that is automated.
+[18:57] Interviewer: Did you say that to the customer?
+[19:16] P1: I did. Which is a strange thing to say about your own meeting notes.
+[20:06] Interviewer: Does anything else in the recap travel to them that you would rather keep back?
+[20:21] P1: Yes, and this one made me properly cross.
+[21:08] P1: The customer got a line that said I planned to push back on their discount, which was only for our side.
+[21:49] Interviewer: How did that get in?
+[22:03] P1: We had a quick chat on the call, me and Tomasz, with the customer muted. Or I thought they were muted. The transcript caught it.
+[22:42] Interviewer: Did the customer say anything?
+[23:03] P1: No. Which is worse. They just read it and said nothing, and the next call was a bit cold.
+[23:50] Interviewer: So what do you do now?
+[24:06] P1: I paste it into my own email and rewrite most of it, because I would not send it as it is.
+[24:46] Interviewer: Walk me through the rewrite.
+[24:55] P1: I take the summary, cut it by half, fix the dates, take out anything that sounds like our internal view, and put my own greeting on it.
+[25:24] Interviewer: How long does that take?
+[25:44] P1: Ten minutes, maybe? Which on a day with five calls is most of an hour.
+[26:17] Interviewer: And the original recap, the automatic one, does that still go out?
+[26:29] P1: Yes, it still goes out. So the customer gets two. The ugly one first and mine twenty minutes later.
+[27:07] Interviewer: Let me ask something a bit leading. If you could change one thing, what would it be?
+[27:26] P1: Honestly, if every line pointed at the bit of the call it came from, I would never open the recording.
+[28:07] Interviewer: Say a little more.
+[28:22] P1: Like, a small link on each sentence. I click it, I hear the ten seconds around it, done. Right now I am the search engine.
+[28:56] Interviewer: Anything else you would want?
+[29:12] P1: A separate version for the customer, maybe. Their version has the decisions and the next steps. Ours has everything.
+[29:57] Interviewer: Would you trust that separation?
+[30:14] P1: Depends who built it. Right now I trust my own rewrite more.
+[30:47] Interviewer: We should be careful not to design it in this call. What else have I not asked?
+[31:03] P1: I do like that it exists. I want to say that. Before this I took notes by hand and missed things.
+[31:24] Interviewer: What does it get right?
+[31:34] P1: Dates, mostly the ones that are said clearly. And it remembers the small stuff, like who was on the call, which I forget.
+[32:17] Interviewer: Last question. Who is the person you think about when you send a recap?
+[32:39] P1: My customer's finance person. She reads every word and she keeps everything. If it is in writing, it is real to her.
+[33:19] Interviewer: That is a good place to stop. Thank you, Priya.
+[33:33] P1: Any time. Good luck with it.

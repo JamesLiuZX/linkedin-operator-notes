@@ -14,21 +14,9 @@
   "needs": "A written plan",
   "skill": "premortem",
   "demo": "premortem",
-  "ask": "Run a pre-mortem on the one-tap reorder plan.",
   "outputName": "risk register",
-  "demoNote": "The agent assumes the plan failed, writes how, and weighs each story against the research. The top risks get a tripwire. When it ends, click a risk to read it.",
   "clipTitle": "A pre-mortem that ends in *tripwires*",
   "clipLine": "Each top risk gets a metric, a threshold, an owner and a date.",
-  "example": {
-    "case": "tangelo",
-    "file": "premortem.html",
-    "label": "One-tap reorder, six months on",
-    "note": "Eleven failure stories across six areas. The top five carry tripwires, and six are marked as guesses.",
-    "inputs": [
-      "input/plan.md",
-      "premortem.json"
-    ]
-  },
   "chain": {
     "before": [
       "journey-teardown",
@@ -152,39 +140,52 @@
       "note": "First release."
     }
   ],
-  "run": {
-    "date": "2026-11-18",
-    "by": "A fresh agent session, given only the skill folder and the plan. Nobody answered its questions.",
-    "passed": 5,
-    "total": 5,
-    "note": "It passed on the first run of the checker. The run changed the plan itself, and it listed sixteen gaps in the instructions. The ones that mattered are fixed in this version.",
-    "log": "examples/tangelo/RUN.md"
-  },
-  "carousel": [
-    {
-      "at": 4.1,
-      "title": "Start by assuming *it failed*",
-      "body": "The date is six months after launch. The plan shipped, and it went badly."
-    },
-    {
-      "at": 8.5,
-      "title": "Eleven ways it *went wrong*",
-      "body": "Stories across six areas, placed by how likely each is and how much it would hurt."
-    },
-    {
-      "at": 11.4,
-      "title": "Evidence, or *a guess*",
-      "body": "Each story is weighed against the research. Six of the eleven have no evidence either way, and the page says so."
-    },
-    {
-      "at": 15.3,
-      "title": "A tripwire has *a number, a date and a name*",
-      "body": "The metric to watch, the line it must not cross, the day to look, and who looks."
-    },
-    {
-      "at": 17.1,
-      "title": "Five dates *for the calendar*",
-      "body": "The worst five risks, each with the day someone checks it."
+  "cases": {
+    "tangelo": {
+      "label": "One-tap reorder, six months on",
+      "note": "Eleven failure stories across six areas. The top five carry tripwires, and six are marked as guesses.",
+      "inputs": [
+        "input/plan.md",
+        "premortem.json"
+      ],
+      "ask": "Run a pre-mortem on the one-tap reorder plan.",
+      "demoNote": "The agent assumes the plan failed, writes how, and weighs each story against the research. The top risks get a tripwire. When it ends, click a risk to read it.",
+      "run": {
+        "date": "2026-11-18",
+        "by": "A fresh agent session, given only the skill folder and the plan. Nobody answered its questions.",
+        "passed": 5,
+        "total": 5,
+        "note": "It passed on the first run of the checker. The run changed the plan itself, and it listed sixteen gaps in the instructions. The ones that mattered are fixed in this version.",
+        "log": "examples/tangelo/RUN.md"
+      },
+      "carousel": [
+        {
+          "at": 4.1,
+          "title": "Start by assuming *it failed*",
+          "body": "The date is six months after launch. The plan shipped, and it went badly."
+        },
+        {
+          "at": 8.5,
+          "title": "Eleven ways it *went wrong*",
+          "body": "Stories across six areas, placed by how likely each is and how much it would hurt."
+        },
+        {
+          "at": 11.4,
+          "title": "Evidence, or *a guess*",
+          "body": "Each story is weighed against the research. Six of the eleven have no evidence either way, and the page says so."
+        },
+        {
+          "at": 15.3,
+          "title": "A tripwire has *a number, a date and a name*",
+          "body": "The metric to watch, the line it must not cross, the day to look, and who looks."
+        },
+        {
+          "at": 17.1,
+          "title": "Five dates *for the calendar*",
+          "body": "The worst five risks, each with the day someone checks it."
+        }
+      ],
+      "kind": "fresh-run"
     }
-  ]
+  }
 }

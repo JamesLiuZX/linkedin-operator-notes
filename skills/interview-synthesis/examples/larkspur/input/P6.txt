@@ -1,0 +1,69 @@
+Participant: P6
+Name: Reggie
+Profile: Product manager at a 1,200-person company with single sign-on for everything.
+Date: 2026-11-16
+
+[00:20] Interviewer: Hi Reggie. Thanks for joining. How's your day?
+[00:52] P6: Long. I've had back to back calls since eight. This is actually a break, so thanks for the break.
+[01:21] Interviewer: Ha, I'll take it. Can you tell me about your role?
+[01:48] P6: Product manager at a big company. Twelve hundred people, mostly in the regional offices. I look after a set of internal tools for the field sales team.
+[02:28] Interviewer: And why Larkspur?
+[02:57] P6: I was frustrated by our official planning tool. It's slow, and every change is a ticket. I wanted to try a lightweight version just for my own planning.
+[03:47] Interviewer: So you started on your own.
+[04:22] P6: Yes, with my work email. Which I realised later was a mistake, but we'll get to that.
+[04:51] Interviewer: What did you do with it?
+[05:17] P6: Built a roadmap for our next three quarters. Quite ambitious. Eight themes, about thirty items. And a doc to go with it.
+[05:49] Interviewer: How did it feel?
+[06:09] P6: Great, actually. Better than our official tool by a long way.
+[06:41] Interviewer: Anything in particular?
+[06:56] P6: Drag and drop on the roadmap, and the way a doc can live under an item. Our official tool can't do that without a plugin.
+[07:34] Interviewer: Who did you want to show it to?
+[08:06] P6: My director, Samir. And my peers. I was going to use it to argue for the plan in the quarterly review.
+[08:47] Interviewer: Would they edit it?
+[09:07] P6: No. Samir doesn't edit anything. He reads it in the car on the way to somewhere else. Peers might comment. But nobody is going to work in it.
+[09:55] Interviewer: So what were you looking for?
+[10:28] P6: A link. Send Samir a link, he reads it. Done. I looked for that for a long while.
+[10:56] Interviewer: And what did you find?
+[11:28] P6: Add member. In Settings. Which is a bit buried. And that's not what I wanted.
+[12:07] Interviewer: Why not?
+[12:28] P6: Because he doesn't need to be a member. I don't want the director of sales operations to become a seat in somebody's billing.
+[13:03] Interviewer: Okay. And what about the price?
+[13:39] P6: That's the other thing. I couldn't tell what a seat costs before I pressed the button, and finance wants to know. If I'm asking for budget, I need a number per person and a start date.
+[14:29] Interviewer: Did you see the dialog?
+[14:47] P6: I saw it. It said billing starts today, twelve dollars a month. But that was the first moment I knew. I couldn't plan around it. I'd have wanted that on a page before I got to the invite.
+[15:35] Interviewer: Okay. When you thought about showing it to Samir, what were you waiting for?
+[16:16] P6: For it to look like something he'd want to read. I'd done the themes but the items had no dates. I'd have been embarrassed.
+[17:01] Interviewer: So it sat.
+[17:32] P6: It sat. I told myself I'd tidy it on the weekend, and then the weekend was a quarterly planning offsite.
+[18:16] Interviewer: How long did it sit?
+[18:43] P6: Till the trial was over, more or less.
+[19:21] Interviewer: What worried you about showing it?
+[19:46] P6: What he'd see. I wrote some rough notes in the doc. Things like, team in Leeds is overstretched, and a comment on a feature that is basically my pet project. I didn't want that visible.
+[20:40] Interviewer: And did you know what he would see?
+[21:15] P6: I had no idea. There's no way to look as someone else. I could make a second account and test it, but that's a lot of effort for an invitation.
+[22:06] Interviewer: What would help?
+[22:38] P6: A preview. Click, see what Samir sees. If it's clean, send. If it's not, I fix it. Simple.
+[23:17] Interviewer: Thank you. Can I ask about your company's process for tools like this?
+[23:54] P6: Oh, you can. Everything goes through single sign-on. Everything. We have a whole portal. If a tool doesn't do our sign-on, it doesn't get in.
+[24:29] Interviewer: What happens if you try?
+[24:50] P6: Security reviews it. Eight weeks, if they like you. They have a questionnaire as long as my arm.
+[25:24] Interviewer: Did you think about that during the trial?
+[25:45] P6: Yes. That was the other mistake. I signed up with my work email, so technically Larkspur knows it's a person at our company, and I've got a trial workspace sitting outside our sign-on. If anyone in security finds it, that's a conversation.
+[26:39] Interviewer: And how long have you had the trial open?
+[27:01] P6: Three weeks now. It got extended once, I think, or I got an email that said it would.
+[27:34] Interviewer: Did you tell anyone?
+[28:02] P6: No. I figured I'd test it and, if it's good, I'd file it properly.
+[28:34] Interviewer: Would you invite anyone before that?
+[28:59] P6: Absolutely not. I can't put other people's work data into a tool that hasn't been through review. I'd get a call.
+[29:34] Interviewer: So that stops it.
+[29:55] P6: Yes. It wouldn't matter how nice the button is. Nobody is joining until security signs off.
+[30:40] Interviewer: Okay. Is there anything that surprised you?
+[31:11] P6: How good the roadmap view is. It's the best of anything I tried. I'd put money on that.
+[31:51] Interviewer: What would make you push for it?
+[32:13] P6: The view link, honestly. If Samir could see it without a login, I'd demo it on Monday. Then at least I'd have a reason for the review.
+[33:02] Interviewer: Do you think that'd be allowed?
+[33:23] P6: Probably not. Security would say anyone with a link is a data leak. But for me it's the thing.
+[33:59] Interviewer: Right. Anything else?
+[34:33] P6: I don't think so. Oh, tell them to put the seat price on the invite page. That's not too much to ask.
+[35:17] Interviewer: I'll pass it on. Thank you, Reggie.
+[35:46] P6: Thank you. Back to the calls.

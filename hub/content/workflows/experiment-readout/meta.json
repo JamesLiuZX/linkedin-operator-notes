@@ -14,23 +14,9 @@
   "needs": "Counts per variant",
   "skill": "experiment-readout",
   "demo": "experiment-readout",
-  "ask": "Read out the reorder card test. Should we ship?",
   "outputName": "readout",
-  "demoNote": "The agent hands the counts to a script, which checks the split before it looks at the result. When it ends, change the numbers or pick another scenario and watch the verdict move.",
   "clipTitle": "An A/B readout that *checks the test first*",
   "clipLine": "The split is tested before the result. The script does the arithmetic.",
-  "example": {
-    "case": "tangelo",
-    "file": "experiment-readout.html",
-    "label": "The reorder card test",
-    "note": "A two-week test on 41,870 returning customers with three guardrails. The decision is to extend.",
-    "inputs": [
-      "input/request.md",
-      "input/results.json",
-      "readout.numbers.json",
-      "readout.json"
-    ]
-  },
   "chain": {
     "before": [
       "flagged-prototype"
@@ -169,39 +155,54 @@
       "note": "First release."
     }
   ],
-  "run": {
-    "date": "2026-11-18",
-    "by": "A fresh agent session, given only the skill folder and the counts written the way a product manager would paste them. Nobody answered its questions.",
-    "passed": 6,
-    "total": 6,
-    "note": "Run twice. Both passed on the first run of the checker. The first run found that a win whose interval dips below the agreed minimum effect went unremarked, so the script now flags it. The readout shown here is from the second run, unedited.",
-    "log": "examples/tangelo/RUN.md"
-  },
-  "carousel": [
-    {
-      "at": 7.6,
-      "title": "The test is checked *before the result*",
-      "body": "Was the split as planned? Did it run its course? Could it have seen the effect? No decision until then."
-    },
-    {
-      "at": 10.8,
-      "title": "Up 1.7 points, *and how sure*",
-      "body": "A script computes the difference and its interval. The model does not do arithmetic."
-    },
-    {
-      "at": 14.5,
-      "title": "One guardrail *did not hold*",
-      "body": "The share of large orders may have fallen further than the team said it would accept."
-    },
-    {
-      "at": 16.6,
-      "title": "The decision is *a fixed rule*",
-      "body": "Better on the main metric, unclear on a guardrail. Rule 6 says extend."
-    },
-    {
-      "at": 19.5,
-      "title": "Extend, *not ship*",
-      "body": "A green headline number was not enough. The page shows every figure and how it was reached."
+  "cases": {
+    "tangelo": {
+      "label": "The reorder card test",
+      "note": "A two-week test on 41,870 returning customers with three guardrails. The decision is to extend.",
+      "inputs": [
+        "input/request.md",
+        "input/results.json",
+        "readout.numbers.json",
+        "readout.json"
+      ],
+      "ask": "Read out the reorder card test. Should we ship?",
+      "demoNote": "The agent hands the counts to a script, which checks the split before it looks at the result. When it ends, change the numbers or pick another scenario and watch the verdict move.",
+      "run": {
+        "date": "2026-11-18",
+        "by": "A fresh agent session, given only the skill folder and the counts written the way a product manager would paste them. Nobody answered its questions.",
+        "passed": 6,
+        "total": 6,
+        "note": "Run twice. Both passed on the first run of the checker. The first run found that a win whose interval dips below the agreed minimum effect went unremarked, so the script now flags it. The readout shown here is from the second run, unedited.",
+        "log": "examples/tangelo/RUN.md"
+      },
+      "carousel": [
+        {
+          "at": 7.6,
+          "title": "The test is checked *before the result*",
+          "body": "Was the split as planned? Did it run its course? Could it have seen the effect? No decision until then."
+        },
+        {
+          "at": 10.8,
+          "title": "Up 1.7 points, *and how sure*",
+          "body": "A script computes the difference and its interval. The model does not do arithmetic."
+        },
+        {
+          "at": 14.5,
+          "title": "One guardrail *did not hold*",
+          "body": "The share of large orders may have fallen further than the team said it would accept."
+        },
+        {
+          "at": 16.6,
+          "title": "The decision is *a fixed rule*",
+          "body": "Better on the main metric, unclear on a guardrail. Rule 6 says extend."
+        },
+        {
+          "at": 19.5,
+          "title": "Extend, *not ship*",
+          "body": "A green headline number was not enough. The page shows every figure and how it was reached."
+        }
+      ],
+      "kind": "fresh-run"
     }
-  ]
+  }
 }

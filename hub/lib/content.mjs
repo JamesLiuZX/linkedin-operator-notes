@@ -52,7 +52,7 @@ export const slugify = (s) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 
-export async function loadWorkflows(root) {
+export async function loadWorkflows(root, caseOrder = []) {
   const dir = join(root, "hub", "content", "workflows");
   const out = [];
   for (const slug of await ls(dir)) {
@@ -61,7 +61,30 @@ export async function loadWorkflows(root) {
     const meta = JSON.parse(await readFile(metaFile, "utf8"));
     const pageFile = join(dir, slug, "page.md");
     const md = existsSync(pageFile) ? await readFile(pageFile, "utf8") : "";
-    out.push({ ...meta, slug, md, sections: sections(md) });
+    // One worked example per case. The first case also answers for the fields
+    // older code reads straight off the workflow (example, run, ask and so on).
+    const cases = Object.entries(meta.cases || {})
+      .filter(([id]) => existsSync(join(root, "skills", meta.skill || slug, "examples", id)))
+      .map(([id, c]) => ({ id, file: `${meta.skill || slug}.html`, ...c }));
+    const order = (id) => {
+      const i = caseOrder.indexOf(id);
+      return i === -1 ? 99 : i;
+    };
+    cases.sort((x, y) => order(x.id) - order(y.id));
+    const first = cases[0] || {};
+    out.push({
+      ...meta,
+      slug,
+      md,
+      sections: sections(md),
+      cases,
+      example: cases[0] ? { case: first.id, file: first.file, label: first.label, note: first.note, inputs: first.inputs || [] } : null,
+      run: first.run,
+      ask: first.ask,
+      demoNote: first.demoNote,
+      carousel: first.carousel,
+      posterAt: first.posterAt,
+    });
   }
   return out.sort((a, b) => (a.order || 99) - (b.order || 99));
 }

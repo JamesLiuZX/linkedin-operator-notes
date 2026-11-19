@@ -62,6 +62,43 @@ export const STAGES = [
   { id: "measure", n: "04", title: "Measure", blurb: "Read the result honestly and say what happens next." },
 ];
 
+/**
+ * The cases the worked examples are drawn from. Every workflow has one example
+ * per case, so a reader can follow the domain closest to their own work.
+ * All three companies are invented.
+ */
+export const CASES = [
+  {
+    id: "tangelo",
+    domain: "Consumer marketplace",
+    company: "Tangelo",
+    what: "a grocery delivery app",
+    title: "Making the weekly shop a two-minute job",
+    question: "Why does a repeat shop take so long, and what would make it a two-minute job?",
+    outcome: "The test won, and the readout said extend: one guardrail was not settled.",
+  },
+  {
+    id: "larkspur",
+    domain: "B2B SaaS",
+    company: "Larkspur",
+    what: "a planning tool for product teams",
+    title: "Getting a second person into a trial",
+    question: "Why do most trial workspaces never get a second active person in the first week, and what would get one in?",
+    outcome: "A free view-only link beat the invite. Every guardrail held, and the readout said ship.",
+  },
+  {
+    id: "vireo",
+    domain: "AI product",
+    company: "Vireo",
+    what: "AI meeting recaps",
+    title: "A recap people trust enough to send",
+    question: "Why do people not trust an AI recap enough to send it on, and what would make one sendable?",
+    outcome: "The test looked like an 8-point win. The split was broken, and the readout said do not trust it.",
+  },
+];
+
+export const caseOf = (id) => CASES.find((c) => c.id === id) || CASES[0];
+
 export const ROLES = [
   { id: "product", title: "Product" },
   { id: "research", title: "Research" },

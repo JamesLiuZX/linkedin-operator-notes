@@ -1,0 +1,73 @@
+Participant: P4
+Name: Dele
+Profile: Customer success manager, turned Recap off for customer calls after a wrong commitment went out
+Date: 2026-11-06
+
+[00:08] Interviewer: Hi Dele, thanks for joining. How is your week going?
+[00:22] P4: Honestly, a bit scrappy. I have had three renewals in four days. But I am glad to do this.
+[00:50] Interviewer: Let us start with you. What do you do?
+[01:06] P4: I am a customer success manager. About forty accounts, mostly software companies. I spend my days on calls with them, onboarding, check ins, escalations.
+[01:36] Interviewer: How many calls on Vireo?
+[01:47] P4: Most of them. Six a day when it is busy.
+[02:26] Interviewer: And Recap was on?
+[02:51] P4: It was on until about three weeks ago. I turned it off for customer calls.
+[03:44] Interviewer: Tell me what happened.
+[04:07] P4: Okay. So, the Brightwell account. They are a logistics firm, a big one, and they wanted a custom integration.
+[04:39] Interviewer: And you talked about it on a call.
+[04:58] P4: We did. Our engineer, Callum, was on, and I was on, and their two product people.
+[05:32] Interviewer: What was said?
+[05:45] P4: Callum said we could maybe look at it next quarter. Which, to be clear, means no promises.
+[06:13] Interviewer: What did the recap say?
+[06:27] P4: It wrote it as a commitment. "Vireo will deliver the integration in December." Never said that. Never.
+[07:24] Interviewer: Where was that in the recap?
+[07:48] P4: Under Decisions. It said "Decided: the integration will be built for Brightwell by December."
+[08:41] Interviewer: That is quite different from maybe.
+[09:04] P4: It was in their inbox in five minutes. Their head of product replied, "Great news, we will tell our board."
+[09:35] Interviewer: Oh no.
+[09:50] P4: Yes. I spent the rest of the week undoing it. Callum was furious, and I do not blame him.
+[10:37] Interviewer: Did you look at the recording after?
+[10:59] P4: I did. I could not find where the December claim came from, so I spent an hour in the recording.
+[11:54] Interviewer: And you found it?
+[12:18] P4: I found the maybe. I never found a December. So it made it up, as far as I can tell.
+[12:46] Interviewer: Do you think that happens a lot?
+[13:06] P4: I do not know. I do not know how often it is wrong. I only know the one that got me.
+[13:54] Interviewer: How did the customer take the correction?
+[14:12] P4: Politely, but I could feel the trust slipping. They started copying their account director on everything.
+[14:43] Interviewer: Let me move to action items. How have those worked for you?
+[15:01] P4: It assigned the follow up to my colleague Lena, who was only listening, because she said okay at the end.
+[15:28] Interviewer: And what did she do?
+[15:53] P4: She got a notification, I think, and she thought she was in trouble. She came to my desk, very serious.
+[16:49] Interviewer: Have you seen that more than once?
+[17:08] P4: Often. Whoever says the last words seems to get the job. People say okay, sure, thanks, and that is a promise now.
+[17:43] Interviewer: What would help?
+[18:08] P4: The owner should be able to say, yes, I take that, or no, that is not mine. Right now it is just assigned. Done.
+[18:52] Interviewer: Now the second thing you said. Who gets the recap?
+[19:17] P4: Everyone on the invite. Including the customer. That is how it bit me.
+[20:11] Interviewer: Is there anything else that went to them?
+[20:30] P4: We had two of their people on the call and our own side chatted about the account health, and that landed in their inbox too.
+[21:09] Interviewer: What kind of remarks?
+[21:29] P4: Our people saying their usage was low and we should worry about renewal. Not a secret, but not something you send the customer.
+[22:08] Interviewer: Did they say anything?
+[22:22] P4: One of them said, "Interesting," and left it there. Which I do not love.
+[22:57] Interviewer: What would you want for external guests?
+[23:20] P4: A different version. Short, the commitments, the next steps. The customer version should never have our chat in it.
+[23:46] Interviewer: Would that be a toggle?
+[23:57] P4: I would want to look at it before it went, to be honest. Even a good version.
+[24:43] Interviewer: So reviewing first.
+[24:58] P4: Yes. A chance to look. It does not need to be long. Ten seconds. If I could press a button that says send, I would be happy.
+[25:42] Interviewer: Do you rewrite recaps before you forward them?
+[26:00] P4: No, I stopped forwarding altogether. I turned it off on customer calls.
+[26:36] Interviewer: And internal ones?
+[27:02] P4: Those I leave on. They go to the team and nobody gets hurt.
+[27:33] Interviewer: Do you read them?
+[27:50] P4: I skim them. If there is a number or a date I check it, and otherwise I trust the vibe.
+[28:22] Interviewer: Is that how you would describe your trust?
+[28:42] P4: Mm. Conditional. It is like a new colleague who is really keen. You love them and you read their emails twice.
+[29:16] Interviewer: That is a good line. Do you have other tools you use?
+[29:32] P4: A notes app and my own memory, which is why I was keen on this. I wanted to stop writing things down.
+[30:23] Interviewer: Anything good about it?
+[30:39] P4: It is fast. That I will give it. Five minutes is quick.
+[31:23] Interviewer: Is there anything you would like to say to the team who builds it?
+[31:48] P4: Please do not make it do more by itself. I know that sounds funny. But the more it does, the more I have to check.
+[32:16] Interviewer: That is useful to hear. Thank you, Dele.
+[32:27] P4: My pleasure. Let me know how it goes.

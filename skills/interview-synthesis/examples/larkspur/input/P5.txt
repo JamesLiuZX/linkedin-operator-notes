@@ -1,0 +1,69 @@
+Participant: P5
+Name: Aiko
+Profile: Operations lead at a 40-person nonprofit. Watches every subscription cost.
+Date: 2026-11-13
+
+[00:15] Interviewer: Hi Aiko, thanks for making time.
+[00:41] P5: Hi. Is it all right if I'm eating? It's my only gap today.
+[01:17] Interviewer: Please. Where are you joining from?
+[01:47] P5: The office. It's a converted church hall, so everything echoes. Tell me if I'm too loud.
+[02:27] Interviewer: You're fine. Could you tell me about what you do?
+[02:52] P5: I'm the operations lead at a nonprofit, forty people. We run youth programmes and a food bank. Operations means I do finance, HR, the van, and the printer.
+[03:44] Interviewer: Lots of printers in this study.
+[04:11] P5: Everyone's secretly the printer person.
+[04:40] Interviewer: What made you try Larkspur?
+[05:09] P5: We run about a dozen programmes and the planning is in six different places. I wanted one place. I'd read about it on a blog.
+[05:58] Interviewer: And you started alone?
+[06:18] P5: Yes. I started with a project for next year's volunteer calendar. I did it on a Wednesday night after the kids were in bed.
+[06:56] Interviewer: How was it?
+[07:23] P5: Good. It's a nice tool. I built the whole calendar, then a doc for the volunteer handbook.
+[07:59] Interviewer: What did you like about it most?
+[08:30] P5: The calendar view. I could see August and December side by side and finally notice we'd put two big events in the same week.
+[09:08] Interviewer: Did you want other people in it?
+[09:43] P5: Eventually. Grace, who coordinates the volunteers, would be the main one. I wanted her to see the calendar.
+[10:09] Interviewer: When?
+[10:34] P5: When I'd tidied it. I had drafts all over it. Three versions of the school holiday plan, half the rows with question marks. I did not want her to see how messy my thinking was.
+[11:21] Interviewer: Did you think about adding her earlier?
+[11:39] P5: I think I'm someone who waits. If it's not presentable, I don't hand it round.
+[12:15] Interviewer: Did you eventually?
+[12:30] P5: I tried, on day ten. Went into Settings, found Add member.
+[12:55] Interviewer: What did you see?
+[13:16] P5: A box that said adding a member starts billing today. Twelve dollars a month. And I thought, hold on. Starts today? I'm in a trial.
+[13:51] Interviewer: What did you do?
+[14:09] P5: Closed it. Straight away. I watch every subscription. I have a spreadsheet. Fourteen lines. Every one of them with a renewal date.
+[14:40] Interviewer: So what was the worry?
+[15:11] P5: That I'd be adding to it without knowing. Was it twelve once, or every month? Was it for one or for the team? I couldn't tell.
+[15:45] Interviewer: How would you want it shown?
+[16:04] P5: Before I click anything. A line on the invite page that says here's the price per person and here's when it starts. I'd rather find the price before I start.
+[16:41] Interviewer: Did you try anything else?
+[17:13] P5: I looked at the pricing page. It said twelve per member. It said nothing about people who just look.
+[17:50] Interviewer: Okay. Did you eventually invite Grace?
+[18:21] P5: Yes, after I'd decided to risk it. I used the box. Didn't pay attention to the money, I just did it.
+[19:07] Interviewer: What happened?
+[19:29] P5: Nothing. Grace never joined. I asked her in the kitchen and she said what email? And I looked and I'd put the right address. We looked in her inbox. Nothing there.
+[20:13] Interviewer: Anywhere else?
+[20:33] P5: Her spam. It was in there. It had a name I didn't recognise as the sender and a subject like you have been added to a workspace. It looked like those emails about a prize.
+[21:18] Interviewer: So she ignored it.
+[21:43] P5: She'd been ignoring it for four days. She thought it was marketing.
+[22:22] Interviewer: What did you do?
+[22:46] P5: I walked over and read it out to her. Which tells you how well it works.
+[23:24] Interviewer: Did it change how you felt about the trial?
+[23:59] P5: A bit. It made me think, if it's this hard for one person, what happens with all forty?
+[24:40] Interviewer: Did you tell anyone else about the trial?
+[25:10] P5: My deputy, Osei. He said don't spend money on it before the board meets. Which was fair.
+[25:45] Interviewer: Hmm. One more thing about what Grace sees. Did you think about it?
+[26:09] P5: Yes, I did. Before I invited her, I was nervous about the drafts. I didn't know what she'd see when she opened it. Would she see my half-written budget scenarios? The notes about the funders? I couldn't tell.
+[26:58] Interviewer: And did you find out?
+[27:29] P5: After she joined, yes. She saw everything. Which was fine, she's lovely, but it could have been the director of the funding body.
+[28:07] Interviewer: Okay. Let me ask about cost differently. What would have made inviting easy?
+[28:41] P5: If I knew the number. When we were deciding on the app for the food bank I knew exactly what each person cost. With this, I only found out by clicking.
+[29:23] Interviewer: Is there something that would have made you invite more people?
+[29:54] P5: Honestly, I did not know whether another person would cost me anything, so I did not ask anyone else. It was easier to do nothing.
+[30:30] Interviewer: Okay. Is there anything you want to tell Larkspur about?
+[31:04] P5: We're a charity. Do you have a nonprofit discount? Nobody mentions it. If there was one on the page I would have signed up sooner.
+[31:51] Interviewer: I'll pass that on.
+[32:06] P5: Please. Even ten percent. Even a line that says ask us.
+[32:39] Interviewer: Do you think you'll continue?
+[32:56] P5: I'm not sure. I like it. But the invites and the cost, I'd have to be sure.
+[33:39] Interviewer: Fair. Thank you, Aiko.
+[33:57] P5: Thank you. Sorry about the echo.

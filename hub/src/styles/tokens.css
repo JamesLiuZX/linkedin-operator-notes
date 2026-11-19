@@ -1,9 +1,19 @@
 /* hub/src/styles/tokens.css
  *
- * The whole visual system in one file. The idea is "quiet page, live stage":
- * pages are ink on paper with one highlighter colour, and the only place with
- * rich colour and motion is the stage where a workflow runs.
+ * The whole visual system in one file. The idea is "white page, one colour
+ * per workflow": pages are black type on white, every workflow owns one vivid
+ * colour, and outputs are shown as real objects (sheets, windows, a phone)
+ * sitting on that colour. The site is light on every device. There is no dark
+ * theme, because the artifacts are documents and read best on white.
  */
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("./fonts/bricolage-grotesque-latin-opsz-normal.woff2") format("woff2-variations");
+}
 
 @font-face {
   font-family: "Geist";
@@ -24,116 +34,116 @@
 :root {
   color-scheme: light;
 
-  /* Paper and ink. Neutral, a hair warm, so the highlighter reads as chosen. */
-  --paper: #fbfbf9;
-  --paper-2: #f3f3ef;
-  --paper-3: #eaeae4;
+  /* Page and ink. */
+  --paper: #ffffff;
+  --paper-2: #f5f5f1;
+  --paper-3: #ebebe5;
   --card: #ffffff;
-  --ink: #0b0c0c;
-  --ink-2: #353836;
-  --muted: #6c716e;
-  --faint: #a1a6a2;
-  --line: rgba(11, 12, 12, 0.11);
-  --line-2: rgba(11, 12, 12, 0.06);
+  --ink: #0c0c0b;
+  --ink-2: #3b3b36;
+  --muted: #77776f;
+  --faint: #a9a9a0;
+  --line: #e3e3db;
+  --line-2: #eeeee8;
 
-  /* The highlighter. Always a background behind ink, never text on paper. */
-  --hi: #dcff4a;
-  --hi-soft: #efffad;
-  --hi-ink: #131a00;
+  /* The highlighter: the brand's one constant mark, and the colour of "checked". */
+  --hi: #d8ff3f;
+  --hi-soft: #f1ffb8;
+  --hi-ink: #141a00;
 
-  /* The stage: where a workflow runs. Dark in both themes. */
-  --stage: #0b0c0c;
-  --stage-2: #131514;
-  --stage-3: #1b1e1c;
-  --stage-4: #262a27;
-  --stage-line: rgba(255, 255, 255, 0.09);
-  --stage-line-2: rgba(255, 255, 255, 0.05);
-  --stage-ink: #eef1ea;
-  --stage-ink-2: #b9c0b8;
-  --stage-muted: #7d857e;
-  --signal: #cbff3c;
+  /* The colour of the page you are on. Workflow pages set these four. */
+  --c: #0c0c0b;
+  --c-ink: #ffffff;
+  --c-soft: #f1f1ec;
+  --c-deep: #0c0c0b;
 
-  /* Meaning, used only inside artifacts and checks. */
-  --ok: #17995a;
-  --ok-soft: #e2f6ea;
-  --warn: #b26b00;
-  --warn-soft: #fff3d9;
-  --bad: #d23a2e;
-  --bad-soft: #fdeae7;
-  --info: #2b59ff;
-  --info-soft: #e9eeff;
+  /* Light "stage" surfaces, used by command lines and code. */
+  --stage: #f3f3ee;
+  --stage-2: #ecece6;
+  --stage-3: #e4e4dc;
+  --stage-4: #d9d9d0;
+  --stage-line: #dddcd3;
+  --stage-line-2: #e8e8e0;
+  --stage-ink: #0c0c0b;
+  --stage-ink-2: #3b3b36;
+  --stage-muted: #77776f;
+  --signal: #0c0c0b;
 
+  --ok: #0a9a60;
+  --ok-soft: #e0f6ec;
+  --warn: #a86400;
+  --warn-soft: #fff1d2;
+  --bad: #d63a2f;
+  --bad-soft: #fde9e6;
+  --info: #2b50ff;
+  --info-soft: #e8ecff;
+
+  --font-display: "Bricolage Grotesque", "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
-  --r-xs: 6px;
-  --r-sm: 10px;
-  --r-md: 14px;
-  --r-lg: 20px;
-  --r-xl: 28px;
+  --r-xs: 8px;
+  --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --r-2xl: 40px;
 
-  --shadow-1: 0 1px 2px rgba(11, 12, 12, 0.05), 0 1px 1px rgba(11, 12, 12, 0.03);
-  --shadow-2: 0 1px 2px rgba(11, 12, 12, 0.05), 0 12px 32px -16px rgba(11, 12, 12, 0.22);
-  --shadow-3: 0 2px 4px rgba(11, 12, 12, 0.06), 0 32px 64px -28px rgba(11, 12, 12, 0.38);
+  /* Objects float: a tight contact shadow, a soft drop, and a tint of the page's colour. */
+  --shadow-1: 0 1px 2px rgba(12, 12, 11, 0.06), 0 2px 6px rgba(12, 12, 11, 0.04);
+  --shadow-2: 0 1px 2px rgba(12, 12, 11, 0.07), 0 14px 32px -14px rgba(12, 12, 11, 0.22);
+  --shadow-3: 0 2px 4px rgba(12, 12, 11, 0.07), 0 28px 60px -22px rgba(12, 12, 11, 0.34);
+  --shadow-float: 0 2px 4px rgba(12, 12, 11, 0.08), 0 30px 60px -24px rgba(12, 12, 11, 0.4), 0 70px 90px -50px color-mix(in srgb, var(--c-deep) 55%, transparent);
 
-  --wide: 1200px;
-  --text: 44rem;
-  --gutter: clamp(1.1rem, 4vw, 2.5rem);
-  --nav-h: 60px;
+  --wide: 1240px;
+  --text: 43rem;
+  --gutter: clamp(1.15rem, 4vw, 3rem);
+  --nav-h: 68px;
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --ease-spring: cubic-bezier(0.3, 1.45, 0.5, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --paper: #0b0c0c;
-    --paper-2: #121413;
-    --paper-3: #191c1a;
-    --card: #131514;
-    --ink: #f0f3ec;
-    --ink-2: #c3c9c1;
-    --muted: #8c948d;
-    --faint: #5f665f;
-    --line: rgba(240, 243, 236, 0.13);
-    --line-2: rgba(240, 243, 236, 0.07);
-    --hi-soft: #2c3a00;
-    --stage: #000000;
-    --stage-2: #0d0f0e;
-    --stage-3: #161917;
-    --ok-soft: #0f2a1c;
-    --warn-soft: #2e2208;
-    --bad-soft: #33130f;
-    --info-soft: #121c44;
-    --shadow-1: 0 0 0 1px rgba(255, 255, 255, 0.04);
-    --shadow-2: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 16px 40px -20px rgba(0, 0, 0, 0.8);
-    --shadow-3: 0 0 0 1px rgba(255, 255, 255, 0.07), 0 32px 64px -24px rgba(0, 0, 0, 0.9);
-  }
+/* One colour per workflow. Set data-wf on any element to put it in that colour. */
+[data-wf="journey-teardown"] {
+  --c: #2b50ff;
+  --c-ink: #ffffff;
+  --c-soft: #e9edff;
+  --c-deep: #1b37cf;
 }
 
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --paper: #0b0c0c;
-  --paper-2: #121413;
-  --paper-3: #191c1a;
-  --card: #131514;
-  --ink: #f0f3ec;
-  --ink-2: #c3c9c1;
-  --muted: #8c948d;
-  --faint: #5f665f;
-  --line: rgba(240, 243, 236, 0.13);
-  --line-2: rgba(240, 243, 236, 0.07);
-  --hi-soft: #2c3a00;
-  --stage: #000000;
-  --stage-2: #0d0f0e;
-  --stage-3: #161917;
-  --ok-soft: #0f2a1c;
-  --warn-soft: #2e2208;
-  --bad-soft: #33130f;
-  --info-soft: #121c44;
-  --shadow-1: 0 0 0 1px rgba(255, 255, 255, 0.04);
-  --shadow-2: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 16px 40px -20px rgba(0, 0, 0, 0.8);
-  --shadow-3: 0 0 0 1px rgba(255, 255, 255, 0.07), 0 32px 64px -24px rgba(0, 0, 0, 0.9);
+[data-wf="interview-synthesis"] {
+  --c: #ff5a36;
+  --c-ink: #ffffff;
+  --c-soft: #ffece6;
+  --c-deep: #c93a1a;
+}
+
+[data-wf="premortem"] {
+  --c: #ffbb2e;
+  --c-ink: #1c1400;
+  --c-soft: #fff4d8;
+  --c-deep: #8f5d00;
+}
+
+[data-wf="decision-prd"] {
+  --c: #14b876;
+  --c-ink: #03231a;
+  --c-soft: #e1f8ee;
+  --c-deep: #0a7a4c;
+}
+
+[data-wf="flagged-prototype"] {
+  --c: #7a5cff;
+  --c-ink: #ffffff;
+  --c-soft: #efebff;
+  --c-deep: #4e33d6;
+}
+
+[data-wf="experiment-readout"] {
+  --c: #ff4d9a;
+  --c-ink: #ffffff;
+  --c-soft: #ffe7f1;
+  --c-deep: #c21d68;
 }

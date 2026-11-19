@@ -1,0 +1,50 @@
+8 participants, 6 themes, 36 quotes found, 1 rejected
+  PASS  Every quote exists in a transcript (after removing 1 that could not be found)
+  PASS  Counts are people
+  PASS  No percentages from small samples
+  PASS  Every theme has a counter-voice, or says none was found
+  PASS  Every participant is accounted for
+  ----  The themes answer the research question (yours to judge)
+Rejected quotes (removed from the synthesis):
+  - P5: "I would invite my whole team tomorrow if it did not charge me for it" (not found in any transcript)
+5 of 5 scripted checks passed
+1 quote(s) were rejected and removed. Tell the user each one, word for word.
+
+Every quote, in order:
+FOUND     P1 line  27  T1  "I wasn't going to send Kemal a half-empty roadmap, because the first thing he sees is the thing he remembers."
+FOUND     P2 line  23  T1  "I would rather send nothing than send that."
+FOUND     P4 line  37  T1  "I wasn't going to show Verena a plan with two phases empty and a placeholder that says TBD."
+FOUND     P5 line  25  T1  "I did not want her to see how messy my thinking was."
+FOUND     P6 line  35  T1  "I'd done the themes but the items had no dates. I'd have been embarrassed."
+FOUND     P8 line  21  T1  "I waited for what I'd call presentable. There's no polite way to send someone a mess."
+FOUND     P7 line  19  T1  "I'd rather start with a blank page and have the team put things on it."
+FOUND     P1 line  49  T2  "A link that opens a page, read only. Like a Google doc you share but without anyone asking for an invite."
+FOUND     P2 line  33  T2  "She doesn't need an account. She needs a page."
+FOUND     P4 line  23  T2  "I wanted her to look at it, not edit it."
+FOUND     P6 line  29  T2  "I don't want the director of sales operations to become a seat in somebody's billing."
+FOUND     P8 line  27  T2  "I looked for a view link. Share, publish, anything like that. Nothing."
+FOUND     P3 line  55  T2  "I'd rather give them a seat and be done."
+FOUND     P1 line  43  T3  "I'd like to see the seat price when I'm about to invite someone, not after I've typed an email."
+FOUND     P3 line  29  T3  "I'd have liked to know it was going to be sixty before I pressed the button."
+FOUND     P5 line  61  T3  "Honestly, I did not know whether another person would cost me anything, so I did not ask anyone else."
+REJECTED  P5           T3  "I would invite my whole team tomorrow if it did not charge me for it"  (not found in any transcript)
+FOUND     P6 line  31  T3  "I couldn't tell what a seat costs before I pressed the button, and finance wants to know."
+FOUND     P8 line  29  T3  "I wasn't sure whether that was one person or two or what."
+FOUND     P7 line  27  T3  "It's twelve dollars. I didn't think about it. It's a rounding error against a team of engineers."
+FOUND     P1 line  55  T4  "So I'd need to know exactly what Kemal sees."
+FOUND     P4 line  31  T4  "So the worry was, if I invite her, what does she see?"
+FOUND     P5 line  55  T4  "I didn't know what she'd see when she opened it."
+FOUND     P6 line  43  T4  "I had no idea. There's no way to look as someone else."
+FOUND     P7 line  45  T4  "What would they see? Everything. It's our plan. I have nothing to hide from my own team."
+FOUND     P3 line  37  T5  "She said it looked like marketing. A big blue button and a tiny unsubscribe line at the bottom."
+FOUND     P5 line  47  T5  "She'd been ignoring it for four days. She thought it was marketing."
+FOUND     P8 line  39  T5  "I found it in his promotions tab. He said he'd thought it was an advert."
+FOUND     P2 line  53  T5  "Immediately. Straight to his inbox. He clicked, set a password, done."
+FOUND     P2 line  43  T6  "I could build the nicest roadmap in the world and I still can't roll it out to the team until Priyanka in IT signs off."
+FOUND     P6 line  59  T6  "Nobody is joining until security signs off."
+FOUND     P8 line  43  T6  "Anything with company data in it goes through a review, which takes a couple of weeks, and the review needs an actual use case."
+FOUND     P3 line  49  T6  "Nothing blocks me. I've got a credit card and no boss."
+FOUND     P1 line  35  U1  "Settings, then Members, then Add member. I had to go hunting."
+FOUND     P4 line  57  U1  "I went to Settings looking for sharing, and found members, and that's a different thing."
+FOUND     P6 line  27  U1  "Add member. In Settings. Which is a bit buried. And that's not what I wanted."
+FOUND     P5 line  63  U2  "We're a charity. Do you have a nonprofit discount? Nobody mentions it."

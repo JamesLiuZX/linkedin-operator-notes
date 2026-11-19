@@ -1,0 +1,71 @@
+Participant: P7
+Name: Soledad
+Profile: Team lead of 5 engineers at a startup. Likes building things with the team from an empty page.
+Date: 2026-11-17
+
+[00:15] Interviewer: Hi Soledad. Thanks for doing this, I know it's your evening.
+[00:35] P7: No worries. I just got in, give me a second to put the kettle on. Okay, go.
+[01:06] Interviewer: Busy day?
+[01:20] P7: Release day. Two clinics found a bug in the booking flow before breakfast, so I've been in a fog of tickets.
+[02:00] Interviewer: Take your time. Could you tell me about your team?
+[02:27] P7: I'm a team lead at a startup. Five engineers, plus me, plus a designer who sits with us. We're about twenty people in total. We build a booking platform for physio clinics.
+[03:03] Interviewer: How did Larkspur come about?
+[03:18] P7: I was fed up with our board. Every sprint it ended up full of stuff nobody had looked at since spring. A friend said try a roadmap tool, so I did, on a Thursday.
+[04:07] Interviewer: Alone?
+[04:21] P7: For about twenty minutes. Then I added everyone.
+[04:50] Interviewer: Tell me about those forty minutes.
+[05:16] P7: I made a project, called it Q1, and then I looked at the empty page and thought, right, this is better with five people typing.
+[05:54] Interviewer: You didn't want to fill it first?
+[06:25] P7: No, no. The fun is filling it together. We do our planning on a call, I share my screen, we shout things. So the tool should be open before the call. I'd rather start with a blank page and have the team put things on it.
+[07:21] Interviewer: And what was the call like?
+[07:46] P7: Brilliant. Chaotic. We had forty items in half an hour. Danil, he's the quiet one, he suddenly had opinions about the data migration. It was nice.
+[08:23] Interviewer: Was there anything you did before the call to prepare?
+[08:45] P7: I wrote the five themes on a sticky note and typed them in as headings. That's it. The rest was them.
+[09:14] Interviewer: How did you find the invite?
+[09:36] P7: Settings, Members. It took a minute but I figured it out. I added all five in one go.
+[10:07] Interviewer: Did you notice the billing note?
+[10:35] P7: I did see a line, yes. Twelve dollars a month each. It's twelve dollars. I didn't think about it. It's a rounding error against a team of engineers.
+[11:12] Interviewer: And your boss?
+[11:32] P7: He's the founder, he knows I'm trying a tool. He said as long as it's not a hundred a seat, fine.
+[12:15] Interviewer: Did everyone get the email?
+[12:40] P7: I think so. I told them on chat that it was coming. They all joined that afternoon.
+[13:15] Interviewer: Did anyone ask you questions about it?
+[13:43] P7: Danil asked whether it was another tool we'd forget in a month. I said not if we use it on the Monday call.
+[14:27] Interviewer: And did you?
+[14:43] P7: Four Mondays in a row so far. It's a habit now.
+[15:15] Interviewer: So no issues.
+[15:29] P7: None I know about. Danil forgot his password. That's Danil.
+[15:52] Interviewer: Do you need anyone's approval at the startup, for a tool?
+[16:21] P7: No. We're twenty people, we don't have an IT person. We have a guy called Wes who knows about the wifi. That's the whole security team.
+[16:57] Interviewer: Okay. What about showing the work to people outside the team?
+[17:24] P7: We share it on the monthly all-hands. I screen share.
+[17:46] Interviewer: Would you prefer a link?
+[18:05] P7: Maybe. I haven't needed it. Everyone I'd show it to is someone I'd happily just put in.
+[18:36] Interviewer: Okay. Did you ever worry about what they'd see?
+[19:04] P7: What would they see? Everything. It's our plan. I have nothing to hide from my own team. If someone doesn't like a card I wrote, they can say so.
+[19:49] Interviewer: Fair. What else did you like?
+[20:13] P7: The keyboard shortcuts in the roadmap view. Shift and the arrows to move an item a week at a time. I use it constantly. Danil timed himself. He's faster than me.
+[20:54] Interviewer: What about the doc side?
+[21:25] P7: It's fine. We don't use the docs much. We use the roadmap.
+[21:58] Interviewer: Why not the docs?
+[22:21] P7: We have a wiki already. Nobody wants to move the wiki. It's like moving house for the sake of a lamp.
+[22:57] Interviewer: Anything annoying?
+[23:12] P7: Zooming in on the roadmap resets the scroll sometimes. Tiny thing.
+[23:34] Interviewer: Did anything go wrong in the first week?
+[23:52] P7: A card disappeared once. Turned out Danil had archived it by accident. We got it back.
+[24:31] Interviewer: Okay, good.
+[24:57] P7: Yeah, it's a nice undo.
+[25:12] Interviewer: Do you think you'll keep paying?
+[25:39] P7: Yes. We're past the trial now, I think we're on our third week. The boss approved the card.
+[26:10] Interviewer: And what would you tell someone starting alone?
+[26:38] P7: Stop being alone. Add the team and see what happens.
+[27:04] Interviewer: Why do you think so many people don't?
+[27:26] P7: I don't know. I'm not like that. I suppose some people are shy about showing unfinished work. I like unfinished work, you can see the thinking.
+[27:58] Interviewer: Is there something you'd change?
+[28:16] P7: I'd like the roadmap to have a swimlane for people. We tried to hack it with labels.
+[28:47] Interviewer: Okay. Anything else?
+[29:12] P7: Not really. It's been a good tool for us. Sorry, I'm not very interesting for your study, I think I'm the easy case.
+[29:43] Interviewer: That's not true, it's really useful to hear.
+[30:07] P7: Well, good. I'll be here if you have more questions.
+[30:42] Interviewer: Thanks, Soledad.
+[30:56] P7: Bye.

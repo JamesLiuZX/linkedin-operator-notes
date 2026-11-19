@@ -1,0 +1,81 @@
+Participant: P6
+Name: Curtis
+Profile: Founder of a 30-person company, Recap on for everything
+Date: 2026-11-10
+
+[00:08] Interviewer: Hello Curtis, thanks for finding the time. I know you are running a company.
+[00:26] P6: It is fine. I am walking to the station, so if the line drops, that is why.
+[01:11] Interviewer: Tell me about your company.
+[01:26] P6: We are thirty people. A small software company, mostly engineers and a few sales people, and me trying to keep it all moving.
+[01:53] Interviewer: How many meetings do you host a week?
+[02:02] P6: Twenty maybe. All hands, one to ones, product meetings, interviews, customer calls.
+[02:41] Interviewer: And Recap is on?
+[02:56] P6: On for everything. I love it.
+[03:39] Interviewer: What do you love?
+[03:52] P6: That it sends itself. I do nothing. The meeting finishes and everybody has the notes. It is like having an assistant I do not pay.
+[04:35] Interviewer: Do you read the recaps?
+[04:47] P6: Sometimes, on my phone, on the train. The first paragraph.
+[05:31] Interviewer: Do you check them against the call?
+[05:49] P6: No. I do not check it, life is short.
+[06:21] Interviewer: Has that worked for you?
+[06:37] P6: So far, yes. I assume it is right, and if it is wrong, someone will tell me.
+[07:17] Interviewer: And does anyone?
+[07:28] P6: Not really. My team is not a shy bunch, but nobody has said anything.
+[08:04] Interviewer: Let me ask about decisions. How does it handle them?
+[08:23] P6: Good. It writes them down, and that is what matters.
+[08:51] Interviewer: Have you ever seen it list something as decided that was only an idea?
+[09:10] P6: If it was said, it counts. That is how I run things. If you say it in a meeting, you own it.
+[09:50] Interviewer: Interesting. Even in passing?
+[10:10] P6: Even in passing. People should be careful what they say.
+[10:40] Interviewer: So the recap makes everyone more careful.
+[10:50] P6: Ha. Maybe. A bit of accountability does not hurt.
+[11:33] Interviewer: Does it send before you have looked?
+[11:52] P6: It does, and that is the whole point for me. If I had to look first I would never send it, so it would never exist.
+[12:25] Interviewer: So the automatic send is the feature.
+[12:35] P6: It is the feature. Everything else is detail.
+[13:01] Interviewer: Let me ask about who receives it. Do you have people from outside on your calls?
+[13:18] P6: Quite a lot. Customers, candidates, advisers.
+[13:46] Interviewer: Has an outside person ever got a recap you would rather they had not?
+[14:07] P6: Ah. Yes. Yes, one.
+[14:45] Interviewer: Tell me.
+[14:56] P6: We did a debrief after a hiring interview. Four of us, straight after the candidate left the call.
+[15:35] Interviewer: Was the candidate still invited?
+[15:49] P6: She was on the invite for the whole thing, the same link. I thought she had left.
+[16:36] Interviewer: And?
+[16:57] P6: A candidate got the recap of our debrief about her interview, with our honest comments in it, and I had to call her and apologise.
+[17:32] Interviewer: What was in it?
+[17:49] P6: What we really thought. That she was strong on the technical side and a bit stiff, and that we were unsure about the salary.
+[18:29] Interviewer: How did she take it?
+[18:49] P6: Graciously. She said she appreciated the honesty, and then she took another offer. Which, fine.
+[19:37] Interviewer: Did that change how you feel about auto send?
+[19:46] P6: A bit. I still love it. I just now end the call properly, and I check who is still in the room.
+[20:17] Interviewer: So you did not switch anything off.
+[20:33] P6: No. I changed my behaviour, not the product.
+[21:02] Interviewer: Did you want anything from us?
+[21:19] P6: Not really. It works for me.
+[21:41] Interviewer: Is there anything that annoys you?
+[22:01] P6: The emails are a bit long. That is all.
+[22:37] Interviewer: How is it for the rest of your team? Do they like it?
+[22:47] P6: They have not complained. The sales lead uses it for customer calls and she says it saves her an hour a day.
+[23:26] Interviewer: Do you know that is true?
+[23:39] P6: I do not know. It is what she said. I am not going to audit it.
+[24:05] Interviewer: Fair enough. What about the action items?
+[24:20] P6: I look at them if I am in the mood. Mostly I let people sort that out.
+[24:44] Interviewer: Is there anyone you trust to do that?
+[24:55] P6: My head of ops, Gwen. She keeps a list. She does not read the recaps at all, she told me, but she is very organised.
+[25:41] Interviewer: Interesting. Do you forward recaps?
+[25:58] P6: Not really. They have already gone. Why would I forward it?
+[26:18] Interviewer: Do you edit them?
+[26:37] P6: I never thought of that. Can you edit them?
+[26:58] Interviewer: I am not sure we should go into that here. What would make you less happy with it?
+[27:11] P6: If it started asking me to approve things. I have too many approvals already.
+[27:57] Interviewer: Understood. And what would make you happier?
+[28:14] P6: Honestly, nothing. Maybe shorter.
+[28:43] Interviewer: Do you recommend it to other founders?
+[28:57] P6: All the time. I did at a dinner last week.
+[29:28] Interviewer: What do you say?
+[29:38] P6: I say, turn it on and forget about it. It writes the minutes you never write.
+[30:28] Interviewer: Last thing. Have you got a favourite recap?
+[30:37] P6: The all hands. It captures the jokes, the numbers, the lot. I send the link to people who missed it.
+[31:09] Interviewer: That is a lovely note to finish on. Thank you, Curtis.
+[31:28] P6: My pleasure. I am at the station now, so I have to run.

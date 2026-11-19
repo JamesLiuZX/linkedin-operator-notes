@@ -1,0 +1,159 @@
+{
+  "title": "Draft-first recap: readout",
+  "date": "2026-11-19",
+  "headline": "Do not trust. The two groups were not split evenly, so the 8.0 point gain cannot be believed yet.",
+  "summary": "The test was meant to split hosts evenly, but 31,204 hosts landed in control and 28,975 in draft first, and chance does not explain a gap that big. On the surface, hosts sharing a recap rose 8.0 points, from 19.0% to 27.0%, and both guardrails (Turned Recap off, Recap reported as wrong) fell. But the data team logged control hosts when the email was sent and draft first hosts when the draft screen loaded, which is a likely cause of the uneven split and means the groups may not hold the same kind of hosts. So the gain may be real, partly real or not real, and this test cannot say which.",
+  "next": [
+    "Ask the data team to log both groups at the same moment, at assignment, before anyone sees an email or a draft.",
+    "Find out why the groups came out uneven and fix it before any rerun.",
+    "Rerun the test for 14 days with the fixed logging, check the split first, and read it once on the end date.",
+    "Do not ship on this result."
+  ],
+  "numbers": {
+    "input": {
+      "test": {
+        "name": "Draft-first recap",
+        "hypothesis": "Showing the host a draft with a source on every line, instead of emailing the recap automatically, gets more hosts to share a recap within 24 hours.",
+        "unit": "meeting hosts",
+        "planned_split": [
+          0.5,
+          0.5
+        ],
+        "planned_days": 14,
+        "ran_days": 14,
+        "start": "2026-10-05",
+        "end": "2026-10-18",
+        "mde_set": 0.02,
+        "alpha": 0.05
+      },
+      "arms": [
+        {
+          "name": "Control (auto-send)",
+          "users": 31204
+        },
+        {
+          "name": "Draft first",
+          "users": 28975
+        }
+      ],
+      "primary": {
+        "name": "Shared a recap within 24 hours",
+        "direction": "up",
+        "counts": [
+          5929,
+          7823
+        ]
+      },
+      "guardrails": [
+        {
+          "name": "Turned Recap off",
+          "harm": "up",
+          "counts": [
+            936,
+            580
+          ],
+          "tolerance": 0.005
+        },
+        {
+          "name": "Recap reported as wrong",
+          "harm": "up",
+          "counts": [
+            1248,
+            811
+          ],
+          "tolerance": 0.005
+        }
+      ]
+    },
+    "checks": {
+      "srm": {
+        "expected": [
+          30089.5,
+          30089.5
+        ],
+        "observed": [
+          31204,
+          28975
+        ],
+        "chi2": 82.56104288871533,
+        "p": 1.0245662123544541e-19,
+        "threshold": 0.001,
+        "pass": false
+      },
+      "duration": {
+        "planned_days": 14,
+        "ran_days": 14,
+        "stopped_early": false,
+        "full_weeks": true
+      },
+      "power": {
+        "baseline": 0.19000769132162543,
+        "mde_abs": 0.008966759091904527,
+        "mde_rel": 0.047191558560261235,
+        "mde_set": 0.02,
+        "adequate": true
+      }
+    },
+    "primary": {
+      "name": "Shared a recap within 24 hours",
+      "rates": [
+        0.19000769132162543,
+        0.2699913718723037
+      ],
+      "diff": 0.07998368055067828,
+      "lift": 0.4209496994271151,
+      "se": 0.003425564436166793,
+      "ci": [
+        0.07326969762907011,
+        0.08669766347228645
+      ],
+      "z": 23.34922566677268,
+      "p": 1.4033475180252713e-120,
+      "result": "positive"
+    },
+    "guardrails": [
+      {
+        "name": "Turned Recap off",
+        "rates": [
+          0.029996154339187283,
+          0.02001725625539258
+        ],
+        "diff": -0.009978898083794704,
+        "se": 0.0012686503987106264,
+        "ci": [
+          -0.012465407174239912,
+          -0.0074923889933494955
+        ],
+        "harm": "up",
+        "tolerance": 0.005,
+        "verdict": "held"
+      },
+      {
+        "name": "Recap reported as wrong",
+        "rates": [
+          0.03999487245224971,
+          0.027989646246764453
+        ],
+        "diff": -0.012005226205485258,
+        "se": 0.0014728935630932802,
+        "ci": [
+          -0.014892044542208962,
+          -0.009118407868761554
+        ],
+        "harm": "up",
+        "tolerance": 0.005,
+        "verdict": "held"
+      }
+    ],
+    "verdict": {
+      "decision": "do-not-trust",
+      "rule": "Rule 1: sample ratio mismatch, so do not trust the result",
+      "reasons": [
+        "Arm sizes are 31,204 and 28,975 against a planned 50/50 split, and a gap that large happens by chance with p below 0.0001.",
+        "Assignment is broken, so no metric in this test can be trusted.",
+        "Fix how users are assigned and rerun the test."
+      ]
+    },
+    "flags": []
+  }
+}

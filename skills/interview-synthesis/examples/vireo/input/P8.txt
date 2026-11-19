@@ -1,0 +1,71 @@
+Participant: P8
+Name: Arjun
+Profile: Product manager on a developer tools team, ten hosted meetings a week
+Date: 2026-11-12
+
+[00:08] Interviewer: Hi Arjun, thanks for making time. Where are you today?
+[00:22] P8: Working from home. My cat is on the keyboard half the time, so apologies in advance.
+[01:23] Interviewer: No apologies needed. Tell me what you do.
+[01:36] P8: I am a product manager on a developer tools team. So, a lot of meetings with engineers, designers and the occasional exec update.
+[02:28] Interviewer: How many do you host a week?
+[02:40] P8: Maybe ten. Roadmap reviews, the weekly with engineering, a monthly with leadership, some one to ones.
+[03:14] Interviewer: And Recap is on?
+[03:41] P8: It is on for the team ones. I love the idea, and I have mixed feelings about the execution.
+[04:14] Interviewer: Tell me what happens after a meeting.
+[04:36] P8: The recap arrives. I read it, grimace, and open a blank email.
+[05:18] Interviewer: Why the grimace?
+[05:36] P8: Because I know it is wrong somewhere. I just have to find where.
+[06:20] Interviewer: How do you find it?
+[06:34] P8: I cannot tell where a line came from, so I rewatch the bit of the recording I think it is from. Which is a guessing game.
+[07:30] Interviewer: Do you do that every time?
+[07:42] P8: Every time I will forward it. If I am only reading it myself I skip the check.
+[08:16] Interviewer: Can you give me a recent example?
+[08:27] P8: Monday's roadmap review. It said we had agreed to cut the export feature.
+[09:02] Interviewer: Had you?
+[09:20] P8: We had said, "what if we cut export," and Dina said, "hmm," and we moved on. That is not a decision.
+[10:19] Interviewer: That is quite subtle.
+[10:36] P8: It listed it as a decision, because someone said it and nobody objected. Silence is not agreement, but the recap thinks it is.
+[11:05] Interviewer: So what did you do?
+[11:20] P8: I moved it to a section called Open questions, in my own email. I always do that.
+[12:22] Interviewer: Always?
+[12:34] P8: I rewrite every recap before I forward it. Every single one. It has become a ritual.
+[13:22] Interviewer: Walk me through the rewrite.
+[13:39] P8: I copy it, paste it into an email, delete the fluff, fix the decisions, fix the owners, add the context for the people who were not there.
+[14:29] Interviewer: How long?
+[14:46] P8: Ten minutes on a good day. Twenty if it was a heated meeting.
+[15:36] Interviewer: And the original recap, does that still go out?
+[15:56] P8: It does. Before I have touched it. That is the problem.
+[16:45] Interviewer: Say more.
+[17:11] P8: It went to my director before I read it, with a decision in it that we had not made.
+[17:57] Interviewer: What happened?
+[18:11] P8: She replied within a minute. "Great, glad we are cutting export. Let me tell the VP." I almost fell off my chair.
+[18:38] Interviewer: What did you do?
+[19:04] P8: I called her. Said, "please do not tell the VP, it is a mistake." Quite awkward, as she had already pinged him.
+[19:48] Interviewer: How did that resolve?
+[20:02] P8: It resolved. But I think she now reads the automatic recaps with a bit less faith. Or reads mine with a bit more.
+[21:02] Interviewer: That is an interesting side effect. What about the action items?
+[21:23] P8: It gets the owner wrong a fair bit. Whoever spoke last is the usual suspect.
+[22:15] Interviewer: Can you be more specific?
+[22:40] P8: It gave the migration task to Soo-jin because she said "sounds good" at the end, but Pavel had been running the migration for months.
+[23:16] Interviewer: Did Pavel see it?
+[23:33] P8: Yes, and he did the thing where he does not say anything but you can feel it in the chat.
+[24:30] Interviewer: Okay. If you could change anything?
+[24:44] P8: I want to see it before it goes. Not review every word, just a chance. A held draft.
+[25:37] Interviewer: And the second?
+[25:50] P8: Links. Each line should have a link to the part of the recording, so I do not guess.
+[26:41] Interviewer: Do you think you would still rewrite it?
+[27:03] P8: Probably, but I would rewrite less. If I knew a line was backed by a clip, I would leave it alone.
+[28:04] Interviewer: Who sees the recap besides the team?
+[28:28] P8: Mostly internal. We had a vendor on a call once, a tooling company, and nothing awkward came of it.
+[29:12] Interviewer: Did they get a recap?
+[29:26] P8: I think they did. They did not say anything, and I did not hear of any problem.
+[29:57] Interviewer: So it is not a big issue for you.
+[30:16] P8: Not for me. I imagine for sales it is.
+[31:01] Interviewer: How do your colleagues treat the recaps?
+[31:13] P8: Half read them, half do not. The ones who read them tend to be the ones who missed the meeting.
+[32:11] Interviewer: Does that match what you want?
+[32:31] P8: I would like everyone to read the corrected one. Which is mine. Which is a bit vain, I realise.
+[33:22] Interviewer: A bit. But understandable. Anything else?
+[33:36] P8: The idea is great. I want it to work. I just do not want to be the human quality check.
+[34:11] Interviewer: That is a good summary of a lot of calls. Thank you, Arjun.
+[34:22] P8: Thank you. I will go and rescue the keyboard.

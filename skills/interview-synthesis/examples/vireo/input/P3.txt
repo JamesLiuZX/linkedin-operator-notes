@@ -1,0 +1,83 @@
+Participant: P3
+Name: Mireille
+Profile: Executive assistant to a chief operating officer, sends minutes for board prep calls
+Date: 2026-11-05
+
+[00:08] Interviewer: Hello Mireille, thank you for doing this. Can I check you are happy for me to take notes?
+[00:21] P3: Of course. Just so you know I am eating a very sad desk salad while we talk.
+[01:00] Interviewer: No problem at all. Tell me about your role.
+[01:15] P3: I am executive assistant to our chief operating officer. I run his diary, his board preparation, and I write up anything that needs to go on the record.
+[01:57] Interviewer: And which of those meetings are on Vireo?
+[02:16] P3: His team meetings, the weekly leadership call, and the board prep calls, which are the ones that matter most.
+[02:40] Interviewer: How many calls a week do you host?
+[02:49] P3: I host the prep calls, so three or four. He hosts the rest and I get added.
+[03:39] Interviewer: Tell me about a board prep call.
+[03:52] P3: Usually eight or nine people. Finance, legal, two or three of the directors. We go through the pack page by page.
+[04:22] Interviewer: And what is the output?
+[04:46] P3: Minutes. A page and a half, in a format the company secretary insists on. Decisions, actions, owner, date.
+[05:23] Interviewer: Where does Recap come in?
+[05:45] P3: It writes its own version five minutes after we finish. I read it as a cross-check, not as the minutes.
+[06:22] Interviewer: How do you cross-check it?
+[06:41] P3: I have to check every line against what the COO actually said, and it has no sources, so I listen to the recording at double speed.
+[07:08] Interviewer: Double speed. How long does that take?
+[07:26] P3: Half the length of the call, plus pausing. A one hour call is forty minutes of my afternoon.
+[08:17] Interviewer: Do you do that for every call?
+[08:34] P3: The board ones, always. The others I skim.
+[09:20] Interviewer: Let me ask about decisions. Does it find them well?
+[09:40] P3: Mostly. But there is one I will never forget.
+[10:04] Interviewer: Go on.
+[10:24] P3: It listed the idea of moving the board date as a decision, when he only wondered out loud, and I almost put it in the minutes.
+[11:05] Interviewer: How did you catch it?
+[11:19] P3: I did not trust it, so I checked, and the COO had said, "I wonder if we should push it a week?" and then the call moved on.
+[11:42] Interviewer: What would have happened?
+[12:04] P3: The directors would have read in the minutes that the date moved. People rearrange flights for less.
+[12:42] Interviewer: Do you think about that a lot now?
+[13:02] P3: Constantly. I read the Decisions heading with suspicion.
+[13:52] Interviewer: What about who owns the actions?
+[14:12] P3: I do not use its owners. I decide who owns what, and I ignore the recap's.
+[15:04] Interviewer: Why?
+[15:20] P3: Because I know the people. I know the finance director would never take a legal action, whatever a machine thinks.
+[16:08] Interviewer: Does it get it wrong?
+[16:24] P3: I honestly could not tell you. I do not look. I write my own list from my notes and the pack.
+[17:17] Interviewer: Okay. Now, the timing. When does the recap arrive?
+[17:39] P3: Five minutes after the end. Which is exactly when I am still on the phone with someone.
+[18:04] Interviewer: And who gets it?
+[18:15] P3: Everyone who was invited.
+[18:44] Interviewer: Has that ever been a problem?
+[19:08] P3: Yes. Once, and it was a nasty one.
+[19:44] Interviewer: Tell me.
+[20:03] P3: It reached two directors before I had read it, and it said the vendor was approved when we had only discussed it.
+[20:35] Interviewer: Which vendor?
+[20:51] P3: A security vendor. I will not say the name, but it was a proper contract, and one of the directors replied, "great, congratulations."
+[21:26] Interviewer: And then?
+[21:41] P3: I had to go and tell the COO, who had to call both of them. A small thing became a long afternoon.
+[22:22] Interviewer: What did you want to be different?
+[22:40] P3: I want to see it first and press send myself. That is all. If it comes to me, I will fix it, and then it can go.
+[23:31] Interviewer: Would you want to be able to edit it?
+[23:51] P3: Yes, but mostly I want it to wait.
+[24:43] Interviewer: Do you ever forward a recap on, as it is?
+[25:05] P3: Never. I retype it into the minutes format the board expects, and I change nearly everything.
+[26:00] Interviewer: What do you change?
+[26:19] P3: The tone, mainly. It says "the team felt that". Minutes do not say that. And I take out any name that should not be in writing.
+[26:46] Interviewer: How long does it take?
+[27:08] P3: Thirty or forty minutes per call. So the recap does not really save me time.
+[28:02] Interviewer: But you keep it on.
+[28:24] P3: The COO likes it. He reads the first paragraph on his phone in the car.
+[29:05] Interviewer: Funny. Does he trust it?
+[29:25] P3: He does not question it, which is exactly why I worry.
+[29:54] Interviewer: That is a good point. You mentioned directors. Are there people who join your calls from outside the company?
+[30:15] P3: Almost all internal.
+[30:56] Interviewer: Never counsel, or auditors?
+[31:10] P3: Counsel joins now and then, but I tend to invite them to the call and not to the recap. It is a manual thing I do.
+[31:34] Interviewer: Okay. So it is not a worry for you.
+[31:55] P3: It has not come up. I am careful about who is on the invite.
+[32:50] Interviewer: What do you like about Recap?
+[33:01] P3: It does catch the names correctly, which I did not expect. Even the awkward surnames.
+[33:49] Interviewer: Anything you would stop?
+[34:04] P3: I would stop it emailing before I have looked. That is the whole of it.
+[34:31] Interviewer: Is there anything about the recordings?
+[34:45] P3: Only that I can find them easily. I have no complaints.
+[35:32] Interviewer: Last question. If a colleague asked whether to switch it on, what would you say?
+[35:54] P3: I would say, switch it on, but do not let it speak for you.
+[36:18] Interviewer: That is a lovely line. Thank you, Mireille.
+[36:36] P3: You are welcome. Go and have a better lunch than mine.

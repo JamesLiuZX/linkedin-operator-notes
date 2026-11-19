@@ -1,0 +1,83 @@
+Participant: P5
+Name: Hana
+Profile: Product designer, runs two design critiques a week
+Date: 2026-11-09
+
+[00:08] Interviewer: Hi Hana, thanks for making time. Are you somewhere quiet?
+[00:27] P5: I am in a phone booth at the office, the glass kind. It is surprisingly nice. Slightly warm.
+[01:15] Interviewer: Ha. Tell me a bit about your work.
+[01:37] P5: I am a product designer on the checkout team. About half my week is design critiques, the rest is making things in a tool and defending them.
+[02:32] Interviewer: How do your critiques work?
+[02:53] P5: Twice a week, an hour each. Someone shares a flow, we all give feedback, and I facilitate half of them.
+[03:47] Interviewer: How many people?
+[03:58] P5: Six to ten. Other designers, a PM, sometimes an engineer who has strong opinions about spacing.
+[04:36] Interviewer: On Vireo?
+[05:00] P5: Yes, and we record them, because people join late or miss them. The recording is the real archive.
+[05:45] Interviewer: Before we talk about Recap, what do you think of the recordings?
+[06:09] P5: Oh, honestly, the quality is great. I did not expect to say that. It is crisp even when someone is on a train.
+[06:36] Interviewer: Anything else good?
+[06:53] P5: The captions. They are really, really good, even with my accent and Marek's, and he mumbles.
+[07:24] Interviewer: That is good to hear. Let us talk about Recap.
+[07:42] P5: Sure. It is a mixed thing for me.
+[08:24] Interviewer: Mixed how?
+[08:34] P5: It is useful as a map, and then it is wrong in ways that are hard to see.
+[09:05] Interviewer: Give me an example.
+[09:19] P5: Last week's critique of the address form. The recap said we should drop the postcode lookup.
+[10:13] Interviewer: And?
+[10:34] P5: I can't tell which comment a line came from, so I jump around the recording trying to find the one critique.
+[11:03] Interviewer: How long did that take?
+[11:25] P5: Fifteen minutes. And I found it. It was Noor, nine minutes in, saying, "I wonder what happens if we drop the lookup." A question.
+[11:52] Interviewer: So it turned a question into something else.
+[12:11] P5: Well. Yes, that is the next thing. Somebody floated using a different grid and it showed up as decided, and the team started redoing layouts.
+[12:38] Interviewer: Wait, a different grid?
+[12:48] P5: Different thing, same pattern. Jules said, "what if we tried a twelve column grid", and the recap listed it under Decisions.
+[13:41] Interviewer: What happened?
+[13:54] P5: Two people spent the afternoon moving boxes. Then I said, "wait, we did not decide this," and everyone looked at me like I was a killjoy.
+[14:24] Interviewer: Is that common?
+[14:49] P5: It happens, maybe one critique in three. I do not have the number, it is a feeling.
+[15:42] Interviewer: Now action items. How do those go?
+[15:56] P5: It credited the action to the person who happened to speak last, Marek, when the action was clearly Noor's.
+[16:52] Interviewer: What did Marek do?
+[17:10] P5: He said, "I will take it," because he is nice. And then Noor said, "that was mine," a day later. Slight friction.
+[17:56] Interviewer: Did anyone get upset?
+[18:09] P5: No, but I hate that it made a thing out of it.
+[19:04] Interviewer: What do you do with the recap afterwards?
+[19:24] P5: I copy it into our design channel post and rewrite it, because the wording is stiff and it misses the reasoning.
+[20:20] Interviewer: Say more about the reasoning.
+[20:43] P5: Design feedback is why, not what. "Make the button bigger" is useless without "because the thumb misses it".
+[21:16] Interviewer: So your version has the reasons.
+[21:32] P5: Right. The recap has what we said and not why. I write the why from memory, then I check it against the recording.
+[22:00] Interviewer: How long does the rewrite take?
+[22:12] P5: Twenty minutes, I would guess. It is longer than if I just typed it fresh, which is irritating.
+[22:37] Interviewer: Do you forward it anywhere else?
+[22:52] P5: Just that channel. And I link the recording at the bottom.
+[23:35] Interviewer: Does anything go outside the team?
+[23:45] P5: Not that I have seen. Critiques are internal. Sometimes people from other teams join, but they are still colleagues.
+[24:31] Interviewer: And customers or contractors?
+[24:46] P5: We have a freelance illustrator now and then. I do not think she ever got a recap, or if she did I did not hear about it.
+[25:20] Interviewer: Okay. What did the recap do well?
+[25:42] P5: It is good at who was in the room and what we looked at. The skeleton is fine.
+[26:21] Interviewer: If you could add one thing?
+[26:36] P5: Linking each line to its time in the recording would save me so much hunting.
+[27:15] Interviewer: Like a timestamp?
+[27:35] P5: A timestamp that you can click, yes. Or a little play button. I am not fussy about how.
+[28:00] Interviewer: Have you looked at other tools?
+[28:25] P5: One of the designers uses a different note taker and she says it does the links. I have not tried it.
+[28:48] Interviewer: What would you want to do when you click one?
+[29:10] P5: Hear ten or fifteen seconds around it. Then I know if it is the critique or the joke.
+[30:01] Interviewer: Ha, the joke.
+[30:11] P5: We joke a lot. Half of any critique is jokes. The recap turns the jokes into decisions sometimes.
+[31:01] Interviewer: Has it done that?
+[31:17] P5: Marek said, "just delete the whole page", obviously joking, and I was a bit nervous opening the recap that day.
+[31:59] Interviewer: Did it show up?
+[32:09] P5: No, not that time. It is not that dumb.
+[32:34] Interviewer: How would you describe how you trust it?
+[32:46] P5: I read it like a first draft from an intern. Useful, but I fix it.
+[33:42] Interviewer: That is quite similar to what others have said. Is there anything else?
+[33:55] P5: The audio comes through very clean for the transcript, I think that is why it mostly works.
+[34:43] Interviewer: Do you think your team would stop taking notes?
+[35:07] P5: A couple of people have. I find that a bit scary, to be honest.
+[36:02] Interviewer: Why scary?
+[36:17] P5: Because if the recap is wrong and nobody wrote anything down, there is no second source.
+[36:52] Interviewer: Fair. We are almost at time. Thank you so much, Hana.
+[37:10] P5: Thanks. I am going to go and sit in a less warm room.

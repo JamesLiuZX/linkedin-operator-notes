@@ -13,21 +13,9 @@
   "needs": "Research to cite",
   "skill": "decision-prd",
   "demo": "decision-prd",
-  "ask": "Write the PRD for the weekly shop from the teardown, the synthesis and the pre-mortem.",
   "outputName": "PRD",
-  "demoNote": "The agent reads three pieces of research and writes six numbered points. Watch the evidence land beside each claim. When it ends, scroll the document yourself.",
   "clipTitle": "A PRD you can approve *point by point*",
   "clipLine": "Problem, change and evidence. One number per point, everywhere.",
-  "example": {
-    "case": "tangelo",
-    "file": "decision-prd.html",
-    "label": "Tangelo: the weekly shop PRD",
-    "note": "Six points in three sections, a priority table and a rollout plan.",
-    "inputs": [
-      "input/brief.md",
-      "prd.json"
-    ]
-  },
   "chain": {
     "before": [
       "journey-teardown",
@@ -165,38 +153,51 @@
       "note": "First release."
     }
   ],
-  "run": {
-    "date": "2026-11-18",
-    "by": "Written alongside the skill as its reference example, then revised to match what the teardown, synthesis and pre-mortem runs actually found.",
-    "passed": 6,
-    "total": 6,
-    "note": "This is the one example here that was not produced by a fresh agent session. The checker found one fault in the first draft, a figure not marked as an estimate, which is fixed."
-  },
-  "carousel": [
-    {
-      "at": 6.8,
-      "title": "Three pieces of research *in*",
-      "body": "A teardown, an interview synthesis and a pre-mortem. The PRD cites all three by name."
-    },
-    {
-      "at": 9.6,
-      "title": "The problem first, *evidence beside it*",
-      "body": "Every point states what happens today, the change, and the screen or quote that supports it."
-    },
-    {
-      "at": 14.6,
-      "title": "One number *per point*",
-      "body": "Point 2.1 is 2.1 in the tables, in the rollout plan and in the prototype."
-    },
-    {
-      "at": 18.1,
-      "title": "A table you can *argue with*",
-      "body": "What each point moves, how big it is, and what it is waiting on."
-    },
-    {
-      "at": 19.8,
-      "title": "What ships first, *and why*",
-      "body": "A rollout in three steps. Each step says why it goes where it does."
+  "cases": {
+    "tangelo": {
+      "label": "Tangelo: the weekly shop PRD",
+      "note": "Six points in three sections, a priority table and a rollout plan.",
+      "inputs": [
+        "input/brief.md",
+        "prd.json"
+      ],
+      "ask": "Write the PRD for the weekly shop from the teardown, the synthesis and the pre-mortem.",
+      "demoNote": "The agent reads three pieces of research and writes six numbered points. Watch the evidence land beside each claim. When it ends, scroll the document yourself.",
+      "run": {
+        "date": "2026-11-18",
+        "by": "Written alongside the skill as its reference example, then revised to match what the teardown, synthesis and pre-mortem runs actually found.",
+        "passed": 6,
+        "total": 6,
+        "note": "This is the one example here that was not produced by a fresh agent session. The checker found one fault in the first draft, a figure not marked as an estimate, which is fixed."
+      },
+      "carousel": [
+        {
+          "at": 6.8,
+          "title": "Three pieces of research *in*",
+          "body": "A teardown, an interview synthesis and a pre-mortem. The PRD cites all three by name."
+        },
+        {
+          "at": 9.6,
+          "title": "The problem first, *evidence beside it*",
+          "body": "Every point states what happens today, the change, and the screen or quote that supports it."
+        },
+        {
+          "at": 14.6,
+          "title": "One number *per point*",
+          "body": "Point 2.1 is 2.1 in the tables, in the rollout plan and in the prototype."
+        },
+        {
+          "at": 18.1,
+          "title": "A table you can *argue with*",
+          "body": "What each point moves, how big it is, and what it is waiting on."
+        },
+        {
+          "at": 19.8,
+          "title": "What ships first, *and why*",
+          "body": "A rollout in three steps. Each step says why it goes where it does."
+        }
+      ],
+      "kind": "reference"
     }
-  ]
+  }
 }

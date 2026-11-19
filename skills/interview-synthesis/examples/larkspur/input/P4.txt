@@ -1,0 +1,69 @@
+Participant: P4
+Name: Tobias
+Profile: Senior designer at an agency. Wanted the client to look at a plan, not edit it.
+Date: 2026-11-12
+
+[00:16] Interviewer: Hi Tobias, can you hear me?
+[00:34] P4: Yes, hi. Sorry, my camera's off, the wifi in this co-working space is held together with prayer.
+[01:01] Interviewer: Audio is fine. Thanks for doing this.
+[01:29] P4: Sure. I'm in the quiet room, which is a cupboard with a plant in it.
+[01:56] Interviewer: Ha. Can you tell me what you do?
+[02:16] P4: Senior designer at an agency. About thirty of us, brand and product work for mid-size clients. I lead design on maybe three accounts at a time.
+[02:57] Interviewer: How did you find Larkspur?
+[03:20] P4: A friend of mine mentioned it. I wanted something to lay out a project plan for a client, a retailer, with phases and who delivers what. We usually do it in a deck, and the deck gets stale in a week.
+[04:09] Interviewer: So you started a trial on your own.
+[04:34] P4: Yes. Just me, on my own laptop, on a Friday afternoon. Our account manager Ilse didn't know.
+[05:14] Interviewer: What did you build?
+[05:31] P4: A plan with five phases. Discovery, concepts, the build, testing, launch. Plus a doc with the brief. It was actually quite pleasant, I liked how the plan and the doc sat next to each other.
+[06:14] Interviewer: What was the plan for it?
+[06:31] P4: To show it to the client. That was the whole point. A woman called Verena, she's the head of digital there, she'd asked for something she could keep open instead of waiting for a deck.
+[07:15] Interviewer: Did she need to change anything?
+[07:33] P4: No. Absolutely not. She would look at it and ask questions. If she moved a phase by accident, I'd have a heart attack.
+[08:21] Interviewer: So you didn't want her to edit.
+[08:44] P4: I wanted her to look at it, not edit it. That's the sentence I'd put on the door.
+[09:28] Interviewer: What did you do about that in Larkspur?
+[09:48] P4: I looked for a way to share it read only. I couldn't find one. I found where to add a member, which is under Settings, and I stopped there.
+[10:39] Interviewer: What stopped you?
+[11:02] P4: Thinking about what happens if I make a client a member. Do they get the same screen as me? Do they get the same buttons?
+[11:46] Interviewer: Say more.
+[12:11] P4: I had a comment thread in the margin about her budget. It said something like, she'll never agree to this number. I didn't write it for her.
+[12:49] Interviewer: Right.
+[13:05] P4: So the worry was, if I invite her, what does she see? Is it the pretty page, or the page with my notes in it? I couldn't tell, and I didn't want to find out in front of a client.
+[14:01] Interviewer: How would you want to find out?
+[14:20] P4: Let me look at it as her. Like a preview, I click and I see exactly what she sees, then I decide.
+[14:49] Interviewer: Did you try anything else?
+[15:18] P4: I took screenshots. Which is embarrassing for a tool that's supposed to replace decks.
+[15:52] Interviewer: When were you going to share it, if not then?
+[16:16] P4: When it was ready. I mean, I wasn't going to show Verena a plan with two phases empty and a placeholder that says TBD.
+[16:56] Interviewer: What would ready have looked like?
+[17:29] P4: All five phases with real dates, the doc cleaned up, my comments gone. Probably a week of evenings.
+[18:00] Interviewer: How long were you in the trial when you got to that point?
+[18:24] P4: Day eleven, maybe. Which is when I realised I didn't have time to set it up properly and also figure out how to invite her.
+[19:03] Interviewer: So what happened?
+[19:20] P4: Nothing. Trial ran out. I used the deck.
+[19:44] Interviewer: Do you still have the workspace?
+[20:01] P4: I think so. I haven't looked since. I should.
+[20:33] Interviewer: Let me ask about your agency. If you wanted to start using a new tool with the team, is there anyone who has to say yes?
+[21:20] P4: Not really. We're an agency, we try things all the time. Someone says look at this, we try it. Ilse looks after the invoices, but nobody checks what we install.
+[22:03] Interviewer: Okay. And does anyone else at the agency know about your trial?
+[22:31] P4: A colleague, Joon, saw it over my shoulder. He said looks nice.
+[22:57] Interviewer: Did you think about adding Joon?
+[23:30] P4: Briefly. But I didn't want to build it with him. I wanted to build it and show it. It's a presentation tool for me, really, in disguise.
+[24:19] Interviewer: That's interesting. Is there a point where the plan stops being yours?
+[24:52] P4: When it goes to the client. Before that it's mine and my notes and my terrible habit of leaving jokes in the margins.
+[25:25] Interviewer: Is there anything about Larkspur that you liked and want to tell us?
+[25:50] P4: The doc editor is very clean. And I like that the timeline looks decent without me fiddling.
+[26:29] Interviewer: Anything that annoyed you?
+[26:47] P4: Finding my way around Settings. I went to Settings looking for sharing, and found members, and that's a different thing.
+[27:27] Interviewer: Different how?
+[27:47] P4: Sharing is I want you to look. Members is you work here now. Those are not the same sentence.
+[28:14] Interviewer: That's a nice way to put it.
+[28:35] P4: Thank you, I'll put it on a mug.
+[29:09] Interviewer: What would you want from a client view?
+[29:33] P4: A link, read only, that I can paste in an email. And a way to see what's in it before I send.
+[30:14] Interviewer: And would you want a client to comment?
+[30:46] P4: Maybe on some things. But I would want to say which.
+[31:13] Interviewer: Okay. Anything else?
+[31:36] P4: Not that I can think of. Oh, a nice font for the headings. But that's my job talking.
+[32:18] Interviewer: Ha. Thank you so much, Tobias.
+[32:47] P4: Thanks. Good luck with it.
