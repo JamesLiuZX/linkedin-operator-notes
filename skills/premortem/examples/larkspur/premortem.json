@@ -1,0 +1,223 @@
+{
+  "title": "Team suggestions, six months on",
+  "plan": {
+    "name": "Team suggestions",
+    "summary": "After signup, ask the trial admin for calendar access, find the five people they meet most, and offer one button that invites all five as free guests for the 14-day trial.",
+    "ships": "February 2027, to every new trial workspace",
+    "goal": "More trial workspaces with a second active person in the first week, and more trials that pay."
+  },
+  "asOf": "2026-11-19",
+  "failedOn": "2027-08-01",
+  "inputs": [
+    { "id": "P", "label": "The plan", "detail": "plan.md, including its constraints" },
+    { "id": "T", "label": "Journey teardown", "detail": "4 products, 3 stages, 24 screens" },
+    { "id": "S", "label": "Interview synthesis", "detail": "8 people who started a trial alone" }
+  ],
+  "risks": [
+    {
+      "id": "R1",
+      "area": "behaviour",
+      "title": "Admins invite before the workspace is ready",
+      "story": "A trial admin grants calendar access, sees five familiar names and clicks one button. Five colleagues get an email that links to an empty, half-built workspace. The admin is embarrassed, the colleagues ignore the tool, and the admin stops using it too.",
+      "likelihood": "high",
+      "likelihoodWhy": "Six of eight interviewees held the workspace back until it looked presentable, and the card sits straight after signup.",
+      "impact": "high",
+      "impactWhy": "The invite cannot be undone, and a bad first look from colleagues can end the trial for the whole workspace.",
+      "evidence": {
+        "status": "supported",
+        "from": "S",
+        "detail": "Six of eight held the workspace back. The teardown (T) adds that no competitor invites five people with one click and nobody ticked.",
+        "expect": "Many admins use Invite all 5 in the first hour, and an unusual number then report an unwanted invite or never return."
+      },
+      "tripwire": {
+        "metric": "Workspaces that report an unwanted invite",
+        "threshold": "More than 1 in 20 workspaces that use Invite all 5 report one",
+        "check": "2027-02-22",
+        "owner": "Product manager for onboarding"
+      },
+      "mitigation": "Show the five as a list with nobody ticked, let the admin pick, and offer a preview of what the invitee will see.",
+      "test": "Show five trial admins a prototype of the one-button card and the ticked-nothing list, and note which they would send and when."
+    },
+    {
+      "id": "R2",
+      "area": "money",
+      "title": "Invitees hit billing the admin never expected",
+      "story": "An admin invites five people as free guests. One later tries to become a member and the dialog says billing starts today at $12 per month. The admin thought the trial was free for 14 days with no card needed. Five seats at that price is $60 per month, and the admin feels tricked.",
+      "likelihood": "high",
+      "likelihoodWhy": "Five of eight could not tell what an invite costs or when billing starts, and the current dialog says billing starts today.",
+      "impact": "high",
+      "impactWhy": "Surprise charges drive refunds, support load and distrust, and they land exactly where the plan hopes trials will pay.",
+      "evidence": {
+        "status": "supported",
+        "from": "S",
+        "detail": "Five of eight were unsure what an invite costs. The teardown (T) shows the contradiction between the signup page and the Add member dialog. The plan (P) admits billing for a guest who becomes a member is not designed.",
+        "expect": "Billing contacts to support rise after launch, and invited guests who try to upgrade drop out at the billing step."
+      },
+      "tripwire": {
+        "metric": "Contacts to support, by reason (billing)",
+        "threshold": "Rises to more than 2 times its level in the 4 weeks before launch",
+        "check": "2027-02-22",
+        "owner": "Head of support"
+      },
+      "mitigation": "Do not ship the card until the cost of a guest becoming a member is designed, and say on the card what the invite costs and when billing starts.",
+      "test": "Walk five people through the card and the upgrade step on a prototype, and ask each what they think it will cost."
+    },
+    {
+      "id": "R3",
+      "area": "users",
+      "title": "The calendar's top five are not the team",
+      "story": "The card ranks the five people the admin meets most often. For many admins that is a manager, a client, a recruiter or a partner outside the company. The admin sees the wrong names, mistrusts the suggestion or invites someone who should not see the plan.",
+      "likelihood": "medium",
+      "likelihoodWhy": "Meeting frequency is not the same as teamwork, but nothing here measures how often the two differ.",
+      "impact": "medium",
+      "impactWhy": "A wrong name wastes the card and may expose a plan to an outsider, but it hurts one workspace at a time.",
+      "evidence": {
+        "status": "unknown",
+        "detail": "The plan says there is no data on calendar-based suggestions and no baseline.",
+        "expect": "Admins untick or ignore names on the card, or invite people outside their company."
+      },
+      "mitigation": "Offer the suggestions only for people on the admin's own email domain, and let the admin edit the list."
+    },
+    {
+      "id": "R4",
+      "area": "behaviour",
+      "title": "Guests arrive, look around and leave",
+      "story": "Five guests join, but there is no view-only role and no preview, so they land in a workspace built for editing. They do not know what they are meant to do and leave after one look. The second person counts as active on day one and never returns, so the trial looks healthy and does not convert.",
+      "likelihood": "high",
+      "likelihoodWhy": "Four of eight did not know what an invitee would see, and the teardown found no preview or view-only option.",
+      "impact": "high",
+      "impactWhy": "The plan's first goal is a second active person, and a shallow visit can pass that measure without helping the trial pay.",
+      "evidence": {
+        "status": "supported",
+        "from": "S",
+        "detail": "Five of eight wanted someone to look at the plan, not edit it. The teardown (T) shows one competitor lets any page be shared by link, and viewers are free.",
+        "expect": "Many invites are accepted, few guests return in the second week, and trials with guests convert no better than trials without."
+      },
+      "tripwire": {
+        "metric": "Workspaces with a second active person within 7 days",
+        "threshold": "Does not rise at least 3 points above its level in the 4 weeks before launch",
+        "check": "2027-03-01",
+        "owner": "Growth lead"
+      },
+      "mitigation": "Give guests a view-only first screen that shows the one plan they were invited to look at.",
+      "test": "Send a prototype guest view to five people who have not seen Larkspur and ask what they think they can do."
+    },
+    {
+      "id": "R5",
+      "area": "operations",
+      "title": "Five invites at once get marked as spam",
+      "story": "Each Invite all 5 click sends five emails from a tool the recipients have never heard of. Some land in spam or are reported. Larkspur's sending reputation drops, so every invite and signup email arrives later or not at all, including to people who did want it.",
+      "likelihood": "medium",
+      "likelihoodWhy": "Three of eight said an invite email they sent was never opened, so delivery is already weak.",
+      "impact": "high",
+      "impactWhy": "A poor sending reputation harms every email the product sends, not only invites.",
+      "evidence": {
+        "status": "supported",
+        "from": "S",
+        "detail": "Three of eight sent an invite email that was never opened. That shows poor opening, not proven spam, so the link to spam is a judgment.",
+        "expect": "Spam marks per invite email rise and the share of invites accepted falls after launch."
+      },
+      "tripwire": {
+        "metric": "Invite emails marked as spam",
+        "threshold": "Rises to more than 2 times its level in the 4 weeks before launch",
+        "check": "2027-02-15",
+        "owner": "Engineering lead for email"
+      },
+      "mitigation": "Send the invite in the admin's name, cap how many go out at once, and send the five over a few days.",
+      "test": "Send the planned email to a test list at three mail providers and see where each one lands."
+    },
+    {
+      "id": "R6",
+      "area": "money",
+      "title": "Free guests never become paying seats",
+      "story": "Each trial brings in five free guests. When the trial ends, the workspace pays for the admin only, or not at all, because the guests already get what they need for free. More people are active, but paid seats per paying workspace do not grow and may shrink.",
+      "likelihood": "medium",
+      "likelihoodWhy": "The plan has no design for how a guest becomes a member, so the outcome is open.",
+      "impact": "high",
+      "impactWhy": "The second goal is more trials that pay, and free guests could give away the value that people pay for.",
+      "evidence": {
+        "status": "supported",
+        "from": "P",
+        "detail": "The plan lists billing for a guest who becomes a member as not designed. The teardown (T) shows view-only guests are free at one competitor.",
+        "expect": "Paid seats per paying workspace stay flat while guests per workspace rise."
+      },
+      "tripwire": {
+        "metric": "Paid seats per paying workspace",
+        "threshold": "Falls more than 1 seat below its level in the 4 weeks before launch",
+        "check": "2027-03-15",
+        "owner": "Head of pricing"
+      },
+      "mitigation": "Decide before launch what a guest can do for free and what makes someone a member, and write it on the card.",
+      "test": "Model the guest rules against the last 12 months of paid workspaces to see how many seats they would have removed."
+    },
+    {
+      "id": "R7",
+      "area": "users",
+      "title": "Cautious companies refuse the calendar ask",
+      "story": "Admins at companies that review new tools see a request for calendar access right after signup. They need a security or IT review before they can say yes, so they decline or close the tab. The card helps the admins who needed it least and loses those who are most careful.",
+      "likelihood": "medium",
+      "likelihoodWhy": "Three of eight work where a new tool needs a security or IT review.",
+      "impact": "medium",
+      "impactWhy": "It costs a slice of trials at signup, but those admins can still invite by hand.",
+      "evidence": {
+        "status": "supported",
+        "from": "S",
+        "detail": "Three of eight work where a new tool needs a security or IT review. The plan (P) says the security team has not reviewed calendar access either.",
+        "expect": "A share of admins decline the calendar request and some leave signup at that step."
+      },
+      "mitigation": "Make the calendar step skippable and never put it in front of the first screen. Before launch, start measuring how many admins accept and decline the request, because no metric for it exists today."
+    },
+    {
+      "id": "R8",
+      "area": "rules",
+      "title": "Reading calendars draws a privacy complaint",
+      "story": "The tool reads an admin's calendar and ranks the people in it. An invited colleague, or a client who was in a private meeting, learns that Larkspur knew who they met with. Someone complains to the admin's employer or posts about it, and the plan's reputation suffers.",
+      "likelihood": "medium",
+      "likelihoodWhy": "The security team has not reviewed calendar access and no one has measured how people react to it.",
+      "impact": "high",
+      "impactWhy": "A privacy story about reading calendars is hard to answer once it spreads.",
+      "evidence": {
+        "status": "unknown",
+        "detail": "Neither the interviews nor the teardown cover how people feel about calendar access. The plan only says the security team has not reviewed it.",
+        "expect": "Admins or invitees ask how Larkspur knew who to suggest, and some report it."
+      },
+      "mitigation": "Take the security team's review and the legal view before committing, and state on the card what is read and what is kept. This pre-mortem is not that review."
+    },
+    {
+      "id": "R9",
+      "area": "build",
+      "title": "Calendar provider approval is not ready",
+      "story": "The plan needs approval from each calendar provider and that review has not started. If it takes longer than the plan allows, February 2027 passes with nothing to launch. The team then ships a rushed version with fewer providers, or none, and the plan loses most of its reach.",
+      "likelihood": "medium",
+      "likelihoodWhy": "The plan states the review has not started and gives no time it takes.",
+      "impact": "high",
+      "impactWhy": "Without approval the card cannot ship to most workspaces.",
+      "evidence": {
+        "status": "supported",
+        "from": "P",
+        "detail": "The plan lists provider approval as a constraint that has not started.",
+        "expect": "The approval dates slip past the end of January 2027 and the launch date moves."
+      },
+      "mitigation": "Start the provider reviews now and plan a launch of the other parts without calendar access. No metric covers this today, so the owner should track the review status by date."
+    },
+    {
+      "id": "R10",
+      "area": "build",
+      "title": "A team nobody asked blocks the launch",
+      "story": "Several teams touch this plan: security, billing, support, email delivery and legal. The plan names only the first two gaps. If one of the others learns of the plan late, it asks for changes or a delay, and the February date breaks. This is an unknown that only the team can fill in.",
+      "likelihood": "medium",
+      "likelihoodWhy": "The plan names two unresolved reviews and nothing says who has been asked about the rest.",
+      "impact": "medium",
+      "impactWhy": "A late objection usually moves the date more than it kills the plan.",
+      "evidence": {
+        "status": "unknown",
+        "detail": "None of the inputs say which teams have seen the plan. The owner needs to fill this in.",
+        "expect": "A late request from a team that has not reviewed the plan."
+      },
+      "mitigation": "List the teams that run billing, support, email and legal for Larkspur, and ask each one before the plan is committed."
+    }
+  ],
+  "top": ["R1", "R2", "R4", "R5", "R6"],
+  "skipped": {},
+  "cut": []
+}

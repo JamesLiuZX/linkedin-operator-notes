@@ -1,0 +1,1322 @@
+{
+  "doc": {
+    "title": "Larkspur: Share by link to get a second person in",
+    "short": "Share by link PRD",
+    "eyebrow": "Draft for decision",
+    "author": "Product, Larkspur",
+    "date": "2026-11-19",
+    "summary": "This replaces Team suggestions with Share by link: one page, shared by a link the admin sends, view only and free. Six points in three groups, with a rollout and what to measure. It is for a decision this week.",
+    "fictional": true
+  },
+  "sources": [
+    {
+      "id": "T",
+      "label": "Journey teardown",
+      "detail": "4 products, 3 stages, 24 screens"
+    },
+    {
+      "id": "S",
+      "label": "Interview synthesis",
+      "detail": "8 people who started a trial alone"
+    },
+    {
+      "id": "R",
+      "label": "Pre-mortem on Team suggestions",
+      "detail": "10 risks, 5 with tripwires"
+    }
+  ],
+  "sourceNote": "Every screen is a schematic drawn from the teardown, on 19 November 2026. Larkspur, Corbel and Halyard are fictional. Nothing here was timed or measured.",
+  "sections": [
+    {
+      "n": 1,
+      "id": "link",
+      "title": "The link",
+      "summary": "A free, view-only link, and a preview of what it shows.",
+      "lead": "The admin needs a way to let someone look without paying, and to see what that person will see first.",
+      "points": [
+        {
+          "id": "1.1",
+          "title": "Admins have no free way to show a plan",
+          "problem": "Every second person is a paid seat and there is no share link. 5 of 8 interviewees wanted someone to look, not edit, and found only Add member.",
+          "change": "Put a Share button top right on every page. It makes a link that anyone can open to view the page, view only, free to the guest, and the admin sends it to whoever they choose.",
+          "why": "Three of the five fell back to a PDF, screenshots or nothing, which is the outcome this point removes.",
+          "constraint": {
+            "label": "Needs security sign-off",
+            "text": "The security team has questions about public links and has not signed off. 3 of 8 interviewees doubted a link would pass their company's review. The design gives the admin a switch to turn sharing off, and the first release does not ship until security signs off."
+          },
+          "evidence": [
+            {
+              "tag": "today",
+              "label": "Larkspur today",
+              "caption": "Members. Add member is the only way in. There is no Share button.",
+              "screen": {
+                "accent": "#3157d5",
+                "frame": "desktop",
+                "url": "app.larkspur.example/settings/members",
+                "blocks": [
+                  [
+                    "bar",
+                    "Members",
+                    {
+                      "action": "Add member"
+                    }
+                  ],
+                  [
+                    "table",
+                    "",
+                    {
+                      "cols": [
+                        "Name",
+                        "Role",
+                        "Seat"
+                      ],
+                      "rows": [
+                        [
+                          "Dana Whitlock",
+                          "Admin",
+                          "Paid"
+                        ]
+                      ]
+                    }
+                  ]
+                ],
+                "nav": {
+                  "title": "Larkspur",
+                  "items": [
+                    "Home",
+                    "Projects",
+                    "Docs",
+                    "Settings"
+                  ],
+                  "on": 3
+                }
+              }
+            },
+            {
+              "tag": "reference",
+              "label": "Corbel",
+              "caption": "The share dialog says who can view and that guests are free. Comments are off.",
+              "screen": {
+                "accent": "#c2410c",
+                "frame": "desktop",
+                "url": "app.corbel.example/p/q3-roadmap",
+                "blocks": [
+                  [
+                    "bar",
+                    "Q3 roadmap",
+                    {
+                      "action": "Share"
+                    }
+                  ],
+                  [
+                    "modal",
+                    "Share this page",
+                    {
+                      "sub": "Anyone with the link can view. Guests are free, forever",
+                      "field": "app.corbel.example/g/q3-roadmap",
+                      "cta": "Copy link"
+                    }
+                  ],
+                  [
+                    "toggle",
+                    "Can comment",
+                    {
+                      "on": false
+                    }
+                  ]
+                ],
+                "nav": {
+                  "title": "Corbel",
+                  "items": [
+                    "Pages",
+                    "Sample plan",
+                    "Search"
+                  ],
+                  "on": 0
+                }
+              }
+            },
+            {
+              "tag": "proposed",
+              "label": "Proposed",
+              "caption": "A Share button on the page opens a dialog with a link and a Copy link button.",
+              "screen": {
+                "accent": "#3157d5",
+                "frame": "desktop",
+                "url": "app.larkspur.example/projects/q3-roadmap",
+                "blocks": [
+                  [
+                    "bar",
+                    "Q3 roadmap",
+                    {
+                      "action": "Share"
+                    }
+                  ],
+                  [
+                    "table",
+                    "",
+                    {
+                      "cols": [
+                        "Item",
+                        "Owner",
+                        "Due"
+                      ],
+                      "rows": [
+                        [
+                          "Customer interviews",
+                          "You",
+                          "12 Jun"
+                        ],
+                        [
+                          "Scope review",
+                          "You",
+                          "19 Jun"
+                        ],
+                        [
+                          "Draft plan",
+                          "You",
+                          "26 Jun"
+                        ]
+                      ]
+                    }
+                  ],
+                  [
+                    "modal",
+                    "Share this page",
+                    {
+                      "sub": "Anyone with the link can view. Guests are free",
+                      "field": "app.larkspur.example/g/q3-roadmap",
+                      "cta": "Copy link",
+                      "hi": true,
+                      "pin": "1.1"
+                    }
+                  ]
+                ],
+                "nav": {
+                  "title": "Larkspur",
+                  "items": [
+                    "Home",
+                    "Projects",
+                    "Docs",
+                    "Settings"
+                  ],
+                  "on": 1
+                }
+              }
+            }
+          ],
+          "sources": [
+            "T:S3, Corbel and gap P2",
+            "S:T2, 5 of 8",
+            "R:R6"
+          ],
+          "know": {
+            "baseline": "Workspaces with a second active person within 7 days. Not supplied. Measure it for four weeks before launch.",
+            "expect": "Rises. The smallest lift worth shipping is 2 points on this measure. That is a decision threshold, not an estimate of the result.",
+            "stop": "Paid conversion within 30 days falls, unwanted-invite reports rise, or workspaces that turn sharing off rise, against the control group."
+          }
+        },
+        {
+          "id": "1.2",
+          "title": "Admins cannot see what a guest will see",
+          "problem": "4 of 8 interviewees kept private notes or drafts in the workspace and could not tell what an invitee would see. They had no way to preview it, and 3 of the 4 were asked about it directly, so the weight is lower than the count.",
+          "change": "Show a Preview as guest step before the link is made. It draws the page exactly as a view-only guest gets it.",
+          "why": "A preview in a different role from the one given would repeat the mismatch seen in Halyard.",
+          "constraint": {
+            "label": "Risk from the pre-mortem",
+            "text": "R1: admins share before the workspace is ready. A preview shows the page but does not change when the admin feels ready, so 2.1 carries the timing."
+          },
+          "evidence": [
+            {
+              "tag": "today",
+              "label": "Larkspur today",
+              "caption": "A project page. Nothing shows how the page looks to anyone else.",
+              "screen": {
+                "accent": "#3157d5",
+                "frame": "desktop",
+                "url": "app.larkspur.example/projects/q3-roadmap",
+                "blocks": [
+                  [
+                    "bar",
+                    "Q3 roadmap"
+                  ],
+                  [
+                    "progress",
+                    "Setup checklist",
+                    {
+                      "value": 2,
+                      "total": 5
+                    }
+                  ],
+                  [
+                    "table",
+                    "",
+                    {
+                      "cols": [
+                        "Item",
+                        "Owner",
+                        "Due"
+                      ],
+                      "rows": [
+                        [
+                          "Customer interviews",
+                          "You",
+                          "12 Jun"
+                        ],
+                        [
+                          "Scope review",
+                          "You",
+                          "19 Jun"
+                        ],
+                        [
+                          "Draft plan",
+                          "You",
+                          "26 Jun"
+                        ]
+                      ]
+                    }
+                  ]
+                ],
+                "nav": {
+                  "title": "Larkspur",
+                  "items": [
+                    "Home",
+                    "Projects",
+                    "Docs",
+                    "Settings"
+                  ],
+                  "on": 1
+                }
+              }
+            },
+            {
+              "tag": "reference",
+              "label": "Halyard",
+              "caption": "Preview as a named person, with hidden rows marked. The preview is a guest view for a member invite.",
+              "screen": {
+                "accent": "#0f766e",
+                "frame": "desktop",
+                "url": "app.halyard.example/plans/q3/preview/jordan",
+                "blocks": [
+                  [
+                    "banner",
+                    "Previewing as Jordan",
+                    {
+                      "sub": "This is what Jordan will see",
+                      "accent": true
+                    }
+                  ],
+                  [
+                    "row",
+                    "Customer interviews",
+                    {
+                      "right": "12 Jun"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Scope review",
+                    {
+                      "right": "19 Jun"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Salary band notes",
+                    {
+                      "badge": "Hidden from guests",
+                      "dim": true
+                    }
+                  ],
+                  [
+                    "row",
+                    "Draft plan",
+                    {
+                      "badge": "Hidden from guests",
+                      "dim": true
+                    }
+                  ]
+                ],
+                "nav": {
+                  "title": "Halyard",
+                  "items": [
+                    "Home",
+                    "Plans",
+                    "People"
+                  ],
+                  "on": 1
+                }
+              }
+            },
+            {
+              "tag": "proposed",
+              "label": "Proposed",
+              "caption": "A banner says what anyone with the link sees, with the page below it and a way back to sharing.",
+              "screen": {
+                "accent": "#3157d5",
+                "frame": "desktop",
+                "url": "app.larkspur.example/projects/q3-roadmap/preview",
+                "blocks": [
+                  [
+                    "banner",
+                    "Previewing as a guest",
+                    {
+                      "sub": "This is what anyone with the link sees. View only.",
+                      "accent": true,
+                      "hi": true,
+                      "pin": "1.2"
+                    }
+                  ],
+                  [
+                    "table",
+                    "",
+                    {
+                      "cols": [
+                        "Item",
+                        "Due"
+                      ],
+                      "rows": [
+                        [
+                          "Customer interviews",
+                          "12 Jun"
+                        ],
+                        [
+                          "Scope review",
+                          "19 Jun"
+                        ],
+                        [
+                          "Draft plan",
+                          "26 Jun"
+                        ]
+                      ]
+                    }
+                  ],
+                  [
+                    "cta",
+                    "Back to sharing",
+                    {
+                      "ghost": true
+                    }
+                  ]
+                ],
+                "nav": {
+                  "title": "Larkspur",
+                  "items": [
+                    "Home",
+                    "Projects",
+                    "Docs",
+                    "Settings"
+                  ],
+                  "on": 1
+                }
+              }
+            }
+          ],
+          "sources": [
+            "S:T4, 4 of 8",
+            "T:S3, gap P1",
+            "R:R1"
+          ],
+          "know": {
+            "baseline": "Workspaces that turn sharing off and workspaces that report an unwanted invite. Not supplied.",
+            "expect": "Fewer unwanted-invite reports among workspaces that use the preview than among those that share without it.",
+            "stop": "Unwanted-invite reports are no lower with the preview than without it, or admins skip the preview and sharing is turned off more often."
+          }
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "id": "ask",
+      "title": "When to ask, and what it costs",
+      "summary": "Offer sharing once there is something to show, and say what a seat costs.",
+      "lead": "Sharing is offered after the first project has three items, not during signup. The invite dialog says what a member seat costs.",
+      "points": [
+        {
+          "id": "2.1",
+          "title": "Nothing offers sharing while the plan takes shape",
+          "problem": "The invite is the last row of the Home checklist, has no button, and the project page never mentions another person. 6 of 8 interviewees held the plan back until it looked presentable.",
+          "change": "When a project has three items, show a card above the table that reads 'Ready to show someone?' with a Share button. Do not ask during signup.",
+          "why": "Waiting for the plan to look ready is the main reason for delay, so the ask belongs after there is something to show.",
+          "constraint": {
+            "label": "Risk from the pre-mortem",
+            "text": "R1: a card can nudge an admin to share too early. The card sends nothing. It opens the preview from 1.2 first."
+          },
+          "evidence": [
+            {
+              "tag": "today",
+              "label": "Larkspur today",
+              "caption": "Home. Invite your team is the last checklist row and has no button.",
+              "screen": {
+                "accent": "#3157d5",
+                "frame": "desktop",
+                "url": "app.larkspur.example/home",
+                "blocks": [
+                  [
+                    "bar",
+                    "Home"
+                  ],
+                  [
+                    "card",
+                    "Nothing here yet",
+                    {
+                      "sub": "Start with a project",
+                      "action": "New project"
+                    }
+                  ],
+                  [
+                    "text",
+                    "Setup checklist",
+                    {
+                      "bold": true,
+                      "ink": true
+                    }
+                  ],
+                  [
+                    "check",
+                    "Name your workspace",
+                    {
+                      "done": true
+                    }
+                  ],
+                  [
+                    "check",
+                    "Create a project"
+                  ],
+                  [
+                    "check",
+                    "Add three items"
+                  ],
+                  [
+                    "check",
+                    "Set a due date"
+                  ],
+                  [
+                    "check",
+                    "Invite your team"
+                  ]
+                ],
+                "nav": {
+                  "title": "Larkspur",
+                  "items": [
+                    "Home",
+                    "Projects",
+                    "Docs",
+                    "Settings"
+                  ],
+                  "on": 0
+                }
+              }
+            },
+            {
+              "tag": "reference",
+              "label": "Halyard",
+              "caption": "A prompt appears after the third item, when the plan has something to show.",
+              "screen": {
+                "accent": "#0f766e",
+                "frame": "desktop",
+                "url": "app.halyard.example/plans/q3",
+                "blocks": [
+                  [
+                    "bar",
+                    "Q3 roadmap",
+                    {
+                      "sub": "3 items"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Customer interviews",
+                    {
+                      "right": "12 Jun"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Scope review",
+                    {
+                      "right": "19 Jun"
+                    }
+                  ],
+                  [
+                    "row",
+                    "Draft plan",
+                    {
+                      "right": "26 Jun"
+                    }
+                  ],
+                  [
+                    "card",
+                    "Ready to show someone?",
+                    {
+                      "sub": "Preview what they will see.",
+                      "action": "Preview"
+                    }
+                  ]
+                ],
+                "nav": {
+                  "title": "Halyard",
+                  "items": [
+                    "Home",
+                    "Plans",
+                    "People"
+                  ],
+                  "on": 1
+                }
+              }
+            },
+            {
+              "tag": "proposed",
+              "label": "Proposed",
+              "caption": "The same project page, with a Share card above the table once three items exist.",
+              "screen": {
+                "accent": "#3157d5",
+                "frame": "desktop",
+                "url": "app.larkspur.example/projects/q3-roadmap",
+                "blocks": [
+                  [
+                    "bar",
+                    "Q3 roadmap",
+                    {
+                      "sub": "3 items"
+                    }
+                  ],
+                  [
+                    "card",
+                    "Ready to show someone?",
+                    {
+                      "sub": "A view-only link. Nothing is sent yet.",
+                      "action": "Share",
+                      "hi": true,
+                      "pin": "2.1"
+                    }
+                  ],
+                  [
+                    "table",
+                    "",
+                    {
+                      "cols": [
+                        "Item",
+                        "Owner",
+                        "Due"
+                      ],
+                      "rows": [
+                        [
+                          "Customer interviews",
+                          "You",
+                          "12 Jun"
+                        ],
+                        [
+                          "Scope review",
+                          "You",
+                          "19 Jun"
+                        ],
+                        [
+                          "Draft plan",
+                          "You",
+                          "26 Jun"
+                        ]
+                      ]
+                    }
+                  ]
+                ],
+                "nav": {
+                  "title": "Larkspur",
+                  "items": [
+                    "Home",
+                    "Projects",
+                    "Docs",
+                    "Settings"
+                  ],
+                  "on": 1
+                }
+              }
+            }
+          ],
+          "sources": [
+            "T:S2, Halyard and gap P0",
+            "S:T1, 6 of 8",
+            "R:R1"
+          ],
+          "know": {
+            "baseline": "Invites sent and accepted per trial workspace, and workspaces with a second active person within 7 days. Not supplied. Whether the day of the first invite attempt is recorded is not known.",
+            "expect": "More workspaces share in the first week. This point may not move admins who wait for a tidy plan: one interviewee said a link would not change that.",
+            "stop": "Invites sent do not rise against the control group, or unwanted-invite reports rise."
+          }
+        },
+        {
+          "id": "2.2",
+          "title": "Invite cost reads 'billing starts today' after a free trial promise",
+          "problem": "The Add member dialog says billing starts today at $12 per month, after a signup page that promised a free trial with no card. 5 of 8 interviewees could not tell what an invite costs or when billing starts.",
+          "change": "Show the cost and the billing start date in the invite dialog, above the button. The words are for the billing owner to confirm: '{{ price }} per month, from {{ start }}'.",
+          "constraint": {
+            "label": "Needs billing owner",
+            "text": "Nothing is said about price until the billing owner confirms the figure and the start date. It is also not known whether billing really starts today in a trial."
+          },
+          "evidence": [
+            {
+              "tag": "today",
+              "label": "Larkspur today",
+              "caption": "The dialog says billing starts today, after a trial that promised no card.",
+              "screen": {
+                "accent": "#3157d5",
+                "frame": "desktop",
+                "url": "app.larkspur.example/settings/members",
+                "blocks": [
+                  [
+                    "bar",
+                    "Members"
+                  ],
+                  [
+                    "table",
+                    "",
+                    {
+                      "cols": [
+                        "Name",
+                        "Role"
+                      ],
+                      "rows": [
+                        [
+                          "Dana Whitlock",
+                          "Admin"
+                        ]
+                      ]
+                    }
+                  ],
+                  [
+                    "modal",
+                    "Add member",
+                    {
+                      "sub": "Adding a member starts billing today: $12 per month",
+                      "field": "Email address",
+                      "items": [
+                        "Member"
+                      ],
+                      "on": 0,
+                      "cta": "Add member"
+                    }
+                  ]
+                ],
+                "nav": {
+                  "title": "Larkspur",
+                  "items": [
+                    "Home",
+                    "Projects",
+                    "Docs",
+                    "Settings"
+                  ],
+                  "on": 3
+                }
+              }
+            },
+            {
+              "tag": "reference",
+              "label": "Halyard",
+              "caption": "The dialog gives the price and says billing starts at the end of the trial.",
+              "screen": {
+                "accent": "#0f766e",
+                "frame": "desktop",
+                "url": "app.halyard.example/plans/q3",
+                "blocks": [
+                  [
+                    "bar",
+                    "Q3 roadmap"
+                  ],
+                  [
+                    "row",
+                    "Customer interviews",
+                    {
+                      "right": "12 Jun"
+                    }
+                  ],
+                  [
+                    "modal",
+                    "Invite Jordan Reyes",
+                    {
+                      "sub": "Jordan joins as a member: $10 per month, billed from the end of your trial",
+                      "cta": "Send invite"
+                    }
+                  ]
+                ],
+                "nav": {
+                  "title": "Halyard",
+                  "items": [
+                    "Home",
+                    "Plans",
+                    "People"
+                  ],
+                  "on": 1
+                }
+              }
+            },
+            {
+              "tag": "proposed",
+              "label": "Proposed",
+              "caption": "The same dialog, with the cost and the billing start as two slots to fill.",
+              "screen": {
+                "accent": "#3157d5",
+                "frame": "desktop",
+                "url": "app.larkspur.example/settings/members",
+                "blocks": [
+                  [
+                    "bar",
+                    "Members"
+                  ],
+                  [
+                    "table",
+                    "",
+                    {
+                      "cols": [
+                        "Name",
+                        "Role"
+                      ],
+                      "rows": [
+                        [
+                          "Dana Whitlock",
+                          "Admin"
+                        ]
+                      ]
+                    }
+                  ],
+                  [
+                    "modal",
+                    "Add member",
+                    {
+                      "sub": "{{ price }} per month, from {{ start }}",
+                      "field": "Email address",
+                      "items": [
+                        "Member"
+                      ],
+                      "on": 0,
+                      "cta": "Add member",
+                      "hi": true,
+                      "pin": "2.2"
+                    }
+                  ]
+                ],
+                "nav": {
+                  "title": "Larkspur",
+                  "items": [
+                    "Home",
+                    "Projects",
+                    "Docs",
+                    "Settings"
+                  ],
+                  "on": 3
+                }
+              }
+            }
+          ],
+          "sources": [
+            "T:S3, gap P0",
+            "S:T3, 5 of 8",
+            "R:R2"
+          ],
+          "know": {
+            "baseline": "Contacts to support about billing, and invites sent and accepted. Not supplied.",
+            "expect": "Fewer billing contacts to support per invite sent, and more invites accepted.",
+            "stop": "Billing contacts to support rise against the control group, or paid conversion within 30 days falls."
+          }
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "id": "guest",
+      "title": "The guest's side",
+      "summary": "The guest lands on the page and can ask to edit.",
+      "lead": "What the person who only looks sees, and how a guest becomes a paid member.",
+      "points": [
+        {
+          "id": "3.1",
+          "title": "Nothing connects looking at a plan to paying for a seat",
+          "problem": "Corbel guests can look but have no way to join, so none becomes a paid seat. Larkspur has no guest at all, and billing for a guest who becomes a member is not designed.",
+          "change": "Put an Ask to edit button on the shared page. The admin gets the request and approves it, and the seat is paid for at that moment, with the cost shown.",
+          "why": "Paying only when someone needs to edit keeps the first look free and still reaches a paid seat.",
+          "constraint": {
+            "label": "Dependency",
+            "text": "The billing for a guest who becomes a member is not designed. This point cannot ship until the billing owner designs it. Pre-mortem R6 warns that free guests may never become paid seats."
+          },
+          "evidence": [
+            {
+              "tag": "reference",
+              "label": "Corbel",
+              "caption": "A guest views the page with no way to ask for more. No screen shows a member price or an upgrade.",
+              "screen": {
+                "accent": "#c2410c",
+                "frame": "desktop",
+                "url": "app.corbel.example/p/q3-roadmap",
+                "blocks": [
+                  [
+                    "bar",
+                    "Q3 roadmap",
+                    {
+                      "action": "Share"
+                    }
+                  ],
+                  [
+                    "people",
+                    "1 guest viewing",
+                    {
+                      "items": [
+                        "Dana",
+                        "+1"
+                      ]
+                    }
+                  ],
+                  [
+                    "table",
+                    "",
+                    {
+                      "cols": [
+                        "Item",
+                        "Status"
+                      ],
+                      "rows": [
+                        [
+                          "Customer interviews",
+                          "In progress"
+                        ],
+                        [
+                          "Scope review",
+                          "To do"
+                        ]
+                      ]
+                    }
+                  ],
+                  [
+                    "toast",
+                    "Link copied"
+                  ]
+                ],
+                "nav": {
+                  "title": "Corbel",
+                  "items": [
+                    "Pages",
+                    "Sample plan",
+                    "Search"
+                  ],
+                  "on": 0
+                }
+              }
+            },
+            {
+              "tag": "proposed",
+              "label": "Proposed: guest",
+              "caption": "The shared page offers Ask to edit in the bar.",
+              "screen": {
+                "accent": "#3157d5",
+                "frame": "desktop",
+                "url": "app.larkspur.example/g/q3-roadmap",
+                "blocks": [
+                  [
+                    "bar",
+                    "Q3 roadmap",
+                    {
+                      "sub": "Shared by Dana. View only.",
+                      "action": "Ask to edit",
+                      "hi": true,
+                      "pin": "3.1"
+                    }
+                  ],
+                  [
+                    "table",
+                    "",
+                    {
+                      "cols": [
+                        "Item",
+                        "Due"
+                      ],
+                      "rows": [
+                        [
+                          "Customer interviews",
+                          "12 Jun"
+                        ],
+                        [
+                          "Scope review",
+                          "19 Jun"
+                        ],
+                        [
+                          "Draft plan",
+                          "26 Jun"
+                        ]
+                      ]
+                    }
+                  ]
+                ]
+              }
+            },
+            {
+              "tag": "proposed",
+              "label": "Proposed: admin",
+              "caption": "The admin approves the request and sees the cost before the seat is added.",
+              "screen": {
+                "accent": "#3157d5",
+                "frame": "desktop",
+                "url": "app.larkspur.example/projects/q3-roadmap",
+                "blocks": [
+                  [
+                    "bar",
+                    "Q3 roadmap"
+                  ],
+                  [
+                    "table",
+                    "",
+                    {
+                      "cols": [
+                        "Item",
+                        "Owner",
+                        "Due"
+                      ],
+                      "rows": [
+                        [
+                          "Customer interviews",
+                          "You",
+                          "12 Jun"
+                        ],
+                        [
+                          "Scope review",
+                          "You",
+                          "19 Jun"
+                        ],
+                        [
+                          "Draft plan",
+                          "You",
+                          "26 Jun"
+                        ]
+                      ]
+                    }
+                  ],
+                  [
+                    "modal",
+                    "Kemal asks to edit",
+                    {
+                      "sub": "Seat: {{ price }} a month, from {{ start }}",
+                      "cta": "Approve and add seat",
+                      "hi": true
+                    }
+                  ]
+                ],
+                "nav": {
+                  "title": "Larkspur",
+                  "items": [
+                    "Home",
+                    "Projects",
+                    "Docs",
+                    "Settings"
+                  ],
+                  "on": 1
+                }
+              }
+            }
+          ],
+          "sources": [
+            "T:S3, Corbel",
+            "S:T2, counter P3",
+            "R:R6"
+          ],
+          "know": {
+            "baseline": "Paid seats per paying workspace. Not supplied. No count of guests exists yet.",
+            "expect": "Paid seats per paying workspace hold level or rise, while guests are free to look.",
+            "stop": "Paid seats per paying workspace fall against the control group, or requests are approved and then the seat is refunded or disputed."
+          }
+        },
+        {
+          "id": "3.2",
+          "title": "Readers must join before they can see the page",
+          "problem": "Today the only way in is a member invite, so a boss or client has to join before seeing anything. 5 of 8 interviewees wanted a reader to look only, and one said a VP will not create a login just to read a plan.",
+          "change": "Open the link straight onto the shared page, view only, with a slim line that says 'You are viewing as a guest'. Show no signup wall before the page.",
+          "constraint": {
+            "label": "Needs security sign-off",
+            "text": "Pages open without an account, so this rests on the same security sign-off as 1.1. Pre-mortem R4 warns that guests may look once and leave, so the page is the whole product for them."
+          },
+          "evidence": [
+            {
+              "tag": "today",
+              "label": "Larkspur today",
+              "caption": "The only way to bring a reader in is the Add member dialog.",
+              "screen": {
+                "accent": "#3157d5",
+                "frame": "desktop",
+                "url": "app.larkspur.example/settings/members",
+                "blocks": [
+                  [
+                    "bar",
+                    "Members"
+                  ],
+                  [
+                    "table",
+                    "",
+                    {
+                      "cols": [
+                        "Name",
+                        "Role"
+                      ],
+                      "rows": [
+                        [
+                          "Dana Whitlock",
+                          "Admin"
+                        ]
+                      ]
+                    }
+                  ],
+                  [
+                    "modal",
+                    "Add member",
+                    {
+                      "sub": "Adding a member starts billing today: $12 per month",
+                      "field": "Email address",
+                      "items": [
+                        "Member"
+                      ],
+                      "on": 0,
+                      "cta": "Add member"
+                    }
+                  ]
+                ],
+                "nav": {
+                  "title": "Larkspur",
+                  "items": [
+                    "Home",
+                    "Projects",
+                    "Docs",
+                    "Settings"
+                  ],
+                  "on": 3
+                }
+              }
+            },
+            {
+              "tag": "reference",
+              "label": "Corbel",
+              "caption": "A guest opens the link and is on the page in two actions, with no typing.",
+              "screen": {
+                "accent": "#c2410c",
+                "frame": "desktop",
+                "url": "app.corbel.example/p/q3-roadmap",
+                "blocks": [
+                  [
+                    "bar",
+                    "Q3 roadmap",
+                    {
+                      "action": "Share"
+                    }
+                  ],
+                  [
+                    "people",
+                    "1 guest viewing",
+                    {
+                      "items": [
+                        "Dana",
+                        "+1"
+                      ]
+                    }
+                  ],
+                  [
+                    "table",
+                    "",
+                    {
+                      "cols": [
+                        "Item",
+                        "Status"
+                      ],
+                      "rows": [
+                        [
+                          "Customer interviews",
+                          "In progress"
+                        ],
+                        [
+                          "Scope review",
+                          "To do"
+                        ]
+                      ]
+                    }
+                  ],
+                  [
+                    "toast",
+                    "Link copied"
+                  ]
+                ],
+                "nav": {
+                  "title": "Corbel",
+                  "items": [
+                    "Pages",
+                    "Sample plan",
+                    "Search"
+                  ],
+                  "on": 0
+                }
+              }
+            },
+            {
+              "tag": "proposed",
+              "label": "Proposed",
+              "caption": "The link opens the page itself, with a line saying the reader is a guest.",
+              "screen": {
+                "accent": "#3157d5",
+                "frame": "desktop",
+                "url": "app.larkspur.example/g/q3-roadmap",
+                "blocks": [
+                  [
+                    "bar",
+                    "Q3 roadmap",
+                    {
+                      "sub": "You are viewing as a guest",
+                      "hi": true,
+                      "pin": "3.2"
+                    }
+                  ],
+                  [
+                    "table",
+                    "",
+                    {
+                      "cols": [
+                        "Item",
+                        "Due"
+                      ],
+                      "rows": [
+                        [
+                          "Customer interviews",
+                          "12 Jun"
+                        ],
+                        [
+                          "Scope review",
+                          "19 Jun"
+                        ],
+                        [
+                          "Draft plan",
+                          "26 Jun"
+                        ]
+                      ]
+                    }
+                  ],
+                  [
+                    "text",
+                    "No account needed to read this page"
+                  ]
+                ]
+              }
+            }
+          ],
+          "sources": [
+            "T:S3, Corbel",
+            "S:T2, 5 of 8",
+            "R:R4"
+          ],
+          "know": {
+            "baseline": "Workspaces with a second active person within 7 days. Not supplied. Guests viewing is not yet counted.",
+            "expect": "More shared links are opened. Whether guests come back a second time is not known.",
+            "stop": "Few shared links are opened, or workspaces turn sharing off more often against the control group."
+          }
+        }
+      ]
+    }
+  ],
+  "priority": [
+    {
+      "id": "1.1",
+      "change": "Share button and view-only link",
+      "moves": "Second active person within 7 days",
+      "effort": "M",
+      "status": {
+        "level": "amb",
+        "text": "Security sign-off"
+      },
+      "first": "Ask security for a written view on view-only links."
+    },
+    {
+      "id": "1.2",
+      "change": "Preview as guest",
+      "moves": "Unwanted-invite reports",
+      "effort": "M",
+      "status": {
+        "level": "ok",
+        "text": "Ships with 1.1"
+      },
+      "first": "Draw the guest view for the one shared page."
+    },
+    {
+      "id": "2.1",
+      "change": "Share card at three items",
+      "moves": "Invites sent and accepted",
+      "effort": "S",
+      "status": {
+        "level": "amb",
+        "text": "Needs 1.1 and 1.2"
+      },
+      "first": "Define the three-item trigger and the card copy."
+    },
+    {
+      "id": "2.2",
+      "change": "Cost and billing start in the invite dialog",
+      "moves": "Billing contacts to support",
+      "effort": "S",
+      "status": {
+        "level": "amb",
+        "text": "Billing owner wording"
+      },
+      "first": "The billing owner confirms the price and when billing starts."
+    },
+    {
+      "id": "3.1",
+      "change": "Ask to edit, admin approves",
+      "moves": "Paid seats per paying workspace",
+      "effort": "L",
+      "status": {
+        "level": "no",
+        "text": "Billing not designed"
+      },
+      "first": "The billing owner designs a guest who becomes a member."
+    },
+    {
+      "id": "3.2",
+      "change": "Link opens the page, no signup wall",
+      "moves": "Second active person within 7 days",
+      "effort": "M",
+      "status": {
+        "level": "amb",
+        "text": "Security sign-off"
+      },
+      "first": "Build the guest page and test it with five people."
+    }
+  ],
+  "rollout": [
+    {
+      "when": "First, before the link",
+      "points": [
+        "2.2"
+      ],
+      "why": "It changes one dialog and needs no security review. It removes the clash with the free-trial promise and ships alone once the billing owner confirms the words."
+    },
+    {
+      "when": "February 2027, to new trials, as an experiment",
+      "points": [
+        "1.1",
+        "1.2",
+        "3.2"
+      ],
+      "why": "A link is not usable without a page to land on and a preview of it, so these three go together. The experiment measures second active person within 7 days against the guardrails."
+    },
+    {
+      "when": "After the first read of the experiment",
+      "points": [
+        "2.1"
+      ],
+      "why": "The card is a second change on the same measure. Waiting shows what the link does alone."
+    },
+    {
+      "when": "When billing is designed",
+      "points": [
+        "3.1"
+      ],
+      "why": "A guest cannot become a paying member until billing for that case exists."
+    }
+  ],
+  "next": [
+    "2.2 and 3.1: the billing owner confirms the price wording and the billing start, and designs billing for a guest who becomes a member.",
+    "1.1 and 3.2: security answers its questions about public links and signs off, or names what it needs.",
+    "All points: someone measures the baselines for four weeks before launch. None has been supplied.",
+    "1.1: decide the control group and the length of the experiment. The smallest lift worth shipping is 2 points on second active person within 7 days."
+  ],
+  "caveats": "Everything here is fictional. No baselines were supplied, so no point states a size of change, and the 2 points in 1.1 is a decision threshold. The 8 interviews are a small set and some themes were partly led: T4 and T6 in the synthesis. 5 of 8 wanted a reader who only looks, but P3 and P7 would rather give everyone a seat, and P1 said a link would not stop her waiting. Whether a link passes a company's security review is not known. The word 'free' for guests, and any price, still need the billing owner. Teardown prices for other products are theirs, not a target."
+}

@@ -1,0 +1,223 @@
+{
+  "title": "Auto-assign, six months on",
+  "plan": {
+    "name": "Auto-assign for Vireo Recap",
+    "summary": "Five minutes after a meeting ends, email the recap to every invitee, external guests included, and create each action item as a task in its owner's list. Nobody reviews the recap first and nobody accepts a task.",
+    "ships": "March 2027, to every workspace with Recap on",
+    "goal": "More recaps acted on, not just opened, and fewer follow-ups dropped after a meeting."
+  },
+  "asOf": "2026-11-19",
+  "failedOn": "2027-09-01",
+  "inputs": [
+    { "id": "T", "label": "Journey teardown", "detail": "four products, three stages, 24 screens" },
+    { "id": "S", "label": "Interview synthesis", "detail": "eight hosts who run at least five meetings a week with Recap on, or until lately" },
+    { "id": "P", "label": "The plan", "detail": "its own list of constraints and of what can be measured today" }
+  ],
+  "risks": [
+    {
+      "id": "R1",
+      "area": "users",
+      "title": "Wrong commitments reach customers unreviewed",
+      "story": "A host runs a customer call. The recap lists a passing idea as a decision and goes to every invitee, the customer included, five minutes later. The host has not read it. The customer treats it as a promise, and the host has to walk it back in public.",
+      "likelihood": "high",
+      "likelihoodWhy": "Five of eight hosts have had a recap reach other people before they read it, and three of those five were outside the company.",
+      "impact": "high",
+      "impactWhy": "One host already turned Recap off for customer calls after a wrong commitment reached a customer.",
+      "evidence": {
+        "status": "supported",
+        "from": "S",
+        "detail": "Five of eight had a recap reach others unread, three outside the company. T agrees: Vireo's email already says it went to all 9 invitees, and the two products that hold the recap for the host score better on trust.",
+        "expect": "Reports of wrong recaps rise once external guests are in the send, and customer-facing hosts turn Recap off."
+      },
+      "tripwire": {
+        "metric": "Recaps reported as wrong",
+        "threshold": "1 or more reports in the pilot of a wrong recap that reached an external guest",
+        "check": "2027-02-15",
+        "owner": "Recap product lead"
+      },
+      "mitigation": "Hold every recap for the host for review, and send to external guests only after the host or a named owner confirms. Keep the five-minute send for internal invitees if the host opts in.",
+      "test": "Pilot with a small set of workspaces for four weeks with the send to external guests held, and read every wrong-recap report by hand."
+    },
+    {
+      "id": "R2",
+      "area": "behaviour",
+      "title": "Hosts turn Recap off",
+      "story": "Hosts who cannot check a recap before it goes out stop trusting it. The more it does by itself, the more they must check, so they switch Recap off for the meetings that matter. The feature loses the very hosts who made the recap worth sending.",
+      "likelihood": "medium",
+      "likelihoodWhy": "One host has already turned Recap off, and five of eight rewrite the recap or have stopped sending it.",
+      "impact": "high",
+      "impactWhy": "Every host who leaves removes all of that host's meetings from the goal of more recaps acted on.",
+      "evidence": {
+        "status": "supported",
+        "from": "S",
+        "detail": "Two hosts said the more the recap does itself, the more they have to check. One host turned Recap off after a wrong commitment. One host likes the automatic send, so the pull is not one way.",
+        "expect": "Hosts who turn Recap off rises after launch, mostly among hosts with many customer meetings."
+      },
+      "tripwire": {
+        "metric": "Hosts who turn Recap off",
+        "threshold": "Rises more than 2 times above its weekly level in the four weeks before launch",
+        "check": "2027-04-15",
+        "owner": "Recap product lead"
+      },
+      "mitigation": "Make auto-assign a per-host setting that is off until the host turns it on, and show where each recap line came from so the host can check fast.",
+      "test": "In the pilot, offer the setting to hosts and count how many leave it off, then ask each why."
+    },
+    {
+      "id": "R3",
+      "area": "behaviour",
+      "title": "Tasks land on the wrong people",
+      "story": "The recap gives an action item to whoever spoke last, and the task is created in that person's list with nothing to accept or decline. Sam finds a task he never agreed to. He ignores it, the real owner never hears of it, and the follow-up is still dropped.",
+      "likelihood": "high",
+      "likelihoodWhy": "Five of eight hosts have seen an action item go to whoever spoke last, and no step lets an owner decline.",
+      "impact": "high",
+      "impactWhy": "A wrong task adds noise to a list and hides the dropped follow-up, which is the thing the plan means to fix.",
+      "evidence": {
+        "status": "supported",
+        "from": "S",
+        "detail": "Five of eight saw the wrong owner. T shows Vireo's action items read 'Owner: Sam' with nothing for Sam to accept or decline, while one competitor lets owners confirm their own items.",
+        "expect": "Tasks are created and not completed, and the share completed falls below the level before launch."
+      },
+      "tripwire": {
+        "metric": "Tasks completed, divided by tasks created",
+        "threshold": "Falls below its level in the four weeks before launch for 2 weeks in a row",
+        "check": "2027-04-15",
+        "owner": "Tasks product lead"
+      },
+      "mitigation": "Create a task only after its owner confirms the item, and let the owner decline with one click. Leave unconfirmed items as lines in the recap.",
+      "test": "In the pilot, compare tasks created with and without owner confirmation, and count how many unconfirmed items the owners say are theirs."
+    },
+    {
+      "id": "R4",
+      "area": "behaviour",
+      "title": "Raised ideas become settled decisions",
+      "story": "The recap files a passing idea under Decisions, because one list holds both settled lines and raised ones. Invitees read it as agreed. People act on it, a task is created from it, and the host finds out when someone asks why the team is doing it.",
+      "likelihood": "high",
+      "likelihoodWhy": "Five of eight hosts have seen a passing idea listed under Decisions.",
+      "impact": "high",
+      "impactWhy": "Work starts on something nobody agreed to, and the host loses trust in every other line.",
+      "evidence": {
+        "status": "supported",
+        "from": "S",
+        "detail": "Five of eight. T adds that Vireo's recap page has one Decisions list and no source on any line, so a reader cannot tell a settled line from a raised one.",
+        "expect": "Recaps reported as wrong cite decisions that were never made, and hosts rewrite the Decisions list before sharing."
+      },
+      "tripwire": {
+        "metric": "Recaps reported as wrong",
+        "threshold": "More than 3 reports in one week naming a decision that was only raised",
+        "check": "2027-03-31",
+        "owner": "Recap quality lead"
+      },
+      "mitigation": "Split Decisions into settled and raised, show the source line for each, and send nothing from the raised list to anyone as a task.",
+      "test": "Read a sample of pilot recaps against their recordings and count lines filed as decisions that were only raised."
+    },
+    {
+      "id": "R5",
+      "area": "build",
+      "title": "The five-minute promise breaks on long meetings",
+      "story": "A team ends a meeting that ran past 90 minutes. The recap is not ready at five minutes, so it goes out late or goes out partial. Invitees get a recap after they have moved on, or get a half recap that the host never saw.",
+      "likelihood": "medium",
+      "likelihoodWhy": "The plan admits that recaps of meetings over 90 minutes already arrive late.",
+      "impact": "medium",
+      "impactWhy": "Late or partial recaps hurt the longest meetings, which are often the ones with the most actions.",
+      "evidence": {
+        "status": "supported",
+        "from": "P",
+        "detail": "The plan's own constraints say recaps of meetings over 90 minutes already arrive late.",
+        "expect": "Time from meeting end to recap delivery sits above five minutes for the longest meetings."
+      },
+      "tripwire": {
+        "metric": "Time from meeting end to recap delivery",
+        "threshold": "Median above 5 minutes in any pilot week",
+        "check": "2027-02-15",
+        "owner": "Recap engineering lead"
+      },
+      "mitigation": "Promise delivery in a range, not at a fixed five minutes, and send nothing until the recap is complete.",
+      "test": "In the pilot, record delivery time for every meeting and list the slowest ten by length."
+    },
+    {
+      "id": "R6",
+      "area": "rules",
+      "title": "Legal blocks sending to external guests",
+      "story": "Legal has not looked at sending recaps to external guests. Close to launch it reads the plan, finds that guests receive meeting content they never agreed to receive, and asks for a stop. The launch is held, or the send is pulled after customers have already got recaps.",
+      "likelihood": "medium",
+      "likelihoodWhy": "Legal has not reviewed it, so the outcome is open, and sending meeting content to outsiders is a normal reason to look closely.",
+      "impact": "high",
+      "impactWhy": "A pull after launch means recaps already reached customers and cannot be taken back.",
+      "evidence": {
+        "status": "unknown",
+        "detail": "The plan says legal has not reviewed it. No input says what legal will decide.",
+        "expect": "Legal asks for consent or a notice before guests receive a recap, or asks for the guest send to be removed."
+      },
+      "mitigation": "Ask legal for a review before the pilot starts, and no measure is possible until then. What would have to be measured is the number of guests who received a recap with and without notice."
+    },
+    {
+      "id": "R7",
+      "area": "build",
+      "title": "The partner team cannot ship task creation",
+      "story": "The task-list integrations belong to a partner team that was not part of this plan. Its own roadmap has no room for automatic task creation in March. The recap feature ships on time and the tasks half does not, or it ships with a rushed integration that breaks.",
+      "likelihood": "medium",
+      "likelihoodWhy": "The plan says a partner team owns the integrations, and nothing here says that team has agreed.",
+      "impact": "high",
+      "impactWhy": "Half of the plan, task creation, depends on a team that has not been asked.",
+      "evidence": {
+        "status": "unknown",
+        "detail": "The plan names the partner team as owner of the integrations. No input says what that team has agreed to. This is the internal risk to fill in.",
+        "expect": "The partner team asks for a later date, a smaller scope or a different design."
+      },
+      "mitigation": "Name the partner team's lead and ask them for a yes or a date before anything else is built. Fill in what they say here."
+    },
+    {
+      "id": "R8",
+      "area": "operations",
+      "title": "Support is flooded with who-sent-this contacts",
+      "story": "People get recaps from meetings they barely joined and tasks they did not agree to. They cannot decline either. They write to support to ask why it was sent and how to stop it, and the support queue fills with the same few reasons.",
+      "likelihood": "medium",
+      "likelihoodWhy": "Nothing lets a person decline a task, and recaps reach people the host never chose.",
+      "impact": "medium",
+      "impactWhy": "A queue full of one reason costs support time and signals to customers that the product acts without asking.",
+      "evidence": {
+        "status": "supported",
+        "from": "T",
+        "detail": "Vireo's action items give nothing to accept or decline, and the Share dialog asks who should get the recap after the email already went to all 9. No input counts support contacts.",
+        "expect": "Support contacts for recap sent to the wrong person, or how to stop it, rise after launch."
+      },
+      "mitigation": "Add a one-click decline and a way for guests to stop recaps, and prepare a support answer before launch."
+    },
+    {
+      "id": "R9",
+      "area": "money",
+      "title": "Model spend rises with no gain in acted-on recaps",
+      "story": "Auto-assign runs for every meeting and every recap is fully generated and sent. Hosts who rewrite the recap or ask for another run add cost on top. Spend per meeting minute climbs while recaps acted on stay flat, and the feature costs more than it earns.",
+      "likelihood": "low",
+      "likelihoodWhy": "No input says how much the extra work costs, and the recap is already generated today.",
+      "impact": "medium",
+      "impactWhy": "Spend per meeting minute is already tracked, so a rise would be seen, though a cut would hurt quality.",
+      "evidence": {
+        "status": "unknown",
+        "detail": "No input gives spend figures. This is a guess.",
+        "expect": "Model spend per meeting minute rises after launch while recaps opened and tasks completed stay flat."
+      },
+      "mitigation": "Set a spend ceiling per meeting minute for the pilot and look at it with tasks completed."
+    },
+    {
+      "id": "R10",
+      "area": "build",
+      "title": "Nobody can see how often recaps are wrong",
+      "story": "Nobody measures how often a recap line is wrong, and hosts no longer read the recap first. Wrong lines go out, but the only signal is a report from someone who noticed. The tripwires stay quiet while trust drops, and the team reads silence as success.",
+      "likelihood": "high",
+      "likelihoodWhy": "The plan admits nobody measures it, and the new design removes the host's review, which is where errors were caught.",
+      "impact": "medium",
+      "impactWhy": "It does not cause harm itself, but it hides every other risk on this list.",
+      "evidence": {
+        "status": "supported",
+        "from": "P",
+        "detail": "The plan says nobody measures how often a recap line is wrong. S agrees the interviews cannot say.",
+        "expect": "Recaps reported as wrong stays low while hosts turn Recap off and rewrite recaps."
+      },
+      "mitigation": "Measure it before launch: sample recap lines against recordings each week during the pilot. Without that, the tripwires on reports undercount."
+    }
+  ],
+  "top": ["R1", "R3", "R4", "R2", "R5"],
+  "skipped": {},
+  "cut": []
+}

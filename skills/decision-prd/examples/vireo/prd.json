@@ -1,0 +1,1441 @@
+{
+ "doc": {
+  "title": "Vireo Recap: replace Auto-assign with a draft-first recap with sources",
+  "short": "Draft-first recap PRD",
+  "eyebrow": "Decision draft",
+  "author": "Vireo Recap product team",
+  "date": "2026-11-19",
+  "summary": "The decision: replace Auto-assign with a draft-first recap with sources, for March 2027. Six points in three sections: checking a line, who sees it and who owns it, and outsiders and doubt. Nothing is sent or assigned automatically.",
+  "fictional": true
+ },
+ "sources": [
+  {
+   "id": "S",
+   "label": "Interview synthesis",
+   "detail": "8 hosts"
+  },
+  {
+   "id": "T",
+   "label": "Journey teardown",
+   "detail": "4 products, 3 stages, 24 screens"
+  },
+  {
+   "id": "R",
+   "label": "Pre-mortem on Auto-assign",
+   "detail": "10 risks, 5 with tripwires"
+  }
+ ],
+ "sourceNote": "Every screen is a schematic drawn for this example from the teardown, not a screenshot. Vireo, Castell, Ondine and Parley are fictional. One meeting runs through all of them, 42 minutes, on 12 November 2026.",
+ "sections": [
+  {
+   "n": 1,
+   "id": "checking",
+   "title": "Checking a line",
+   "summary": "Hosts cannot tell where a line came from, or whether it was settled.",
+   "lead": "A host will only send a recap on if they can check it fast. These two points make a line checkable at its moment and separate what was decided from what was only raised.",
+   "points": [
+    {
+     "id": "1.1",
+     "screen": "recap-lines",
+     "title": "No line of the recap says where it came from",
+     "problem": "6 of 8 hosts check a recap by hunting through the recording, from 10 minutes to an hour, because no line says where it came from. Vireo offers a \"Watch recording\" row of 42 minutes and nothing that links a line to a moment.",
+     "change": "End every line with the time it was said, such as 12:04. Clicking the time plays the recording from that moment, with the line still in view.",
+     "why": "4 of 8 hosts asked for exactly this, and Castell already does it.",
+     "constraint": {
+      "label": "Risk from the pre-mortem",
+      "text": "Nobody measures how often a recap line is wrong (R10). A time on each line makes a wrong line cheap to catch, but does not say how many there are. Sample lines against recordings before launch."
+     },
+     "evidence": [
+      {
+       "tag": "today",
+       "label": "Vireo today",
+       "caption": "No line has a time. The only check is a Watch recording row of 42 min.",
+       "screen": {
+        "accent": "#0e7c66",
+        "frame": "desktop",
+        "url": "vireo.example/recap/3317",
+        "blocks": [
+         [
+          "bar",
+          "Pricing review with Northgate",
+          {
+           "sub": "Thu 12 Nov, 42 min, 9 invitees"
+          }
+         ],
+         [
+          "text",
+          "Action items",
+          {
+           "ink": true,
+           "bold": true
+          }
+         ],
+         [
+          "para",
+          "Sam to send the revised quote to Northgate.",
+          {
+           "lines": 2
+          }
+         ],
+         [
+          "gap",
+          ""
+         ],
+         [
+          "row",
+          "Watch recording",
+          {
+           "right": "42 min",
+           "hi": true
+          }
+         ]
+        ],
+        "nav": {
+         "title": "Vireo",
+         "items": [
+          "Home",
+          "Meetings",
+          "Recaps",
+          "Settings"
+         ],
+         "on": 2
+        }
+       }
+      },
+      {
+       "tag": "reference",
+       "label": "Castell",
+       "caption": "Each line ends in a time chip, and the chip opens the clip.",
+       "screen": {
+        "accent": "#4338ca",
+        "frame": "desktop",
+        "url": "castell.example/recap/3317",
+        "blocks": [
+         [
+          "bar",
+          "Pricing review with Northgate",
+          {
+           "sub": "Thu 12 Nov, 42 min"
+          }
+         ],
+         [
+          "text",
+          "Decisions",
+          {
+           "ink": true,
+           "bold": true
+          }
+         ],
+         [
+          "para",
+          "Annual billing stays the default.",
+          {
+           "lines": 2,
+           "cite": "12:04"
+          }
+         ],
+         [
+          "para",
+          "The pilot starts on 4 January.",
+          {
+           "lines": 2,
+           "cite": "31:40",
+           "hi": true
+          }
+         ],
+         [
+          "text",
+          "Raised, not decided",
+          {
+           "ink": true,
+           "bold": true
+          }
+         ],
+         [
+          "para",
+          "A two-year term, if Northgate wants a lower rate.",
+          {
+           "lines": 2,
+           "cite": "24:15"
+          }
+         ]
+        ],
+        "nav": {
+         "title": "Castell",
+         "items": [
+          "Home",
+          "Meetings",
+          "Recaps",
+          "Settings"
+         ],
+         "on": 2
+        }
+       }
+      },
+      {
+       "tag": "proposed",
+       "label": "Proposed",
+       "caption": "Every line ends in its time. 03:18 plays the recording from there.",
+       "screen": {
+        "accent": "#0e7c66",
+        "frame": "desktop",
+        "url": "vireo.example/recap/3317",
+        "blocks": [
+         [
+          "bar",
+          "Pricing review with Northgate",
+          {
+           "sub": "Draft, Thu 12 Nov, 42 min"
+          }
+         ],
+         [
+          "text",
+          "Summary",
+          {
+           "ink": true,
+           "bold": true
+          }
+         ],
+         [
+          "para",
+          "Northgate wants three price tiers.",
+          {
+           "lines": 2,
+           "cite": "03:18",
+           "hi": true,
+           "pin": "1.1"
+          }
+         ],
+         [
+          "text",
+          "Decided",
+          {
+           "ink": true,
+           "bold": true
+          }
+         ],
+         [
+          "para",
+          "Annual billing stays the default.",
+          {
+           "lines": 2,
+           "cite": "12:04"
+          }
+         ],
+         [
+          "gap",
+          ""
+         ],
+         [
+          "text",
+          "Click a time to play the recording from that moment"
+         ]
+        ],
+        "nav": {
+         "title": "Vireo",
+         "items": [
+          "Home",
+          "Meetings",
+          "Recaps",
+          "Settings"
+         ],
+         "on": 2
+        }
+       }
+      }
+     ],
+     "sources": [
+      "S:theme 1, 6 of 8",
+      "S:requests, 4 of 8",
+      "T:stage 2",
+      "R:R10"
+     ],
+     "know": {
+      "baseline": "Not measured. No log says how long hosts spend checking, or how often a line is wrong.",
+      "expect": "Hosts who rewrite the recap by hand go down, and recaps shared within 24 hours go up. No size is forecast.",
+      "stop": "Hosts who turn Recap off, or recaps reported as wrong, rise more than 0.5 points per host against the auto-send group in the experiment."
+     }
+    },
+    {
+     "id": "1.2",
+     "screen": "decisions",
+     "title": "Settled and only-raised lines sit under one Decisions heading",
+     "problem": "5 of 8 hosts have seen a passing idea listed under Decisions, and 2 said that once it is written down, other people treat it as settled. Vireo's page has one Decisions list holding \"Annual billing stays the default\" and \"Offer a two-year term\".",
+     "change": "Split the list into \"Decided\" and \"Discussed, not decided\". A line under Discussed never becomes a task or goes out as a decision.",
+     "constraint": {
+      "label": "Risk from the pre-mortem",
+      "text": "A raised idea read as settled is risk R4. The split depends on the model telling a decision from a hope, which is not measured. Lines it is unsure of carry the mark in 3.2."
+     },
+     "evidence": [
+      {
+       "tag": "today",
+       "label": "Vireo today",
+       "caption": "One Decisions list holds settled and raised lines with no mark.",
+       "screen": {
+        "accent": "#0e7c66",
+        "frame": "desktop",
+        "url": "vireo.example/recap/3317",
+        "blocks": [
+         [
+          "bar",
+          "Pricing review with Northgate",
+          {
+           "sub": "Thu 12 Nov, 42 min, 9 invitees"
+          }
+         ],
+         [
+          "text",
+          "Decisions",
+          {
+           "ink": true,
+           "bold": true
+          }
+         ],
+         [
+          "para",
+          "Annual billing stays the default.",
+          {
+           "lines": 2
+          }
+         ],
+         [
+          "para",
+          "Offer a two-year term.",
+          {
+           "lines": 2,
+           "hi": true
+          }
+         ],
+         [
+          "para",
+          "The pilot starts on 4 January.",
+          {
+           "lines": 2
+          }
+         ],
+         [
+          "para",
+          "Move the kickoff call to Friday.",
+          {
+           "lines": 2
+          }
+         ]
+        ],
+        "nav": {
+         "title": "Vireo",
+         "items": [
+          "Home",
+          "Meetings",
+          "Recaps",
+          "Settings"
+         ],
+         "on": 2
+        }
+       }
+      },
+      {
+       "tag": "reference",
+       "label": "Parley",
+       "caption": "Two headings. The two-year term sits under Discussed, not decided.",
+       "screen": {
+        "accent": "#b45309",
+        "frame": "desktop",
+        "url": "parley.example/draft/3317",
+        "blocks": [
+         [
+          "bar",
+          "Draft recap",
+          {
+           "sub": "Pricing review with Northgate"
+          }
+         ],
+         [
+          "text",
+          "Decided",
+          {
+           "ink": true,
+           "bold": true
+          }
+         ],
+         [
+          "para",
+          "Annual billing stays the default.",
+          {
+           "lines": 2
+          }
+         ],
+         [
+          "para",
+          "The pilot starts on 4 January.",
+          {
+           "lines": 2
+          }
+         ],
+         [
+          "text",
+          "Discussed, not decided",
+          {
+           "ink": true,
+           "bold": true
+          }
+         ],
+         [
+          "para",
+          "A two-year term at a lower rate.",
+          {
+           "lines": 2,
+           "hi": true
+          }
+         ]
+        ],
+        "nav": {
+         "title": "Parley",
+         "items": [
+          "Home",
+          "Meetings",
+          "Recaps",
+          "Settings"
+         ],
+         "on": 2
+        }
+       }
+      },
+      {
+       "tag": "proposed",
+       "label": "Proposed",
+       "caption": "The two-year term moves under Discussed, not decided.",
+       "screen": {
+        "accent": "#0e7c66",
+        "frame": "desktop",
+        "url": "vireo.example/recap/3317",
+        "blocks": [
+         [
+          "bar",
+          "Draft recap",
+          {
+           "sub": "Pricing review with Northgate"
+          }
+         ],
+         [
+          "text",
+          "Decided",
+          {
+           "ink": true,
+           "bold": true
+          }
+         ],
+         [
+          "para",
+          "Annual billing stays the default.",
+          {
+           "lines": 2
+          }
+         ],
+         [
+          "para",
+          "The pilot starts on 4 January.",
+          {
+           "lines": 2
+          }
+         ],
+         [
+          "text",
+          "Discussed, not decided",
+          {
+           "ink": true,
+           "bold": true
+          }
+         ],
+         [
+          "para",
+          "A two-year term, if Northgate wants a lower rate.",
+          {
+           "lines": 2,
+           "hi": true,
+           "pin": "1.2"
+          }
+         ]
+        ],
+        "nav": {
+         "title": "Vireo",
+         "items": [
+          "Home",
+          "Meetings",
+          "Recaps",
+          "Settings"
+         ],
+         "on": 2
+        }
+       }
+      }
+     ],
+     "sources": [
+      "S:theme 2, 5 of 8",
+      "T:stage 2",
+      "R:R4"
+     ],
+     "know": {
+      "baseline": "Not measured. No one has counted how often a raised line lands under Decisions.",
+      "expect": "Fewer recaps reported as wrong for a decision that was never made. Direction only.",
+      "stop": "A sample of draft recaps shows raised lines still filed under Decided, or the guardrails rise more than 0.5 points per host."
+     }
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "owners",
+   "title": "Who sees it, and who owns it",
+   "summary": "The recap goes out unread, and tasks land on people who never agreed.",
+   "lead": "Today the host reads the recap last, and owners learn of a task by finding it. These two points put the host first and the owner in charge of their own item.",
+   "points": [
+    {
+     "id": "2.1",
+     "screen": "delivery",
+     "title": "The recap reaches everyone before the host has read it",
+     "problem": "5 of 8 hosts have had a recap reach other people before they read it, and 3 of those 5 were outside the company. Vireo's email says \"Sent to all 9 invitees at 10:47\", so the host reads it at the same time as everyone else.",
+     "change": "Email the host alone, as a draft, with the line \"Sent to you only\". The host reviews and edits it, then chooses who gets it.",
+     "why": "3 of 8 hosts asked for the recap to be held until they have looked at it.",
+     "constraint": {
+      "label": "Risk from the pre-mortem",
+      "text": "Hosts may turn Recap off if review feels like a chore (R2), and one host likes the automatic send. Whether a held draft costs the speed some hosts value is unknown. The planned experiment tests it. Meetings over 90 minutes already arrive late (R5), so the draft may land late too."
+     },
+     "evidence": [
+      {
+       "tag": "today",
+       "label": "Vireo today",
+       "caption": "The email says it went to all 9 invitees at 10:47.",
+       "screen": {
+        "accent": "#0e7c66",
+        "frame": "desktop",
+        "url": "mail.example/inbox",
+        "blocks": [
+         [
+          "bar",
+          "Recap: Pricing review with Northgate",
+          {
+           "sub": "From Vireo Recap, Thu 12 Nov 10:47"
+          }
+         ],
+         [
+          "text",
+          "Sent to all 9 invitees at 10:47",
+          {
+           "bold": true,
+           "hi": true
+          }
+         ],
+         [
+          "gap",
+          ""
+         ],
+         [
+          "para",
+          "Summary. Northgate wants three price tiers. We will send a revised quote by Tuesday.",
+          {
+           "lines": 3
+          }
+         ],
+         [
+          "para",
+          "Decisions. Annual billing stays the default. Offer a two-year term. Pilot starts 4 January.",
+          {
+           "lines": 3
+          }
+         ],
+         [
+          "cta",
+          "Open recap",
+          {}
+         ]
+        ]
+       }
+      },
+      {
+       "tag": "reference",
+       "label": "Parley",
+       "caption": "The email goes to the host only and says nothing has been shared.",
+       "screen": {
+        "accent": "#b45309",
+        "frame": "desktop",
+        "url": "mail.example/inbox",
+        "blocks": [
+         [
+          "bar",
+          "Your draft recap is ready to review",
+          {
+           "sub": "From Parley, Thu 12 Nov 10:44"
+          }
+         ],
+         [
+          "text",
+          "Sent to you only",
+          {
+           "bold": true,
+           "hi": true
+          }
+         ],
+         [
+          "gap",
+          ""
+         ],
+         [
+          "para",
+          "Pricing review with Northgate (42 min). We drafted a recap from the recording. Nothing has been shared.",
+          {
+           "lines": 3
+          }
+         ],
+         [
+          "cta",
+          "Review draft",
+          {}
+         ]
+        ]
+       }
+      },
+      {
+       "tag": "proposed",
+       "label": "Proposed",
+       "caption": "The email says Sent to you only, and nothing has been shared.",
+       "screen": {
+        "accent": "#0e7c66",
+        "frame": "desktop",
+        "url": "mail.example/inbox",
+        "blocks": [
+         [
+          "bar",
+          "Your draft recap is ready to review",
+          {
+           "sub": "From Vireo Recap, Thu 12 Nov 10:47"
+          }
+         ],
+         [
+          "text",
+          "Sent to you only",
+          {
+           "bold": true,
+           "hi": true,
+           "pin": "2.1"
+          }
+         ],
+         [
+          "gap",
+          ""
+         ],
+         [
+          "para",
+          "Pricing review with Northgate (42 min). Vireo drafted a recap from the recording. Nothing has been shared.",
+          {
+           "lines": 3
+          }
+         ],
+         [
+          "cta",
+          "Review draft",
+          {}
+         ]
+        ]
+       }
+      },
+      {
+       "tag": "proposed",
+       "label": "Proposed",
+       "caption": "The draft page says nobody else has it yet, with Send recap beside it.",
+       "screen": {
+        "accent": "#0e7c66",
+        "frame": "desktop",
+        "url": "vireo.example/draft/3317",
+        "blocks": [
+         [
+          "bar",
+          "Draft recap",
+          {
+           "sub": "Pricing review with Northgate",
+           "action": "Send recap"
+          }
+         ],
+         [
+          "banner",
+          "Draft. Nobody else has this yet",
+          {
+           "warn": true,
+           "hi": true
+          }
+         ],
+         [
+          "text",
+          "Summary",
+          {
+           "ink": true,
+           "bold": true
+          }
+         ],
+         [
+          "para",
+          "Northgate wants three price tiers. We will send a revised quote by Tuesday.",
+          {
+           "lines": 3
+          }
+         ]
+        ],
+        "nav": {
+         "title": "Vireo",
+         "items": [
+          "Home",
+          "Meetings",
+          "Recaps",
+          "Settings"
+         ],
+         "on": 2
+        }
+       }
+      }
+     ],
+     "sources": [
+      "S:theme 4, 5 of 8",
+      "S:requests, 3 of 8",
+      "T:stage 1",
+      "R:R1"
+     ],
+     "know": {
+      "baseline": "Recaps shared within 24 hours, hosts who turn Recap off and recaps reported as wrong are all measured today. Their levels are not in this brief. For the experiment, the smallest lift worth shipping is set at 2 points. That is a plan setting, not a forecast.",
+      "expect": "Hosts who share a recap within 24 hours rises.  No size is forecast.",
+      "stop": "Hosts who turn Recap off, or recaps reported as wrong, rise more than 0.5 points per host against the auto-send group."
+     }
+    },
+    {
+     "id": "2.2",
+     "screen": "owners",
+     "title": "Action items go to people who never agreed to them",
+     "problem": "5 of 8 hosts have seen an action item go to whoever spoke last. Vireo shows \"Owner: Sam\" with nothing for Sam to accept or decline, and gives \"Book the kickoff call\" to Marcus, a guest from Northgate.",
+     "change": "Show each item as waiting for its owner. Create the task only after the owner confirms, and let them say \"This is not mine\".",
+     "constraint": {
+      "label": "Dependency",
+      "text": "The task-list integrations belong to a partner team that has not been asked (R7). Until it agrees, items stay as lines in the recap and no task is created. Whether owners will use a decline button is also untested."
+     },
+     "evidence": [
+      {
+       "tag": "today",
+       "label": "Vireo today",
+       "caption": "Each item shows an owner. There is nothing to accept or decline.",
+       "screen": {
+        "accent": "#0e7c66",
+        "frame": "desktop",
+        "url": "vireo.example/recap/3317",
+        "blocks": [
+         [
+          "bar",
+          "Pricing review with Northgate",
+          {
+           "sub": "Thu 12 Nov, 42 min, 9 invitees"
+          }
+         ],
+         [
+          "text",
+          "Action items",
+          {
+           "ink": true,
+           "bold": true
+          }
+         ],
+         [
+          "check",
+          "Send the revised quote to Northgate",
+          {
+           "sub": "Owner: Sam"
+          }
+         ],
+         [
+          "check",
+          "Check seat counts",
+          {
+           "sub": "Owner: Dana"
+          }
+         ],
+         [
+          "check",
+          "Book the kickoff call",
+          {
+           "sub": "Owner: Marcus",
+           "hi": true
+          }
+         ]
+        ],
+        "nav": {
+         "title": "Vireo",
+         "items": [
+          "Home",
+          "Meetings",
+          "Recaps",
+          "Settings"
+         ],
+         "on": 2
+        }
+       }
+      },
+      {
+       "tag": "reference",
+       "label": "Parley",
+       "caption": "Each item waits for its owner, for example Waiting for Sam to confirm.",
+       "screen": {
+        "accent": "#b45309",
+        "frame": "desktop",
+        "url": "parley.example/actions/3317",
+        "blocks": [
+         [
+          "bar",
+          "Action items",
+          {
+           "sub": "Pricing review with Northgate"
+          }
+         ],
+         [
+          "check",
+          "Send the revised quote",
+          {
+           "sub": "Waiting for Sam to confirm",
+           "hi": true
+          }
+         ],
+         [
+          "check",
+          "Check seat counts",
+          {
+           "sub": "Waiting for Dana to confirm"
+          }
+         ],
+         [
+          "check",
+          "Book the kickoff call",
+          {
+           "done": true,
+           "sub": "Confirmed by Priya"
+          }
+         ]
+        ],
+        "nav": {
+         "title": "Parley",
+         "items": [
+          "Home",
+          "Meetings",
+          "Recaps",
+          "Settings"
+         ],
+         "on": 2
+        }
+       }
+      },
+      {
+       "tag": "proposed",
+       "label": "Proposed",
+       "caption": "The owner sees the item and chooses to confirm or decline.",
+       "screen": {
+        "accent": "#0e7c66",
+        "frame": "desktop",
+        "url": "vireo.example/actions/3317",
+        "blocks": [
+         [
+          "bar",
+          "Your action items",
+          {
+           "sub": "Pricing review with Northgate"
+          }
+         ],
+         [
+          "check",
+          "Send the revised quote to Northgate",
+          {
+           "sub": "Assigned to you by the recap. No task yet",
+           "hi": true,
+           "pin": "2.2"
+          }
+         ],
+         [
+          "gap",
+          ""
+         ],
+         [
+          "cta",
+          "Confirm and make it a task",
+          {}
+         ],
+         [
+          "cta",
+          "This is not mine",
+          {
+           "ghost": true
+          }
+         ]
+        ],
+        "nav": {
+         "title": "Vireo",
+         "items": [
+          "Home",
+          "Meetings",
+          "Recaps",
+          "Settings"
+         ],
+         "on": 2
+        }
+       }
+      }
+     ],
+     "sources": [
+      "S:theme 3, 5 of 8",
+      "S:requests, 2 of 8",
+      "T:stage 3",
+      "R:R3"
+     ],
+     "know": {
+      "baseline": "Tasks created and tasks completed are measured today. Their ratio is not in this brief.",
+      "expect": "Fewer tasks are created, and a larger share of them are completed. Direction only.",
+      "stop": "Tasks completed per task created falls below its level before launch for 2 weeks running, or owners decline most items."
+     }
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "outsiders",
+   "title": "Outsiders and doubt",
+   "summary": "Guests get the team's version, and doubtful lines look certain.",
+   "lead": "Recaps leave the company, and the model's own doubt is hidden. These two points control who outside gets what, and show where the model is unsure.",
+   "points": [
+    {
+     "id": "3.1",
+     "screen": "guests",
+     "title": "Guests can get the same recap as the team",
+     "problem": "5 of 8 hosts have had a recap reach others before reading it, and in 3 cases the readers were outside the company: two customers and a job candidate. Vireo's Share dialog shows \"All 9 invitees\", a count that names no one and marks no outsider.",
+     "change": "List every invitee by name, badge outsiders \"External\" and leave them unticked. A ticked guest gets a trimmed recap, and internal remarks stay out unless the host turns them on.",
+     "why": "2 of 8 hosts asked for a shorter version for customers, and 1 stopped using Recap on customer calls.",
+     "constraint": {
+      "label": "Needs legal review",
+      "text": "Legal has not reviewed sending recaps to external guests. Nothing goes to a guest unless the host ticks them, and this point does not ship until legal has looked (R6). How the model separates an internal remark is not measured."
+     },
+     "evidence": [
+      {
+       "tag": "today",
+       "label": "Vireo today",
+       "caption": "The dialog offers a count, All 9 invitees, with no names.",
+       "screen": {
+        "accent": "#0e7c66",
+        "frame": "desktop",
+        "url": "vireo.example/recap/3317",
+        "blocks": [
+         [
+          "bar",
+          "Pricing review with Northgate",
+          {
+           "sub": "Thu 12 Nov, 42 min, 9 invitees",
+           "action": "Share recap"
+          }
+         ],
+         [
+          "text",
+          "Summary",
+          {
+           "ink": true,
+           "bold": true
+          }
+         ],
+         [
+          "modal",
+          "Share recap",
+          {
+           "sub": "Choose who gets this recap",
+           "items": [
+            "All 9 invitees",
+            "Only the people I pick",
+            "Just me"
+           ],
+           "on": 0,
+           "cta": "Share"
+          }
+         ]
+        ],
+        "nav": {
+         "title": "Vireo",
+         "items": [
+          "Home",
+          "Meetings",
+          "Recaps",
+          "Settings"
+         ],
+         "on": 2
+        }
+       }
+      },
+      {
+       "tag": "reference",
+       "label": "Parley",
+       "caption": "Every invitee is a row. Marcus Webb is badged External and unticked.",
+       "screen": {
+        "accent": "#b45309",
+        "frame": "desktop",
+        "url": "parley.example/send/3317",
+        "blocks": [
+         [
+          "bar",
+          "Send recap",
+          {
+           "sub": "Pricing review with Northgate"
+          }
+         ],
+         [
+          "check",
+          "Priya Raman, host",
+          {
+           "done": true
+          }
+         ],
+         [
+          "check",
+          "Sam Ortiz",
+          {
+           "done": true
+          }
+         ],
+         [
+          "check",
+          "Dana Whitlock",
+          {
+           "done": true
+          }
+         ],
+         [
+          "check",
+          "Marcus Webb, Northgate",
+          {
+           "done": false,
+           "badge": "External",
+           "sub": "Not ticked",
+           "hi": true
+          }
+         ],
+         [
+          "cta",
+          "Send to 3 people",
+          {
+           "align": "right"
+          }
+         ]
+        ],
+        "nav": {
+         "title": "Parley",
+         "items": [
+          "Home",
+          "Meetings",
+          "Recaps",
+          "Settings"
+         ],
+         "on": 2
+        }
+       }
+      },
+      {
+       "tag": "proposed",
+       "label": "Proposed",
+       "caption": "A ticked guest gets the trimmed recap. Internal remarks are off.",
+       "screen": {
+        "accent": "#0e7c66",
+        "frame": "desktop",
+        "url": "vireo.example/send/3317",
+        "blocks": [
+         [
+          "bar",
+          "Send recap",
+          {
+           "sub": "Draft. Pricing review with Northgate"
+          }
+         ],
+         [
+          "check",
+          "Priya Raman, host",
+          {
+           "done": true
+          }
+         ],
+         [
+          "check",
+          "Sam Ortiz",
+          {
+           "done": true
+          }
+         ],
+         [
+          "check",
+          "Dana Whitlock",
+          {
+           "done": true
+          }
+         ],
+         [
+          "check",
+          "Marcus Webb, Northgate",
+          {
+           "done": false,
+           "badge": "External",
+           "sub": "Not ticked. Gets the trimmed recap",
+           "hi": true,
+           "pin": "3.1"
+          }
+         ],
+         [
+          "toggle",
+          "Internal remarks in the guest version",
+          {
+           "on": false,
+           "sub": "Off by default"
+          }
+         ],
+         [
+          "cta",
+          "Send to 3 people",
+          {
+           "align": "right"
+          }
+         ]
+        ],
+        "nav": {
+         "title": "Vireo",
+         "items": [
+          "Home",
+          "Meetings",
+          "Recaps",
+          "Settings"
+         ],
+         "on": 2
+        }
+       }
+      }
+     ],
+     "sources": [
+      "S:theme 4, 5 of 8",
+      "S:requests, 2 of 8",
+      "T:stage 3",
+      "R:R1",
+      "R:R6"
+     ],
+     "know": {
+      "baseline": "Not measured. No send log counts how often a recap reaches someone outside the host's company.",
+      "expect": "Fewer recaps reach outsiders unread, and fewer hosts turn Recap off for customer calls. Direction only.",
+      "stop": "Legal asks for the guest send to be removed, or any wrong recap reaches an external guest during the pilot."
+     }
+    },
+    {
+     "id": "3.2",
+     "screen": "doubt",
+     "title": "Doubtful lines read as flatly as certain ones",
+     "problem": "Vireo states \"The pilot starts on 4 January\" with no mark, while Parley's lane for the same meeting heard 4 January and 11 January. Nobody measures how often a line is wrong, so 6 of 8 hosts check lines by hunting through the recording.",
+     "change": "Mark each line the model is unsure of with \"Check this\" and the reason, such as \"Heard as 4 January and 11 January\". The host edits it in place.",
+     "constraint": {
+      "label": "Risk from the pre-mortem",
+      "text": "Nobody measures how often a recap line is wrong (R10), so a mark is a guess until lines are sampled against recordings. A mark that is wrong as often as it is right teaches hosts to ignore it."
+     },
+     "evidence": [
+      {
+       "tag": "today",
+       "label": "Vireo today",
+       "caption": "The pilot date is stated flat, with no mark and no reason.",
+       "screen": {
+        "accent": "#0e7c66",
+        "frame": "desktop",
+        "url": "vireo.example/recap/3317",
+        "blocks": [
+         [
+          "bar",
+          "Pricing review with Northgate",
+          {
+           "sub": "Thu 12 Nov, 42 min, 9 invitees"
+          }
+         ],
+         [
+          "text",
+          "Decisions",
+          {
+           "ink": true,
+           "bold": true
+          }
+         ],
+         [
+          "para",
+          "Annual billing stays the default.",
+          {
+           "lines": 2
+          }
+         ],
+         [
+          "para",
+          "The pilot starts on 4 January.",
+          {
+           "lines": 2,
+           "hi": true
+          }
+         ],
+         [
+          "gap",
+          ""
+         ],
+         [
+          "row",
+          "Watch recording",
+          {
+           "right": "42 min"
+          }
+         ]
+        ],
+        "nav": {
+         "title": "Vireo",
+         "items": [
+          "Home",
+          "Meetings",
+          "Recaps",
+          "Settings"
+         ],
+         "on": 2
+        }
+       }
+      },
+      {
+       "tag": "reference",
+       "label": "Parley",
+       "caption": "The flag gives a reason and the line can be edited in place.",
+       "screen": {
+        "accent": "#b45309",
+        "frame": "desktop",
+        "url": "parley.example/draft/3317",
+        "blocks": [
+         [
+          "bar",
+          "Draft recap",
+          {
+           "sub": "Pricing review with Northgate"
+          }
+         ],
+         [
+          "check",
+          "Check this: pilot start date",
+          {
+           "badge": "Check this",
+           "warn": true,
+           "sub": "Heard as 4 January and 11 January",
+           "hi": true
+          }
+         ],
+         [
+          "field",
+          "Edit line",
+          {
+           "value": "The pilot starts on 4 January."
+          }
+         ],
+         [
+          "cta",
+          "Save line",
+          {
+           "align": "right"
+          }
+         ],
+         [
+          "text",
+          "Edits are saved in the draft only"
+         ]
+        ],
+        "nav": {
+         "title": "Parley",
+         "items": [
+          "Home",
+          "Meetings",
+          "Recaps",
+          "Settings"
+         ],
+         "on": 2
+        }
+       }
+      },
+      {
+       "tag": "proposed",
+       "label": "Proposed",
+       "caption": "The doubtful line is marked with its reason, and plays from 31:40.",
+       "screen": {
+        "accent": "#0e7c66",
+        "frame": "desktop",
+        "url": "vireo.example/draft/3317",
+        "blocks": [
+         [
+          "bar",
+          "Draft recap",
+          {
+           "sub": "Pricing review with Northgate"
+          }
+         ],
+         [
+          "text",
+          "Decided",
+          {
+           "ink": true,
+           "bold": true
+          }
+         ],
+         [
+          "para",
+          "Annual billing stays the default.",
+          {
+           "lines": 2,
+           "cite": "12:04"
+          }
+         ],
+         [
+          "check",
+          "Check this: pilot start date",
+          {
+           "badge": "Check this",
+           "warn": true,
+           "sub": "Heard as 4 January and 11 January",
+           "hi": true,
+           "pin": "3.2"
+          }
+         ],
+         [
+          "gap",
+          ""
+         ],
+         [
+          "cta",
+          "Play from 31:40",
+          {
+           "ghost": true
+          }
+         ]
+        ],
+        "nav": {
+         "title": "Vireo",
+         "items": [
+          "Home",
+          "Meetings",
+          "Recaps",
+          "Settings"
+         ],
+         "on": 2
+        }
+       }
+      }
+     ],
+     "sources": [
+      "T:stage 2",
+      "S:theme 1, 6 of 8",
+      "R:R10"
+     ],
+     "know": {
+      "baseline": "Not measured. The rate of wrong lines, and of marked lines that are wrong, is unknown.",
+      "expect": "Hosts spend less time checking lines that are not marked. Direction only.",
+      "stop": "A sample of drafts shows marked lines are no more often wrong than unmarked ones."
+     }
+    }
+   ]
+  }
+ ],
+ "priority": [
+  {
+   "id": "1.1",
+   "change": "A time on every line that plays the recording",
+   "moves": "Recaps shared within 24 hours",
+   "effort": "M",
+   "status": {
+    "level": "amb",
+    "text": "Needs line timings"
+   },
+   "first": "Check the recording can give a time for each line the model writes"
+  },
+  {
+   "id": "1.2",
+   "change": "Decided and Discussed, not decided",
+   "moves": "Recaps reported as wrong",
+   "effort": "M",
+   "status": {
+    "level": "ok",
+    "text": "Nothing"
+   },
+   "first": "Sample a set of drafts and mark which lines are decisions"
+  },
+  {
+   "id": "2.1",
+   "change": "Draft to the host only",
+   "moves": "Recaps shared within 24 hours",
+   "effort": "S",
+   "status": {
+    "level": "ok",
+    "text": "Nothing"
+   },
+   "first": "Set up the 50/50 experiment, draft-first against auto-send"
+  },
+  {
+   "id": "2.2",
+   "change": "Owners confirm before a task is made",
+   "moves": "Tasks completed",
+   "effort": "L",
+   "status": {
+    "level": "amb",
+    "text": "Partner team"
+   },
+   "first": "Ask the partner team for a yes or a date"
+  },
+  {
+   "id": "3.1",
+   "change": "Named recipients and a trimmed guest version",
+   "moves": "Hosts who turn Recap off",
+   "effort": "L",
+   "status": {
+    "level": "no",
+    "text": "Legal review"
+   },
+   "first": "Send legal the guest-send design for review"
+  },
+  {
+   "id": "3.2",
+   "change": "Check this marks with a reason",
+   "moves": "Recaps reported as wrong",
+   "effort": "M",
+   "status": {
+    "level": "amb",
+    "text": "Needs error baseline"
+   },
+   "first": "Sample lines against recordings to see how often they are wrong"
+  }
+ ],
+ "rollout": [
+  {
+   "when": "First release, March 2027",
+   "points": [
+    "2.1",
+    "1.2"
+   ],
+   "why": "Together they end the send-first problem: the host gets a private draft and a page that does not call a hope a decision. Neither needs another team, and nothing is sent or assigned automatically. This is the version the experiment tests."
+  },
+  {
+   "when": "After the first release",
+   "points": [
+    "1.1",
+    "3.2"
+   ],
+   "why": "Both make a line checkable. They need line timings and a measure of how often lines are wrong, so they follow the first release."
+  },
+  {
+   "when": "When legal and the partner team agree",
+   "points": [
+    "2.2",
+    "3.1"
+   ],
+   "why": "Each waits on someone else. Until then, action items stay as lines in the recap, and guests get nothing unless the host sends it by hand."
+  }
+ ],
+ "next": [
+  "2.1: run the planned experiment, hosts split 50/50, draft-first against auto-send. The headline is hosts who share a recap within 24 hours. The guardrails are hosts who turn Recap off and recaps reported as wrong, per host.",
+  "1.1, 3.2: sample recap lines against their recordings to learn how often a line is wrong (R10). Nobody measures it today.",
+  "2.2: ask the partner team for a yes or a date (R7).",
+  "3.1: ask legal to review sending recaps to external guests (R6).",
+  "2.1: find out how late the draft arrives for meetings over 90 minutes (R5)."
+ ],
+ "caveats": "Effort (S, M, L) is an estimate. No baseline is in the brief, so no impact is sized. The experiment's smallest lift worth shipping is 2 points and its tolerance is 0.5 points per host. Both are the plan's own settings, not forecasts, and no results exist. A guardrail on recaps reported as wrong may favour auto-send, because a host who never reads the recap never reports it. The interview counts come from 8 hosts, so none is a percentage. Everything here is fictional."
+}
