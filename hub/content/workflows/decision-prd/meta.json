@@ -199,6 +199,42 @@
         }
       ],
       "kind": "reference"
+    },
+    "larkspur": {
+      "label": "Larkspur: the Share by link PRD",
+      "note": "Six points in three sections, a priority table and a rollout in four steps.",
+      "inputs": [
+        "input/brief.md"
+      ],
+      "ask": "Write the PRD for replacing Team suggestions with Share by link, from the teardown, the synthesis and the pre-mortem.",
+      "demoNote": "The agent reads the teardown, the synthesis and the pre-mortem, then writes six numbered points for Share by link. Watch the evidence land beside each claim. When it ends, scroll the document yourself.",
+      "run": {
+        "date": "2026-11-19",
+        "by": "A fresh agent session with only the skill folder and the inputs",
+        "passed": 6,
+        "total": 6,
+        "note": "The checker failed the first draft: point 2.2 quoted the trial promise in full, and the two quoted sentences were counted against its length. The run reworded it and passed, which showed that the rule to quote exact words and the rule to stay short can clash.",
+        "log": "examples/larkspur/RUN.md"
+      },
+      "kind": "fresh-run"
+    },
+    "vireo": {
+      "label": "Vireo: the draft-first recap PRD",
+      "note": "Six points in three sections, a priority table and a rollout in three steps.",
+      "inputs": [
+        "input/brief.md"
+      ],
+      "ask": "Write the PRD for replacing Auto-assign with a draft-first recap with sources. I need to make the decision this week.",
+      "demoNote": "The agent reads the synthesis, the teardown and the pre-mortem, then writes six numbered points for a draft-first recap. Watch the evidence land beside each claim. When it ends, scroll the document yourself.",
+      "run": {
+        "date": "2026-11-19",
+        "by": "A fresh agent session with only the skill folder and the inputs",
+        "passed": 6,
+        "total": 6,
+        "note": "The checker failed the first draft: point 2.1 gave the 2 point lift worth shipping as if it were a forecast. The run moved the figure and labelled it a plan setting, and noted that the check reads one field only, so it can be dodged.",
+        "log": "examples/vireo/RUN.md"
+      },
+      "kind": "fresh-run"
     }
   }
 }

@@ -206,6 +206,48 @@
       ],
       "posterAt": 12.3,
       "kind": "fresh-run"
+    },
+    "larkspur": {
+      "label": "Eight people who started a trial alone",
+      "note": "Six themes from eight interviews, 36 quotes matched to their lines, and one quote rejected.",
+      "inputs": [
+        "input/README.md",
+        "input/brief.md",
+        "input/P1.txt",
+        "input/P2.txt"
+      ],
+      "ask": "Synthesise these eight interviews. Why do most trial workspaces never get a second active person in the first week? Verify every quote.",
+      "demoNote": "The agent reads eight transcripts from people who started a trial alone, names six themes and pulls the quotes. Then a script looks for every quote in the transcripts and removes the one the brief asked for, because nobody said it. When it ends, open any quote to read it in its transcript.",
+      "run": {
+        "date": "2026-11-19",
+        "by": "A fresh agent session with only the skill folder and the inputs",
+        "passed": 5,
+        "total": 5,
+        "note": "The script ran once and rejected the one line the brief asked for, which is in no transcript. The brief named no speaker, so the run had to guess one, and the skill does not yet say what to do in that case.",
+        "log": "examples/larkspur/RUN.md"
+      },
+      "kind": "fresh-run"
+    },
+    "vireo": {
+      "label": "Eight meeting hosts",
+      "note": "Five themes from eight interviews, 38 quotes matched to their lines, and one quote rejected.",
+      "inputs": [
+        "input/README.md",
+        "input/brief.md",
+        "input/P1.txt",
+        "input/P2.txt"
+      ],
+      "ask": "Synthesise these eight interviews with meeting hosts. Why do they not trust a recap enough to send it on? Verify every quote.",
+      "demoNote": "The agent reads eight transcripts from meeting hosts, names five themes and pulls the quotes. Then a script looks for every quote in the transcripts and removes the one the brief asked for, because nobody said it. When it ends, open any quote to read it in its transcript.",
+      "run": {
+        "date": "2026-11-19",
+        "by": "A fresh agent session with only the skill folder and the inputs",
+        "passed": 5,
+        "total": 5,
+        "note": "All five checks passed before the remembered line went in and after it came out. The script rejected that line as not in any transcript, and the run did not reword it to make it fit.",
+        "log": "examples/vireo/RUN.md"
+      },
+      "kind": "fresh-run"
     }
   }
 }

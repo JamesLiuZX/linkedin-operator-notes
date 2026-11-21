@@ -1,0 +1,140 @@
+{
+  "about": "The page for the Tangelo case. Its domain, company, title, question and outcome live in hub/site.config.mjs (CASES). Every number, name and quote below is in the output files under skills/*/examples/tangelo. The ending is read from the readout itself at build time.",
+  "intro": "Tangelo is a grocery delivery app. Most of its returning customers buy nearly the same basket every week, and it still takes them about as long as the first time. This is one piece of work followed from the first question to the test result, with every document open to read.",
+  "mark": "two-minute job",
+  "company": {
+    "competitors": ["Pippin", "Marrow", "Sorrel"],
+    "customer": "Maya, a returning customer who shops once a week"
+  },
+  "steps": [
+    {
+      "workflow": "journey-teardown",
+      "question": "How do other grocery apps handle a repeat shop?",
+      "findings": [
+        {
+          "n": "24",
+          "text": "Four apps, three stages, 24 screens and 60 notes. Tangelo is the last lane in every stage and had the lowest mean score, 2.13. Pippin had the highest, 3.73."
+        },
+        {
+          "n": "2 of 3",
+          "text": "Two of the three competitors put the repeat order on Home. Two deal with missing items inside the basket. One holds the delivery slot from the first screen. Tangelo does none of these, and its order fails at the last step."
+        },
+        {
+          "n": "$4.50",
+          "text": "Tangelo's Home promises free delivery over $40. Its basket then charges $4.50 for delivery on a subtotal of $56.70, and no line says why."
+        }
+      ],
+      "moment": {
+        "kind": "clash",
+        "label": "Two of Tangelo's own screens disagree",
+        "a": { "where": "Home", "says": "Free delivery over $40", "find": "Free delivery over $40" },
+        "b": { "where": "The basket", "says": "Delivery $4.50, on a subtotal of $56.70", "find": "$4.50" },
+        "note": "No single screen shows the problem. The teardown found it by comparing two screens of the same lane. The screens do not show whether it is a bug or a condition."
+      },
+      "changed": "The teardown listed eight patterns and eight gaps. Each of the six PRD points now shows the competitor screen it borrows from: Pippin, Marrow or Sorrel."
+    },
+    {
+      "workflow": "interview-synthesis",
+      "question": "What do weekly shoppers say gets in the way?",
+      "findings": [
+        {
+          "n": "36",
+          "text": "Eight interviews, six themes and 36 quotes, each matched to its transcript line."
+        },
+        {
+          "n": "6 of 8",
+          "text": "Six of eight rebuild the same basket by hand every week. Five of eight had received a substitution they did not want."
+        },
+        {
+          "n": "1",
+          "text": "One quote was removed. The team remembered it from the calls, and it was in no transcript."
+        }
+      ],
+      "moment": {
+        "kind": "struck",
+        "label": "The quote nobody said",
+        "quote": "It takes me longer to order the food than to cook it.",
+        "note": "The request asked for this line. A script looked for it in all eight transcripts, did not find it, and removed it."
+      },
+      "changed": "The counts went into the PRD. Five of its six Problem lines say how many of the eight said it, and the sixth cites the one customer who had used Reorder."
+    },
+    {
+      "workflow": "premortem",
+      "question": "If one-tap reorder failed, why would it have failed?",
+      "findings": [
+        {
+          "n": "11",
+          "text": "Eleven failure stories across six areas. Six of the eleven are marked as guesses, with no evidence either way."
+        },
+        {
+          "n": "5",
+          "text": "The five worst each got a tripwire: failed checkouts, unwanted substitutions, swamped delivery slots, a surprise charge and accidental orders."
+        }
+      ],
+      "moment": {
+        "kind": "swap",
+        "label": "The plan changed before the PRD was written",
+        "before": { "name": "One-tap reorder", "text": "A card on Home that places last week's order again, on the saved card." },
+        "after": { "name": "The reorder card", "text": "One tap opens last week's basket, ready to edit. The customer always sees the basket first." }
+      },
+      "changed": "The plan itself. It began as a button that places last week's order. It became a card that opens last week's basket, and never pays."
+    },
+    {
+      "workflow": "decision-prd",
+      "question": "What exactly are we proposing, and in what order?",
+      "findings": [
+        {
+          "n": "6",
+          "text": "Six numbered points in three sections. Each states the problem, the change, the evidence and how we would know."
+        },
+        {
+          "n": "3",
+          "text": "Three ship first, two wait on other teams, and one waits for data."
+        }
+      ],
+      "moment": { "kind": "rollout", "label": "What ships when" },
+      "changed": "The six IDs became the six switches of the prototype."
+    },
+    {
+      "workflow": "flagged-prototype",
+      "question": "What does each change actually look like?",
+      "findings": [
+        {
+          "n": "5",
+          "text": "Five screens and six switches. With everything off it is the app today."
+        },
+        {
+          "n": "1.1",
+          "text": "Turn on 1.1 and the reorder card appears on Home."
+        },
+        {
+          "n": "3",
+          "text": "A preset called First release turns on 1.1, 2.1 and 3.1 together, the three points the PRD ships first."
+        }
+      ],
+      "changed": "The reorder card went to test first: half of returning customers, for 14 days."
+    },
+    {
+      "workflow": "experiment-readout",
+      "question": "Did the reorder card work?",
+      "findings": [
+        {
+          "n": "50/50",
+          "text": "The split came out as planned: 20,912 customers without the card and 20,958 with it. So the result can be trusted."
+        },
+        {
+          "n": "+1.7",
+          "text": "More customers ordered within 7 days: 35.1% against 33.4%. That is a rise of 1.7 points, with an interval of 0.8 to 2.6."
+        },
+        {
+          "n": "1 of 3",
+          "text": "One of three guardrails did not clearly hold. Orders with 15 or more items fell 1.0 points, and a harmful fall beyond the 1.0 point tolerance is not ruled out. That is the smaller basket the pre-mortem named."
+        }
+      ],
+      "changed": "The decision. The verdict was to extend the test until the guardrail is settled, not to ship on a green headline number."
+    }
+  ],
+  "ending": {
+    "body": "The headline number was a win, and the fixed rule still said extend. The readout proposes 14 more days, read once, on the new end date."
+  }
+}

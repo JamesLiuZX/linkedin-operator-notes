@@ -152,12 +152,12 @@
   "cases": {
     "tangelo": {
       "label": "Tangelo: the weekly shop",
-      "note": "Five screens and six switches. Start with everything off, then turn on 1.1.",
+      "note": "Five screens and six switches on a phone. Take the tour, then drag the divider to compare today with the proposal.",
       "inputs": [
         "spec.js"
       ],
       "ask": "Build the prototype for this PRD. One switch per point.",
-      "demoNote": "The agent reads the PRD, draws the app as it is today and wires one switch per point. Then the switches are turned on one at a time. When the replay ends, they are yours.",
+      "demoNote": "The agent reads the PRD, draws the app as it is today and wires one switch per point. Then a hand walks the tour, switch by switch, and drags a divider across the screen: today on the left, the proposal on the right. When the replay ends, the switches are yours.",
       "run": {
         "date": "2026-11-18",
         "by": "A fresh agent session, given only the skill folder and a three-change brief for a different app (Kerb, a fictional parking app). Nobody answered its questions.",
@@ -195,6 +195,40 @@
           "body": "A script confirms every switch changes a screen you can reach, and that nothing new shows while it is off."
         }
       ],
+      "kind": "reference"
+    },
+    "larkspur": {
+      "label": "Larkspur: share by link",
+      "note": "Four screens, two people and six switches, in a browser window. Take the tour: it walks the admin's side and the guest's.",
+      "inputs": [
+        "spec.js"
+      ],
+      "ask": "Build the prototype for this PRD. One switch per point, and show both sides: the admin's and the guest's.",
+      "demoNote": "The agent reads the PRD, draws the app as it is today and wires one switch per point. Then the tour walks two browsers: Dana's, and the guest's. At the end a divider compares today with the proposal. When the replay ends, the switches are yours.",
+      "run": {
+        "date": "2026-11-21",
+        "by": "Built by hand as a reference example, then checked by the skill's script against the Larkspur PRD.",
+        "passed": 6,
+        "total": 6,
+        "note": "Building it found a gap in the checker: a change that lives only inside a dialog was not counted as a change. The script now reads dialogs as well as screens."
+      },
+      "kind": "reference"
+    },
+    "vireo": {
+      "label": "Vireo Recap: draft first, with sources",
+      "note": "Three screens, two people and six switches, in a browser window. Turn on 1.1 and click a time: the recording plays from that moment.",
+      "inputs": [
+        "spec.js"
+      ],
+      "ask": "Build the prototype for this PRD. One switch per point. I want to click a line and hear where it came from.",
+      "demoNote": "The agent reads the PRD, draws the recap as it is today and wires one switch per point. Then the tour clicks a time on a line and the recording plays from that moment. At the end a divider compares today with the proposal. When the replay ends, the switches are yours.",
+      "run": {
+        "date": "2026-11-21",
+        "by": "Built by hand as a reference example, then checked by the skill's script against the Vireo PRD.",
+        "passed": 6,
+        "total": 6,
+        "note": "The words of the meeting are invented to match the recap. The prototype shows the idea of a source on every line, not a working transcript."
+      },
       "kind": "reference"
     }
   }

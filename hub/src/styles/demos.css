@@ -112,3 +112,15 @@
   color: var(--a-ink);
   box-shadow: inset 0 0 0 1px rgba(11, 12, 12, 0.18);
 }
+
+/* While the replay runs, its own caption speaks for the step. The prototype's caption returns when it is yours. */
+.stage:not(.is-live) .proto[data-layout="strip"] .proto-caption {
+  visibility: hidden;
+}
+
+.demo-proto .proto[data-layout="strip"] .proto-caption {
+  min-height: 1.4em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

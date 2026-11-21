@@ -204,6 +204,44 @@
         }
       ],
       "kind": "fresh-run"
+    },
+    "larkspur": {
+      "label": "The share by link test",
+      "note": "A three-week test on new trial workspaces, 9,836 without the link and 9,902 with it, with three guardrails. The decision is to ship.",
+      "inputs": [
+        "input/request.md",
+        "input/results.json"
+      ],
+      "ask": "Read out the share by link test. Should we ship?",
+      "demoNote": "The agent hands the counts to a script, which checks the split before it looks at the result. The gain clears the 2 points the team set and all three guardrails hold, so the fixed rule says ship. When it ends, change the numbers or pick another scenario and watch the verdict move.",
+      "run": {
+        "date": "2026-11-19",
+        "by": "A fresh agent session with only the skill folder and the inputs",
+        "passed": 6,
+        "total": 6,
+        "note": "It passed on the first run of the checker. One guardrail came within 0.1 points of its limit and the script raised no flag, so the agent put it in the next steps on its own judgment.",
+        "log": "examples/larkspur/RUN.md"
+      },
+      "kind": "fresh-run"
+    },
+    "vireo": {
+      "label": "The draft-first recap test",
+      "note": "A two-week test on meeting hosts with two guardrails. The split was planned even and came out as 31,204 and 28,975. The decision is do not trust.",
+      "inputs": [
+        "input/request.md",
+        "input/results.json"
+      ],
+      "ask": "Read out the draft-first recap test. This looks like a clear win. Should we ship?",
+      "demoNote": "The agent hands the counts to a script, which checks the split before it looks at the result. The two groups were planned even and came out as 31,204 and 28,975 hosts, so the rule stops there and says do not trust. When it ends, change the numbers or pick another scenario and watch the verdict move.",
+      "run": {
+        "date": "2026-11-19",
+        "by": "A fresh agent session with only the skill folder and the inputs",
+        "passed": 6,
+        "total": 6,
+        "note": "Both runs of the checker passed, the first on a summary longer than the skill asks for, so that limit is not enforced. The agent linked the data team's logging remark to the broken split on its own, because the skill does not say to.",
+        "log": "examples/vireo/RUN.md"
+      },
+      "kind": "fresh-run"
     }
   }
 }

@@ -29,7 +29,7 @@ export function mount(body, { stage, data: spec, ask, checks } = {}) {
   const clip = Boolean(stage?.closest(".clip"));
 
   const tl = createTimeline();
-  const proto = createPrototype(host, spec, { follow: false, instant: true, maxScale: clip ? 1.9 : spec.frame === "desktop" ? 1 : 1.25 });
+  const proto = createPrototype(host, spec, { follow: false, instant: true, compact: true, maxScale: clip ? 1.9 : spec.frame === "desktop" ? 1 : 1.25 });
   const steps = proto.tour.length ? proto.tour : (spec.flags || []).map((f) => ({ flag: f.id }));
   const flags = spec.flags || [];
   const sections = spec.sections || [];
@@ -37,7 +37,7 @@ export function mount(body, { stage, data: spec, ask, checks } = {}) {
 
   // Each step: the pointer travels, taps, and the prototype takes that step's state.
   const START = 5.4;
-  const STEP = 1.95;
+  const STEP = steps.length > 9 ? 1.75 : 1.95;
   const walkEnd = START + steps.length * STEP;
   const compareAt = walkEnd + 0.3;
   const checkAt = compareAt + 4.3;

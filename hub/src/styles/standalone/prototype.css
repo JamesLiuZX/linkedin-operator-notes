@@ -1,44 +1,28 @@
+/* The prototype as a page of its own: the device and the panel fill the window. */
+
 @import "../artifacts/kit.css";
 @import "../artifacts/prototype.css";
 
 .proto-page {
-  background: #e7e9e3;
+  background: #ecece6;
 }
 
 .proto-page #root {
-  box-sizing: border-box;
-  max-width: 900px;
+  max-width: 1520px;
   height: 100vh;
-  min-height: 600px;
+  height: 100dvh;
+  min-height: 560px;
   margin: 0 auto;
-  padding: 24px;
-  grid-template-columns: minmax(0, 340px) minmax(280px, 400px);
-  justify-content: center;
-  gap: 28px;
+  padding: clamp(12px, 2.2vw, 30px);
   font-size: 15px;
 }
 
 .proto-page .proto-panel {
-  align-self: center;
-  max-height: 100%;
-  padding: 22px;
-  border-radius: 24px;
-  box-shadow: 0 1px 2px rgba(11, 12, 12, 0.05), 0 24px 48px -28px rgba(11, 12, 12, 0.35);
+  max-height: min(100%, 880px);
 }
 
-.proto-page .proto-panel-head h1 {
-  font-size: 1.2em;
-}
-
-@media (max-width: 720px) {
+@media (max-height: 640px) {
   .proto-page #root {
     height: auto;
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: 640px auto;
-    padding: 16px;
-  }
-
-  .proto-page .proto-panel {
-    max-height: none;
   }
 }

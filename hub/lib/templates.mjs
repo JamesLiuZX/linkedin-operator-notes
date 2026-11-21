@@ -62,7 +62,7 @@ ${credit}
 /* SPEC START: replace everything between the two markers with your spec. */
 ${blank}
 /* SPEC END */
-Prototype.create(document.getElementById("root"), spec, { hash: true });
+Prototype.create(document.getElementById("root"), spec, { hash: true, keys: "page" });
 document.title = spec.title || document.title;
 </script>
 </body>

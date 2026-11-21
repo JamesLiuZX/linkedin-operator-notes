@@ -187,6 +187,42 @@
         }
       ],
       "kind": "fresh-run"
+    },
+    "larkspur": {
+      "label": "Team suggestions, six months on",
+      "note": "Ten failure stories across six areas. The top five carry tripwires, and three are marked as guesses.",
+      "inputs": [
+        "input/plan.md"
+      ],
+      "ask": "Run a pre-mortem on the Team suggestions plan before we commit to it.",
+      "demoNote": "The agent assumes the plan to invite five people with one button has failed, writes ten ways it went wrong and weighs each against the teardown and the interviews. The worst five get a tripwire. When it ends, click a risk to read it.",
+      "run": {
+        "date": "2026-11-19",
+        "by": "A fresh agent session with only the skill folder and the inputs",
+        "passed": 5,
+        "total": 5,
+        "note": "It passed on the first run of the checker, and the run changed the plan. It also found that with no baseline to work from, the numbers in the tripwires are the agent's own proposals, and the skill should say so plainly.",
+        "log": "examples/larkspur/RUN.md"
+      },
+      "kind": "fresh-run"
+    },
+    "vireo": {
+      "label": "Auto-assign, six months on",
+      "note": "Ten failure stories across six areas. The top five carry tripwires, and three are marked as guesses.",
+      "inputs": [
+        "input/plan.md"
+      ],
+      "ask": "Run a pre-mortem on the Auto-assign plan before we commit to it.",
+      "demoNote": "The agent assumes Auto-assign has failed, writes ten ways it went wrong and weighs each against the teardown and the interviews. The worst five get a tripwire, starting with a wrong recap that reaches an outside guest. When it ends, click a risk to read it.",
+      "run": {
+        "date": "2026-11-19",
+        "by": "A fresh agent session with only the skill folder and the inputs",
+        "passed": 5,
+        "total": 5,
+        "note": "It passed on the first run of the checker, and the run changed the plan. It also found that the risk with the biggest impact, legal blocking the send to guests, has no metric today, so it carries no tripwire and no date.",
+        "log": "examples/vireo/RUN.md"
+      },
+      "kind": "fresh-run"
     }
   }
 }

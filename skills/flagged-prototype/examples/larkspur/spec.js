@@ -84,7 +84,7 @@ function sharedPage(ctx, { preview = false } = {}) {
   return `
   <div class="lk-shared">
     <div class="lk-guestline has-pin" ${preview ? "" : ctx.flag("3.2")}>
-      ${preview ? "" : ctx.pin("3.2")}
+      ${preview ? "" : ctx.pin("3.2").replace('class="pin"', 'class="pin left"')}
       <span class="d-brand"><i>L</i>Larkspur</span>
       <span class="d-tag">${IC.eye} You are viewing as a guest</span>
       <span class="d-spacer"></span>

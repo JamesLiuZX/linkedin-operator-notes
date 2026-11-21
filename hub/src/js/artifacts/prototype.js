@@ -72,6 +72,7 @@ export function createPrototype(root, spec, opts = {}) {
   const theme = spec.theme || {};
   root.classList.add("proto", `is-${frame}`);
   if (spec.app) root.dataset.app = spec.app;
+  if (opts.compact) root.classList.add("is-compact");
   root.style.setProperty("--brand", theme.brand || "#0c0c0b");
   root.style.setProperty("--brand-ink", theme.brandInk || "#ffffff");
   root.style.setProperty("--brand-soft", theme.brandSoft || "#eef2ee");

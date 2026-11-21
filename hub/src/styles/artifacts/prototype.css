@@ -50,9 +50,8 @@
 }
 
 /* Outputs get dropped into pages with their own heading styles. Start from nothing. */
-.proto-screen :where(h1, h2, h3, h4, p),
-.proto-panel :where(h1, h2, h3, p),
-.proto-tour :where(p) {
+/* Zero specificity on purpose: any class a screen uses must win over this. */
+:where(.proto-screen, .proto-panel, .proto-tour) :where(h1, h2, h3, h4, p) {
   margin: 0;
   font-size: inherit;
   font-weight: inherit;
@@ -685,9 +684,14 @@
 }
 
 .proto-panel-head p {
+  display: -webkit-box;
   margin-top: 5px;
   color: var(--a-muted);
-  font-size: 0.9em;
+  font-size: 0.88em;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
 .proto-tools {
@@ -700,6 +704,7 @@
 
 .proto-presets {
   display: inline-flex;
+  flex-wrap: wrap;
   gap: 2px;
   padding: 3px;
   border-radius: 11px;
@@ -1105,9 +1110,28 @@
 }
 
 .proto-legal {
+  display: -webkit-box;
   color: var(--a-faint);
-  font-size: 0.76em;
+  font-size: 0.74em;
   line-height: 1.4;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+/* Inside the handbook's stage there is less height: keep the switches, drop the small print. */
+.proto.is-compact :is(.proto-panel-head p, .proto-legal, .proto-pins, .proto-group h2) {
+  display: none;
+}
+
+.proto.is-compact .proto-panel {
+  gap: 10px;
+  padding: 15px;
+}
+
+.proto.is-compact .proto-flags {
+  gap: 1px;
 }
 
 /* ---------------------------------------- the panel as a strip, when narrow */

@@ -1,0 +1,148 @@
+{
+  "about": "The page for the Larkspur case. Its domain, company, title, question and outcome live in hub/site.config.mjs (CASES). Every number, name and quote below is in the output files under skills/*/examples/larkspur. The ending is read from the readout itself at build time.",
+  "intro": "Larkspur is a planning tool for product teams, sold by the seat. A trial is started by one person, and most trial workspaces never get a second active person in the first week. This is one piece of work on that problem, followed from the first question to the test result, with every document open to read.",
+  "mark": "second person",
+  "company": {
+    "competitors": ["Thistle", "Corbel", "Halyard"],
+    "customer": "Dana Whitlock, a trial admin who is alone in the workspace"
+  },
+  "steps": [
+    {
+      "workflow": "journey-teardown",
+      "question": "How do other planning tools get a second person into a new workspace?",
+      "findings": [
+        {
+          "n": "54",
+          "text": "Four tools, three stages, 24 screens and 54 notes. Larkspur had the lowest mean score of the four, 2.6. Corbel and Halyard both had 3.87."
+        },
+        {
+          "n": "4 steps",
+          "text": "Larkspur's invite is four steps from Home, under Settings and then Members. Thistle and Halyard raise it while the user works. Larkspur's project screens never mention another person."
+        },
+        {
+          "n": "$12",
+          "text": "Larkspur's sign-up page says \"Free for 14 days. No card needed.\" Its Add member dialog says \"Adding a member starts billing today: $12 per month\"."
+        }
+      ],
+      "moment": {
+        "kind": "clash",
+        "label": "Two of Larkspur's own screens disagree",
+        "a": { "where": "The sign-up page", "says": "Free for 14 days. No card needed.", "find": "Free for 14 days. No card needed." },
+        "b": { "where": "The Add member dialog", "says": "Adding a member starts billing today: $12 per month", "find": "Adding a member starts billing today: $12 per month" },
+        "note": "No single screen shows the problem. The teardown found it by comparing a screen in the first stage with one in the third."
+      },
+      "changed": "The clash became point 2.2 of the PRD. A gap the teardown marked P2, no free way to bring someone in, became point 1.1, with Corbel's view link as the reference screen."
+    },
+    {
+      "workflow": "interview-synthesis",
+      "question": "Why does a second person not arrive in the first week?",
+      "findings": [
+        {
+          "n": "36",
+          "text": "Eight people who started a trial alone, six themes and 36 quotes, each matched to its transcript line."
+        },
+        {
+          "n": "6 of 8",
+          "text": "Six of eight held the workspace back until it looked presentable. Five of eight only wanted someone to look, and found no way to let them."
+        },
+        {
+          "n": "5 of 8",
+          "text": "Five of eight could not tell what an invite costs or when billing starts. One person went the other way and added the whole team about twenty minutes after signing up."
+        }
+      ],
+      "moment": {
+        "kind": "struck",
+        "label": "The quote nobody said",
+        "quote": "I would invite my whole team tomorrow if it did not charge me for it",
+        "note": "The request asked for this line. A script looked for it in all eight transcripts, did not find it, and removed it. Nothing was reworded to make it fit."
+      },
+      "changed": "The counts became the evidence the plan was tested against. The pre-mortem's first two risks rest on them: six of eight would not show an unfinished workspace, and five of eight could not tell what an invite costs."
+    },
+    {
+      "workflow": "premortem",
+      "question": "If Team suggestions failed, why would it have failed?",
+      "findings": [
+        {
+          "n": "10",
+          "text": "Ten failure stories across six areas. Three are marked as guesses, with no evidence either way."
+        },
+        {
+          "n": "5",
+          "text": "The five worst each got a tripwire: a metric, a line it must not cross, a date and an owner. The first trips if more than 1 in 20 workspaces that use Invite all 5 report an unwanted invite."
+        },
+        {
+          "n": "R1",
+          "text": "The top risk is the button itself. One click sends five invites to a workspace the admin has not finished, and the invite cannot be undone."
+        }
+      ],
+      "moment": {
+        "kind": "swap",
+        "label": "The plan changed before the PRD was written",
+        "before": { "name": "Team suggestions", "text": "Ask for the admin's calendar, find the five people they meet most, and offer one button: Invite all 5." },
+        "after": { "name": "Share by link", "text": "One page, shared by a link the admin sends. View only, and free." }
+      },
+      "changed": "The plan itself. Team suggestions never reached a PRD. The PRD that was written replaces it with Share by link."
+    },
+    {
+      "workflow": "decision-prd",
+      "question": "What exactly replaces Team suggestions, and in what order?",
+      "findings": [
+        {
+          "n": "6",
+          "text": "Six numbered points in three sections: the link, when to ask and what it costs, and the guest's side."
+        },
+        {
+          "n": "4",
+          "text": "A rollout in four steps. The billing wording goes first and alone, because it changes one dialog and needs no security review. The link, the preview and the guest page go together as an experiment."
+        },
+        {
+          "n": "2 pts",
+          "text": "The smallest lift worth shipping is 2 points. The PRD calls that a decision threshold, not an estimate, and no point predicts a size because no baseline was supplied."
+        }
+      ],
+      "moment": { "kind": "rollout", "label": "What ships when" },
+      "changed": "The six IDs became the six switches of the prototype. The measure, the 2 point threshold and the three guardrails became the design of the test."
+    },
+    {
+      "workflow": "flagged-prototype",
+      "question": "What does each change look like, for the admin and for the guest?",
+      "findings": [
+        {
+          "n": "4",
+          "text": "Four screens and six switches, in a browser window. With everything off it is Larkspur today: Dana is alone, and the only way to bring anyone in is Settings, then Members."
+        },
+        {
+          "n": "2",
+          "text": "Two people use it. Dana Whitlock is the trial admin. Kemal Aydin is the person Dana wants to show the plan to, and one screen is Kemal's browser."
+        },
+        {
+          "n": "3.2",
+          "text": "Turn on 3.2 and Kemal's side changes. Today an account comes before anything can be seen. With the link, the page opens straight away, with one slim line that says Kemal is a guest."
+        }
+      ],
+      "changed": "The link went to test next. A preset called With the link turns on the four points involved: the billing wording, and 1.1, 1.2 and 3.2, which the PRD sends to the experiment together."
+    },
+    {
+      "workflow": "experiment-readout",
+      "question": "Did share by link get a second person in?",
+      "findings": [
+        {
+          "n": "50/50",
+          "text": "The split came out as planned: 9,836 workspaces without the link and 9,902 with it. The test ran its full 21 days."
+        },
+        {
+          "n": "+4.0",
+          "text": "A second active person within 7 days: 26.0% with the link against 22.0% without. That is a rise of 4.0 points, and even the low end of the interval, 2.8, clears the 2 points the team set."
+        },
+        {
+          "n": "3 of 3",
+          "text": "All three guardrails held: paid conversion, unwanted invite reports and turning sharing off. The sharing off interval came within 0.1 points of its limit, so the readout says to keep watching it."
+        }
+      ],
+      "changed": "The decision. The rule was fixed before anyone read the result: positive and every guardrail held, so ship."
+    }
+  ],
+  "ending": {
+    "body": "Nothing was waved through. The split was checked before the result, the gain cleared the line the team had set before the test, and each guardrail's interval ruled out harm beyond its limit. The readout still lists what to keep watching after launch."
+  }
+}

@@ -205,6 +205,42 @@
       ],
       "posterAt": 9.3,
       "kind": "fresh-run"
+    },
+    "larkspur": {
+      "label": "Four planning tools, three stages",
+      "note": "Twelve lanes, twenty-four screens and fifty-four notes. Larkspur is the last lane in every stage.",
+      "inputs": [
+        "input/screens.json"
+      ],
+      "ask": "Tear down how these four planning tools get a second person into a new workspace. What do the other three do that Larkspur does not?",
+      "demoNote": "The agent lays out four planning tools across three stages, from sign-up to the invite, annotates every screen and scores each lane. When it ends, drag the board, zoom it and filter the notes.",
+      "run": {
+        "date": "2026-11-19",
+        "by": "A fresh agent session with only the skill folder and the inputs",
+        "passed": 6,
+        "total": 6,
+        "note": "It passed on the first run of the checker, so the checker had nothing to teach it. The finding that mattered came from comparing two of Larkspur's own screens: sign-up says no card is needed, and the Add member dialog says billing starts today.",
+        "log": "examples/larkspur/RUN.md"
+      },
+      "kind": "fresh-run"
+    },
+    "vireo": {
+      "label": "Four meeting recap products, three stages",
+      "note": "Twelve lanes, twenty-four screens and sixty-six notes. Vireo is the last lane in every stage.",
+      "inputs": [
+        "input/screens.json"
+      ],
+      "ask": "Tear down how these four products handle an AI meeting recap, from the moment it arrives to sending it on. Why do people not trust Vireo's recap enough to send it?",
+      "demoNote": "The agent lays out four recap products across three stages, from the recap arriving to sending it on, annotates every screen and scores each lane. When it ends, drag the board, zoom it and filter the notes.",
+      "run": {
+        "date": "2026-11-19",
+        "by": "A fresh agent session with only the skill folder and the inputs",
+        "passed": 6,
+        "total": 6,
+        "note": "It passed on the first run of the checker. The run built the board without opening it in a browser, and found the notes rule has no place for a finding that compares two products, so those went into the verdicts and the gaps.",
+        "log": "examples/vireo/RUN.md"
+      },
+      "kind": "fresh-run"
     }
   }
 }
