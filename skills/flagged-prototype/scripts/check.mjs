@@ -62,6 +62,29 @@ function render(name, on, data = freshData()) {
   }
 }
 
+/**
+ * Every sheet or dialog the screens can open in a state, drawn. A change that
+ * lives inside a dialog is still a change a reviewer can reach, so the checks
+ * below read these as well as the screens.
+ */
+function sheetsFor(on) {
+  const out = new Map();
+  for (const n of names) {
+    for (const m of render(n, on).matchAll(/data-sheet-open="([^"]+)"(?:[^>]*?data-k="([^"]*)")?/g)) {
+      const key = `${m[1]}|${m[2] ?? ""}`;
+      if (out.has(key) || !spec.sheets?.[m[1]]) continue;
+      let html = "";
+      try {
+        html = String(spec.sheets[m[1]](context(on, freshData()), m[2]));
+      } catch (err) {
+        html = `<!-- render error: ${err.message} -->`;
+      }
+      out.set(key, { screen: n, html });
+    }
+  }
+  return out;
+}
+
 const errors = { points: [], changes: [], pins: [], taps: [], journey: [], label: [] };
 const warnings = [];
 
@@ -86,13 +109,17 @@ const comparedWithPrd = Boolean(prdFile);
 
 /* 2. Every switch changes at least one screen. */
 const off = setOf([]);
+const offSheets = sheetsFor(off);
 for (const id of ids) {
   const only = setOf([id]);
   const changed = names.filter((n) => render(n, off) !== render(n, only));
-  if (!changed.length) errors.changes.push(`${id}: turning it on changes no screen`);
+  // A dialog that reads differently, or that only exists with the switch on, counts for the screen that opens it.
+  const viaSheet = new Set();
+  for (const [key, sheet] of sheetsFor(only)) if (offSheets.get(key)?.html !== sheet.html) viaSheet.add(sheet.screen);
+  if (!changed.length && !viaSheet.size) errors.changes.push(`${id}: turning it on changes no screen and no dialog`);
   const declared = flags.find((f) => String(f.id) === id).screens || [];
   for (const n of changed) if (!declared.includes(n)) warnings.push(`${id}: also changes "${n}", which its screens list does not name`);
-  for (const n of declared) if (screens[n] && !changed.includes(n)) warnings.push(`${id}: lists "${n}" but does not change it on its own`);
+  for (const n of declared) if (screens[n] && !changed.includes(n) && !viaSheet.has(n)) warnings.push(`${id}: lists "${n}" but does not change it on its own`);
 }
 
 /* 3. Every pin has a switch behind it. */
@@ -102,6 +129,12 @@ for (const n of names) {
   for (const m of render(n, all).matchAll(/data-pin="([^"]+)"/g)) {
     pinsSeen.add(m[1]);
     if (!ids.includes(m[1])) errors.pins.push(`screen "${n}" has a pin "${m[1]}" with no switch`);
+  }
+}
+for (const [key, sheet] of sheetsFor(all)) {
+  for (const m of sheet.html.matchAll(/data-pin="([^"]+)"/g)) {
+    pinsSeen.add(m[1]);
+    if (!ids.includes(m[1])) errors.pins.push(`dialog "${key.split("|")[0]}" has a pin "${m[1]}" with no switch`);
   }
 }
 for (const id of ids) if (!pinsSeen.has(id)) warnings.push(`${id}: no pin marks this change on any screen`);

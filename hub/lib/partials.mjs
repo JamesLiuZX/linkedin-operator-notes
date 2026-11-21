@@ -163,7 +163,10 @@ export function clientData(ctx) {
       skill: w.skill,
       demo: w.demo || w.slug,
       cases: Object.fromEntries(
-        (w.cases || []).map((c) => [c.id, { label: c.label, ask: c.ask || "", href: ctx.url(exampleHref(w, c.id)) }])
+        (w.cases || []).map((c) => [
+          c.id,
+          { label: c.label, ask: c.ask || "", href: ctx.url(exampleHref(w, c.id)), checks: c.run ? `${c.run.passed} of ${c.run.total}` : "" },
+        ])
       ),
     };
   }

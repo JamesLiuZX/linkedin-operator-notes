@@ -26,7 +26,7 @@
 
 import { readFile, writeFile, mkdir, copyFile, readdir, rm, cp } from "node:fs/promises";
 import { existsSync } from "node:fs";
-import { join, dirname, extname, resolve } from "node:path";
+import { join, dirname, extname, resolve, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 import { createServer } from "node:http";
@@ -143,7 +143,7 @@ async function bundle() {
 
   const outFile = (meta, entry) => {
     const hit = Object.entries(meta.outputs).find(([, o]) => o.entryPoint === entry);
-    return hit ? "/" + hit[0].replace(/^site\/dist\//, "") : null;
+    return hit ? "/" + relative(DIST, resolve(ROOT, hit[0])).split(sep).join("/") : null;
   };
   return {
     js: outFile(js.metafile, "hub/src/js/app.js"),

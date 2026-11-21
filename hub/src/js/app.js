@@ -283,6 +283,7 @@ async function mountStage(stage) {
       data: file?.default ?? file,
       caseId: ex.id,
       ask: ex.meta?.ask || "",
+      checks: ex.meta?.checks || "",
     });
     if (stage.__token !== token) return demo.destroy?.();
     stage.__player = createPlayer(stage, demo, stage.__hooks || {});

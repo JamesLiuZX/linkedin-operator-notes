@@ -323,6 +323,17 @@ export default {
     { id: "first", label: "First release", on: ["1.1", "2.1", "3.1"] },
     { id: "all", label: "Everything", on: "all" },
   ],
+  // The walk a reviewer is taken on. The handbook's replay and the Tour button both play it.
+  tour: [
+    { screen: "home", say: "The app as it is today. To repeat a shop you open Orders, find the order and tap Reorder." },
+    { flag: "1.1", say: "Last week's shop becomes one card on Home." },
+    { flag: "1.2", say: "Staples appear when they are due, from how often this customer buys them." },
+    { flag: "3.1", say: "The next slots are on Home. Picking one holds it for 20 minutes." },
+    { tap: '[data-cta="reorder"]', screen: "basket", say: "Reorder opens last week's basket, ready to edit. It never pays." },
+    { flag: "2.1", say: "Items that are out of stock are flagged here, each with one swap." },
+    { flag: "2.2", say: "Every item carries its own rule for what to do if it is missing." },
+    { flag: "3.2", say: "Anything that costs more than last week is marked before checkout." },
+  ],
   state: () => ({ items: basket(), slot: "today-6", added: 0 }),
   screens: {
     home: { name: "Home", render: home },
