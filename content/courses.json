@@ -142,6 +142,26 @@
       "price": "Free",
       "url": "https://youtu.be/-gfgQfw2g_E",
       "why": "44 minutes through tokenization, linear and sparse attention, mixture-of-experts routing, image tokens, pre-training experiments and reward design for reinforcement learning. Posted 14 Nov 2026."
+    },
+    {
+      "added": "2026-11-20",
+      "digest": "2026-11-20-your-agent-your-loss",
+      "title": "AI Red Teaming Course: 100 Labs, Attack & Defend LLMs",
+      "provider": "Udemy (the course page names no instructor)",
+      "platform": "Udemy",
+      "price": "Paid",
+      "url": "https://www.udemy.com/course/ai-security-architect/",
+      "why": "112 lectures and 8h 35m of labs against a local, deliberately vulnerable sandbox: prompt injection, jailbreaks, RAG poisoning, MCP-based agent exploits, guardrails and PyRIT. Rated 4.7 from only 9 ratings, last updated October 2026."
+    },
+    {
+      "added": "2026-11-20",
+      "digest": "2026-11-20-your-agent-your-loss",
+      "title": "Claude Certified Developer Foundations Course",
+      "provider": "freeCodeCamp.org, course by Andrew Brown",
+      "platform": "YouTube",
+      "price": "Free",
+      "url": "https://youtu.be/C_1QKZAcJjk",
+      "why": "8 hours on agent architectures, the Claude APIs and SDKs, tool use and MCP servers, context engineering, and defending against prompt injection and data leaks. Prepares for the Claude Certified Developer Foundations exam. Posted 24 Sep 2026."
     }
   ]
 }

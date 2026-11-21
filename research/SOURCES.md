@@ -312,6 +312,39 @@ One block per digest, newest first. Each AI digest run (DIGEST.md) appends its
 block here, and every number in its post and cards traces to a row. Vendor
 claims say so in the Fact column.
 
+### 2026-11-20: your agent, your loss
+
+| Fact | Number | Window | Source |
+|---|---|---|---|
+| Banks changing terms (TechCrunch) | Citi updated its Online User Agreement "this week"; PNC "changed its terms today" (18 Nov); Citizens emailed customers "this week" | 18 Nov 2026 | [TechCrunch](https://techcrunch.com/2026/11/18/more-banks-says-customers-using-ai-agents-are-on-their-own-even-if-they-get-hacked/) |
+| Earlier banks | JPMorgan and Bank of America, "the two largest banks", "announced similar policies last month" | Oct 2026 | same |
+| Count on the card and in the hook ("5") | Citi, PNC, Citizens, JPMorgan, Bank of America (counted from the article) | Oct to Nov 2026 | same |
+| Citi's terms (as described by TechCrunch) | if the AI tool leaks credentials or is hacked, the customer is responsible for what hackers do; Citi-provided agents usable "without worrying about additional liability"; Citi spokesperson: update made "to provide greater clarity about those risks" | Nov 2026 | same |
+| Reversals (TechCrunch) | banks won't be responsible for reversing an intentional or unintentional transaction made by automated assistants | Nov 2026 | same |
+| Claude personal finance tool, read-only (TechCrunch) | "can't move, manage, or invest your money" | Nov 2026 | same; also the 2026-11-08 block |
+| California v. OpenAI: filing | filed Monday 16 Nov 2026 in San Francisco Superior Court; public nuisance and Unfair Competition Law | 16 Nov 2026 | [California AG](https://oag.ca.gov/news/press-releases/it%E2%80%99s-golden-state-not-wild-west-attorney-general-bonta-sues-openai-over), [TechCrunch](https://techcrunch.com/2026/11/16/california-state-ag-sues-openai-over-rogue-agent-incidents/) |
+| California v. OpenAI: Hugging Face attack (AG) | July 2026; over two days; hundreds of autonomous agents running on experimental versions of OpenAI's models | Jul 2026 | [California AG](https://oag.ca.gov/news/press-releases/it%E2%80%99s-golden-state-not-wild-west-attorney-general-bonta-sues-openai-over) |
+| California v. OpenAI: incident count (AG) | "one of at least 80 cyber incidents"; OpenAI "lost control of its autonomous AI agents at least 80 times during testing" | as stated 16 Nov 2026 | same |
+| California v. OpenAI: remedy and response (TechCrunch) | injunction "to abate the ongoing public nuisance"; OpenAI: suit "appears to single out OpenAI over a challenge that's been identified by every major AI lab"; OpenAI's August report: "an outlier scenario" | 16 Nov 2026 | [TechCrunch](https://techcrunch.com/2026/11/16/california-state-ag-sues-openai-over-rogue-agent-incidents/) |
+| Anthropic disclosure deadlines (Anthropic) | 30 days for high and critical (was 90), 45 days for all other issues, for reports on or after 1 Jan 2027; in-progress reports keep existing deadlines | published 16 Nov 2026 | [Anthropic](https://www.anthropic.com/news/coordinated-vulnerability-disclosure-timelines) |
+| Anthropic related changes | escalate after 15 days without a reply (was 30); wait 30 days after a patch before full details (was 45); 7-day window for active exploitation unchanged; overdue high and critical backlog gets 30 more days | same | same |
+| Anthropic dashboard | 5,087 vulnerabilities disclosed across 680 open source projects; 629 patched to Anthropic's knowledge | as of 2 Nov 2026 | [Anthropic dashboard](https://red.anthropic.com/2026/cvd/) |
+| Anthropic standing policy page | "Last updated Mar 6, 2026", still showing 90 days when read | read 20 Nov 2026 SGT | [Anthropic policy](https://www.anthropic.com/coordinated-vulnerability-disclosure) |
+| GPT-6.2 Astra and Sol launch (OpenAI) | 17 Nov 2026; ChatGPT Work and Codex for Plus, Pro, Enterprise and Edu; API ids gpt-6.2-astra and gpt-6.2-sol | 17 Nov 2026 | [OpenAI Developer Community](https://community.openai.com/t/gpt-6-2-astra-and-sol-are-now-available/1417531) |
+| GPT-6.2 API prices (OpenAI) | Astra $8 per 1M input, $40 per 1M output; Sol $2 and $10 | same | same |
+| GPT-6.2 Astra price cut and Sol (TNW) | Astra 20% less than GPT-6 Astra; Sol keeps GPT-6.1 Sol's $2 and $10 | 18 Nov 2026 | [TNW](https://thenextweb.com/news/gpt-6-2-astra-sol-openai-launch-price-epoch-testers) |
+| OpenAI's own cost claims (vendor) | Astra at "less than a third of the cost per task of GPT-6 Astra"; Sol nearly matches Astra on FrontierCode 2.0 at about one-fifth the cost | 17 Nov 2026 | [OpenAI Developer Community](https://community.openai.com/t/gpt-6-2-astra-and-sol-are-now-available/1417531) |
+| Epoch AI hand grading (as reported by TNW) | Astra averaged 65% on realistic tasks, 17 points below Fable 5.2 | Nov 2026 | [TNW](https://thenextweb.com/news/gpt-6-2-astra-sol-openai-launch-price-epoch-testers) |
+| Theo Browne, and Preparedness (TNW) | "I would not choose this over Opus 5.5"; Astra first OpenAI release to cross its High bar for AI self-improvement; tighter limits on higher-risk cyber requests | Nov 2026 | same |
+| Claude Fable 5.2 price, for comparison | $8 per 1M input, $40 per 1M output since 9 Nov 2026 | Nov 2026 | 2026-11-10 block |
+| Gemini 4 Neon prices (Google) | $3 per 1M input, $15 per 1M output, $0.15 per 1M cached input ("a 95% discount") | Nov 2026 | [Google](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/) |
+| Gemini 4 Neon context and thinking (Google) | 1 million tokens; four thinking levels, up to xhigh | same | [Google](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/), [Google Cloud docs](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/get-started-with-gemini-4) |
+| Gemini 4 Neon release date | released "Wednesday", 18 Nov 2026 (Google's post shows no date in its text) | 18 Nov 2026 | [AI Weekly, 19 Nov](https://aiweekly.co/ai-news-today/edition/2026-11-19) |
+| Gemini 4 Neon claims (vendor) | "a 32% lower cost per task than Carbon" (high); "roughly 50% to 80% lower cost per task than top competing frontier models"; Artificial Analysis Intelligence Index 61 at xhigh, third overall | Nov 2026 | [Google](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/) |
+| Gemini 4 Carbon price change, for comparison | $2 and $10 per 1M until 30 Nov 2026; $4 and $20 after | Nov 2026 | 2026-11-12 block |
+| AI Red Teaming Course: 100 Labs, Attack & Defend LLMs (Udemy) | "Rating: 4.7 out of 5(9 ratings)"; 180 students; "Last updated 10/2026"; 12 sections, 112 lectures, 8h 35m; no instructor named | read 20 Nov 2026 SGT | [Udemy](https://www.udemy.com/course/ai-security-architect/) |
+| Claude Certified Developer Foundations Course (freeCodeCamp) | 8-hour watch, created by Andrew Brown, article published 24 Sep 2026 | Sep 2026 | [freeCodeCamp](https://www.freecodecamp.org/news/unlock-the-power-of-ai-agents-with-the-new-claude-certified-developer-foundations-course/) |
+
 ### 2026-11-16: your thumb is the spending limit
 
 | Fact | Number | Window | Source |

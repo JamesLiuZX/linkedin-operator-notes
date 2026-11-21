@@ -527,6 +527,25 @@
       "notes": "AI Workflow Handbook launch series (NEWSLETTER.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment. clip.mp4 is the same demo as a 4:5 video, for a repost or for X."
     },
     {
+      "id": "dg-2026-11-20-li",
+      "week": 16, "date": "2026-11-20", "time": "09:00", "channel": "linkedin",
+      "kind": "atom", "pillar": "agents", "asset": "posts/dg-2026-11-20-your-agent-your-loss.md",
+      "title": "AI digest: 5 US banks now say your AI agent's losses are yours",
+      "hook": "5 US banks now say your AI agent's losses are yours.",
+      "status": "ready",
+      "linkInComment": "/digest/2026-11-20-your-agent-your-loss",
+      "notes": "AI digest (DIGEST.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment."
+    },
+    {
+      "id": "dg-2026-11-20-x",
+      "week": 16, "date": "2026-11-20", "time": "21:00", "channel": "x",
+      "kind": "thread", "pillar": "agents", "asset": "posts/dg-2026-11-20-your-agent-your-loss.md",
+      "title": "AI digest thread: banks put AI agent losses on the customer, even after a hack",
+      "hook": "5 US banks now say: give an AI agent access to your account, and its losses are yours. Even if it gets hacked.",
+      "status": "ready",
+      "notes": "AI digest (DIGEST.md). Attach cover.png to tweet 1. Tweets come from the post's X thread section."
+    },
+    {
       "id": "hb-interview-synthesis-li",
       "week": 17, "date": "2026-11-24", "time": "09:00", "channel": "linkedin",
       "kind": "atom", "pillar": "growth", "asset": "posts/hb-interview-synthesis.md",
