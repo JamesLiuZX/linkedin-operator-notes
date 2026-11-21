@@ -22,6 +22,7 @@ export function mount(body, { stage, data: spec, ask, checks } = {}) {
         <div class="demo-proto-host" data-host></div>
         <p class="demo-say" data-say></p>
       </div>
+      <div class="fly-layer" data-fly></div>
     </div>`;
   const art = body.querySelector("[data-art]");
   const host = body.querySelector("[data-host]");
@@ -65,6 +66,12 @@ export function mount(body, { stage, data: spec, ask, checks } = {}) {
   // The device tips in while the agent is still "drawing". The panel follows.
   tl.land(proto.el.device, 3.1, { dur: 1.3, ry: spec.frame === "desktop" ? -14 : -24, rx: 12, z: -260, y: 60 });
   tl.show(proto.el.panel, 4.2, { dur: 0.6, y: 14 });
+  // Each PRD point leaves the run log and becomes a switch.
+  const layer = body.querySelector("[data-fly]");
+  const wired = () => body.querySelectorAll("[data-step]")[2]?.querySelector("b");
+  flags.forEach((f, i) => {
+    tl.fly(layer, { from: wired, to: () => proto.el.switch(f.id), at: 4.55 + i * 0.09, dur: 0.6, hold: 0.1 });
+  });
 
   // One keyed value drives everything, so any moment can be seeked to.
   tl.key("step", -1, 0);

@@ -86,13 +86,18 @@ export function createPaper(host, { width = 1000, className = "", maxZoom = 1 } 
      */
     camera(tl, shots) {
       const list = [...shots].sort((a, b) => a.at - b.at);
-      const state = (s, view) => {
-        const rest = { z: 1, cx: view.width / 2, cy: view.height / 2 };
+      // Everything is measured from the camera layer's own corner, which is where
+      // its transform is anchored. That corner scrolls with the page, so a
+      // position in these coordinates stays put while the scroll moves.
+      const state = (s, o, rest, view) => {
         if (!s || !s.to) return rest;
         const target = typeof s.to === "function" ? s.to() : s.to;
         if (!target) return rest;
         const r = target.getBoundingClientRect();
-        return { z: s.zoom ?? 1.4, cx: r.left - view.left + r.width / 2, cy: r.top - view.top + r.height * (s.anchor ?? 0.5) };
+        // Never push in so far that the subject itself is cropped.
+        const fits = Math.min((view.width * 0.95) / Math.max(1, r.width), (view.height * 0.92) / Math.max(1, r.height));
+        const z = Math.max(1, Math.min(s.zoom ?? 1.4, s.crop ? Infinity : fits));
+        return { z, cx: r.left - o.left + r.width / 2, cy: r.top - o.top + r.height * (s.anchor ?? 0.5) };
       };
       tl.each((t) => {
         cam.style.transform = "none";
@@ -101,17 +106,22 @@ export function createPaper(host, { width = 1000, className = "", maxZoom = 1 } 
         while (i + 1 < list.length && t >= list[i + 1].at) i++;
         if (i < 0) return;
         const view = scroll.getBoundingClientRect();
-        const a = state(list[i - 1], view);
-        const b = state(list[i], view);
+        const o = cam.getBoundingClientRect();
+        // The middle of the window onto the page, a little above centre.
+        const vx = view.left - o.left + view.width / 2;
+        const vy = view.top - o.top + view.height * 0.46;
+        const rest = { z: 1, cx: vx, cy: vy };
+        const a = state(list[i - 1], o, rest, view);
+        const b = state(list[i], o, rest, view);
         const p = ease.inOutQuint(clamp01((t - list[i].at) / (list[i].dur ?? 1)));
         const z = a.z + (b.z - a.z) * p;
         if (Math.abs(z - 1) < 0.0005) return;
         const cx = a.cx + (b.cx - a.cx) * p;
         const cy = a.cy + (b.cy - a.cy) * p;
         // The more it zooms, the closer the subject is brought to the middle of the frame.
-        const pull = clamp01((z - 1) / 0.3);
-        const px = cx + (view.width / 2 - cx) * pull;
-        const py = cy + (view.height * 0.46 - cy) * pull;
+        const pull = clamp01((z - 1) / 0.25);
+        const px = cx + (vx - cx) * pull;
+        const py = cy + (vy - cy) * pull;
         cam.style.transform = `translate3d(${(px - cx * z).toFixed(2)}px,${(py - cy * z).toFixed(2)}px,0) scale(${z.toFixed(4)})`;
       }, -1);
       for (const s of list) tl.end(s.at + (s.dur ?? 1));

@@ -26,6 +26,7 @@
   --a-bad-bg: #fdeae7;
   --a-info: #2447d6;
   --a-info-bg: #e9eeff;
+  --a-display: "Bricolage Grotesque", "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --a-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --a-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
@@ -59,12 +60,10 @@
   align-items: center;
   height: 1.6em;
   padding: 0 0.55em;
-  border-radius: 0.45em;
-  font-family: var(--a-mono);
-  font-size: 0.68em;
+  border-radius: 999px;
+  font-family: var(--a-sans);
+  font-size: 0.74em;
   font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
   white-space: nowrap;
   background: #eceee9;
   color: var(--a-ink2);
@@ -99,4 +98,10 @@
   display: block;
   width: 100%;
   height: auto;
+}
+
+/* Titles are set in the display face. Where it is not installed they fall back to the system's. */
+.adoc :is(h1, h2),
+.adoc :is(.ro-word, .ro-big, .sy-count b, .pm-tally b) {
+  font-family: var(--a-display);
 }

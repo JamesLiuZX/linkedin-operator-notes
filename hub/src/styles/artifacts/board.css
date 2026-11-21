@@ -80,11 +80,9 @@
 }
 
 .bf-ey {
-  font-family: var(--a-mono);
+  font-family: var(--a-sans);
   font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-weight: 600;
   color: var(--a-muted);
 }
 
@@ -106,11 +104,9 @@
 
 .bf h3 {
   margin-bottom: 10px;
-  font-family: var(--a-mono);
+  font-family: var(--a-sans);
   font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  font-weight: 600;
   color: var(--a-muted);
 }
 
@@ -451,11 +447,9 @@
 .bnote b {
   display: block;
   margin-bottom: 2px;
-  font-family: var(--a-mono);
+  font-family: var(--a-sans);
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
 }
 
 .bnote.good {
@@ -506,10 +500,8 @@
 .vd b {
   display: block;
   margin-bottom: 3px;
-  font-family: var(--a-mono);
+  font-family: var(--a-sans);
   font-size: 10px;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
 }
 
 .vd ul {

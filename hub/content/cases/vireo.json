@@ -2,6 +2,7 @@
   "about": "The page for the Vireo case. Its domain, company, title, question and outcome live in hub/site.config.mjs (CASES). Every number, name and quote below is in the output files under skills/*/examples/vireo. The ending is read from the readout itself at build time. The flagged-prototype step is empty until that example exists: give it findings and a changed line then.",
   "intro": "Vireo makes AI meeting recaps. After every meeting its Recap feature writes a summary, the decisions and the action items, and hosts do not trust it enough to send it on. This is one piece of work on that problem, followed from the first question to the test result, with every document open to read.",
   "mark": "trust enough to send",
+  "tested": { "point": "2.1" },
   "company": {
     "competitors": ["Castell", "Ondine", "Parley"],
     "customer": "Priya Raman, the host of a 42 minute pricing review with Northgate"

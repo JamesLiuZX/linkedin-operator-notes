@@ -557,7 +557,7 @@
   inset: var(--s-pad) var(--s-pad) 0 var(--s-pad);
   border-radius: 16px 16px 0 0;
   background: #f3f3ef;
-  box-shadow: 0 0 0 1px rgba(12, 12, 11, 0.06), 0 30px 70px -30px color-mix(in srgb, var(--c-deep) 70%, #000 20%), 0 10px 24px -14px rgba(12, 12, 11, 0.3);
+  box-shadow: 0 0 0 1px rgba(12, 12, 11, 0.07), 0 24px 50px -28px rgba(12, 12, 11, 0.45), 0 8px 18px -12px rgba(12, 12, 11, 0.2);
   overflow: hidden;
   transform-origin: 50% 100%;
   backface-visibility: hidden;

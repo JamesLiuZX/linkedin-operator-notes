@@ -10,7 +10,7 @@ import { buildRun } from "../stage/run.js";
 import { createPaper } from "../stage/paper.js";
 import { mountSynthesis } from "../artifacts/synthesis.js";
 
-export function mount(body, { stage, data, ask } = {}) {
+export function mount(body, { stage, data, ask, checks } = {}) {
   body.innerHTML = `
     <div class="demo demo-doc demo-synthesis">
       <div class="run" data-run></div>
@@ -39,10 +39,10 @@ export function mount(body, { stage, data, ask } = {}) {
       { title: "Pulled the quotes", detail: `${found + rejected} quotes, one or more per supporter`, at: 6.4, dur: 2.6 },
       { title: "Ran the quote check", detail: "verify_quotes.py looks for every line", at: 9.2, dur: 5.0 },
       { title: rejected ? `Removed ${rejected} ${rejected === 1 ? "quote" : "quotes"}` : "Every quote was found", detail: rejected ? "Not in any transcript" : "Nothing had to be removed", at: 14.4, dur: 1.3, bad: rejected > 0 },
-      { title: "Checked its own work", detail: "5 of 5 checks passed", at: 17.6, dur: 0.9 },
+      { title: "Checked its own work", detail: `${found} quotes, ${found} line numbers`, at: 17.6, dur: 0.9 },
     ],
-    foot: `<b>${found} quotes, ${found} line numbers.</b> Open any of them to read it in place.`,
-    footAt: 18.7,
+    receipt: checks ? `${checks} checks passed` : "",
+    receiptAt: 18.6,
   });
 
   tl.chapter("Read", 0);
@@ -52,7 +52,7 @@ export function mount(body, { stage, data, ask } = {}) {
   tl.chapter("Result", 15.9);
 
   // The page, and the eight people on it.
-  tl.show(paper.scroll.parentElement, 2.2, { dur: 0.6, y: 18 });
+  tl.land(paper.el, 2.1, { dur: 1.2 });
   tl.show($(".sy-head h1"), 2.5, { dur: 0.5, y: 8 });
   tl.show($(".sy-q"), 2.7, { dur: 0.5, y: 6 });
   $$(".sy-person").forEach((el, i) => tl.show(el, 2.9 + i * 0.13, { dur: 0.4, y: 10 }));
@@ -70,7 +70,7 @@ export function mount(body, { stage, data, ask } = {}) {
   tl.show(t1, 4.4, { dur: 0.5, y: 14 });
   tl.to($(".aid", t1), { scale: [0.4, 1] }, { at: 4.6, dur: 0.5, ease: ease.back });
   tl.count($("[data-count] b", t1), 0, first.support.length, { at: 4.9, dur: 0.9 });
-  $$(".sy-dots i", t1).forEach((dot, i) => tl.show(dot, 4.9 + i * 0.1, { dur: 0.3, y: 0, scale: 0.5 }));
+  $$(".sy-dots i", t1).forEach((dot, i) => tl.pop(dot, 4.9 + i * 0.1, { dur: 0.5 }));
   tl.show($(".sy-sum", t1), 5.7, { dur: 0.45, y: 6 });
 
   // Its quotes, the exception, and what it means.
@@ -86,7 +86,7 @@ export function mount(body, { stage, data, ask } = {}) {
   // The check: each quote gets the line it was found on.
   const pills = $$(".sy-where", t1);
   pills.forEach((pill, i) => {
-    tl.show(pill, 9.5 + i * 0.32, { dur: 0.3, y: 0, scale: 0.7 });
+    tl.pop(pill, 9.5 + i * 0.32, { dur: 0.5, from: 0.3 });
   });
 
   // Open the first quote in its transcript.
@@ -111,7 +111,27 @@ export function mount(body, { stage, data, ask } = {}) {
     tl.show(out, 14.2, { dur: 0.5, y: 12 });
     tl.to($("blockquote", out), { "--strike": [0, 1] }, { at: 14.9, dur: 0.5, ease: ease.out });
     tl.show($("[data-reject] p", out), 15.2, { dur: 0.4, y: 4 });
+    // The verdict on it comes down like a stamp.
+    out.style.position = "relative";
+    const stamp = document.createElement("b");
+    stamp.className = "demo-stamp fades";
+    stamp.textContent = "Not in any transcript";
+    const box = $("[data-reject]", out) || out;
+    box.style.position = "relative";
+    stamp.style.cssText = "right:6%;top:50%;margin-top:-20px";
+    box.appendChild(stamp);
+    tl.stamp(stamp, 15.25, { rotate: -6 });
   }
+
+  // The camera: in on the count, in on the first quote being checked, in on the one that failed.
+  paper.camera(tl, [
+    { at: 4.5, to: () => $(".sy-theme-head", t1) || t1, zoom: 1.22, dur: 0.9, anchor: 0.9 },
+    { at: 6.2, to: null, dur: 0.8 },
+    { at: 9.3, to: () => (quotes[0] && $(".sy-where", quotes[0])) || quotes[0] || t1, zoom: 1.3, dur: 0.9, crop: true },
+    { at: 12.3, to: null, dur: 0.7 },
+    { at: 14.3, to: () => $("[data-reject]", out) || out, zoom: 1.3, dur: 0.9 },
+    { at: 15.95, to: null, dur: 0.9 },
+  ]);
 
   paper.follow(tl, [
     { at: 4.1, to: () => t1, dur: 0.9, offset: 56 },
@@ -128,9 +148,13 @@ export function mount(body, { stage, data, ask } = {}) {
 
   return {
     timeline: tl,
+    hint: "Open any quote to read it in place",
     unlive() {
       page.closeAll();
       tl.invalidate();
+    },
+    destroy() {
+      paper.destroy();
     },
   };
 }

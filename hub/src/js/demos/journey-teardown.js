@@ -9,7 +9,7 @@ import { createTimeline, ease } from "../stage/timeline.js";
 import { buildRun } from "../stage/run.js";
 import { mountBoard } from "../artifacts/board.js";
 
-export function mount(body, { data, ask } = {}) {
+export function mount(body, { data, ask, checks } = {}) {
   body.innerHTML = `
     <div class="demo demo-board">
       <div class="run" data-run></div>
@@ -37,10 +37,10 @@ export function mount(body, { data, ask } = {}) {
       { title: "Scored each lane", detail: `${data.dimensions.length} dimensions, a reason for each score`, at: 10.0, dur: 3.0 },
       { title: "Synthesised each stage", detail: `${patterns} patterns · ${gaps} gaps`, at: 13.3, dur: 3.5 },
       { title: "Drew out the principles", detail: `${(data.principles || []).length} that hold across every stage`, at: 17.0, dur: 1.7 },
-      { title: "Checked its own work", detail: "6 of 6 checks passed", at: 19.0, dur: 0.9 },
+      { title: "Checked its own work", detail: "By stage, with your product in the last lane", at: 19.0, dur: 0.9 },
     ],
-    foot: "<b>By stage, not by competitor.</b> Your product is always the last lane, under the best example.",
-    footAt: 20.1,
+    receipt: checks ? `${checks} checks passed` : "",
+    receiptAt: 20.0,
   });
 
   tl.chapter("Lay out", 0);
@@ -62,12 +62,17 @@ export function mount(body, { data, ask } = {}) {
     tl.show($(`[data-frame="${st.id}"]`), at, { dur: 0.5, y: 24 });
     $$(`[data-frame="${st.id}"] [data-lane]`).forEach((el, k) => {
       tl.show(el, at + 0.15 + k * 0.09, { dur: 0.4, y: 14 });
-      $$("[data-shot] .shot-pic", el).forEach((pic, j) => tl.show(pic, at + 0.3 + k * 0.09 + j * 0.08, { dur: 0.4, y: 0, scale: 0.92 }));
+      // Each screen is dealt into its lane like a card.
+      $$("[data-shot] .shot-pic", el).forEach((pic, j) => {
+        const t0 = at + 0.3 + k * 0.09 + j * 0.08;
+        tl.to(pic, { opacity: [0, 1] }, { at: t0, dur: 0.2, ease: ease.out });
+        tl.to(pic, { ry: [-42, 0], rotate: [-4, 0], y: [26, 0], scale: [0.86, 1] }, { at: t0, dur: 0.7, ease: ease.outQuint });
+      });
     });
   });
 
   // 2. Notes land on the best example, then on our own lane. The rest follow off camera.
-  const noteIn = (el, at) => tl.show(el, at, { dur: 0.32, y: 8, scale: 0.94 });
+  const noteIn = (el, at) => tl.pop(el, at, { dur: 0.5, from: 0.55 });
   $$("[data-note]", closeA).forEach((el, k) => noteIn(el, 5.7 + k * 0.3));
   $$("[data-note]", closeB).forEach((el, k) => noteIn(el, 8.2 + k * 0.27));
   $$("[data-note]").forEach((el) => {
@@ -78,7 +83,7 @@ export function mount(body, { data, ask } = {}) {
   const score = (el, at, step) => {
     const overall = $("[data-overall]", el);
     const value = Number($("b", overall).textContent) || 0;
-    tl.show(overall, at, { dur: 0.35, y: 6 });
+    tl.pop(overall, at, { dur: 0.55, from: 0.6 });
     tl.count($("b", overall), 0, value, { at, dur: step ? 1.0 : 0.5, fmt: (v) => v.toFixed(1) });
     $$("[data-bar]", el).forEach((bar, k) => {
       const em = $("em", bar);
@@ -111,7 +116,7 @@ export function mount(body, { data, ask } = {}) {
   }
 
   board.follow(tl, [
-    { at: 0, to: "all", mode: "fit", pad: 18 },
+    { at: 0, to: s1.id, mode: "fit", pad: 18 },
     { at: 4.5, to: () => shots(s1.id, firstApp), mode: "fit", pad: 26, dur: 1.2 },
     { at: 7.2, to: () => shots(s1.id, us), mode: "fit", pad: 26, dur: 1.0 },
     { at: 9.9, to: () => closeB, mode: "fit", pad: 18, dur: 1.0 },
@@ -125,6 +130,7 @@ export function mount(body, { data, ask } = {}) {
 
   return {
     timeline: tl,
+    hint: "Drag the board, scroll to zoom",
     live() {
       board.setInteractive(true);
     },

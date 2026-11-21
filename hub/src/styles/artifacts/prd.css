@@ -96,16 +96,14 @@
 .prd-hero {
   padding: 34px 36px 30px;
   border-radius: 26px;
-  background: var(--a-ink);
-  color: #f3f5ee;
+  background: var(--a-hi);
+  color: var(--a-hi-ink);
 }
 
 .prd-ey {
-  font-family: var(--a-mono);
+  font-family: var(--a-sans);
   font-size: 12px;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: #9aa19a;
+  color: #3d4a00;
 }
 
 .prd-hero h1 {
@@ -122,7 +120,7 @@
   margin-top: 12px;
   max-width: 44em;
   font-size: 17px;
-  color: #c6ccc4;
+  color: #232b00;
 }
 
 .prd-hero-foot {
@@ -132,7 +130,7 @@
   gap: 10px 18px;
   margin-top: 22px;
   font-size: 13.5px;
-  color: #9aa19a;
+  color: #3d4a00;
 }
 
 .prd-cta {
@@ -141,8 +139,8 @@
   height: 40px;
   padding: 0 17px;
   border-radius: 999px;
-  background: var(--a-hi);
-  color: var(--a-hi-ink) !important;
+  background: var(--a-ink);
+  color: #ffffff !important;
   font-size: 14.5px;
   font-weight: 600;
   text-decoration: none;
@@ -193,10 +191,8 @@
 
 .prd-k {
   margin-right: 8px;
-  font-family: var(--a-mono);
+  font-family: var(--a-sans);
   font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--a-muted);
 }
 
@@ -355,10 +351,8 @@
 }
 
 .prd-know dt {
-  font-family: var(--a-mono);
+  font-family: var(--a-sans);
   font-size: 10.5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--a-muted);
 }
 
@@ -437,11 +431,9 @@ a.prd-cite:hover {
 .prd-table th {
   border-top: 0;
   background: #f0f1ed;
-  font-family: var(--a-mono);
+  font-family: var(--a-sans);
   font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-weight: 600;
   color: var(--a-muted);
   white-space: nowrap;
 }

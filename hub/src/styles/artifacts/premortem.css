@@ -39,11 +39,9 @@
 .premortem h3,
 .pm-k {
   display: block;
-  font-family: var(--a-mono);
+  font-family: var(--a-sans);
   font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-weight: 600;
   color: var(--a-muted);
 }
 
@@ -131,10 +129,8 @@
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   text-align: center;
-  font-family: var(--a-mono);
+  font-family: var(--a-sans);
   font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--a-muted);
 }
 
@@ -142,10 +138,8 @@
   grid-column: 2;
   display: flex;
   justify-content: space-between;
-  font-family: var(--a-mono);
+  font-family: var(--a-sans);
   font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--a-muted);
 }
 
@@ -502,10 +496,8 @@
 }
 
 .pm-cal time span {
-  font-family: var(--a-mono);
+  font-family: var(--a-sans);
   font-size: 11.5px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
   color: var(--a-muted);
 }
 

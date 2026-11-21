@@ -2,6 +2,7 @@
   "about": "The page for the Larkspur case. Its domain, company, title, question and outcome live in hub/site.config.mjs (CASES). Every number, name and quote below is in the output files under skills/*/examples/larkspur. The ending is read from the readout itself at build time.",
   "intro": "Larkspur is a planning tool for product teams, sold by the seat. A trial is started by one person, and most trial workspaces never get a second active person in the first week. This is one piece of work on that problem, followed from the first question to the test result, with every document open to read.",
   "mark": "second person",
+  "tested": { "point": "1.1" },
   "company": {
     "competitors": ["Thistle", "Corbel", "Halyard"],
     "customer": "Dana Whitlock, a trial admin who is alone in the workspace"

@@ -9,7 +9,7 @@ import { buildRun } from "../stage/run.js";
 import { createPaper } from "../stage/paper.js";
 import { mountPremortem } from "../artifacts/premortem.js";
 
-export function mount(body, { stage, data, ask } = {}) {
+export function mount(body, { stage, data, ask, checks } = {}) {
   body.innerHTML = `
     <div class="demo demo-doc demo-premortem">
       <div class="run" data-run></div>
@@ -36,10 +36,10 @@ export function mount(body, { stage, data, ask } = {}) {
       { title: "Wrote the failure stories", detail: `${risks.length} stories across ${areas} areas`, at: 4.3, dur: 4.3 },
       { title: "Weighed each against the research", detail: `${risks.length - guesses} with evidence · ${guesses} guesses`, at: 8.8, dur: 2.6 },
       { title: "Set the tripwires", detail: `The worst ${top.length}: a metric, a line, a date, a name`, at: 11.6, dur: 5.2 },
-      { title: "Checked its own work", detail: "5 of 5 checks passed", at: 17.2, dur: 0.9 },
+      { title: "Checked its own work", detail: `${top.length} dates for a calendar, ${guesses} marked as guesses`, at: 17.2, dur: 0.9 },
     ],
-    foot: `<b>${top.length} dates to put in a calendar.</b> ${guesses} of the ${risks.length} are marked as guesses.`,
-    footAt: 18.3,
+    receipt: checks ? `${checks} checks passed` : "",
+    receiptAt: 18.2,
   });
 
   tl.chapter("Assume it failed", 0);
@@ -49,11 +49,11 @@ export function mount(body, { stage, data, ask } = {}) {
   tl.chapter("Check", 17.2);
 
   // The plan, then the date it is imagined to have failed by.
-  tl.show(paper.scroll.parentElement, 2.1, { dur: 0.6, y: 18 });
+  tl.land(paper.el, 2.0, { dur: 1.2 });
   tl.show($(".pm-head h1"), 2.4, { dur: 0.5, y: 8 });
   tl.show($(".pm-plan"), 2.7, { dur: 0.5, y: 10 });
   tl.show($(".pm-premise"), 3.2, { dur: 0.5, y: 6 });
-  tl.to($(".pm-premise mark"), { scale: [0.6, 1] }, { at: 3.5, dur: 0.5, ease: ease.back });
+  tl.pop($(".pm-premise mark"), 3.5, { dur: 0.6, from: 0.5 });
 
   // The map fills one story at a time. Nothing is ranked yet, so every chip is plain.
   const matrix = $('[data-part="matrix"]');
@@ -65,7 +65,7 @@ export function mount(body, { stage, data, ask } = {}) {
   risks.forEach((r, i) => {
     const chip = $(`[data-chip="${r.id}"]`);
     const at = 4.8 + i * 0.3;
-    tl.show(chip, at, { dur: 0.3, y: 0, scale: 0.3 });
+    tl.pop(chip, at, { dur: 0.55, from: 0.2 });
     if (top.includes(r.id)) tl.to(chip, { scale: [1, 1.25] }, { at: 11.7 + top.indexOf(r.id) * 0.12, dur: 0.18 }).to(chip, { scale: 1 }, { at: 11.9 + top.indexOf(r.id) * 0.12, dur: 0.3 });
   });
   const tally = $$(".pm-tally > div");
@@ -107,6 +107,14 @@ export function mount(body, { stage, data, ask } = {}) {
   const foot = $(".pm-foot");
   if (foot) tl.show(foot, 16.8, { dur: 0.4, y: 0 });
 
+  // The camera: in on the map while it fills, in on the first tripwire while it is set.
+  paper.camera(tl, [
+    { at: 4.9, to: () => matrix, zoom: 1.18, dur: 1.0, anchor: 0.42 },
+    { at: 8.4, to: null, dur: 0.8 },
+    { at: 13.9, to: () => wire, zoom: 1.2, dur: 0.9 },
+    { at: 15.4, to: null, dur: 0.7 },
+  ]);
+
   const fits = (el) => el.getBoundingClientRect().height + 60 <= paper.scroll.clientHeight;
   paper.follow(tl, [
     { at: 4.2, to: () => matrix, dur: 0.9, offset: 20 },
@@ -118,5 +126,11 @@ export function mount(body, { stage, data, ask } = {}) {
   ]);
   tl.end(20.4);
 
-  return { timeline: tl };
+  return {
+    timeline: tl,
+    hint: "Open any risk to read its story",
+    destroy() {
+      paper.destroy();
+    },
+  };
 }

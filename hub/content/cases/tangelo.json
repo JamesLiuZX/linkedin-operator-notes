@@ -2,6 +2,7 @@
   "about": "The page for the Tangelo case. Its domain, company, title, question and outcome live in hub/site.config.mjs (CASES). Every number, name and quote below is in the output files under skills/*/examples/tangelo. The ending is read from the readout itself at build time.",
   "intro": "Tangelo is a grocery delivery app. Most of its returning customers buy nearly the same basket every week, and it still takes them about as long as the first time. This is one piece of work followed from the first question to the test result, with every document open to read.",
   "mark": "two-minute job",
+  "tested": { "point": "1.1" },
   "company": {
     "competitors": ["Pippin", "Marrow", "Sorrel"],
     "customer": "Maya, a returning customer who shops once a week"
@@ -28,7 +29,7 @@
         "kind": "clash",
         "label": "Two of Tangelo's own screens disagree",
         "a": { "where": "Home", "says": "Free delivery over $40", "find": "Free delivery over $40" },
-        "b": { "where": "The basket", "says": "Delivery $4.50, on a subtotal of $56.70", "find": "$4.50" },
+        "b": { "where": "The basket", "says": "Delivery $4.50", "find": "$4.50" },
         "note": "No single screen shows the problem. The teardown found it by comparing two screens of the same lane. The screens do not show whether it is a bug or a condition."
       },
       "changed": "The teardown listed eight patterns and eight gaps. Each of the six PRD points now shows the competitor screen it borrows from: Pippin, Marrow or Sorrel."

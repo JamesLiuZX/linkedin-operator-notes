@@ -9,7 +9,7 @@ import { buildRun } from "../stage/run.js";
 import { createPaper } from "../stage/paper.js";
 import { mountReadout } from "../artifacts/readout.js";
 
-export function mount(body, { stage, data, ask, caseId = "tangelo" } = {}) {
+export function mount(body, { stage, data, ask, checks } = {}) {
   body.innerHTML = `
     <div class="demo demo-doc demo-readout">
       <div class="run" data-run></div>
@@ -44,10 +44,10 @@ export function mount(body, { stage, data, ask, caseId = "tangelo" } = {}) {
       { title: "Read the result", detail: `${pts(n.primary.diff)} points, interval ${(n.primary.ci[0] * 100).toFixed(1)} to ${(n.primary.ci[1] * 100).toFixed(1)}`, at: 7.8, dur: 3.0 },
       { title: "Read the guardrails", detail: `${guards.length - unclear} held · ${unclear} not settled`, at: 11.0, dur: 3.6, bad: unclear > 0 },
       { title: "Applied the fixed rule", detail: n.verdict.rule.split(":")[0], at: 14.8, dur: 1.5 },
-      { title: "Checked its own work", detail: "6 of 6 checks passed", at: 16.8, dur: 0.9 },
+      { title: "Checked its own work", detail: "The script decides. The model explains", at: 16.8, dur: 0.9 },
     ],
-    foot: "<b>The script decides.</b> The model only explains what it found.",
-    footAt: 17.9,
+    receipt: checks ? `${checks} checks passed` : "",
+    receiptAt: 17.8,
   });
 
   tl.chapter("Counts", 0);
@@ -63,19 +63,47 @@ export function mount(body, { stage, data, ask, caseId = "tangelo" } = {}) {
   pending.innerHTML = "<b>No decision yet</b><span>The test is checked before the result is read.</span>";
   verdict.appendChild(pending);
 
-  tl.show(paper.scroll.parentElement, 3.3, { dur: 0.6, y: 18 });
+  tl.land(paper.el, 3.1, { dur: 1.2 });
   tl.show($(".ro-ey"), 3.6, { dur: 0.4 });
   tl.show(verdict, 3.7, { dur: 0.5, y: 10 });
-  tl.show($(".ro-word"), 15.2, { dur: 0.5, scale: 0.86 });
+  tl.pop($(".ro-word"), 15.2, { dur: 0.7, from: 0.55 });
   tl.show($(".ro-why"), 15.5, { dur: 0.5, y: 8 });
   tl.hide(pending, 15.0, { dur: 0.25 });
 
   // 1. The three checks on the test itself.
-  $$("[data-check]").forEach((el, i) => {
+  const split = n.checks.srm.pass;
+  const cards = $$("[data-check]");
+  cards.forEach((el, i) => {
     const at = 4.3 + i * 1.05;
     tl.show(el, at, { dur: 0.45, y: 12 });
-    tl.to(el.querySelector("b"), { scale: [0.7, 1] }, { at: at + 0.3, dur: 0.45, ease: ease.back });
+    tl.pop(el.querySelector("b"), at + 0.3, { dur: 0.55, from: 0.4 });
   });
+  // A broken split is the whole story: it gets the stamp, and nothing under it can be read.
+  let voided = [];
+  if (!split && cards[0]) {
+    cards[0].style.position = "relative";
+    const stamp = document.createElement("b");
+    stamp.className = "demo-stamp sm fades";
+    stamp.textContent = "Split is broken";
+    stamp.style.cssText = "right:12px;top:10px";
+    cards[0].appendChild(stamp);
+    tl.stamp(stamp, 5.5, { rotate: -5 });
+    voided = [$('[data-part="primary"]'), $('[data-part="guardrails"]')].filter(Boolean);
+    voided.forEach((el) => {
+      el.classList.add("demo-void");
+      tl.to(el, { "--void": [0, 1] }, { at: 10.6, dur: 0.7, ease: ease.inOut });
+    });
+    const main0 = voided[0];
+    if (main0) {
+      main0.style.position = "relative";
+      const no = document.createElement("b");
+      no.className = "demo-stamp fades";
+      no.textContent = "Cannot be read";
+      no.style.cssText = "left:50%;top:50%;margin:-22px 0 0 -120px";
+      main0.appendChild(no);
+      tl.stamp(no, 10.5, { rotate: -7 });
+    }
+  }
 
   // 2. The main metric: the rates, then the difference, then how sure.
   const main = $('[data-part="primary"]');
@@ -105,6 +133,12 @@ export function mount(body, { stage, data, ask, caseId = "tangelo" } = {}) {
   const rest = $(".ro-numbers");
   if (rest) tl.show(rest, 16.6, { dur: 0.4, y: 0 });
 
+  paper.camera(tl, [
+    ...(split ? [] : [{ at: 4.7, to: () => cards[0], zoom: 1.3, dur: 0.8 }, { at: 7.1, to: null, dur: 0.6 }]),
+    { at: 8.5, to: () => main.querySelector(".ro-big") || main, zoom: 1.2, dur: 0.9 },
+    { at: 10.9, to: null, dur: 0.8 },
+  ]);
+
   const both = () => paper.topOf(guardBox) + guardBox.getBoundingClientRect().height - paper.topOf(main) + 40 <= paper.scroll.clientHeight;
   paper.follow(tl, [
     { at: 7.6, to: () => main, dur: 0.9, offset: 20 },
@@ -116,6 +150,10 @@ export function mount(body, { stage, data, ask, caseId = "tangelo" } = {}) {
 
   return {
     timeline: tl,
+    hint: "Change the counts and watch the verdict move",
+    destroy() {
+      paper.destroy();
+    },
     live() {
       // From here the scenarios and the counts are the reader's.
       replay.hidden = true;
