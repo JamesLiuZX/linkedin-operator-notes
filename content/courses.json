@@ -162,6 +162,26 @@
       "price": "Free",
       "url": "https://youtu.be/C_1QKZAcJjk",
       "why": "8 hours on agent architectures, the Claude APIs and SDKs, tool use and MCP servers, context engineering, and defending against prompt injection and data leaks. Prepares for the Claude Certified Developer Foundations exam. Posted 24 Sep 2026."
+    },
+    {
+      "added": "2026-11-22",
+      "digest": "2026-11-22-before-the-agent-runs",
+      "title": "CS 329Z: Engineering AI Agents (Stanford, Fall 2026)",
+      "provider": "Stanford University, Diyi Yang, Michael Ryan and John Yang",
+      "platform": "YouTube",
+      "price": "Free",
+      "url": "https://cs329z.stanford.edu/",
+      "why": "Building agents from scratch: foundations, RAG, tool use, frameworks, design patterns, memory, multi-agent systems and optimization across the 9 lecture videos linked so far. The evaluation, LLM-as-judge and agent safety lectures have slides up but no video yet. Assumes an NLP course or equivalent background."
+    },
+    {
+      "added": "2026-11-22",
+      "digest": "2026-11-22-before-the-agent-runs",
+      "title": "CMU AI Agents 2026: 13. Agentic Safety",
+      "provider": "Carnegie Mellon University, Graham Neubig (a lecture from CMU 11-768)",
+      "platform": "YouTube",
+      "price": "Free",
+      "url": "https://www.youtube.com/watch?v=Mbonnq-PUGM",
+      "why": "One lecture on making agentic systems safe, from the CMU course picked on 6 Nov, posted 16 Oct 2026. Watch it before you write the allow list for an agent that can use a computer."
     }
   ]
 }

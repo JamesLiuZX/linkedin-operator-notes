@@ -546,6 +546,25 @@
       "notes": "AI digest (DIGEST.md). Attach cover.png to tweet 1. Tweets come from the post's X thread section."
     },
     {
+      "id": "dg-2026-11-22-li",
+      "week": 16, "date": "2026-11-22", "time": "09:00", "channel": "linkedin",
+      "kind": "atom", "pillar": "agents", "asset": "posts/dg-2026-11-22-before-the-agent-runs.md",
+      "title": "AI digest: AI agents found and exploited a zero-day in about 11 minutes",
+      "hook": "AI agents found and exploited a zero-day in about 11 minutes.",
+      "status": "ready",
+      "linkInComment": "/digest/2026-11-22-before-the-agent-runs",
+      "notes": "AI digest (DIGEST.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment."
+    },
+    {
+      "id": "dg-2026-11-22-x",
+      "week": 16, "date": "2026-11-22", "time": "21:00", "channel": "x",
+      "kind": "thread", "pillar": "agents", "asset": "posts/dg-2026-11-22-before-the-agent-runs.md",
+      "title": "AI digest thread: attackers' AI agents exploited a zero-day in about 11 minutes",
+      "hook": "AI agents found and exploited a zero-day on their own in about 11 minutes, Amazon says.",
+      "status": "ready",
+      "notes": "AI digest (DIGEST.md). Attach cover.png to tweet 1. Tweets come from the post's X thread section."
+    },
+    {
       "id": "hb-interview-synthesis-li",
       "week": 17, "date": "2026-11-24", "time": "09:00", "channel": "linkedin",
       "kind": "atom", "pillar": "growth", "asset": "posts/hb-interview-synthesis.md",
