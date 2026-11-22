@@ -503,3 +503,16 @@ Figures quoted in the handbook's weekly issues (`hub/content/issues/`) and its l
 | Checks run by a script across the six skills | 34 (6 + 5 + 5 + 6 + 6 + 6), counted from the skills' own checkers | 18 Nov 2026 | `npm run hub:check` in this repository |
 | Tests on the experiment readout's statistics | 42 | 18 Nov 2026 | `skills/experiment-readout/scripts/test_ab_stats.py` |
 | Quotes matched and rejected in the fictional interview synthesis example | 36 matched, 1 rejected, 8 invented transcripts | 18 Nov 2026 | `skills/interview-synthesis/examples/tangelo/RUN.md` |
+
+### 2026-11-22: version 2, three cases
+
+Every company, person and number inside the three cases (Tangelo, Larkspur, Vireo) is invented and is labelled as invented where it appears. These rows are the facts about the test runs themselves.
+
+| Fact | Number | Window | Source |
+|---|---|---|---|
+| Fresh-run tests on the two new cases | 10 (5 skills on Larkspur, 5 on Vireo) | 19 Nov 2026 | the `RUN.md` in `skills/<skill>/examples/larkspur/` and `skills/<skill>/examples/vireo/` |
+| Verdicts of the three experiment readouts | extend (Tangelo), ship (Larkspur), do not trust (Vireo) | 18 and 19 Nov 2026 | `readout.json` in `skills/experiment-readout/examples/<case>/` |
+| Lift the Vireo readout refused to read | 8.0 points, with 31,204 and 28,975 hosts against a planned even split | 19 Nov 2026 | `skills/experiment-readout/examples/vireo/readout.numbers.json` |
+| Quotes matched and rejected in the Larkspur synthesis | 36 matched, 1 rejected, 8 invented transcripts | 19 Nov 2026 | `skills/interview-synthesis/examples/larkspur/RUN.md` |
+| Checks passed by the two hand-built prototypes | 6 of 6 each | 21 and 22 Nov 2026 | `node skills/flagged-prototype/scripts/check.mjs` on `examples/larkspur/spec.js` and `examples/vireo/spec.js` |
+| Worked outputs on the site | 18 (6 workflows on 3 cases) | 22 Nov 2026 | `skills/*/examples/{tangelo,larkspur,vireo}/` |

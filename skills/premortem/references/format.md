@@ -34,9 +34,9 @@ One JSON object. The examples come from an invented plan for a library app. They
 ```
 
 - `failedOn` is the imagined date of the post-mortem, about six months after launch.
-- `inputs` lists the evidence you were given. Risks cite it by `id`.
+- `inputs` lists the evidence you were given. Risks cite it by `id`. The plan itself may be an input, with its own `id`.
 - `top` lists the IDs of the three to five risks that carry tripwires, worst first.
-- `cut` is needed only when you left risks out to stay within twelve. Say which.
+- `cut` is needed only when you left risks out to stay within twelve. Say which. Otherwise leave it out or empty.
 
 ## A risk
 
@@ -82,7 +82,7 @@ Required for every risk in `top`. Leave it out, or set it to `null`, for the oth
 | Field | Rule |
 |---|---|
 | `metric` | Something the team measures today |
-| `threshold` | Contains a number |
+| `threshold` | Contains a number. Without a baseline it is your proposal: start it with "Proposed:" |
 | `check` | A date, `YYYY-MM-DD`, later than `asOf` (the day the pre-mortem was written) |
 | `owner` | A role or a name |
 

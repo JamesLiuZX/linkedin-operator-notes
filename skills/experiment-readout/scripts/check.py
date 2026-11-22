@@ -37,6 +37,30 @@ ISO_DATE_RE = re.compile(r"\b\d{4}-\d{2}-\d{2}\b")
 SMALL_WORDS = {"with", "that", "this", "from", "more", "than", "less", "have", "were", "been", "before", "after"}
 
 
+def sentence_count(text):
+    """Sentences in the summary. Decimals such as 1.7 do not end one."""
+    guarded = re.sub(r"(\d)\.(\d)", r"\1<dot>\2", str(text or "").strip())
+    return len([p for p in re.split(r"(?<=[.!?])\s+(?=[A-Z0-9\"'(])", guarded) if p.strip()])
+
+
+def warnings_for(summary, truth):
+    """Things worth a look that are not failures."""
+    out = []
+    n = sentence_count(summary)
+    if summary.strip() and not 2 <= n <= 4:
+        out.append(f"the summary has {n} sentences. The skill asks for two to four.")
+    for g in truth.get("guardrails") or []:
+        ci, tol, harm = g.get("ci"), g.get("tolerance"), g.get("harm")
+        if isinstance(ci, list) and len(ci) == 2 and isinstance(tol, (int, float)) and harm in ("up", "down"):
+            worst = ci[1] if harm == "up" else -ci[0]
+            if abs(worst - tol) <= 0.001:
+                out.append(f"\"{g.get('name')}\": the harmful end of the interval is within 0.1 points of the tolerance. Put it in the next steps.")
+    test = (truth.get("input") or {}).get("test") or {}
+    if not test.get("counted_on"):
+        out.append("test.counted_on is not set. If the metric has a window, say in the summary or next steps that the window was not confirmed.")
+    return out
+
+
 def close(a, b):
     return math.isclose(a, b, rel_tol=1e-9, abs_tol=1e-12)
 
@@ -164,7 +188,7 @@ def check(data):
     if not isinstance(numbers, dict) or not isinstance(numbers.get("input"), dict):
         for key, _ in CHECKS:
             errors[key].append("numbers is missing, or has no input to recompute from")
-        return report(errors, None)
+        return report(errors, None, [])
 
     # 1. Recompute and compare.
     fresh = None
@@ -220,11 +244,11 @@ def check(data):
             what = "stopped early" if duration.get("stopped_early") else "did not run whole weeks"
             errors["early"].append(f"the test {what}, and neither the summary nor the next steps say so")
 
-    return report(errors, truth)
+    return report(errors, truth, warnings_for(summary, truth))
 
 
-def report(errors, truth):
-    out = {"checks": [{"id": key, "name": name, "pass": not errors[key], "errors": errors[key]} for key, name in CHECKS]}
+def report(errors, truth, warnings):
+    out = {"warnings": warnings, "checks": [{"id": key, "name": name, "pass": not errors[key], "errors": errors[key]} for key, name in CHECKS]}
     if truth:
         primary = truth.get("primary") or {}
         out["decision"] = (truth.get("verdict") or {}).get("decision")
@@ -267,6 +291,10 @@ def main(argv):
             for e in c["errors"]:
                 print(f"        {e}")
         print("  ----  The counts are the right counts (yours to judge)")
+        if result["warnings"]:
+            print("Warnings:")
+            for w in result["warnings"]:
+                print(f"  - {w}")
         print(f"{len(result['checks']) - len(failed)} of {len(result['checks'])} scripted checks passed")
     return 1 if failed else 0
 

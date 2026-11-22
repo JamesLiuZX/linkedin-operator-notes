@@ -38,19 +38,19 @@ If the user gives a topic and nothing else, ask for these three in one message, 
 1. **List problems before solutions.** From the evidence, write each problem as a user meets it: an observable situation and what it costs them. No fixes yet.
 2. **Group into two to five sections** by where the problem lives, usually a screen or a step of the journey. Number sections 1 to N and points N.n. Once the user has seen an ID, it never changes.
 3. **Write each point.** Field by field:
-   - `title`: the problem as a statement, under 12 words. It never opens with a building verb (Add, Build, Create, Implement, Introduce, Enable, Improve, Support, Allow, Redesign).
+   - `title`: the problem as a statement, under 12 words. It never opens with a building verb (Add, Build, Create, Implement, Introduce, Enable, Improve, Support, Allow, Redesign). The checker knows more, such as Launch, Make, Develop and Ship, so open with the problem.
    - `problem`: one or two sentences. What happens today and its cost. Use counts from research as counts ("5 of 8 customers"). Never turn fewer than 30 people into a percentage.
-   - `change`: one or two sentences. The concrete move on a screen. When the wording is the change, quote the exact words the user would read.
+   - `change`: one or two sentences. The concrete move on a screen. When the wording is the change, quote the exact words the user would read, in quote marks. The checker counts a quoted passage as one phrase.
    - `why`: optional, one sentence, only for a choice a reviewer would otherwise question.
    - `constraint`: when one applies. Label it by kind ("Risk from the pre-mortem", "Dependency", "Needs legal review", "Rule") and say what the design does about it or who has to sign off. A constraint is never a footnote.
-   - `evidence`: one to four items in the order today, reference, proposed. Each has a tag, a label, a one-line caption and a screen. A screen is an image the user supplied, or a schematic built from blocks (see the format reference). Captions state what the screen shows, not that it is good.
-   - `sources`: which inputs the point rests on, with a pointer into each ("S:theme 3, 5 of 8").
-   - `know`: the baseline to measure, what should move, and the signal that means stop. If the baseline has not been measured, say that.
-4. **Fill the priority table.** One row per point: what it moves, effort as S, M or L, what it depends on with a level (`ok`, `amb` or `no`), and the smallest first step.
-5. **Write the rollout.** Rows of when, which points, and why then. Every point appears exactly once. The first row should be small enough to ship on its own, and its reason should say why these points belong together.
+   - `evidence`: one to four items in the order today, reference, proposed. Each has a tag, a label, a one-line caption and a screen. A screen is an image the user supplied, or a schematic built from blocks (see the format reference). The checker fails a block the page would leave out because it does not fit. Captions state what the screen shows, not that it is good.
+   - `sources`: which inputs the point rests on, with a pointer into each ("S:theme 3, 5 of 8"). Write the pointer in words, never as a bare code such as T3, which clashes with a source coded T. The checker cannot test a pointer, so check each against the input by hand.
+   - `know`: the baseline to measure, what should move, and the signal that means stop. If the baseline has not been measured, say that. `expect` is a direction, or a figure marked as an estimate. A decision threshold, such as "stop if it falls 2 points", belongs in `stop`.
+4. **Fill the priority table.** One row per point: what it moves, effort as S, M or L, what it depends on with a level (`ok`, `amb` or `no`), and the smallest first step. The first step can be a measurement, not a build. Effort is your estimate, not engineering's, so say that in the caveats. Leave out `screen` on a point when there is no prototype.
+5. **Write the rollout.** Rows of when, which points, and why then. Every point appears exactly once. If the brief plans an experiment, put its design in the next steps and any flaw in its guardrails in the caveats. The first row should be small enough to ship on its own, and its reason should say why these points belong together.
 6. **Add next steps and caveats.** Who has to do what before work starts, by point ID. State plainly what is estimated, unmeasured or fictional.
-7. **Check.** Run `python3 scripts/check.py prd.json`. Fix every error. Keep the warnings to report.
-8. **Build the page.** Run `python3 scripts/build.py prd.json prd.html`. Without Python, copy `assets/template.html`, replace the JSON inside the element with id `prd-data` by hand, and write any `</` in the text as `<\/`.
+7. **Check.** Run `python3 <this skill>/scripts/check.py prd.json`. Fix every error. Keep the warnings to report.
+8. **Build the page.** Run `python3 <this skill>/scripts/build.py prd.json prd.html`. Without Python, copy `assets/template.html`, replace the JSON inside the element with id `prd-data` by hand, and write any `</` in the text as `<\/`.
 
 ## Writing rules
 

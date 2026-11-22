@@ -108,6 +108,16 @@ Rules for every session:
     `scripts/hub-check.mjs` is its gate and is part of `npm run check`.
     `scripts/hub-media.mjs` renders the media. `scripts/weekly-send.mjs` hands
     an issue to the email service.
+  - Three worked cases, one per domain (James, 2026-11-19: "use cases by
+    domains, maybe in tabs"): `CASES` in `hub/site.config.mjs`. Each workflow's
+    `meta.json` has one `cases` entry per case, each output lives in
+    `skills/<skill>/examples/<case>/`, and each case has a page from
+    `hub/content/cases/<case>.json`. A new example folder is picked up by the
+    next build.
+  - The site is light only. James said version 1 "looks overly dark"
+    (2026-11-19), and the session that redesigned it read that as "no dark
+    theme". That reading is the session's, not his words, so ask him before
+    adding one back.
   - The older notes app is still served. Its home moved to `/archive`.
   - Launch posts are `posts/hb-*.md`, with rows on the schedule.
 

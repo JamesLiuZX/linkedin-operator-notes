@@ -4,12 +4,12 @@ A PRD from this skill is not handed over until these hold. Six are checked by `s
 
 | # | Check | Who checks | What fails it |
 |---|---|---|---|
-| 1 | Every point has a problem, a change and evidence | Script | A point with any of the three empty |
+| 1 | Every point has a problem, a change and evidence | Script | A point with any of the three empty, or a schematic screen with a block that does not fit and would be left out |
 | 2 | IDs are unique and used consistently | Script | A duplicate ID, an ID in a table that is not a point, a point missing from the priority table or the rollout, a point in two rollout rows |
 | 3 | Titles state problems | Script | A title that opens with a building verb such as Add, Build or Improve |
 | 4 | Every point says how you would know | Script | A missing baseline, expected movement or stop signal |
-| 5 | Every figure has a source or is marked as an estimate | Script | A size in the expected movement (a percentage, points, a multiple) with no "estimate" beside it. A percentage in a problem is flagged as a warning to verify |
-| 6 | Problem and Change stay short | Script | More than two sentences in either |
+| 5 | Every figure has a source or is marked as an estimate | Script | A size in the expected movement (a percentage, points, a multiple) with no "estimate" beside it. A percentage in a problem, or a size in a baseline, is flagged as a warning to verify |
+| 6 | Problem and Change stay short | Script | More than two sentences in either. A quoted passage counts as one phrase |
 | 7 | The first release is small enough to ship | You | Read the first rollout row and ask what you would cut |
 
 ## Why these seven
@@ -24,7 +24,7 @@ A PRD from this skill is not handed over until these hold. Six are checked by `s
 
 ## What the checker does not see
 
-- Whether the evidence actually supports the point. It checks that a source is cited, not that the citation is fair.
+- Whether the evidence actually supports the point. It checks that a source is cited, not that the citation is fair, and it does not test that a pointer such as "theme 3, 5 of 8" is true.
 - Whether the change solves the problem.
 - Organisational reality: who has to agree, and in what order.
 

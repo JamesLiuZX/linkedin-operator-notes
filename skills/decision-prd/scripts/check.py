@@ -25,6 +25,93 @@ ID_RE = re.compile(r"^(\d+)\.(\d+)$")
 SIZE_RE = re.compile(r"\d+(?:\.\d+)?\s?(?:%|per ?cent|points?\b|pp\b|x\b)|\bby\s+\d|[+\u2212-]\s?\d", re.I)
 PERCENT_RE = re.compile(r"\d\s?%|\bper ?cent\b", re.I)
 
+# Block heights and widths mirror the page template, so a block the page would drop is found here.
+BLOCK_H = {
+    "bar": 30, "title": 26, "search": 24, "chips": 20, "banner": 40, "card": 46, "row": 24, "grid": 62,
+    "slots": 26, "text": 16, "gap": 8, "cta": 28, "field": 36, "toggle": 26, "people": 26, "kpi": 40,
+    "check": 22, "media": 64, "progress": 26,
+}
+OVERLAYS = ("tabs", "sheet", "modal", "toast")
+
+
+def _block(b):
+    if isinstance(b, (list, tuple)):
+        out = {"t": b[0] if b else None, "l": b[1] if len(b) > 1 else None}
+        if len(b) > 2 and isinstance(b[2], dict):
+            out.update(b[2])
+        return out
+    return b if isinstance(b, dict) else {}
+
+
+def _per_line(width, size):
+    return max(3, int(width / (size * 0.54)))
+
+
+def _wrapped(text, width, limit):
+    lines, cur = 0, ""
+    for word in str(text or "").split():
+        if cur and len(cur) + 1 + len(word) <= width:
+            cur += " " + word
+        else:
+            lines += 1 if cur else 0
+            cur = word
+    lines += 1 if cur else 0
+    return min(lines, limit)
+
+
+def _height(b, width):
+    if b.get("h"):
+        return b["h"]
+    t = b.get("t")
+    if t == "para":
+        return _wrapped(b.get("l"), _per_line(width, b.get("size") or 7.6), b.get("lines") or 4) * 10.5 + 6
+    if t == "chat":
+        return _wrapped(b.get("l"), _per_line(width * 0.78 - 14, 7.4), b.get("lines") or 4) * 10 + 16
+    if t == "table":
+        return 16 + len(b.get("rows") or []) * 15 + 6
+    if t == "cols":
+        split = b.get("split") or 0.5
+        left = sum(_height(_block(x), width * split - 5) for x in b.get("left") or [])
+        right = sum(_height(_block(x), width * (1 - split) - 5) for x in b.get("right") or [])
+        return max(left, right) + 2
+    if t == "card" and b.get("sub2"):
+        return 58
+    return BLOCK_H.get(t, 20)
+
+
+def _drops(blocks, width, y, limit, out):
+    for raw in blocks:
+        b = _block(raw)
+        if b.get("t") in OVERLAYS:
+            continue
+        h = _height(b, width)
+        if y + h > limit:
+            out.append(b)
+            break
+        if b.get("t") == "cols":
+            split = b.get("split") or 0.5
+            _drops([x for x in b.get("left") or []], width * split - 5, y, limit, out)
+            _drops([x for x in b.get("right") or []], width * (1 - split) - 5, y, limit, out)
+        y += h
+
+
+def dropped_blocks(screen):
+    """Blocks the page leaves out because they do not fit the frame. Empty when everything fits."""
+    blocks = screen.get("blocks") or []
+    if not blocks:
+        return []
+    desktop = screen.get("frame") == "desktop"
+    tabs = any(_block(b).get("t") == "tabs" for b in blocks)
+    if desktop:
+        width = 372 - 76 - 24 if screen.get("nav") else 372 - 24
+        limit = 248 - (34 if tabs else 6)
+    else:
+        width, limit = 160, 368 - (34 if tabs else 6)
+    out = []
+    _drops(blocks, width, 26, limit, out)
+    return out
+
+
 CHECKS = [
     ("parts", "Every point has a problem, a change and evidence"),
     ("ids", "IDs are unique and used consistently"),
@@ -38,6 +125,8 @@ CHECKS = [
 def sentences(text):
     """Count sentences. A sentence ends at . ! or ? followed by a space and a capital or a quote."""
     text = (text or "").strip()
+    # An exact quotation is one phrase, however many sentences it holds.
+    text = re.sub(r'"[^"]*"|\u201c[^\u201d]*\u201d', "QUOTE", text)
     if not text:
         return 0
     # Protect decimals and common abbreviations so they are not read as sentence ends.
@@ -55,7 +144,10 @@ def check(data):
     if not str(doc.get("title", "")).strip():
         errors["parts"].append("doc.title is empty")
 
-    source_ids = {str(s.get("id")) for s in data.get("sources") or []}
+    source_list = [str(s.get("id")) for s in data.get("sources") or []]
+    source_ids = set(source_list)
+    if len(source_ids) != len(source_list):
+        errors["ids"].append("two sources share an ID")
     sections = data.get("sections") or []
     if not 2 <= len(sections) <= 5:
         warnings.append(f"{len(sections)} sections. Two to five reads best.")
@@ -94,6 +186,10 @@ def check(data):
                 screen = e.get("screen") or {}
                 if not screen.get("img") and not screen.get("blocks"):
                     errors["parts"].append(f"{pid}: an evidence item has no screen (give img or blocks)")
+                for b in dropped_blocks(screen):
+                    errors["parts"].append(
+                        f"{pid}: the {b.get('t')} block \"{str(b.get('l') or '')[:30]}\" does not fit its screen and the page would leave it out. Remove a block or shorten the text."
+                    )
                 if not str(e.get("caption", "")).strip():
                     warnings.append(f"{pid}: an evidence item has no caption")
             order = [TAGS.index(e["tag"]) for e in evidence if e.get("tag") in TAGS]
@@ -107,6 +203,10 @@ def check(data):
                 errors["parts"].append(f"{pid}: cites no source")
             for ref in refs:
                 code = str(ref).split(":", 1)[0]
+                tail = str(ref).split(":", 1)[1] if ":" in str(ref) else ""
+                m_ptr = re.fullmatch(r"\s*([A-Z])\d+\s*", tail)
+                if m_ptr and m_ptr.group(1) in source_ids:
+                    warnings.append(f"{pid}: the pointer {tail.strip()!r} looks like another source's code. Write it in words, such as 'theme 3', so it cannot be mistaken for one.")
                 if code not in source_ids:
                     errors["ids"].append(f"{pid}: cites source {code!r}, which is not in sources")
             if len({str(r).split(':', 1)[0] for r in refs}) == 1:
@@ -128,6 +228,8 @@ def check(data):
             expect = str(know.get("expect", ""))
             if SIZE_RE.search(expect) and "estimate" not in expect.lower():
                 errors["figures"].append(f"{pid}: the expected movement states a size and is not marked as an estimate")
+            if SIZE_RE.search(str(know.get("baseline", ""))) and "estimate" not in str(know.get("baseline", "")).lower():
+                warnings.append(f"{pid}: the baseline states a size. Confirm it is measured and sourced, or mark it as an estimate. A target belongs in stop.")
             if PERCENT_RE.search(str(p.get("problem", ""))):
                 warnings.append(f"{pid}: a percentage in the problem. Check it has a source and a denominator of 30 or more.")
 

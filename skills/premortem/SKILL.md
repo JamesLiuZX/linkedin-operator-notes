@@ -45,13 +45,13 @@ A list of worries is easy to produce and changes nothing. The output of this ski
 4. **Rate likelihood and impact** as low, medium or high, each with a one-line reason. Evidence moves likelihood. A contradicted risk is rarely high.
 5. **Rank, and cap the list.** Twelve risks at most. Choose the top three to five by likelihood and impact together, and list their IDs in `top`, worst first.
 6. **Give every top risk a tripwire:**
-   - `metric`: one the team already has. If a risk deserves a tripwire and nothing measurable exists, it cannot be a top risk. Leave it out of `top` and say in its mitigation what would have to be measured.
-   - `threshold`: with a number in it. When there is no baseline, make it relative: "Rises more than 2 points above its level in the four weeks before launch."
-   - `check`: a date after today, soon enough to act on.
+   - `metric`: one the team already has. Copy its name from the plan's list of what can be measured. If you slice it (for one group) or combine two, say so in the metric and tell the user the plan has to support that. If a risk deserves a tripwire and nothing measurable exists, it cannot be a top risk. Leave it out of `top` and say in its mitigation what would have to be measured.
+   - `threshold`: with a number in it. When there is no baseline, make it relative: "Rises more than 2 points above its level in the four weeks before launch." A relative threshold is your proposal, not a fact from the plan. Start it with "Proposed:" so the owner knows to set it.
+   - `check`: a date after today, soon enough to act on. A date before launch has to be a test or pilot: say which in `test`, and write down any pilot you assumed. After launch, pick the first date the metric can show the problem. `failedOn` is a round date about six months after launch.
    - `owner`: a role or a name.
 7. **Say what would change the plan.** For each top risk, a `mitigation` that changes scope or design, and the cheapest `test` that would settle the risk before launch.
-8. **Check.** Run `python3 scripts/check.py premortem.json`. Fix every failure.
-9. **Build the page.** Run `python3 scripts/build.py premortem.json premortem.html`. Without Python, copy `assets/template.html`, replace the JSON inside the element with id `premortem-data` by hand, and write any `</` in the text as `<\/`.
+8. **Check.** Run `python3 <this skill>/scripts/check.py premortem.json`. Fix every failure.
+9. **Build the page.** Run `python3 <this skill>/scripts/build.py premortem.json premortem.html`. Without Python, copy `assets/template.html`, replace the JSON inside the element with id `premortem-data` by hand, and write any `</` in the text as `<\/`.
 
 ## Rules that keep it honest
 
@@ -67,7 +67,8 @@ Tell the user:
 
 - the two files, and the count of risks by area;
 - the result of each check;
-- the top risks in order, each in one line with its tripwire;
+- the top risks in order, each in one line with its tripwire, and which thresholds are your proposals and which metrics are sliced or combined;
+- the serious risks left out of `top` because nothing measurable covers them, each with what would have to be measured. The checker lists them;
 - which risks are guesses, with no evidence either way;
 - which tripwire dates to put in a calendar today;
 - that `decision-prd` can turn the top risks into constraints on the points they affect.

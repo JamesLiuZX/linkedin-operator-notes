@@ -107,7 +107,7 @@ Stage IDs are `S1`, `S2` and so on. `missing` is optional and lists apps that ha
 
 - A screen has either `img` (a path, a link or a data URI) or `blocks` (a schematic, described below).
 - At most three notes. Each is one sentence, under 30 words, and names something on the screen.
-- When a screen arrives as `blocks`, keep the blocks as given. You may highlight at most one block per screen, the one its most important note is about, by adding `"hi": true` to that block's options. If the block has no options object, add one as its third element. Highlighting is optional.
+- When a screen arrives as `blocks`, keep the blocks as given. You may highlight at most one block per screen, the one its most important note is about, by adding `"hi": true` to that block's options. If the block has no options object, add one as its third element, with an empty label second: `["gap", "", {"hi": true}]`. `hi` on a `cols` block outlines the whole row. It is never drawn on `tabs`, `sheet`, `modal` or `toast`, so pick another block. `check.py` fails a screen with more than one. Highlighting is optional.
 
 ### Schematic blocks
 

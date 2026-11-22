@@ -19,6 +19,8 @@ LEVELS = ("low", "medium", "high")
 STATUSES = ("supported", "contradicted", "unknown")
 MAX_RISKS = 12
 MIN_STORY, MAX_STORY = 25, 90
+# A threshold phrased against a level the plan never gives is the writer's own number.
+RELATIVE_RE = re.compile(r"\btimes\b|\bx\b|\u00d7|\bits (?:weekly |usual )?level\b|\bbaseline\b|\bbefore launch\b|\bnormal\b|\busual\b", re.I)
 
 CHECKS = [
     ("tripwires", "Every top risk has a complete tripwire"),
@@ -67,6 +69,9 @@ def check(data):
                 errors["tripwires"].append(f"{rid}: the tripwire has no {field}")
         if str(t.get("threshold", "")).strip() and not re.search(r"\d", str(t.get("threshold"))):
             errors["tripwires"].append(f"{rid}: the threshold has no number in it")
+        thr = str(t.get("threshold", ""))
+        if RELATIVE_RE.search(thr) and not re.search(r"propos|to be confirmed|owner sets|owner to set", thr, re.I):
+            warnings.append(f"{rid}: the threshold \"{thr}\" is relative. If the plan gives no baseline it is your own number: start it with \"Proposed:\" and ask the owner to set it.")
         when = parse_date(t.get("check"))
         if str(t.get("check", "")).strip() and when is None:
             errors["tripwires"].append(f"{rid}: the check date {t.get('check')!r} is not YYYY-MM-DD")
@@ -79,6 +84,8 @@ def check(data):
         rid = str(r.get("id"))
         if r.get("likelihood") == "high" and r.get("impact") == "high" and rid not in top:
             warnings.append(f"{rid} is rated high on both and is not in top, so it has no tripwire")
+        elif r.get("impact") == "high" and r.get("likelihood") == "medium" and rid not in top:
+            warnings.append(f"{rid} has high impact, medium likelihood and is not in top, so it has no tripwire. Say so when you hand over.")
 
     # 2. Evidence labels.
     for r in risks:
@@ -144,6 +151,8 @@ def check(data):
         "top": top,
         "byArea": by_area,
         "guesses": guesses,
+        "tripwireMetrics": [{"id": rid, "metric": str(((by_id.get(rid) or {}).get("tripwire") or {}).get("metric", ""))} for rid in top],
+        "outsideTop": [str(r.get("id")) for r in risks if r.get("impact") == "high" and str(r.get("id")) not in top],
         "checks": [{"id": key, "name": name, "pass": not errors[key], "errors": errors[key]} for key, name in CHECKS],
         "warnings": warnings,
     }
@@ -176,6 +185,10 @@ def main(argv):
             for e in c["errors"]:
                 print(f"        {e}")
         print("  ----  Tripwires use metrics you have (yours to judge)")
+        for m in report["tripwireMetrics"]:
+            print(f"        {m['id']}: {m['metric']}  (is this on the plan's list, and can it be split this way?)")
+        if report["outsideTop"]:
+            print(f"        High impact and not in top, so no tripwire: {', '.join(report['outsideTop'])}. Say so when you hand over.")
         if report["warnings"]:
             print("Warnings:")
             for w in report["warnings"]:

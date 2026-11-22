@@ -5,10 +5,10 @@ A synthesis from this skill is not handed over until these hold. Five are checke
 | # | Check | Who checks | What fails it |
 |---|---|---|---|
 | 1 | Every quote exists in a transcript | Script | A quote not found, word for word, in the lines of the participant it is attributed to, or one shorter than six words. With `--fix` such quotes are removed and listed, and the check then reads "PASS (after removing N)" |
-| 2 | Counts are people | Script | A participant in `support` with no verified quote in that theme, or a quoted participant missing from `support` |
+| 2 | Counts are people | Script | A participant in `support` with no verified quote in that theme, a quoted participant missing from `support`, or a participant with more than two quotes in one theme |
 | 3 | No percentages from small samples | Script | A percentage in any text you wrote (themes, unprompted topics, requests, quiet notes, unknowns) when there are fewer than 30 participants |
 | 4 | Every theme has a counter-voice, or says none was found | Script | A theme with neither a counter quote nor a counter note |
-| 5 | Every participant is accounted for | Script | A participant who supports fewer than two themes and is not listed under `quiet` |
+| 5 | Every participant is accounted for | Script | A participant who supports fewer than two themes and is not listed under `quiet`. The note should say why the person is quiet |
 | 6 | The themes answer the research question | You | Read the top three themes against the decision you have to make |
 
 ## Why these six

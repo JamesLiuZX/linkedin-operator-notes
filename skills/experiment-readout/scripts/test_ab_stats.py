@@ -406,5 +406,41 @@ class TangeloExample(unittest.TestCase):
         self.assertEqual(committed, json.loads(json.dumps(self.r)))
 
 
+class CheckWarnings(unittest.TestCase):
+    """The warnings check.py prints. They never change a pass or a fail."""
+
+    def setUp(self):
+        import check as chk
+        self.chk = chk
+
+    def truth(self, **kw):
+        return ab.readout(make(**kw))
+
+    def test_summary_length(self):
+        t = self.truth()
+        self.assertTrue(any("sentences" in w for w in self.chk.warnings_for("One. Two. Three. Four. Five.", t)))
+        self.assertFalse(any("sentences" in w for w in self.chk.warnings_for("It rose 1.7 points. Nothing broke.", t)))
+
+    def test_decimals_do_not_end_a_sentence(self):
+        self.assertEqual(self.chk.sentence_count("It rose 1.7 points. Nothing broke."), 2)
+
+    def test_counted_on_warning(self):
+        t = self.truth()
+        self.assertTrue(any("counted_on" in w for w in self.chk.warnings_for("A. B.", t)))
+        data = make()
+        data["test"]["counted_on"] = "2026-01-30"
+        self.assertFalse(any("counted_on" in w for w in self.chk.warnings_for("A. B.", ab.readout(data))))
+
+    def test_guardrail_close_to_tolerance(self):
+        # Interval top end lands within 0.1 points of the tolerance.
+        base = self.truth(guardrails=[rail((100, 130), "up", 0.5)])
+        g = base["guardrails"][0]
+        tol = round(g["ci"][1], 4)
+        close = self.truth(guardrails=[rail((100, 130), "up", tol)])
+        far = self.truth(guardrails=[rail((100, 130), "up", 0.5)])
+        self.assertTrue(any("within 0.1 points" in w for w in self.chk.warnings_for("A. B.", close)))
+        self.assertFalse(any("within 0.1 points" in w for w in self.chk.warnings_for("A. B.", far)))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)

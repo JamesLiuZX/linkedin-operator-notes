@@ -53,7 +53,7 @@ One JSON object. You write everything except the fields marked "added by the scr
 - `name` is a behaviour or a need, under ten words. Not a feature.
 - `summary` is one or two sentences in your words. No percentages.
 - `support` lists the participants who expressed the theme. Each needs at least one quote in `quotes`, and at most two.
-- `counter` is the clearest quote from someone who said the opposite, or for whom it was not a problem. A counter-voice is never also in `support`. Name any others in `counterNote`. If there was nobody, set `counter` to `null` and say so in `counterNote`, for example "Nobody described the opposite."
+- `counter` is the clearest quote from someone who said the opposite, or for whom it was not a problem. A counter-voice is never also in `support` of the same theme. The same person can be the counter-voice on one theme and a supporter of another. The script checks the two-quote limit. Name any others in `counterNote`. If there was nobody, set `counter` to `null` and say so in `counterNote`, for example "Nobody described the opposite."
 - `led` is `true` when the theme only came up because the interviewer asked about it directly. Leave it out or `false` otherwise.
 - `so` is one sentence on what the theme means for the decision.
 

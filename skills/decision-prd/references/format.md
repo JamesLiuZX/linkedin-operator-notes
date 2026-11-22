@@ -69,7 +69,7 @@ Use two to five sections. `n` starts at 1 and has no gaps.
   "sources": ["T:stage 1", "S:theme 1, 7 of 8"],
   "know": {
     "baseline": "What to measure before the change. Say if it has not been measured.",
-    "expect": "What should move, as a direction. A figure only if it is marked as an estimate.",
+    "expect": "What should move, as a direction. A figure only if it is marked as an estimate. A decision threshold goes in stop.",
     "stop": "The signal that means stop."
   }
 }
@@ -77,7 +77,8 @@ Use two to five sections. `n` starts at 1 and has no gaps.
 
 - `id` is the section number, a dot, and a counter: `2.3`. It must be unique.
 - `screen` is optional: the name of the prototype screen that shows this point.
-- `sources` entries are `CODE` or `CODE:pointer`. The code must match a source.
+- `sources` entries are `CODE` or `CODE:pointer`. The code must match a source. Write the pointer in words ("theme 3"), not as a code such as `T3`, and give every source a code no other source shares.
+- A point may have more than one proposed screen. `screen` is only for a prototype.
 - If `know.expect` states a size (a percentage, points or a multiple), it must also contain the word "estimate", or the checker rejects it. A direction with no size is always fine.
 
 ## Evidence and screens
@@ -130,7 +131,7 @@ A screen is a phone, 180 by 368, unless it says otherwise. For a desktop product
 
 Any block may also carry `hi: true` (a highlight around it), `pin: "1.1"` (a numbered marker) or `dim: true` (faded).
 
-Blocks that do not fit are left out, so keep the heights within 300 on a phone with tabs, 330 without, and 215 on a desktop. A label that is too long for its width is cut with an ellipsis.
+Blocks that do not fit are left out, so keep the heights within 300 on a phone with tabs, 330 without, and 215 on a desktop. `check.py` adds the heights up the way the page does and fails a screen that loses a block. A `table` is 22 plus 15 per row, a `para` is 10.5 per line plus 6, a `gap` is 8, and a `cols` is its taller side. A label that is too long for its width is cut with an ellipsis. A phone line holds about 30 characters of headline and 37 of small text. A desktop line holds about 75 characters, or 58 beside a sidebar.
 
 On a proposed screen in a PRD, highlight and pin the one block the point changes.
 

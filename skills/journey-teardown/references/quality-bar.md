@@ -6,8 +6,8 @@ A teardown from this skill is not handed over until these hold. Six are checked 
 |---|---|---|---|
 | 1 | Every score has a reason | Script | A missing dimension, a score that is not a whole number from 1 to 5, a reason under four words, or a lane with no verdict |
 | 2 | Every pattern lists where it was seen | Script | A pattern naming fewer than two apps or no competitor, an anti-pattern naming none, a stage with no finding, or an ideal flow outside two to five steps |
-| 3 | Every gap names a benchmark | Script | A gap missing its priority, what happens today or the fix. A gap with no competitor showing the fix must say so in a note |
-| 4 | No screen has more than three notes | Script | A fourth note, a note with an unknown label, or a note over 30 words |
+| 3 | Every gap names a benchmark | Script | A gap missing its priority, what happens today or the fix, or a benchmark app with no lane on the board. A gap with no competitor showing the fix must say so in a note |
+| 4 | No screen has more than three notes | Script | A fourth note, a note with an unknown label, a note over 30 words, or a screen with more than one highlighted block |
 | 5 | Your product is the last lane in every stage | Script | Any stage where the user's product is not last, lanes out of the app order, or a steal list on your own lane |
 | 6 | Coverage is stated | Script | A lane with fewer than two screens and no coverage line, or an app absent from a stage and not listed as missing |
 | 7 | Your product was scored by the same rubric | You | Read your own lanes last and ask whether you were kinder to them |

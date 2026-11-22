@@ -100,6 +100,7 @@ def verify(data, folder, fix):
     found = 0
     # Quotes removed by an earlier --fix run stay on the record and are always reported.
     rejected = list(data.get("rejected") or [])
+    earlier = len(rejected)
     for item, slot, q in list(all_quotes(data)):
         pid = str(q.get("p"))
         text = str(q.get("text", ""))
@@ -163,6 +164,12 @@ def verify(data, folder, fix):
             for pid in quoted:
                 if pid not in support:
                     errors["counts"].append(f"{where}: {pid} is quoted but not counted in support")
+            per_person = {}
+            for q in item.get("quotes") or []:
+                per_person[str(q.get("p"))] = per_person.get(str(q.get("p")), 0) + 1
+            for pid, n in per_person.items():
+                if n > 2:
+                    errors["counts"].append(f"{where}: {pid} has {n} quotes here, the limit is 2 per participant")
             if not support:
                 errors["counts"].append(f"{where}: no supporting participants")
             if kind == "themes":
@@ -208,6 +215,7 @@ def verify(data, folder, fix):
         "themes": len(data.get("themes") or []),
         "found": found,
         "rejected": rejected,
+        "earlier": earlier,
         "checks": [{"id": key, "name": name, "pass": not errors[key], "errors": errors[key]} for key, name in CHECKS],
         "warnings": warnings,
         "log": log,
@@ -235,17 +243,22 @@ def main(argv):
     failed = [c for c in report["checks"] if not c["pass"]]
 
     lines = [f"{report['participants']} participants, {report['themes']} themes, {report['found']} quotes found, {len(report['rejected'])} rejected"]
+    lines.append("  (quotes found counts every verified quote: theme supporters, counter-voices and unprompted topics)")
     for c in report["checks"]:
         note = ""
         if c["id"] == "quotes" and c["pass"] and report["rejected"]:
             # The file is clean only because quotes were taken out. Never let that read as a plain pass.
-            note = f" (after removing {len(report['rejected'])} that could not be found)"
+            new = len(report["rejected"]) - report["earlier"]
+            if new > 0:
+                note = f" (after removing {new} that could not be found)"
+            else:
+                note = f" ({len(report['rejected'])} removed in an earlier run, none this time)"
         lines.append(f"  {'PASS' if c['pass'] else 'FAIL'}  {c['name']}{note}")
         lines.extend(f"        {e}" for e in c["errors"])
     lines.append("  ----  The themes answer the research question (yours to judge)")
     if report["rejected"]:
         lines.append("Rejected quotes (removed from the synthesis):")
-        lines.extend(f"  - {r['p']}: \"{r['text']}\" ({r['reason']})" for r in report["rejected"])
+        lines.extend(f"  - {r['p']}: \"{r['text']}\" ({r['reason']}; was under {r.get('from') or 'an unknown theme'})" for r in report["rejected"])
     if report["warnings"]:
         lines.append("Warnings:")
         lines.extend(f"  - {w}" for w in report["warnings"])

@@ -176,3 +176,17 @@
 .demo .lane-shots {
   perspective: 1100px;
 }
+
+/* On a narrow stage the switches sit along the bottom, so the caption moves to the top. */
+.stage[data-layout="narrow"] .demo-say {
+  top: 8px;
+  bottom: auto;
+  max-width: 94%;
+  padding: 7px 11px;
+  font-size: 0.78rem;
+  transform: translate(-50%, -10px);
+}
+
+.stage[data-layout="narrow"] .demo-say.on {
+  transform: translate(-50%, 0);
+}
