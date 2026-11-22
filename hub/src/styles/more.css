@@ -96,6 +96,11 @@
   margin-bottom: 0.9rem;
 }
 
+/* One way to install at a time: a panel that is not picked stays out of sight. */
+.sk-installer .install-panel[hidden] {
+  display: none;
+}
+
 /* The shelf: one folder per skill. */
 .shelf {
   display: grid;
@@ -179,7 +184,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
-  margin-top: 6.2rem;
+  margin-top: 7rem;
   padding: clamp(1.15rem, 1.9vw, 1.6rem);
   border-radius: var(--r-xl);
   background: var(--c);
@@ -1061,6 +1066,11 @@ a.wk-bar-ed:hover svg {
 }
 
 .iss-sec h2 a {
+  text-decoration: none;
+}
+
+.iss-sec h2 a:hover {
+  text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 0.14em;
 }
