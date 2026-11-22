@@ -1,5 +1,10 @@
 [
   {
+    "date": "2026-11-22",
+    "version": "1.1.0",
+    "note": "Three worked cases, one per domain: a consumer marketplace, a B2B SaaS tool and an AI product. Every workflow now has an example from each, and each new example has the record of its test run. The flagged prototype skill draws an app in a browser window as well as on a phone. It adds a divider that compares today with the proposal, a guided tour, and approve, hold or cut for each point. Its checker now reads dialogs as well as screens. The site has a new design."
+  },
+  {
     "date": "2026-11-18",
     "version": "1.0.0",
     "note": "First release. Six workflows, each with a demo, a worked example, a checker and a record of its test run. The pack installs as one plugin, and each skill has its own zip."

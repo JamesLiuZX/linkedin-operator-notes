@@ -140,9 +140,14 @@
       "catch": "Check the off state against the live app before anyone else sees it."
     }
   ],
-  "version": "1.0.0",
-  "verified": "2026-11-18",
+  "version": "1.1.0",
+  "verified": "2026-11-22",
   "changelog": [
+    {
+      "version": "1.1.0",
+      "date": "2026-11-22",
+      "note": "Draws an app in a browser window as well as on a phone. Adds a divider that compares today with the proposal, a guided tour the spec's author writes, and approve, hold or cut for each point, with the review copied as text. The checker now counts a change inside a dialog, and checks that the tour can be walked."
+    },
     {
       "version": "1.0.0",
       "date": "2026-11-18",
@@ -170,27 +175,32 @@
       },
       "carousel": [
         {
-          "at": 5.9,
+          "at": 6.0,
           "title": "Everything off is *the product today*",
           "body": "The agent draws the app as it ships now. Nothing new is on the screen yet."
         },
         {
-          "at": 7.8,
+          "at": 9.0,
           "title": "One switch is *one PRD point*",
           "body": "Turn on 1.1 and the reorder card appears on Home, with its number pinned to it."
         },
         {
-          "at": 11.6,
+          "at": 12.9,
           "title": "Judge each change *on its own*",
           "body": "Three points are on. A reviewer can approve 1.1 and hold 3.1 without arguing about the whole design."
         },
         {
-          "at": 18.5,
+          "at": 16.8,
           "title": "The numbers *follow you*",
           "body": "Tap through to the basket. The same IDs run from the PRD to the screen."
         },
         {
-          "at": 21.2,
+          "at": 24.6,
+          "title": "Drag to see *what changed*",
+          "body": "A divider cuts the same screen in two. Today is on the left, the proposal on the right."
+        },
+        {
+          "at": 27.8,
           "title": "Checked *before* you see it",
           "body": "A script confirms every switch changes a screen you can reach, and that nothing new shows while it is off."
         }

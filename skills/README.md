@@ -56,7 +56,7 @@ decision-prd/
 │   └── quality-bar.md    the checks, and why each one exists
 ├── scripts/check.py      the checks, as code. Standard library only
 ├── assets/template.html  one self-contained page that draws the output
-└── examples/tangelo/     the input, the output, and the record of the run
+└── examples/             one folder per worked case: the input, the output, and the record of the run
 ```
 
 Nothing in a skill calls the network. The scripts read the file you give them and print a report. Read them before you run them: they are short.
@@ -65,7 +65,7 @@ Nothing in a skill calls the network. The scripts read the file you give them an
 
 Each skill was handed to a fresh agent session that could read only the skill folder and the example's input. Nobody answered its questions. The session was asked to do the work and to list everything wrong with the instructions.
 
-The record of each run is the `RUN.md` beside the example: what the agent produced, what the checker said, what the run found wrong with the skill, and what was changed. The interview synthesis run includes a quote the requester remembered and nobody said. The script removed it.
+There are three worked cases, one per domain: `tangelo` (a consumer marketplace), `larkspur` (a B2B SaaS tool) and `vireo` (an AI product). The record of each run is the `RUN.md` beside the example: what the agent produced, what the checker said, what the run found wrong with the skill, and what was changed. The interview synthesis run includes a quote the requester remembered and nobody said. The script removed it.
 
 Two things these runs do not show. They do not compare the result with what an agent produces without the skill. And one run on one example is not proof that a skill works on yours. The checks are there so that you find out.
 
@@ -75,4 +75,4 @@ Every skill ends by running its own checker and telling you the result of each l
 
 ## Licence
 
-MIT. See [LICENSE](LICENSE). The worked examples are fictional. Tangelo, Pippin, Marrow, Sorrel and Kerb are invented, and so is everyone quoted.
+MIT. See [LICENSE](LICENSE). The worked examples are fictional. Tangelo, Larkspur, Vireo, Kerb and every product they are compared with are invented, and so is everyone quoted.

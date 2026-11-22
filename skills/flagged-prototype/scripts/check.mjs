@@ -6,7 +6,7 @@
 //   node check.mjs spec.js --json           the report as JSON
 //
 // Exit code 0 when every check passes, 1 when any fails, 2 when the spec cannot
-// be loaded. No dependencies. It imports the spec, calls its screen functions
+// be loaded. Check 4 also validates the spec's tour. No dependencies. It imports the spec, calls its screen functions
 // and reads the HTML they return. It never opens a browser or the network.
 
 import { readFile } from "node:fs/promises";
@@ -169,6 +169,79 @@ for (const state of [off, all]) {
     for (const m of html.matchAll(/data-go="([^"]+)"/g)) if (!screens[m[1]]) errors.taps.push(`sheet "${name}" links to "${m[1]}", which does not exist`);
     for (const m of html.matchAll(/data-act="([^"]+)"/g)) if (!spec.actions?.[m[1]]) errors.taps.push(`sheet "${name}" calls action "${m[1]}", which does not exist`);
   }
+}
+
+// The tour is part of "no dead taps": every name a step uses must exist, and a
+// step that presses a control should be pressing one that is on screen.
+const tour = Array.isArray(spec.tour) ? spec.tour : [];
+if (!tour.length) {
+  warnings.push("the spec has no tour. Add tour: [...] with 6 to 12 steps so a reviewer can be walked through the changes.");
+} else {
+  if (tour.length < 6 || tour.length > 12) warnings.push(`the tour has ${tour.length} steps. Aim for 6 to 12.`);
+  const presetsById = new Map((spec.presets || [{ id: "today", on: [] }, { id: "all", on: "all" }]).map((p) => [p.id, p]));
+  /** Mirrors the runtime: the state at step i is every step up to i, applied in order. */
+  const walk = [];
+  let cur = { screen: spec.start || names[0], on: {}, data: {}, sheet: null };
+  walk.push(cur); // walk[0] is the state before the first step
+  tour.forEach((step, i) => {
+    const at = `tour step ${i + 1}`;
+    const next = { ...cur, on: { ...cur.on }, data: { ...cur.data } };
+    if (step.preset) {
+      const p = presetsById.get(step.preset);
+      if (!p) errors.taps.push(`${at} names preset "${step.preset}", which does not exist`);
+      else next.on = Object.fromEntries(setKeys(p.on).map((id) => [id, true]));
+    }
+    if (step.flag) {
+      if (!ids.includes(String(step.flag))) errors.taps.push(`${at} names switch "${step.flag}", which does not exist`);
+      next.on[step.flag] = true;
+    }
+    if (step.off) {
+      if (!ids.includes(String(step.off))) errors.taps.push(`${at} turns off switch "${step.off}", which does not exist`);
+      delete next.on[step.off];
+    }
+    if (step.screen) {
+      if (!screens[step.screen]) errors.taps.push(`${at} jumps to screen "${step.screen}", which does not exist`);
+      next.screen = step.screen;
+    }
+    if (step.set) Object.assign(next.data, step.set);
+    if ("sheet" in step) {
+      if (step.sheet && !spec.sheets?.[step.sheet.name]) errors.taps.push(`${at} shows sheet "${step.sheet.name}", which does not exist`);
+      next.sheet = step.sheet || null;
+    } else if (step.screen) next.sheet = null;
+    // The control this step presses has to exist in the state just before it.
+    if (step.tap && screens[cur.screen]) {
+      const data = Object.assign(freshData(), cur.data);
+      const html = [render(cur.screen, setOf(Object.keys(cur.on)), data)];
+      if (cur.sheet && spec.sheets?.[cur.sheet.name]) {
+        try {
+          html.push(String(spec.sheets[cur.sheet.name](context(setOf(Object.keys(cur.on)), data), cur.sheet.k)));
+        } catch {
+          /* the sheet error is reported elsewhere */
+        }
+      }
+      if (!selectorFound(step.tap, html.join("\n"))) warnings.push(`${at}: tap ${step.tap} is not on screen "${cur.screen}"${cur.sheet ? ` (or its dialog)` : ""} just before this step`);
+    }
+    walk.push(next);
+    cur = next;
+  });
+}
+function setKeys(list) {
+  return list === "all" ? ids : list || [];
+}
+/** A simple match: [attr="value"], [attr], .class or #id. Anything else is not checked. */
+function selectorFound(sel, html) {
+  const attr = /^\[([\w-]+)(?:=(?:"([^"]*)"|'([^']*)'|([^\]]*)))?\]$/.exec(sel.trim());
+  if (attr) {
+    const [, name, a, b, c] = attr;
+    const value = a ?? b ?? c;
+    const re = value === undefined ? new RegExp(`\\s${name}(?=[\\s=>/])`) : new RegExp(`\\s${name}\\s*=\\s*["']${value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["']`);
+    return re.test(html);
+  }
+  const cls = /^\.([\w-]+)$/.exec(sel.trim());
+  if (cls) return new RegExp(`class="[^"]*\\b${cls[1]}\\b[^"]*"`).test(html);
+  const id = /^#([\w-]+)$/.exec(sel.trim());
+  if (id) return new RegExp(`\\sid="${id[1]}"`).test(html);
+  return true;
 }
 errors.taps = [...new Set(errors.taps)];
 

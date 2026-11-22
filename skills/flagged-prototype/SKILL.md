@@ -1,19 +1,19 @@
 ---
 name: flagged-prototype
-description: Builds a clickable phone prototype as a single HTML file in which every proposed change is a switch that can be turned on and off, numbered like the points of a PRD, with a pin on each change and presets for today, the first release and everything. Use when someone wants a prototype, mock-up or clickable demo of proposed product changes, wants to compare the product today with a proposal, wants reviewers to judge each change separately, or has a PRD (prd.json from decision-prd or any numbered list of changes) to bring to life. Not for production UI or design files, and not for changes with no screen such as pricing logic.
+description: Builds a clickable prototype, a phone app or a web app in a browser window, as a single HTML file in which every proposed change is a switch that can be turned on and off, numbered like the points of a PRD, with a pin on each change and presets for today, the first release and everything. Use when someone wants a prototype, mock-up or clickable demo of proposed product changes, wants to compare the product today with a proposal, wants reviewers to judge each change separately, or has a PRD (prd.json from decision-prd or any numbered list of changes) to bring to life. Not for production UI or design files, and not for changes with no screen such as pricing logic.
 license: MIT
 compatibility: The prototype itself needs only a browser. scripts/build.mjs and scripts/check.mjs need Node 18 or later. Without Node, paste the spec into assets/template.html by hand and apply references/quality-bar.md by reading.
 metadata:
   author: James Liu
-  version: "1.0.0"
+  version: "1.1.0"
   homepage: https://jamesliuzx.github.io/linkedin-operator-notes/workflows/flagged-prototype/
 ---
 
 # Flagged prototype
 
-Produce `prototype.html`: one file a reviewer opens in a browser. On the left, a phone running the product. On the right, a panel with one switch per proposed change. With every switch off the phone shows the product as it is today. Each switch adds one change and puts a numbered pin on it.
+Produce `prototype.html`: one file a reviewer opens in a browser. On the left, a phone or a browser window running the product. On the right, a panel with one switch per proposed change. With every switch off the device shows the product as it is today. Each switch adds one change and puts a numbered pin on it. The reviewer can also compare today with the proposal, take a guided tour, and approve, hold or cut each point.
 
-You write one thing: a **spec**, a JavaScript module that describes the screens and the switches. The runtime in `assets/template.html` does the rest (the phone, the panel, navigation, presets, pins, links that carry the state). The spec format and the kit of screen classes are in [references/format.md](references/format.md). Read it before writing.
+You write one thing: a **spec**, a JavaScript module that describes the screens and the switches. The runtime in `assets/template.html` does the rest (the device, the panel, navigation, presets, pins, compare, tour, review, links that carry the state). The spec format and the kit of screen classes are in [references/format.md](references/format.md). Read it before writing.
 
 ## What you need before building
 
@@ -29,16 +29,18 @@ You write one thing: a **spec**, a JavaScript module that describes the screens 
 
 ## Procedure
 
-1. **Choose the journey.** The three to six screens a reviewer walks through, in order. Write it down as `journey`.
-2. **Build every screen as it is today**, with all switches off. Use the kit classes so it looks like an app, not a wireframe. Use realistic, clearly made-up data and keep it in one `state()` function.
+1. **Choose the frame and the journey.** A phone app gets `frame: "phone"`, a web app gets `frame: "desktop"`. Then pick the three to six screens a reviewer walks through, in order, and write them as `journey`.
+2. **Draw today first.** Build every screen as it is today, with all switches off, using the kit classes (`p-` for a phone, `d-` for a window). Use realistic, clearly made-up data and keep it in one `state()` function.
 3. **Add one switch per change.** For each: the ID from the PRD, a label of a few words, a note of one or two sentences saying what changes and why, and the screens it touches.
 4. **Branch the screens on the switches.** Wrap each addition in `ctx.on("1.1")`. Give the added element `ctx.flag("1.1")` so it animates in, and `ctx.pin("1.1")` so it carries its number. When a switch replaces something, render the old version when it is off.
-5. **Make every control answer.** A control on the journey navigates or acts. Anything else carries `data-toast-text` saying what it would do: "Opens saved payment methods." No dead taps.
-6. **Make the journey finishable** with every switch off, with every switch on, and under each preset. If today's product has a dead end that a change fixes, keep the dead end and give it today's way out.
-7. **Add presets:** Today (nothing on), the first release (the IDs in the first rollout row), Everything. Add `paths` so each screen can be opened directly.
-8. **Label what is made up.** Set `legal` to one or two sentences: it is a concept, and which data is illustrative. Put a short line on the first screen too.
-9. **Check.** Run `node scripts/check.mjs spec.js --prd prd.json`, or without `--prd` when the changes did not come from a `prd.json`. Fix every failure. Read the warnings.
-10. **Build.** Run `node scripts/build.mjs spec.js prototype.html`. Without Node, copy `assets/template.html`, replace everything between `SPEC START` and `SPEC END` with the spec, and change `export default` to `const spec =`.
+5. **Leave open values open.** Where the PRD has not decided a price, date or limit, draw `<span class="d-slot">price</span>` (in a window) or say it is undecided (on a phone). Do not invent it.
+6. **Make every control answer.** A control on the journey navigates or acts. Anything else carries `data-toast-text` saying what it would do: "Opens saved payment methods." No dead taps.
+7. **Make the journey finishable** with every switch off, with every switch on, and under each preset. If today's product has a dead end that a change fixes, keep the dead end and give it today's way out.
+8. **Add presets:** Today (nothing on), the first release (the IDs in the first rollout row), Everything. Add `paths` so each screen can be opened directly.
+9. **Write the tour.** Six to twelve steps that a reviewer could follow cold. Step one shows today. Then one change per step, with a `say` of a sentence. Use `tap`, `set` and `sheet` to reach controls and dialogs. Fields are in [references/format.md](references/format.md).
+10. **Label what is made up.** Set `legal` to one or two sentences: it is a concept, and which data is illustrative. Put a short line on the first screen too.
+11. **Check.** Run `node scripts/check.mjs spec.js --prd prd.json`, or without `--prd` when the changes did not come from a `prd.json`. Fix every failure. Read the warnings.
+12. **Build.** Run `node scripts/build.mjs spec.js prototype.html`. Without Node, copy `assets/template.html`, replace everything between `SPEC START` and `SPEC END` with the spec, and change `export default` to `const spec =`.
 
 ## Rules that keep it honest
 
@@ -57,6 +59,6 @@ Tell the user:
 - any PRD point left out and why;
 - every assumption you made about the product today;
 - two or three links worth sending: the address carries the state, as `prototype.html#basket?on=1.1,2.1`;
-- that the first thing to do is compare the Today preset with the live product.
+- that the first thing to do is compare the Today preset with the live product, then press Tour.
 
-A worked example is in [examples/tangelo/](examples/tangelo/): a five-screen, six-switch spec for a fictional grocery app.
+Worked examples: [examples/tangelo/](examples/tangelo/), a phone app (five screens, six switches), and [examples/larkspur/](examples/larkspur/), a web app in a browser window with two people.

@@ -990,3 +990,8 @@ button.chip:hover {
     display: none;
   }
 }
+
+/* Hidden means hidden, whatever display a class sets. */
+[hidden] {
+  display: none !important;
+}

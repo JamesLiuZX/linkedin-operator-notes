@@ -651,9 +651,9 @@ function changelogPage(ctx) {
 /** A bare page holding one stage, sized for rendering clips and carousels. Not indexed. */
 function clipPage(ctx, w) {
   const body = `
-  <div class="clip" data-clip>
+  <div class="clip" data-clip data-wf="${esc(w.slug)}">
     <header class="clip-head">
-      <span class="label">${esc(SITE.name)}</span>
+      <span class="clip-brand">${MARK}<span>${esc(SITE.name)}</span></span>
       <h1>${hl(w.clipTitle || w.title)}</h1>
     </header>
     ${stage(ctx, w, { autoplay: false, layout: "strip" })}
@@ -670,9 +670,9 @@ const bareUrl = () => SITE.clipUrl || SITE.defaultOrigin.replace(/^https?:\/\//,
 /** First slide of a carousel: the claim, and a still of the finished output. */
 function clipCover(ctx, w) {
   const body = `
-  <div class="clip clip-cover" data-clip>
+  <div class="clip clip-cover" data-clip data-wf="${esc(w.slug)}">
     <header class="clip-head">
-      <span class="label">${esc(SITE.name)} · ${esc(stageOf(w.stage)?.title || "")}</span>
+      <span class="clip-brand">${MARK}<span>${esc(SITE.name)}</span></span>
       <h1>${hl(w.clipTitle || w.title)}</h1>
       <p class="clip-sub">${esc(w.clipLine || w.promise)}</p>
     </header>
@@ -685,15 +685,15 @@ function clipCover(ctx, w) {
 /** Last slide: where to open the output and how to install the skill. */
 function clipEnd(ctx, w) {
   const body = `
-  <div class="clip clip-end" data-clip>
+  <div class="clip clip-end" data-clip data-wf="${esc(w.slug)}">
     <header class="clip-head">
-      <span class="label">${esc(SITE.name)}</span>
+      <span class="clip-brand">${MARK}<span>${esc(SITE.name)}</span></span>
       <h1>${hl("Open the output. Then *install the skill*.")}</h1>
     </header>
     <div class="clip-steps">
-      <div><span class="label">01 · Open the worked example</span><b>${esc(bareUrl())}/workflows/${esc(w.slug)}</b></div>
-      <div><span class="label">02 · Install in Claude Code</span><code>/plugin install ${esc(SITE.plugin)} --marketplace ${esc(repoSlug())}</code></div>
-      <div><span class="label">03 · Or in Cursor, Codex, Gemini CLI</span><code>npx skills add ${esc(repoSlug())}</code></div>
+      <div><small>1. Open a worked example</small><b>${esc(bareUrl())}/workflows/${esc(w.slug)}</b></div>
+      <div><small>2. Install in Claude Code</small><code>/plugin install ${esc(SITE.plugin)} --marketplace ${esc(repoSlug())}</code></div>
+      <div><small>3. Or in Cursor, Codex, Gemini CLI</small><code>npx skills add ${esc(repoSlug())}</code></div>
     </div>
     <footer class="clip-foot"><span>Free, MIT licensed, and plain text you can read first.</span><b>Follow ${esc(SITE.author.name)}</b></footer>
   </div>`;
@@ -702,9 +702,9 @@ function clipEnd(ctx, w) {
 
 /** The 1200 by 630 card a link preview shows. w is a workflow, or null for the site's own card. */
 function ogCard(ctx, w) {
-  const title = w ? w.clipTitle || w.title : "AI workflows you can *watch*, *open* and *install*";
-  const line = w ? w.clipLine || w.promise : "A free handbook for product, research, data and strategy people.";
-  const shot = w ? w.slug : SITE.heroDemo || "flagged-prototype";
+  const title = w ? w.clipTitle || w.title : "AI workflows that *show their work*";
+  const line = w ? w.clipLine || w.promise : "Six free agent skills for product, research, data and strategy people. Watch each one run, open its output, then install it.";
+  const shown = w || ctx.workflow(SITE.heroDemo || "flagged-prototype");
   const body = `
   <div class="og" data-clip>
     <div class="og-copy">
@@ -712,7 +712,7 @@ function ogCard(ctx, w) {
       <h1>${hl(title)}</h1>
       <p>${esc(line)}</p>
     </div>
-    <div class="og-shot"><img src="${ctx.url(`/hub/posters/${shot}.png`)}" alt=""></div>
+    <div class="og-side" data-wf="${esc(shown.slug)}">${sheet(ctx, shown, null, { eager: true })}</div>
   </div>`;
   return { path: w ? `/clip/${w.slug}/og/` : "/clip/og/", title: w ? w.title : SITE.name, description: line, body, noindex: true, bodyClass: "clip-page" };
 }

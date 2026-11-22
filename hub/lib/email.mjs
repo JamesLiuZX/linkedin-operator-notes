@@ -7,10 +7,10 @@
 import { SITE } from "../site.config.mjs";
 import { esc } from "./html.mjs";
 
-const INK = "#0b0c0c";
+const INK = "#0c0c0b";
 const MUTED = "#6c716e";
 const LINE = "#e4e4de";
-const HI = "#dcff4a";
+const HI = "#d8ff3f";
 const FONT = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
 const MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,monospace";
 
@@ -22,7 +22,7 @@ const day = (issue) => {
 };
 
 const label = (n, text) =>
-  `<p style="margin:0 0 10px;font:600 11px/1.4 ${MONO};letter-spacing:.08em;text-transform:uppercase;color:${MUTED}"><span style="background:${HI};color:${INK};padding:2px 6px;border-radius:4px">${n}</span>&nbsp;&nbsp;${esc(text)}</p>`;
+  `<p style="margin:0 0 10px;font:600 13px/1.4 ${FONT};color:${MUTED}"><span style="background:${HI};color:${INK};padding:2px 7px;border-radius:6px;font-weight:700">${n}</span>&nbsp;&nbsp;${esc(text)}</p>`;
 const h = (text) => `<h2 style="margin:0 0 10px;font:600 22px/1.25 ${FONT};letter-spacing:-.02em;color:${INK}">${esc(text)}</h2>`;
 const p = (html, extra = "") => `<p style="margin:0 0 12px;font:400 16px/1.6 ${FONT};color:#262927;${extra}">${html}</p>`;
 const a = (href, text) => `<a href="${esc(href)}" style="color:${INK};text-decoration:underline">${esc(text)}</a>`;
@@ -44,7 +44,7 @@ export function emailHtml(ctx, issue, { fragment = false } = {}) {
 
   rows.push(
     block(`
-      <p style="margin:0 0 14px;font:600 11px/1.4 ${MONO};letter-spacing:.08em;text-transform:uppercase;color:${MUTED}">${esc(SITE.weekly.name)} · Issue ${esc(String(issue.n))} · ${esc(day(issue))}</p>
+      <p style="margin:0 0 14px;font:600 13px/1.4 ${FONT};color:${MUTED}"><span style="color:${INK};font-weight:800;font-size:15px">${esc(SITE.weekly.name)}</span> &nbsp;No. ${esc(String(issue.n))}, ${esc(day(issue))}</p>
       <h1 style="margin:0 0 14px;font:600 30px/1.15 ${FONT};letter-spacing:-.03em;color:${INK}">${esc(issue.title)}</h1>
       ${p(esc(issue.hook))}
       <p style="margin:14px 0 6px;font:600 13px/1.4 ${FONT};color:${INK}">In this issue</p>
@@ -59,7 +59,7 @@ export function emailHtml(ctx, issue, { fragment = false } = {}) {
       ${h(w.title)}
       ${p(esc(issue.workflow.why || w.promise))}
       <ol style="margin:0 0 14px;padding:0 0 0 20px;font:400 16px/1.6 ${FONT};color:#262927">${(issue.workflow.steps || []).map((s) => `<li style="margin:0 0 4px">${ctx.mdInline(s)}</li>`).join("")}</ol>
-      ${issue.workflow.prompt ? `<p style="margin:0 0 14px;padding:12px 14px;background:${INK};color:#eef1ea;border-radius:10px;font:400 13.5px/1.5 ${MONO}">${esc(issue.workflow.prompt)}</p>` : ""}
+      ${issue.workflow.prompt ? `<p style="margin:0 0 14px;padding:12px 14px;background:#f1f1ec;color:${INK};border-radius:12px;font:400 13.5px/1.5 ${MONO}">${esc(issue.workflow.prompt)}</p>` : ""}
       ${issue.workflow.matters ? p(`<b>Why it matters:</b> ${esc(issue.workflow.matters)}`) : ""}`)
     );
     rows.push(rule);

@@ -1,6 +1,6 @@
 {
   "name": "handbook",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Six AI workflows for product people: journey teardown, interview synthesis, pre-mortem, decision-ready PRD, flagged prototype and experiment readout. Each skill has a checker script, an output template and a worked example.",
   "author": {
     "name": "James Liu",

@@ -7,10 +7,11 @@
 //
 //   node scripts/hub-media.mjs                       everything, for every workflow
 //   node scripts/hub-media.mjs premortem             one workflow
-//   node scripts/hub-media.mjs --only posters,og     some kinds: posters, og, carousel, clip
+//   node scripts/hub-media.mjs --only posters,og     some kinds: art, posters, og, carousel, clip
 //
 // Writes into hub/static/hub/, which the site build copies as it is:
-//   posters/<slug>.png          the demo's stage, wide, for the page, email and link card
+//   art/<case>/<slug>.webp      a picture of each worked example's output, for tiles, cases and link cards
+//   posters/<slug>.png          the demo's stage, wide, for the page and email
 //   posters/<slug>-tall.png     the same in the 4:5 clip layout, for the carousel cover
 //   og/<slug>.png, og/default.png    1200 by 630 link-preview cards
 //   launch/<slug>/carousel.pdf  a LinkedIn document post: cover, one slide per step, closing slide
@@ -37,7 +38,7 @@ const FPS = 30;
 
 const argv = process.argv.slice(2);
 const onlyAt = argv.indexOf("--only");
-const KINDS = new Set((onlyAt === -1 ? "posters,og,carousel,clip" : argv[onlyAt + 1] || "").split(",").filter(Boolean));
+const KINDS = new Set((onlyAt === -1 ? "art,posters,og,carousel,clip" : argv[onlyAt + 1] || "").split(",").filter(Boolean));
 const wanted = argv.filter((a, i) => !a.startsWith("--") && !(onlyAt !== -1 && i === onlyAt + 1));
 
 function loadPlaywright() {
@@ -116,6 +117,31 @@ async function still(browser, path, viewport, file, scale = 1, type = "png") {
   return buf;
 }
 
+/** A picture of every worked example's output, as the page itself draws it. */
+async function art(browser, w) {
+  const made = [];
+  for (const caseId of Object.keys(w.cases || {})) {
+    const dir = join(OUT, "art", caseId);
+    await mkdir(dir, { recursive: true });
+    const page = await browser.newPage({ viewport: { width: 1200, height: 900 }, deviceScaleFactor: 1.5 });
+    const res = await page.goto(`${ORIGIN}/examples/${caseId}/${w.skill || w.slug}.html`, { waitUntil: "networkidle" }).catch(() => null);
+    if (res && res.status() === 200) {
+      await sleep(400);
+      const png = join(dir, `${w.slug}.png`);
+      await page.screenshot({ path: png });
+      const out = spawnSync("ffmpeg", ["-y", "-loglevel", "error", "-i", png, "-c:v", "libwebp", "-quality", "82", join(dir, `${w.slug}.webp`)]);
+      await rm(png, { force: true });
+      if (out.status === 0) {
+        made.push(caseId);
+        await mkdir(join(DIST, "hub", "art", caseId), { recursive: true });
+        await copyFile(join(dir, `${w.slug}.webp`), join(DIST, "hub", "art", caseId, `${w.slug}.webp`));
+      }
+    }
+    await page.close();
+  }
+  return made;
+}
+
 async function og(browser, w) {
   await mkdir(join(OUT, "og"), { recursive: true });
   await still(browser, w ? `/clip/${w.slug}/og/` : "/clip/og/", { width: 1200, height: 630 }, join(OUT, "og", `${w ? w.slug : "default"}.png`));
@@ -141,7 +167,7 @@ async function carousel(browser, w) {
     const slide = slides[i];
     await s.page.evaluate(
       ({ label, title, body }) => {
-        document.querySelector(".clip-head .label").textContent = label;
+        document.querySelector(".clip-brand span:last-child").textContent = label;
         document.querySelector(".clip-head h1").innerHTML = title;
         document.querySelector(".clip-foot span").textContent = body;
         document.querySelector(".clip-foot b").textContent = "";
@@ -158,7 +184,7 @@ async function carousel(browser, w) {
   images.push(await still(browser, `/clip/${w.slug}/end/`, view, null, 2, "jpeg"));
 
   // One PDF page per slide, at the size LinkedIn shows a portrait document.
-  const html = `<!doctype html><meta charset="utf-8"><style>@page{size:1080px 1350px;margin:0}html,body{margin:0;background:#0b0c0c}img{display:block;width:1080px;height:1350px;page-break-after:always}</style>${images
+  const html = `<!doctype html><meta charset="utf-8"><style>@page{size:1080px 1350px;margin:0}html,body{margin:0;background:#ffffff}img{display:block;width:1080px;height:1350px;page-break-after:always}</style>${images
     .map((b) => `<img src="data:image/jpeg;base64,${b.toString("base64")}">`)
     .join("")}`;
   const page = await browser.newPage({ viewport: view });
@@ -207,7 +233,9 @@ async function main() {
     const file = join(dir, slug, "meta.json");
     if (!existsSync(file)) continue;
     const meta = JSON.parse(await readFile(file, "utf8"));
-    if (meta.status !== "planned") all.push({ slug, ...meta });
+    // The carousel and the poster moment are written for a workflow's first case.
+    const first = Object.values(meta.cases || {})[0] || {};
+    if (meta.status !== "planned") all.push({ slug, ...meta, carousel: first.carousel, posterAt: first.posterAt });
   }
   const list = wanted.length ? all.filter((w) => wanted.includes(w.slug)) : all;
   if (!list.length) throw new Error(`no workflow matches ${wanted.join(", ")}`);
@@ -218,6 +246,7 @@ async function main() {
     for (const w of list) {
       const t0 = Date.now();
       const did = [];
+      if (KINDS.has("art")) did.push(`pictures of ${(await art(browser, w)).length} outputs`);
       if (KINDS.has("posters")) {
         await posters(browser, w);
         did.push("posters");
