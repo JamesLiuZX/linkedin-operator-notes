@@ -132,9 +132,14 @@
       "catch": "Each tripwire has an owner and a date. Put the date in a calendar before you close the file."
     }
   ],
-  "version": "1.0.0",
-  "verified": "2026-11-18",
+  "version": "1.1.0",
+  "verified": "2026-11-22",
   "changelog": [
+    {
+      "version": "1.1.0",
+      "date": "2026-11-22",
+      "note": "The checker now lists each tripwire's metric for the owner to confirm, warns on a relative threshold that is not labelled as a proposal, and names every high-impact risk left out of the top list. The instructions say how to choose check dates and how to tell the user about risks that have no metric. Found by the two test runs of 19 November."
+    },
     {
       "version": "1.0.0",
       "date": "2026-11-18",

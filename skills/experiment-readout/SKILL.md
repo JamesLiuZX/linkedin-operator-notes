@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs Python 3 with code execution to run scripts/ab_stats.py and scripts/check.py. Without it, do not compute anything by hand. Say that the numbers could not be checked and stop.
 metadata:
   author: James Liu
-  version: "1.0.0"
+  version: "1.1.0"
   homepage: https://jamesliuzx.github.io/linkedin-operator-notes/workflows/experiment-readout/
 ---
 

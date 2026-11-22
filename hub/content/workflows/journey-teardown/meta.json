@@ -144,9 +144,14 @@
       "catch": "Treat patterns as hypotheses. The experiment readout is where they get tested."
     }
   ],
-  "version": "1.0.0",
-  "verified": "2026-11-18",
+  "version": "1.1.0",
+  "verified": "2026-11-22",
   "changelog": [
+    {
+      "version": "1.1.0",
+      "date": "2026-11-22",
+      "note": "The checker now fails a screen with more than one highlight and a gap whose benchmark has no lane. It warns on a highlight that will not be drawn, a block that does not fit, a note of more than one sentence and a best-in-class entry that names your own product. Found by the two test runs of 19 November."
+    },
     {
       "version": "1.0.0",
       "date": "2026-11-18",

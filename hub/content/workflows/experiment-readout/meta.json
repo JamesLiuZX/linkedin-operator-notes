@@ -147,9 +147,14 @@
       "catch": "The script flags an interval that reaches below the smallest effect you said was worth shipping. Set that number before the test."
     }
   ],
-  "version": "1.0.0",
-  "verified": "2026-11-18",
+  "version": "1.1.0",
+  "verified": "2026-11-22",
   "changelog": [
+    {
+      "version": "1.1.0",
+      "date": "2026-11-22",
+      "note": "The checker now warns when the summary is not 2 to 4 sentences, when a guardrail's interval is within 0.1 points of its tolerance, and when the date the counts were pulled is missing. The instructions cover the outcome window and which figures are safe to repeat. The statistics are unchanged. Found by the two test runs of 19 November."
+    },
     {
       "version": "1.0.0",
       "date": "2026-11-18",

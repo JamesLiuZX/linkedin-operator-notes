@@ -5,7 +5,7 @@ license: MIT
 compatibility: Runs scripts/check.py with Python 3 when code execution is available. Without it, apply the checks in references/quality-bar.md by reading.
 metadata:
   author: James Liu
-  version: "1.0.0"
+  version: "1.1.0"
   homepage: https://jamesliuzx.github.io/linkedin-operator-notes/workflows/premortem/
 ---
 

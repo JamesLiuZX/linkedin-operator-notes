@@ -5,7 +5,7 @@ license: MIT
 compatibility: Runs scripts/verify_quotes.py with Python 3 when code execution is available. Without it, every quote has to be checked by reading the transcript, and the output must say the quotes were not machine-checked.
 metadata:
   author: James Liu
-  version: "1.0.0"
+  version: "1.1.0"
   homepage: https://jamesliuzx.github.io/linkedin-operator-notes/workflows/interview-synthesis/
 ---
 

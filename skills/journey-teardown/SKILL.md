@@ -5,7 +5,7 @@ license: MIT
 compatibility: Runs scripts/check.py with Python 3 when code execution is available. The Miro board needs a connected Miro connector. Without either, the HTML board and the checks by reading still work.
 metadata:
   author: James Liu
-  version: "1.0.0"
+  version: "1.1.0"
   homepage: https://jamesliuzx.github.io/linkedin-operator-notes/workflows/journey-teardown/
 ---
 

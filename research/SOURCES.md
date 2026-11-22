@@ -516,3 +516,5 @@ Every company, person and number inside the three cases (Tangelo, Larkspur, Vire
 | Quotes matched and rejected in the Larkspur synthesis | 36 matched, 1 rejected, 8 invented transcripts | 19 Nov 2026 | `skills/interview-synthesis/examples/larkspur/RUN.md` |
 | Checks passed by the two hand-built prototypes | 6 of 6 each | 21 and 22 Nov 2026 | `node skills/flagged-prototype/scripts/check.mjs` on `examples/larkspur/spec.js` and `examples/vireo/spec.js` |
 | Worked outputs on the site | 18 (6 workflows on 3 cases) | 22 Nov 2026 | `skills/*/examples/{tangelo,larkspur,vireo}/` |
+| Fresh runs of the PRD skill | 2, each passing 6 of 6 scripted checks | 19 Nov 2026 | `skills/decision-prd/examples/larkspur/RUN.md` and `skills/decision-prd/examples/vireo/RUN.md` |
+| Tests in the experiment readout's test file | 46: the 42 on the statistics, and 4 added for the checker's warnings | 22 Nov 2026 | `python3 skills/experiment-readout/scripts/test_ab_stats.py` |

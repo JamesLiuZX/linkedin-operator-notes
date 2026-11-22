@@ -138,9 +138,14 @@
       "catch": "The coverage grid shows quotes per participant. A near-empty row is a reason to reread that transcript."
     }
   ],
-  "version": "1.0.0",
-  "verified": "2026-11-18",
+  "version": "1.1.0",
+  "verified": "2026-11-22",
   "changelog": [
+    {
+      "version": "1.1.0",
+      "date": "2026-11-22",
+      "note": "The script now enforces the limit of two quotes per supporter, prints the theme each rejected quote was offered for, and no longer reports a removal twice on a second run. The instructions cover quotes with no named speaker and themes that were only partly led. Found by the two test runs of 19 November."
+    },
     {
       "version": "1.0.0",
       "date": "2026-11-18",
