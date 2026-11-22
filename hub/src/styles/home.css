@@ -96,6 +96,7 @@
 .xp {
   --pad: clamp(0.7rem, 1.5vw, 1.4rem);
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--pad);
   padding: var(--pad);
   border-radius: calc(var(--r-xl) + var(--pad));

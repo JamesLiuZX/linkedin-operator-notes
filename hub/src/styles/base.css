@@ -969,3 +969,24 @@ button.chip:hover {
 .cases button[aria-pressed="true"] span {
   color: var(--ink-2);
 }
+
+/* A phone has room for the name, search and the menu. The rest is in the menu. */
+@media (max-width: 480px) {
+  .nav-in {
+    gap: 0.5rem;
+  }
+
+  .brand {
+    gap: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .brand .mark {
+    width: 26px;
+    height: 26px;
+  }
+
+  .nav-end > a.icon-btn {
+    display: none;
+  }
+}
