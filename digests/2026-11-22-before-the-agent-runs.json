@@ -1,0 +1,82 @@
+{
+  "slug": "2026-11-22-before-the-agent-runs",
+  "date": "2026-11-22",
+  "edition": "22 Nov 2026",
+  "handle": "James Liu · Market Ops Notes",
+  "cover": {
+    "headline": "AI agents found and exploited a zero-day in about *11 minutes*.",
+    "sub": "On their own, Amazon says. Five changes from 20 Nov on what to settle before an agent runs, plus two courses."
+  },
+  "items": [
+    {
+      "kicker": "Security",
+      "title": "Attackers' AI agents found a *zero-day* on their own",
+      "stat": "11",
+      "statLabel": "minutes from mapping an app's API to writing files on its server, per Amazon",
+      "what": "A suspected China-nexus operator ran Cairn, an open-source AI pentest framework, against East Asian universities from 8 Sep.",
+      "why": "Amazon spotted it on 10 Sep, when it found the attackers' own Cairn server online with no login. Its advice: automate the response.",
+      "source": "AWS Security Blog, 20 Nov",
+      "url": "https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/"
+    },
+    {
+      "kicker": "Agent tooling",
+      "title": "Claude computer use reaches *Team and Enterprise*",
+      "stat": "Off",
+      "statLabel": "by default. Only an Owner or Primary Owner can switch it on",
+      "what": "In beta from 20 Nov, Claude can see a user's screen and work in the desktop apps they allow, on Mac and Windows.",
+      "why": "Anthropic's guide says there is no sandbox between Claude and a user's apps. Write the app allow list before you switch it on.",
+      "source": "Anthropic, 20 Nov",
+      "url": "https://support.claude.com/en/articles/12138966-release-notes"
+    },
+    {
+      "kicker": "Privacy",
+      "title": "Signal now blocks AI from *reading its screen*",
+      "stat": "On",
+      "statLabel": "by default: Block Siri AI on iOS 27, and Screen security against AI on Android",
+      "what": "Signal blocks screenshots so OS assistants like Siri AI and Gemini Intelligence can't read chats. Macs get no such protection.",
+      "why": "If your app shows balances or statements, the same assistants can read them. Decide which of your screens block capture.",
+      "source": "Engadget, 20 Nov",
+      "url": "https://www.engadget.com/2323574/signal-now-blocks-screenshots-by-default-to-stymie-ai-agents/"
+    },
+    {
+      "kicker": "Regulation",
+      "title": "A House report counts the *Chinese models* in US apps",
+      "stat": "25",
+      "statLabel": "Chinese model families DoorDash reported in use. Swapping an embedded one: up to 6 months",
+      "what": "Airbnb runs Alibaba's Qwen for about 80,000 conversations a day. Cursor, whose Composer 2 is built on Moonshot's Kimi K2.5, is exploring a phase-out.",
+      "why": "The committees want a model provenance standard. List every base model under your product, fine-tunes included, before a buyer asks.",
+      "source": "TNW, 21 Nov",
+      "url": "https://thenextweb.com/news/cursor-chinese-ai-models-house-report-sarvam-deepseek"
+    },
+    {
+      "kicker": "Evaluation",
+      "title": "AI judges grade stronger models *too kindly*",
+      "stat": "0.2",
+      "statLabel": "points out of 1 that the best AI judge added to GPT-6 Astra's work, versus a human",
+      "what": "METR's 20 Nov update: none of the eval tasks agents wrote were good enough to use, and its own container tests may overstate skill.",
+      "why": "If an LLM grades your agent, calibrate it on human-scored samples, and again after every model upgrade.",
+      "source": "METR, 20 Nov",
+      "url": "https://metr.org/blog/2026-11-20-q4-2026-capability-update/"
+    }
+  ],
+  "coursesTitle": "Build agents, then make them *safe*",
+  "courses": [
+    {
+      "platform": "YouTube",
+      "price": "Free",
+      "title": "CS 329Z: Engineering AI Agents (Stanford)",
+      "note": "Diyi Yang, Michael Ryan and John Yang. 9 lecture videos so far, from RAG to multi-agent systems. Eval and safety slides are up.",
+      "url": "https://cs329z.stanford.edu/"
+    },
+    {
+      "platform": "YouTube",
+      "price": "Free",
+      "title": "CMU AI Agents 2026: 13. Agentic Safety",
+      "note": "Graham Neubig's lecture for CMU 11-768, posted 16 Oct, from the course picked here on 6 Nov. Watch it before writing an allow list.",
+      "url": "https://www.youtube.com/watch?v=Mbonnq-PUGM"
+    }
+  ],
+  "readTitle": "Three answers *before* the agent runs",
+  "read": "What it may *touch*: computer use has no sandbox, so the allow list is the fence. Who *checks* it: Amazon says automate the response, METR says calibrate the AI judge. Where its model *came from*: Congress wants it on record.",
+  "takeaway": "Before an agent runs, write down what it may touch, who checks its work and where its model came from."
+}
