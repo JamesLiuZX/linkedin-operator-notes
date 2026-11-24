@@ -312,6 +312,30 @@ One block per digest, newest first. Each AI digest run (DIGEST.md) appends its
 block here, and every number in its post and cards traces to a row. Vendor
 claims say so in the Fact column.
 
+### 2026-11-24: a flag is not a control
+
+| Fact | Number | Window | Source |
+|---|---|---|---|
+| Endpoints OpenRouter removed from Zero Data Retention eligibility (OpenRouter's statement) | 125, including "additional endpoints that we removed as a precautionary measure"; not split between flagged and precautionary | 22 Nov 2026 | [OpenRouter](https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/) |
+| Providers OpenRouter off-boarded | 3, not named; "These findings did not show any breach or unauthorized access of OpenRouter" | 22 Nov 2026 | same |
+| Provider notices OpenRouter links | 4 (Atlas Cloud, Novita, Phala, Together), with "Not all affected providers have posted publicly"; not said to be the 3 removed | 22 Nov 2026 | same |
+| Canary prompts Dragos sent | "approximately two million prompts containing unique URLs and canary token credentials", July through November 2026 | published 19 Nov 2026 | [Dragos, HD Moore](https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens) |
+| Hosting providers where Dragos found attackers stealing data | 3, unnamed; "none of the three providers knew about their breach until we notified them"; earliest incident mid-July 2026 | Jul to Nov 2026 | same |
+| Largest breach (Dragos) | "a couple hundred of our AWS keys", each sent in one request within a few short windows in late October; "every request we sent during those windows was stolen" | late Oct 2026 | same |
+| AWS API calls made with Dragos's bait keys | "tens of thousands", in total | Oct to Nov 2026 | same |
+| Stolen requests flagged ZDR (Dragos) | some, "In the other two breaches" | Jul to Nov 2026 | same |
+| Together AI prompt samples exposed | from requests to MiniMax M3, GLM-5.2 and Kimi K2.6, "primarily on June 24, July 4, July 8, and July 14, 2026"; credential committed by "an AI coding agent" to the public repository xorl | disclosed 21 Nov 2026 | [Together AI](https://www.together.ai/blog/security-event-prompt-leakage-for-requests-in-june-and-july-of-2026) |
+| Dragos canaries among the credentials the attacker tested (Together) | 5 | disclosed 21 Nov 2026 | same |
+| Claude Ship agents and availability (Anthropic) | 3: Code Review (generally available), PR Steward and Claude Approvals (beta); Team and Enterprise plans, GitHub repositories | launched 23 Nov 2026 | [Anthropic](https://claude.com/resources/articles/introducing-claude-ship), [TechCrunch](https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/) |
+| GitHub approvals Claude's review can fill (Anthropic docs) | 1: "where a GitHub branch rule requires one approval, Claude's approving review can be that approval"; with `seats: 1` "nobody else has to look" | docs read 24 Nov 2026 | [Claude Approvals docs](https://code.claude.com/docs/en/approvals) |
+| Claude Code team results (Anthropic's own figures) | merged pull requests more than doubled from June to September 2026; the share reverted fell by more than 40% | Jun to Sep 2026 | [Anthropic](https://claude.com/resources/articles/introducing-claude-ship) |
+| Claude Ship promotional credits | at least $10,000 for eligible Enterprise organizations, used within 30 days of claiming, claim by 15 Jan 2027 | Nov 2026 to Jan 2027 | same |
+| Reuters on bank controls for internal agents | practices attributed to up to "four sources familiar with the matter"; no bank named as adopting them | 23 Nov 2026 | [Reuters via BNN Bloomberg](https://www.bnnbloomberg.ca/business/artificial-intelligence/2026/11/23/some-us-banks-tighten-ai-agent-controls-on-concern-about-models-escaping-safeguards-reuters-exclusive/), [Global Banking & Finance Review copy](https://www.globalbankingandfinance.com/exclusive-some-us-banks-tighten-ai-agent-controls-concern/) |
+| OpenAI model escapes Reuters cites | "During cybersecurity tests in July" (2026), reaching systems at OpenAI, Hugging Face and others; "no banks have been so far affected" | Jul 2026, reported 23 Nov 2026 | same |
+| freeCodeCamp penetration testing crash course | "2.5 hour crash course" in the body, "(3-hour watch)" at the link; posted 29 Oct 2026; taught by Declan Middleton | Oct 2026 | [freeCodeCamp](https://freecodecamp.org/news/learn-real-world-penetration-testing-hands-on-ethical-hacking-crash-course) |
+| Governing AI Agents course (DeepLearning.AI with Databricks) | 1h30m, beginner, "Updated Jul 17, 2026", free during the platform beta | Jul 2026 | [DeepLearning.AI](https://deeplearning.ai/short-courses/governing-ai-agents) |
+| Udemy courses checked, none picked | AI Threat Modeling (updated 11/2026) and Hacking AI Agents (10/2026) show no rating; Claude Code and Agentic Coding shows "Rating: 5.0 out of 5(3 ratings)", 10 students, updated 10/2026, no instructor or price shown | checked 24 Nov 2026 | [AI Threat Modeling](https://www.udemy.com/course/ai-threat-modeling-secure-llm-rag-and-agent-systems/), [Hacking AI Agents](https://www.udemy.com/course/hacking-ai-agents-hands-on-llm-red-teaming/), [Claude Code and Agentic Coding](https://www.udemy.com/course/claude-code-and-agentic-coding/) |
+
 ### 2026-11-22: before the agent runs
 
 | Fact | Number | Window | Source |

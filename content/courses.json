@@ -182,6 +182,26 @@
       "price": "Free",
       "url": "https://www.youtube.com/watch?v=Mbonnq-PUGM",
       "why": "One lecture on making agentic systems safe, from the CMU course picked on 6 Nov, posted 16 Oct 2026. Watch it before you write the allow list for an agent that can use a computer."
+    },
+    {
+      "added": "2026-11-24",
+      "digest": "2026-11-24-a-flag-is-not-a-control",
+      "title": "Learn Real-World Penetration Testing: Hands-On Ethical Hacking Crash Course",
+      "provider": "freeCodeCamp.org, taught by Declan Middleton",
+      "platform": "YouTube",
+      "price": "Free",
+      "url": "https://youtu.be/cqfl38Ip1ho",
+      "why": "About 2.5 hours (the link says a 3-hour watch) against a practice Capture The Flag machine: Linux, Nmap reconnaissance, finding hidden directories and endpoints, Burp Suite and scripted recon in Bash and Python. The attacker's side of the inference-host breaches Dragos found. Posted 29 Oct 2026."
+    },
+    {
+      "added": "2026-11-24",
+      "digest": "2026-11-24-a-flag-is-not-a-control",
+      "title": "Governing AI Agents",
+      "provider": "DeepLearning.AI with Databricks, taught by Amber Roberts",
+      "platform": "Other",
+      "price": "Free during the platform beta",
+      "url": "https://deeplearning.ai/short-courses/governing-ai-agents",
+      "why": "A 1h30m beginner course: give an agent its own identity, restrict it to the data it needs with masked views of an HR dataset, and log its inputs, outputs and decisions. Not new (updated 17 Jul 2026), but the closest hands-on match to the controls US banks are adding to their own agents."
     }
   ]
 }

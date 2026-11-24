@@ -575,6 +575,25 @@
       "notes": "AI Workflow Handbook launch series (NEWSLETTER.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment. clip.mp4 is the same demo as a 4:5 video, for a repost or for X."
     },
     {
+      "id": "dg-2026-11-24-li",
+      "week": 17, "date": "2026-11-24", "time": "09:00", "channel": "linkedin",
+      "kind": "atom", "pillar": "agents", "asset": "posts/dg-2026-11-24-a-flag-is-not-a-control.md",
+      "title": "AI digest: OpenRouter pulled 125 endpoints from zero data retention",
+      "hook": "OpenRouter pulled 125 endpoints off its zero data retention list.",
+      "status": "ready",
+      "linkInComment": "/digest/2026-11-24-a-flag-is-not-a-control",
+      "notes": "AI digest (DIGEST.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment."
+    },
+    {
+      "id": "dg-2026-11-24-x",
+      "week": 17, "date": "2026-11-24", "time": "21:00", "channel": "x",
+      "kind": "thread", "pillar": "agents", "asset": "posts/dg-2026-11-24-a-flag-is-not-a-control.md",
+      "title": "AI digest thread: OpenRouter pulled 125 endpoints from zero data retention after canaries caught three AI hosts",
+      "hook": "OpenRouter pulled 125 endpoints from zero data retention after Dragos's canary keys caught attackers inside three AI hosts.",
+      "status": "ready",
+      "notes": "AI digest (DIGEST.md). Attach cover.png to tweet 1. Tweets come from the post's X thread section."
+    },
+    {
       "id": "hb-experiment-readout-li",
       "week": 17, "date": "2026-11-26", "time": "09:00", "channel": "linkedin",
       "kind": "atom", "pillar": "growth", "asset": "posts/hb-experiment-readout.md",

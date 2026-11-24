@@ -1,0 +1,62 @@
+{
+  "slug": "2026-11-24-a-flag-is-not-a-control",
+  "date": "2026-11-24",
+  "edition": "24 Nov 2026",
+  "handle": "James Liu · Market Ops Notes",
+  "cover": {
+    "headline": "OpenRouter pulled *125* endpoints from zero data retention.",
+    "sub": "After canary keys caught attackers inside three AI hosts. Three changes from 21 to 23 Nov on controls for agents, plus two courses."
+  },
+  "items": [
+    {
+      "kicker": "Vendor risk",
+      "title": "OpenRouter pulled *125* endpoints from zero retention",
+      "stat": "125",
+      "statLabel": "endpoints lost zero data retention eligibility, some as a precaution",
+      "what": "Dragos hid canary keys in about 2 million prompts and caught attackers inside 3 AI hosts. On 22 Nov OpenRouter dropped 3 providers.",
+      "why": "Some stolen requests were flagged zero retention. Keep secrets out of prompts, pick providers yourself and plant canaries in your own traffic.",
+      "source": "OpenRouter, 22 Nov",
+      "url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+    },
+    {
+      "kicker": "Agent tooling",
+      "title": "Claude Ship lets an agent *approve* pull requests",
+      "stat": "1",
+      "statLabel": "required GitHub approval that Claude's own review can fill, per the docs",
+      "what": "In beta from 23 Nov for Team and Enterprise on GitHub. Approvals follow a policy file in the repo. PR Steward fixes failing checks but can't approve.",
+      "why": "Anyone who can merge the policy file can switch approvals on. Protect it, keep CI and a secrets scan required, and start in observe mode.",
+      "source": "Anthropic, 23 Nov",
+      "url": "https://claude.com/resources/articles/introducing-claude-ship"
+    },
+    {
+      "kicker": "Banking",
+      "title": "Banks now give their own AI agents *staff rules*",
+      "stat": "IAM",
+      "statLabel": "agents brought into identity and access management, per Reuters' sources",
+      "what": "Reuters, 23 Nov: US banks are limiting what internal agents reach, logging what each did and whether a person approved it, and reviewing kill switches.",
+      "why": "If you sell AI to banks, expect a credential per agent, logs it can't edit, a tested off switch and a manual fallback. Sources are anonymous.",
+      "source": "Reuters, 23 Nov",
+      "url": "https://www.bnnbloomberg.ca/business/artificial-intelligence/2026/11/23/some-us-banks-tighten-ai-agent-controls-on-concern-about-models-escaping-safeguards-reuters-exclusive/"
+    }
+  ],
+  "coursesTitle": "Learn the *attacker's* side, then the controls",
+  "courses": [
+    {
+      "platform": "YouTube",
+      "price": "Free",
+      "title": "Learn Real-World Penetration Testing",
+      "note": "freeCodeCamp, taught by Declan Middleton, posted 29 Oct. About 2.5 hours on a practice target: Nmap, hidden endpoints, Burp Suite, scripted recon.",
+      "url": "https://freecodecamp.org/news/learn-real-world-penetration-testing-hands-on-ethical-hacking-crash-course"
+    },
+    {
+      "platform": "DeepLearning.AI",
+      "price": "Free (beta)",
+      "title": "Governing AI Agents",
+      "note": "Built with Databricks, 1h30m: give an agent its own identity, only the data it needs, and logs of what it did. Updated 17 Jul, so not new.",
+      "url": "https://deeplearning.ai/short-courses/governing-ai-agents"
+    }
+  ],
+  "readTitle": "Swap the label for a *check*",
+  "read": "OpenRouter will test the *network path* before zero retention comes back. Anthropic made approval a *file* you can protect. Banks gave agents *their own keys* and logs they can't edit.",
+  "takeaway": "Swap each label you rely on for a check you can run: a canary, a protected approvals file, a log your agent can't edit."
+}
