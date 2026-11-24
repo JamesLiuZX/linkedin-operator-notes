@@ -1,0 +1,79 @@
+{
+  "n": 2,
+  "date": "2026-11-24",
+  "title": "Research synthesis where every quote is checked",
+  "preheader": "Plus Claude approving pull requests, 125 endpoints off zero retention and a Gemini price change.",
+  "hook": "Last week two fresh test runs went through the interview synthesis skill and listed what was wrong with it. The script is stricter as a result, so this is the week to look at it. It is the workflow for anyone who has been asked how many people actually said that.",
+  "minutes": 4,
+  "workflow": {
+    "slug": "interview-synthesis",
+    "why": "A summary of interviews can sound right and not be in the recordings. This workflow turns a stack of transcripts into themes where every claim shows how many people said it and links to their exact words. A script looks for each quote in the transcripts, word for word. A quote it cannot find is removed, and the removal is logged.",
+    "steps": [
+      "Give the agent one text file per interview, the decision the research is for, and who each participant is.",
+      "It reads every transcript in full, names themes from what people do, and counts distinct people, so one person repeating a point counts once.",
+      "A script searches the transcripts for every quote. Any quote it cannot find is removed and listed.",
+      "You get a page of themes with counts, quotes that open at their transcript line, the person who disagreed, and what is still unknown."
+    ],
+    "prompt": "Synthesise these interviews for this decision. Count people, not mentions, and verify every quote.",
+    "matters": "A finding is easier to act on when anyone in the room can open the words it rests on."
+  },
+  "demo": {
+    "line": "Watch it read eight transcripts and pull quotes, see the script throw one out, then click a theme to see who said it."
+  },
+  "things": [
+    {
+      "title": "Claude can now approve pull requests",
+      "what": "On 23 November Anthropic launched Claude Ship for Team and Enterprise plans, for repositories on GitHub. One of its agents, Claude Approvals, is in beta and approves pull requests under a policy file the team keeps in the repository.",
+      "why": "Where a GitHub branch rule requires one approval, Claude's review can be that approval. Anyone who can merge the policy file can switch approvals on, so give that file its own required reviewers and keep CI as a separate required check.",
+      "catch": "It is a beta billed on tokens, and it is charged in observe mode too. The results Anthropic cites are its own, from the Claude Code team. Organizations with Zero Data Retention cannot use it yet.",
+      "source": {
+        "label": "Anthropic, 23 Nov",
+        "url": "https://claude.com/resources/articles/introducing-claude-ship"
+      }
+    },
+    {
+      "title": "125 endpoints lost their zero retention label",
+      "what": "On 22 November OpenRouter removed 125 endpoints from zero data retention eligibility and dropped 3 providers. Dragos had hidden canary keys in about two million prompts and caught attackers stealing data inside 3 AI hosts.",
+      "why": "Some of the stolen requests were flagged zero retention. If your product sends customer text through a router, that flag is a promise made by a host you may not have picked. Keep secrets out of prompts and choose the providers yourself.",
+      "catch": "The 3 providers are not named, and the 125 includes endpoints removed as a precaution. OpenRouter says the findings showed no breach of OpenRouter itself.",
+      "source": {
+        "label": "OpenRouter, 22 Nov",
+        "url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+      }
+    },
+    {
+      "title": "Gemini 4 Carbon doubles in price after 30 November",
+      "what": "Google released Gemini 4 Neon on 18 November at $3 per million input tokens and $15 per million output. Gemini 4 Carbon goes from $2 and $10 to $4 and $20 after 30 November.",
+      "why": "A feature that runs on Carbon costs twice as much per token from next week. Rerun your cost per finished task on both models before the price moves.",
+      "catch": "Google claims Neon has a 32% lower cost per task than Carbon. That is the vendor's figure on the vendor's tasks. Measure it on yours.",
+      "source": {
+        "label": "Google, 18 Nov",
+        "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/"
+      }
+    }
+  ],
+  "tip": {
+    "title": "Open three quotes yourself",
+    "body": "Before a readout, pick the three quotes your decision rests on and find each one in its transcript. Read the minute around it. A script can prove the words were said. It cannot tell you they meant what the slide says they meant."
+  },
+  "number": {
+    "value": "4.7%",
+    "label": "of product managers use AI for user research today. 21.5% use it to write PRDs, the top current use in the same survey.",
+    "source": {
+      "label": "Lenny Rachitsky and Noam Segal, 1,750 respondents, December 2025",
+      "url": "https://lennysnewsletter.com/p/ai-tools-are-overdelivering-results"
+    }
+  },
+  "changelog": [
+    {
+      "skill": "interview-synthesis",
+      "version": "1.1.0",
+      "note": "The script now enforces the limit of two quotes per supporter, prints the theme each rejected quote was offered for, and no longer reports a removal twice on a second run. Found by the two test runs of 19 November."
+    },
+    {
+      "skill": "handbook",
+      "version": "1.1.0",
+      "note": "Three worked cases, one per domain: a consumer marketplace, a B2B SaaS tool and an AI product. Every workflow has an example from each. The five other checkers are stricter too, and each skill's own changelog says how."
+    }
+  ]
+}

@@ -542,3 +542,14 @@ Every company, person and number inside the three cases (Tangelo, Larkspur, Vire
 | Worked outputs on the site | 18 (6 workflows on 3 cases) | 22 Nov 2026 | `skills/*/examples/{tangelo,larkspur,vireo}/` |
 | Fresh runs of the PRD skill | 2, each passing 6 of 6 scripted checks | 19 Nov 2026 | `skills/decision-prd/examples/larkspur/RUN.md` and `skills/decision-prd/examples/vireo/RUN.md` |
 | Tests in the experiment readout's test file | 46: the 42 on the statistics, and 4 added for the checker's warnings | 22 Nov 2026 | `python3 skills/experiment-readout/scripts/test_ab_stats.py` |
+
+### 2026-11-24: issue 2
+
+The three things come from the digests of 20 and 24 Nov and are sourced in those blocks above. The number repeats two rows of the 2026-11-18 block.
+
+| Fact | Number | Window | Source |
+|---|---|---|---|
+| Product managers who use AI for user research today | 4.7% | survey of 1,750 tech workers, published Dec 2025 | [Lenny Rachitsky and Noam Segal](https://lennysnewsletter.com/p/ai-tools-are-overdelivering-results) |
+| Product managers who use AI to write PRDs today | 21.5%, the top current use | same | same |
+| Interview synthesis skill changes listed in the issue | version 1.1.0, dated 22 Nov 2026, from the two test runs of 19 Nov 2026 | 22 Nov 2026 | `hub/content/workflows/interview-synthesis/meta.json` |
+
