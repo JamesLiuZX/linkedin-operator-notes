@@ -1,0 +1,72 @@
+{
+  "slug": "2026-11-26-the-duty-stays-with-you",
+  "date": "2026-11-26",
+  "edition": "26 Nov 2026",
+  "handle": "James Liu · Market Ops Notes",
+  "cover": {
+    "headline": "The FCA named *5* regulated activities AI agents can drift into.",
+    "sub": "A tech-provider label won't exempt you, it said on 24 Nov. Four changes from 23 to 25 Nov on who carries the duty, plus two courses."
+  },
+  "items": [
+    {
+      "kicker": "Regulation",
+      "title": "The FCA: a tech label won't *exempt* your agent",
+      "stat": "5",
+      "statLabel": "regulated activities the FCA lists for agent makers to check",
+      "what": "24 Nov: payments, financial promotions, an authorised information service, credit broking, advice. Being a tech provider doesn't remove the need for authorisation.",
+      "why": "Firms are asked whether to accept payments an AI agent instructs. Map every action your agent can take to that list before you launch in the UK.",
+      "source": "FCA, 24 Nov",
+      "url": "https://www.fca.org.uk/firms/innovation/ai-approach/agentic-ai"
+    },
+    {
+      "kicker": "Data retention",
+      "title": "Claude's top models can log to *your* bucket",
+      "stat": "7",
+      "statLabel": "calendar days your team gets to answer a Safety Case, per Anthropic's docs",
+      "what": "23 Nov: Enterprise Frontier Safeguards in beta, and in preview on Bedrock. Prompts stay in your own cloud account. No AWS or Anthropic person reads them.",
+      "why": "The misuse review moves to you. Lose access to the key or bucket and Bedrock stops serving these models in 24 hours. Name an owner first.",
+      "source": "Anthropic and AWS, 23 Nov",
+      "url": "https://claude.com/resources/articles/zero-data-retention-with-enterprise-frontier-safeguards"
+    },
+    {
+      "kicker": "Agent tooling",
+      "title": "MCP servers can now ship *skills* to Claude",
+      "stat": "700M+",
+      "statLabel": "monthly MCP SDK downloads, by Anthropic's count",
+      "what": "24 Nov, in beta: servers ship skills that update with the server. Tasks and Elicitation are GA for Pro, Max and Ultra, rolling out to Team and Enterprise.",
+      "why": "The spec says to treat skill content as untrusted input. Pick the servers allowed to ship skills, and ask a person before any tool moves money.",
+      "source": "Anthropic and MCP, 24 Nov",
+      "url": "https://claude.com/resources/articles/skills-over-mcp-tasks-and-more"
+    },
+    {
+      "kicker": "Privacy",
+      "title": "42 attorneys general fight an AI *chat auction*",
+      "stat": "21M",
+      "statLabel": "US accounts whose chats and personal data go to auction on 1 Dec",
+      "what": "24 Nov: they asked a court to reject Character.AI's sale. Its policy said it doesn't sell personal information. Under the terms, the buyer needn't honour that.",
+      "why": "Every chat log and risk score you keep can be sold. Check what your privacy policy says happens to AI conversations in a sale or insolvency.",
+      "source": "California AG, 24 Nov",
+      "url": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-opposes-asset-sale-characterai-amid-child-safety-concerns"
+    }
+  ],
+  "coursesTitle": "How agents call *tools*, and how to scope them",
+  "courses": [
+    {
+      "platform": "YouTube",
+      "price": "Free",
+      "title": "Stanford CS 329Z: Tool Use & Function Calling",
+      "note": "Lecture 4, given 5 Oct: why models need tools, interfaces from REST to MCP, and how to evaluate tool use. Its MCP reading is the 2025 spec.",
+      "url": "https://youtu.be/s0S38lz6O7M"
+    },
+    {
+      "platform": "YouTube",
+      "price": "Free",
+      "title": "OAuth 2.0 Course for Beginners",
+      "note": "freeCodeCamp, 2 hours: an authorization server, a resource server and a client with PKCE. Posted 6 Jan, so not new.",
+      "url": "https://www.freecodecamp.org/news/oauth-2-course-for-beginners/"
+    }
+  ],
+  "readTitle": "Give every duty an *owner*",
+  "read": "The FCA keeps *authorisation* with whoever runs the agent. Anthropic and AWS moved *the misuse review* into your account. MCP put *skill vetting* on the host. 42 AGs say a *privacy promise* survives a sale.",
+  "takeaway": "Name one owner per duty this week: the activity map, the Safety Case queue, the skills list, the privacy promise."
+}

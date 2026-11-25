@@ -202,6 +202,26 @@
       "price": "Free during the platform beta",
       "url": "https://deeplearning.ai/short-courses/governing-ai-agents",
       "why": "A 1h30m beginner course: give an agent its own identity, restrict it to the data it needs with masked views of an HR dataset, and log its inputs, outputs and decisions. Not new (updated 17 Jul 2026), but the closest hands-on match to the controls US banks are adding to their own agents."
+    },
+    {
+      "added": "2026-11-26",
+      "digest": "2026-11-26-the-duty-stays-with-you",
+      "title": "Stanford CS 329Z, lecture 4: Tool Use & Function Calling",
+      "provider": "Stanford University, from Engineering AI Agents (Diyi Yang, Michael Ryan and John Yang)",
+      "platform": "YouTube",
+      "price": "Free",
+      "url": "https://youtu.be/s0S38lz6O7M",
+      "why": "One lecture, given on 5 Oct 2026, from the Stanford course picked on 22 Nov: why models need tools, the interfaces from REST to function calling to MCP, and how to evaluate tool use with BFCL, ToolBench and τ-bench. Its MCP reading is the 2025-06-18 spec, so it predates server-shipped skills and the new Tasks extension."
+    },
+    {
+      "added": "2026-11-26",
+      "digest": "2026-11-26-the-duty-stays-with-you",
+      "title": "OAuth 2.0 Course for Beginners",
+      "provider": "freeCodeCamp.org",
+      "platform": "YouTube",
+      "price": "Free",
+      "url": "https://www.freecodecamp.org/news/oauth-2-course-for-beginners/",
+      "why": "A 2-hour build of an authorization server, a resource server and a client app using the authorization code flow with PKCE. Not new (posted 6 Jan 2026), but scoped, short-lived tokens are one way to give an AI agent a narrow permission instead of a password."
     }
   ]
 }

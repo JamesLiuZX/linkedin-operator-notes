@@ -604,6 +604,25 @@
       "notes": "AI Workflow Handbook launch series (NEWSLETTER.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment. clip.mp4 is the same demo as a 4:5 video, for a repost or for X."
     },
     {
+      "id": "dg-2026-11-26-li",
+      "week": 17, "date": "2026-11-26", "time": "09:00", "channel": "linkedin",
+      "kind": "atom", "pillar": "agents", "asset": "posts/dg-2026-11-26-the-duty-stays-with-you.md",
+      "title": "AI digest: The FCA named 5 regulated activities AI agents can drift into",
+      "hook": "The FCA named 5 regulated activities AI agents can drift into.",
+      "status": "ready",
+      "linkInComment": "/digest/2026-11-26-the-duty-stays-with-you",
+      "notes": "AI digest (DIGEST.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment."
+    },
+    {
+      "id": "dg-2026-11-26-x",
+      "week": 17, "date": "2026-11-26", "time": "21:00", "channel": "x",
+      "kind": "thread", "pillar": "agents", "asset": "posts/dg-2026-11-26-the-duty-stays-with-you.md",
+      "title": "AI digest thread: the FCA says a technology provider label won't exempt an AI agent that moves money",
+      "hook": "The FCA says \"technology provider\" is no exemption: an AI agent that pays, promotes, brokers credit or advises can need authorisation.",
+      "status": "ready",
+      "notes": "AI digest (DIGEST.md). Attach cover.png to tweet 1. Tweets come from the post's X thread section."
+    },
+    {
       "id": "hb-journey-teardown-li",
       "week": 18, "date": "2026-12-01", "time": "09:00", "channel": "linkedin",
       "kind": "atom", "pillar": "growth", "asset": "posts/hb-journey-teardown.md",
