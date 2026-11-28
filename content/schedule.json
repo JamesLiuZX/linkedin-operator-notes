@@ -623,6 +623,25 @@
       "notes": "AI digest (DIGEST.md). Attach cover.png to tweet 1. Tweets come from the post's X thread section."
     },
     {
+      "id": "dg-2026-11-28-li",
+      "week": 17, "date": "2026-11-28", "time": "09:00", "channel": "linkedin",
+      "kind": "atom", "pillar": "agents", "asset": "posts/dg-2026-11-28-the-clocks-got-shorter.md",
+      "title": "AI digest: Every AI-agent attack Switzerland confirmed got in. Patch in 24 hours",
+      "hook": "Every AI-agent attack Switzerland confirmed got in. Patch in 24 hours.",
+      "status": "ready",
+      "linkInComment": "/digest/2026-11-28-the-clocks-got-shorter",
+      "notes": "AI digest (DIGEST.md). Post as a LinkedIn document: attach carousel.pdf from the row's media links, paste the body, then the first comment."
+    },
+    {
+      "id": "dg-2026-11-28-x",
+      "week": 17, "date": "2026-11-28", "time": "21:00", "channel": "x",
+      "kind": "thread", "pillar": "agents", "asset": "posts/dg-2026-11-28-the-clocks-got-shorter.md",
+      "title": "AI digest thread: Swiss officials say every AI-agent attack they know of got in, and want critical patches within 24 hours",
+      "hook": "Swiss officials say every AI-agent attack they know of got in. Their advice: install critical patches on internet-facing systems within 24 hours.",
+      "status": "ready",
+      "notes": "AI digest (DIGEST.md). Attach cover.png to tweet 1. Tweets come from the post's X thread section."
+    },
+    {
       "id": "hb-journey-teardown-li",
       "week": 18, "date": "2026-12-01", "time": "09:00", "channel": "linkedin",
       "kind": "atom", "pillar": "growth", "asset": "posts/hb-journey-teardown.md",

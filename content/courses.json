@@ -222,6 +222,26 @@
       "price": "Free",
       "url": "https://www.freecodecamp.org/news/oauth-2-course-for-beginners/",
       "why": "A 2-hour build of an authorization server, a resource server and a client app using the authorization code flow with PKCE. Not new (posted 6 Jan 2026), but scoped, short-lived tokens are one way to give an AI agent a narrow permission instead of a password."
+    },
+    {
+      "added": "2026-11-28",
+      "digest": "2026-11-28-the-clocks-got-shorter",
+      "title": "OWASP API Security Top 10: Secure Your APIs",
+      "provider": "freeCodeCamp.org, course by Corey Ball (APIsec University)",
+      "platform": "YouTube",
+      "price": "Free",
+      "url": "https://youtu.be/YYe0FdfdgDU",
+      "why": "1.5 hours over all ten risks on the 2023 OWASP API Security list, from broken object level authorization (the IDOR bugs the ARTEX attack agent is built to find) to unrestricted resource consumption and server-side request forgery. Not new (posted 30 Aug 2023), but Microsoft's ARTEX advice for APIs points to this list."
+    },
+    {
+      "added": "2026-11-28",
+      "digest": "2026-11-28-the-clocks-got-shorter",
+      "title": "Learn How To Secure API Servers",
+      "provider": "freeCodeCamp.org, course by Anthony Aragues (APIsec Labs)",
+      "platform": "YouTube",
+      "price": "Free",
+      "url": "https://youtu.be/2-DmxENygRc",
+      "why": "One hour on CORS, error disclosure, information leaks, secure cookies, path traversal and rate limiting, the control that slows an attack agent sending thousands of requests a minute. Not new (posted 19 Sep 2024)."
     }
   ]
 }

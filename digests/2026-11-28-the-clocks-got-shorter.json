@@ -1,0 +1,72 @@
+{
+  "slug": "2026-11-28-the-clocks-got-shorter",
+  "date": "2026-11-28",
+  "edition": "28 Nov 2026",
+  "handle": "James Liu · Market Ops Notes",
+  "cover": {
+    "headline": "Swiss officials: AI agents got in *every time*. Patch in *24 hours*.",
+    "sub": "The NCSC on every AI-agent attack it knows of, 24 Nov. Plus Microsoft's 6 ARTEX users, Google's 1 Feb agent deadline and OpenAI's Monday shutdown."
+  },
+  "items": [
+    {
+      "kicker": "Government",
+      "title": "Swiss officials: every AI-agent attack they saw *got in*",
+      "stat": "24h",
+      "statLabel": "the NCSC's limit for installing critical patches on internet-facing systems",
+      "what": "24 Nov: the Swiss NCSC confirmed its first attacks run with AI agents, on firms and critical infrastructure in at least two sectors. All it knows of succeeded.",
+      "why": "The agents used guessable passwords and known holes. Patch exposed systems within 24 hours of a critical fix, and put MFA or passkeys on webmail and VPN.",
+      "source": "Swiss NCSC, 24 Nov",
+      "url": "https://www.bacs.admin.ch/en/26-ki-agenten-1-en"
+    },
+    {
+      "kicker": "Security",
+      "title": "*6* groups now attack with one open-source AI agent",
+      "stat": "6",
+      "statLabel": "threat actors Microsoft has seen adding ARTEX to their tools, Salt Typhoon among them",
+      "what": "25 Nov: ARTEX, an open-source AI pentest platform, gets from recon to privileged access in minutes. One campaign peaked at 2,900 failed sign-ins a minute.",
+      "why": "Machine-speed bursts are the tell. Rate-limit, put your WAF in prevention mode and plant decoys: in Microsoft's tests they cut traffic to real assets.",
+      "source": "Microsoft, 25 Nov",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/25/what-defenders-need-to-know-artex-agentic-ai-framework-threat-actors-abuse/"
+    },
+    {
+      "kicker": "Agent tooling",
+      "title": "Google gives AI agents their *own door* into Gmail",
+      "stat": "1 Feb",
+      "statLabel": "2027: from then, agents reach Workspace via Google's MCP servers or CLI, not REST",
+      "what": "24 Nov, per the CSA and others: Workspace MCP servers and a CLI went GA, with new API terms for AI agents. Google's guide adds a separate agent OAuth flag.",
+      "why": "If your agent reads Gmail, Drive or Calendar over REST, plan the move now. Give it its own OAuth client, marked as an AI-powered agent.",
+      "source": "Google docs and CSA",
+      "url": "https://developers.google.com/workspace/guides/configure-mcp-servers"
+    },
+    {
+      "kicker": "Deprecation",
+      "title": "OpenAI's prompt objects and Agent Builder stop *Monday*",
+      "stat": "4",
+      "statLabel": "OpenAI API cut-off dates between 30 Nov and 15 Dec",
+      "what": "30 Nov: prompt objects and Agent Builder shut down and Evals goes read-only. Image models follow on 1 Dec, then gpt-5 and o3 on 11 Dec. Notice came in May and June.",
+      "why": "Move prompts into your code, export eval sets and pick replacement models now. Fine-tuned models stop on the same date as their base model.",
+      "source": "OpenAI deprecations page",
+      "url": "https://developers.openai.com/api/docs/deprecations"
+    }
+  ],
+  "coursesTitle": "The bugs attack agents *hunt*",
+  "courses": [
+    {
+      "platform": "YouTube",
+      "price": "Free",
+      "title": "OWASP API Security Top 10: Secure Your APIs",
+      "note": "freeCodeCamp, 1.5 hours with Corey Ball on all ten 2023 risks, from broken object level authorization to SSRF. Posted Aug 2023, so not new.",
+      "url": "https://youtu.be/YYe0FdfdgDU"
+    },
+    {
+      "platform": "YouTube",
+      "price": "Free",
+      "title": "Learn How To Secure API Servers",
+      "note": "freeCodeCamp, 1 hour from APIsec Labs' Anthony Aragues: CORS, leaks, path traversal and rate limiting. Posted Sep 2024.",
+      "url": "https://youtu.be/2-DmxENygRc"
+    }
+  ],
+  "readTitle": "Every clock got *shorter*",
+  "read": "Attack agents need *minutes*. Switzerland wants critical patches in *24 hours*. Google gives agents until *1 Feb*. OpenAI's cut-off is *Monday*.",
+  "takeaway": "This week: a 24-hour patch rule, agent-flagged OAuth clients, and OpenAI prompts moved into code."
+}
